@@ -22,7 +22,7 @@ function KpiCard({ label, value, change, changeLabel, icon: Icon, accent = false
         style={{ fontFamily: 'Syne, sans-serif' }}>
         {value}
       </p>
-      {change !== undefined && (
+      {change !== undefined && change !== null && (
         <div className={`flex items-center gap-1 mt-1 ${isPositive ? 'text-green-600' : 'text-red-500'}`}>
           {isPositive ? <TrendingUp size={12}/> : <TrendingDown size={12}/>}
           <span className="text-xs font-medium">{Math.abs(change).toFixed(1)}%</span>
@@ -33,54 +33,30 @@ function KpiCard({ label, value, change, changeLabel, icon: Icon, accent = false
   )
 }
 
-export default function KpiCards({ kpis, previousKpis }) {
+export default function KpiCards({ kpis, previousKpis, compLabel = 'vs período ant.' }) {
   if (!kpis) return null
-
-  const pctChange = (curr, prev) => prev ? ((curr - prev) / prev) * 100 : undefined
+  const pctChange = (curr, prev) => (prev && prev > 0) ? ((curr - prev) / prev) * 100 : undefined
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 animate-fade-in">
-      <KpiCard
-        label="Receita Total"
-        value={fmt(kpis.totalFaturamento)}
+      <KpiCard label="Receita Total" value={fmt(kpis.totalFaturamento)}
         change={pctChange(kpis.totalFaturamento, previousKpis?.totalFaturamento)}
-        changeLabel="vs período ant."
-        icon={DollarSign}
-        accent
-      />
-      <KpiCard
-        label="Vendas"
-        value={fmt(kpis.totalVendas)}
+        changeLabel={compLabel} icon={DollarSign} accent />
+      <KpiCard label="Vendas" value={fmt(kpis.totalVendas)}
         change={pctChange(kpis.totalVendas, previousKpis?.totalVendas)}
-        changeLabel="vs período ant."
-        icon={TrendingUp}
-      />
-      <KpiCard
-        label="Serviços"
-        value={fmt(kpis.totalServicos)}
+        changeLabel={compLabel} icon={TrendingUp} />
+      <KpiCard label="Serviços" value={fmt(kpis.totalServicos)}
         change={pctChange(kpis.totalServicos, previousKpis?.totalServicos)}
-        changeLabel="vs período ant."
-        icon={BarChart2}
-      />
-      <KpiCard
-        label="Locação"
-        value={fmt(kpis.totalLocacao)}
+        changeLabel={compLabel} icon={BarChart2} />
+      <KpiCard label="Locação" value={fmt(kpis.totalLocacao)}
         change={pctChange(kpis.totalLocacao, previousKpis?.totalLocacao)}
-        changeLabel="vs período ant."
-        icon={Package}
-      />
-      <KpiCard
-        label="Meta Total"
-        value={fmt(kpis.totalMeta)}
-        icon={Target}
-      />
-      <KpiCard
-        label="% Meta Atingida"
+        changeLabel={compLabel} icon={Package} />
+      <KpiCard label="Meta Total" value={fmt(kpis.totalMeta)} icon={Target} />
+      <KpiCard label="% Meta Atingida"
         value={kpis.pctAtingido > 0 ? `${kpis.pctAtingido.toFixed(1)}%` : '—'}
         icon={kpis.pctAtingido >= 100 ? TrendingUp : TrendingDown}
         danger={kpis.pctAtingido > 0 && kpis.pctAtingido < 80}
-        accent={kpis.pctAtingido >= 100}
-      />
+        accent={kpis.pctAtingido >= 100} />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid,
-  ResponsiveContainer, Legend, Cell
+  ResponsiveContainer, Legend, Cell, LabelList
 } from 'recharts'
 
 function fmtBRL(v) {
@@ -10,11 +10,11 @@ function fmtBRL(v) {
   if (v >= 1_000)     return `R$ ${(v/1_000).toFixed(1)}K`
   return `R$ ${v.toFixed(0)}`
 }
-function fmtS(v) {
+function fmtN(v) {
   if (!v && v !== 0) return '0'
-  if (v >= 1_000_000) return `${(v/1_000_000).toFixed(1)}M`
-  if (v >= 1_000)     return `${(v/1_000).toFixed(0)}K`
-  return `${v}`
+  if (v >= 1_000_000) return `${(Math.round(v/1000)*1000).toLocaleString('pt-BR')}`
+  if (v >= 1_000)     return `${Math.round(v).toLocaleString('pt-BR')}`
+  return `${Math.round(v)}`
 }
 
 function CustomTooltip({ active, payload, label }) {
@@ -46,67 +46,86 @@ function CustomTooltip({ active, payload, label }) {
   )
 }
 
+// Horizontal bar label
+function HorizLabel({ x, y, width, height, value }) {
+  if (!value) return null
+  return (
+    <text x={x + width + 6} y={y + height / 2 + 4} fill="#374151" fontSize={10} fontWeight={600}>
+      {fmtN(value)}
+    </text>
+  )
+}
+
 export default function GraficoComparativo({ currentData, previousData, currentLabel, previousLabel, showComparison = true }) {
   if (!currentData) return null
 
   if (!showComparison || !previousData) {
+    // Gráfico horizontal simples — só ano atual
     const data = [
       { cat: 'Vendas',   valor: currentData.vendas   || 0 },
       { cat: 'Serviços', valor: currentData.servicos || 0 },
       { cat: 'Locação',  valor: currentData.locacao  || 0 },
-    ]
-    const COLORS = ['#FF6A22','#FFB899','#8B5CF6']
+    ].sort((a,b) => b.valor - a.valor)
+
     return (
-      <ResponsiveContainer width="100%" height={200}>
-        <BarChart data={data} margin={{ top: 4, right: 8, left: 0, bottom: 0 }} barCategoryGap="35%">
-          <CartesianGrid strokeDasharray="3 3" stroke="#F0EDE8" vertical={false} />
-          <XAxis dataKey="cat" tick={{ fontSize: 11, fill: '#A09A94' }} axisLine={false} tickLine={false} />
-          <YAxis tickFormatter={fmtS} tick={{ fontSize: 10, fill: '#A09A94' }} axisLine={false} tickLine={false} width={48} />
+      <ResponsiveContainer width="100%" height={180}>
+        <BarChart data={data} layout="vertical" margin={{ top: 4, right: 80, left: 20, bottom: 4 }} barCategoryGap="30%">
+          <CartesianGrid strokeDasharray="3 3" stroke="#F0EDE8" horizontal={false} />
+          <XAxis type="number" hide />
+          <YAxis type="category" dataKey="cat" tick={{ fontSize: 12, fill: '#6B7280', fontWeight: 600 }} axisLine={false} tickLine={false} width={60} />
           <Tooltip formatter={(v) => fmtBRL(v)} />
-          <Bar dataKey="valor" radius={[6,6,0,0]}>
-            {data.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}
+          <Bar dataKey="valor" radius={[0,4,4,0]}>
+            {data.map((_, i) => <Cell key={i} fill={['#FF6A22','#FFB899','#8B5CF6'][i]} />)}
+            <LabelList content={<HorizLabel />} />
           </Bar>
         </BarChart>
       </ResponsiveContainer>
     )
   }
 
+  // Gráfico horizontal agrupado — comparativo ano a ano
   const chartData = [
-    { cat: 'Vendas',   [currentLabel]: currentData.vendas||0,   [previousLabel]: previousData.vendas||0   },
-    { cat: 'Serviços', [currentLabel]: currentData.servicos||0, [previousLabel]: previousData.servicos||0 },
-    { cat: 'Locação',  [currentLabel]: currentData.locacao||0,  [previousLabel]: previousData.locacao||0  },
-  ]
+    { cat: 'Vendas',   curr: currentData.vendas||0,   prev: previousData.vendas||0   },
+    { cat: 'Serviços', curr: currentData.servicos||0, prev: previousData.servicos||0 },
+    { cat: 'Locação',  curr: currentData.locacao||0,  prev: previousData.locacao||0  },
+  ].sort((a,b) => b.curr - a.curr)
+
+  const withDiff = chartData.map(d => ({
+    ...d,
+    diff: d.prev > 0 ? ((d.curr - d.prev) / d.prev * 100) : 0
+  }))
 
   return (
-    <div className="space-y-3">
-      <div className="grid grid-cols-3 gap-2">
-        {chartData.map(d => {
-          const curr = d[currentLabel] || 0
-          const prev = d[previousLabel] || 0
-          const diff = prev > 0 ? ((curr - prev) / prev * 100) : 0
-          return (
-            <div key={d.cat} className="bg-gray-50 rounded-xl p-2.5 text-center border border-gray-100">
-              <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wide mb-1">{d.cat}</p>
-              <p className="text-xs font-bold text-gray-800 leading-tight">{fmtBRL(curr)}</p>
-              <p className="text-[10px] text-gray-400 leading-tight">{fmtBRL(prev)}</p>
-              <span className={`inline-block text-[10px] font-bold mt-1 px-1.5 py-0.5 rounded-md ${
-                diff >= 0 ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'
-              }`}>
-                {diff >= 0 ? '▲' : '▼'} {Math.abs(diff).toFixed(1)}%
-              </span>
-            </div>
-          )
-        })}
+    <div className="space-y-2">
+      {/* Mini resumo variações */}
+      <div className="grid grid-cols-3 gap-2 mb-2">
+        {withDiff.map(d => (
+          <div key={d.cat} className="text-center bg-gray-50 rounded-lg p-2">
+            <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wide">{d.cat}</p>
+            <p className="text-xs font-bold text-gray-800 mt-0.5">{fmtBRL(d.curr)}</p>
+            <span className={`text-[10px] font-bold ${d.diff >= 0 ? 'text-green-600' : 'text-red-500'}`}>
+              {d.diff >= 0 ? '▲' : '▼'} {Math.abs(d.diff).toFixed(1)}%
+            </span>
+          </div>
+        ))}
       </div>
-      <ResponsiveContainer width="100%" height={180}>
-        <BarChart data={chartData} margin={{ top: 4, right: 8, left: 0, bottom: 0 }} barCategoryGap="25%" barGap={4}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#F0EDE8" vertical={false} />
-          <XAxis dataKey="cat" tick={{ fontSize: 11, fill: '#A09A94' }} axisLine={false} tickLine={false} />
-          <YAxis tickFormatter={fmtS} tick={{ fontSize: 10, fill: '#A09A94' }} axisLine={false} tickLine={false} width={52} />
+
+      {/* Gráfico horizontal agrupado */}
+      <ResponsiveContainer width="100%" height={200}>
+        <BarChart data={chartData} layout="vertical"
+          margin={{ top: 4, right: 100, left: 20, bottom: 4 }}
+          barCategoryGap="25%" barGap={3}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#F0EDE8" horizontal={false} />
+          <XAxis type="number" hide />
+          <YAxis type="category" dataKey="cat" tick={{ fontSize: 12, fill: '#6B7280', fontWeight: 600 }} axisLine={false} tickLine={false} width={60} />
           <Tooltip content={<CustomTooltip />} />
-          <Legend iconType="square" iconSize={8} wrapperStyle={{ fontSize: 11, color: '#6B6560', paddingTop: 4 }} />
-          <Bar dataKey={currentLabel}  fill="#FF6A22" radius={[4,4,0,0]} />
-          <Bar dataKey={previousLabel} fill="#FFD4B8" radius={[4,4,0,0]} />
+          <Legend iconType="square" iconSize={8} wrapperStyle={{ fontSize: 11, color: '#6B6560' }} />
+          <Bar dataKey="curr" name={currentLabel}  fill="#FF6A22" radius={[0,3,3,0]}>
+            <LabelList content={<HorizLabel />} />
+          </Bar>
+          <Bar dataKey="prev" name={previousLabel} fill="#FFD4B8" radius={[0,3,3,0]}>
+            <LabelList content={<HorizLabel />} />
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>
