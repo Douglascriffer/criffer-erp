@@ -2,10 +2,9 @@
 import { useState, useEffect, useMemo, Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { Upload, RefreshCw, TrendingUp, Map, BarChart2, DollarSign } from 'lucide-react'
+import { Upload, RefreshCw, TrendingUp, Map, BarChart2, DollarSign, Home } from 'lucide-react'
 
 import { useFinancialData, useFilteredData } from '@/lib/hooks'
-import { supabase } from '@/lib/supabaseClient'
 
 import KpiCards          from '@/components/KpiCards'
 import FiltroPeriodo     from '@/components/FiltroPeriodo'
@@ -13,177 +12,192 @@ import GraficoReceitas   from '@/components/GraficoReceitas'
 import GraficoComparativo from '@/components/GraficoComparativo'
 import UploadExcel       from '@/components/UploadExcel'
 import MapaRegional      from '@/components/MapaRegional'
+import OrcamentoView     from '@/components/OrcamentoView'
 
 const MapaHeatBrasil       = dynamic(() => import('@/components/MapaHeatBrasil'),       { ssr: false, loading: () => <ChartSkeleton h={280} /> })
 const GraficoMetaRealizado = dynamic(() => import('@/components/GraficoMetaRealizado'), { ssr: false, loading: () => <ChartSkeleton h={240} /> })
 
 function ChartSkeleton({ h = 200 }) {
-  return <div className="animate-pulse bg-gray-100 rounded-xl" style={{ height: h }} />
+  return <div style={{ height: h, background: '#F5F5F5', borderRadius: 12, animation: 'pulse 1.5s infinite' }} />
 }
 
-const MES_NOMES = {
-  '1':'Jan','2':'Fev','3':'Mar','4':'Abr','5':'Mai','6':'Jun',
-  '7':'Jul','8':'Ago','9':'Set','10':'Out','11':'Nov','12':'Dez'
-}
+const MES_NOMES = { '1':'Jan','2':'Fev','3':'Mar','4':'Abr','5':'Mai','6':'Jun','7':'Jul','8':'Ago','9':'Set','10':'Out','11':'Nov','12':'Dez' }
 
 export default function DashboardClient() {
   const router       = useRouter()
   const searchParams = useSearchParams()
   const tab          = searchParams.get('tab') || 'desempenho'
 
-  const [user, setUser]             = useState(null)
+  const [user, setUser]             = useState('')
   const [showUpload, setShowUpload] = useState(false)
   const [filters, setFilters]       = useState({ ano: '2026', mes: 'all' })
   const [localData, setLocalData]   = useState(null)
+  const [darkMode, setDarkMode]     = useState(false)
 
   const { data: remoteData, loading, error, refetch } = useFinancialData()
   const data = localData || remoteData
 
   const showComparison = filters.ano === '2026'
   const prevYearFilters = { ano: String(Number(filters.ano) - 1), mes: filters.mes }
-
   const filtered         = useFilteredData(data, filters)
   const prevYearFiltered = useFilteredData(data, prevYearFilters)
 
-  // Label dinâmico para comparação KPIs
   const compLabel = useMemo(() => {
     if (filters.mes === 'all') return `vs ${Number(filters.ano)-1}`
-    const mesNome = MES_NOMES[filters.mes] || filters.mes
-    return `vs ${mesNome}/${Number(filters.ano)-1}`
+    const m = MES_NOMES[filters.mes] || filters.mes
+    return `vs ${m}/${Number(filters.ano)-1}`
   }, [filters])
 
-  // Label do período atual para o mapa
   const periodoLabel = useMemo(() => {
     if (filters.mes === 'all') return filters.ano
-    const mesNome = MES_NOMES[filters.mes] || filters.mes
-    return `${mesNome}/${filters.ano}`
+    return `${MES_NOMES[filters.mes]}/${filters.ano}`
   }, [filters])
 
+  const prevPeriodoLabel = useMemo(() => {
+    if (filters.mes === 'all') return String(Number(filters.ano)-1)
+    return `${MES_NOMES[filters.mes]}/${Number(filters.ano)-1}`
+  }, [filters])
+
+  const totalFat = filtered?.kpis?.totalFaturamento || 0
+  const fmtTotal = totalFat >= 1e6 ? `${(totalFat/1e6).toFixed(2)}M` : `${(totalFat/1e3).toFixed(0)}K`
+
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (!user && !searchParams.get('demo')) {
-        router.push('/login')
-      } else {
-        setUser(user)
-      }
-    })
+    const auth = typeof window !== 'undefined' ? localStorage.getItem('criffer_auth') : null
+    const nome = typeof window !== 'undefined' ? localStorage.getItem('criffer_user') : ''
+    if (!auth) router.push('/login')
+    else setUser(nome || '')
   }, [])
 
   const TABS = [
-    { id: 'desempenho', label: 'Desempenho',  icon: TrendingUp },
+    { id: 'desempenho', label: 'Faturamento',  icon: TrendingUp },
     { id: 'mapa',       label: 'Mapa',        icon: Map },
     { id: 'orcamento',  label: 'Orçamento',   icon: BarChart2 },
     { id: 'fluxo',      label: 'Fluxo Caixa', icon: DollarSign },
   ]
 
+  const bg = darkMode ? '#111' : '#F8F9FA'
+  const cardBg = darkMode ? '#1A1A1A' : 'white'
+  const cardBorder = darkMode ? '#2A2A2A' : '#F0EDE8'
+  const textPrimary = darkMode ? '#EEE' : '#1A1A1A'
+  const textSecondary = darkMode ? '#888' : '#999'
+
   if (loading && !data) return (
-    <div className="min-h-screen bg-[#F8F9FA] flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-10 h-10 rounded-full border-2 border-[#FF6A22] border-t-transparent animate-spin mx-auto mb-3" />
-        <p className="text-gray-400 text-sm">Carregando dados...</p>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: bg }}>
+      <div style={{ textAlign: 'center' }}>
+        <div style={{ width: 40, height: 40, border: '3px solid #FFB899', borderTopColor: '#FF6A22', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 12px' }} />
+        <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+        <p style={{ color: textSecondary, fontSize: 14 }}>Carregando dados...</p>
       </div>
     </div>
   )
 
-  const fmtV = v => !v ? 'R$ 0' : v >= 1e6 ? `R$ ${(v/1e6).toFixed(2)}M` : `R$ ${(v/1e3).toFixed(1)}K`
-
-  const totalFat = filtered?.kpis?.totalFaturamento || 0
-  const fmtTotal = totalFat >= 1e6 ? `${(totalFat/1e6).toFixed(2)}M` : `${(totalFat/1e3).toFixed(1)}K`
+  const fmtV = v => !v ? '0' : v >= 1e6 ? `R$ ${(v/1e6).toFixed(2)}M` : `R$ ${(v/1e3).toFixed(1)}K`
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] flex flex-col">
+    <div style={{ minHeight: '100vh', background: bg, display: 'flex', flexDirection: 'column' }}>
+      <style>{`
+        @keyframes spin{to{transform:rotate(360deg)}}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+      `}</style>
 
       {/* TOPBAR */}
-      <header className="bg-white border-b border-gray-100 shadow-sm sticky top-0 z-40">
-        <div className="max-w-screen-2xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-xl md:text-2xl font-black tracking-[3px] md:tracking-[4px] text-[#FF6A22]" style={{ fontFamily: 'Syne,sans-serif' }}>
-              CRIFFER
-            </span>
-            <span className="hidden md:block text-sm text-gray-400">ERP Financeiro</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <button onClick={() => setShowUpload(u => !u)}
-              className="flex items-center gap-1.5 text-xs py-1.5 px-3 border border-gray-200 rounded-lg hover:border-[#FF6A22] hover:text-[#FF6A22] transition-all">
-              <Upload size={13} />
-              <span className="hidden sm:inline">Upload Excel</span>
+      <header style={{ background: cardBg, borderBottom: `0.5px solid ${cardBorder}`, position: 'sticky', top: 0, zIndex: 40 }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 24px', height: 56, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <button onClick={() => router.push('/capa')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}>
+              <Home size={18} color="#FF6A22" />
             </button>
-            <button onClick={refetch}
-              className="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center hover:border-[#FF6A22] hover:text-[#FF6A22] transition-all">
-              <RefreshCw size={13} />
+            <span style={{ fontSize: 22, fontWeight: 900, color: '#FF6A22', letterSpacing: 4, fontFamily: 'Syne,sans-serif' }}>CRIFFER</span>
+            <span style={{ fontSize: 12, color: textSecondary, display: 'none' }} className="md-show">ERP Financeiro</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            {/* Tema */}
+            <button onClick={() => setDarkMode(d => !d)} style={{
+              padding: '4px 12px', borderRadius: 20, border: `0.5px solid ${cardBorder}`,
+              background: darkMode ? '#FF6A22' : cardBg, color: darkMode ? 'white' : textSecondary,
+              fontSize: 11, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit',
+            }}>{darkMode ? '☀ Claro' : '◑ Escuro'}</button>
+            <button onClick={() => setShowUpload(u => !u)} style={{
+              display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, padding: '6px 12px',
+              border: `0.5px solid ${cardBorder}`, borderRadius: 8, background: 'transparent',
+              color: textSecondary, cursor: 'pointer', fontFamily: 'inherit',
+            }}>
+              <Upload size={13} /> Upload Excel
+            </button>
+            <button onClick={refetch} style={{ width: 32, height: 32, borderRadius: 8, border: `0.5px solid ${cardBorder}`, background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+              <RefreshCw size={13} color={textSecondary} />
             </button>
             {user && (
-              <div className="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-[#FF6A22] text-xs font-bold">
-                {(user.email?.[0] || 'U').toUpperCase()}
-              </div>
+              <button onClick={() => { localStorage.clear(); router.push('/login') }}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 12, color: textSecondary, fontFamily: 'inherit' }}>
+                {user.split(' ')[0]} · Sair
+              </button>
             )}
           </div>
         </div>
       </header>
 
-      <div className="max-w-screen-2xl mx-auto w-full px-4 md:px-6 py-4 flex-1">
+      <div style={{ maxWidth: 1400, margin: '0 auto', width: '100%', padding: '20px 24px', flex: 1 }}>
 
         {showUpload && (
-          <div className="mb-4">
-            <div className="bg-white rounded-2xl border border-gray-100 shadow p-4">
-              <h3 className="text-sm font-semibold text-gray-700 mb-3">Atualizar base de dados</h3>
-              <UploadExcel userId={user?.id} onDataLoaded={(d) => { setLocalData(d); setShowUpload(false) }} />
-            </div>
+          <div style={{ marginBottom: 16, background: cardBg, border: `0.5px solid ${cardBorder}`, borderRadius: 16, padding: 20 }}>
+            <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 12, color: textPrimary }}>Atualizar base de dados</h3>
+            <UploadExcel onDataLoaded={(d) => { setLocalData(d); setShowUpload(false) }} />
           </div>
         )}
 
         {/* FILTERS + TABS */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 16 }}>
           <FiltroPeriodo filters={filters} onChange={setFilters} />
-          <div className="flex bg-gray-100 rounded-xl p-1 gap-0.5 overflow-x-auto">
+          <div style={{ display: 'flex', background: darkMode ? '#222' : '#F0F0F0', borderRadius: 10, padding: 3, gap: 2 }}>
             {TABS.map(t => (
-              <button key={t.id}
-                onClick={() => router.push(`/dashboard?tab=${t.id}`)}
-                className={`flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
-                  tab === t.id ? 'bg-white shadow text-[#FF6A22]' : 'text-gray-500 hover:text-gray-700'
-                }`}>
+              <button key={t.id} onClick={() => router.push(`/dashboard?tab=${t.id}`)} style={{
+                display: 'flex', alignItems: 'center', gap: 5, padding: '6px 14px', borderRadius: 8,
+                border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 12, fontWeight: 600,
+                background: tab === t.id ? cardBg : 'transparent',
+                color: tab === t.id ? '#FF6A22' : textSecondary,
+                boxShadow: tab === t.id ? '0 1px 4px rgba(0,0,0,0.08)' : 'none',
+                transition: 'all 0.2s',
+              }}>
                 <t.icon size={13} />
-                <span className="hidden sm:inline">{t.label}</span>
+                <span>{t.label}</span>
               </button>
             ))}
           </div>
         </div>
 
-        {/* ═══ TAB: DESEMPENHO ═══ */}
+        {/* KPIs */}
+        <div style={{ marginBottom: 16 }}>
+          <KpiCards kpis={filtered?.kpis} previousKpis={prevYearFiltered?.kpis} compLabel={compLabel} />
+        </div>
+
+        {/* ═══ FATURAMENTO ═══ */}
         {tab === 'desempenho' && (
-          <div className="space-y-4">
-            {/* KPI CARDS — comparação vs mesmo período ano anterior */}
-            <KpiCards kpis={filtered?.kpis} previousKpis={prevYearFiltered?.kpis} compLabel={compLabel} />
-
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-              <div className="xl:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-5">
-                <div className="mb-4">
-                  <h3 className="text-sm font-semibold text-gray-800">Receitas mensais — {filters.ano}</h3>
-                  <p className="text-xs text-gray-400 mt-0.5">Vendas · Serviços · Locação (lado a lado) — valores sobre as colunas</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 16 }}>
+              <div style={{ background: cardBg, borderRadius: 16, border: `0.5px solid ${cardBorder}`, padding: 20 }}>
+                <div style={{ textAlign: 'center', marginBottom: 16 }}>
+                  <h3 style={{ fontSize: 14, fontWeight: 600, color: textPrimary, margin: 0 }}>Receitas mensais — {filters.ano}</h3>
                 </div>
-                <GraficoReceitas periodData={filtered?.byPeriod || []} />
+                <GraficoReceitas periodData={filtered?.byPeriod || []} darkMode={darkMode} />
               </div>
-
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-5">
-                <div className="mb-3">
-                  <h3 className="text-sm font-semibold text-gray-800">
+              <div style={{ background: cardBg, borderRadius: 16, border: `0.5px solid ${cardBorder}`, padding: 20 }}>
+                <div style={{ textAlign: 'center', marginBottom: 16 }}>
+                  <h3 style={{ fontSize: 14, fontWeight: 600, color: textPrimary, margin: 0 }}>
                     {showComparison ? `Comparativo ${filters.ano} vs ${Number(filters.ano)-1}` : `Distribuição ${filters.ano}`}
                   </h3>
-                  <p className="text-xs text-gray-400 mt-0.5">
-                    {showComparison ? 'Mesmo período — ano a ano' : 'Por categoria'}
-                  </p>
                 </div>
                 <GraficoComparativo
                   showComparison={showComparison}
                   currentData={filtered?.byPeriod?.length > 0 ? {
-                    vendas:   filtered.byPeriod.reduce((s,r) => s+r.vendas,   0),
+                    vendas:   filtered.byPeriod.reduce((s,r) => s+r.vendas, 0),
                     servicos: filtered.byPeriod.reduce((s,r) => s+r.servicos, 0),
-                    locacao:  filtered.byPeriod.reduce((s,r) => s+r.locacao,  0),
+                    locacao:  filtered.byPeriod.reduce((s,r) => s+r.locacao, 0),
                   } : null}
                   previousData={showComparison && prevYearFiltered?.byPeriod?.length > 0 ? {
-                    vendas:   prevYearFiltered.byPeriod.reduce((s,r) => s+r.vendas,   0),
+                    vendas:   prevYearFiltered.byPeriod.reduce((s,r) => s+r.vendas, 0),
                     servicos: prevYearFiltered.byPeriod.reduce((s,r) => s+r.servicos, 0),
-                    locacao:  prevYearFiltered.byPeriod.reduce((s,r) => s+r.locacao,  0),
+                    locacao:  prevYearFiltered.byPeriod.reduce((s,r) => s+r.locacao, 0),
                   } : null}
                   currentLabel={filters.ano}
                   previousLabel={String(Number(filters.ano)-1)}
@@ -191,192 +205,128 @@ export default function DashboardClient() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-              <div className="xl:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-5">
-                <h3 className="text-sm font-semibold text-gray-800 mb-4">Meta vs Realizado — {filters.ano}</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 16 }}>
+              <div style={{ background: cardBg, borderRadius: 16, border: `0.5px solid ${cardBorder}`, padding: 20 }}>
+                <div style={{ textAlign: 'center', marginBottom: 16 }}>
+                  <h3 style={{ fontSize: 14, fontWeight: 600, color: textPrimary, margin: 0 }}>Meta vs Realizado — {filters.ano}</h3>
+                </div>
                 <GraficoMetaRealizado metaData={data?.meta?.[filters.ano] || []} />
               </div>
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-5">
-                <h3 className="text-sm font-semibold text-gray-800 mb-4">Atingimento — {filters.ano}</h3>
+              <div style={{ background: cardBg, borderRadius: 16, border: `0.5px solid ${cardBorder}`, padding: 20 }}>
+                <div style={{ textAlign: 'center', marginBottom: 16 }}>
+                  <h3 style={{ fontSize: 14, fontWeight: 600, color: textPrimary, margin: 0 }}>Meta — {filters.ano}</h3>
+                </div>
                 {(() => {
                   const metaArr = data?.meta?.[filters.ano] || []
                   const totMeta = metaArr.reduce((s,m) => s+m.meta, 0)
                   const totReal = metaArr.reduce((s,m) => s+m.realizado, 0)
                   const pct = totMeta > 0 ? (totReal/totMeta)*100 : 0
                   return (
-                    <div className="space-y-4">
-                      <div><p className="text-xs text-gray-400 mb-1">Realizado</p>
-                        <div className="h-10 bg-[#FF6A22] rounded-xl flex items-center px-4"><span className="text-white font-bold">{fmtV(totReal)}</span></div>
-                      </div>
-                      <div><p className="text-xs text-gray-400 mb-1">Meta anual</p>
-                        <div className="h-10 bg-orange-800 rounded-xl flex items-center px-4"><span className="text-white font-bold">{fmtV(totMeta)}</span></div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                      <div>
+                        <p style={{ fontSize: 11, color: textSecondary, marginBottom: 4 }}>Realizado</p>
+                        <div style={{ height: 40, background: '#FF6A22', borderRadius: 10, display: 'flex', alignItems: 'center', padding: '0 16px' }}>
+                          <span style={{ color: 'white', fontWeight: 700, fontFamily: 'Syne,sans-serif' }}>{fmtV(totReal)}</span>
+                        </div>
                       </div>
                       <div>
-                        <div className="flex justify-between text-xs mb-1.5">
-                          <span className="text-gray-500">Atingimento</span>
-                          <span className={`font-bold ${pct >= 100 ? 'text-green-600' : 'text-[#FF6A22]'}`}>{pct > 0 ? `${pct.toFixed(1)}%` : '—'}</span>
+                        <p style={{ fontSize: 11, color: textSecondary, marginBottom: 4 }}>Meta anual</p>
+                        <div style={{ height: 40, background: '#7C2D12', borderRadius: 10, display: 'flex', alignItems: 'center', padding: '0 16px' }}>
+                          <span style={{ color: 'white', fontWeight: 700, fontFamily: 'Syne,sans-serif' }}>{fmtV(totMeta)}</span>
                         </div>
-                        <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                          <div className="h-full bg-[#FF6A22] rounded-full transition-all duration-700" style={{ width: `${Math.min(pct, 100)}%` }} />
+                      </div>
+                      <div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                          <span style={{ fontSize: 12, color: textSecondary }}>Atingimento</span>
+                          <span style={{ fontSize: 12, fontWeight: 700, color: pct >= 100 ? '#16a34a' : '#FF6A22' }}>{pct > 0 ? `${pct.toFixed(1)}%` : '—'}</span>
                         </div>
-                        <p className="text-[10px] text-gray-400 mt-1.5 text-center">Falta {fmtV(Math.max(totMeta - totReal, 0))} para atingir a meta</p>
+                        <div style={{ height: 8, background: darkMode ? '#333' : '#F0EDE8', borderRadius: 4, overflow: 'hidden' }}>
+                          <div style={{ height: '100%', background: '#FF6A22', borderRadius: 4, width: `${Math.min(pct, 100)}%`, transition: 'width 0.7s ease' }} />
+                        </div>
+                        <p style={{ fontSize: 10, color: textSecondary, marginTop: 6, textAlign: 'center' }}>Falta {fmtV(Math.max(totMeta - totReal, 0))} para a meta</p>
                       </div>
                     </div>
                   )
                 })()}
               </div>
             </div>
+
+            {/* Nav icons bottom */}
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'center', padding: '12px 0', borderTop: `0.5px solid ${cardBorder}`, marginTop: 8 }}>
+              {[
+                { id: 'home', label: 'Início', icon: Home, href: '/capa' },
+                { id: 'desempenho', label: 'Faturamento', icon: TrendingUp, href: '/dashboard?tab=desempenho' },
+                { id: 'orcamento', label: 'Orçamento', icon: BarChart2, href: '/dashboard?tab=orcamento' },
+                { id: 'fluxo', label: 'Fluxo Caixa', icon: DollarSign, href: '/dashboard?tab=fluxo' },
+              ].map(n => (
+                <button key={n.id} onClick={() => n.href.startsWith('/capa') ? router.push('/capa') : router.push(n.href)}
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, padding: '8px 16px', border: 'none', background: tab === n.id ? '#FFF3EE' : 'transparent', borderRadius: 10, cursor: 'pointer', fontFamily: 'inherit' }}>
+                  <n.icon size={16} color={tab === n.id ? '#FF6A22' : textSecondary} />
+                  <span style={{ fontSize: 10, fontWeight: 600, color: tab === n.id ? '#FF6A22' : textSecondary }}>{n.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
         )}
 
-        {/* ═══ TAB: MAPA ═══ */}
+        {/* ═══ MAPA ═══ */}
         {tab === 'mapa' && (
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-
-              {/* Mapa principal — sem KPI cards aqui */}
-              <div className="xl:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-5">
-                <div className="mb-3">
-                  <h3 className="text-sm font-semibold text-gray-800">
-                    Faturamento por Estado — {periodoLabel}
-                  </h3>
-                  <p className="text-xs text-gray-400 mt-0.5">Passe o mouse sobre os estados para ver os valores</p>
-                </div>
-                <MapaHeatBrasil stateData={filtered?.stateData || []} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {showComparison ? (
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                {[
+                  { label: `Mapa — ${periodoLabel} · Fat. ${fmtTotal}`, data: filtered, prev: null },
+                  { label: `Mapa — ${prevPeriodoLabel}`, data: prevYearFiltered, prev: null },
+                ].map(({ label, data: d }) => (
+                  <div key={label} style={{ background: cardBg, borderRadius: 16, border: `0.5px solid ${cardBorder}`, padding: 20 }}>
+                    <h3 style={{ textAlign: 'center', fontSize: 13, fontWeight: 700, color: textPrimary, marginBottom: 16 }}>{label}</h3>
+                    <MapaHeatBrasil stateData={d?.stateData || []} />
+                    <div style={{ marginTop: 16, paddingTop: 14, borderTop: `0.5px solid ${cardBorder}` }}>
+                      <MapaRegional stateData={d?.stateData || []} />
+                    </div>
+                  </div>
+                ))}
               </div>
-
-              {/* Ranking por região */}
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-5">
-                <h3 className="text-sm font-semibold text-gray-800 mb-1">
-                  Ranking por Região — Fat. {fmtTotal}
-                </h3>
-                <p className="text-xs text-gray-400 mb-4">{periodoLabel}</p>
-                <MapaRegional
-                  stateData={filtered?.stateData || []}
-                  compareData={showComparison ? prevYearFiltered?.stateData : null}
-                  compareLabel={String(Number(filters.ano)-1)}
-                />
-              </div>
-            </div>
-
-            {/* Mapas comparativos lado a lado — só 2026 */}
-            {showComparison && (
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-5">
-                  <h3 className="text-sm font-semibold text-gray-800 mb-1">Mapa — {periodoLabel}</h3>
-                  <p className="text-xs text-gray-400 mb-3">Passe o mouse para ver valores por estado</p>
+            ) : (
+              <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 16 }}>
+                <div style={{ background: cardBg, borderRadius: 16, border: `0.5px solid ${cardBorder}`, padding: 20 }}>
+                  <h3 style={{ textAlign: 'center', fontSize: 13, fontWeight: 700, color: textPrimary, marginBottom: 16 }}>Faturamento por Estado — {periodoLabel}</h3>
                   <MapaHeatBrasil stateData={filtered?.stateData || []} />
-                  {/* Top estados abaixo do mapa */}
-                  <div className="mt-4 pt-3 border-t border-gray-100">
-                    <p className="text-xs font-semibold text-gray-500 mb-2">Top estados</p>
-                    <div className="space-y-1.5">
-                      {(filtered?.stateData || []).slice(0,5).map((s,i) => (
-                        <div key={s.estado} className="flex items-center gap-2">
-                          <span className="text-[10px] text-gray-400 w-3">{i+1}</span>
-                          <span className="text-xs font-semibold text-gray-700 w-7">{s.estado}</span>
-                          <div className="flex-1 h-1.5 bg-gray-100 rounded-full">
-                            <div className="h-full bg-[#FF6A22] rounded-full" style={{ width: `${(s.faturamento/(filtered?.stateData?.[0]?.faturamento||1))*100}%` }} />
-                          </div>
-                          <span className="text-xs text-gray-600 w-16 text-right font-medium">
-                            {s.faturamento >= 1e6 ? `R$${(s.faturamento/1e6).toFixed(1)}M` : `R$${(s.faturamento/1e3).toFixed(0)}K`}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-5">
-                  <h3 className="text-sm font-semibold text-gray-800 mb-1">Mapa — {filters.mes === 'all' ? Number(filters.ano)-1 : `${MES_NOMES[filters.mes]}/${Number(filters.ano)-1}`}</h3>
-                  <p className="text-xs text-gray-400 mb-3">Passe o mouse para ver valores por estado</p>
-                  <MapaHeatBrasil stateData={prevYearFiltered?.stateData || []} />
-                  {/* Top estados abaixo do mapa */}
-                  <div className="mt-4 pt-3 border-t border-gray-100">
-                    <p className="text-xs font-semibold text-gray-500 mb-2">Top estados</p>
-                    <div className="space-y-1.5">
-                      {(prevYearFiltered?.stateData || []).slice(0,5).map((s,i) => (
-                        <div key={s.estado} className="flex items-center gap-2">
-                          <span className="text-[10px] text-gray-400 w-3">{i+1}</span>
-                          <span className="text-xs font-semibold text-gray-700 w-7">{s.estado}</span>
-                          <div className="flex-1 h-1.5 bg-gray-100 rounded-full">
-                            <div className="h-full bg-[#FFB899] rounded-full" style={{ width: `${(s.faturamento/(prevYearFiltered?.stateData?.[0]?.faturamento||1))*100}%` }} />
-                          </div>
-                          <span className="text-xs text-gray-600 w-16 text-right font-medium">
-                            {s.faturamento >= 1e6 ? `R$${(s.faturamento/1e6).toFixed(1)}M` : `R$${(s.faturamento/1e3).toFixed(0)}K`}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                <div style={{ background: cardBg, borderRadius: 16, border: `0.5px solid ${cardBorder}`, padding: 20 }}>
+                  <h3 style={{ textAlign: 'center', fontSize: 13, fontWeight: 700, color: textPrimary, marginBottom: 16 }}>Ranking por Região — Fat. {fmtTotal}</h3>
+                  <MapaRegional stateData={filtered?.stateData || []} />
                 </div>
               </div>
             )}
           </div>
         )}
 
-        {/* ═══ TAB: ORÇAMENTO ═══ */}
+        {/* ═══ ORÇAMENTO ═══ */}
         {tab === 'orcamento' && (
-          <div className="space-y-4">
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-5">
-              <h3 className="text-sm font-semibold text-gray-800 mb-4">Meta vs Realizado — {filters.ano}</h3>
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
-                <GraficoMetaRealizado metaData={data?.meta?.[filters.ano] || []} />
-                <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
-                    <thead>
-                      <tr className="border-b border-gray-100">
-                        {['Mês','Meta','Realizado','Δ','%'].map(h => (
-                          <th key={h} className="text-left py-2 px-2 text-gray-400 font-semibold uppercase tracking-wide text-[10px]">{h}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {(data?.meta?.[filters.ano] || []).map(m => {
-                        const diff = m.realizado - m.meta
-                        const pct  = m.meta > 0 ? (m.realizado/m.meta)*100 : 0
-                        return (
-                          <tr key={m.mes} className="border-b border-gray-50 hover:bg-gray-50">
-                            <td className="py-2 px-2 font-medium text-gray-700">{m.label}</td>
-                            <td className="py-2 px-2 text-gray-500">{fmtV(m.meta)}</td>
-                            <td className="py-2 px-2 text-gray-700 font-medium">{m.realizado > 0 ? fmtV(m.realizado) : '—'}</td>
-                            <td className={`py-2 px-2 font-medium ${diff > 0 ? 'text-green-600' : diff < 0 ? 'text-red-500' : 'text-gray-400'}`}>
-                              {m.realizado > 0 ? (diff > 0 ? '+' : '') + fmtV(diff) : '—'}
-                            </td>
-                            <td className="py-2 px-2">
-                              {pct > 0 ? (
-                                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${pct >= 100 ? 'bg-green-50 text-green-700' : pct >= 80 ? 'bg-amber-50 text-amber-700' : 'bg-red-50 text-red-600'}`}>
-                                  {pct.toFixed(0)}%
-                                </span>
-                              ) : '—'}
-                            </td>
-                          </tr>
-                        )
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+          <div style={{ background: cardBg, borderRadius: 16, border: `0.5px solid ${cardBorder}`, padding: 24 }}>
+            <OrcamentoView metaData={data?.meta?.[filters.ano] || []} />
           </div>
         )}
 
-        {/* ═══ TAB: FLUXO ═══ */}
+        {/* ═══ FLUXO ═══ */}
         {tab === 'fluxo' && (
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12 }}>
               {[
-                { label: 'Entradas brutas', value: filtered?.kpis?.totalFaturamento, color: 'text-[#FF6A22]', bg: 'bg-orange-50' },
-                { label: 'Devoluções', value: filtered?.byPeriod?.reduce((s,r) => s+(r.devolucoes||0), 0), color: 'text-red-500', bg: 'bg-red-50' },
-                { label: 'Receita líquida', value: (filtered?.kpis?.totalFaturamento||0) - (filtered?.byPeriod?.reduce((s,r) => s+(r.devolucoes||0),0)||0), color: 'text-green-600', bg: 'bg-green-50' },
+                { label: 'Entradas brutas', value: filtered?.kpis?.totalFaturamento, color: '#FF6A22', bg: '#FFF3EE' },
+                { label: 'Devoluções', value: filtered?.byPeriod?.reduce((s,r) => s+(r.devolucoes||0), 0), color: '#EF4444', bg: '#FEF2F2' },
+                { label: 'Receita líquida', value: (filtered?.kpis?.totalFaturamento||0) - (filtered?.byPeriod?.reduce((s,r) => s+(r.devolucoes||0),0)||0), color: '#16a34a', bg: '#F0FDF4' },
               ].map(card => (
-                <div key={card.label} className={`${card.bg} rounded-2xl border border-gray-100 p-5`}>
-                  <p className="text-xs text-gray-500 uppercase tracking-widest mb-2 font-semibold">{card.label}</p>
-                  <p className={`text-2xl font-bold ${card.color}`}>{fmtV(card.value)}</p>
+                <div key={card.label} style={{ background: card.bg, borderRadius: 16, padding: 20 }}>
+                  <p style={{ fontSize: 11, color: '#999', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8, fontWeight: 700 }}>{card.label}</p>
+                  <p style={{ fontSize: 24, fontWeight: 700, color: card.color, fontFamily: 'Syne,sans-serif' }}>{fmtV(card.value)}</p>
                 </div>
               ))}
             </div>
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-5">
-              <h3 className="text-sm font-semibold text-gray-800 mb-4">Receita por categoria — {filters.ano}</h3>
-              <GraficoReceitas periodData={filtered?.byPeriod || []} />
+            <div style={{ background: cardBg, borderRadius: 16, border: `0.5px solid ${cardBorder}`, padding: 20 }}>
+              <h3 style={{ textAlign: 'center', fontSize: 14, fontWeight: 600, color: textPrimary, marginBottom: 16 }}>Receita por categoria — {filters.ano}</h3>
+              <GraficoReceitas periodData={filtered?.byPeriod || []} darkMode={darkMode} />
             </div>
           </div>
         )}
