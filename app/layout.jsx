@@ -1,29 +1,19 @@
-import { Inter } from 'next/font/google'
 import './globals.css'
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
 
 export const metadata = {
   title: 'Criffer ERP — Dashboard Financeiro',
-  description: 'Sistema de gestão financeira orientado a dados',
-  icons: { icon: '/favicon.ico' },
+  description: 'Sistema de gestão financeira Criffer',
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-BR" className={inter.variable}>
+    <html lang="pt-BR">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap"
-          rel="stylesheet"
-        />
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
+        <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
       </head>
-      <body className="bg-[#F8F9FA] font-sans antialiased">
+      <body style={{ margin:0, padding:0, fontFamily:"'DM Sans', sans-serif", background:'#F8F9FA' }}>
         {children}
       </body>
     </html>

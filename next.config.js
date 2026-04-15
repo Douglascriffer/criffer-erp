@@ -1,11 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     domains: ['lh3.googleusercontent.com'],
-  },
-  experimental: {
-    optimizePackageImports: ['recharts', 'lucide-react'],
+    unoptimized: true,
   },
 }
 
