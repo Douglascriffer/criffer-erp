@@ -365,8 +365,6 @@ export default function DashboardClient() {
 
 // ── MAPA CONTENT component ───────────────────────────────────────────────────
 function MapaContent({ filtered, prevFiltered, periodoLabel, prevLabel, card, border, textMain, textSub, dark, showComparison }) {
-  )
-
   const fmtTotal = v => !v ? '—' : v>=1e6 ? `${(v/1e6).toFixed(2)}M` : `${(v/1e3).toFixed(0)}K`
 
   if (showComparison) {
