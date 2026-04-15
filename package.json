@@ -20,7 +20,8 @@
     "xlsx": "^0.18.5",
     "date-fns": "^3.6.0",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.395.0"
+    "lucide-react": "^0.395.0",
+    "framer-motion": "^11.2.10"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",

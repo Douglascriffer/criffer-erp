@@ -16,6 +16,7 @@ const GraficoMetaRealizado = dynamic(() => import('@/components/GraficoMetaReali
 function Skeleton({ h=200 }) { return <div style={{ height:h, background:'#F5F5F5', borderRadius:12 }} /> }
 
 // Formatação: número inteiro com separador de milhar pt-BR, SEM K/M
+// fmt: número inteiro pt-BR sem K/M
 function fmt(v) {
   if (!v && v !== 0) return '—'
   return Math.round(v).toLocaleString('pt-BR')
