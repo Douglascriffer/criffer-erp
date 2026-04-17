@@ -114,7 +114,7 @@ export default function LoginPage() {
           </div>
 
           {/* Subtítulo */}
-          <p style={{ textAlign: 'center', fontSize: 11, fontWeight: 800, color: '#FF6A22', letterSpacing: '0.35em', textTransform: 'uppercase', marginBottom: 28, marginTop: 0 }}>
+          <p style={{ textAlign: 'center', fontSize: 15, fontWeight: 600, color: '#FF6A22', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 28, marginTop: 0 }}>
             Gestão de Resultados
           </p>
 
