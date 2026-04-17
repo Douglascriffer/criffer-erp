@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 const USUARIOS = [
   'Andressa Pereira da Silva Barth','Alcione','Rodrigo dos Santos',
@@ -118,7 +119,11 @@ export default function LoginPage() {
     if (!USUARIOS.includes(nome)) { setError('Usuário não encontrado.'); return }
     if (senha !== SENHA) { setError('Senha incorreta.'); return }
     setLoading(true)
-    localStorage.setItem('criffer_user', nome)
+    
+    // Persistência de Metadados Críticos
+    localStorage.setItem('criffer_user', selectedUser.nome)
+    localStorage.setItem('criffer_role', selectedUser.nivel)
+    localStorage.setItem('criffer_sector', selectedUser.setor)
     localStorage.setItem('criffer_auth', 'true')
     setTimeout(() => router.push('/capa'), 700)
   }

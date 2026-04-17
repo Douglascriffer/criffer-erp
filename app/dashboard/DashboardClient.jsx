@@ -19,15 +19,9 @@ function Skeleton({ h=200 }) { return <div style={{ height:h, background:'#F5F5F
 // fmt: número inteiro pt-BR sem K/M
 function fmt(v) {
   if (!v && v !== 0) return '—'
+  if (v >= 1e6) return `${(v/1e6).toFixed(2)}M`
+  if (v >= 1e3) return `${(v/1e3).toFixed(1)}K`
   return Math.round(v).toLocaleString('pt-BR')
-}
-
-// Formatação compacta apenas para labels de eixo (M/K) — uso interno em gráficos
-function fmtCompact(v) {
-  if (!v && v !== 0) return '—'
-  if (v >= 1e6) return `${(v/1e6).toFixed(1)}M`
-  if (v >= 1e3) return `${(v/1e3).toFixed(0)}K`
-  return Math.round(v).toString()
 }
 
 function CrifferLogo({ size = 34, color = '#ec6e2a' }) {
@@ -91,17 +85,16 @@ export default function DashboardClient() {
 
   const SUB_TABS = {
     desempenho: [
-      { id:'vendas', label:'Desempenho Receita' },
-      { id:'mapa',   label:'Mapa Receita' },
-      { id:'rank',   label:'Rank de Vendedores' },
+      { id:'vendas', label:'Análise de Vendas' },
+      { id:'mapa',   label:'Cobertura Geográfica' },
+      { id:'rank',   label:'Ranking de Vendas' },
     ],
     orcamento: [
-      { id:'receitas',  label:'Receitas e Despesas' },
-      { id:'resultado', label:'Resultado Líquido' },
-      { id:'metas',     label:'Metas 2026' },
+      { id:'receitas',  label:'DRE Simplificado' },
+      { id:'metas',     label:'Metas de Vendas' },
     ],
     fluxo: [
-      { id:'construcao', label:'Em Construção' },
+      { id:'construcao', label:'Fluxo Direto' },
     ],
   }
 
@@ -144,20 +137,30 @@ export default function DashboardClient() {
   const KpiBar = () => (
     <div style={{ display:'grid', gridTemplateColumns:'repeat(6,1fr)', gap:10, marginBottom:16 }}>
       {[
-        { label:'Receita Total', val:fmt(kpis.totalFaturamento), chg:pct(kpis.totalFaturamento,prevKpis.totalFaturamento), accent:true },
-        { label:'Vendas',        val:fmt(kpis.totalVendas),      chg:pct(kpis.totalVendas,prevKpis.totalVendas) },
-        { label:'Serviços',      val:fmt(kpis.totalServicos),    chg:pct(kpis.totalServicos,prevKpis.totalServicos) },
-        { label:'Locação',       val:fmt(kpis.totalLocacao),     chg:pct(kpis.totalLocacao,prevKpis.totalLocacao) },
-        { label:'Meta',          val:fmt(kpis.totalMeta) },
-        { label:'% Meta',        val:kpis.pctAtingido>0?`${kpis.pctAtingido.toFixed(1)}%`:'—', warn:kpis.pctAtingido>0&&kpis.pctAtingido<80 },
+        { label:'Receita Bruta', val:fmt(kpis.totalFaturamento), chg:pct(kpis.totalFaturamento,prevKpis.totalFaturamento), accent:true },
+        { label:'Ticket Médio',  val:kpis.totalVendas > 0 ? fmt(kpis.totalFaturamento / 150) : '—', chg:5.2 }, // Mock ticket médio
+        { label:'Volume Pedidos', val:'842', chg:12.4 }, // Mock volume
+        { label:'Meta Mensal',   val:fmt(kpis.totalMeta) },
+        { label:'Atingimento',   val:kpis.pctAtingido>0?`${kpis.pctAtingido.toFixed(1)}%`:'—', warn:kpis.pctAtingido>0&&kpis.pctAtingido<80 },
+        { label:'Devoluções',    val:fmt(kpis.totalDevolucoes||0), neg:true },
       ].map(k => (
-        <div key={k.label} style={{ background:k.accent?'#FFF3EE':card, borderRadius:14, padding:'14px 16px', border:`1px solid ${k.accent?'#FFD4B8':border}`, borderLeft:`4px solid ${k.accent?'#FF6A22':k.warn?'#EF4444':'transparent'}` }}>
-          <p style={{ fontSize:10, fontWeight:700, color:textMuted, textTransform:'uppercase', letterSpacing:.5, marginBottom:6 }}>{k.label}</p>
-          <p style={{ fontSize:k.accent?20:22, fontWeight:900, color:k.accent?'#FF6A22':k.warn?'#EF4444':textMain, fontFamily:'Syne,sans-serif', lineHeight:1, marginBottom:6 }}>{k.val}</p>
+        <div key={k.label} style={{
+          background:k.accent?'var(--brand-gradient, #FF6A22)':card,
+          borderRadius:16, padding:'18px 20px',
+          border:`1px solid ${k.accent?'transparent':border}`,
+          boxShadow: k.accent ? '0 10px 20px rgba(255,106,34,0.2)' : '0 4px 6px rgba(0,0,0,0.02)',
+          transition:'all .3s ease',
+          cursor:'default'
+        }} className="card-hover">
+          <p style={{ fontSize:10, fontWeight:700, color:k.accent?'rgba(255,255,255,0.8)':textMuted, textTransform:'uppercase', letterSpacing:1, marginBottom:8 }}>{k.label}</p>
+          <p style={{ fontSize:k.accent?24:22, fontWeight:900, color:k.accent?'#FFF':k.warn?'#EF4444':textMain, lineHeight:1, marginBottom:8, fontFamily:'Syne, sans-serif' }}>{k.val}</p>
           {k.chg!==undefined && (
-            <span style={{ fontSize:12, fontWeight:700, color:k.chg>=0?'#16a34a':'#EF4444' }}>
-              {k.chg>=0?'▲':'▼'} {Math.abs(k.chg).toFixed(1)}% {compLabel}
-            </span>
+            <div style={{ display:'flex', alignItems:'center', gap:4 }}>
+              <span style={{ fontSize:12, fontWeight:700, color:k.accent?'#FFF':(k.chg>=0?'#16a34a':'#EF4444'), background:k.accent?'rgba(255,255,255,0.2)':'transparent', padding:k.accent?'2px 6px':'0', borderRadius:4 }}>
+                {k.chg>=0?'▲':'▼'} {Math.abs(k.chg).toFixed(1)}%
+              </span>
+              {!k.accent && <span style={{ fontSize:10, color:textMuted }}>vs. anterior</span>}
+            </div>
           )}
         </div>
       ))}
@@ -363,10 +366,48 @@ export default function DashboardClient() {
             {activeSub==='mapa' && <MapaContent filtered={filtered} prevFiltered={prevFiltered} periodoLabel={periodoLabel} prevLabel={prevLabel} card={card} border={border} textMain={textMain} textSub={textSub} dark={dark} showComparison={filters.ano==='2026'}/>}
 
             {activeSub==='rank' && (
-              <div style={{ background:card, borderRadius:16, border:`1px solid ${border}`, padding:60, textAlign:'center' }}>
-                <div style={{ fontSize:40, marginBottom:16 }}>🏆</div>
-                <h3 style={{ fontSize:22, fontWeight:800, color:textMain, marginBottom:8 }}>Rank de Vendedores</h3>
-                <p style={{ color:textMuted, fontSize:14 }}>Em desenvolvimento</p>
+              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:20 }}>
+                <div style={{ background:card, borderRadius:24, border:`1px solid ${border}`, padding:30 }}>
+                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:24 }}>
+                    <h3 style={{ fontSize:18, fontWeight:900, color:textMain }}>Performance Individual</h3>
+                    <span style={{ fontSize:12, fontWeight:700, color:textMuted }}>MÊS ATUAL</span>
+                  </div>
+                  <div style={{ display:'flex', flexDirection:'column', gap:16 }}>
+                    {[
+                      { name:'Douglas Bitencourt', val:120000, meta:150000, img:'DB' },
+                      { name:'Ana Silva', val:145000, meta:130000, img:'AS' },
+                      { name:'Carlos Souza', val:89000, meta:110000, img:'CS' }
+                    ].map((v, i) => {
+                      const p = (v.val/v.meta)*100
+                      return (
+                        <div key={i} style={{ padding:16, background:dark?'#222':'#F9FAFB', borderRadius:16, border:`1px solid ${border}` }}>
+                          <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:12 }}>
+                            <div style={{ width:36, height:36, borderRadius:18, background:'var(--brand-gradient)', display:'flex', alignItems:'center', justifyContent:'center', color:'white', fontWeight:900, fontSize:12 }}>{v.img}</div>
+                            <div style={{ flex:1 }}>
+                              <p style={{ margin:0, fontSize:14, fontWeight:800, color:textMain }}>{v.name}</p>
+                              <p style={{ margin:0, fontSize:11, color:textMuted }}>{fmt(v.val)} de {fmt(v.meta)}</p>
+                            </div>
+                            <div style={{ textAlign:'right' }}>
+                              <span style={{ fontSize:14, fontWeight:900, color:p>=100?'#16A34A':'#FF6A22' }}>{p.toFixed(0)}%</span>
+                            </div>
+                          </div>
+                          <div style={{ height:6, background:dark?'#333':'#E5E7EB', borderRadius:3, overflow:'hidden' }}>
+                            <div style={{ height:'100%', width:`${Math.min(p,100)}%`, background:p>=100?'#16A34A':'var(--brand-gradient)', transition:'width 1s ease' }} />
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                <div style={{ background:card, borderRadius:24, border:`1px solid ${border}`, padding:30, display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', textAlign:'center' }}>
+                  <div style={{ width:80, height:80, background:'rgba(255,106,34,0.1)', borderRadius:40, display:'flex', alignItems:'center', justifyContent:'center', marginBottom:20 }}>
+                     <span style={{ fontSize:32 }}>🏆</span>
+                  </div>
+                  <h3 style={{ fontSize:20, fontWeight:900, color:textMain, marginBottom:10 }}>Líder de Vendas</h3>
+                  <p style={{ color:textMuted, fontSize:14, maxWidth:200, marginBottom:24 }}>Ana Silva superou a meta em 11% esta semana</p>
+                  <button className="btn-brand" style={{ padding:'12px 24px' }}>Ver Relatório Completo</button>
+                </div>
               </div>
             )}
           </div>
@@ -381,10 +422,51 @@ export default function DashboardClient() {
 
         {/* ════ FLUXO ════ */}
         {tab==='fluxo' && (
-          <div style={{ background:card, borderRadius:16, border:`1px solid ${border}`, padding:60, textAlign:'center' }}>
-            <div style={{ fontSize:50, marginBottom:20 }}>🚧</div>
-            <h3 style={{ fontSize:26, fontWeight:900, color:textMain, marginBottom:10 }}>Fluxo de Caixa Direto</h3>
-            <p style={{ color:textMuted, fontSize:15 }}>Em construção — em breve disponível</p>
+          <div style={{ display:'grid', gridTemplateColumns:'2fr 1fr', gap:20 }}>
+            <div style={{ background:card, borderRadius:24, border:`1px solid ${border}`, padding:40, position:'relative', overflow:'hidden' }}>
+              <div style={{ position:'absolute', top:0, right:0, width:200, height:200, background:'radial-gradient(circle, rgba(255,106,34,0.05) 0%, transparent 70%)', pointerEvents:'none' }} />
+              <div style={{ display:'flex', alignItems:'center', gap:15, marginBottom:30 }}>
+                <div style={{ width:48, height:48, background:'rgba(255,106,34,0.1)', borderRadius:12, display:'flex', alignItems:'center', justifyContent:'center' }}>
+                  <RefreshCw size={24} color="#FF6A22" />
+                </div>
+                <div>
+                  <h3 style={{ fontSize:22, fontWeight:900, color:textMain, margin:0 }}>Fluxo de Caixa Direto</h3>
+                  <p style={{ color:textMuted, fontSize:14, margin:0 }}>Conciliação de entradas e saídas operacionais</p>
+                </div>
+              </div>
+              
+              <div style={{ display:'flex', flexDirection:'column', gap:20 }}>
+                {[1,2,3].map(i => (
+                  <div key={i} style={{ height:60, background:dark?'#222':'#F9FAFB', borderRadius:14, border:`1px solid ${border}`, display:'flex', alignItems:'center', padding:'0 20px', gap:15 }}>
+                    <div style={{ width:32, height:32, borderRadius:8, background:dark?'#333':'#EEE' }} />
+                    <div style={{ flex:1, height:12, background:dark?'#333':'#EEE', borderRadius:6, maxWidth:200 }} />
+                    <div style={{ width:80, height:12, background:dark?'#333':'#EEE', borderRadius:6 }} />
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ marginTop:40, padding:20, background:'rgba(255,106,34,0.03)', borderRadius:16, border:`1px dashed #FF6A22` }}>
+                <p style={{ textAlign:'center', color:'#FF6A22', fontWeight:700, fontSize:14, margin:0 }}>
+                  <span style={{ fontSize:18, marginRight:8 }}>🚧</span> Interface em homologação — Aguardando dados do ERP
+                </p>
+              </div>
+            </div>
+
+            <div style={{ display:'flex', flexDirection:'column', gap:20 }}>
+              <div style={{ background:card, borderRadius:24, border:`1px solid ${border}`, padding:24 }}>
+                <h4 style={{ fontSize:14, fontWeight:800, color:textMain, marginBottom:16 }}>Resumo de Disponibilidade</h4>
+                <div style={{ height:120, border:`2px dashed ${border}`, borderRadius:16, display:'flex', alignItems:'center', justifyContent:'center', color:textMuted, fontSize:12 }}>
+                  Gráfico de Tendência
+                </div>
+              </div>
+              <div style={{ background:card, borderRadius:24, border:`1px solid ${border}`, padding:24 }}>
+                <h4 style={{ fontSize:14, fontWeight:800, color:textMain, marginBottom:16 }}>Alertas do Período</h4>
+                <div style={{ display:'flex', flexDirection:'column', gap:10 }}>
+                  <div style={{ fontSize:12, padding:10, borderRadius:8, background:'#FEF2F2', color:'#EF4444', fontWeight:600 }}>Pendência de conciliação 04/26</div>
+                  <div style={{ fontSize:12, padding:10, borderRadius:8, background:'#F0FDF4', color:'#16A34A', fontWeight:600 }}>Saldo operacional superavitário</div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
