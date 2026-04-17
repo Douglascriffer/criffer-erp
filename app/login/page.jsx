@@ -47,125 +47,157 @@ export default function LoginPage() {
   if (!mounted) return null
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-black" style={{ fontFamily: 'Syne, sans-serif' }}>
+    <div style={{ position: 'relative', minHeight: '100vh', width: '100%', overflow: 'hidden', background: '#0a0a0a', fontFamily: 'Syne, system-ui, sans-serif' }}>
 
-      {/* ─── BACKGROUND FULL SCREEN ─── */}
-      <div className="absolute inset-0">
-        <Image src="/bg-login.png" alt="Criffer - Gestão de Resultados" fill className="object-cover" priority style={{ filter: 'brightness(0.88) contrast(1.05)' }} />
-        <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.18)' }}></div>
+      {/* ── FUNDO FULL SCREEN ── */}
+      <div style={{ position: 'absolute', inset: 0 }}>
+        <Image
+          src="/bg-login.png"
+          alt="Criffer - Gestão de Resultados"
+          fill
+          className="object-cover"
+          priority
+          style={{ filter: 'brightness(0.72) contrast(1.08) saturate(0.9)' }}
+        />
+        {/* Vinheta central suave */}
+        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.45) 100%)' }} />
       </div>
 
-      {/* ─── VIGNETTE ─── */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(circle at center, rgba(0,0,0,0) 30%, rgba(0,0,0,0.35) 100%)' }}></div>
-
-      {/* ─── LOGIN CARD ─── */}
-      <div className="absolute inset-0 flex items-center justify-center p-6" style={{ zIndex: 20 }}>
-        <div className="w-full text-center" style={{
-          maxWidth: 480,
-          width: '90%',
-          background: 'rgba(255,255,255,0.96)',
-          backdropFilter: 'blur(40px)',
-          borderRadius: 28,
-          padding: '44px 48px',
-          boxShadow: '0 40px 80px rgba(0,0,0,0.35)',
-          border: '1px solid rgba(255,255,255,0.5)',
-          animation: 'fadeUp 0.7s ease-out forwards',
+      {/* ── CARD DE LOGIN ── */}
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, zIndex: 10 }}>
+        <div style={{
+          width: '100%',
+          maxWidth: 400,
+          background: 'rgba(255,255,255,0.92)',
+          backdropFilter: 'blur(32px)',
+          WebkitBackdropFilter: 'blur(32px)',
+          borderRadius: 24,
+          padding: '40px 36px 36px',
+          boxShadow: '0 32px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.3)',
+          animation: 'fadeUp 0.6s ease-out both',
         }}>
           <style>{`
-            @keyframes fadeUp {
-              from { opacity: 0; transform: translateY(24px); }
-              to { opacity: 1; transform: translateY(0); }
-            }
+            @keyframes fadeUp { from { opacity:0; transform:translateY(20px) } to { opacity:1; transform:translateY(0) } }
+            .cf-input:focus { border-color: #FF6A22 !important; outline: none; }
+            .cf-btn:hover { background: #e05a18 !important; transform: translateY(-1px); }
+            .cf-btn:active { transform: scale(0.98) !important; }
           `}</style>
 
-          {/* Logo Circular */}
-          <div style={{
-            width: 90, height: 90, borderRadius: '50%',
-            background: '#fff', margin: '0 auto 20px',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
-            border: '2px solid rgba(255,106,34,0.15)',
-            overflow: 'hidden', position: 'relative',
-          }}>
-            <Image src="/logo-base.png" alt="Logo Criffer" fill className="object-contain" style={{ padding: 10 }} />
+          {/* Logo circular */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
+            <div style={{
+              width: 72, height: 72,
+              background: '#fff',
+              borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 4px 20px rgba(255,106,34,0.2)',
+              border: '2px solid rgba(255,106,34,0.15)',
+              position: 'relative', overflow: 'hidden',
+            }}>
+              <Image src="/logo-base.png" alt="Criffer" fill style={{ objectFit: 'contain', padding: 8 }} />
+            </div>
           </div>
 
-          {/* CRIFFER boxes */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 5, marginBottom: 8 }}>
+          {/* Caixas CRIFFER */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 4, marginBottom: 10 }}>
             {['C','R','I','F','F','E','R'].map((ch, i) => (
               <div key={i} style={{
-                width: 34, height: 34, background: '#FF6A22', color: '#fff',
+                width: 36, height: 36,
+                background: '#FF6A22',
+                color: '#fff',
+                fontWeight: 900,
+                fontSize: 20,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontWeight: 900, fontSize: 18, borderRadius: 6,
+                borderRadius: 6,
               }}>{ch}</div>
             ))}
           </div>
 
-          <div style={{ fontSize: 11, fontWeight: 900, color: '#FF6A22', letterSpacing: '0.4em', textTransform: 'uppercase', marginBottom: 36 }}>
+          {/* Subtítulo */}
+          <p style={{ textAlign: 'center', fontSize: 11, fontWeight: 800, color: '#FF6A22', letterSpacing: '0.35em', textTransform: 'uppercase', marginBottom: 28, marginTop: 0 }}>
             Gestão de Resultados
-          </div>
+          </p>
 
-          <form onSubmit={handleLogin} style={{ textAlign: 'left' }}>
+          <form onSubmit={handleLogin}>
 
-            {/* Usuario */}
-            <div style={{ marginBottom: 20 }}>
-              <label style={{ display: 'block', fontSize: 10, fontWeight: 800, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: 8 }}>
+            {/* Acesso */}
+            <div style={{ marginBottom: 16 }}>
+              <label style={{ display: 'block', fontSize: 10, fontWeight: 700, color: '#888', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 6 }}>
                 Acesso Administrativo
               </label>
-              <select
-                value={selectedUser?.nome || ''}
-                onChange={e => setSelectedUser(USUARIOS.find(u => u.nome === e.target.value) || null)}
-                style={{ width: '100%', padding: '14px 16px', background: '#F9FAFB', border: '1.5px solid #F3F4F6', borderRadius: 14, fontSize: 14, color: '#111', fontFamily: 'inherit', outline: 'none', cursor: 'pointer', boxSizing: 'border-box' }}
-                required
-              >
-                <option value="">Selecione seu nome</option>
-                {USUARIOS.map(u => (
-                  <option key={u.nome} value={u.nome}>
-                    {u.display}
-                  </option>
-                ))}
-              </select>
+              <div style={{ position: 'relative' }}>
+                <select
+                  value={selectedUser?.nome || ''}
+                  onChange={e => setSelectedUser(USUARIOS.find(u => u.nome === e.target.value) || null)}
+                  className="cf-input"
+                  style={{
+                    width: '100%', padding: '12px 16px',
+                    background: '#F8F8F8', border: '1.5px solid #EBEBEB',
+                    borderRadius: 12, fontSize: 14, color: '#111',
+                    fontFamily: 'inherit', cursor: 'pointer',
+                    boxSizing: 'border-box', transition: 'border-color 0.2s',
+                    appearance: 'none',
+                  }}
+                  required
+                >
+                  <option value="">Selecione seu nome</option>
+                  {USUARIOS.map(u => (
+                    <option key={u.nome} value={u.nome}>{u.display}</option>
+                  ))}
+                </select>
+                <div style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#999', fontSize: 12 }}>▼</div>
+              </div>
             </div>
 
             {/* Senha */}
             <div style={{ marginBottom: 20 }}>
-              <label style={{ display: 'block', fontSize: 10, fontWeight: 800, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: 8 }}>
-                Chave de Segurança
+              <label style={{ display: 'block', fontSize: 10, fontWeight: 700, color: '#888', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 6 }}>
+                Senha
               </label>
-              <input
-                type="password"
-                value={senha}
-                onChange={e => setSenha(e.target.value)}
-                placeholder="••••••••••••"
-                style={{ width: '100%', padding: '14px 16px', background: '#F9FAFB', border: '1.5px solid #F3F4F6', borderRadius: 14, fontSize: 14, color: '#111', fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box' }}
-                required
-              />
+              <div style={{ position: 'relative' }}>
+                <input
+                  type="password"
+                  value={senha}
+                  onChange={e => setSenha(e.target.value)}
+                  placeholder="••••••••••••"
+                  className="cf-input"
+                  style={{
+                    width: '100%', padding: '12px 16px',
+                    background: '#F8F8F8', border: '1.5px solid #EBEBEB',
+                    borderRadius: 12, fontSize: 14, color: '#111',
+                    fontFamily: 'inherit', boxSizing: 'border-box',
+                    transition: 'border-color 0.2s',
+                  }}
+                  required
+                />
+                <div style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', color: '#BBB', fontSize: 16 }}>🔒</div>
+              </div>
             </div>
 
             {error && (
-              <div style={{ background: '#FEF2F2', color: '#DC2626', fontSize: 13, padding: '10px 16px', borderRadius: 10, border: '1px solid #FECACA', marginBottom: 16, textAlign: 'center', fontWeight: 600 }}>
+              <div style={{ background: '#FEF2F2', color: '#DC2626', fontSize: 12, padding: '10px 14px', borderRadius: 10, border: '1px solid #FECACA', marginBottom: 16, textAlign: 'center', fontWeight: 600 }}>
                 {error}
               </div>
             )}
 
+            {/* Botão */}
             <button
               type="submit"
               disabled={loading}
+              className="cf-btn"
               style={{
-                width: '100%', padding: '16px', background: loading ? '#ffb899' : '#FF6A22',
-                color: '#fff', border: 'none', borderRadius: 14, fontWeight: 900,
-                fontSize: 14, letterSpacing: '0.1em', cursor: loading ? 'default' : 'pointer',
-                fontFamily: 'inherit', boxShadow: '0 12px 30px rgba(255,106,34,0.3)',
+                width: '100%', padding: '14px',
+                background: loading ? '#ffb899' : '#FF6A22',
+                color: '#fff', border: 'none', borderRadius: 12,
+                fontWeight: 900, fontSize: 14, letterSpacing: '0.08em',
+                textTransform: 'uppercase', cursor: loading ? 'default' : 'pointer',
+                fontFamily: 'inherit', boxShadow: '0 8px 24px rgba(255,106,34,0.35)',
                 transition: 'all 0.2s',
               }}
             >
-              {loading ? 'AUTENTICANDO...' : 'ACESSAR RESULTADOS'}
+              {loading ? 'Autenticando...' : 'Acessar Resultados'}
             </button>
           </form>
-
-          <p style={{ marginTop: 28, fontSize: 11, color: '#9CA3AF', fontWeight: 500 }}>
-            &copy; {new Date().getFullYear()} Criffer Instrumentos de Medição.
-          </p>
         </div>
       </div>
     </div>
