@@ -49,20 +49,14 @@ export default function LoginPage() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-black" style={{ fontFamily: 'Syne, sans-serif' }}>
 
-      {/* ─── BACKGROUND SPLIT 50/50 ─── */}
-      <div className="absolute inset-0 flex">
-        <div className="relative flex-1 overflow-hidden">
-          <Image src="/bg-login-left.png" alt="Operação" fill className="object-cover" priority style={{ filter: 'brightness(0.82) contrast(1.05)' }} />
-          <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.12)' }}></div>
-        </div>
-        <div className="relative flex-1 overflow-hidden">
-          <Image src="/bg-login-right.png" alt="Estratégia" fill className="object-cover" priority />
-          <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.06)' }}></div>
-        </div>
+      {/* ─── BACKGROUND FULL SCREEN ─── */}
+      <div className="absolute inset-0">
+        <Image src="/bg-login.png" alt="Criffer - Gestão de Resultados" fill className="object-cover" priority style={{ filter: 'brightness(0.88) contrast(1.05)' }} />
+        <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.18)' }}></div>
       </div>
 
       {/* ─── VIGNETTE ─── */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(circle at center, rgba(0,0,0,0) 20%, rgba(0,0,0,0.45) 100%)' }}></div>
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(circle at center, rgba(0,0,0,0) 30%, rgba(0,0,0,0.35) 100%)' }}></div>
 
       {/* ─── LOGIN CARD ─── */}
       <div className="absolute inset-0 flex items-center justify-center p-6" style={{ zIndex: 20 }}>
