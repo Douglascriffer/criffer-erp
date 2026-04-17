@@ -4,20 +4,20 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
 const USUARIOS = [
-  { nome: 'Douglas Bitencourt', nivel: 'master', setor: 'Diretoria' },
-  { nome: 'Juliano Chagas', nivel: 'master', setor: 'Financeiro' },
-  { nome: 'Faiblan', nivel: 'master', setor: 'TI' },
-  { nome: 'Andressa Barth', nivel: 'gestor', setor: 'Produção' },
-  { nome: 'Rodrigo Santos', nivel: 'gestor', setor: 'Compras' },
-  { nome: 'Carlos Rocha', nivel: 'gestor', setor: 'Laboratório de Manutenção' },
-  { nome: 'Cleiton Staehler', nivel: 'gestor', setor: 'Manutenção' },
-  { nome: 'Douglas Schmitz', nivel: 'gestor', setor: 'Logística' },
-  { nome: 'Felipe Oliveira', nivel: 'gestor', setor: 'Marketing' },
-  { nome: 'Felipe Charão', nivel: 'gestor', setor: 'TI' },
-  { nome: 'Fernando Malta', nivel: 'gestor', setor: 'P&D' },
-  { nome: 'Felipe Immich', nivel: 'gestor', setor: 'Laboratório Calibração' },
-  { nome: 'Gabriel Dias', nivel: 'gestor', setor: 'Vendas' },
-  { nome: 'Ruslan Santos', nivel: 'gestor', setor: 'Suporte Técnico' },
+  { nome: 'Douglas Bitencourt', display: 'Financeiro - ADM', nivel: 'master', setor: 'Diretoria' },
+  { nome: 'Juliano Chagas', display: 'Juliano Chagas', nivel: 'master', setor: 'Financeiro' },
+  { nome: 'Faiblan', display: 'Faiblan', nivel: 'master', setor: 'TI' },
+  { nome: 'Andressa Barth', display: 'Andressa Barth', nivel: 'gestor', setor: 'Produção' },
+  { nome: 'Rodrigo Santos', display: 'Rodrigo Santos', nivel: 'gestor', setor: 'Compras' },
+  { nome: 'Carlos Rocha', display: 'Carlos Rocha', nivel: 'gestor', setor: 'Laboratório de Manutenção' },
+  { nome: 'Cleiton Staehler', display: 'Cleiton Staehler', nivel: 'gestor', setor: 'Manutenção' },
+  { nome: 'Douglas Schmitz', display: 'Douglas Schmitz', nivel: 'gestor', setor: 'Logística' },
+  { nome: 'Felipe Oliveira', display: 'Felipe Oliveira', nivel: 'gestor', setor: 'Marketing' },
+  { nome: 'Felipe Charão', display: 'Felipe Charão', nivel: 'gestor', setor: 'TI' },
+  { nome: 'Fernando Malta', display: 'Fernando Malta', nivel: 'gestor', setor: 'P&D' },
+  { nome: 'Felipe Immich', display: 'Felipe Immich', nivel: 'gestor', setor: 'Laboratório Calibração' },
+  { nome: 'Gabriel Dias', display: 'Gabriel Dias', nivel: 'gestor', setor: 'Vendas' },
+  { nome: 'Ruslan Santos', display: 'Ruslan Santos', nivel: 'gestor', setor: 'Suporte Técnico' },
 ]
 const SENHA = 'Criffer2026'
 
@@ -67,11 +67,12 @@ export default function LoginPage() {
       {/* ─── LOGIN CARD ─── */}
       <div className="absolute inset-0 flex items-center justify-center p-6" style={{ zIndex: 20 }}>
         <div className="w-full text-center" style={{
-          maxWidth: 420,
+          maxWidth: 480,
+          width: '90%',
           background: 'rgba(255,255,255,0.96)',
           backdropFilter: 'blur(40px)',
-          borderRadius: 32,
-          padding: '48px 44px',
+          borderRadius: 28,
+          padding: '44px 48px',
           boxShadow: '0 40px 80px rgba(0,0,0,0.35)',
           border: '1px solid rgba(255,255,255,0.5)',
           animation: 'fadeUp 0.7s ease-out forwards',
@@ -126,7 +127,7 @@ export default function LoginPage() {
                 <option value="">Selecione seu nome</option>
                 {USUARIOS.map(u => (
                   <option key={u.nome} value={u.nome}>
-                    {u.nome}{u.nivel === 'master' ? ' (Master)' : ''}
+                    {u.display}
                   </option>
                 ))}
               </select>
