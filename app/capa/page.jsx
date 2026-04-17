@@ -185,7 +185,7 @@ export default function CapaPage() {
             Sair
           </button>
         </div>
-      </header>
+      </div>
 
       {/* BODY interativo */}
       <div ref={bodyRef} onMouseMove={handleMouseMove}
