@@ -67,12 +67,12 @@ export default function LoginPage() {
       <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, zIndex: 10 }}>
         <div style={{
           width: '100%',
-          maxWidth: 400,
+          maxWidth: 460,
           background: 'rgba(255,255,255,0.92)',
           backdropFilter: 'blur(32px)',
           WebkitBackdropFilter: 'blur(32px)',
           borderRadius: 24,
-          padding: '40px 36px 36px',
+          padding: '48px 44px 44px',
           boxShadow: '0 32px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.3)',
           animation: 'fadeUp 0.6s ease-out both',
         }}>
@@ -86,7 +86,7 @@ export default function LoginPage() {
           {/* Logo circular */}
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
             <div style={{
-              width: 72, height: 72,
+              width: 80, height: 80,
               background: '#fff',
               borderRadius: '50%',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -102,11 +102,11 @@ export default function LoginPage() {
           <div style={{ display: 'flex', justifyContent: 'center', gap: 4, marginBottom: 10 }}>
             {['C','R','I','F','F','E','R'].map((ch, i) => (
               <div key={i} style={{
-                width: 36, height: 36,
+                width: 40, height: 40,
                 background: '#FF6A22',
                 color: '#fff',
                 fontWeight: 900,
-                fontSize: 20,
+                fontSize: 22,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 borderRadius: 6,
               }}>{ch}</div>
