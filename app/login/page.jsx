@@ -37,7 +37,7 @@ export default function LoginPage() {
     if (!selectedUser) { setError('Selecione um usuário.'); return }
     if (senha !== SENHA) { setError('Senha incorreta.'); return }
     setLoading(true)
-    localStorage.setItem('criffer_user', selectedUser.nome)
+    localStorage.setItem('criffer_user', selectedUser.nome === 'Douglas Bitencourt' ? 'Financeiro' : selectedUser.display || selectedUser.nome)
     localStorage.setItem('criffer_role', selectedUser.nivel)
     localStorage.setItem('criffer_sector', selectedUser.setor)
     localStorage.setItem('criffer_auth', 'true')
@@ -86,7 +86,7 @@ export default function LoginPage() {
           {/* Logo circular */}
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
             <div style={{
-              width: 80, height: 80,
+              width: 110, height: 110,
               background: '#fff',
               borderRadius: '50%',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -114,7 +114,7 @@ export default function LoginPage() {
           </div>
 
           {/* Subtítulo */}
-          <p style={{ textAlign: 'center', fontSize: 15, fontWeight: 600, color: '#FF6A22', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 28, marginTop: 0 }}>
+          <p style={{ textAlign: 'center', fontSize: 20, fontWeight: 500, color: '#FF6A22', letterSpacing: '0.12em', marginBottom: 28, marginTop: 0 }}>
             Gestão de Resultados
           </p>
 
