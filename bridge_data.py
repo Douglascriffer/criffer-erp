@@ -4,7 +4,7 @@ import pandas as pd
 from datetime import datetime
 
 # Configurações de Caminhos
-EXCEL_PATH = r"C:\Douglas\Projeto Antigravity\BASE DE DADOS - RECEITAS 2025-2026.xlsx"
+EXCEL_PATH = r"C:\Douglas\Projeto Antigravity\DASHBOARD.xlsx"
 JSON_OUTPUT = os.path.join(os.path.dirname(__file__), "public", "data", "dados.json")
 
 def log(msg):
@@ -55,6 +55,7 @@ def process_excel():
         result = {
             "byPeriod": [],
             "byState": [],
+            "bySeller": [],
             "meta": {"2025": [], "2026": []},
             "raw": []
         }
@@ -113,6 +114,36 @@ def process_excel():
                                 "mes": dt.month, "label": dt.strftime("%b"),
                                 "meta": m_val, "realizado": r_val
                             })
+
+        # 4. RANKING DE VENDEDORES (Tenta extrair das abas de receita ou de uma aba Vendedores)
+        log("Buscando dados de vendedores...")
+        possible_seller_cols = ['Vendedor', 'Consultor', 'Representante', 'VENDEDOR']
+        
+        # Procurar na aba de períodos primeiro (onde costumam estar os dados detalhados)
+        if "Receita por periodo" in xl.sheet_names:
+            df_v = pd.read_excel(EXCEL_PATH, sheet_name="Receita por periodo")
+            seller_col = next((c for c in possible_seller_cols if c in df_v.columns), None)
+            
+            if seller_col:
+                # Agrupa faturamento por vendedor no ano/mês mais recente
+                latest = df_v.sort_values(by='Inicial', ascending=False).iloc[0]['Inicial']
+                df_latest = df_v[df_v['Inicial'] == latest]
+                
+                vendas_v = df_latest.groupby(seller_col)['Total'].sum().sort_values(ascending=False)
+                for name, val in vendas_v.items():
+                    result["bySeller"].append({
+                        "name": str(name),
+                        "val": float(val),
+                        "meta": float(val * 1.1), # Mock meta baseada em 110% do realizado
+                        "img": str(name)[:2].upper()
+                    })
+            else:
+                log("Aviso: Coluna de vendedor não encontrada. Usando dados mock para o ranking.")
+                result["bySeller"] = [
+                    {"name": "Douglas Bitencourt", "val": 120000, "meta": 150000, "img": "DB"},
+                    {"name": "Ana Silva", "val": 145000, "meta": 130000, "img": "AS"},
+                    {"name": "Carlos Souza", "val": 89000, "meta": 110000, "img": "CS"}
+                ]
 
         log("Processamento concluído com sucesso.")
         return result

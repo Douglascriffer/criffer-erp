@@ -373,12 +373,8 @@ export default function DashboardClient() {
                     <span style={{ fontSize:12, fontWeight:700, color:textMuted }}>MÊS ATUAL</span>
                   </div>
                   <div style={{ display:'flex', flexDirection:'column', gap:16 }}>
-                    {[
-                      { name:'Douglas Bitencourt', val:120000, meta:150000, img:'DB' },
-                      { name:'Ana Silva', val:145000, meta:130000, img:'AS' },
-                      { name:'Carlos Souza', val:89000, meta:110000, img:'CS' }
-                    ].map((v, i) => {
-                      const p = (v.val/v.meta)*100
+                    {(filtered?.bySeller || []).slice(0, 4).map((v, i) => {
+                      const p = v.meta > 0 ? (v.val/v.meta)*100 : 0
                       return (
                         <div key={i} style={{ padding:16, background:dark?'#222':'#F9FAFB', borderRadius:16, border:`1px solid ${border}` }}>
                           <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:12 }}>
@@ -401,11 +397,19 @@ export default function DashboardClient() {
                 </div>
 
                 <div style={{ background:card, borderRadius:24, border:`1px solid ${border}`, padding:30, display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', textAlign:'center' }}>
-                  <div style={{ width:80, height:80, background:'rgba(255,106,34,0.1)', borderRadius:40, display:'flex', alignItems:'center', justifyContent:'center', marginBottom:20 }}>
-                     <span style={{ fontSize:32 }}>🏆</span>
-                  </div>
-                  <h3 style={{ fontSize:20, fontWeight:900, color:textMain, marginBottom:10 }}>Líder de Vendas</h3>
-                  <p style={{ color:textMuted, fontSize:14, maxWidth:200, marginBottom:24 }}>Ana Silva superou a meta em 11% esta semana</p>
+                  {filtered?.bySeller?.length > 0 ? (
+                    <>
+                      <div style={{ width:80, height:80, background:'rgba(255,106,34,0.1)', borderRadius:40, display:'flex', alignItems:'center', justifyContent:'center', marginBottom:20 }}>
+                         <span style={{ fontSize:32 }}>🏆</span>
+                      </div>
+                      <h3 style={{ fontSize:20, fontWeight:900, color:textMain, marginBottom:10 }}>Líder de Vendas</h3>
+                      <p style={{ color:textMuted, fontSize:14, maxWidth:200, marginBottom:24 }}>
+                        {filtered.bySeller[0].name} lidera o ranking com faturamento de {fmt(filtered.bySeller[0].val)}
+                      </p>
+                    </>
+                  ) : (
+                    <p style={{ color:textMuted }}>Carregando dados do ranking...</p>
+                  )}
                   <button className="btn-brand" style={{ padding:'12px 24px' }}>Ver Relatório Completo</button>
                 </div>
               </div>

@@ -1,27 +1,10 @@
 {
-  "byPeriod": [
-    { "mes": 1, "ano": 2025, "label": "jan/25", "vendas": 850000, "servicos": 120000, "locacao": 45000, "devolucoes": 5000, "total": 1010000 },
-    { "mes": 2, "ano": 2025, "label": "fev/25", "vendas": 920000, "servicos": 135000, "locacao": 48000, "devolucoes": 3000, "total": 1100000 },
-    { "mes": 3, "ano": 2025, "label": "mar/25", "vendas": 780000, "servicos": 110000, "locacao": 42000, "devolucoes": 4000, "total": 928000 },
-    { "mes": 4, "ano": 2025, "label": "abr/25", "vendas": 890000, "servicos": 125000, "locacao": 46000, "devolucoes": 2500, "total": 1058500 },
-    { "mes": 1, "ano": 2026, "label": "jan/26", "vendas": 1100000, "servicos": 150000, "locacao": 55000, "devolucoes": 2000, "total": 1303000 }
-  ],
-  "byState": [
-    { "ano": 2025, "mes": 1, "estado": "SP", "faturamento": 450000 },
-    { "ano": 2025, "mes": 1, "estado": "RS", "faturamento": 320000 },
-    { "ano": 2025, "mes": 1, "estado": "SC", "faturamento": 180000 },
-    { "ano": 2026, "mes": 1, "estado": "SP", "faturamento": 600000 },
-    { "ano": 2026, "mes": 1, "estado": "PR", "faturamento": 250000 }
-  ],
+  "byPeriod": [],
+  "byState": [],
+  "bySeller": [],
   "meta": {
-    "2025": [
-      { "mes": 1, "label": "Jan", "meta": 1000000, "realizado": 1010000 },
-      { "mes": 2, "label": "Fev", "meta": 1000000, "realizado": 1100000 },
-      { "mes": 3, "label": "Mar", "meta": 1000000, "realizado": 928000 }
-    ],
-    "2026": [
-      { "mes": 1, "label": "Jan", "meta": 1200000, "realizado": 1303000 }
-    ]
+    "2025": [],
+    "2026": []
   },
   "raw": []
 }
