@@ -112,12 +112,12 @@ export default function LoginPage() {
         <div style={{
           width: '100%',
           maxWidth: 460,
-          background: 'rgba(255,255,255,0.93)',
-          backdropFilter: 'blur(36px)',
-          WebkitBackdropFilter: 'blur(36px)',
+          background: 'rgba(255,255,255,0.15)',
+          backdropFilter: 'blur(40px)',
+          WebkitBackdropFilter: 'blur(40px)',
           borderRadius: 24,
           padding: '48px 44px 44px',
-          boxShadow: '0 32px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.3)',
+          boxShadow: '0 32px 80px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(255,255,255,0.25)',
           animation: 'slideFromLeft 1s cubic-bezier(0.22,1,0.36,1) both',
         }}>
 
@@ -171,7 +171,7 @@ export default function LoginPage() {
             <p style={{
               textAlign: 'center',
               fontSize: 20, fontWeight: 500,
-              color: '#FF6A22',
+              color: '#FFB380',
               letterSpacing: '0.12em',
               marginBottom: 28, marginTop: 0,
             }}>
@@ -182,11 +182,7 @@ export default function LoginPage() {
 
               {/* Acesso Administrativo */}
               <div style={{ marginBottom: 16 }}>
-                <label style={{
-                  display: 'block', fontSize: 10, fontWeight: 700,
-                  color: '#888', textTransform: 'uppercase',
-                  letterSpacing: '0.12em', marginBottom: 6,
-                }}>
+                <label style={{ display: 'block', fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.75)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 6 }}>
                   Acesso Administrativo
                 </label>
                 <div style={{ position: 'relative' }}>
@@ -196,34 +192,30 @@ export default function LoginPage() {
                     className="cf-input"
                     style={{
                       width: '100%', padding: '12px 16px',
-                      background: '#F8F8F8', border: '1.5px solid #EBEBEB',
-                      borderRadius: 12, fontSize: 14, color: '#111',
+                      background: 'rgba(255,255,255,0.12)', border: '1.5px solid rgba(255,255,255,0.25)',
+                      borderRadius: 12, fontSize: 14, color: '#fff',
                       fontFamily: 'inherit', cursor: 'pointer',
                       boxSizing: 'border-box', transition: 'border-color 0.2s',
                       appearance: 'none',
                     }}
                     required
                   >
-                    <option value="">Selecione seu nome</option>
+                    <option value="" style={{ color: '#000' }}>Selecione seu nome</option>
                     {USUARIOS.map(u => (
-                      <option key={u.nome} value={u.nome}>{u.display}</option>
+                      <option key={u.nome} value={u.nome} style={{ color: '#000' }}>{u.display}</option>
                     ))}
                   </select>
                   <div style={{
                     position: 'absolute', right: 14, top: '50%',
                     transform: 'translateY(-50%)',
-                    pointerEvents: 'none', color: '#999', fontSize: 12,
+                    pointerEvents: 'none', color: '#fff', fontSize: 12,
                   }}>▼</div>
                 </div>
               </div>
 
               {/* Senha */}
               <div style={{ marginBottom: 20 }}>
-                <label style={{
-                  display: 'block', fontSize: 10, fontWeight: 700,
-                  color: '#888', textTransform: 'uppercase',
-                  letterSpacing: '0.12em', marginBottom: 6,
-                }}>
+                <label style={{ display: 'block', fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.75)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 6 }}>
                   Senha
                 </label>
                 <div style={{ position: 'relative' }}>
@@ -235,8 +227,8 @@ export default function LoginPage() {
                     className="cf-input"
                     style={{
                       width: '100%', padding: '12px 16px',
-                      background: '#F8F8F8', border: '1.5px solid #EBEBEB',
-                      borderRadius: 12, fontSize: 14, color: '#111',
+                      background: 'rgba(255,255,255,0.12)', border: '1.5px solid rgba(255,255,255,0.25)',
+                      borderRadius: 12, fontSize: 14, color: '#fff',
                       fontFamily: 'inherit', boxSizing: 'border-box',
                       transition: 'border-color 0.2s',
                     }}
