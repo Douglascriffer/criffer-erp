@@ -52,39 +52,37 @@ export default function LoginPage() {
       minHeight: '100vh',
       width: '100%',
       overflow: 'hidden',
-      background: '#0a0a0a',
+      background: '#e8e8e8',
       fontFamily: 'Syne, system-ui, sans-serif',
     }}>
 
-      {/* ── KEYFRAMES ── */}
       <style>{`
-        /* 1. Card desliza da esquerda — 1 segundo */
         @keyframes slideFromLeft {
           from { opacity: 0; transform: translateX(-160px); }
           to   { opacity: 1; transform: translateX(0); }
         }
-        /* 2. Logo cai do topo — 3 segundos */
         @keyframes dropFromTop {
           from { opacity: 0; transform: translateY(-100px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        /* 3. CRIFFER sobe de baixo — 3 segundos */
         @keyframes riseFromBottom {
           from { opacity: 0; transform: translateY(80px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        /* 4. Restante aparece após 3s — fadeIn suave */
         @keyframes fadeInDelayed {
           from { opacity: 0; transform: translateY(8px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        /* Interações */
-        .cf-input:focus  { border-color: #FF6A22 !important; outline: none; }
-        .cf-btn:hover    { background: #e05a18 !important; transform: translateY(-1px); }
-        .cf-btn:active   { transform: scale(0.98) !important; }
+        .cf-input:focus {
+          border-color: #FF6A22 !important;
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(255,106,34,0.20) !important;
+        }
+        .cf-btn:hover  { background: #e05a18 !important; transform: translateY(-1px); box-shadow: 0 12px 32px rgba(255,106,34,0.5) !important; }
+        .cf-btn:active { transform: scale(0.97) !important; }
       `}</style>
 
-      {/* ── 1. FUNDO FIXO — sem animação ── */}
+      {/* ── FUNDO — bem claro, sala nítida ── */}
       <div style={{ position: 'absolute', inset: 0 }}>
         <Image
           src="/bg-login.png"
@@ -92,36 +90,34 @@ export default function LoginPage() {
           fill
           className="object-cover"
           priority
-          style={{ filter: 'brightness(0.68) contrast(1.1) saturate(0.88)' }}
+          style={{
+            /* Sala clara e visível */
+            filter: 'brightness(0.92) contrast(1.04) saturate(0.95)',
+          }}
         />
-        {/* Vinheta suave */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.50) 100%)',
-        }} />
+        {/* Sem vinheta — fundo totalmente visível */}
       </div>
 
-      {/* ── CENTRALIZAÇÃO DO CARD ── */}
+      {/* ── CONTAINER — transparente, só posiciona os elementos ── */}
       <div style={{
         position: 'absolute', inset: 0,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         padding: 24, zIndex: 10,
       }}>
 
-        {/* ── 2. CARD — desliza da esquerda em 1s ── */}
+        {/*
+          CARD CONTAINER — TOTALMENTE TRANSPARENTE
+          Apenas agrupa os elementos. Sem background, sem borda, sem blur.
+          Só os campos e botão têm fundo próprio.
+        */}
         <div style={{
           width: '100%',
-          maxWidth: 460,
-          background: 'rgba(255,255,255,0.28)',
-          backdropFilter: 'blur(28px)',
-          WebkitBackdropFilter: 'blur(28px)',
-          borderRadius: 24,
-          padding: '48px 44px 44px',
-          boxShadow: '0 32px 80px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.6), inset 0 0 0 1px rgba(255,255,255,0.22)',
+          maxWidth: 420,
+          background: 'transparent',
           animation: 'slideFromLeft 1s cubic-bezier(0.22,1,0.36,1) both',
         }}>
 
-          {/* ── 3. LOGO — cai do topo em 3s ── */}
+          {/* ── LOGO — cai do topo em 3s ── */}
           <div style={{
             display: 'flex', justifyContent: 'center', marginBottom: 20,
             animation: 'dropFromTop 3s cubic-bezier(0.22,1,0.36,1) both',
@@ -131,8 +127,7 @@ export default function LoginPage() {
               background: '#fff',
               borderRadius: '50%',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 4px 24px rgba(255,106,34,0.22)',
-              border: '2px solid rgba(255,106,34,0.18)',
+              boxShadow: '0 6px 28px rgba(0,0,0,0.25), 0 0 0 3px rgba(255,106,34,0.35)',
               position: 'relative', overflow: 'hidden',
             }}>
               <Image
@@ -144,67 +139,64 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* ── 4. CRIFFER — sobe de baixo em 3s ── */}
+          {/* ── C-R-I-F-F-E-R — sobe de baixo em 3s ── */}
           <div style={{
             display: 'flex', justifyContent: 'center', gap: 4, marginBottom: 10,
             animation: 'riseFromBottom 3s cubic-bezier(0.22,1,0.36,1) both',
           }}>
             {['C','R','I','F','F','E','R'].map((ch, i) => (
               <div key={i} style={{
-                width: 40, height: 40,
+                width: 42, height: 42,
                 background: '#FF6A22',
                 color: '#fff',
                 fontWeight: 900,
                 fontSize: 22,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                borderRadius: 6,
+                borderRadius: 7,
+                boxShadow: '0 4px 16px rgba(255,106,34,0.45)',
               }}>{ch}</div>
             ))}
           </div>
 
-          {/* ── 5. RESTANTE — aparece após todos pousarem (delay 3s) ── */}
-          <div style={{
-            animation: 'fadeInDelayed 0.7s ease-out 3s both',
-          }}>
+          {/* ── RESTANTE — aparece após 3s ── */}
+          <div style={{ animation: 'fadeInDelayed 0.8s ease-out 3s both' }}>
 
-            {/* Subtítulo */}
+            {/* Subtítulo — texto sobre o fundo claro */}
             <p style={{
               textAlign: 'center',
-              fontSize: 20, fontWeight: 500,
+              fontSize: 18, fontWeight: 700,
               color: '#FF6A22',
-              letterSpacing: '0.12em',
-              marginBottom: 28, marginTop: 0,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              textShadow: '0 1px 6px rgba(255,255,255,0.8)',
+              marginBottom: 28, marginTop: 6,
             }}>
               Gestão de Resultados
             </p>
 
             <form onSubmit={handleLogin}>
 
-              {/* Acesso Administrativo */}
-              <div style={{ marginBottom: 16 }}>
-                <label style={{
-                  display: 'block', fontSize: 10, fontWeight: 700,
-                  color: '#888', textTransform: 'uppercase',
-                  letterSpacing: '0.12em', marginBottom: 6,
-                }}>
-                  Acesso Administrativo
-                </label>
+              {/* Campo — Acesso Administrativo */}
+              <div style={{ marginBottom: 14 }}>
                 <div style={{ position: 'relative' }}>
                   <select
                     value={selectedUser?.nome || ''}
                     onChange={e => setSelectedUser(USUARIOS.find(u => u.nome === e.target.value) || null)}
                     className="cf-input"
                     style={{
-                      width: '100%', padding: '12px 16px',
-                      background: '#F8F8F8', border: '1.5px solid #EBEBEB',
-                      borderRadius: 12, fontSize: 14, color: '#111',
+                      width: '100%', padding: '14px 40px 14px 18px',
+                      /* ▼ campo com fundo branco bem visível */
+                      background: 'rgba(255,255,255,0.88)',
+                      border: '1.5px solid rgba(255,255,255,0.95)',
+                      borderRadius: 14, fontSize: 14, color: '#222',
                       fontFamily: 'inherit', cursor: 'pointer',
-                      boxSizing: 'border-box', transition: 'border-color 0.2s',
+                      boxSizing: 'border-box', transition: 'all 0.2s',
                       appearance: 'none',
+                      boxShadow: '0 4px 18px rgba(0,0,0,0.12)',
                     }}
                     required
                   >
-                    <option value="">Selecione seu nome</option>
+                    <option value="">Acesso Administrativo</option>
                     {USUARIOS.map(u => (
                       <option key={u.nome} value={u.nome}>{u.display}</option>
                     ))}
@@ -212,40 +204,35 @@ export default function LoginPage() {
                   <div style={{
                     position: 'absolute', right: 14, top: '50%',
                     transform: 'translateY(-50%)',
-                    pointerEvents: 'none', color: '#999', fontSize: 12,
+                    pointerEvents: 'none', color: '#666', fontSize: 12,
                   }}>▼</div>
                 </div>
               </div>
 
-              {/* Senha */}
+              {/* Campo — Senha */}
               <div style={{ marginBottom: 20 }}>
-                <label style={{
-                  display: 'block', fontSize: 10, fontWeight: 700,
-                  color: '#888', textTransform: 'uppercase',
-                  letterSpacing: '0.12em', marginBottom: 6,
-                }}>
-                  Senha
-                </label>
                 <div style={{ position: 'relative' }}>
                   <input
                     type="password"
                     value={senha}
                     onChange={e => setSenha(e.target.value)}
-                    placeholder="••••••••••••"
+                    placeholder="Senha"
                     className="cf-input"
                     style={{
-                      width: '100%', padding: '12px 16px',
-                      background: '#F8F8F8', border: '1.5px solid #EBEBEB',
-                      borderRadius: 12, fontSize: 14, color: '#111',
+                      width: '100%', padding: '14px 44px 14px 18px',
+                      background: 'rgba(255,255,255,0.88)',
+                      border: '1.5px solid rgba(255,255,255,0.95)',
+                      borderRadius: 14, fontSize: 14, color: '#222',
                       fontFamily: 'inherit', boxSizing: 'border-box',
-                      transition: 'border-color 0.2s',
+                      transition: 'all 0.2s',
+                      boxShadow: '0 4px 18px rgba(0,0,0,0.12)',
                     }}
                     required
                   />
                   <div style={{
                     position: 'absolute', right: 14, top: '50%',
                     transform: 'translateY(-50%)',
-                    color: '#BBB', fontSize: 16,
+                    color: '#888', fontSize: 16,
                   }}>🔒</div>
                 </div>
               </div>
@@ -253,30 +240,31 @@ export default function LoginPage() {
               {/* Erro */}
               {error && (
                 <div style={{
-                  background: '#FEF2F2', color: '#DC2626', fontSize: 12,
-                  padding: '10px 14px', borderRadius: 10,
-                  border: '1px solid #FECACA', marginBottom: 16,
-                  textAlign: 'center', fontWeight: 600,
+                  background: 'rgba(255,255,255,0.85)', color: '#DC2626',
+                  fontSize: 12, padding: '10px 14px', borderRadius: 10,
+                  border: '1px solid rgba(220,38,38,0.35)',
+                  marginBottom: 14, textAlign: 'center', fontWeight: 700,
+                  boxShadow: '0 4px 14px rgba(0,0,0,0.10)',
                 }}>
                   {error}
                 </div>
               )}
 
-              {/* Botão */}
+              {/* Botão — sólido laranja, único elemento opaco */}
               <button
                 type="submit"
                 disabled={loading}
                 className="cf-btn"
                 style={{
-                  width: '100%', padding: '14px',
+                  width: '100%', padding: '15px',
                   background: loading ? '#ffb899' : '#FF6A22',
-                  color: '#fff', border: 'none', borderRadius: 12,
-                  fontWeight: 900, fontSize: 14, letterSpacing: '0.08em',
+                  color: '#fff', border: 'none', borderRadius: 14,
+                  fontWeight: 900, fontSize: 14, letterSpacing: '0.10em',
                   textTransform: 'uppercase',
                   cursor: loading ? 'default' : 'pointer',
                   fontFamily: 'inherit',
-                  boxShadow: '0 8px 24px rgba(255,106,34,0.35)',
-                  transition: 'all 0.2s',
+                  boxShadow: '0 8px 28px rgba(255,106,34,0.50)',
+                  transition: 'all 0.25s',
                 }}
               >
                 {loading ? 'Autenticando...' : 'Acessar Resultados'}
@@ -284,11 +272,8 @@ export default function LoginPage() {
 
             </form>
           </div>
-          {/* fim do bloco "restante" */}
 
         </div>
-        {/* fim do card */}
-
       </div>
     </div>
   )
