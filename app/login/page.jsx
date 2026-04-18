@@ -112,12 +112,12 @@ export default function LoginPage() {
         <div style={{
           width: '100%',
           maxWidth: 460,
-          background: 'rgba(255,255,255,0.93)',
-          backdropFilter: 'blur(36px)',
-          WebkitBackdropFilter: 'blur(36px)',
+          background: 'rgba(255,255,255,0.28)',
+          backdropFilter: 'blur(28px)',
+          WebkitBackdropFilter: 'blur(28px)',
           borderRadius: 24,
           padding: '48px 44px 44px',
-          boxShadow: '0 32px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.3)',
+          boxShadow: '0 32px 80px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.6), inset 0 0 0 1px rgba(255,255,255,0.22)',
           animation: 'slideFromLeft 1s cubic-bezier(0.22,1,0.36,1) both',
         }}>
 
