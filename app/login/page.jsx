@@ -114,7 +114,7 @@ export default function LoginPage() {
           width: '100%',
           maxWidth: 420,
           background: 'transparent',
-          animation: 'slideFromLeft 1s cubic-bezier(0.22,1,0.36,1) both',
+          animation: 'slideFromLeft 2s cubic-bezier(0.22,1,0.36,1) both',
         }}>
 
           {/* ── LOGO — cai do topo em 3s ── */}
@@ -165,7 +165,7 @@ export default function LoginPage() {
             <p style={{
               textAlign: 'center',
               fontSize: 18, fontWeight: 700,
-              color: '#FF6A22',
+              color: '#111111',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
               textShadow: '0 1px 6px rgba(255,255,255,0.8)',
