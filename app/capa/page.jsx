@@ -1,251 +1,570 @@
 'use client'
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
-function Logo({ size = 38, color = 'white' }) {
+/* ─── Sistema de temas ─── */
+const THEMES = {
+  dark: {
+    bg: 'linear-gradient(145deg, #0c0c14 0%, #111118 60%, #0e0e18 100%)',
+    card: 'rgba(255,255,255,0.04)',
+    cardBorder: 'rgba(255,255,255,0.09)',
+    cardHover: 'rgba(236,110,42,0.09)',
+    cardHoverBorder: '#ec6e2a',
+    cardShadow: '0 2px 16px rgba(0,0,0,0.18)',
+    cardHoverShadow: '0 24px 64px rgba(236,110,42,0.20), 0 4px 24px rgba(0,0,0,0.2)',
+    text: '#ffffff',
+    textSub: 'rgba(255,255,255,0.50)',
+    textMuted: 'rgba(255,255,255,0.22)',
+    topbar: 'rgba(12,12,20,0.96)',
+    topbarBorder: 'rgba(255,255,255,0.07)',
+    accent: '#ec6e2a',
+    accentSoft: 'rgba(236,110,42,0.13)',
+    iconBg: 'rgba(236,110,42,0.09)',
+    iconBorder: 'rgba(236,110,42,0.28)',
+    divider: 'rgba(255,255,255,0.07)',
+    grid: '#ec6e2a',
+    gridOpacity: 0.028,
+    pillBg: 'rgba(255,255,255,0.07)',
+    statusActive: '#22c55e',
+    statusBuilding: '#f59e0b',
+  },
+  light: {
+    bg: 'linear-gradient(145deg, #f0f2f7 0%, #e8eaef 60%, #f2f4f9 100%)',
+    card: '#ffffff',
+    cardBorder: 'rgba(0,0,0,0.07)',
+    cardHover: 'rgba(236,110,42,0.05)',
+    cardHoverBorder: '#ec6e2a',
+    cardShadow: '0 2px 16px rgba(0,0,0,0.06)',
+    cardHoverShadow: '0 24px 64px rgba(236,110,42,0.14), 0 4px 24px rgba(0,0,0,0.08)',
+    text: '#1a1a2e',
+    textSub: 'rgba(26,26,46,0.52)',
+    textMuted: 'rgba(26,26,46,0.30)',
+    topbar: 'rgba(255,255,255,0.96)',
+    topbarBorder: 'rgba(0,0,0,0.08)',
+    accent: '#ec6e2a',
+    accentSoft: 'rgba(236,110,42,0.09)',
+    iconBg: 'rgba(236,110,42,0.08)',
+    iconBorder: 'rgba(236,110,42,0.22)',
+    divider: 'rgba(0,0,0,0.07)',
+    grid: '#ec6e2a',
+    gridOpacity: 0.04,
+    pillBg: 'rgba(0,0,0,0.06)',
+    statusActive: '#16a34a',
+    statusBuilding: '#d97706',
+  },
+  orange: {
+    bg: 'linear-gradient(145deg, #b84e12 0%, #d4631c 50%, #c05518 100%)',
+    card: 'rgba(255,255,255,0.12)',
+    cardBorder: 'rgba(255,255,255,0.20)',
+    cardHover: 'rgba(255,255,255,0.20)',
+    cardHoverBorder: 'rgba(255,255,255,0.85)',
+    cardShadow: '0 2px 16px rgba(0,0,0,0.15)',
+    cardHoverShadow: '0 24px 64px rgba(0,0,0,0.28), 0 4px 24px rgba(0,0,0,0.18)',
+    text: '#ffffff',
+    textSub: 'rgba(255,255,255,0.70)',
+    textMuted: 'rgba(255,255,255,0.42)',
+    topbar: 'rgba(0,0,0,0.18)',
+    topbarBorder: 'rgba(255,255,255,0.16)',
+    accent: '#ffffff',
+    accentSoft: 'rgba(255,255,255,0.16)',
+    iconBg: 'rgba(255,255,255,0.14)',
+    iconBorder: 'rgba(255,255,255,0.32)',
+    divider: 'rgba(255,255,255,0.16)',
+    grid: '#fff',
+    gridOpacity: 0.05,
+    pillBg: 'rgba(0,0,0,0.18)',
+    statusActive: '#bbf7d0',
+    statusBuilding: '#fef3c7',
+  },
+}
+
+/* ─── Ícones modernos por módulo ─── */
+function IconFaturamento({ color }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 200 200" fill="none">
-      <circle cx="100" cy="100" r="88" stroke={color} strokeWidth="18"/>
-      <path d="M100 12 A88 88 0 0 1 188 100" stroke={color} strokeWidth="18" fill="none" strokeLinecap="round"/>
-      <path d="M100 188 A88 88 0 0 1 12 100" stroke={color} strokeWidth="18" fill="none" strokeLinecap="round"/>
-      <path d="M54 38 L54 100 L100 100 L100 58" stroke={color} strokeWidth="15" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M146 162 L146 100 L100 100 L100 142" stroke={color} strokeWidth="15" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-      <line x1="38" y1="100" x2="162" y2="100" stroke={color} strokeWidth="13" strokeLinecap="round"/>
-      <line x1="100" y1="38" x2="100" y2="162" stroke={color} strokeWidth="13" strokeLinecap="round"/>
+    <svg viewBox="0 0 44 44" fill="none" width="34" height="34">
+      <rect x="6" y="4" width="26" height="34" rx="4" stroke={color} strokeWidth="2.2"/>
+      <line x1="12" y1="14" x2="26" y2="14" stroke={color} strokeWidth="1.8" strokeLinecap="round"/>
+      <line x1="12" y1="20" x2="21" y2="20" stroke={color} strokeWidth="1.8" strokeLinecap="round"/>
+      <path d="M22 30 L26 34 L34 24" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   )
 }
 
-/* ─── KPI Background animada com parallax ─── */
-function KpiBg({ mouseX, mouseY }) {
-  // Círculos flutuantes que reagem ao mouse
-  const circles = [
-    { cx:15, cy:20, r:180, delay:0 },
-    { cx:80, cy:60, r:120, delay:0.5 },
-    { cx:50, cy:80, r:100, delay:1 },
-    { cx:90, cy:15, r:90,  delay:1.5 },
-  ]
+function IconOrcamento({ color }) {
   return (
-    <div style={{ position:'absolute', inset:0, overflow:'hidden', pointerEvents:'none' }}>
-      {/* Mão KPI SVG abstrata */}
-      <div style={{
-        position:'absolute', right:'8%', top:'50%',
-        transform:`translate(${mouseX * 18}px, ${mouseY * 18 - 50}%) scale(1.05)`,
-        transition:'transform 0.12s ease-out',
-        opacity:0.12,
-      }}>
-        <svg viewBox="0 0 320 420" width="320" height="420" fill="none">
-          {/* Braço */}
-          <rect x="130" y="220" width="60" height="180" rx="30" fill="#ec6e2a"/>
-          {/* Mão */}
-          <ellipse cx="160" cy="210" rx="55" ry="55" fill="#ec6e2a"/>
-          {/* Dedo indicador apontando */}
-          <rect x="148" y="100" width="24" height="120" rx="12" fill="#ec6e2a"/>
-          {/* Dedos fechados */}
-          <rect x="106" y="150" width="22" height="80" rx="11" fill="#ec6e2a" opacity=".8"/>
-          <rect x="172" y="155" width="22" height="75" rx="11" fill="#ec6e2a" opacity=".8"/>
-          <rect x="196" y="165" width="20" height="65" rx="10" fill="#ec6e2a" opacity=".6"/>
-          {/* Ícones KPI ao redor */}
-          <circle cx="80" cy="80" r="35" stroke="#ec6e2a" strokeWidth="3" fill="none"/>
-          <polyline points="65,95 75,80 85,88 100,70" stroke="#ec6e2a" strokeWidth="3" strokeLinecap="round"/>
-          <circle cx="240" cy="120" r="30" stroke="#ec6e2a" strokeWidth="3" fill="none"/>
-          <line x1="230" y1="130" x2="250" y2="130" stroke="#ec6e2a" strokeWidth="3" strokeLinecap="round"/>
-          <line x1="240" y1="120" x2="240" y2="140" stroke="#ec6e2a" strokeWidth="3" strokeLinecap="round"/>
-          <circle cx="260" cy="300" r="28" stroke="#ec6e2a" strokeWidth="3" fill="none"/>
-          <text x="252" y="308" fill="#ec6e2a" fontSize="22" fontWeight="bold">%</text>
-          <circle cx="50" cy="320" r="28" stroke="#ec6e2a" strokeWidth="3" fill="none"/>
-          <rect x="40" y="305" width="8" height="30" rx="2" fill="#ec6e2a"/>
-          <rect x="52" y="315" width="8" height="20" rx="2" fill="#ec6e2a"/>
-        </svg>
-      </div>
-
-      {/* Orbs flutuantes */}
-      {circles.map((c, i) => (
-        <div key={i} style={{
-          position:'absolute',
-          left:`${c.cx}%`, top:`${c.cy}%`,
-          width:c.r, height:c.r,
-          borderRadius:'50%',
-          background:'radial-gradient(circle, rgba(236,110,42,0.08) 0%, transparent 70%)',
-          transform:`translate(${mouseX * (i+1) * 8}px, ${mouseY * (i+1) * 8}px)`,
-          transition:`transform ${0.1 + i * 0.04}s ease-out`,
-          animation:`float${i} ${4 + i}s ease-in-out infinite alternate`,
-        }}/>
-      ))}
-      <style>{`
-        @keyframes float0{from{transform:translateY(0)}to{transform:translateY(-20px)}}
-        @keyframes float1{from{transform:translateY(0)}to{transform:translateY(-30px)}}
-        @keyframes float2{from{transform:translateY(0)}to{transform:translateY(-15px)}}
-        @keyframes float3{from{transform:translateY(0)}to{transform:translateY(-25px)}}
-      `}</style>
-
-      {/* Grade de linhas sutis */}
-      <svg style={{ position:'absolute', inset:0, width:'100%', height:'100%', opacity:0.04 }}>
-        <defs>
-          <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#ec6e2a" strokeWidth="0.5"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)"/>
-      </svg>
-    </div>
+    <svg viewBox="0 0 44 44" fill="none" width="34" height="34">
+      <circle cx="22" cy="22" r="16" stroke={color} strokeWidth="2.2" opacity="0.3"/>
+      <path d="M22 6 A16 16 0 0 1 38 22" stroke="#22c55e" strokeWidth="4.5" strokeLinecap="round"/>
+      <path d="M38 22 A16 16 0 0 1 22 38" stroke={color} strokeWidth="4.5" strokeLinecap="round" opacity="0.5"/>
+      <path d="M22 38 A16 16 0 0 1 6 22" stroke="#f59e0b" strokeWidth="4.5" strokeLinecap="round" opacity="0.7"/>
+      <path d="M6 22 A16 16 0 0 1 22 6" stroke={color} strokeWidth="4.5" strokeLinecap="round" opacity="0.3"/>
+      <circle cx="22" cy="22" r="4" fill={color}/>
+    </svg>
   )
 }
 
-/* ─── Ícones dos módulos ─── */
+function IconFluxo({ color }) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" width="34" height="34">
+      <rect x="6" y="26" width="8" height="12" rx="2" fill={color} opacity="0.5"/>
+      <rect x="18" y="18" width="8" height="20" rx="2" fill={color} opacity="0.7"/>
+      <rect x="30" y="10" width="8" height="28" rx="2" fill={color}/>
+      <path d="M10 14 L22 10 L34 6" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="3 3" opacity="0.5"/>
+    </svg>
+  )
+}
+
+function IconInadimplencia({ color }) {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" width="34" height="34">
+      <circle cx="17" cy="14" r="6" stroke={color} strokeWidth="2.2"/>
+      <path d="M6 36c0-6.075 4.925-11 11-11h3" stroke={color} strokeWidth="2.2" strokeLinecap="round"/>
+      <circle cx="32" cy="30" r="8" stroke="#ef4444" strokeWidth="2.2"/>
+      <line x1="32" y1="26" x2="32" y2="31" stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round"/>
+      <circle cx="32" cy="34.5" r="1.2" fill="#ef4444"/>
+    </svg>
+  )
+}
+
 const MODULE_ICONS = {
-  faturamento: (
-    <svg viewBox="0 0 56 56" fill="none" width="52" height="52">
-      <rect x="7" y="9" width="42" height="38" rx="6" stroke="#ec6e2a" strokeWidth="2.5"/>
-      <line x1="15" y1="21" x2="41" y2="21" stroke="#ec6e2a" strokeWidth="2"/>
-      <line x1="15" y1="29" x2="32" y2="29" stroke="#ec6e2a" strokeWidth="2"/>
-      <line x1="15" y1="37" x2="26" y2="37" stroke="#ec6e2a" strokeWidth="2"/>
-      <path d="M34 32 L38 36 L46 26" stroke="#27ae60" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  ),
-  orcamento: (
-    <svg viewBox="0 0 56 56" fill="none" width="52" height="52">
-      <circle cx="28" cy="28" r="20" stroke="#ec6e2a" strokeWidth="2.5"/>
-      <line x1="28" y1="16" x2="28" y2="28" stroke="#ec6e2a" strokeWidth="2.5" strokeLinecap="round"/>
-      <line x1="28" y1="28" x2="37" y2="35" stroke="#3978bc" strokeWidth="2.5" strokeLinecap="round"/>
-      <circle cx="28" cy="28" r="2.8" fill="#ec6e2a"/>
-      <line x1="28" y1="8" x2="28" y2="12" stroke="#ec6e2a" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="28" y1="44" x2="28" y2="48" stroke="#ec6e2a" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="8" y1="28" x2="12" y2="28" stroke="#ec6e2a" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="44" y1="28" x2="48" y2="28" stroke="#ec6e2a" strokeWidth="2" strokeLinecap="round"/>
-    </svg>
-  ),
-  fluxo: (
-    <svg viewBox="0 0 56 56" fill="none" width="52" height="52">
-      <polyline points="10,42 20,28 30,35 46,18" stroke="#ec6e2a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <polyline points="38,18 46,18 46,26" stroke="#ec6e2a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <line x1="10" y1="48" x2="46" y2="48" stroke="#b5b5b5" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  ),
+  faturamento:   (color) => <IconFaturamento color={color} />,
+  orcamento:     (color) => <IconOrcamento color={color} />,
+  fluxo:         (color) => <IconFluxo color={color} />,
+  inadimplencia: (color) => <IconInadimplencia color={color} />,
 }
 
 export default function CapaPage() {
   const router = useRouter()
   const [user, setUser] = useState('')
-  const [mouse, setMouse] = useState({ x: 0, y: 0 })
-  const [hoveredMod, setHoveredMod] = useState(null)
+  const [theme, setTheme] = useState('dark')
   const [visible, setVisible] = useState(false)
-  const bodyRef = useRef(null)
+  const [hovered, setHovered] = useState(null)
+
+  const t = THEMES[theme]
 
   useEffect(() => {
     const auth = localStorage.getItem('criffer_auth')
     const nome = localStorage.getItem('criffer_user')
+    const savedTheme = localStorage.getItem('criffer_theme') || 'dark'
     if (!auth) { router.push('/login'); return }
     setUser(nome || '')
-    setTimeout(() => setVisible(true), 80)
+    setTheme(savedTheme)
+    setTimeout(() => setVisible(true), 100)
   }, [])
 
-  const handleMouseMove = useCallback((e) => {
-    const el = bodyRef.current
-    if (!el) return
-    const r = el.getBoundingClientRect()
-    const nx = (e.clientX - r.left) / r.width - 0.5
-    const ny = (e.clientY - r.top) / r.height - 0.5
-    setMouse({ x: nx, y: ny })
+  const changeTheme = useCallback((next) => {
+    setTheme(next)
+    localStorage.setItem('criffer_theme', next)
   }, [])
 
   const MODULES = [
-    { id:'faturamento', label:'FATURAMENTO', sub:'Receita · Mapa · Metas', href:'/dashboard?tab=desempenho', disabled:false },
-    { id:'orcamento',   label:'ORÇAMENTO',   sub:'Receitas · Resultado · Metas', href:'/dashboard?tab=orcamento', disabled:false },
-    { id:'fluxo',       label:'FLUXO DE CAIXA', sub:'Em construção', href:'#', disabled:true },
+    {
+      id: 'faturamento',
+      label: 'FATURAMENTO',
+      desc: 'Análise de receita, mapa de vendas e acompanhamento de metas mensais.',
+      tags: ['Receita', 'Mapa', 'Metas'],
+      href: '/dashboard?tab=desempenho',
+      disabled: false,
+      status: 'active',
+      badge: 'Operacional',
+    },
+    {
+      id: 'orcamento',
+      label: 'ORÇAMENTO',
+      desc: 'Gestão de orçamentos, análise de resultados e projeções financeiras.',
+      tags: ['Receitas', 'Resultado', 'Metas'],
+      href: '/dashboard?tab=orcamento',
+      disabled: false,
+      status: 'active',
+      badge: 'Operacional',
+    },
+    {
+      id: 'fluxo',
+      label: 'FLUXO DE CAIXA',
+      desc: 'Controle de entradas e saídas, saldo em tempo real e projeções.',
+      tags: ['Entradas', 'Saídas', 'Saldo'],
+      href: '#',
+      disabled: true,
+      status: 'building',
+      badge: 'Em breve',
+    },
+    {
+      id: 'inadimplencia',
+      label: 'INADIMPLÊNCIA',
+      desc: 'Monitoramento de clientes inadimplentes, alertas e análise de risco.',
+      tags: ['Clientes', 'Alertas', 'Análise'],
+      href: '#',
+      disabled: true,
+      status: 'building',
+      badge: 'Em breve',
+    },
+  ]
+
+  const THEME_OPTS = [
+    { key: 'dark',   label: 'Escuro',  dot: '#0c0c14' },
+    { key: 'light',  label: 'Claro',   dot: '#e8eaef' },
+    { key: 'orange', label: 'Laranja', dot: '#ec6e2a' },
   ]
 
   return (
-    <div style={{ minHeight:'100vh', background:'#000', display:'flex', flexDirection:'column', fontFamily:'Syne,sans-serif', overflow:'hidden' }}>
+    <div style={{
+      minHeight: '100vh',
+      background: t.bg,
+      display: 'flex',
+      flexDirection: 'column',
+      fontFamily: "'Syne', system-ui, sans-serif",
+      overflow: 'hidden',
+      transition: 'background 0.6s ease',
+    }}>
       <style>{`
-        @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(236,110,42,0.4)}50%{box-shadow:0 0 0 12px rgba(236,110,42,0)}}
-        .mod-btn{cursor:pointer;border-radius:20px;border:2px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.03);transition:all .32s cubic-bezier(.34,1.56,.64,1);display:flex;flex-direction:column;align-items:center;padding:36px 24px 30px}
-        .mod-btn:hover{transform:translateY(-10px) scale(1.06);border-color:#ec6e2a;background:rgba(236,110,42,0.08);box-shadow:0 24px 60px rgba(236,110,42,0.25)}
-        .mod-btn:hover .mod-icon{box-shadow:0 0 0 6px rgba(236,110,42,0.3);animation:pulse 1.5s ease infinite}
-        .mod-disabled{opacity:.35;cursor:not-allowed!important}
-        .mod-disabled:hover{transform:none!important;border-color:rgba(255,255,255,0.06)!important;background:rgba(255,255,255,0.03)!important;box-shadow:none!important}
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&display=swap');
+
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(28px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shimmer {
+          from { transform: translateX(-100%); }
+          to   { transform: translateX(200%); }
+        }
+        @keyframes glow {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(236,110,42,0.3); }
+          50%       { box-shadow: 0 0 0 10px rgba(236,110,42,0); }
+        }
+
+        .cf-card {
+          cursor: pointer;
+          border-radius: 22px;
+          position: relative;
+          overflow: hidden;
+          transition: transform 0.38s cubic-bezier(0.34,1.56,0.64,1),
+                      box-shadow 0.38s ease,
+                      background 0.5s ease,
+                      border-color 0.38s ease;
+        }
+        .cf-card:hover { transform: translateY(-8px) scale(1.025); }
+        .cf-card-disabled { opacity: 0.36; cursor: not-allowed !important; }
+        .cf-card-disabled:hover { transform: none !important; }
+
+        .cf-shimmer {
+          position: absolute;
+          top: 0; left: -100%; height: 100%; width: 50%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+          transform: skewX(-20deg);
+          animation: shimmer 0.7s ease forwards;
+          pointer-events: none;
+        }
+
+        .theme-pill-btn {
+          cursor: pointer;
+          border: none;
+          border-radius: 18px;
+          font-family: inherit;
+          font-weight: 700;
+          font-size: 11px;
+          letter-spacing: 0.06em;
+          padding: 6px 14px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          transition: all 0.25s ease;
+        }
+        .theme-pill-btn:hover { filter: brightness(1.1); transform: scale(1.04); }
+
+        .exit-btn {
+          border-radius: 10px;
+          font-family: inherit;
+          font-weight: 700;
+          font-size: 12px;
+          cursor: pointer;
+          padding: 8px 20px;
+          transition: all 0.22s ease;
+        }
+        .exit-btn:hover { transform: translateY(-1px); }
       `}</style>
 
-      {/* TOPBAR laranja */}
-      <div style={{ background:'#ec6e2a', padding:'11px 5%', display:'flex', alignItems:'center', justifyContent:'space-between', flexShrink:0, boxShadow:'0 2px 20px rgba(236,110,42,0.4)' }}>
-        <div style={{ display:'flex', alignItems:'center', gap:12 }}>
-          <Logo size={36} color="white"/>
+      {/* ── TOPBAR ── */}
+      <div style={{
+        background: t.topbar,
+        borderBottom: `1px solid ${t.topbarBorder}`,
+        padding: '12px 5%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexShrink: 0,
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        zIndex: 100,
+        transition: 'background 0.6s ease, border-color 0.6s ease',
+        gap: 16,
+      }}>
+
+        {/* Logo + Nome */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, minWidth: 0 }}>
+          <div style={{
+            width: 44, height: 44, flexShrink: 0,
+            background: '#fff',
+            borderRadius: '50%',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 3px 14px rgba(0,0,0,0.18), 0 0 0 2px rgba(236,110,42,0.25)',
+            position: 'relative', overflow: 'hidden',
+          }}>
+            <Image src="/logo-base.png" alt="Criffer" fill style={{ objectFit: 'contain', padding: 5 }}/>
+          </div>
           <div>
-            <div style={{ fontSize:17, fontWeight:900, color:'#fff', letterSpacing:4, lineHeight:1 }}>CRIFFERLAB</div>
-            <div style={{ fontSize:9, color:'rgba(255,255,255,0.7)', letterSpacing:2, textTransform:'uppercase', marginTop:2 }}>ERP Financeiro</div>
+            <div style={{ fontSize: 17, fontWeight: 900, color: t.text, letterSpacing: 4, lineHeight: 1, transition: 'color 0.5s' }}>
+              CRIFFER
+            </div>
+            <div style={{ fontSize: 9, color: t.textSub, letterSpacing: 2.5, textTransform: 'uppercase', marginTop: 3, transition: 'color 0.5s' }}>
+              ERP Financeiro
+            </div>
           </div>
         </div>
-        <div style={{ display:'flex', alignItems:'center', gap:14 }}>
-          {user && <span style={{ fontSize:14, color:'#fff', fontWeight:600 }}>Olá, {user.split(' ')[0]}</span>}
-          <button onClick={() => { localStorage.clear(); router.push('/login') }}
-            style={{ border:'1.5px solid rgba(255,255,255,0.4)', borderRadius:8, background:'transparent', cursor:'pointer', fontSize:13, color:'#fff', padding:'7px 16px', fontFamily:'inherit', transition:'all .2s' }}
-            onMouseOver={e => e.currentTarget.style.background='rgba(255,255,255,0.2)'}
-            onMouseOut={e => e.currentTarget.style.background='transparent'}>
+
+        {/* Tema switcher — centro */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 4,
+          background: t.pillBg,
+          padding: '5px 6px',
+          borderRadius: 24,
+          flexShrink: 0,
+          transition: 'background 0.5s',
+        }}>
+          {THEME_OPTS.map(opt => {
+            const active = theme === opt.key
+            return (
+              <button
+                key={opt.key}
+                className="theme-pill-btn"
+                onClick={() => changeTheme(opt.key)}
+                style={{
+                  background: active ? (opt.key === 'dark' ? '#1a1a2a' : opt.key === 'light' ? '#ffffff' : '#ec6e2a') : 'transparent',
+                  color: active ? (opt.key === 'light' ? '#1a1a2e' : '#fff') : t.textSub,
+                  boxShadow: active ? '0 2px 10px rgba(0,0,0,0.22)' : 'none',
+                }}
+              >
+                <span style={{
+                  width: 9, height: 9, borderRadius: '50%',
+                  background: opt.dot,
+                  border: `1.5px solid ${active ? 'rgba(255,255,255,0.4)' : 'rgba(128,128,128,0.4)'}`,
+                  flexShrink: 0,
+                  display: 'inline-block',
+                }}/>
+                {opt.label}
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Usuário + Sair */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexShrink: 0 }}>
+          {user && (
+            <div style={{ textAlign: 'right' }}>
+              <div style={{ fontSize: 13, color: t.text, fontWeight: 700, transition: 'color 0.5s', lineHeight: 1.2 }}>
+                {user.split(' ')[0]}
+              </div>
+              <div style={{ fontSize: 10, color: t.textSub, transition: 'color 0.5s' }}>
+                Bem-vindo de volta
+              </div>
+            </div>
+          )}
+          <button
+            className="exit-btn"
+            onClick={() => { localStorage.clear(); router.push('/login') }}
+            style={{
+              border: `1.5px solid ${t.cardBorder}`,
+              background: 'transparent',
+              color: t.textSub,
+              transition: 'all 0.22s',
+            }}
+            onMouseOver={e => {
+              e.currentTarget.style.background = t.accentSoft
+              e.currentTarget.style.color = t.accent
+              e.currentTarget.style.borderColor = t.accent
+            }}
+            onMouseOut={e => {
+              e.currentTarget.style.background = 'transparent'
+              e.currentTarget.style.color = t.textSub
+              e.currentTarget.style.borderColor = t.cardBorder
+            }}
+          >
             Sair
           </button>
         </div>
       </div>
 
-      {/* BODY interativo */}
-      <div ref={bodyRef} onMouseMove={handleMouseMove}
-        style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', position:'relative', overflow:'hidden', padding:'40px 5%' }}>
+      {/* ── BODY ── */}
+      <div style={{
+        flex: 1, display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center',
+        position: 'relative', padding: '48px 5%',
+        overflow: 'hidden',
+      }}>
 
-        <KpiBg mouseX={mouse.x} mouseY={mouse.y}/>
+        {/* Grid de fundo sutil */}
+        <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', opacity: t.gridOpacity, transition: 'opacity 0.6s' }}>
+          <defs>
+            <pattern id="cf-grid" width="52" height="52" patternUnits="userSpaceOnUse">
+              <path d="M 52 0 L 0 0 0 52" fill="none" stroke={t.grid} strokeWidth="0.6"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#cf-grid)"/>
+        </svg>
 
-        {/* Cursor dot */}
-        <div style={{
-          position:'absolute', pointerEvents:'none', zIndex:10,
-          width:10, height:10, borderRadius:'50%', background:'#ec6e2a', opacity:0.7,
-          left:`calc(${(mouse.x+0.5)*100}% - 5px)`,
-          top:`calc(${(mouse.y+0.5)*100}% - 5px)`,
-          transition:'left 0.06s, top 0.06s',
-          boxShadow:'0 0 0 16px rgba(236,110,42,0.1)',
-        }}/>
+        {/* Orbs decorativos de fundo */}
+        <div style={{ position: 'absolute', top: '12%', right: '6%', width: 340, height: 340, borderRadius: '50%', background: `radial-gradient(circle, ${t.accentSoft} 0%, transparent 68%)`, pointerEvents: 'none', filter: 'blur(48px)', transition: 'background 0.6s' }}/>
+        <div style={{ position: 'absolute', bottom: '10%', left: '5%', width: 240, height: 240, borderRadius: '50%', background: `radial-gradient(circle, ${t.accentSoft} 0%, transparent 68%)`, pointerEvents: 'none', filter: 'blur(36px)', transition: 'background 0.6s' }}/>
 
         {/* Título */}
-        <div style={{ textAlign:'center', marginBottom:52, position:'relative', zIndex:2,
-          opacity: visible?1:0, transform: visible?'translateY(0)':'translateY(20px)',
-          transition:'all 0.6s cubic-bezier(0.34,1.56,0.64,1)' }}>
-          <div style={{ fontSize:34, fontWeight:900, color:'#fff', letterSpacing:2, textShadow:'0 0 40px rgba(236,110,42,0.4)' }}>
+        <div style={{
+          textAlign: 'center', marginBottom: 52,
+          position: 'relative', zIndex: 2,
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'translateY(0)' : 'translateY(24px)',
+          transition: 'all 0.7s cubic-bezier(0.34,1.56,0.64,1)',
+        }}>
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            background: t.accentSoft, border: `1px solid ${t.accent}33`,
+            borderRadius: 20, padding: '5px 16px', marginBottom: 16,
+            transition: 'background 0.5s',
+          }}>
+            <div style={{ width: 6, height: 6, borderRadius: '50%', background: t.accent, animation: 'glow 2.4s ease infinite' }}/>
+            <span style={{ fontSize: 10, color: t.accent, fontWeight: 800, letterSpacing: 3, textTransform: 'uppercase', transition: 'color 0.5s' }}>
+              Sistema de Gestão
+            </span>
+          </div>
+          <div style={{
+            fontSize: 34, fontWeight: 900, color: t.text,
+            letterSpacing: 2, lineHeight: 1,
+            textShadow: theme === 'dark' ? '0 0 60px rgba(236,110,42,0.2)' : 'none',
+            transition: 'color 0.5s, text-shadow 0.5s',
+          }}>
             CENTRAL DE GESTÃO
           </div>
-          <div style={{ fontSize:13, color:'rgba(255,255,255,0.4)', letterSpacing:3, textTransform:'uppercase', marginTop:12 }}>
-            Selecione um módulo
+          <div style={{ fontSize: 13, color: t.textSub, letterSpacing: 2.5, marginTop: 14, transition: 'color 0.5s' }}>
+            Selecione um módulo para continuar
           </div>
         </div>
 
-        {/* Cards dos módulos */}
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:32, width:'100%', maxWidth:900, position:'relative', zIndex:2 }}>
-          {MODULES.map((m, i) => (
-            <div key={m.id}
-              className={`mod-btn${m.disabled?' mod-disabled':''}`}
-              onMouseEnter={() => setHoveredMod(m.id)}
-              onMouseLeave={() => setHoveredMod(null)}
-              onClick={() => !m.disabled && router.push(m.href)}
-              style={{
-                opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0)' : 'translateY(30px)',
-                transition: `opacity 0.5s ${0.15+i*0.12}s, transform 0.6s ${0.15+i*0.12}s cubic-bezier(0.34,1.56,0.64,1)`,
-              }}>
-              {/* Ícone */}
-              <div className="mod-icon" style={{ width:100, height:100, borderRadius:'50%', background:'rgba(255,255,255,0.05)', border:'2px solid rgba(236,110,42,0.4)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:20, transition:'all .32s ease' }}>
-                {MODULE_ICONS[m.id]}
+        {/* ── BENTO GRID 2×2 ── */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: 22,
+          width: '100%',
+          maxWidth: 880,
+          position: 'relative', zIndex: 2,
+        }}>
+          {MODULES.map((m, i) => {
+            const isHov = hovered === m.id
+            return (
+              <div
+                key={m.id}
+                className={`cf-card${m.disabled ? ' cf-card-disabled' : ''}`}
+                onMouseEnter={() => !m.disabled && setHovered(m.id)}
+                onMouseLeave={() => setHovered(null)}
+                onClick={() => !m.disabled && router.push(m.href)}
+                style={{
+                  background: isHov ? t.cardHover : t.card,
+                  border: `1.5px solid ${isHov ? t.cardHoverBorder : t.cardBorder}`,
+                  boxShadow: isHov ? t.cardHoverShadow : t.cardShadow,
+                  padding: '30px 28px',
+                  opacity: visible ? 1 : 0,
+                  transform: visible ? 'translateY(0)' : 'translateY(32px)',
+                  transition: `opacity 0.5s ${0.1 + i * 0.09}s, transform 0.65s ${0.1 + i * 0.09}s cubic-bezier(0.34,1.56,0.64,1), background 0.5s, border-color 0.38s, box-shadow 0.38s`,
+                }}
+              >
+                {/* Efeito shimmer no hover */}
+                {isHov && <div className="cf-shimmer"/>}
+
+                {/* Linha superior: ícone + badge */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 22 }}>
+                  {/* Ícone */}
+                  <div style={{
+                    width: 68, height: 68, borderRadius: 18,
+                    background: t.iconBg,
+                    border: `1.5px solid ${isHov ? t.cardHoverBorder : t.iconBorder}`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    boxShadow: isHov ? `0 0 0 6px ${t.accentSoft}` : 'none',
+                    transition: 'all 0.38s ease',
+                    flexShrink: 0,
+                  }}>
+                    {MODULE_ICONS[m.id](isHov ? t.accent : t.accent)}
+                  </div>
+
+                  {/* Badge status */}
+                  <div style={{
+                    fontSize: 10, fontWeight: 800, letterSpacing: 0.8,
+                    padding: '5px 12px', borderRadius: 20,
+                    background: m.status === 'active'
+                      ? `${t.statusActive}1e`
+                      : `${t.statusBuilding}1e`,
+                    color: m.status === 'active' ? t.statusActive : t.statusBuilding,
+                    border: `1px solid ${m.status === 'active' ? t.statusActive : t.statusBuilding}44`,
+                    transition: 'all 0.5s',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {m.status === 'active' ? '● ' : '○ '}{m.badge}
+                  </div>
+                </div>
+
+                {/* Nome do módulo */}
+                <div style={{ fontSize: 15, fontWeight: 800, color: t.text, letterSpacing: 1.5, marginBottom: 8, transition: 'color 0.5s' }}>
+                  {m.label}
+                </div>
+
+                {/* Descrição */}
+                <div style={{ fontSize: 12, color: t.textSub, lineHeight: 1.6, marginBottom: 18, transition: 'color 0.5s' }}>
+                  {m.desc}
+                </div>
+
+                {/* Tags */}
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 22 }}>
+                  {m.tags.map(tag => (
+                    <span key={tag} style={{
+                      fontSize: 10, fontWeight: 700, padding: '3px 10px',
+                      borderRadius: 20, letterSpacing: 0.5,
+                      background: t.accentSoft,
+                      color: t.accent,
+                      border: `1px solid ${t.accent}28`,
+                      transition: 'all 0.5s',
+                    }}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Rodapé: ação */}
+                <div style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  paddingTop: 18, borderTop: `1px solid ${t.divider}`,
+                  transition: 'border-color 0.5s',
+                }}>
+                  <span style={{ fontSize: 11, color: t.textMuted, letterSpacing: 0.5, transition: 'color 0.5s' }}>
+                    {m.disabled ? 'Módulo em desenvolvimento' : 'Clique para acessar'}
+                  </span>
+                  {!m.disabled && (
+                    <div style={{
+                      width: 30, height: 30, borderRadius: '50%',
+                      background: isHov ? t.accent : t.accentSoft,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      transition: 'all 0.35s ease',
+                      flexShrink: 0,
+                    }}>
+                      <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke={isHov ? '#fff' : t.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  )}
+                </div>
+
               </div>
-              {/* Label */}
-              <div style={{ fontSize:13, fontWeight:800, color:m.disabled?'rgba(255,255,255,0.25)':'#fff', letterSpacing:2, textAlign:'center', marginBottom:8 }}>{m.label}</div>
-              <div style={{ fontSize:11, color:'rgba(255,255,255,0.3)', letterSpacing:.5, textAlign:'center' }}>{m.sub}</div>
-
-              {/* Linha decorativa animada no hover */}
-              <div style={{ width: hoveredMod===m.id ? '60%' : '0%', height:2, background:'#ec6e2a', borderRadius:2, marginTop:20, transition:'width 0.3s ease', opacity: m.disabled?0:1 }}/>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
-        {/* Logo fundo marca d'água */}
-        <div style={{ position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', opacity:0.03, pointerEvents:'none', zIndex:0 }}>
-          <Logo size={500} color="white"/>
-        </div>
       </div>
     </div>
   )
