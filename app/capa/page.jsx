@@ -9,110 +9,99 @@ const THEMES = {
     bg: 'linear-gradient(145deg, #0c0c14 0%, #111118 60%, #0e0e18 100%)',
     card: 'rgba(255,255,255,0.05)',
     cardBorder: 'rgba(255,255,255,0.10)',
-    cardHoverBorder: '#ec6e2a',
-    cardShadow: '0 2px 20px rgba(0,0,0,0.22)',
-    cardHoverShadow: '0 28px 70px rgba(236,110,42,0.22), 0 6px 28px rgba(0,0,0,0.24)',
+    cardHoverShadow: '0 28px 80px rgba(236,110,42,0.28), 0 8px 32px rgba(0,0,0,0.30)',
+    cardShadow: '0 4px 24px rgba(0,0,0,0.25)',
     text: '#ffffff',
     textSub: 'rgba(255,255,255,0.88)',
     textMuted: 'rgba(255,255,255,0.68)',
-    topbar: 'rgba(12,12,20,0.97)',
-    topbarBorder: 'rgba(255,255,255,0.08)',
     accent: '#ec6e2a',
-    accentSoft: 'rgba(236,110,42,0.14)',
+    accentSoft: 'rgba(236,110,42,0.16)',
     iconBg: 'rgba(255,255,255,0.04)',
     iconBorder: 'rgba(255,255,255,0.10)',
-    divider: 'rgba(255,255,255,0.08)',
+    divider: 'rgba(255,255,255,0.09)',
     grid: '#ec6e2a',
     gridOpacity: 0.025,
-    pillBg: 'rgba(255,255,255,0.07)',
+    pillBg: 'rgba(0,0,0,0.25)',
     statusActive: '#22c55e',
     statusBuilding: '#f59e0b',
     gradients: [
-      'linear-gradient(135deg, rgba(236,110,42,0.12) 0%, rgba(236,110,42,0.04) 100%)',
-      'linear-gradient(135deg, rgba(34,197,94,0.10) 0%, rgba(34,197,94,0.03) 100%)',
-      'linear-gradient(135deg, rgba(59,130,246,0.10) 0%, rgba(59,130,246,0.03) 100%)',
-      'linear-gradient(135deg, rgba(239,68,68,0.10) 0%, rgba(239,68,68,0.03) 100%)',
+      'linear-gradient(145deg, rgba(236,110,42,0.30) 0%, rgba(236,110,42,0.08) 100%)',
+      'linear-gradient(145deg, rgba(34,197,94,0.26) 0%, rgba(34,197,94,0.07) 100%)',
+      'linear-gradient(145deg, rgba(59,130,246,0.26) 0%, rgba(59,130,246,0.07) 100%)',
+      'linear-gradient(145deg, rgba(239,68,68,0.26) 0%, rgba(239,68,68,0.07) 100%)',
     ],
     gradientHovers: [
-      'linear-gradient(135deg, rgba(236,110,42,0.20) 0%, rgba(236,110,42,0.07) 100%)',
-      'linear-gradient(135deg, rgba(34,197,94,0.18) 0%, rgba(34,197,94,0.06) 100%)',
-      'linear-gradient(135deg, rgba(59,130,246,0.18) 0%, rgba(59,130,246,0.06) 100%)',
-      'linear-gradient(135deg, rgba(239,68,68,0.18) 0%, rgba(239,68,68,0.06) 100%)',
+      'linear-gradient(145deg, rgba(236,110,42,0.48) 0%, rgba(236,110,42,0.14) 100%)',
+      'linear-gradient(145deg, rgba(34,197,94,0.42) 0%, rgba(34,197,94,0.12) 100%)',
+      'linear-gradient(145deg, rgba(59,130,246,0.42) 0%, rgba(59,130,246,0.12) 100%)',
+      'linear-gradient(145deg, rgba(239,68,68,0.42) 0%, rgba(239,68,68,0.12) 100%)',
     ],
   },
   light: {
-    bg: 'linear-gradient(145deg, #f0f2f7 0%, #e8eaef 60%, #f2f4f9 100%)',
-    card: '#ffffff',
+    bg: 'linear-gradient(145deg, #eef0f5 0%, #e4e7ee 60%, #eef0f7 100%)',
+    card: 'rgba(255,255,255,0.75)',
     cardBorder: 'rgba(0,0,0,0.08)',
-    cardHoverBorder: '#ec6e2a',
-    cardShadow: '0 2px 18px rgba(0,0,0,0.07)',
-    cardHoverShadow: '0 28px 70px rgba(236,110,42,0.16), 0 6px 28px rgba(0,0,0,0.10)',
+    cardHoverShadow: '0 28px 80px rgba(236,110,42,0.20), 0 8px 32px rgba(0,0,0,0.12)',
+    cardShadow: '0 4px 24px rgba(0,0,0,0.08)',
     text: '#1a1a2e',
     textSub: 'rgba(26,26,46,0.82)',
     textMuted: 'rgba(26,26,46,0.65)',
-    topbar: 'rgba(255,255,255,0.97)',
-    topbarBorder: 'rgba(0,0,0,0.09)',
     accent: '#ec6e2a',
     accentSoft: 'rgba(236,110,42,0.09)',
-    iconBg: 'rgba(255,255,255,0.80)',
-    iconBorder: 'rgba(0,0,0,0.08)',
+    iconBg: 'rgba(255,255,255,0.90)',
+    iconBorder: 'rgba(0,0,0,0.07)',
     divider: 'rgba(0,0,0,0.08)',
     grid: '#ec6e2a',
     gridOpacity: 0.04,
-    pillBg: 'rgba(0,0,0,0.06)',
+    pillBg: 'rgba(0,0,0,0.08)',
     statusActive: '#16a34a',
     statusBuilding: '#d97706',
     gradients: [
-      'linear-gradient(135deg, rgba(236,110,42,0.07) 0%, rgba(255,255,255,0) 100%)',
-      'linear-gradient(135deg, rgba(34,197,94,0.06) 0%, rgba(255,255,255,0) 100%)',
-      'linear-gradient(135deg, rgba(59,130,246,0.06) 0%, rgba(255,255,255,0) 100%)',
-      'linear-gradient(135deg, rgba(239,68,68,0.06) 0%, rgba(255,255,255,0) 100%)',
+      'linear-gradient(145deg, rgba(236,110,42,0.20) 0%, rgba(255,255,255,0.30) 100%)',
+      'linear-gradient(145deg, rgba(34,197,94,0.18) 0%, rgba(255,255,255,0.30) 100%)',
+      'linear-gradient(145deg, rgba(59,130,246,0.18) 0%, rgba(255,255,255,0.30) 100%)',
+      'linear-gradient(145deg, rgba(239,68,68,0.18) 0%, rgba(255,255,255,0.30) 100%)',
     ],
     gradientHovers: [
-      'linear-gradient(135deg, rgba(236,110,42,0.12) 0%, rgba(255,255,255,0) 100%)',
-      'linear-gradient(135deg, rgba(34,197,94,0.11) 0%, rgba(255,255,255,0) 100%)',
-      'linear-gradient(135deg, rgba(59,130,246,0.11) 0%, rgba(255,255,255,0) 100%)',
-      'linear-gradient(135deg, rgba(239,68,68,0.11) 0%, rgba(255,255,255,0) 100%)',
+      'linear-gradient(145deg, rgba(236,110,42,0.30) 0%, rgba(255,255,255,0.50) 100%)',
+      'linear-gradient(145deg, rgba(34,197,94,0.26) 0%, rgba(255,255,255,0.50) 100%)',
+      'linear-gradient(145deg, rgba(59,130,246,0.26) 0%, rgba(255,255,255,0.50) 100%)',
+      'linear-gradient(145deg, rgba(239,68,68,0.26) 0%, rgba(255,255,255,0.50) 100%)',
     ],
   },
   orange: {
     bg: 'linear-gradient(145deg, #b84e12 0%, #d4631c 50%, #c05518 100%)',
-    card: 'rgba(255,255,255,0.13)',
-    cardBorder: 'rgba(255,255,255,0.22)',
-    cardHoverBorder: 'rgba(255,255,255,0.90)',
-    cardShadow: '0 2px 20px rgba(0,0,0,0.18)',
-    cardHoverShadow: '0 28px 70px rgba(0,0,0,0.32), 0 6px 28px rgba(0,0,0,0.20)',
+    card: 'rgba(255,255,255,0.14)',
+    cardBorder: 'rgba(255,255,255,0.24)',
+    cardHoverShadow: '0 28px 80px rgba(0,0,0,0.36), 0 8px 32px rgba(0,0,0,0.24)',
+    cardShadow: '0 4px 24px rgba(0,0,0,0.18)',
     text: '#ffffff',
     textSub: 'rgba(255,255,255,0.92)',
     textMuted: 'rgba(255,255,255,0.80)',
-    topbar: 'rgba(0,0,0,0.20)',
-    topbarBorder: 'rgba(255,255,255,0.18)',
     accent: '#ffffff',
-    accentSoft: 'rgba(255,255,255,0.18)',
+    accentSoft: 'rgba(255,255,255,0.20)',
     iconBg: 'rgba(255,255,255,0.18)',
     iconBorder: 'rgba(255,255,255,0.35)',
     divider: 'rgba(255,255,255,0.18)',
     grid: '#fff',
     gridOpacity: 0.05,
-    pillBg: 'rgba(0,0,0,0.20)',
+    pillBg: 'rgba(0,0,0,0.22)',
     statusActive: '#bbf7d0',
     statusBuilding: '#fef3c7',
     gradients: [
-      'linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 100%)',
-      'linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 100%)',
-      'linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 100%)',
-      'linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 100%)',
+      'linear-gradient(145deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.08) 100%)',
+      'linear-gradient(145deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 100%)',
+      'linear-gradient(145deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 100%)',
+      'linear-gradient(145deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 100%)',
     ],
     gradientHovers: [
-      'linear-gradient(135deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.12) 100%)',
-      'linear-gradient(135deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.10) 100%)',
-      'linear-gradient(135deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.10) 100%)',
-      'linear-gradient(135deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.10) 100%)',
+      'linear-gradient(145deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.14) 100%)',
+      'linear-gradient(145deg, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0.12) 100%)',
+      'linear-gradient(145deg, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0.12) 100%)',
+      'linear-gradient(145deg, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0.12) 100%)',
     ],
   },
 }
-
-const ACCENT_COLORS = ['#ec6e2a', '#22c55e', '#3b82f6', '#ef4444']
 
 export default function CapaPage() {
   const router = useRouter()
@@ -190,9 +179,9 @@ export default function CapaPage() {
   ]
 
   const THEME_OPTS = [
-    { key: 'dark',   label: 'Escuro',  dotBg: '#0c0c14', dotBorder: 'rgba(255,255,255,0.3)' },
+    { key: 'dark',   label: 'Escuro',  dotBg: '#0c0c14', dotBorder: 'rgba(255,255,255,0.4)' },
     { key: 'light',  label: 'Claro',   dotBg: '#e8eaef', dotBorder: 'rgba(0,0,0,0.3)' },
-    { key: 'orange', label: 'Laranja', dotBg: '#ec6e2a', dotBorder: 'rgba(255,255,255,0.4)' },
+    { key: 'orange', label: 'Laranja', dotBg: '#ec6e2a', dotBorder: 'rgba(255,255,255,0.5)' },
   ]
 
   return (
@@ -209,66 +198,57 @@ export default function CapaPage() {
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&display=swap');
 
         @keyframes cardEntrance {
-          from { opacity: 0; transform: translateY(40px) scale(0.97); }
+          from { opacity: 0; transform: translateY(44px) scale(0.96); }
           to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        @keyframes titleEntrance {
-          from { opacity: 0; transform: translateY(20px); }
-          to   { opacity: 1; transform: translateY(0); }
         }
         @keyframes shimmer {
           from { transform: translateX(-100%) skewX(-15deg); }
-          to   { transform: translateX(250%) skewX(-15deg); }
+          to   { transform: translateX(260%) skewX(-15deg); }
         }
         @keyframes iconFloat {
-          0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-5px); }
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50%       { transform: translateY(-6px) rotate(1deg); }
         }
         @keyframes statusPulse {
-          0%, 100% { opacity: 1; }
-          50%       { opacity: 0.5; }
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50%       { opacity: 0.5; transform: scale(0.85); }
+        }
+        @keyframes titleEntrance {
+          from { opacity: 0; transform: translateY(22px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
 
         .cf-card {
-          border-radius: 24px;
+          border-radius: 22px;
           position: relative;
           overflow: hidden;
           cursor: pointer;
           transition:
-            transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+            transform 0.40s cubic-bezier(0.34, 1.56, 0.64, 1),
             box-shadow 0.38s ease,
-            border-color 0.30s ease;
+            border-color 0.28s ease;
         }
-        .cf-card:hover {
-          transform: translateY(-10px) scale(1.025);
-        }
-        .cf-card-disabled {
-          opacity: 0.40;
-          cursor: not-allowed !important;
-        }
-        .cf-card-disabled:hover {
-          transform: none !important;
-        }
+        .cf-card:hover { transform: translateY(-12px) scale(1.028); }
+        .cf-card-disabled { opacity: 0.38; cursor: not-allowed !important; }
+        .cf-card-disabled:hover { transform: none !important; }
 
         .cf-shimmer {
           position: absolute;
           inset: 0;
           background: linear-gradient(
             105deg,
-            transparent 30%,
-            rgba(255,255,255,0.09) 50%,
-            transparent 70%
+            transparent 28%,
+            rgba(255,255,255,0.10) 50%,
+            transparent 72%
           );
-          animation: shimmer 0.75s ease forwards;
+          animation: shimmer 0.80s ease forwards;
           pointer-events: none;
           z-index: 1;
         }
 
-        .cf-icon {
-          transition: transform 0.4s ease;
-        }
-        .cf-card:hover .cf-icon {
-          animation: iconFloat 2s ease-in-out infinite;
+        .cf-icon-wrap { transition: transform 0.4s ease; }
+        .cf-card:hover .cf-icon-wrap {
+          animation: iconFloat 2.4s ease-in-out infinite;
         }
 
         .theme-btn {
@@ -277,69 +257,78 @@ export default function CapaPage() {
           border-radius: 20px;
           font-family: inherit;
           font-weight: 700;
-          font-size: 12px;
-          letter-spacing: 0.06em;
+          font-size: 11.5px;
+          letter-spacing: 0.05em;
           padding: 7px 16px;
           display: flex;
           align-items: center;
           gap: 7px;
-          transition: all 0.25s ease;
+          transition: all 0.24s ease;
         }
-        .theme-btn:hover { filter: brightness(1.08); transform: scale(1.04); }
+        .theme-btn:hover { filter: brightness(1.10); transform: scale(1.05); }
 
-        .exit-btn {
+        .topbar-exit-btn {
           border-radius: 10px;
           font-family: inherit;
           font-weight: 700;
-          font-size: 12px;
+          font-size: 13px;
           cursor: pointer;
           padding: 9px 22px;
           transition: all 0.22s ease;
+          border: 1.5px solid rgba(255,255,255,0.40);
+          background: transparent;
+          color: #fff;
         }
-        .exit-btn:hover { transform: translateY(-1px); }
+        .topbar-exit-btn:hover {
+          background: rgba(255,255,255,0.18);
+          border-color: rgba(255,255,255,0.70);
+          transform: translateY(-1px);
+        }
       `}</style>
 
-      {/* ── TOPBAR ── */}
+      {/* ══ TOPBAR — sempre laranja ══ */}
       <div style={{
-        background: t.topbar,
-        borderBottom: `1px solid ${t.topbarBorder}`,
-        padding: '13px 5%',
+        background: 'linear-gradient(135deg, #a84410 0%, #d4601a 42%, #ec6e2a 72%, #f07c38 100%)',
+        borderBottom: '1px solid rgba(0,0,0,0.18)',
+        padding: '16px 5%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         flexShrink: 0,
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
+        boxShadow: '0 4px 32px rgba(168,68,16,0.55)',
         zIndex: 100,
-        transition: 'background 0.6s ease, border-color 0.6s ease',
         gap: 16,
       }}>
         {/* Logo + Nome */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexShrink: 0 }}>
           <div style={{
-            width: 44, height: 44,
+            width: 50, height: 50,
             background: '#fff',
             borderRadius: '50%',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 3px 14px rgba(0,0,0,0.18), 0 0 0 2px rgba(236,110,42,0.25)',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.25), 0 0 0 3px rgba(255,255,255,0.30)',
             position: 'relative', overflow: 'hidden', flexShrink: 0,
           }}>
-            <Image src="/logo-base.png" alt="Criffer" fill style={{ objectFit: 'contain', padding: 5 }}/>
+            <Image src="/logo-base.png" alt="Criffer" fill style={{ objectFit: 'contain', padding: 6 }}/>
           </div>
           <div>
-            <div style={{ fontSize: 17, fontWeight: 900, color: t.text, letterSpacing: 4, lineHeight: 1, transition: 'color 0.5s' }}>CRIFFER</div>
-            <div style={{ fontSize: 9, color: t.textSub, letterSpacing: 2.5, textTransform: 'uppercase', marginTop: 3, transition: 'color 0.5s' }}>ERP Financeiro</div>
+            <div style={{ fontSize: 19, fontWeight: 900, color: '#fff', letterSpacing: 5, lineHeight: 1, textShadow: '0 2px 8px rgba(0,0,0,0.25)' }}>
+              CRIFFER
+            </div>
+            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.80)', letterSpacing: 3, textTransform: 'uppercase', marginTop: 3 }}>
+              ERP Financeiro
+            </div>
           </div>
         </div>
 
         {/* Theme switcher */}
         <div style={{
           display: 'flex', alignItems: 'center', gap: 4,
-          background: t.pillBg,
+          background: 'rgba(0,0,0,0.22)',
           padding: '5px 6px',
           borderRadius: 26,
           flexShrink: 0,
-          transition: 'background 0.5s',
+          backdropFilter: 'blur(8px)',
         }}>
           {THEME_OPTS.map(opt => {
             const active = theme === opt.key
@@ -350,10 +339,10 @@ export default function CapaPage() {
                 onClick={() => changeTheme(opt.key)}
                 style={{
                   background: active
-                    ? (opt.key === 'dark' ? '#1a1a2a' : opt.key === 'light' ? '#ffffff' : '#ec6e2a')
+                    ? (opt.key === 'dark' ? '#1a1a2a' : opt.key === 'light' ? '#f0f2f7' : 'rgba(255,255,255,0.30)')
                     : 'transparent',
-                  color: active ? (opt.key === 'light' ? '#1a1a2e' : '#fff') : t.textSub,
-                  boxShadow: active ? '0 2px 10px rgba(0,0,0,0.22)' : 'none',
+                  color: active ? (opt.key === 'light' ? '#1a1a2e' : '#fff') : 'rgba(255,255,255,0.72)',
+                  boxShadow: active ? '0 2px 10px rgba(0,0,0,0.28)' : 'none',
                 }}
               >
                 <span style={{
@@ -369,50 +358,39 @@ export default function CapaPage() {
         </div>
 
         {/* Usuário + Sair */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
           {user && (
             <div style={{ textAlign: 'right' }}>
-              <div style={{ fontSize: 14, color: t.text, fontWeight: 700, lineHeight: 1.2, transition: 'color 0.5s' }}>
+              <div style={{ fontSize: 15, color: '#fff', fontWeight: 700, lineHeight: 1.2, textShadow: '0 1px 6px rgba(0,0,0,0.20)' }}>
                 {user.split(' ')[0]}
               </div>
-              <div style={{ fontSize: 11, color: t.textSub, transition: 'color 0.5s' }}>
+              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.78)' }}>
                 Bem-vindo de volta
               </div>
             </div>
           )}
           <button
-            className="exit-btn"
+            className="topbar-exit-btn"
             onClick={() => { localStorage.clear(); router.push('/login') }}
-            style={{
-              border: `1.5px solid ${t.cardBorder}`,
-              background: 'transparent',
-              color: t.textSub,
-            }}
-            onMouseOver={e => {
-              e.currentTarget.style.background = t.accentSoft
-              e.currentTarget.style.color = t.accent
-              e.currentTarget.style.borderColor = t.accent
-            }}
-            onMouseOut={e => {
-              e.currentTarget.style.background = 'transparent'
-              e.currentTarget.style.color = t.textSub
-              e.currentTarget.style.borderColor = t.cardBorder
-            }}
           >
             Sair
           </button>
         </div>
       </div>
 
-      {/* ── BODY ── */}
+      {/* ══ BODY ══ */}
       <div style={{
-        flex: 1, display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center',
-        position: 'relative', padding: '40px 4%',
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        padding: '36px 4% 40px',
         overflow: 'hidden',
       }}>
 
-        {/* Grid sutil de fundo */}
+        {/* Grid sutil */}
         <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', opacity: t.gridOpacity, transition: 'opacity 0.6s' }}>
           <defs>
             <pattern id="cf-grid" width="52" height="52" patternUnits="userSpaceOnUse">
@@ -422,35 +400,37 @@ export default function CapaPage() {
           <rect width="100%" height="100%" fill="url(#cf-grid)"/>
         </svg>
 
-        {/* Orbs decorativos */}
-        <div style={{ position: 'absolute', top: '5%', right: '4%', width: 360, height: 360, borderRadius: '50%', background: `radial-gradient(circle, ${t.accentSoft} 0%, transparent 68%)`, pointerEvents: 'none', filter: 'blur(52px)', transition: 'background 0.6s', zIndex: 0 }}/>
-        <div style={{ position: 'absolute', bottom: '5%', left: '4%', width: 260, height: 260, borderRadius: '50%', background: `radial-gradient(circle, ${t.accentSoft} 0%, transparent 68%)`, pointerEvents: 'none', filter: 'blur(40px)', transition: 'background 0.6s', zIndex: 0 }}/>
+        {/* Orbs de fundo */}
+        <div style={{ position: 'absolute', top: '5%', right: '3%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, ${t.accentSoft} 0%, transparent 68%)`, pointerEvents: 'none', filter: 'blur(55px)', transition: 'background 0.6s', zIndex: 0 }}/>
+        <div style={{ position: 'absolute', bottom: '5%', left: '3%', width: 280, height: 280, borderRadius: '50%', background: `radial-gradient(circle, ${t.accentSoft} 0%, transparent 68%)`, pointerEvents: 'none', filter: 'blur(44px)', transition: 'background 0.6s', zIndex: 0 }}/>
 
         {/* Título */}
         <div style={{
-          textAlign: 'center', marginBottom: 44,
+          textAlign: 'center',
+          marginBottom: 40,
           position: 'relative', zIndex: 2,
           opacity: visible ? 1 : 0,
           transform: visible ? 'translateY(0)' : 'translateY(24px)',
           transition: 'opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1)',
         }}>
           <div style={{
-            fontSize: 38, fontWeight: 900, color: t.text,
-            letterSpacing: 2, lineHeight: 1,
-            textShadow: theme === 'dark' ? '0 0 60px rgba(236,110,42,0.25)' : 'none',
+            fontSize: 40, fontWeight: 900,
+            color: t.text,
+            letterSpacing: 3, lineHeight: 1,
+            textShadow: theme === 'dark' ? '0 0 70px rgba(236,110,42,0.30)' : 'none',
             transition: 'color 0.5s, text-shadow 0.5s',
           }}>
             CENTRAL DE GESTÃO
           </div>
         </div>
 
-        {/* ── CARDS — 4 em linha ── */}
+        {/* ══ CARDS 4 em linha ══ */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: 20,
+          gap: 22,
           width: '100%',
-          maxWidth: 1240,
+          maxWidth: 1280,
           position: 'relative',
           zIndex: 2,
         }}>
@@ -470,100 +450,86 @@ export default function CapaPage() {
                   background: grad,
                   border: `1.5px solid ${borderColor}`,
                   boxShadow: isHov ? t.cardHoverShadow : t.cardShadow,
-                  padding: '30px 24px 26px',
+                  padding: '28px 26px 26px',
                   display: 'flex',
                   flexDirection: 'column',
-                  transition: `box-shadow 0.38s ease, border-color 0.30s ease`,
-                  animation: visible ? `cardEntrance 0.65s cubic-bezier(0.34,1.56,0.64,1) ${0.08 + i * 0.10}s both` : 'none',
+                  minHeight: 420,
+                  transition: `box-shadow 0.38s ease, border-color 0.28s ease`,
+                  animation: visible
+                    ? `cardEntrance 0.70s cubic-bezier(0.34,1.56,0.64,1) ${0.06 + i * 0.10}s both`
+                    : 'none',
                 }}
               >
-                {/* Efeito shimmer */}
+                {/* Shimmer no hover */}
                 {isHov && <div className="cf-shimmer"/>}
 
                 {/* Badge */}
-                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 16, position: 'relative', zIndex: 2 }}>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 14, position: 'relative', zIndex: 2 }}>
                   <div style={{
                     fontSize: 11, fontWeight: 800, letterSpacing: 0.8,
                     padding: '5px 13px', borderRadius: 20,
-                    background: m.status === 'active'
-                      ? `${t.statusActive}22`
-                      : `${t.statusBuilding}22`,
+                    background: m.status === 'active' ? `${t.statusActive}28` : `${t.statusBuilding}28`,
                     color: m.status === 'active' ? t.statusActive : t.statusBuilding,
-                    border: `1px solid ${m.status === 'active' ? t.statusActive : t.statusBuilding}50`,
-                    display: 'flex', alignItems: 'center', gap: 5,
+                    border: `1px solid ${m.status === 'active' ? t.statusActive : t.statusBuilding}55`,
+                    display: 'flex', alignItems: 'center', gap: 6,
                     transition: 'all 0.5s',
                   }}>
                     <span style={{
                       width: 7, height: 7, borderRadius: '50%',
                       background: m.status === 'active' ? t.statusActive : t.statusBuilding,
-                      animation: m.status === 'active' ? 'statusPulse 2s ease infinite' : 'none',
                       display: 'inline-block', flexShrink: 0,
+                      animation: m.status === 'active' ? 'statusPulse 2s ease infinite' : 'none',
                     }}/>
                     {m.badge}
                   </div>
                 </div>
 
                 {/* Ícone 3D */}
-                <div className="cf-icon" style={{
-                  width: '100%',
-                  height: 130,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: 20,
-                  position: 'relative',
-                  zIndex: 2,
-                  borderRadius: 16,
+                <div className="cf-icon-wrap" style={{
+                  width: '100%', height: 160,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  marginBottom: 22,
+                  position: 'relative', zIndex: 2,
+                  borderRadius: 18,
                   background: t.iconBg,
-                  border: `1px solid ${t.iconBorder}`,
+                  border: `1px solid ${isHov ? borderColor + '66' : t.iconBorder}`,
                   overflow: 'hidden',
-                  transition: 'background 0.5s, border-color 0.5s',
-                  boxShadow: isHov ? `0 8px 28px ${m.accentColor}30` : 'none',
+                  transition: 'background 0.5s, border-color 0.4s, box-shadow 0.4s',
+                  boxShadow: isHov ? `0 10px 36px ${m.accentColor}35` : 'none',
                 }}>
-                  <div style={{ position: 'relative', width: 110, height: 110 }}>
-                    <Image
-                      src={m.icon}
-                      alt={m.label}
-                      fill
-                      style={{ objectFit: 'contain' }}
-                    />
+                  <div style={{ position: 'relative', width: 130, height: 130 }}>
+                    <Image src={m.icon} alt={m.label} fill style={{ objectFit: 'contain' }}/>
                   </div>
                 </div>
 
                 {/* Conteúdo */}
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10, position: 'relative', zIndex: 2 }}>
-                  {/* Nome */}
                   <div style={{
-                    fontSize: 17, fontWeight: 900,
-                    color: t.text,
-                    letterSpacing: 1.5,
-                    transition: 'color 0.5s',
-                    lineHeight: 1.2,
+                    fontSize: 18, fontWeight: 900,
+                    color: t.text, letterSpacing: 1.5,
+                    transition: 'color 0.5s', lineHeight: 1.2,
                   }}>
                     {m.label}
                   </div>
 
-                  {/* Descrição */}
                   <div style={{
-                    fontSize: 13, color: t.textSub,
-                    lineHeight: 1.65,
-                    transition: 'color 0.5s',
+                    fontSize: 13.5, color: t.textSub,
+                    lineHeight: 1.65, transition: 'color 0.5s',
                     fontWeight: 500,
                   }}>
                     {m.desc}
                   </div>
 
-                  {/* Tags */}
-                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 2 }}>
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 4 }}>
                     {m.tags.map(tag => (
                       <span key={tag} style={{
-                        fontSize: 11, fontWeight: 700, padding: '4px 11px',
+                        fontSize: 11, fontWeight: 700, padding: '4px 12px',
                         borderRadius: 20, letterSpacing: 0.4,
                         background: theme === 'orange'
-                          ? 'rgba(255,255,255,0.20)'
-                          : `${m.accentColor}18`,
+                          ? 'rgba(255,255,255,0.22)'
+                          : `${m.accentColor}1c`,
                         color: theme === 'orange' ? '#fff' : m.accentColor,
-                        border: `1px solid ${theme === 'orange' ? 'rgba(255,255,255,0.30)' : m.accentColor + '30'}`,
+                        border: `1px solid ${theme === 'orange' ? 'rgba(255,255,255,0.32)' : m.accentColor + '35'}`,
                         transition: 'all 0.5s',
                       }}>
                         {tag}
@@ -575,27 +541,25 @@ export default function CapaPage() {
                 {/* Rodapé */}
                 <div style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  paddingTop: 18, marginTop: 16,
+                  paddingTop: 18, marginTop: 18,
                   borderTop: `1px solid ${t.divider}`,
                   position: 'relative', zIndex: 2,
                   transition: 'border-color 0.5s',
                 }}>
                   <span style={{
-                    fontSize: 12, fontWeight: 600,
-                    color: t.textMuted,
-                    letterSpacing: 0.3,
+                    fontSize: 12.5, fontWeight: 600,
+                    color: t.textMuted, letterSpacing: 0.3,
                     transition: 'color 0.5s',
                   }}>
                     {m.disabled ? 'Em desenvolvimento' : 'Acessar módulo'}
                   </span>
                   {!m.disabled && (
                     <div style={{
-                      width: 32, height: 32, borderRadius: '50%',
+                      width: 34, height: 34, borderRadius: '50%',
                       background: isHov ? m.accentColor : t.accentSoft,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      transition: 'all 0.32s ease',
-                      flexShrink: 0,
-                      boxShadow: isHov ? `0 4px 16px ${m.accentColor}60` : 'none',
+                      transition: 'all 0.32s ease', flexShrink: 0,
+                      boxShadow: isHov ? `0 6px 20px ${m.accentColor}65` : 'none',
                     }}>
                       <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
                         <path d="M3 8h10M9 4l4 4-4 4" stroke={isHov ? '#fff' : t.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -603,12 +567,10 @@ export default function CapaPage() {
                     </div>
                   )}
                 </div>
-
               </div>
             )
           })}
         </div>
-
       </div>
     </div>
   )
