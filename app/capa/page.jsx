@@ -197,8 +197,9 @@ export default function CapaPage() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&display=swap');
 
+        /* ── Animações ── */
         @keyframes cardEntrance {
-          from { opacity: 0; transform: translateY(44px) scale(0.96); }
+          from { opacity: 0; transform: translateY(40px) scale(0.96); }
           to   { opacity: 1; transform: translateY(0) scale(1); }
         }
         @keyframes shimmer {
@@ -213,16 +214,40 @@ export default function CapaPage() {
           0%, 100% { opacity: 1; transform: scale(1); }
           50%       { opacity: 0.5; transform: scale(0.85); }
         }
-        @keyframes titleEntrance {
-          from { opacity: 0; transform: translateY(22px); }
-          to   { opacity: 1; transform: translateY(0); }
+
+        /* ── Grid responsivo fluido ── */
+        .cf-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: clamp(14px, 1.6vw, 24px);
+          width: 100%;
+          max-width: min(1360px, 94vw);
+          position: relative;
+          z-index: 2;
+        }
+        /* Monitor grande (>1400px) — mantém 4 colunas e aumenta gap */
+        @media (min-width: 1400px) {
+          .cf-grid { max-width: min(1500px, 92vw); gap: clamp(20px, 1.8vw, 30px); }
+        }
+        /* Tela média (900-1100px) — 2 colunas */
+        @media (max-width: 1100px) {
+          .cf-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        /* Tablet retrato / celular grande (< 640px) — 1 coluna */
+        @media (max-width: 640px) {
+          .cf-grid { grid-template-columns: 1fr; }
         }
 
+        /* ── Card com altura fluida ── */
         .cf-card {
-          border-radius: 22px;
+          border-radius: clamp(16px, 1.5vw, 24px);
           position: relative;
           overflow: hidden;
           cursor: pointer;
+          min-height: clamp(360px, 38vh, 500px);
+          padding: clamp(18px, 2vw, 30px) clamp(16px, 1.8vw, 28px);
+          display: flex;
+          flex-direction: column;
           transition:
             transform 0.40s cubic-bezier(0.34, 1.56, 0.64, 1),
             box-shadow 0.38s ease,
@@ -232,6 +257,61 @@ export default function CapaPage() {
         .cf-card-disabled { opacity: 0.38; cursor: not-allowed !important; }
         .cf-card-disabled:hover { transform: none !important; }
 
+        /* ── Área do ícone fluida ── */
+        .cf-icon-area {
+          width: 100%;
+          height: clamp(120px, 16vh, 180px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: clamp(12px, 1.2vw, 20px);
+          overflow: hidden;
+          flex-shrink: 0;
+        }
+        .cf-icon-img {
+          position: relative;
+          width: clamp(90px, 11vh, 145px);
+          height: clamp(90px, 11vh, 145px);
+        }
+
+        /* ── Título do card fluido ── */
+        .cf-card-title {
+          font-size: clamp(14px, 1.3vw, 20px);
+          font-weight: 900;
+          letter-spacing: 1.5px;
+          line-height: 1.2;
+        }
+        .cf-card-desc {
+          font-size: clamp(11.5px, 1.05vw, 14.5px);
+          line-height: 1.65;
+          font-weight: 500;
+        }
+
+        /* ── Título da página fluido ── */
+        .cf-page-title {
+          font-size: clamp(26px, 3.2vw, 48px);
+          font-weight: 900;
+          letter-spacing: 3px;
+          line-height: 1;
+        }
+
+        /* ── Topbar responsiva ── */
+        .cf-topbar {
+          padding: clamp(12px, 1.6vh, 18px) clamp(3%, 5vw, 6%);
+        }
+        .cf-logo-circle {
+          width: clamp(40px, 4vw, 54px);
+          height: clamp(40px, 4vw, 54px);
+        }
+        .cf-brand-name {
+          font-size: clamp(14px, 1.5vw, 20px);
+          letter-spacing: clamp(2px, 0.4vw, 5px);
+        }
+        .cf-brand-sub {
+          font-size: clamp(8px, 0.7vw, 10.5px);
+        }
+
+        /* ── Shimmer ── */
         .cf-shimmer {
           position: absolute;
           inset: 0;
@@ -245,24 +325,22 @@ export default function CapaPage() {
           pointer-events: none;
           z-index: 1;
         }
-
         .cf-icon-wrap { transition: transform 0.4s ease; }
-        .cf-card:hover .cf-icon-wrap {
-          animation: iconFloat 2.4s ease-in-out infinite;
-        }
+        .cf-card:hover .cf-icon-wrap { animation: iconFloat 2.4s ease-in-out infinite; }
 
+        /* ── Botões ── */
         .theme-btn {
           cursor: pointer;
           border: none;
           border-radius: 20px;
           font-family: inherit;
           font-weight: 700;
-          font-size: 11.5px;
+          font-size: clamp(10px, 0.85vw, 12px);
           letter-spacing: 0.05em;
-          padding: 7px 16px;
+          padding: 6px clamp(10px, 1.2vw, 16px);
           display: flex;
           align-items: center;
-          gap: 7px;
+          gap: 6px;
           transition: all 0.24s ease;
         }
         .theme-btn:hover { filter: brightness(1.10); transform: scale(1.05); }
@@ -271,13 +349,14 @@ export default function CapaPage() {
           border-radius: 10px;
           font-family: inherit;
           font-weight: 700;
-          font-size: 13px;
+          font-size: clamp(11px, 0.9vw, 14px);
           cursor: pointer;
-          padding: 9px 22px;
+          padding: clamp(7px, 0.8vh, 10px) clamp(14px, 1.4vw, 22px);
           transition: all 0.22s ease;
           border: 1.5px solid rgba(255,255,255,0.40);
           background: transparent;
           color: #fff;
+          white-space: nowrap;
         }
         .topbar-exit-btn:hover {
           background: rgba(255,255,255,0.18);
@@ -287,10 +366,9 @@ export default function CapaPage() {
       `}</style>
 
       {/* ══ TOPBAR — sempre laranja ══ */}
-      <div style={{
+      <div className="cf-topbar" style={{
         background: 'linear-gradient(135deg, #a84410 0%, #d4601a 42%, #ec6e2a 72%, #f07c38 100%)',
         borderBottom: '1px solid rgba(0,0,0,0.18)',
-        padding: '16px 5%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -300,9 +378,8 @@ export default function CapaPage() {
         gap: 16,
       }}>
         {/* Logo + Nome */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexShrink: 0 }}>
-          <div style={{
-            width: 50, height: 50,
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(8px, 1vw, 16px)', flexShrink: 0 }}>
+          <div className="cf-logo-circle" style={{
             background: '#fff',
             borderRadius: '50%',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -312,10 +389,10 @@ export default function CapaPage() {
             <Image src="/logo-base.png" alt="Criffer" fill style={{ objectFit: 'contain', padding: 6 }}/>
           </div>
           <div>
-            <div style={{ fontSize: 19, fontWeight: 900, color: '#fff', letterSpacing: 5, lineHeight: 1, textShadow: '0 2px 8px rgba(0,0,0,0.25)' }}>
+            <div className="cf-brand-name" style={{ fontWeight: 900, color: '#fff', lineHeight: 1, textShadow: '0 2px 8px rgba(0,0,0,0.25)' }}>
               CRIFFER
             </div>
-            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.80)', letterSpacing: 3, textTransform: 'uppercase', marginTop: 3 }}>
+            <div className="cf-brand-sub" style={{ color: 'rgba(255,255,255,0.80)', letterSpacing: 3, textTransform: 'uppercase', marginTop: 3 }}>
               ERP Financeiro
             </div>
           </div>
@@ -413,27 +490,17 @@ export default function CapaPage() {
           transform: visible ? 'translateY(0)' : 'translateY(24px)',
           transition: 'opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1)',
         }}>
-          <div style={{
-            fontSize: 40, fontWeight: 900,
+          <div className="cf-page-title" style={{
             color: t.text,
-            letterSpacing: 3, lineHeight: 1,
             textShadow: theme === 'dark' ? '0 0 70px rgba(236,110,42,0.30)' : 'none',
             transition: 'color 0.5s, text-shadow 0.5s',
           }}>
-            CENTRAL DE GESTÃO
+            CENTRAL DE GESTão
           </div>
         </div>
 
         {/* ══ CARDS 4 em linha ══ */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: 22,
-          width: '100%',
-          maxWidth: 1280,
-          position: 'relative',
-          zIndex: 2,
-        }}>
+        <div className="cf-grid">
           {MODULES.map((m, i) => {
             const isHov = hovered === m.id
             const grad = isHov ? t.gradientHovers[i] : t.gradients[i]
@@ -450,10 +517,6 @@ export default function CapaPage() {
                   background: grad,
                   border: `1.5px solid ${borderColor}`,
                   boxShadow: isHov ? t.cardHoverShadow : t.cardShadow,
-                  padding: '28px 26px 26px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  minHeight: 420,
                   transition: `box-shadow 0.38s ease, border-color 0.28s ease`,
                   animation: visible
                     ? `cardEntrance 0.70s cubic-bezier(0.34,1.56,0.64,1) ${0.06 + i * 0.10}s both`
@@ -485,38 +548,29 @@ export default function CapaPage() {
                 </div>
 
                 {/* Ícone 3D */}
-                <div className="cf-icon-wrap" style={{
-                  width: '100%', height: 160,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                <div className="cf-icon-area cf-icon-wrap" style={{
                   marginBottom: 22,
                   position: 'relative', zIndex: 2,
-                  borderRadius: 18,
                   background: t.iconBg,
                   border: `1px solid ${isHov ? borderColor + '66' : t.iconBorder}`,
-                  overflow: 'hidden',
                   transition: 'background 0.5s, border-color 0.4s, box-shadow 0.4s',
                   boxShadow: isHov ? `0 10px 36px ${m.accentColor}35` : 'none',
                 }}>
-                  <div style={{ position: 'relative', width: 130, height: 130 }}>
+                  <div className="cf-icon-img">
                     <Image src={m.icon} alt={m.label} fill style={{ objectFit: 'contain' }}/>
                   </div>
                 </div>
 
                 {/* Conteúdo */}
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10, position: 'relative', zIndex: 2 }}>
-                  <div style={{
-                    fontSize: 18, fontWeight: 900,
-                    color: t.text, letterSpacing: 1.5,
-                    transition: 'color 0.5s', lineHeight: 1.2,
+                  <div className="cf-card-title" style={{
+                    color: t.text,
+                    transition: 'color 0.5s',
                   }}>
                     {m.label}
                   </div>
 
-                  <div style={{
-                    fontSize: 13.5, color: t.textSub,
-                    lineHeight: 1.65, transition: 'color 0.5s',
-                    fontWeight: 500,
-                  }}>
+                  <div className="cf-card-desc" style={{ color: t.textSub, transition: 'color 0.5s' }}>
                     {m.desc}
                   </div>
 
