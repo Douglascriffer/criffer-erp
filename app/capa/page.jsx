@@ -57,16 +57,16 @@ const THEMES = {
     statusActive: '#16a34a',
     statusBuilding: '#d97706',
     gradients: [
-      'linear-gradient(145deg, rgba(236,110,42,0.20) 0%, rgba(255,255,255,0.30) 100%)',
-      'linear-gradient(145deg, rgba(34,197,94,0.18) 0%, rgba(255,255,255,0.30) 100%)',
-      'linear-gradient(145deg, rgba(59,130,246,0.18) 0%, rgba(255,255,255,0.30) 100%)',
-      'linear-gradient(145deg, rgba(239,68,68,0.18) 0%, rgba(255,255,255,0.30) 100%)',
+      'linear-gradient(145deg, rgba(236,110,42,0.35) 0%, rgba(236,110,42,0.06) 100%)',
+      'linear-gradient(145deg, rgba(34,197,94,0.32) 0%, rgba(34,197,94,0.05) 100%)',
+      'linear-gradient(145deg, rgba(59,130,246,0.32) 0%, rgba(59,130,246,0.05) 100%)',
+      'linear-gradient(145deg, rgba(239,68,68,0.32) 0%, rgba(239,68,68,0.05) 100%)',
     ],
     gradientHovers: [
-      'linear-gradient(145deg, rgba(236,110,42,0.30) 0%, rgba(255,255,255,0.50) 100%)',
-      'linear-gradient(145deg, rgba(34,197,94,0.26) 0%, rgba(255,255,255,0.50) 100%)',
-      'linear-gradient(145deg, rgba(59,130,246,0.26) 0%, rgba(255,255,255,0.50) 100%)',
-      'linear-gradient(145deg, rgba(239,68,68,0.26) 0%, rgba(255,255,255,0.50) 100%)',
+      'linear-gradient(145deg, rgba(236,110,42,0.50) 0%, rgba(236,110,42,0.10) 100%)',
+      'linear-gradient(145deg, rgba(34,197,94,0.44) 0%, rgba(34,197,94,0.08) 100%)',
+      'linear-gradient(145deg, rgba(59,130,246,0.44) 0%, rgba(59,130,246,0.08) 100%)',
+      'linear-gradient(145deg, rgba(239,68,68,0.44) 0%, rgba(239,68,68,0.08) 100%)',
     ],
   },
   orange: {
@@ -89,16 +89,16 @@ const THEMES = {
     statusActive: '#bbf7d0',
     statusBuilding: '#fef3c7',
     gradients: [
-      'linear-gradient(145deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.08) 100%)',
-      'linear-gradient(145deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 100%)',
-      'linear-gradient(145deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 100%)',
-      'linear-gradient(145deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 100%)',
+      'linear-gradient(145deg, rgba(255,200,150,0.45) 0%, rgba(255,255,255,0.10) 100%)',
+      'linear-gradient(145deg, rgba(34,197,94,0.40) 0%, rgba(255,255,255,0.08) 100%)',
+      'linear-gradient(145deg, rgba(59,130,246,0.40) 0%, rgba(255,255,255,0.08) 100%)',
+      'linear-gradient(145deg, rgba(239,68,68,0.40) 0%, rgba(255,255,255,0.08) 100%)',
     ],
     gradientHovers: [
-      'linear-gradient(145deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.14) 100%)',
-      'linear-gradient(145deg, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0.12) 100%)',
-      'linear-gradient(145deg, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0.12) 100%)',
-      'linear-gradient(145deg, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0.12) 100%)',
+      'linear-gradient(145deg, rgba(255,200,150,0.62) 0%, rgba(255,255,255,0.15) 100%)',
+      'linear-gradient(145deg, rgba(34,197,94,0.55) 0%, rgba(255,255,255,0.12) 100%)',
+      'linear-gradient(145deg, rgba(59,130,246,0.55) 0%, rgba(255,255,255,0.12) 100%)',
+      'linear-gradient(145deg, rgba(239,68,68,0.55) 0%, rgba(255,255,255,0.12) 100%)',
     ],
   },
 }
@@ -244,8 +244,8 @@ export default function CapaPage() {
           position: relative;
           overflow: hidden;
           cursor: pointer;
-          min-height: clamp(360px, 38vh, 500px);
-          padding: clamp(18px, 2vw, 30px) clamp(16px, 1.8vw, 28px);
+          min-height: clamp(440px, 46vh, 580px);
+          padding: clamp(22px, 2.2vw, 34px) clamp(20px, 2vw, 32px);
           display: flex;
           flex-direction: column;
           transition:
@@ -260,30 +260,30 @@ export default function CapaPage() {
         /* ── Área do ícone fluida ── */
         .cf-icon-area {
           width: 100%;
-          height: clamp(120px, 16vh, 180px);
+          height: clamp(150px, 18vh, 210px);
           display: flex;
           align-items: center;
           justify-content: center;
-          border-radius: clamp(12px, 1.2vw, 20px);
+          border-radius: clamp(14px, 1.4vw, 22px);
           overflow: hidden;
           flex-shrink: 0;
         }
         .cf-icon-img {
           position: relative;
-          width: clamp(90px, 11vh, 145px);
-          height: clamp(90px, 11vh, 145px);
+          width: clamp(115px, 13vh, 175px);
+          height: clamp(115px, 13vh, 175px);
         }
 
         /* ── Título do card fluido ── */
         .cf-card-title {
-          font-size: clamp(14px, 1.3vw, 20px);
+          font-size: clamp(15px, 1.4vw, 21px);
           font-weight: 900;
           letter-spacing: 1.5px;
           line-height: 1.2;
         }
         .cf-card-desc {
-          font-size: clamp(11.5px, 1.05vw, 14.5px);
-          line-height: 1.65;
+          font-size: clamp(13px, 1.2vw, 16px);
+          line-height: 1.70;
           font-weight: 500;
         }
 
@@ -461,9 +461,9 @@ export default function CapaPage() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         position: 'relative',
-        padding: '36px 4% 40px',
+        padding: 'clamp(20px, 3.5vh, 40px) 4% clamp(20px, 3vh, 36px)',
         overflow: 'hidden',
       }}>
 
@@ -484,8 +484,9 @@ export default function CapaPage() {
         {/* Título */}
         <div style={{
           textAlign: 'center',
-          marginBottom: 40,
+          marginBottom: 'clamp(14px, 2.2vh, 28px)',
           position: 'relative', zIndex: 2,
+          width: '100%',
           opacity: visible ? 1 : 0,
           transform: visible ? 'translateY(0)' : 'translateY(24px)',
           transition: 'opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1)',
@@ -495,7 +496,7 @@ export default function CapaPage() {
             textShadow: theme === 'dark' ? '0 0 70px rgba(236,110,42,0.30)' : 'none',
             transition: 'color 0.5s, text-shadow 0.5s',
           }}>
-            CENTRAL DE GESTão
+            CENTRAL DE GESTÃO
           </div>
         </div>
 
