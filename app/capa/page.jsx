@@ -103,6 +103,338 @@ const THEMES = {
   },
 }
 
+/* ─────────────────────────────────────────────────────────────
+   ANIMAÇÕES — SVG profissionais para cada módulo
+───────────────────────────────────────────────────────────── */
+
+/* FATURAMENTO — Gráfico de área animado com tendência e métricas */
+function AnimOrcamento({ color }) {
+  return (
+    <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" style={{ display: 'block' }}>
+      <style>{`
+        @keyframes revAreaIn { from { opacity:0; } to { opacity:1; } }
+        @keyframes revLine1  { from { stroke-dashoffset:540; } to { stroke-dashoffset:0; } }
+        @keyframes revLine2  { from { stroke-dashoffset:500; } to { stroke-dashoffset:0; } }
+        @keyframes revDot    { 0%,100%{ r:4.5; } 50%{ r:6.5; } }
+      `}</style>
+      <defs>
+        <linearGradient id="fatAreaG1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#ec6e2a" stopOpacity="0.50"/>
+          <stop offset="100%" stopColor="#ec6e2a" stopOpacity="0.02"/>
+        </linearGradient>
+        <linearGradient id="fatAreaG2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#22c55e" stopOpacity="0.36"/>
+          <stop offset="100%" stopColor="#22c55e" stopOpacity="0.02"/>
+        </linearGradient>
+        <clipPath id="fatClip"><rect x="22" y="18" width="254" height="142"/></clipPath>
+      </defs>
+
+      {/* Grid */}
+      {[48,82,116,150].map(y => (
+        <line key={y} x1="22" y1={y} x2="276" y2={y} stroke={color} strokeWidth="0.5" opacity="0.07"/>
+      ))}
+      {[22,72,122,172,222,272].map(x => (
+        <line key={x} x1={x} y1="18" x2={x} y2="158" stroke={color} strokeWidth="0.5" opacity="0.05"/>
+      ))}
+
+      {/* Área 2026 */}
+      <path d="M22,140 C72,115 120,96 170,72 C215,50 248,36 276,22 L276,158 L22,158 Z"
+        fill="url(#fatAreaG1)" clipPath="url(#fatClip)" opacity="0"
+        style={{ animation:'revAreaIn 1.4s ease-out forwards' }}/>
+      {/* Área 2025 */}
+      <path d="M22,152 C72,135 120,120 170,104 C215,88 248,78 276,66 L276,158 L22,158 Z"
+        fill="url(#fatAreaG2)" clipPath="url(#fatClip)" opacity="0"
+        style={{ animation:'revAreaIn 1.4s ease-out 0.45s forwards' }}/>
+
+      {/* Eixos */}
+      <line x1="22" y1="158" x2="276" y2="158" stroke={color} strokeWidth="1.5" opacity="0.22"/>
+      <line x1="22" y1="18"  x2="22"  y2="158" stroke={color} strokeWidth="1.5" opacity="0.22"/>
+
+      {/* Linha principal */}
+      <path d="M22,140 C72,115 120,96 170,72 C215,50 248,36 276,22"
+        fill="none" stroke="#ec6e2a" strokeWidth="2.8" strokeLinecap="round"
+        strokeDasharray="540" strokeDashoffset="540"
+        style={{ animation:'revLine1 2s ease-out forwards' }}/>
+      {/* Linha secundária */}
+      <path d="M22,152 C72,135 120,120 170,104 C215,88 248,78 276,66"
+        fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" opacity="0.85"
+        strokeDasharray="500" strokeDashoffset="500"
+        style={{ animation:'revLine2 2s ease-out 0.35s forwards' }}/>
+
+      {/* Pontos pulsantes */}
+      {[{cx:22,cy:140},{cx:72,cy:114},{cx:120,cy:95},{cx:170,cy:71},{cx:222,cy:46},{cx:276,cy:22}].map((p,i) => (
+        <circle key={i} cx={p.cx} cy={p.cy} r="4.5" fill="#ec6e2a"
+          style={{ animation:`revDot 2.4s ease-in-out infinite ${i*0.22}s` }}/>
+      ))}
+
+      {/* KPI badge */}
+      <rect x="28" y="24" width="108" height="27" rx="7"
+        fill="rgba(236,110,42,0.12)" stroke="#ec6e2a" strokeWidth="1" strokeOpacity="0.50"/>
+      <text x="82" y="41" fill="#ec6e2a" fontSize="10.5" fontWeight="800"
+        textAnchor="middle" dominantBaseline="middle" fontFamily="system-ui">↑ RECEITA  +24%</text>
+
+      {/* Meses */}
+      {['Jan','Fev','Mar','Abr','Mai','Jun'].map((m,i) => (
+        <text key={m} x={22+i*51} y="174" fill={color} fontSize="9" opacity="0.42"
+          textAnchor="middle" fontFamily="system-ui">{m}</text>
+      ))}
+      {/* Legenda */}
+      <circle cx="200" cy="32" r="5" fill="#ec6e2a"/>
+      <text x="209" y="36" fill={color} fontSize="9" opacity="0.60" fontFamily="system-ui">2026</text>
+      <circle cx="236" cy="32" r="4" fill="#22c55e"/>
+      <text x="245" y="36" fill={color} fontSize="9" opacity="0.60" fontFamily="system-ui">2025</text>
+    </svg>
+  )
+}
+
+/* ORÇAMENTO — Prancheta + 4 barras sequenciais + flecha no alvo */
+function AnimFaturamento({ color }) {
+  return (
+    <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" style={{ display: 'block' }}>
+      <style>{`
+        @keyframes orcDocScroll { 0%,5%{ transform:translateY(0); } 45%,80%{ transform:translateY(-22px); } 95%,100%{ transform:translateY(0); } }
+        @keyframes orcCursorBlink { 0%,48%{ opacity:1; } 50%,100%{ opacity:0; } }
+        @keyframes orcCursorMove  { 0%,5%{ transform:translateY(0); } 45%,82%{ transform:translateY(-22px); } 95%,100%{ transform:translateY(0); } }
+        @keyframes orcBar1Up { 0%,2%{ transform:scaleY(0);opacity:0; } 13%{ transform:scaleY(1);opacity:1; } 78%{ transform:scaleY(1);opacity:1; } 88%,100%{ transform:scaleY(0);opacity:0; } }
+        @keyframes orcBar2Up { 0%,19%{ transform:scaleY(0);opacity:0; } 31%{ transform:scaleY(1);opacity:1; } 78%{ transform:scaleY(1);opacity:1; } 88%,100%{ transform:scaleY(0);opacity:0; } }
+        @keyframes orcBar3Up { 0%,37%{ transform:scaleY(0);opacity:0; } 50%{ transform:scaleY(1);opacity:1; } 78%{ transform:scaleY(1);opacity:1; } 88%,100%{ transform:scaleY(0);opacity:0; } }
+        @keyframes orcBar4Up { 0%,55%{ transform:scaleY(0);opacity:0; } 67%{ transform:scaleY(1);opacity:1; } 78%{ transform:scaleY(1);opacity:1; } 88%,100%{ transform:scaleY(0);opacity:0; } }
+        @keyframes orcArrowFly { 0%,68%{ opacity:0; transform:translate(-55px,28px) scale(0.5); } 78%{ opacity:1; transform:translate(0,0) scale(1); } 86%{ opacity:1; transform:translate(0,0) scale(1); } 94%,100%{ opacity:0.2; transform:translate(0,0) scale(0.6); } }
+        @keyframes orcTargetReveal { 0%,70%{ stroke-dashoffset:140; opacity:0; } 82%,100%{ stroke-dashoffset:0; opacity:1; } }
+        @keyframes orcBullseye { 0%,70%{ r:6; opacity:0; } 80%{ r:11; opacity:0.7; } 90%,100%{ r:6; opacity:0.9; } }
+        @keyframes orcCheckDraw { 0%,82%{ stroke-dashoffset:42; opacity:0; } 93%,100%{ stroke-dashoffset:0; opacity:1; } }
+      `}</style>
+      <defs>
+        <clipPath id="orcClipPath"><rect x="14" y="28" width="104" height="132" rx="4"/></clipPath>
+      </defs>
+
+      {/* ── Prancheta ── */}
+      <rect x="12" y="14" width="108" height="155" rx="8"
+        fill="rgba(255,255,255,0.06)" stroke={color} strokeWidth="1" strokeOpacity="0.22"/>
+      <rect x="38" y="9"  width="60" height="13" rx="5" fill={color} opacity="0.28"/>
+      <rect x="50" y="5"  width="36" height="9"  rx="4" fill={color} opacity="0.42"/>
+      <ellipse cx="68" cy="15" rx="5" ry="3.5" fill="rgba(0,0,0,0.40)"/>
+
+      {/* Conteúdo rolando */}
+      <g clipPath="url(#orcClipPath)" style={{ animation:'orcDocScroll 7s ease-in-out infinite' }}>
+        <rect x="18" y="34" width="96" height="7" rx="3" fill="#ec6e2a" opacity="0.72"/>
+        {[[88,46],[68,57],[94,68],[54,79],[78,90],[62,101],[90,112],[50,123],[70,134]].map(([w,y],i) => (
+          <rect key={i} x="18" y={y} width={w} height="5" rx="2" fill={color} opacity={i<2?0.38:0.18}/>
+        ))}
+        {[57,79,101].map((y,i) => (
+          <rect key={y} x="86" y={y} width="24" height="5" rx="2"
+            fill={i===0?'#22c55e':i===1?'#ec6e2a':'#3b82f6'} opacity="0.58"/>
+        ))}
+      </g>
+
+      {/* Cursor piscante */}
+      <g style={{ animation:'orcCursorMove 7s ease-in-out infinite' }}>
+        <rect x="54" y="80" width="2" height="12" rx="1" fill="#ec6e2a"
+          style={{ animation:'orcCursorBlink 0.9s ease infinite' }}/>
+      </g>
+
+      {/* ── Barras Sequenciais ── */}
+      <line x1="138" y1="162" x2="278" y2="162" stroke={color} strokeWidth="1.5" strokeOpacity="0.25"/>
+      {[
+        { x:140, h:76,  c:'#ec6e2a', anim:'orcBar1Up' },
+        { x:175, h:104, c:'#f09050', anim:'orcBar2Up' },
+        { x:210, h:62,  c:'#ec6e2a', anim:'orcBar3Up' },
+        { x:245, h:120, c:'#ff8c42', anim:'orcBar4Up' },
+      ].map((b,i) => (
+        <rect key={i}
+          x={b.x} y={162-b.h} width="26" height={b.h} rx="5"
+          fill={b.c} opacity="0.90"
+          style={{ transformOrigin:`${b.x+13}px 162px`, animation:`${b.anim} 7s cubic-bezier(.22,1,.36,1) infinite` }}/>
+      ))}
+      {['Q1','Q2','Q3','Q4'].map((q,i) => (
+        <text key={q} x={153+i*35} y="176" fill={color} fontSize="9.5" opacity="0.38"
+          textAnchor="middle" fontFamily="system-ui">{q}</text>
+      ))}
+
+      {/* ── Alvo ── */}
+      <g transform="translate(264,44)">
+        <circle cx="0" cy="0" r="22" fill="none" stroke={color} strokeWidth="1.5" strokeOpacity="0.15"
+          strokeDasharray="138" strokeDashoffset="138"
+          style={{ animation:'orcTargetReveal 7s ease-in-out infinite' }}/>
+        <circle cx="0" cy="0" r="14" fill="none" stroke="#ec6e2a" strokeWidth="2" strokeOpacity="0.55"
+          strokeDasharray="88" strokeDashoffset="88"
+          style={{ animation:'orcTargetReveal 7s ease-in-out infinite 0.12s' }}/>
+        <circle cx="0" cy="0" r="6" fill="#ef4444" opacity="0.90"
+          style={{ animation:'orcBullseye 7s ease-in-out infinite' }}/>
+        <circle cx="0" cy="0" r="2.5" fill="white" opacity="0.90"/>
+      </g>
+
+      {/* ── Flecha ── */}
+      <g style={{ animation:'orcArrowFly 7s cubic-bezier(.22,1,.36,1) infinite' }}>
+        <line x1="218" y1="90" x2="254" y2="52" stroke="#ef4444" strokeWidth="2.8" strokeLinecap="round"/>
+        <polygon points="254,52 246,53 252,61" fill="#ef4444"/>
+        <line x1="218" y1="90" x2="211" y2="86" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" opacity="0.75"/>
+        <line x1="218" y1="90" x2="215" y2="97" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" opacity="0.75"/>
+      </g>
+
+      {/* Checkmark */}
+      <polyline points="24,138 33,148 55,126" fill="none" stroke="#22c55e" strokeWidth="2.5"
+        strokeLinecap="round" strokeLinejoin="round"
+        strokeDasharray="42" strokeDashoffset="42"
+        style={{ animation:'orcCheckDraw 7s ease-in-out infinite' }}/>
+    </svg>
+  )
+}
+
+/* FLUXO DE CAIXA — linha sinusoidal com área preenchida */
+function AnimFluxo({ color }) {
+  return (
+    <svg viewBox="0 0 260 180" width="100%" height="100%" style={{ display: 'block' }}>
+      <style>{`
+        @keyframes flowWave {
+          0%   { d: path("M20,100 C50,70  80,130 110,90  C140,50  170,120 200,80  C225,55  245,70  250,65"); }
+          25%  { d: path("M20,110 C50,80  80,50  110,90  C140,130 170,60  200,100 C225,120 245,90  250,80"); }
+          50%  { d: path("M20,90  C50,120 80,60  110,100 C140,140 170,70  200,110 C225,80  245,50  250,45"); }
+          75%  { d: path("M20,105 C50,65  80,120 110,80  C140,45  170,115 200,75  C225,55  245,80  250,70"); }
+          100% { d: path("M20,100 C50,70  80,130 110,90  C140,50  170,120 200,80  C225,55  245,70  250,65"); }
+        }
+        @keyframes flowArea {
+          0%   { d: path("M20,100 C50,70  80,130 110,90  C140,50  170,120 200,80  C225,55  245,70  250,65 L250,155 L20,155 Z"); }
+          25%  { d: path("M20,110 C50,80  80,50  110,90  C140,130 170,60  200,100 C225,120 245,90  250,80 L250,155 L20,155 Z"); }
+          50%  { d: path("M20,90  C50,120 80,60  110,100 C140,140 170,70  200,110 C225,80  245,50  250,45 L250,155 L20,155 Z"); }
+          75%  { d: path("M20,105 C50,65  80,120 110,80  C140,45  170,115 200,75  C225,55  245,80  250,70 L250,155 L20,155 Z"); }
+          100% { d: path("M20,100 C50,70  80,130 110,90  C140,50  170,120 200,80  C225,55  245,70  250,65 L250,155 L20,155 Z"); }
+        }
+        @keyframes cashUp {
+          0%, 100% { opacity: 0.5; transform: translateY(0); }
+          50%      { opacity: 1;   transform: translateY(-4px); }
+        }
+        @keyframes cashDown {
+          0%, 100% { opacity: 0.5; transform: translateY(0); }
+          50%      { opacity: 1;   transform: translateY(4px); }
+        }
+      `}</style>
+
+      {/* Grid */}
+      {[40,80,120,155].map(y => (
+        <line key={y} x1="20" y1={y} x2="252" y2={y} stroke={color} strokeWidth="0.7" opacity="0.08"/>
+      ))}
+
+      <defs>
+        <linearGradient id="fluxGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.45"/>
+          <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.02"/>
+        </linearGradient>
+      </defs>
+
+      {/* Área preenchida animada */}
+      <path
+        d="M20,100 C50,70 80,130 110,90 C140,50 170,120 200,80 C225,55 245,70 250,65 L250,155 L20,155 Z"
+        fill="url(#fluxGrad)"
+        style={{ animation: 'flowArea 4s ease-in-out infinite' }}
+      />
+
+      {/* Linha principal animada */}
+      <path
+        d="M20,100 C50,70 80,130 110,90 C140,50 170,120 200,80 C225,55 245,70 250,65"
+        fill="none" stroke="#3b82f6" strokeWidth="3" strokeLinecap="round"
+        style={{ animation: 'flowWave 4s ease-in-out infinite' }}
+      />
+
+      {/* Linha de zero */}
+      <line x1="20" y1="155" x2="252" y2="155" stroke={color} strokeWidth="1.5" opacity="0.25"/>
+
+      {/* Indicadores Entradas / Saídas */}
+      <g style={{ animation: 'cashUp 2s ease-in-out infinite' }}>
+        <text x="50" y="30" fill="#22c55e" fontSize="12" fontWeight="800" fontFamily="system-ui">↑ ENTRADAS</text>
+      </g>
+      <g style={{ animation: 'cashDown 2s ease-in-out infinite 0.5s' }}>
+        <text x="148" y="30" fill="#ef4444" fontSize="12" fontWeight="800" fontFamily="system-ui">↓ SAÍDAS</text>
+      </g>
+    </svg>
+  )
+}
+
+/* INADIMPLÊNCIA — Dashboard de risco de crédito */
+function AnimInadimplencia({ color }) {
+  return (
+    <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" style={{ display: 'block' }}>
+      <style>{`
+        @keyframes iadNeedle {
+          0%,8%  { transform:rotate(-85deg); }
+          38%    { transform:rotate(-12deg); }
+          62%    { transform:rotate(30deg);  }
+          78%    { transform:rotate(58deg);  }
+          90%    { transform:rotate(58deg);  }
+          100%   { transform:rotate(-85deg); }
+        }
+        @keyframes iadRiskB1 { 0%,100%{ width:72; } 45%,55%{ width:118; } }
+        @keyframes iadRiskB2 { 0%,100%{ width:48; } 50%,60%{ width:86;  } }
+        @keyframes iadRiskB3 { 0%,100%{ width:58; } 40%,55%{ width:104; } }
+        @keyframes iadAlert  { 0%,100%{ opacity:0.32; transform:scale(1);    } 45%,55%{ opacity:1; transform:scale(1.12); } }
+        @keyframes iadScan   { from{ transform:translateY(0);    opacity:0.65; } to{ transform:translateY(160px); opacity:0; } }
+        @keyframes iadPct    { 0%,12%{ opacity:0; transform:translateY(5px); } 25%,75%{ opacity:1; transform:translateY(0); } 88%,100%{ opacity:0; transform:translateY(-5px); } }
+      `}</style>
+
+      {/* Painel */}
+      <rect x="8" y="8" width="264" height="169" rx="12"
+        fill="rgba(239,68,68,0.04)" stroke="rgba(239,68,68,0.18)" strokeWidth="1"/>
+      <rect x="8" y="8" width="264" height="2.5" rx="1" fill="rgba(239,68,68,0.55)"
+        style={{ animation:'iadScan 2.8s linear infinite' }}/>
+
+      <text x="140" y="26" fill="#ef4444" fontSize="10.5" fontWeight="800"
+        textAnchor="middle" letterSpacing="1.5" fontFamily="system-ui" opacity="0.85">RISCO DE CRÉDITO</text>
+
+      {/* ── Gauge / Velocímetro ── */}
+      <g transform="translate(140,92)">
+        <path d="M -68 0 A 68 68 0 0 1 -34 -58.9" fill="none" stroke="#22c55e" strokeWidth="14" strokeLinecap="round" opacity="0.30"/>
+        <path d="M -34 -58.9 A 68 68 0 0 1 34 -58.9" fill="none" stroke="#f59e0b" strokeWidth="14" strokeLinecap="round" opacity="0.30"/>
+        <path d="M 34 -58.9 A 68 68 0 0 1 68 0" fill="none" stroke="#ef4444" strokeWidth="14" strokeLinecap="round" opacity="0.38"/>
+        <path d="M -68 0 A 68 68 0 0 1 68 0" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="14" strokeLinecap="round"/>
+
+        {/* Ponteiro */}
+        <g style={{ transformOrigin:'0px 0px', animation:'iadNeedle 5s ease-in-out infinite' }}>
+          <line x1="0" y1="8" x2="0" y2="-56" stroke="#ef4444" strokeWidth="3.5" strokeLinecap="round"/>
+          <line x1="0" y1="8" x2="-6" y2="15"  stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round"/>
+          <line x1="0" y1="8" x2="6"  y2="15"  stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round"/>
+        </g>
+        <circle cx="0" cy="0" r="9" fill="#ef4444"/>
+        <circle cx="0" cy="0" r="4" fill="white" opacity="0.90"/>
+
+        <text x="-72" y="20" fill="#22c55e" fontSize="8.5" fontWeight="700" fontFamily="system-ui">BAIXO</text>
+        <text x="-14" y="-76" fill="#f59e0b" fontSize="8.5" fontWeight="700" fontFamily="system-ui">MED</text>
+        <text x="48"  y="20" fill="#ef4444" fontSize="8.5" fontWeight="700" fontFamily="system-ui">ALTO</text>
+        <text x="0" y="24" fill="#ef4444" fontSize="20" fontWeight="900"
+          textAnchor="middle" fontFamily="system-ui"
+          style={{ animation:'iadPct 5s ease-in-out infinite' }}>12.4%</text>
+        <text x="0" y="36" fill={color} fontSize="8" opacity="0.48"
+          textAnchor="middle" fontFamily="system-ui">INADIMPLÊNCIA</text>
+      </g>
+
+      {/* ── Barras de envelhecimento ── */}
+      <text x="20" y="124" fill={color} fontSize="9.5" fontWeight="700" opacity="0.55" fontFamily="system-ui">VENCIMENTO</text>
+      {[
+        { label:'0-30 dias',  y:136, w:72,  c:'#22c55e', anim:'iadRiskB1' },
+        { label:'31-60 dias', y:150, w:48,  c:'#f59e0b', anim:'iadRiskB2' },
+        { label:'>60 dias',   y:164, w:58,  c:'#ef4444', anim:'iadRiskB3' },
+      ].map((b,i) => (
+        <g key={i}>
+          <text x="20" y={b.y-3} fill={color} fontSize="8" opacity="0.42" fontFamily="system-ui">{b.label}</text>
+          <rect x="20" y={b.y} width="140" height="7" rx="3" fill="rgba(255,255,255,0.06)"/>
+          <rect x="20" y={b.y} width={b.w} height="7" rx="3" fill={b.c} opacity="0.72"
+            style={{ animation:`${b.anim} 3.5s ease-in-out infinite` }}/>
+        </g>
+      ))}
+
+      {/* Ícone de alerta */}
+      <g transform="translate(218,126)" style={{ animation:'iadAlert 2s ease-in-out infinite' }}>
+        <circle cx="16" cy="15" r="17" fill="rgba(239,68,68,0.12)" stroke="#ef4444" strokeWidth="1.5"/>
+        <text x="16" y="21" fontSize="17" textAnchor="middle" fill="#ef4444">⚠</text>
+      </g>
+      <text x="234" y="158" fill="#ef4444" fontSize="8.5" fontWeight="700"
+        textAnchor="middle" fontFamily="system-ui"
+        style={{ animation:'iadAlert 2s ease-in-out infinite 0.3s' }}>ALERTA</text>
+    </svg>
+  )
+}
+
+const MODULE_ANIMS = [AnimOrcamento, AnimFaturamento, AnimFluxo, AnimInadimplencia]
+
 export default function CapaPage() {
   const router = useRouter()
   const [user, setUser] = useState('')
@@ -130,7 +462,6 @@ export default function CapaPage() {
   const MODULES = [
     {
       id: 'faturamento',
-      icon: '/icon-faturamento.png',
       label: 'FATURAMENTO',
       desc: 'Análise de receita, mapa de vendas e acompanhamento de metas mensais.',
       tags: ['Receita', 'Mapa', 'Metas', 'Vendedores'],
@@ -142,7 +473,6 @@ export default function CapaPage() {
     },
     {
       id: 'orcamento',
-      icon: '/icon-orcamento.png',
       label: 'ORÇAMENTO',
       desc: 'Gestão de orçamentos, análise de resultados e projeções financeiras.',
       tags: ['Receitas', 'Resultado', 'Metas'],
@@ -154,7 +484,6 @@ export default function CapaPage() {
     },
     {
       id: 'fluxo',
-      icon: '/icon-fluxo.png',
       label: 'FLUXO DE CAIXA',
       desc: 'Controle de entradas e saídas, saldo em tempo real e projeções.',
       tags: ['Entradas', 'Saídas', 'Saldo'],
@@ -166,7 +495,6 @@ export default function CapaPage() {
     },
     {
       id: 'inadimplencia',
-      icon: '/icon-inadimplencia.png',
       label: 'INADIMPLÊNCIA',
       desc: 'Monitoramento de clientes inadimplentes, alertas e análise de risco.',
       tags: ['Clientes', 'Alertas', 'Análise'],
@@ -197,7 +525,7 @@ export default function CapaPage() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&display=swap');
 
-        /* ── Animações ── */
+        /* ── Animações de entrada ── */
         @keyframes cardEntrance {
           from { opacity: 0; transform: translateY(40px) scale(0.96); }
           to   { opacity: 1; transform: translateY(0) scale(1); }
@@ -214,26 +542,27 @@ export default function CapaPage() {
           0%, 100% { opacity: 1; transform: scale(1); }
           50%       { opacity: 0.5; transform: scale(0.85); }
         }
+        @keyframes titleGlow {
+          0%, 100% { text-shadow: 0 0 40px rgba(236,110,42,0.20); }
+          50%       { text-shadow: 0 0 90px rgba(236,110,42,0.45); }
+        }
 
         /* ── Grid responsivo fluido ── */
         .cf-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: clamp(14px, 1.6vw, 24px);
+          gap: clamp(24px, 2.8vw, 44px);
           width: 100%;
-          max-width: min(1360px, 94vw);
+          max-width: min(1380px, 94vw);
           position: relative;
           z-index: 2;
         }
-        /* Monitor grande (>1400px) — mantém 4 colunas e aumenta gap */
         @media (min-width: 1400px) {
-          .cf-grid { max-width: min(1500px, 92vw); gap: clamp(20px, 1.8vw, 30px); }
+          .cf-grid { max-width: min(1520px, 92vw); gap: clamp(22px, 2vw, 32px); }
         }
-        /* Tela média (900-1100px) — 2 colunas */
         @media (max-width: 1100px) {
           .cf-grid { grid-template-columns: repeat(2, 1fr); }
         }
-        /* Tablet retrato / celular grande (< 640px) — 1 coluna */
         @media (max-width: 640px) {
           .cf-grid { grid-template-columns: 1fr; }
         }
@@ -244,8 +573,8 @@ export default function CapaPage() {
           position: relative;
           overflow: hidden;
           cursor: pointer;
-          min-height: clamp(440px, 46vh, 580px);
-          padding: clamp(22px, 2.2vw, 34px) clamp(20px, 2vw, 32px);
+          min-height: clamp(500px, 54vh, 660px);
+          padding: clamp(18px, 1.8vw, 26px) clamp(18px, 1.8vw, 26px) clamp(16px, 1.6vw, 24px);
           display: flex;
           flex-direction: column;
           transition:
@@ -257,45 +586,49 @@ export default function CapaPage() {
         .cf-card-disabled { opacity: 0.38; cursor: not-allowed !important; }
         .cf-card-disabled:hover { transform: none !important; }
 
-        /* ── Área do ícone fluida ── */
-        .cf-icon-area {
+        /* ── Área da animação — ocupa todo o espaço disponível ── */
+        .cf-anim-area {
           width: 100%;
-          height: clamp(150px, 18vh, 210px);
+          flex: 1;
+          min-height: 0;
           display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: clamp(14px, 1.4vw, 22px);
+          align-items: stretch;
+          justify-content: stretch;
+          border-radius: clamp(12px, 1.2vw, 18px);
           overflow: hidden;
           flex-shrink: 0;
-        }
-        .cf-icon-img {
+          margin-bottom: 18px;
           position: relative;
-          width: clamp(115px, 13vh, 175px);
-          height: clamp(115px, 13vh, 175px);
+        }
+        .cf-anim-area > svg {
+          width: 100% !important;
+          height: 100% !important;
+          position: absolute;
+          inset: 0;
         }
 
-        /* ── Título do card fluido ── */
+        /* ── Título do card ── */
         .cf-card-title {
-          font-size: clamp(15px, 1.4vw, 21px);
+          font-size: clamp(17px, 1.6vw, 24px);
           font-weight: 900;
           letter-spacing: 1.5px;
           line-height: 1.2;
         }
         .cf-card-desc {
-          font-size: clamp(13px, 1.2vw, 16px);
+          font-size: clamp(14px, 1.30vw, 18px);
           line-height: 1.70;
           font-weight: 500;
         }
 
-        /* ── Título da página fluido ── */
+        /* ── Título da página ── */
         .cf-page-title {
-          font-size: clamp(26px, 3.2vw, 48px);
+          font-size: clamp(28px, 3.4vw, 52px);
           font-weight: 900;
-          letter-spacing: 3px;
+          letter-spacing: 4px;
           line-height: 1;
         }
 
-        /* ── Topbar responsiva ── */
+        /* ── Topbar ── */
         .cf-topbar {
           padding: clamp(12px, 1.6vh, 18px) clamp(3%, 5vw, 6%);
         }
@@ -326,21 +659,20 @@ export default function CapaPage() {
           z-index: 1;
         }
         .cf-icon-wrap { transition: transform 0.4s ease; }
-        .cf-card:hover .cf-icon-wrap { animation: iconFloat 2.4s ease-in-out infinite; }
 
-        /* ── Botões ── */
+        /* ── Botões de tema ── */
         .theme-btn {
           cursor: pointer;
           border: none;
           border-radius: 20px;
           font-family: inherit;
           font-weight: 700;
-          font-size: clamp(10px, 0.85vw, 12px);
+          font-size: clamp(10px, 0.85vw, 13px);
           letter-spacing: 0.05em;
-          padding: 6px clamp(10px, 1.2vw, 16px);
+          padding: 8px clamp(14px, 1.4vw, 22px);
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: 8px;
           transition: all 0.24s ease;
         }
         .theme-btn:hover { filter: brightness(1.10); transform: scale(1.05); }
@@ -365,15 +697,15 @@ export default function CapaPage() {
         }
       `}</style>
 
-      {/* ══ TOPBAR — sempre laranja ══ */}
+      {/* ══ TOPBAR — preto e branco ══ */}
       <div className="cf-topbar" style={{
-        background: 'linear-gradient(135deg, #a84410 0%, #d4601a 42%, #ec6e2a 72%, #f07c38 100%)',
-        borderBottom: '1px solid rgba(0,0,0,0.18)',
+        background: '#0d0d0d',
+        borderBottom: '1px solid rgba(255,255,255,0.08)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         flexShrink: 0,
-        boxShadow: '0 4px 32px rgba(168,68,16,0.55)',
+        boxShadow: '0 4px 28px rgba(0,0,0,0.55)',
         zIndex: 100,
         gap: 16,
       }}>
@@ -396,42 +728,6 @@ export default function CapaPage() {
               ERP Financeiro
             </div>
           </div>
-        </div>
-
-        {/* Theme switcher */}
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 4,
-          background: 'rgba(0,0,0,0.22)',
-          padding: '5px 6px',
-          borderRadius: 26,
-          flexShrink: 0,
-          backdropFilter: 'blur(8px)',
-        }}>
-          {THEME_OPTS.map(opt => {
-            const active = theme === opt.key
-            return (
-              <button
-                key={opt.key}
-                className="theme-btn"
-                onClick={() => changeTheme(opt.key)}
-                style={{
-                  background: active
-                    ? (opt.key === 'dark' ? '#1a1a2a' : opt.key === 'light' ? '#f0f2f7' : 'rgba(255,255,255,0.30)')
-                    : 'transparent',
-                  color: active ? (opt.key === 'light' ? '#1a1a2e' : '#fff') : 'rgba(255,255,255,0.72)',
-                  boxShadow: active ? '0 2px 10px rgba(0,0,0,0.28)' : 'none',
-                }}
-              >
-                <span style={{
-                  width: 9, height: 9, borderRadius: '50%', flexShrink: 0,
-                  background: opt.dotBg,
-                  border: `1.5px solid ${opt.dotBorder}`,
-                  display: 'inline-block',
-                }}/>
-                {opt.label}
-              </button>
-            )
-          })}
         </div>
 
         {/* Usuário + Sair */}
@@ -463,11 +759,11 @@ export default function CapaPage() {
         alignItems: 'center',
         justifyContent: 'flex-start',
         position: 'relative',
-        padding: 'clamp(20px, 3.5vh, 40px) 4% clamp(20px, 3vh, 36px)',
+        padding: 'clamp(24px, 3.5vh, 44px) 4% clamp(24px, 3vh, 40px)',
         overflow: 'hidden',
       }}>
 
-        {/* Grid sutil */}
+        {/* Grid sutil de fundo */}
         <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', opacity: t.gridOpacity, transition: 'opacity 0.6s' }}>
           <defs>
             <pattern id="cf-grid" width="52" height="52" patternUnits="userSpaceOnUse">
@@ -481,10 +777,10 @@ export default function CapaPage() {
         <div style={{ position: 'absolute', top: '5%', right: '3%', width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, ${t.accentSoft} 0%, transparent 68%)`, pointerEvents: 'none', filter: 'blur(55px)', transition: 'background 0.6s', zIndex: 0 }}/>
         <div style={{ position: 'absolute', bottom: '5%', left: '3%', width: 280, height: 280, borderRadius: '50%', background: `radial-gradient(circle, ${t.accentSoft} 0%, transparent 68%)`, pointerEvents: 'none', filter: 'blur(44px)', transition: 'background 0.6s', zIndex: 0 }}/>
 
-        {/* Título */}
+        {/* ── Título Central de Gestão ── */}
         <div style={{
           textAlign: 'center',
-          marginBottom: 'clamp(14px, 2.2vh, 28px)',
+          marginBottom: 'clamp(10px, 1.5vh, 18px)',
           position: 'relative', zIndex: 2,
           width: '100%',
           opacity: visible ? 1 : 0,
@@ -493,10 +789,67 @@ export default function CapaPage() {
         }}>
           <div className="cf-page-title" style={{
             color: t.text,
-            textShadow: theme === 'dark' ? '0 0 70px rgba(236,110,42,0.30)' : 'none',
-            transition: 'color 0.5s, text-shadow 0.5s',
+            animation: theme === 'dark' ? 'titleGlow 3s ease-in-out infinite' : 'none',
+            transition: 'color 0.5s',
           }}>
             CENTRAL DE GESTÃO
+          </div>
+        </div>
+
+        {/* ── Theme Switcher — abaixo do título, com mais espaço ── */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 14,
+          marginBottom: 'clamp(42px, 5.5vh, 72px)',
+          position: 'relative', zIndex: 2,
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'translateY(0)' : 'translateY(16px)',
+          transition: 'opacity 0.7s ease 0.15s, transform 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.15s',
+        }}>
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 8,
+            background: theme === 'light' ? 'rgba(0,0,0,0.07)' : 'rgba(255,255,255,0.07)',
+            padding: '7px 10px',
+            borderRadius: 32,
+            backdropFilter: 'blur(12px)',
+            border: `1px solid ${theme === 'light' ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.12)'}`,
+            boxShadow: '0 4px 20px rgba(0,0,0,0.12)',
+          }}>
+            <span style={{
+              fontSize: 11, fontWeight: 700, letterSpacing: 1.5,
+              color: theme === 'light' ? 'rgba(26,26,46,0.55)' : 'rgba(255,255,255,0.45)',
+              paddingRight: 6,
+              paddingLeft: 4,
+              textTransform: 'uppercase',
+            }}>Tema</span>
+            {THEME_OPTS.map(opt => {
+              const active = theme === opt.key
+              return (
+                <button
+                  key={opt.key}
+                  className="theme-btn"
+                  onClick={() => changeTheme(opt.key)}
+                  style={{
+                    background: active
+                      ? (opt.key === 'dark' ? '#1a1a2a' : opt.key === 'light' ? '#f0f2f7' : 'rgba(255,255,255,0.28)')
+                      : 'transparent',
+                    color: active
+                      ? (opt.key === 'light' ? '#1a1a2e' : '#fff')
+                      : (theme === 'light' ? 'rgba(26,26,46,0.65)' : 'rgba(255,255,255,0.65)'),
+                    boxShadow: active ? '0 2px 12px rgba(0,0,0,0.28)' : 'none',
+                  }}
+                >
+                  <span style={{
+                    width: 10, height: 10, borderRadius: '50%', flexShrink: 0,
+                    background: opt.dotBg,
+                    border: `1.5px solid ${opt.dotBorder}`,
+                    display: 'inline-block',
+                  }}/>
+                  {opt.label}
+                </button>
+              )
+            })}
           </div>
         </div>
 
@@ -506,6 +859,7 @@ export default function CapaPage() {
             const isHov = hovered === m.id
             const grad = isHov ? t.gradientHovers[i] : t.gradients[i]
             const borderColor = isHov ? m.accentColor : t.cardBorder
+            const AnimComponent = MODULE_ANIMS[i]
 
             return (
               <div
@@ -528,7 +882,7 @@ export default function CapaPage() {
                 {isHov && <div className="cf-shimmer"/>}
 
                 {/* Badge */}
-                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 14, position: 'relative', zIndex: 2 }}>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 12, position: 'relative', zIndex: 2 }}>
                   <div style={{
                     fontSize: 11, fontWeight: 800, letterSpacing: 0.8,
                     padding: '5px 13px', borderRadius: 20,
@@ -548,22 +902,26 @@ export default function CapaPage() {
                   </div>
                 </div>
 
-                {/* Ícone 3D */}
-                <div className="cf-icon-area cf-icon-wrap" style={{
-                  marginBottom: 22,
-                  position: 'relative', zIndex: 2,
-                  background: t.iconBg,
-                  border: `1px solid ${isHov ? borderColor + '66' : t.iconBorder}`,
-                  transition: 'background 0.5s, border-color 0.4s, box-shadow 0.4s',
-                  boxShadow: isHov ? `0 10px 36px ${m.accentColor}35` : 'none',
-                }}>
-                  <div className="cf-icon-img">
-                    <Image src={m.icon} alt={m.label} fill style={{ objectFit: 'contain' }}/>
-                  </div>
+                {/* ── Área de Animação Viva ── */}
+                <div
+                  className="cf-anim-area cf-icon-wrap"
+                  style={{
+                    background: theme === 'dark'
+                      ? `linear-gradient(160deg, rgba(${m.accentColor === '#ec6e2a' ? '236,110,42' : m.accentColor === '#22c55e' ? '34,197,94' : m.accentColor === '#3b82f6' ? '59,130,246' : '239,68,68'},0.10) 0%, rgba(0,0,0,0.30) 100%)`
+                      : theme === 'light'
+                      ? `linear-gradient(160deg, rgba(${m.accentColor === '#ec6e2a' ? '236,110,42' : m.accentColor === '#22c55e' ? '34,197,94' : m.accentColor === '#3b82f6' ? '59,130,246' : '239,68,68'},0.08) 0%, rgba(255,255,255,0.60) 100%)`
+                      : 'rgba(255,255,255,0.08)',
+                    border: `1px solid ${isHov ? borderColor + '55' : t.iconBorder}`,
+                    boxShadow: isHov ? `0 14px 44px ${m.accentColor}30` : 'none',
+                    transition: 'background 0.5s, border-color 0.4s, box-shadow 0.4s',
+                    minHeight: 'clamp(230px, 28vh, 340px)',
+                  }}
+                >
+                  <AnimComponent color={t.text}/>
                 </div>
 
-                {/* Conteúdo */}
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10, position: 'relative', zIndex: 2 }}>
+                {/* Conteúdo textual */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10, position: 'relative', zIndex: 2 }}>
                   <div className="cf-card-title" style={{
                     color: t.text,
                     transition: 'color 0.5s',
@@ -596,7 +954,7 @@ export default function CapaPage() {
                 {/* Rodapé */}
                 <div style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  paddingTop: 18, marginTop: 18,
+                  paddingTop: 16, marginTop: 16,
                   borderTop: `1px solid ${t.divider}`,
                   position: 'relative', zIndex: 2,
                   transition: 'border-color 0.5s',
