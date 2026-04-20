@@ -1,6 +1,9 @@
 import { Suspense } from 'react'
 import DashboardClient from './DashboardClient'
 
+// Força renderização dinâmica — evita prerender em build-time (Supabase não disponível)
+export const dynamic = 'force-dynamic'
+
 function LoadingFallback() {
   return (
     <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background:'#F8F9FA' }}>
