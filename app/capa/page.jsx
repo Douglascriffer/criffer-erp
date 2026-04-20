@@ -609,10 +609,12 @@ export default function CapaPage() {
 
         /* ── Título do card ── */
         .cf-card-title {
-          font-size: clamp(17px, 1.6vw, 24px);
+          font-size: clamp(12px, 1.1vw, 16px);
           font-weight: 900;
-          letter-spacing: 1.5px;
+          letter-spacing: 1.0px;
           line-height: 1.2;
+          overflow-wrap: break-word;
+          word-break: break-word;
         }
         .cf-card-desc {
           font-size: clamp(14px, 1.30vw, 18px);
@@ -697,15 +699,15 @@ export default function CapaPage() {
         }
       `}</style>
 
-      {/* ══ TOPBAR — preto e branco ══ */}
+      {/* ══ TOPBAR — laranja + switcher de tema ══ */}
       <div className="cf-topbar" style={{
-        background: '#0d0d0d',
-        borderBottom: '1px solid rgba(255,255,255,0.08)',
+        background: 'linear-gradient(135deg, #a84410 0%, #d4601a 42%, #ec6e2a 72%, #f07c38 100%)',
+        borderBottom: '1px solid rgba(0,0,0,0.18)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         flexShrink: 0,
-        boxShadow: '0 4px 28px rgba(0,0,0,0.55)',
+        boxShadow: '0 4px 32px rgba(168,68,16,0.55)',
         zIndex: 100,
         gap: 16,
       }}>
@@ -728,6 +730,48 @@ export default function CapaPage() {
               ERP Financeiro
             </div>
           </div>
+        </div>
+
+        {/* ── Theme Switcher ── */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 6,
+          background: 'rgba(0,0,0,0.22)',
+          padding: '6px 10px',
+          borderRadius: 32,
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255,255,255,0.18)',
+          boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
+        }}>
+          <span style={{
+            fontSize: 10, fontWeight: 700, letterSpacing: 1.5,
+            color: 'rgba(255,255,255,0.55)',
+            paddingRight: 4, paddingLeft: 2,
+            textTransform: 'uppercase',
+          }}>Tema</span>
+          {THEME_OPTS.map(opt => {
+            const active = theme === opt.key
+            return (
+              <button
+                key={opt.key}
+                className="theme-btn"
+                onClick={() => changeTheme(opt.key)}
+                style={{
+                  background: active ? 'rgba(255,255,255,0.22)' : 'transparent',
+                  color: '#fff',
+                  boxShadow: active ? '0 2px 10px rgba(0,0,0,0.30)' : 'none',
+                  padding: '6px clamp(10px, 1vw, 16px)',
+                }}
+              >
+                <span style={{
+                  width: 9, height: 9, borderRadius: '50%', flexShrink: 0,
+                  background: opt.dotBg,
+                  border: `1.5px solid ${opt.dotBorder}`,
+                  display: 'inline-block',
+                }}/>
+                {opt.label}
+              </button>
+            )
+          })}
         </div>
 
         {/* Usuário + Sair */}
@@ -793,63 +837,6 @@ export default function CapaPage() {
             transition: 'color 0.5s',
           }}>
             CENTRAL DE GESTÃO
-          </div>
-        </div>
-
-        {/* ── Theme Switcher — abaixo do título, com mais espaço ── */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 14,
-          marginBottom: 'clamp(42px, 5.5vh, 72px)',
-          position: 'relative', zIndex: 2,
-          opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0)' : 'translateY(16px)',
-          transition: 'opacity 0.7s ease 0.15s, transform 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.15s',
-        }}>
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 8,
-            background: theme === 'light' ? 'rgba(0,0,0,0.07)' : 'rgba(255,255,255,0.07)',
-            padding: '7px 10px',
-            borderRadius: 32,
-            backdropFilter: 'blur(12px)',
-            border: `1px solid ${theme === 'light' ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.12)'}`,
-            boxShadow: '0 4px 20px rgba(0,0,0,0.12)',
-          }}>
-            <span style={{
-              fontSize: 11, fontWeight: 700, letterSpacing: 1.5,
-              color: theme === 'light' ? 'rgba(26,26,46,0.55)' : 'rgba(255,255,255,0.45)',
-              paddingRight: 6,
-              paddingLeft: 4,
-              textTransform: 'uppercase',
-            }}>Tema</span>
-            {THEME_OPTS.map(opt => {
-              const active = theme === opt.key
-              return (
-                <button
-                  key={opt.key}
-                  className="theme-btn"
-                  onClick={() => changeTheme(opt.key)}
-                  style={{
-                    background: active
-                      ? (opt.key === 'dark' ? '#1a1a2a' : opt.key === 'light' ? '#f0f2f7' : 'rgba(255,255,255,0.28)')
-                      : 'transparent',
-                    color: active
-                      ? (opt.key === 'light' ? '#1a1a2e' : '#fff')
-                      : (theme === 'light' ? 'rgba(26,26,46,0.65)' : 'rgba(255,255,255,0.65)'),
-                    boxShadow: active ? '0 2px 12px rgba(0,0,0,0.28)' : 'none',
-                  }}
-                >
-                  <span style={{
-                    width: 10, height: 10, borderRadius: '50%', flexShrink: 0,
-                    background: opt.dotBg,
-                    border: `1.5px solid ${opt.dotBorder}`,
-                    display: 'inline-block',
-                  }}/>
-                  {opt.label}
-                </button>
-              )
-            })}
           </div>
         </div>
 
