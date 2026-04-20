@@ -164,11 +164,11 @@ export default function LoginPage() {
             {/* Subtítulo — texto sobre o fundo claro */}
             <p style={{
               textAlign: 'center',
-              fontSize: 18, fontWeight: 700,
-              color: '#111111',
+              fontSize: 22, fontWeight: 700,
+              color: '#FFFFFF',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              textShadow: '0 1px 6px rgba(255,255,255,0.8)',
+              textShadow: '0 2px 8px rgba(0,0,0,0.45)',
               marginBottom: 28, marginTop: 6,
             }}>
               Gestão de Resultados
