@@ -247,7 +247,12 @@ function AnimFluxo({ color }) {
         fill="rgba(245,158,11,0.15)" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.50"
         style={{ animation:'flxPulse 2.5s ease-in-out infinite' }}/>
       <text x="254" y="36" fill="#f59e0b" fontSize="8" fontWeight="800"
-        textAnchor="middle" domin/* INADIMPLÊNCIA — Gauge velocímetro + aging buckets */
+        textAnchor="middle" dominantBaseline="middle" fontFamily="system-ui">SALDO</text>
+    </svg>
+  )
+}
+
+/* INADIMPLÊNCIA — Gauge velocímetro + aging buckets */
 function AnimInadimplencia({ color }) {
   return (
     <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" style={{ display: 'block' }}>
