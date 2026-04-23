@@ -766,10 +766,10 @@ export default function CapaPage() {
 
                 {/* Conteúdo textual */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10, position: 'relative', zIndex: 2 }}>
-                  <div className="cf-card-title" style={{ color: '#ffffff', fontWeight: 800, marginBottom: 12, textAlign: 'center' }}>
+                  <div className="cf-card-title" style={{ color: t.text, fontWeight: 800, marginBottom: 12, textAlign: 'center' }}>
                     {m.label}
                   </div>
-                  <div className="cf-card-desc" style={{ color: '#ffffff', fontWeight: 600 }}>
+                  <div className="cf-card-desc" style={{ color: t.textMuted, fontWeight: 600 }}>
                     {m.desc}
                   </div>
 
@@ -778,14 +778,14 @@ export default function CapaPage() {
                     {m.tags.map(tag => (
                       <span key={tag} style={{
                         fontFamily: 'Gotham, sans-serif',
-                        fontSize: 13,
+                        fontSize: 14,
                         fontWeight: 700,
                         padding: '6px 14px',
                         borderRadius: 8,
-                        background: 'rgba(255,255,255,0.12)',
-                        color: '#ffffff',
-                        border: '1.5px solid rgba(255,255,255,0.25)',
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
+                        background: t.pillBg,
+                        color: t.text,
+                        border: `1.5px solid ${t.divider}`,
+                        boxShadow: theme === 'dark' ? '0 2px 4px rgba(0,0,0,0.25)' : '0 2px 4px rgba(0,0,0,0.05)'
                       }}>
                         {tag}
                       </span>
@@ -802,8 +802,9 @@ export default function CapaPage() {
                   transition: 'border-color 0.5s',
                 }}>
                   <span style={{
-                    fontSize: 12.5, fontWeight: 600,
-                    color: t.textMuted, letterSpacing: 0.3,
+                    fontSize: 15, fontWeight: 800,
+                    color: t.text, letterSpacing: 0.2,
+                    textTransform: 'uppercase',
                     transition: 'color 0.5s',
                   }}>
                     {m.disabled ? 'Em desenvolvimento' : 'Acessar módulo'}
