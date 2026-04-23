@@ -764,8 +764,8 @@ export default function CapaPage() {
                   <AnimComponent color={t.text}/>
                 </div>
 
-                {/* Conteúdo textual */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 10, position: 'relative', zIndex: 2 }}>
+                {/* Conteúdo textual — flex: 1 garante que o rodapé alinhe no final */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10, position: 'relative', zIndex: 2, flex: 1 }}>
                   <div className="cf-card-title" style={{ color: t.text, fontWeight: 800, marginBottom: 12, textAlign: 'center' }}>
                     {m.label}
                   </div>
@@ -774,7 +774,7 @@ export default function CapaPage() {
                   </div>
 
                   {/* Tags com leitura mais clara */}
-                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 24 }}>
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 'auto', paddingTop: 20 }}>
                     {m.tags.map(tag => (
                       <span key={tag} style={{
                         fontFamily: 'Gotham, sans-serif',
