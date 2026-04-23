@@ -12,8 +12,8 @@ const THEMES = {
     cardHoverShadow: '0 28px 80px rgba(236,110,42,0.28), 0 8px 32px rgba(0,0,0,0.30)',
     cardShadow: '0 4px 24px rgba(0,0,0,0.25)',
     text: '#ffffff',
-    textSub: 'rgba(255,255,255,0.88)',
-    textMuted: 'rgba(255,255,255,0.68)',
+    textSub: '#ffffff',
+    textMuted: '#ffffff',
     accent: '#ec6e2a',
     accentSoft: 'rgba(236,110,42,0.16)',
     iconBg: 'rgba(255,255,255,0.04)',
@@ -75,6 +75,25 @@ const THEMES = {
 /* ─────────────────────────────────────────────────────────────
    ANIMAÇÕES — SVG profissionais para cada módulo
 ───────────────────────────────────────────────────────────── */
+
+/* ─── Hook de Contador Progressivo ─── */
+function useCounter(target, duration = 3000, repeat = true) {
+  const [count, setCount] = useState(0)
+  useEffect(() => {
+    let start = 0
+    const step = (target / (duration / 16))
+    const timer = setInterval(() => {
+      start += step
+      if (start >= target) {
+        if (repeat) start = 0
+        else { setCount(target); clearInterval(timer) }
+      }
+      setCount(Math.floor(start))
+    }, 16)
+    return () => clearInterval(timer)
+  }, [target, duration, repeat])
+  return count
+}
 
 /* FATURAMENTO — Barras mensais + linha de tendência sincronizada */
 function AnimFaturamento({ color }) {
@@ -140,43 +159,49 @@ function AnimFaturamento({ color }) {
 
 
 
-/* ORÇAMENTO — Limpo, Sem RH e sem sobreposições */
+/* ORÇAMENTO — Limpo, Sem RH e com Contadores Vivos */
 function AnimOrcamento({ color }) {
+  const meta = useCounter(82)
+  const c1 = useCounter(73)
+  const c2 = useCounter(42)
+  const c3 = useCounter(59)
+
   return (
     <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" style={{ display:'block' }}>
       <style>{`
         @keyframes orcB { from{width:0;} to{width:1;} }
-        @keyframes orcRing { from{stroke-dashoffset:276;} to{stroke-dashoffset:50;} }
+        @keyframes orcRing { from{stroke-dashoffset:251;} to{stroke-dashoffset:45;} }
       `}</style>
       
-      {/* Donut à direita - Tamanho reduzido para dar espaço */}
+      {/* Donut à direita */}
       <g transform="translate(210,92)">
-        <circle r="40" fill="none" stroke={`${color}08`} strokeWidth="12"/>
+        <circle r="40" fill="none" stroke={`${color}12`} strokeWidth="12"/>
         <circle r="40" fill="none" stroke="#22c55e" strokeWidth="12"
           strokeLinecap="round" strokeDasharray="251" strokeDashoffset="251"
           transform="rotate(-90)"
           style={{ animation:'orcRing 3s ease-out infinite alternate' }}/>
-        <text y="5" fill={color} fontSize="18" fontWeight="900" textAnchor="middle" fontFamily="Gotham">82%</text>
-        <text y="18" fill={color} fontSize="9" textAnchor="middle" fontFamily="Gotham" opacity="0.6">META</text>
+        <text y="5" fill={color} fontSize="18" fontWeight="900" textAnchor="middle" fontFamily="Gotham">{meta}%</text>
+        <text y="18" fill={color} fontSize="9" textAnchor="middle" fontFamily="Gotham" fontWeight="700">META</text>
       </g>
 
-      {/* Categorias à esquerda — SEM RH */}
+      {/* Categorias à esquerda */}
       {[
-        { label:'COMERCIAL', y:40,  w:100, c:'#ec6e2a', pct:'73%' },
-        { label:'OPERAÇÕES', y:88,  w:75,  c:'#22c55e', pct:'42%' },
-        { label:'TOTAL',     y:136, w:115, c:'#3b82f6', pct:'59%' },
+        { label:'COMERCIAL', y:40,  w:100, c:'#ec6e2a', pct:c1 },
+        { label:'OPERAÇÕES', y:88,  w:75,  c:'#22c55e', pct:c2 },
+        { label:'TOTAL',     y:136, w:115, c:'#3b82f6', pct:c3 },
       ].map((cat,i) => (
         <g key={i} transform={`translate(24, ${cat.y})`}>
-          <text fill={color} fontSize="11" fontWeight="700" opacity="0.8" fontFamily="Gotham">{cat.label}</text>
-          <rect y="12" width="120" height="10" rx="5" fill={`${color}08`}/>
-          <rect y="12" width={cat.w} height="10" rx="5" fill={cat.c} opacity="0.9"
+          <text fill={color} fontSize="11" fontWeight="700" fontFamily="Gotham">{cat.label}</text>
+          <rect y="12" width="120" height="10" rx="5" fill={`${color}12`}/>
+          <rect y="12" width={cat.w} height="10" rx="5" fill={cat.c}
             style={{ transformOrigin:'left', animation:`orcB 2.5s ease-out infinite alternate ${i*0.2}s` }}/>
-          <text x={cat.w + 10} y="21" fill={cat.c} fontSize="11" fontWeight="900" fontFamily="Gotham">{cat.pct}</text>
+          <text x={cat.w + 10} y="21" fill={cat.c} fontSize="11" fontWeight="900" fontFamily="Gotham">{cat.pct}%</text>
         </g>
       ))}
     </svg>
   )
 }
+
 
 
 
@@ -219,6 +244,8 @@ function AnimFluxo({ color }) {
 
 /* INADIMPLÊNCIA — Gauge com Percentual Dinâmico */
 function AnimInadimplencia({ color }) {
+  const pct = useCounter(70, 4000)
+
   return (
     <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" style={{ display: 'block' }}>
       <style>{`
@@ -227,21 +254,15 @@ function AnimInadimplencia({ color }) {
           50%    { transform:rotate(55deg); }
           100%   { transform:rotate(-90deg); }
         }
-        @keyframes iadCounter {
-          0%,10% { opacity:0; transform:translateY(10px); }
-          25%    { opacity:1; transform:translateY(0); }
-          50%    { transform:scale(1.2); }
-          75%    { opacity:1; transform:translateY(0); }
-          90%,100% { opacity:0; transform:translateY(-10px); }
-        }
       `}</style>
 
-      <g transform="translate(140,110)">
-        <path d="M -90 0 A 90 90 0 0 1 90 0" fill="none" stroke={`${color}12`} strokeWidth="18" strokeLinecap="round"/>
+      {/* Movido um pouco para baixo para não cortar o topo MÉDIO */}
+      <g transform="translate(140,118)">
+        <path d="M -90 0 A 90 90 0 0 1 90 0" fill="none" stroke={`${color}15`} strokeWidth="18" strokeLinecap="round"/>
         
-        <path d="M -90 0 A 90 90 0 0 1 -45 -78" fill="none" stroke="#22c55e" strokeWidth="18" strokeLinecap="round" opacity="0.5"/>
-        <path d="M -45 -78 A 90 90 0 0 1 45 -78"  fill="none" stroke="#f59e0b" strokeWidth="18" strokeLinecap="round" opacity="0.5"/>
-        <path d="M 45 -78 A 90 90 0 0 1 90 0"    fill="none" stroke="#ef4444" strokeWidth="18" strokeLinecap="round" opacity="0.5"/>
+        <path d="M -90 0 A 90 90 0 0 1 -45 -78" fill="none" stroke="#22c55e" strokeWidth="18" strokeLinecap="round" opacity="0.6"/>
+        <path d="M -45 -78 A 90 90 0 0 1 45 -78"  fill="none" stroke="#f59e0b" strokeWidth="18" strokeLinecap="round" opacity="0.6"/>
+        <path d="M 45 -78 A 90 90 0 0 1 90 0"    fill="none" stroke="#ef4444" strokeWidth="18" strokeLinecap="round" opacity="0.6"/>
 
         <g style={{ transformOrigin:'0px 0px', animation:'iadNeedle 4s ease-in-out infinite' }}>
           <line x1="0" y1="10" x2="0" y2="-82" stroke="#ef4444" strokeWidth="6" strokeLinecap="round"/>
@@ -249,18 +270,16 @@ function AnimInadimplencia({ color }) {
           <circle r="5" fill="white"/>
         </g>
 
-        <text x="-105" y="25" fill="#16803d" fontSize="13" fontWeight="900" textAnchor="middle" fontFamily="Gotham">BAIXO</text>
-        <text x="0"   y="-105" fill="#b45309" fontSize="13" fontWeight="900" textAnchor="middle" fontFamily="Gotham">MÉDIO</text>
-        <text x="105"  y="25" fill="#b91c1c" fontSize="13" fontWeight="900" textAnchor="middle" fontFamily="Gotham">ALTO</text>
+        <text x="-105" y="25" fill="#22c55e" fontSize="13" fontWeight="900" textAnchor="middle" fontFamily="Gotham">BAIXO</text>
+        <text x="0"   y="-105" fill="#f59e0b" fontSize="13" fontWeight="900" textAnchor="middle" fontFamily="Gotham">MÉDIO</text>
+        <text x="105"  y="25" fill="#ef4444" fontSize="13" fontWeight="900" textAnchor="middle" fontFamily="Gotham">ALTO</text>
         
-        {/* Usando múltiplos textos para simular contador em sincronia com o ponteiro */}
-        <g style={{ animation:'iadCounter 4s ease-in-out infinite' }}>
-           <text y="50" fill="#ef4444" fontSize="36" fontWeight="950" textAnchor="middle" fontFamily="Gotham">70%</text>
-        </g>
+        <text y="50" fill="#ef4444" fontSize="36" fontWeight="950" textAnchor="middle" fontFamily="Gotham">{pct}%</text>
       </g>
     </svg>
   )
 }
+
 
 
 
@@ -743,10 +762,10 @@ export default function CapaPage() {
 
                 {/* Conteúdo textual */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10, position: 'relative', zIndex: 2 }}>
-                  <div className="cf-card-title" style={{ color: t.text, fontWeight: 800, marginBottom: 12, textAlign: 'center' }}>
+                  <div className="cf-card-title" style={{ color: '#ffffff', fontWeight: 800, marginBottom: 12, textAlign: 'center' }}>
                     {m.label}
                   </div>
-                  <div className="cf-card-desc" style={{ color: t.textMuted, fontWeight: 600 }}>
+                  <div className="cf-card-desc" style={{ color: '#ffffff', fontWeight: 600 }}>
                     {m.desc}
                   </div>
 
@@ -759,10 +778,10 @@ export default function CapaPage() {
                         fontWeight: 700,
                         padding: '6px 14px',
                         borderRadius: 8,
-                        background: t.pillBg,
-                        color: t.text,
-                        border: `1.5px solid ${t.divider}`,
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                        background: 'rgba(255,255,255,0.12)',
+                        color: '#ffffff',
+                        border: '1.5px solid rgba(255,255,255,0.25)',
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.15)'
                       }}>
                         {tag}
                       </span>
