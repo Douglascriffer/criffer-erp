@@ -793,10 +793,11 @@ export default function CapaPage() {
                   </div>
                 </div>
 
-                {/* Rodapé */}
+                {/* Rodapé — Altura fixa para garantir alinhamento horizontal perfeito */}
                 <div style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                   paddingTop: 16, marginTop: 16,
+                  minHeight: 40, // Altura fixa para estabilizar a linha
                   borderTop: `1px solid ${t.divider}`,
                   position: 'relative', zIndex: 2,
                   transition: 'border-color 0.5s',
@@ -809,19 +810,22 @@ export default function CapaPage() {
                   }}>
                     {m.disabled ? 'Em desenvolvimento' : 'Acessar módulo'}
                   </span>
-                  {!m.disabled && (
-                    <div style={{
-                      width: 34, height: 34, borderRadius: '50%',
-                      background: isHov ? m.accentColor : t.accentSoft,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      transition: 'all 0.32s ease', flexShrink: 0,
-                      boxShadow: isHov ? `0 6px 20px ${m.accentColor}65` : 'none',
-                    }}>
+                  
+                  {/* Ícone ou Placeholder para manter a altura da linha idêntica */}
+                  <div style={{
+                    width: 34, height: 34, borderRadius: '50%',
+                    background: !m.disabled ? (isHov ? m.accentColor : t.accentSoft) : 'transparent',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    transition: 'all 0.32s ease', flexShrink: 0,
+                    boxShadow: (!m.disabled && isHov) ? `0 6px 20px ${m.accentColor}65` : 'none',
+                    opacity: m.disabled ? 0 : 1
+                  }}>
+                    {!m.disabled && (
                       <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
                         <path d="M3 8h10M9 4l4 4-4 4" stroke={isHov ? '#fff' : t.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
             )
