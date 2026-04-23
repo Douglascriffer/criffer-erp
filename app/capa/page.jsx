@@ -76,23 +76,26 @@ const THEMES = {
    ANIMAÇÕES — SVG profissionais para cada módulo
 ───────────────────────────────────────────────────────────── */
 
-/* ─── Hook de Contador Progressivo ─── */
-function useCounter(target, duration = 3000, repeat = true) {
-  const [count, setCount] = useState(0)
+/* ─── Hook de Progresso Sincronizado para Animações ─── */
+function useSyncedAnimation(duration = 4000) {
+  const [progress, setProgress] = useState(0)
   useEffect(() => {
-    let start = 0
-    const step = (target / (duration / 16))
-    const timer = setInterval(() => {
-      start += step
-      if (start >= target) {
-        if (repeat) start = 0
-        else { setCount(target); clearInterval(timer) }
-      }
-      setCount(Math.floor(start))
-    }, 16)
-    return () => clearInterval(timer)
-  }, [target, duration, repeat])
-  return count
+    let start = null
+    let frameId
+    const step = (timestamp) => {
+      if (!start) start = timestamp
+      const elapsed = timestamp - start
+      const cycle = elapsed % duration
+      const p = cycle / duration
+      // Senoide para movimento suave (vai e volta)
+      const smooth = (Math.sin(p * Math.PI * 2 - Math.PI / 2) + 1) / 2
+      setProgress(smooth)
+      frameId = requestAnimationFrame(step)
+    }
+    frameId = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(frameId)
+  }, [duration])
+  return progress
 }
 
 /* FATURAMENTO — Barras mensais + linha de tendência sincronizada */
@@ -159,48 +162,52 @@ function AnimFaturamento({ color }) {
 
 
 
-/* ORÇAMENTO — Limpo, Sem RH e com Contadores Vivos */
+/* ORÇAMENTO — Totalmente Sincronizado (Visual + Números) */
 function AnimOrcamento({ color }) {
-  const meta = useCounter(82)
-  const c1 = useCounter(73)
-  const c2 = useCounter(42)
-  const c3 = useCounter(59)
+  const p = useSyncedAnimation(4500)
+  
+  const targetMeta = 82
+  const cats = [
+    { label:'COMERCIAL', w:100, c:'#ec6e2a', target:73 },
+    { label:'OPERAÇÕES', w:75,  c:'#22c55e', target:42 },
+    { label:'TOTAL',     y:136, w:115, c:'#3b82f6', target:59 },
+  ]
+
+  // Donut progress (251 is full circumference)
+  const ringOffset = 251 - (251 * (targetMeta/100) * p)
 
   return (
     <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" style={{ display:'block' }}>
-      <style>{`
-        @keyframes orcB { from{width:0;} to{width:1;} }
-        @keyframes orcRing { from{stroke-dashoffset:251;} to{stroke-dashoffset:45;} }
-      `}</style>
-      
       {/* Donut à direita */}
       <g transform="translate(210,92)">
         <circle r="40" fill="none" stroke={`${color}12`} strokeWidth="12"/>
         <circle r="40" fill="none" stroke="#22c55e" strokeWidth="12"
-          strokeLinecap="round" strokeDasharray="251" strokeDashoffset="251"
-          transform="rotate(-90)"
-          style={{ animation:'orcRing 3s ease-out infinite alternate' }}/>
-        <text y="5" fill={color} fontSize="18" fontWeight="900" textAnchor="middle" fontFamily="Gotham">{meta}%</text>
+          strokeLinecap="round" strokeDasharray="251" strokeDashoffset={ringOffset}
+          transform="rotate(-90)" />
+        <text y="5" fill={color} fontSize="18" fontWeight="900" textAnchor="middle" fontFamily="Gotham">
+          {Math.floor(targetMeta * p)}%
+        </text>
         <text y="18" fill={color} fontSize="9" textAnchor="middle" fontFamily="Gotham" fontWeight="700">META</text>
       </g>
 
       {/* Categorias à esquerda */}
-      {[
-        { label:'COMERCIAL', y:40,  w:100, c:'#ec6e2a', pct:c1 },
-        { label:'OPERAÇÕES', y:88,  w:75,  c:'#22c55e', pct:c2 },
-        { label:'TOTAL',     y:136, w:115, c:'#3b82f6', pct:c3 },
-      ].map((cat,i) => (
-        <g key={i} transform={`translate(24, ${cat.y})`}>
-          <text fill={color} fontSize="11" fontWeight="700" fontFamily="Gotham">{cat.label}</text>
-          <rect y="12" width="120" height="10" rx="5" fill={`${color}12`}/>
-          <rect y="12" width={cat.w} height="10" rx="5" fill={cat.c}
-            style={{ transformOrigin:'left', animation:`orcB 2.5s ease-out infinite alternate ${i*0.2}s` }}/>
-          <text x={cat.w + 10} y="21" fill={cat.c} fontSize="11" fontWeight="900" fontFamily="Gotham">{cat.pct}%</text>
-        </g>
-      ))}
+      {cats.map((cat,i) => {
+        const y = 40 + i*48
+        const currentW = cat.w * p
+        const currentVal = Math.floor(cat.target * p)
+        return (
+          <g key={i} transform={`translate(24, ${y})`}>
+            <text fill={color} fontSize="11" fontWeight="700" fontFamily="Gotham">{cat.label}</text>
+            <rect y="12" width="120" height="10" rx="5" fill={`${color}12`}/>
+            <rect y="12" width={currentW} height="10" rx="5" fill={cat.c} />
+            <text x={currentW + 10} y="21" fill={cat.c} fontSize="11" fontWeight="900" fontFamily="Gotham">{currentVal}%</text>
+          </g>
+        )
+      })}
     </svg>
   )
 }
+
 
 
 
@@ -242,21 +249,17 @@ function AnimFluxo({ color }) {
 }
 
 
-/* INADIMPLÊNCIA — Gauge com Percentual Dinâmico */
+/* INADIMPLÊNCIA — Gauge Progressivo Sincronizado */
 function AnimInadimplencia({ color }) {
-  const pct = useCounter(70, 4000)
+  const p = useSyncedAnimation(5000)
+  
+  // Needle: -90deg to 90deg (180deg total). target 70% means 0.7 * 180 = 126deg.
+  // -90 + 126 = 36deg.
+  const rotation = -90 + (180 * 0.7 * p)
+  const currentVal = Math.floor(70 * p)
 
   return (
     <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" style={{ display: 'block' }}>
-      <style>{`
-        @keyframes iadNeedle {
-          0%,10% { transform:rotate(-90deg); }
-          50%    { transform:rotate(55deg); }
-          100%   { transform:rotate(-90deg); }
-        }
-      `}</style>
-
-      {/* Movido um pouco para baixo para não cortar o topo MÉDIO */}
       <g transform="translate(140,118)">
         <path d="M -90 0 A 90 90 0 0 1 90 0" fill="none" stroke={`${color}15`} strokeWidth="18" strokeLinecap="round"/>
         
@@ -264,7 +267,7 @@ function AnimInadimplencia({ color }) {
         <path d="M -45 -78 A 90 90 0 0 1 45 -78"  fill="none" stroke="#f59e0b" strokeWidth="18" strokeLinecap="round" opacity="0.6"/>
         <path d="M 45 -78 A 90 90 0 0 1 90 0"    fill="none" stroke="#ef4444" strokeWidth="18" strokeLinecap="round" opacity="0.6"/>
 
-        <g style={{ transformOrigin:'0px 0px', animation:'iadNeedle 4s ease-in-out infinite' }}>
+        <g style={{ transform: `rotate(${rotation}deg)` }}>
           <line x1="0" y1="10" x2="0" y2="-82" stroke="#ef4444" strokeWidth="6" strokeLinecap="round"/>
           <circle r="12" fill="#ef4444"/>
           <circle r="5" fill="white"/>
@@ -274,11 +277,12 @@ function AnimInadimplencia({ color }) {
         <text x="0"   y="-105" fill="#f59e0b" fontSize="13" fontWeight="900" textAnchor="middle" fontFamily="Gotham">MÉDIO</text>
         <text x="105"  y="25" fill="#ef4444" fontSize="13" fontWeight="900" textAnchor="middle" fontFamily="Gotham">ALTO</text>
         
-        <text y="50" fill="#ef4444" fontSize="36" fontWeight="950" textAnchor="middle" fontFamily="Gotham">{pct}%</text>
+        <text y="50" fill="#ef4444" fontSize="36" fontWeight="950" textAnchor="middle" fontFamily="Gotham">{currentVal}%</text>
       </g>
     </svg>
   )
 }
+
 
 
 
