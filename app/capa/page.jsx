@@ -38,36 +38,36 @@ const THEMES = {
     ],
   },
   light: {
-    bg: 'linear-gradient(145deg, #eef0f5 0%, #e4e7ee 60%, #eef0f7 100%)',
-    card: 'rgba(255,255,255,0.75)',
-    cardBorder: 'rgba(0,0,0,0.08)',
-    cardHoverShadow: '0 28px 80px rgba(236,110,42,0.20), 0 8px 32px rgba(0,0,0,0.12)',
-    cardShadow: '0 4px 24px rgba(0,0,0,0.08)',
-    text: '#1a1a2e',
-    textSub: 'rgba(26,26,46,0.82)',
-    textMuted: 'rgba(26,26,46,0.65)',
+    bg: 'linear-gradient(145deg, #f0f2f7 0%, #e8ebf2 60%, #f0f2f8 100%)',
+    card: 'rgba(255,255,255,0.92)',
+    cardBorder: 'rgba(0,0,0,0.12)',
+    cardHoverShadow: '0 32px 90px rgba(236,110,42,0.18), 0 12px 40px rgba(0,0,0,0.08)',
+    cardShadow: '0 6px 30px rgba(0,0,0,0.06)',
+    text: '#0a0a1a',
+    textSub: '#1a1a2e',
+    textMuted: '#3a3a5a',
     accent: '#ec6e2a',
-    accentSoft: 'rgba(236,110,42,0.09)',
-    iconBg: 'rgba(255,255,255,0.90)',
-    iconBorder: 'rgba(0,0,0,0.07)',
-    divider: 'rgba(0,0,0,0.08)',
-    dividerOpacity: 0.1,
+    accentSoft: 'rgba(236,110,42,0.14)',
+    iconBg: '#ffffff',
+    iconBorder: 'rgba(0,0,0,0.15)',
+    divider: 'rgba(0,0,0,0.12)',
+    dividerOpacity: 0.15,
     grid: '#ec6e2a',
-    gridOpacity: 0.04,
-    pillBg: 'rgba(0,0,0,0.08)',
-    statusActive: '#16a34a',
-    statusBuilding: '#d97706',
+    gridOpacity: 0.05,
+    pillBg: 'rgba(0,0,0,0.12)',
+    statusActive: '#15803d',
+    statusBuilding: '#b45309',
     gradients: [
-      'linear-gradient(145deg, rgba(236,110,42,0.35) 0%, rgba(236,110,42,0.06) 100%)',
-      'linear-gradient(145deg, rgba(34,197,94,0.32) 0%, rgba(34,197,94,0.05) 100%)',
-      'linear-gradient(145deg, rgba(59,130,246,0.32) 0%, rgba(59,130,246,0.05) 100%)',
-      'linear-gradient(145deg, rgba(239,68,68,0.32) 0%, rgba(239,68,68,0.05) 100%)',
+      'linear-gradient(145deg, rgba(236,110,42,0.40) 0%, rgba(236,110,42,0.08) 100%)',
+      'linear-gradient(145deg, rgba(34,197,94,0.38) 0%, rgba(34,197,94,0.08) 100%)',
+      'linear-gradient(145deg, rgba(59,130,246,0.38) 0%, rgba(59,130,246,0.08) 100%)',
+      'linear-gradient(145deg, rgba(239,68,68,0.38) 0%, rgba(239,68,68,0.08) 100%)',
     ],
     gradientHovers: [
-      'linear-gradient(145deg, rgba(236,110,42,0.50) 0%, rgba(236,110,42,0.10) 100%)',
-      'linear-gradient(145deg, rgba(34,197,94,0.44) 0%, rgba(34,197,94,0.08) 100%)',
-      'linear-gradient(145deg, rgba(59,130,246,0.44) 0%, rgba(59,130,246,0.08) 100%)',
-      'linear-gradient(145deg, rgba(239,68,68,0.44) 0%, rgba(239,68,68,0.08) 100%)',
+      'linear-gradient(145deg, rgba(236,110,42,0.55) 0%, rgba(236,110,42,0.16) 100%)',
+      'linear-gradient(145deg, rgba(34,197,94,0.48) 0%, rgba(34,197,94,0.15) 100%)',
+      'linear-gradient(145deg, rgba(59,130,246,0.48) 0%, rgba(59,130,246,0.15) 100%)',
+      'linear-gradient(145deg, rgba(239,68,68,0.48) 0%, rgba(239,68,68,0.15) 100%)',
     ],
   },
 }
@@ -76,70 +76,60 @@ const THEMES = {
    ANIMAÇÕES — SVG profissionais para cada módulo
 ───────────────────────────────────────────────────────────── */
 
-/* FATURAMENTO — Barras mensais + linha de tendência + KPIs */
+/* FATURAMENTO — Barras mensais + linha de tendência sincronizada */
 function AnimFaturamento({ color }) {
   return (
     <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" style={{ display:'block' }}>
       <style>{`
         @keyframes fatBar { 0%,100%{transform:scaleY(0);} 10%,82%{transform:scaleY(1);} 90%,99%{transform:scaleY(0.04);} }
-        @keyframes fatLine { from{stroke-dashoffset:420;} to{stroke-dashoffset:0;} }
-        @keyframes fatDot  { 0%,100%{r:3.5;opacity:0.7;} 50%{r:5.5;opacity:1;} }
-        @keyframes fatKpi  { 0%,100%{opacity:0;transform:translateY(5px);} 20%,80%{opacity:1;transform:translateY(0);} }
-        @keyframes fatPulse{ 0%,100%{opacity:0.6;} 50%{opacity:1;} }
+        @keyframes fatLine { 
+          0%{stroke-dashoffset:420; opacity:0;} 
+          15%{stroke-dashoffset:420; opacity:0;}
+          40%{stroke-dashoffset:0; opacity:1;}
+          90%{opacity:1;}
+          100%{opacity:0;}
+        }
+        @keyframes fatDot  { 0%,10%,100%{opacity:0; r:2;} 30%,80%{opacity:1; r:4;} }
       `}</style>
       <defs>
         <linearGradient id="fatBarGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#f07c38" stopOpacity="1"/>
-          <stop offset="100%" stopColor="#a84410" stopOpacity="0.7"/>
+          <stop offset="0%" stopColor="#ec6e2a" stopOpacity="1"/>
+          <stop offset="100%" stopColor="#ec6e2a" stopOpacity="0.3"/>
         </linearGradient>
       </defs>
 
       {/* Grid */}
       {[50,80,110,140].map(y => (
-        <line key={y} x1="28" y1={y} x2="268" y2={y} stroke={color} strokeWidth="0.4" opacity="0.08"/>
+        <line key={y} x1="30" y1={y} x2="260" y2={y} stroke={color} strokeWidth="1" opacity="0.1"/>
       ))}
-      <line x1="28" y1="155" x2="268" y2="155" stroke={color} strokeWidth="1.5" opacity="0.22"/>
-      <line x1="28" y1="22"  x2="28"  y2="155" stroke={color} strokeWidth="1.5" opacity="0.22"/>
+      <line x1="30" y1="155" x2="260" y2="155" stroke={color} strokeWidth="1.5" opacity="0.3"/>
 
-      {/* 6 barras mensais */}
+      {/* 6 barras mensais - Ciclo 3s */}
       {[
-        {h:62, d:'0s'},   {h:80, d:'0.12s'}, {h:55, d:'0.24s'},
-        {h:100,d:'0.36s'},{h:74, d:'0.48s'}, {h:118,d:'0.60s'},
+        {h:62, d:'0s'},   {h:85, d:'0.1s'}, {h:60, d:'0.2s'},
+        {h:110,d:'0.3s'},{h:80, d:'0.4s'}, {h:125,d:'0.5s'},
       ].map((b,i) => (
         <rect key={i}
-          x={38+i*38} y={155-b.h} width="26" height={b.h} rx="5"
-          fill="url(#fatBarGrad)" opacity="0.88"
-          style={{ transformOrigin:`${38+i*38+13}px 155px`, animation:`fatBar 3.5s ease-in-out infinite ${b.d}` }}/>
+          x={42+i*36} y={155-b.h} width="22" height={b.h} rx="4"
+          fill="url(#fatBarGrad)"
+          style={{ transformOrigin:`${42+i*36+11}px 155px`, animation:`fatBar 3s ease-in-out infinite ${b.d}` }}/>
       ))}
 
-      {/* Linha de tendência sobre as barras */}
+      {/* Linha de tendência SINCRONIZADA */}
       <polyline
-        points="51,100  89,80  127,110  165,60  203,85  241,44"
-        fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+        points="53,100  89,75  125,110  161,55  197,85  233,40"
+        fill="none" stroke="#22c55e" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"
         strokeDasharray="420" strokeDashoffset="420"
-        style={{ animation:'fatLine 1.8s ease-out 0.6s forwards' }}/>
-      {[{cx:51,cy:100},{cx:89,cy:80},{cx:127,cy:110},{cx:165,cy:60},{cx:203,cy:85},{cx:241,cy:44}].map((p,i) => (
-        <circle key={i} cx={p.cx} cy={p.cy} r="3.5" fill="#22c55e"
-          style={{ animation:`fatDot 2.2s ease-in-out infinite ${i*0.22}s` }}/>
+        style={{ animation:'fatLine 3s ease-out infinite' }}/>
+      
+      {[{cx:53,cy:100},{cx:89,cy:75},{cx:125,cy:110},{cx:161,cy:55},{cx:197,cy:85},{cx:233,cy:40}].map((p,i) => (
+        <circle key={i} cx={p.cx} cy={p.cy} r="4" fill="#22c55e"
+          style={{ animation:`fatDot 3s ease-in-out infinite ${0.4 + i*0.1}s` }}/>
       ))}
 
-      {/* KPI badge */}
-      <rect x="30" y="22" width="118" height="24" rx="6"
-        fill="rgba(236,110,42,0.15)" stroke="#ec6e2a" strokeWidth="1" strokeOpacity="0.55"/>
-      <text x="89" y="38" fill="#ec6e2a" fontSize="10.5" fontWeight="800"
-        textAnchor="middle" dominantBaseline="middle" fontFamily="system-ui"
-        style={{ animation:'fatKpi 3.5s ease-in-out infinite' }}>↑ 2.4M  +18%</text>
-
-      {/* Chip crescimento */}
-      <rect x="154" y="22" width="58" height="18" rx="9"
-        fill="rgba(34,197,94,0.14)" stroke="#22c55e" strokeWidth="1" strokeOpacity="0.45"
-        style={{ animation:'fatPulse 2.5s ease-in-out infinite' }}/>
-      <text x="183" y="35" fill="#22c55e" fontSize="9" fontWeight="700"
-        textAnchor="middle" dominantBaseline="middle" fontFamily="system-ui">▲ 18% aa</text>
-
-      {/* Meses */}
+      {/* Meses - Ajustado para não cortar Jan */}
       {['Jan','Fev','Mar','Abr','Mai','Jun'].map((m,i) => (
-        <text key={m} x={51+i*38} y="170" fill={color} fontSize="8.5" opacity="0.40"
+        <text key={m} x={53+i*36} y="172" fill={color} fontSize="10" fontWeight="600" opacity="0.5"
           textAnchor="middle" fontFamily="system-ui">{m}</text>
       ))}
     </svg>
@@ -148,49 +138,46 @@ function AnimFaturamento({ color }) {
 
 
 
-/* ORÇAMENTO — Donut de realização + barras de categoria */
+
+/* ORÇAMENTO — Donut fixo e barras laterais sem sobreposição */
 function AnimOrcamento({ color }) {
   return (
     <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" style={{ display:'block' }}>
       <style>{`
-        @keyframes orcB1 { 0%,100%{width:0;} 12%,82%{width:116;} 92%,99%{width:0;} }
-        @keyframes orcB2 { 0%,5%,100%{width:0;} 22%,82%{width:67;} 92%,99%{width:0;} }
-        @keyframes orcB3 { 0%,15%,100%{width:0;} 32%,82%{width:137;} 92%,99%{width:0;} }
-        @keyframes orcB4 { 0%,25%,100%{width:0;} 42%,82%{width:94;} 92%,99%{width:0;} }
-        @keyframes orcRing { 0%,100%{stroke-dashoffset:130;} 40%,70%{stroke-dashoffset:45;} }
-        @keyframes orcPct  { 0%,100%{opacity:0;} 30%,70%{opacity:1;} }
+        @keyframes orcB { from{width:0;} to{width:1;} }
+        @keyframes orcRing { 0%,100%{stroke-dashoffset:264;} 50%{stroke-dashoffset:80;} }
       `}</style>
 
-      {/* Donut — lado direito */}
-      <circle cx="224" cy="92" r="42" fill="none" stroke={`${color}15`} strokeWidth="12"/>
-      <circle cx="224" cy="92" r="42" fill="none" stroke="#22c55e" strokeWidth="12"
-        strokeLinecap="round" strokeDasharray="264" strokeDashoffset="130"
-        transform="rotate(-90 224 92)" opacity="0.90"
-        style={{ animation:'orcRing 4s ease-in-out infinite' }}/>
-      <text x="224" y="87" fill={color} fontSize="17" fontWeight="900" textAnchor="middle" fontFamily="system-ui"
-        style={{ animation:'orcPct 4s ease-in-out infinite' }}>82%</text>
-      <text x="224" y="102" fill={color} fontSize="8" textAnchor="middle" fontFamily="system-ui" opacity="0.50">TOTAL</text>
+      {/* Donut Redimensionado e Movido para o Canto para não bater nas barras */}
+      <g transform="translate(210,92)">
+        <circle r="44" fill="none" stroke={`${color}10`} strokeWidth="10"/>
+        <circle r="44" fill="none" stroke="#22c55e" strokeWidth="10"
+          strokeLinecap="round" strokeDasharray="276" strokeDashoffset="264"
+          transform="rotate(-90)" opacity="0.9"
+          style={{ animation:'orcRing 4s ease-in-out infinite' }}/>
+        <text y="5" fill={color} fontSize="18" fontWeight="900" textAnchor="middle" fontFamily="system-ui">82%</text>
+        <text y="18" fill={color} fontSize="8" textAnchor="middle" fontFamily="system-ui" opacity="0.5">META</text>
+      </g>
 
-      {/* Barras de categoria */}
+      {/* Barras de categoria com mais espaço */}
       {[
-        { label:'COMERCIAL', y:35,  bw:116, c:'#22c55e', anim:'orcB1', pct:'73%' },
-        { label:'OPERAÇÕES', y:67,  bw:67,  c:'#3b82f6', anim:'orcB2', pct:'42%' },
-        { label:'RH',        y:99,  bw:137, c:'#f59e0b', anim:'orcB3', pct:'86%' },
-        { label:'TOTAL',     y:131, bw:94,  c:'#ec6e2a', anim:'orcB4', pct:'59%' },
+        { label:'COMERCIAL', y:30,  w:100, c:'#ec6e2a', pct:'73%' },
+        { label:'OPERAÇÕES', y:65,  w:70,  c:'#22c55e', pct:'42%' },
+        { label:'RH',        y:100, w:120, c:'#f59e0b', pct:'86%' },
+        { label:'TOTAL',     y:135, w:90,  c:'#3b82f6', pct:'59%' },
       ].map((cat,i) => (
-        <g key={i}>
-          <text x="26" y={cat.y+5} fill={color} fontSize="8.5" fontWeight="700"
-            opacity="0.60" fontFamily="system-ui">{cat.label}</text>
-          <rect x="26" y={cat.y+10} width="160" height="9" rx="4.5" fill={`${cat.c}15`}/>
-          <rect x="26" y={cat.y+10} width={cat.bw} height="9" rx="4.5" fill={cat.c} opacity="0.85"
-            style={{ animation:`${cat.anim} 4s ease-in-out infinite` }}/>
-          <text x="192" y={cat.y+18} fill={cat.c} fontSize="9.5" fontWeight="700"
-            fontFamily="system-ui">{cat.pct}</text>
+        <g key={i} transform={`translate(20, ${cat.y})`}>
+          <text fill={color} fontSize="9" fontWeight="700" opacity="0.7" fontFamily="system-ui">{cat.label}</text>
+          <rect y="10" width="130" height="8" rx="4" fill={`${cat.c}15`}/>
+          <rect y="10" width={cat.w} height="8" rx="4" fill={cat.c} opacity="0.8"
+            style={{ transformOrigin:'left', animation:`orcB 3s ease-out infinite alternate ${i*0.2}s` }}/>
+          <text x={cat.w + 10} y="17" fill={cat.c} fontSize="9" fontWeight="800">{cat.pct}</text>
         </g>
       ))}
     </svg>
   )
 }
+
 
 
 /* FLUXO DE CAIXA — Waterfall entradas vs saídas + saldo */
@@ -220,105 +207,75 @@ function AnimFluxo({ color }) {
       {[
         {inW:82, outW:58},{inW:68, outW:72},{inW:98, outW:55},{inW:74, outW:64},{inW:112,outW:80},
       ].map((m,i) => {
-        const base = 155
-        const bx = 38 + i*46
-        return (
-          <g key={i}>
-            <rect x={bx}    y={base-m.inW}  width="18" height={m.inW}  rx="4" fill="#22c55e" opacity="0.80"
-              style={{ transformOrigin:`${bx+9}px ${base}px`, animation:`flxIn 4s ease-in-out infinite ${i*0.15}s` }}/>
-            <rect x={bx+20} y={base-m.outW} width="14" height={m.outW} rx="4" fill="#ef4444" opacity="0.75"
-              style={{ transformOrigin:`${bx+27}px ${base}px`, animation:`flxOut 4s ease-in-out infinite ${i*0.15}s` }}/>
-          </g>
-        )
-      })}
+        @keyframes flxBar { from{transform:scaleY(0);} to{transform:scaleY(1);} }
+        @keyframes flxLine { from{stroke-dashoffset:300;} to{stroke-dashoffset:0;} }
+      `}</style>
+      
+      <line x1="20" y1="155" x2="260" y2="155" stroke={color} strokeWidth="1" opacity="0.2"/>
 
-      {/* Linha de saldo */}
-      <polyline points="47,82 93,98 139,66 185,80 231,56"
-        fill="none" stroke="#f59e0b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-        strokeDasharray="380" strokeDashoffset="380"
-        style={{ animation:'flxBal 1.5s ease-out 0.8s forwards' }}/>
-      {[{cx:47,cy:82},{cx:93,cy:98},{cx:139,cy:66},{cx:185,cy:80},{cx:231,cy:56}].map((p,i) => (
-        <circle key={i} cx={p.cx} cy={p.cy} r="3" fill="#f59e0b" opacity="0.90"
-          style={{ animation:`flxDot 2s ease-in-out infinite ${i*0.25}s` }}/>
+      {[
+        {x:40, h:60, c:'#22c55e'}, {x:80, h:85, c:'#ef4444'},
+        {x:120,h:100,c:'#22c55e'}, {x:160,h:75, c:'#ef4444'},
+        {x:200,h:115,c:'#22c55e'}, {x:240,h:90, c:'#ef4444'},
+      ].map((b,i) => (
+        <rect key={i} x={b.x} y={155-b.h} width="18" height={b.h} rx="3" fill={b.c} opacity="0.75"
+          style={{ transformOrigin:`${b.x+9}px 155px`, animation:`flxBar 2s ease-out infinite alternate ${i*0.1}s` }}/>
       ))}
 
-      {/* Badge */}
-      <rect x="236" y="22" width="36" height="20" rx="6"
-        fill="rgba(245,158,11,0.15)" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.50"
-        style={{ animation:'flxPulse 2.5s ease-in-out infinite' }}/>
-      <text x="254" y="36" fill="#f59e0b" fontSize="8" fontWeight="800"
-        textAnchor="middle" dominantBaseline="middle" fontFamily="system-ui">SALDO</text>
+      <polyline
+        points="49,155 89,70 129,95 169,55 209,110 249,65"
+        fill="none" stroke="#f59e0b" strokeWidth="3" strokeLinecap="round"
+        strokeDasharray="300" strokeDashoffset="300"
+        style={{ animation:'flxLine 3s ease-in-out infinite' }}/>
+
+      <text x="25" y="30" fill={color} fontSize="11" fontWeight="800" opacity="0.8">ENTRADAS</text>
+      <text x="110" y="30" fill={color} fontSize="11" fontWeight="800" opacity="0.8">SAÍDAS</text>
+      <rect x="95" y="22" width="10" height="10" rx="2" fill="#ef4444"/>
+      <rect x="10" y="22" width="10" height="10" rx="2" fill="#22c55e"/>
     </svg>
   )
 }
 
-/* INADIMPLÊNCIA — Gauge velocímetro + aging buckets */
+/* INADIMPLÊNCIA — Apenas Velocímetro Limpo */
 function AnimInadimplencia({ color }) {
   return (
     <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" style={{ display: 'block' }}>
       <style>{`
         @keyframes iadNeedle {
-          0%,8%  { transform:rotate(-85deg); }
-          38%    { transform:rotate(-12deg); }
-          62%    { transform:rotate(30deg);  }
-          78%    { transform:rotate(58deg);  }
-          100%   { transform:rotate(-85deg); }
+          0%,10% { transform:rotate(-90deg); }
+          50%    { transform:rotate(40deg); }
+          100%   { transform:rotate(-90deg); }
         }
-        @keyframes iadRiskB1 { 0%,100%{ width:72; } 45%,55%{ width:118; } }
-        @keyframes iadRiskB2 { 0%,100%{ width:48; } 50%,60%{ width:86;  } }
-        @keyframes iadRiskB3 { 0%,100%{ width:58; } 40%,55%{ width:104; } }
-        @keyframes iadAlert  { 0%,100%{ opacity:0.32; transform:scale(1); } 50%{ opacity:1; transform:scale(1.1); } }
-        @keyframes iadPct    { 0%,12%{ opacity:0; } 25%,75%{ opacity:1; } 88%,100%{ opacity:0; } }
       `}</style>
 
-      {/* ── Gauge / Velocímetro ── */}
-      <g transform="translate(140,78)">
-        <path d="M -68 0 A 68 68 0 0 1 -34 -58.9" fill="none" stroke="#22c55e" strokeWidth="12" strokeLinecap="round" opacity="0.30"/>
-        <path d="M -34 -58.9 A 68 68 0 0 1 34 -58.9" fill="none" stroke="#f59e0b" strokeWidth="12" strokeLinecap="round" opacity="0.30"/>
-        <path d="M 34 -58.9 A 68 68 0 0 1 68 0" fill="none" stroke="#ef4444" strokeWidth="12" strokeLinecap="round" opacity="0.38"/>
-        <path d="M -68 0 A 68 68 0 0 1 68 0" fill="none" stroke={`${color}10`} strokeWidth="12" strokeLinecap="round"/>
+      {/* Gauge Centralizado e Grande */}
+      <g transform="translate(140,110)">
+        {/* Arco de fundo */}
+        <path d="M -90 0 A 90 90 0 0 1 90 0" fill="none" stroke={`${color}10`} strokeWidth="18" strokeLinecap="round"/>
+        
+        {/* Segmentos coloridos */}
+        <path d="M -90 0 A 90 90 0 0 1 -45 -78" fill="none" stroke="#22c55e" strokeWidth="18" strokeLinecap="round" opacity="0.4"/>
+        <path d="M -45 -78 A 90 90 0 0 1 45 -78"  fill="none" stroke="#f59e0b" strokeWidth="18" strokeLinecap="round" opacity="0.4"/>
+        <path d="M 45 -78 A 90 90 0 0 1 90 0"    fill="none" stroke="#ef4444" strokeWidth="18" strokeLinecap="round" opacity="0.4"/>
 
         {/* Ponteiro */}
-        <g style={{ transformOrigin:'0px 0px', animation:'iadNeedle 5s ease-in-out infinite' }}>
-          <line x1="0" y1="8" x2="0" y2="-52" stroke="#ef4444" strokeWidth="4" strokeLinecap="round"/>
+        <g style={{ transformOrigin:'0px 0px', animation:'iadNeedle 4s ease-in-out infinite' }}>
+          <line x1="0" y1="10" x2="0" y2="-82" stroke="#ef4444" strokeWidth="5" strokeLinecap="round"/>
+          <circle r="10" fill="#ef4444"/>
+          <circle r="4" fill="white"/>
         </g>
-        <circle cx="0" cy="0" r="8" fill="#ef4444"/>
-        <circle cx="0" cy="0" r="3.5" fill="white"/>
 
-        <text x="-75" y="18" fill="#22c55e" fontSize="7.5" fontWeight="700" fontFamily="system-ui">BAIXO</text>
-        <text x="-12" y="-76" fill="#f59e0b" fontSize="7.5" fontWeight="700" fontFamily="system-ui">MED</text>
-        <text x="50"  y="18" fill="#ef4444" fontSize="7.5" fontWeight="700" fontFamily="system-ui">ALTO</text>
+        {/* Labels ajustados para não cortar */}
+        <text x="-95" y="25" fill="#22c55e" fontSize="11" fontWeight="900" textAnchor="middle">BAIXO</text>
+        <text x="0"   y="-100" fill="#f59e0b" fontSize="11" fontWeight="900" textAnchor="middle">MÉDIO</text>
+        <text x="95"  y="25" fill="#ef4444" fontSize="11" fontWeight="900" textAnchor="middle">ALTO</text>
         
-        <text x="0" y="24" fill="#ef4444" fontSize="19" fontWeight="900" textAnchor="middle" fontFamily="system-ui"
-          style={{ animation:'iadPct 5s ease-in-out infinite' }}>12.4%</text>
-      </g>
-
-      {/* ── Barras de envelhecimento ── */}
-      <g transform="translate(0, 26)">
-        <text x="20" y="122" fill={color} fontSize="9" fontWeight="800" opacity="0.55" fontFamily="system-ui">VENCIMENTO</text>
-        {[
-          { label:'0-30d',  y:135, w:72,  c:'#22c55e', anim:'iadRiskB1' },
-          { label:'31-60d', y:148, w:48,  c:'#f59e0b', anim:'iadRiskB2' },
-          { label:'>60d',   y:161, w:58,  c:'#ef4444', anim:'iadRiskB3' },
-        ].map((b,i) => (
-          <g key={i}>
-            <text x="20" y={b.y-2} fill={color} fontSize="7.5" opacity="0.45" fontFamily="system-ui" fontWeight="600">{b.label}</text>
-            <rect x="20" y={b.y} width="130" height="7" rx="3.5" fill={`${color}08`}/>
-            <rect x="20" y={b.y} width={b.w} height="7" rx="3.5" fill={b.c} opacity="0.80"
-              style={{ animation:`${b.anim} 3.5s ease-in-out infinite` }}/>
-          </g>
-        ))}
-      </g>
-
-      {/* Ícone de alerta lateral */}
-      <g transform="translate(225,125)" style={{ animation:'iadAlert 2.5s ease-in-out infinite' }}>
-        <circle cx="12" cy="12" r="16" fill="rgba(239,68,68,0.12)" stroke="#ef4444" strokeWidth="1.5"/>
-        <text x="12" y="18" fontSize="16" textAnchor="middle" fill="#ef4444" fontWeight="bold">!</text>
-        <text x="12" y="38" fill="#ef4444" fontSize="8" fontWeight="800" textAnchor="middle" fontFamily="system-ui">ALERTA</text>
+        <text y="45" fill="#ef4444" fontSize="32" fontWeight="950" textAnchor="middle">12.4%</text>
       </g>
     </svg>
   )
 }
+
 
 const MODULE_ANIMS = [AnimFaturamento, AnimOrcamento, AnimFluxo, AnimInadimplencia]
 
@@ -434,20 +391,21 @@ export default function CapaPage() {
         }
 
         /* ── Grid responsivo fluido (Otimizado para Notebook/Monitor) ── */
+        /* ── Grid responsivo fluido (Escalado para Monitores Grandes e Notebooks) ── */
         .cf-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: clamp(20px, 2.2vw, 32px);
+          gap: clamp(24px, 2.8vw, 48px);
           width: 100%;
-          max-width: min(1680px, 94vw);
+          max-width: min(2200px, 96vw); /* Aumentado para preencher monitores de 17"+ */
           position: relative;
           z-index: 2;
         }
         /* Modo Notebook / Telas Médias */
-        @media (max-width: 1366px) {
+        @media (max-width: 1440px) {
           .cf-grid {
             grid-template-columns: repeat(2, 1fr);
-            max-width: 1100px;
+            max-width: 1200px;
           }
         }
         /* Mobile */
@@ -477,10 +435,10 @@ export default function CapaPage() {
         .cf-card-disabled { opacity: 0.38; cursor: not-allowed !important; }
         .cf-card-disabled:hover { transform: none !important; }
 
-        /* ── Área da animação — ocupa todo o espaço disponível ── */
+        /* ── Área da animação — ajustada para dar mais espaço aos textos inferiores ── */
         .cf-anim-area {
           width: 100%;
-          flex: 1;
+          flex: 0.85; /* Reduzido levemente para sobrar espaço para tags legíveis */
           min-height: 0;
           display: flex;
           align-items: stretch;
@@ -488,7 +446,7 @@ export default function CapaPage() {
           border-radius: clamp(12px, 1.2vw, 18px);
           overflow: hidden;
           flex-shrink: 0;
-          margin-bottom: 18px;
+          margin-bottom: clamp(12px, 2vh, 20px);
           position: relative;
         }
         .cf-anim-area > svg {
@@ -660,13 +618,13 @@ export default function CapaPage() {
         </div>
 
         {/* Usuário + Sair */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexShrink: 0 }}>
           {user && (
             <div style={{ textAlign: 'right' }}>
-              <div style={{ fontSize: 15, color: '#fff', fontWeight: 700, lineHeight: 1.2, textShadow: '0 1px 6px rgba(0,0,0,0.20)' }}>
+              <div style={{ fontSize: 18, color: '#fff', fontWeight: 900, lineHeight: 1.1, textShadow: '0 2px 8px rgba(0,0,0,0.30)', textTransform: 'uppercase' }}>
                 {user.split(' ')[0]}
               </div>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.78)' }}>
+              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.92)', fontWeight: 600 }}>
                 Bem-vindo de volta
               </div>
             </div>
@@ -809,14 +767,13 @@ export default function CapaPage() {
                   <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 4 }}>
                     {m.tags.map(tag => (
                       <span key={tag} style={{
-                        fontSize: 11, fontWeight: 700, padding: '4px 12px',
-                        borderRadius: 20, letterSpacing: 0.4,
-                        background: theme === 'orange'
-                          ? 'rgba(255,255,255,0.22)'
-                          : `${m.accentColor}1c`,
-                        color: theme === 'orange' ? '#fff' : m.accentColor,
-                        border: `1px solid ${theme === 'orange' ? 'rgba(255,255,255,0.32)' : m.accentColor + '35'}`,
+                        fontSize: 12, fontWeight: 800, padding: '4px 12px',
+                        borderRadius: 10, letterSpacing: 0.4,
+                        background: t.pillBg,
+                        color: t.accent,
+                        border: `1px solid ${t.divider}`,
                         transition: 'all 0.5s',
+                        whiteSpace: 'nowrap'
                       }}>
                         {tag}
                       </span>
