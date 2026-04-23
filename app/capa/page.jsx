@@ -25,16 +25,16 @@ const THEMES = {
     statusActive: '#22c55e',
     statusBuilding: '#f59e0b',
     gradients: [
-      'linear-gradient(145deg, rgba(236,110,42,0.30) 0%, rgba(236,110,42,0.08) 100%)',
-      'linear-gradient(145deg, rgba(34,197,94,0.26) 0%, rgba(34,197,94,0.07) 100%)',
-      'linear-gradient(145deg, rgba(59,130,246,0.26) 0%, rgba(59,130,246,0.07) 100%)',
-      'linear-gradient(145deg, rgba(239,68,68,0.26) 0%, rgba(239,68,68,0.07) 100%)',
+      'linear-gradient(175deg, rgba(236,110,42,0.22) 0%, rgba(236,110,42,0.06) 60%, rgba(0,0,0,0.65) 100%)',
+      'linear-gradient(175deg, rgba(34,197,94,0.18) 0%, rgba(34,197,94,0.05) 60%, rgba(0,0,0,0.65) 100%)',
+      'linear-gradient(175deg, rgba(59,130,246,0.18) 0%, rgba(59,130,246,0.05) 60%, rgba(0,0,0,0.65) 100%)',
+      'linear-gradient(175deg, rgba(239,68,68,0.18) 0%, rgba(239,68,68,0.05) 60%, rgba(0,0,0,0.65) 100%)',
     ],
     gradientHovers: [
-      'linear-gradient(145deg, rgba(236,110,42,0.48) 0%, rgba(236,110,42,0.14) 100%)',
-      'linear-gradient(145deg, rgba(34,197,94,0.42) 0%, rgba(34,197,94,0.12) 100%)',
-      'linear-gradient(145deg, rgba(59,130,246,0.42) 0%, rgba(59,130,246,0.12) 100%)',
-      'linear-gradient(145deg, rgba(239,68,68,0.42) 0%, rgba(239,68,68,0.12) 100%)',
+      'linear-gradient(175deg, rgba(236,110,42,0.38) 0%, rgba(236,110,42,0.10) 60%, rgba(0,0,0,0.75) 100%)',
+      'linear-gradient(175deg, rgba(34,197,94,0.32) 0%, rgba(34,197,94,0.08) 60%, rgba(0,0,0,0.75) 100%)',
+      'linear-gradient(175deg, rgba(59,130,246,0.32) 0%, rgba(59,130,246,0.08) 60%, rgba(0,0,0,0.75) 100%)',
+      'linear-gradient(175deg, rgba(239,68,68,0.32) 0%, rgba(239,68,68,0.08) 60%, rgba(0,0,0,0.75) 100%)',
     ],
   },
   light: {
@@ -58,16 +58,16 @@ const THEMES = {
     statusActive: '#15803d',
     statusBuilding: '#b45309',
     gradients: [
-      'linear-gradient(145deg, rgba(236,110,42,0.40) 0%, rgba(236,110,42,0.08) 100%)',
-      'linear-gradient(145deg, rgba(34,197,94,0.38) 0%, rgba(34,197,94,0.08) 100%)',
-      'linear-gradient(145deg, rgba(59,130,246,0.38) 0%, rgba(59,130,246,0.08) 100%)',
-      'linear-gradient(145deg, rgba(239,68,68,0.38) 0%, rgba(239,68,68,0.08) 100%)',
+      'linear-gradient(175deg, rgba(236,110,42,0.12) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,0.08) 100%)',
+      'linear-gradient(175deg, rgba(34,197,94,0.10) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,0.08) 100%)',
+      'linear-gradient(175deg, rgba(59,130,246,0.10) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,0.08) 100%)',
+      'linear-gradient(175deg, rgba(239,68,68,0.10) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,0.08) 100%)',
     ],
     gradientHovers: [
-      'linear-gradient(145deg, rgba(236,110,42,0.55) 0%, rgba(236,110,42,0.16) 100%)',
-      'linear-gradient(145deg, rgba(34,197,94,0.48) 0%, rgba(34,197,94,0.15) 100%)',
-      'linear-gradient(145deg, rgba(59,130,246,0.48) 0%, rgba(59,130,246,0.15) 100%)',
-      'linear-gradient(145deg, rgba(239,68,68,0.48) 0%, rgba(239,68,68,0.15) 100%)',
+      'linear-gradient(175deg, rgba(236,110,42,0.20) 0%, rgba(255,255,255,1) 40%, rgba(0,0,0,0.12) 100%)',
+      'linear-gradient(175deg, rgba(34,197,94,0.18) 0%, rgba(255,255,255,1) 40%, rgba(0,0,0,0.12) 100%)',
+      'linear-gradient(175deg, rgba(59,130,246,0.18) 0%, rgba(255,255,255,1) 40%, rgba(0,0,0,0.12) 100%)',
+      'linear-gradient(175deg, rgba(239,68,68,0.18) 0%, rgba(255,255,255,1) 40%, rgba(0,0,0,0.12) 100%)',
     ],
   },
 }
@@ -802,7 +802,7 @@ export default function CapaPage() {
                   transition: 'border-color 0.5s',
                 }}>
                   <span style={{
-                    fontSize: 15, fontWeight: 800,
+                    fontSize: 15, fontWeight: 500,
                     color: t.text, letterSpacing: 0.2,
                     textTransform: 'uppercase',
                     transition: 'color 0.5s',
