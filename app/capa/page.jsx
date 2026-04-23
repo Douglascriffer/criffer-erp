@@ -766,10 +766,10 @@ export default function CapaPage() {
 
                 {/* Conteúdo textual — flex: 1 garante que o rodapé alinhe no final */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10, position: 'relative', zIndex: 2, flex: 1 }}>
-                  <div className="cf-card-title" style={{ color: t.text, fontWeight: 800, marginBottom: 12, textAlign: 'center' }}>
+                  <div className="cf-card-title" style={{ color: t.text, fontWeight: 500, marginBottom: 12, textAlign: 'center', textTransform: 'uppercase' }}>
                     {m.label}
                   </div>
-                  <div className="cf-card-desc" style={{ color: t.textMuted, fontWeight: 600 }}>
+                  <div className="cf-card-desc" style={{ color: t.textMuted, fontWeight: 400 }}>
                     {m.desc}
                   </div>
 
@@ -779,7 +779,7 @@ export default function CapaPage() {
                       <span key={tag} style={{
                         fontFamily: 'Gotham, sans-serif',
                         fontSize: 14,
-                        fontWeight: 700,
+                        fontWeight: 500,
                         padding: '6px 14px',
                         borderRadius: 8,
                         background: t.pillBg,
