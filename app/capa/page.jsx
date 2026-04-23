@@ -180,33 +180,11 @@ function AnimOrcamento({ color }) {
 
 
 
-/* FLUXO DE CAIXA — Waterfall entradas vs saídas + saldo */
+/* FLUXO DE CAIXA — Sincronizado e sem cortes */
 function AnimFluxo({ color }) {
   return (
     <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" style={{ display:'block' }}>
       <style>{`
-        @keyframes flxIn  { 0%,100%{transform:scaleY(0);} 8%,82%{transform:scaleY(1);} 90%,99%{transform:scaleY(0);} }
-        @keyframes flxOut { 0%,5%,100%{transform:scaleY(0);} 18%,82%{transform:scaleY(1);} 90%,99%{transform:scaleY(0);} }
-        @keyframes flxBal { from{stroke-dashoffset:380;} to{stroke-dashoffset:0;} }
-        @keyframes flxDot { 0%,100%{r:3;opacity:0.7;} 50%{r:4.5;opacity:1;} }
-        @keyframes flxPulse{ 0%,100%{opacity:0.5;} 50%{opacity:1;} }
-      `}</style>
-
-      {[45,85,125].map(y => (
-        <line key={y} x1="28" y1={y} x2="272" y2={y} stroke={color} strokeWidth="0.4" opacity="0.07"/>
-      ))}
-      <line x1="28" y1="155" x2="272" y2="155" stroke={color} strokeWidth="1.5" opacity="0.22"/>
-
-      {/* Legenda */}
-      <rect x="28" y="18" width="10" height="6" rx="2" fill="#22c55e" opacity="0.85"/>
-      <text x="42" y="24" fill={color} fontSize="8.5" fontFamily="system-ui" opacity="0.65">↑ ENTRADAS</text>
-      <rect x="120" y="18" width="10" height="6" rx="2" fill="#ef4444" opacity="0.85"/>
-      <text x="134" y="24" fill={color} fontSize="8.5" fontFamily="system-ui" opacity="0.65">↓ SAÍDAS</text>
-
-      {/* Barras por mês */}
-      {[
-        {inW:82, outW:58},{inW:68, outW:72},{inW:98, outW:55},{inW:74, outW:64},{inW:112,outW:80},
-      ].map((m,i) => {
         @keyframes flxBar { from{transform:scaleY(0);} to{transform:scaleY(1);} }
         @keyframes flxLine { from{stroke-dashoffset:300;} to{stroke-dashoffset:0;} }
       `}</style>
