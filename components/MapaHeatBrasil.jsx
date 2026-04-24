@@ -32,8 +32,6 @@ function fmtN(v) {
 export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
   const [activeUF, setActiveUF] = useState(null)
   const [hoverUF, setHoverUF]   = useState(null)
-  const [autoIdx, setAutoIdx]   = useState(0)
-  const timerRef = useRef(null)
 
   const stateMap = useMemo(() => {
     const m = {}
@@ -52,37 +50,15 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
 
   const colorScale = scaleLinear()
     .domain([0, maxVal * 0.3, maxVal])
-    .range(darkMode ? ['#1a1a1a', '#ec6e2a80', '#ec6e2a'] : ['#f8f9fa', '#ffb899', '#ec6e2a'])
-
-  useEffect(() => {
-    if (stateList.length === 0) return
-    setActiveUF(stateList[0]?.[0] || null)
-
-    timerRef.current = setInterval(() => {
-      setAutoIdx(i => {
-        const next = (i + 1) % stateList.length
-        setActiveUF(stateList[next]?.[0] || null)
-        return next
-      })
-    }, 3000)
-    return () => clearInterval(timerRef.current)
-  }, [stateList])
+    .range(darkMode ? ['#1a1a1a', '#FF6A2280', '#FF6A22'] : ['#f8f9fa', '#ffb899', '#FF6A22'])
 
   const handleEnter = (uf) => {
-    clearInterval(timerRef.current)
     setHoverUF(uf)
     setActiveUF(uf)
   }
 
   const handleLeave = () => {
     setHoverUF(null)
-    timerRef.current = setInterval(() => {
-      setAutoIdx(i => {
-        const next = (i + 1) % stateList.length
-        setActiveUF(stateList[next]?.[0] || null)
-        return next
-      })
-    }, 3000)
   }
 
   const displayUF = hoverUF || activeUF
@@ -92,19 +68,20 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
     <div style={{ position:'relative', width: '100%' }}>
       <style>{`
         @keyframes fadeInUp { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
+        .state-lift { transform: scale(1.05) translateY(-2px); z-index: 100; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2)); }
       `}</style>
 
-      {displayUF && (
+      {displayUF && displayVal > 0 && (
         <div key={displayUF} style={{
           position:'absolute', top: 0, left:'50%', transform:'translateX(-50%)',
-          background: '#ec6e2a', color:'white', borderRadius: 50,
-          padding:'8px 24px', fontSize: 13, fontWeight: 900, zIndex: 10,
-          boxShadow: '0 8px 32px rgba(236,110,42,0.4)',
+          background: '#FF6A22', color:'white', borderRadius: 50,
+          padding:'6px 16px', fontSize: 11, fontWeight: 900, zIndex: 10,
+          boxShadow: '0 4px 20px rgba(255,106,34,0.4)',
           animation: 'fadeInUp 0.3s ease forwards',
           whiteSpace: 'nowrap',
-          display: 'flex', alignItems: 'center', gap: 12,
+          display: 'flex', alignItems: 'center', gap: 8,
         }}>
-          <span style={{ fontSize: 16 }}>{displayUF}</span>
+          <span style={{ fontSize: 14 }}>{displayUF}</span>
           <span style={{ opacity: 0.5, fontWeight: 300 }}>|</span>
           <span>R$ {fmtN(displayVal || 0)}</span>
         </div>
@@ -112,7 +89,7 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
 
       <ComposableMap
         projection="geoMercator"
-        projectionConfig={{ center:[-54,-15], scale: 800 }}
+        projectionConfig={{ center:[-54,-22], scale: 800 }}
         width={500} height={380}
         style={{ width:'100%', height:'auto' }}>
         <Geographies geography={GEO_URL}>
@@ -126,22 +103,23 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
                   key={geo.rsmKey}
                   geography={geo}
                   fill={val > 0 ? colorScale(val) : (darkMode ? '#151515' : '#f0f0f0')}
-                  stroke={isActive ? '#ec6e2a' : (darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)')}
-                  strokeWidth={isActive ? 2 : 0.5}
+                  stroke={isActive ? '#000' : (darkMode ? 'rgba(255,255,255,0.1)' : '#000')}
+                  strokeWidth={isActive ? 1.5 : 0.3}
                   style={{
-                    default: { outline:'none', transition:'all 0.4s ease' },
-                    hover:   { outline:'none', fill:'#ec6e2a', cursor:'pointer' },
+                    default: { outline:'none', transition:'all 0.3s ease' },
+                    hover:   { outline:'none', fill:'#FF6A22', cursor:'pointer' },
                     pressed: { outline:'none' },
                   }}
                   onMouseEnter={() => handleEnter(uf)}
                   onMouseLeave={handleLeave}
+                  className={isActive ? 'state-lift' : ''}
                 />
               )
             })
           }
         </Geographies>
 
-        {stateList.slice(0, 8).map(([uf, val]) => {
+        {stateList.slice(0, 10).map(([uf, val]) => {
           const centroid = STATE_CENTROIDS[uf]
           if (!centroid) return null
           const isActive = uf === displayUF
@@ -149,8 +127,8 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
             <Marker key={uf} coordinates={centroid}>
               <text
                 textAnchor="middle"
-                fill={isActive ? '#fff' : (darkMode ? '#888' : '#666')}
-                fontSize={isActive ? 12 : 9}
+                fill={isActive ? '#fff' : (darkMode ? '#888' : '#333')}
+                fontSize={isActive ? 14 : 10}
                 fontWeight={900}
                 style={{ pointerEvents:'none', transition:'all 0.3s', fontFamily: "'Gotham', sans-serif" }}
               >
@@ -161,10 +139,10 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
         })}
       </ComposableMap>
 
-      <div style={{ display:'flex', alignItems:'center', gap:12, justifyContent:'center', marginTop: -20 }}>
-        <span style={{ fontSize:10, fontWeight: 800, color: darkMode ? '#555' : '#999', textTransform: 'uppercase' }}>Mín</span>
-        <div style={{ width:120, height:6, borderRadius:3, background: `linear-gradient(to right, ${darkMode ? '#1a1a1a' : '#f8f9fa'}, #ec6e2a)` }}/>
-        <span style={{ fontSize:10, fontWeight: 800, color: darkMode ? '#555' : '#999', textTransform: 'uppercase' }}>Máx</span>
+      <div style={{ display:'flex', alignItems:'center', gap:10, justifyContent:'center', marginTop: -20 }}>
+        <span style={{ fontSize:9, fontWeight: 800, color: darkMode ? '#555' : '#999', textTransform: 'uppercase' }}>Mín</span>
+        <div style={{ width:100, height:4, borderRadius:2, background: `linear-gradient(to right, ${darkMode ? '#1a1a1a' : '#f8f9fa'}, #FF6A22)` }}/>
+        <span style={{ fontSize:9, fontWeight: 800, color: darkMode ? '#555' : '#999', textTransform: 'uppercase' }}>Máx</span>
       </div>
     </div>
   )

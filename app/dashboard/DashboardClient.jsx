@@ -6,7 +6,8 @@ import Image from 'next/image'
 import { 
   TrendingUp, Users, Target, Activity, 
   Map as MapIcon, BarChart3, PieChart, 
-  TrendingDown, DollarSign, Package, Briefcase
+  TrendingDown, DollarSign, Package, Briefcase,
+  ShoppingCart, Tool, Key, RotateCcw
 } from 'lucide-react'
 import { useFinancialData, useFilteredData } from '@/lib/hooks'
 
@@ -16,6 +17,7 @@ const GraficoReceitas      = dynamic(() => import('@/components/GraficoReceitas'
 const GraficoComparativo   = dynamic(() => import('@/components/GraficoComparativo'),   { ssr:false, loading:()=><Skeleton h={240}/> })
 const MapaRegional         = dynamic(() => import('@/components/MapaRegional'),         { ssr:false, loading:()=><Skeleton h={240}/> })
 const OrcamentoView        = dynamic(() => import('@/components/OrcamentoView'),        { ssr:false, loading:()=><Skeleton h={500}/> })
+const GraficoVendedores    = dynamic(() => import('@/components/GraficoVendedores'),    { ssr:false, loading:()=><Skeleton h={400}/> })
 
 function Skeleton({ h=200 }) { return <div style={{ height:h, background:'rgba(0,0,0,0.05)', borderRadius:16, animation:'pulse 1.5s infinite' }} /> }
 
@@ -104,7 +106,7 @@ export default function DashboardClient() {
 
   const SUB_TABS = {
     desempenho: [
-      { id:'vendas', label:'RECEITA' },
+      { id:'vendas', label:'RECEITAS' },
       { id:'mapa',   label:'MAPA' },
       { id:'rank',   label:'VENDEDORES' },
       { id:'metas',  label:'METAS' },
@@ -121,8 +123,31 @@ export default function DashboardClient() {
   function goTab(id) { router.push(`/dashboard?tab=${id}`) }
   function goSub(id) { router.push(`/dashboard?tab=${tab}&sub=${id}`) }
 
+  // ── Componente: Ícone de Meta Dinâmico ──
+  const TargetIcon = ({ percent }) => {
+    const isHit = percent >= 100
+    return (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="6" />
+        <circle cx="12" cy="12" r="2" />
+        {/* Arrow */}
+        <line 
+          x1={isHit ? "12" : "18"} 
+          y1={isHit ? "12" : "6"} 
+          x2={isHit ? "22" : "26"} 
+          y2={isHit ? "12" : "2"} 
+          stroke="#FF6A22" 
+          strokeWidth="3" 
+          style={{ transition: 'all 0.5s ease' }}
+        />
+        {isHit && <path d="M19 9l3 3-3 3" stroke="#FF6A22" strokeWidth="3" />}
+      </svg>
+    )
+  }
+
   // ── Componente: Card de KPI Premium ──
-  const KpiCard = ({ label, value, prevValue, icon: Icon, color }) => {
+  const KpiCard = ({ label, value, prevValue, icon: Icon, color, isPercent=false }) => {
     const diff = value - prevValue
     const pct = prevValue > 0 ? (diff / prevValue * 100) : 0
     const isUp = diff >= 0
@@ -132,46 +157,49 @@ export default function DashboardClient() {
         background: t.card,
         border: `1.5px solid ${t.border}`,
         borderRadius: 24,
-        padding: '24px',
+        padding: '20px',
         display: 'flex',
         flexDirection: 'column',
-        gap: 12,
+        gap: 8,
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
       }} className="hover-lift">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <p style={{ fontSize: 10, fontWeight: 800, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 4 }}>{label}</p>
+        
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ 
             background: `${color}15`, 
             color: color, 
             padding: 10, 
-            borderRadius: 12,
+            borderRadius: 14,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <Icon size={20} />
+            <Icon size={24} />
           </div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+             <p style={{ fontSize: 24, fontWeight: 900, color: t.text, lineHeight: 1 }}>
+               {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
+             </p>
+          </div>
+        </div>
+        
+        <div style={{ marginTop: 4 }}>
           <div style={{ 
-            display: 'flex', 
+            display: 'inline-flex', 
             alignItems: 'center', 
             gap: 4, 
             fontSize: 12, 
             fontWeight: 800, 
             color: isUp ? '#22c55e' : '#ef4444',
-            background: isUp ? '#22c55e10' : '#ef444410',
-            padding: '4px 8px',
-            borderRadius: 20
+            marginBottom: 4
           }}>
             {isUp ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
             {Math.abs(pct).toFixed(1)}%
           </div>
-        </div>
-        
-        <div>
-          <p style={{ fontSize: 11, fontWeight: 800, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>{label}</p>
-          <p style={{ fontSize: 26, fontWeight: 900, color: t.text, margin: '4px 0' }}>{fmt(value)}</p>
-          <p style={{ fontSize: 12, color: t.textMuted, fontWeight: 500 }}>
-            Anterior: <span style={{ fontWeight: 700 }}>{fmt(prevValue)}</span>
+          <p style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>
+            Anterior: <span style={{ fontWeight: 800, fontSize: 13 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
           </p>
         </div>
       </div>
@@ -199,7 +227,7 @@ export default function DashboardClient() {
       {/* ══ TOPBAR PREMIUM (Sincronizada com Capa) ══ */}
       <header style={{
         background: 'linear-gradient(135deg, #a84410 0%, #d4601a 42%, #FF6A22 72%, #f07c38 100%)',
-        padding: '12px 4%',
+        padding: '24px 4%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -254,14 +282,15 @@ export default function DashboardClient() {
           <button onClick={() => changeTheme(theme === 'light' ? 'dark' : 'light')} style={{
             background: 'rgba(0,0,0,0.1)',
             border: '1px solid rgba(255,255,255,0.2)',
-            borderRadius: 20,
-            padding: '6px 12px',
+            borderRadius: 24,
+            padding: '10px 20px',
             color: '#fff',
-            fontSize: 12,
-            fontWeight: 700,
-            cursor: 'pointer'
+            fontSize: 14,
+            fontWeight: 800,
+            cursor: 'pointer',
+            transition: 'all 0.2s'
           }}>
-            {theme === 'light' ? '🌙 Escuro' : '☀️ Claro'}
+            {theme === 'light' ? '🌙 Modo Escuro' : '☀️ Modo Claro'}
           </button>
 
           <div style={{ textAlign: 'right' }}>
@@ -339,13 +368,14 @@ export default function DashboardClient() {
         </div>
 
         {/* ══ CARDS DE KPI (Top 6) ══ */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 24, marginBottom: 40 }}>
-          <KpiCard label="VENDAS" value={kpis.vendas || 0} prevValue={pkpis.vendas || 0} icon={Package} color="#FF6A22" />
-          <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Briefcase} color="#3b82f6" />
-          <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Activity} color="#8b5cf6" />
-          <KpiCard label="RECEITA BRUTA" value={kpis.totalFaturamento || 0} prevValue={pkpis.totalFaturamento || 0} icon={DollarSign} color="#10b981" />
-          <KpiCard label="META" value={kpis.totalMeta || 0} prevValue={pkpis.totalMeta || 0} icon={Target} color="#f59e0b" />
-          <KpiCard label="ATINGIMENTO" value={kpis.pctAtingido || 0} prevValue={pkpis.pctAtingido || 0} icon={TrendingUp} color="#FF6A22" />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20, marginBottom: 40 }}>
+          <KpiCard label="VENDAS" value={kpis.vendas || 0} prevValue={pkpis.vendas || 0} icon={ShoppingCart} color="#FF6A22" />
+          <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Tool} color="#3b82f6" />
+          <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
+          <KpiCard label="DEVOLUÇÕES" value={kpis.devolucoes || 0} prevValue={pkpis.devolucoes || 0} icon={RotateCcw} color="#ef4444" />
+          <KpiCard label="RECEITA BRUTA" value={kpis.totalRealizado || 0} prevValue={pkpis.totalRealizado || 0} icon={DollarSign} color="#10b981" />
+          <KpiCard label="META" value={kpis.totalMeta || 0} prevValue={pkpis.totalMeta || 0} icon={() => <TargetIcon percent={kpis.pctAtingido}/>} color="#f59e0b" />
+          <KpiCard label="ATINGIMENTO" value={kpis.pctAtingido || 0} prevValue={pkpis.pctAtingido || 0} icon={TrendingUp} color="#FF6A22" isPercent={true} />
         </div>
 
         {/* ══ CONTEÚDO DINÂMICO POR ABA ══ */}
@@ -424,19 +454,11 @@ export default function DashboardClient() {
               {/* Sub-aba: VENDEDORES */}
               {activeSub === 'rank' && (
                 <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
-                  <h3 style={{ fontSize: 18, fontWeight: 900, marginBottom: 24 }}>Ranking de Vendedores</h3>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 16 }}>
-                    {(data?.bySeller || []).map((v, i) => (
-                      <div key={i} style={{ padding: 20, background: t.pillBg, borderRadius: 16, display: 'flex', alignItems: 'center', gap: 16 }}>
-                        <div style={{ width: 44, height: 44, borderRadius: '50%', background: t.accent, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>{v.img}</div>
-                        <div style={{ flex: 1 }}>
-                          <p style={{ margin: 0, fontWeight: 800, fontSize: 15 }}>{v.name}</p>
-                          <p style={{ margin: 0, fontSize: 13, color: t.textMuted }}>{fmt(v.val)}</p>
-                        </div>
-                        <div style={{ fontWeight: 900, color: t.accent }}>#{i+1}</div>
-                      </div>
-                    ))}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+                    <h3 style={{ fontSize: 18, fontWeight: 900 }}>Ranking de Performance</h3>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: t.textMuted }}>Comparativo YoY (2025 vs 2026)</div>
                   </div>
+                  <GraficoVendedores sellers={data?.bySeller || []} darkMode={theme === 'dark'} />
                 </div>
               )}
             </div>
