@@ -7,7 +7,7 @@ import {
   TrendingUp, Users, Target, Activity, 
   Map as MapIcon, BarChart3, PieChart, 
   TrendingDown, DollarSign, Package, Briefcase,
-  ShoppingCart, Tool, Key, RotateCcw
+  ShoppingCart, Wrench, Key, RotateCcw
 } from 'lucide-react'
 import { useFinancialData, useFilteredData } from '@/lib/hooks'
 
@@ -370,7 +370,7 @@ export default function DashboardClient() {
         {/* ══ CARDS DE KPI (Top 6) ══ */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20, marginBottom: 40 }}>
           <KpiCard label="VENDAS" value={kpis.vendas || 0} prevValue={pkpis.vendas || 0} icon={ShoppingCart} color="#FF6A22" />
-          <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Tool} color="#3b82f6" />
+          <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
           <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
           <KpiCard label="DEVOLUÇÕES" value={kpis.devolucoes || 0} prevValue={pkpis.devolucoes || 0} icon={RotateCcw} color="#ef4444" />
           <KpiCard label="RECEITA BRUTA" value={kpis.totalRealizado || 0} prevValue={pkpis.totalRealizado || 0} icon={DollarSign} color="#10b981" />
