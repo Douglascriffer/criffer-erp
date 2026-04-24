@@ -33,109 +33,103 @@ def process_excel():
             "raw": []
         }
         
-        # 1. Processar BASE DE DADOS para KPIs e Períodos
-        if "BASE DE DADOS" in xl.sheet_names:
-            log("Processando BASE DE DADOS...")
-            df = pd.read_excel(EXCEL_PATH, sheet_name="BASE DE DADOS")
-            
-            # Garantir formato de data
-            df['Data de Emissão'] = pd.to_datetime(df['Data de Emissão'], dayfirst=True)
-            df['MesAno'] = df['Data de Emissão'].dt.to_period('M')
-            
-            # Categorização por Utilização
-            def categorizar(util):
-                util = str(util).upper()
-                if 'SERVIÇO' in util: return 'servicos'
-                if 'LOCAÇÃO' in util: return 'locacao'
-                if 'VENDA' in util or 'EXPORTAÇÃO' in util: return 'vendas'
-                return 'outros'
-            
-            df['Categoria'] = df['Utilização'].apply(categorizar)
-            
-            # Agrupamento por Período
-            grouped = df.groupby(['MesAno', 'Categoria'])['Valor Total'].sum().unstack(fill_value=0)
-            
-            for period, row in grouped.iterrows():
-                dt = period.to_timestamp()
-                result["byPeriod"].append({
-                    "mes": dt.month,
-                    "ano": dt.year,
-                    "label": dt.strftime("%b/%y").lower(),
-                    "vendas": float(row.get('vendas', 0)),
-                    "servicos": float(row.get('servicos', 0)),
-                    "locacao": float(row.get('locacao', 0)),
-                    "total": float(row.get('vendas', 0) + row.get('servicos', 0) + row.get('locacao', 0))
-                })
-
-            # Agrupamento por Vendedor (Ano Atual 2026)
-            df_2026 = df[df['Data de Emissão'].dt.year == 2026]
-            if not df_2026.empty:
-                vendedores = df_2026.groupby('Vendedor')['Valor Total'].sum().sort_values(ascending=False)
-                for name, val in vendedores.items():
-                    if pd.isna(name): name = "Outros"
-                    result["bySeller"].append({
-                        "name": str(name),
-                        "val": float(val),
-                        "img": str(name)[:2].upper()
-                    })
-
-        # 2. Processar RECEITAS para o Mapa (Heatmap)
+        # 1. Processar RECEITAS por Categorias e Períodos (Lógica Premium)
         if "RECEITAS" in xl.sheet_names:
-            log("Processando RECEITAS (Mapa)...")
-            # A planilha RECEITAS tem estados nas colunas e períodos nas linhas
-            df_rec = pd.read_excel(EXCEL_PATH, sheet_name="RECEITAS", header=1) # Header 1 tem as siglas dos estados
-            # Limpar dados: a primeira coluna é o período (jan-25, etc)
-            for _, row in df_rec.iterrows():
-                period_str = str(row.iloc[0])
-                if '-' not in period_str: continue
+            log("Processando RECEITAS (Categorias)...")
+            # Ler tudo sem header para controlar os offsets manualmente
+            df_rec = pd.read_excel(EXCEL_PATH, sheet_name="RECEITAS", header=None)
+            
+            # Mapear estados (Row 1, Cols 1-28)
+            states = {}
+            for c in range(1, 29):
+                st = df_rec.iloc[1, c]
+                if pd.notna(st): states[c] = str(st).strip()
+
+            # Offsets definidos pelo usuário (0-indexed)
+            offsets = {
+                "vendas": 2,
+                "servicos": 31,
+                "locacao": 61,
+                "devolucoes": 91
+            }
+
+            # Extrair dados para cada mês (jan-25 até mar-26 ou o que estiver preenchido)
+            # Vamos assumir que a primeira tabela (vendas) manda na lista de datas
+            for r in range(2, 30): # Pegando um range seguro
+                date_val = df_rec.iloc[r, 0]
+                if pd.isna(date_val) or str(date_val).strip() == "": break
                 
                 try:
-                    # Formato jan-25
-                    dt = pd.to_datetime(period_str, format='%b-%y')
+                    if isinstance(date_val, datetime):
+                        dt = date_val
+                    else:
+                        dt = pd.to_datetime(str(date_val), format='%b-%y')
                 except:
                     continue
 
-                for col in df_rec.columns[1:]:
-                    if col == 'Total' or pd.isna(col): continue
-                    val = row[col]
-                    if pd.notna(val) and val != 0:
+                period_data = {
+                    "mes": dt.month,
+                    "ano": dt.year,
+                    "label": dt.strftime("%b/%y").lower(),
+                    "vendas": 0, "servicos": 0, "locacao": 0, "devolucoes": 0,
+                    "total": 0
+                }
+
+                # Extrair valores totais da Coluna AE (30)
+                for cat, off in offsets.items():
+                    val = df_rec.iloc[r - 2 + off, 30]
+                    period_data[cat] = float(val) if pd.notna(val) else 0
+
+                # Receita Bruta = Vendas + Serviços + Locação
+                period_data["total"] = period_data["vendas"] + period_data["servicos"] + period_data["locacao"]
+                result["byPeriod"].append(period_data)
+
+                # Extrair dados para o Mapa (Vendas + Servicos + Locacao por estado)
+                for col_idx, st_name in states.items():
+                    st_faturamento = 0
+                    for cat in ["vendas", "servicos", "locacao"]:
+                        off = offsets[cat]
+                        val = df_rec.iloc[r - 2 + off, col_idx]
+                        st_faturamento += float(val) if pd.notna(val) else 0
+                    
+                    if st_faturamento != 0:
                         result["byState"].append({
                             "ano": dt.year,
                             "mes": dt.month,
-                            "estado": str(col).strip(),
-                            "faturamento": float(val)
+                            "estado": st_name,
+                            "faturamento": st_faturamento
                         })
 
-        # 3. Processar Vendedores (Ranking)
+        # 2. Processar BASE DE DADOS para Ranking de Vendedores
         if "BASE DE DADOS" in xl.sheet_names:
-            log("Processando Vendedores...")
-            df_v = pd.read_excel(EXCEL_PATH, sheet_name="BASE DE DADOS")
-            if "NOME_VENDEDOR" in df_v.columns and "DATA_VENDA" in df_v.columns and "TOTAL_VENDA" in df_v.columns:
-                df_v['DATA_VENDA'] = pd.to_datetime(df_v['DATA_VENDA'])
-                df_v['ano'] = df_v['DATA_VENDA'].dt.year
-                df_v['mes'] = df_v['DATA_VENDA'].dt.month
-                
-                seller_group = df_v.groupby(['ano', 'mes', 'NOME_VENDEDOR'])['TOTAL_VENDA'].sum().reset_index()
-                for _, row in seller_group.iterrows():
-                    result["bySeller"].append({
-                        "ano": int(row['ano']),
-                        "mes": int(row['mes']),
-                        "vendedor": str(row['NOME_VENDEDOR']),
-                        "total": float(row['TOTAL_VENDA'])
-                    })
-
-        # 4. Processar METAS
+            log("Processando Ranking de Vendedores (BASE DE DADOS)...")
+            df = pd.read_excel(EXCEL_PATH, sheet_name="BASE DE DADOS")
+            df['Data de Emissão'] = pd.to_datetime(df['Data de Emissão'], dayfirst=True)
+            
+            # Ranking por Vendedor (Agrupado por Ano para permitir YoY no componente)
+            seller_group = df.groupby([df['Data de Emissão'].dt.year, 'Vendedor'])['Valor Total'].sum().reset_index()
+            seller_group.columns = ['ano', 'vendedor', 'total']
+            
+            for _, row in seller_group.iterrows():
+                result["bySeller"].append({
+                    "ano": int(row['ano']),
+                    "name": str(row['vendedor']),
+                    "val": float(row['total']),
+                    "img": str(row['vendedor'])[:2].upper()
+                })
+        # 3. Processar METAS
         if "METAS" in xl.sheet_names:
             log("Processando METAS...")
             df_meta = pd.read_excel(EXCEL_PATH, sheet_name="METAS", header=None)
             
             def extract_meta_year(start_row, year):
+                # O layout do usuário tem Datas na linha (start_row-1), Metas na linha (start_row), Realizado na (start_row+1)
                 headers = df_meta.iloc[start_row-1]
                 metas = df_meta.iloc[start_row]
                 reals = df_meta.iloc[start_row+1]
                 for i in range(1, len(headers)):
                     dt = headers.iloc[i]
-                    if pd.isna(dt) or str(dt) == 'Total': continue
+                    if pd.isna(dt) or str(dt) == 'Total' or 'Diferença' in str(dt): continue
                     if not isinstance(dt, datetime):
                         try: dt = pd.to_datetime(dt)
                         except: continue
