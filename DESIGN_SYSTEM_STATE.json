@@ -1,0 +1,52 @@
+{
+  "project": "Criffer ERP",
+  "last_update": "2026-04-23T18:12:00-03:00",
+  "approved_status": "Final Polishing - Phase 2 Complete",
+  "ui_specifications": {
+    "theme_light": {
+      "background": "#ffffff",
+      "text_primary": "#000000",
+      "text_secondary": "#111111",
+      "text_muted": "#333333",
+      "card_bg_gradient": "Subtle themed gradients (linear-gradient(180deg, #ffffff 0%, ... [accent] 100%))"
+    },
+    "typography": {
+      "font_family": "Gotham, Syne, sans-serif",
+      "weights": {
+        "titles": 700,
+        "kpi_values": 900,
+        "descriptions": 500,
+        "labels": 700,
+        "tags": 500
+      },
+      "sizes": {
+        "page_title": "clamp(32px, 4vw, 60px)",
+        "card_title": "clamp(14px, 1.2vw, 18px)",
+        "card_desc": "clamp(15px, 1.4vw, 20px)",
+        "minimum": "12px",
+        "topbar_user": "18px"
+      }
+    },
+    "layout": {
+      "grid_max_width": "2200px",
+      "grid_columns": {
+        "default": 4,
+        "breakpoint_1440": 2,
+        "breakpoint_850": 1
+      },
+      "card_min_height": "clamp(500px, 54vh, 660px)",
+      "footer_alignment": "stabilized via minHeight: 40px and flex: 1"
+    },
+    "animations": {
+      "svg_sync_duration": "3000ms - 5000ms",
+      "faturamento_logic": "Bars + trendline synced (3s cycle)",
+      "orcamento_logic": "Donut + categories vertical layout",
+      "inadimplencia_logic": "Gauge only (Aging removed)"
+    }
+  },
+  "approved_files": [
+    "app/globals.css",
+    "app/capa/page.jsx",
+    "app/login/page.jsx"
+  ]
+}

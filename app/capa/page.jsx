@@ -58,10 +58,10 @@ const THEMES = {
     statusActive: '#15803d',
     statusBuilding: '#b45309',
     gradients: [
-      'linear-gradient(180deg, #ffffff 0%, #ffffff 80%, rgba(0,0,0,0.02) 100%)',
-      'linear-gradient(180deg, #ffffff 0%, #ffffff 80%, rgba(0,0,0,0.02) 100%)',
-      'linear-gradient(180deg, #ffffff 0%, #ffffff 80%, rgba(0,0,0,0.02) 100%)',
-      'linear-gradient(180deg, #ffffff 0%, #ffffff 80%, rgba(0,0,0,0.02) 100%)',
+      'linear-gradient(180deg, #ffffff 0%, #fffbf9 60%, #fff4ef 100%)', // Faturamento (Laranja)
+      'linear-gradient(180deg, #ffffff 0%, #fafffa 60%, #f1fbf4 100%)', // Orçamento (Verde)
+      'linear-gradient(180deg, #ffffff 0%, #f9fbff 60%, #eff5ff 100%)', // Fluxo de Caixa (Azul)
+      'linear-gradient(180deg, #ffffff 0%, #fff9f9 60%, #fff1f1 100%)', // Inadimplência (Vermelho)
     ],
     gradientHovers: [
       'linear-gradient(180deg, rgba(236,110,42,0.02) 0%, #ffffff 50%, rgba(0,0,0,0.04) 100%)',
@@ -168,9 +168,9 @@ function AnimOrcamento({ color }) {
   
   const targetMeta = 82
   const cats = [
-    { label:'COMERCIAL', w:100, c:'#ec6e2a', target:73 },
-    { label:'OPERAÇÕES', w:75,  c:'#22c55e', target:42 },
-    { label:'TOTAL',     y:136, w:115, c:'#3b82f6', target:59 },
+    { label:'RECEITAS', w:100, c:'#ec6e2a', target:73 },
+    { label:'DESPESAS', w:75,  c:'#22c55e', target:42 },
+    { label:'META',     y:136, w:115, c:'#3b82f6', target:59 },
   ]
 
   // Donut progress (251 is full circumference)
@@ -633,16 +633,14 @@ export default function CapaPage() {
 
         {/* Usuário + Sair */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexShrink: 0 }}>
-          {user && (
-            <div style={{ textAlign: 'right' }}>
-              <div style={{ fontSize: 18, color: '#fff', fontWeight: 900, lineHeight: 1.1, textShadow: '0 2px 8px rgba(0,0,0,0.30)', textTransform: 'uppercase' }}>
-                {user.split(' ')[0]}
-              </div>
-              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.92)', fontWeight: 600 }}>
-                Bem-vindo de volta
-              </div>
+          <div style={{ textAlign: 'right' }}>
+            <div style={{ fontSize: 18, color: '#fff', fontWeight: 900, lineHeight: 1.1, textShadow: '0 2px 8px rgba(0,0,0,0.30)', textTransform: 'uppercase' }}>
+              FINANCEIRO
             </div>
-          )}
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.92)', fontWeight: 600 }}>
+              Tenha um ótimo dia
+            </div>
+          </div>
           <button
             className="topbar-exit-btn"
             onClick={() => { localStorage.clear(); router.push('/login') }}
