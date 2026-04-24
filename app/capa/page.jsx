@@ -58,10 +58,10 @@ const THEMES = {
     statusActive: '#15803d',
     statusBuilding: '#b45309',
     gradients: [
-      'linear-gradient(180deg, #ffffff 0%, #fffbf9 60%, #fff4ef 100%)', // Faturamento (Laranja)
-      'linear-gradient(180deg, #ffffff 0%, #fafffa 60%, #f1fbf4 100%)', // Orçamento (Verde)
-      'linear-gradient(180deg, #ffffff 0%, #f9fbff 60%, #eff5ff 100%)', // Fluxo de Caixa (Azul)
-      'linear-gradient(180deg, #ffffff 0%, #fff9f9 60%, #fff1f1 100%)', // Inadimplência (Vermelho)
+      'linear-gradient(180deg, #ffffff 0%, #fff7f2 40%, #fdece2 100%)', // Faturamento (Laranja)
+      'linear-gradient(180deg, #ffffff 0%, #f6fdf8 40%, #ebfaf0 100%)', // Orçamento (Verde)
+      'linear-gradient(180deg, #ffffff 0%, #f6f9ff 40%, #ebf1ff 100%)', // Fluxo de Caixa (Azul)
+      'linear-gradient(180deg, #ffffff 0%, #fff6f6 40%, #fdeeee 100%)', // Inadimplência (Vermelho)
     ],
     gradientHovers: [
       'linear-gradient(180deg, rgba(236,110,42,0.02) 0%, #ffffff 50%, rgba(0,0,0,0.04) 100%)',

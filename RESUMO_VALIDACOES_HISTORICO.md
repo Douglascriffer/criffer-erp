@@ -19,6 +19,7 @@ Este documento contém o resumo consolidado de todas as alterações visuais e t
 
 3.  **Gradientes Dinâmicos (Light Mode)**:
     *   Substituição dos fundos quase planos por gradientes temáticos sutis que utilizam as cores de destaque (accent colors) na base do card, mantendo o brilho e a limpeza do design original.
+    *   Ajuste fino realizado para aumentar a visibilidade dos gradientes no tema claro (mais saturação na base).
 
 ---
 
