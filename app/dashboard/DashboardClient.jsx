@@ -24,9 +24,9 @@ function Skeleton({ h=200 }) { return <div style={{ height:h, background:'rgba(0
 // Formatação Profissional
 function fmt(v) {
   if (!v && v !== 0) return '—'
-  if (Math.abs(v) >= 1e6) return `R$ ${(v/1e6).toFixed(2)}M`
-  if (Math.abs(v) >= 1e3) return `R$ ${(v/1e3).toFixed(1)}K`
-  return `R$ ${Math.round(v).toLocaleString('pt-BR')}`
+  if (Math.abs(v) >= 1e6) return `${(v/1e6).toFixed(2)}M`
+  if (Math.abs(v) >= 1e3) return `${(v/1e3).toFixed(1)}K`
+  return `${Math.round(v).toLocaleString('pt-BR')}`
 }
 
 const MES = {'1':'Jan','2':'Fev','3':'Mar','4':'Abr','5':'Mai','6':'Jun','7':'Jul','8':'Ago','9':'Set','10':'Out','11':'Nov','12':'Dez'}
@@ -47,7 +47,7 @@ const THEME = {
   },
   dark: {
     bg: '#0c0c14',
-    card: 'rgba(255,255,255,0.04)',
+    card: '#1e1e2d',
     border: 'rgba(255,255,255,0.08)',
     text: '#ffffff',
     textSub: '#cccccc',
@@ -311,7 +311,7 @@ export default function DashboardClient() {
       </header>
 
       {/* ══ CONTEÚDO PRINCIPAL ══ */}
-      <main style={{ maxWidth: 1800, margin: '0 auto', padding: '32px 4%' }}>
+      <main style={{ maxWidth: '100%', margin: '0 auto', padding: '20px 2%' }}>
         
         {/* Filtros de Período (Design SaaS Moderno) */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
@@ -402,7 +402,7 @@ export default function DashboardClient() {
                       <h3 style={{ fontSize: 18, fontWeight: 900 }}>Evolução de Receita (2026)</h3>
                       <div style={{ fontSize: 12, fontWeight: 700, color: t.textMuted }}>Barras Horizontais</div>
                     </div>
-                    <GraficoReceitas periodData={data?.byPeriod?.filter(p => p.ano === 2026) || []} darkMode={theme === 'dark'} horizontal={true}/>
+                    <GraficoReceitas periodData={data?.byPeriod?.filter(p => p.ano === 2026) || []} darkMode={theme === 'dark'} horizontal={false}/>
                   </div>
                   <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
                     <h3 style={{ fontSize: 18, fontWeight: 900, marginBottom: 24 }}>Comparativo Anual (2025 vs 2026)</h3>

@@ -14,7 +14,7 @@ function InsideLabel({ x, y, width, height, value }) {
     <text 
       x={inside ? x + width - 10 : x + width + 8} 
       y={y + height / 2 + 4} 
-      fill="#000" 
+      fill={darkMode ? "#fff" : "#000"} 
       fontSize={10} 
       fontWeight={800} 
       textAnchor={inside ? "end" : "start"}
@@ -43,7 +43,7 @@ function Tip({ active, payload, label, darkMode }) {
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: p.fill }}/>
             <span style={{ color: darkMode ? '#aaa' : '#666', fontWeight: 600 }}>{p.name}</span>
           </div>
-          <span style={{ fontWeight: 800 }}>R$ {fmtBR(p.value)}</span>
+          <span style={{ fontWeight: 800 }}>{fmtBR(p.value)}</span>
         </div>
       ))}
     </div>
@@ -111,7 +111,7 @@ export default function GraficoComparativo({ currentData, previousData, currentL
       <ResponsiveContainer width="100%" height={260}>
         <BarChart data={chartData} layout="vertical" margin={{ top: 10, right: 40, left: 20, bottom: 10 }} barCategoryGap="30%" barGap={6}>
           <XAxis type="number" hide />
-          <YAxis type="category" dataKey="cat" tick={{ fontSize: 11, fill: '#000', fontWeight: 800 }} axisLine={false} tickLine={false} width={80} />
+          <YAxis type="category" dataKey="cat" tick={{ fontSize: 11, fill: darkMode ? '#fff' : '#000', fontWeight: 800 }} axisLine={false} tickLine={false} width={80} />
           <Tooltip content={<Tip darkMode={darkMode}/>} cursor={{ fill: 'transparent' }} />
           <Bar dataKey="curr" name={currentLabel}  fill="#FF6A22" radius={[0, 6, 6, 0]}>
             <LabelList content={<InsideLabel />} />
@@ -125,7 +125,7 @@ export default function GraficoComparativo({ currentData, previousData, currentL
       {/* Legenda */}
       <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
         {[[currentLabel, '#FF6A22'], [previousLabel, darkMode ? '#444' : '#e5e7eb']].map(([l, c]) => (
-          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 800, color: '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 800, color: darkMode ? '#fff' : '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
             {l}
           </div>
         ))}

@@ -23,14 +23,14 @@ function TooltipC({ active, payload, label, darkMode }) {
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: p.fill }}/>
             <span style={{ color: darkMode ? '#aaa' : '#666', fontWeight: 600 }}>{p.name}</span>
           </div>
-          <span style={{ fontWeight: 800 }}>R$ {Math.round(p.value).toLocaleString('pt-BR')}</span>
+          <span style={{ fontWeight: 800 }}>{Math.round(p.value).toLocaleString('pt-BR')}</span>
         </div>
       ))}
     </div>
   )
 }
 
-export default function GraficoReceitas({ periodData = [], darkMode = false, horizontal = true }) {
+export default function GraficoReceitas({ periodData = [], darkMode = false, horizontal = false }) {
   const chartData = periodData.map(d => ({
     label: d.label.toUpperCase(),
     Vendas:   d.vendas   || 0,
@@ -43,7 +43,7 @@ export default function GraficoReceitas({ periodData = [], darkMode = false, hor
       {/* Legenda */}
       <div style={{ display:'flex', gap:20, justifyContent:'center', marginBottom:24, flexWrap: 'wrap' }}>
         {Object.entries(C).map(([k, c]) => (
-          <div key={k} style={{ display:'flex', alignItems:'center', gap:6, fontSize:10, fontWeight: 800, color: darkMode ? '#888' : '#666', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+          <div key={k} style={{ display:'flex', alignItems:'center', gap:6, fontSize:10, fontWeight: 800, color: darkMode ? '#fff' : '#666', textTransform: 'uppercase', letterSpacing: 0.5 }}>
             <div style={{ width:10, height:10, borderRadius: '50%', background:c }}/>
             {k}
           </div>
@@ -61,11 +61,11 @@ export default function GraficoReceitas({ periodData = [], darkMode = false, hor
           {horizontal ? (
             <>
               <XAxis type="number" hide />
-              <YAxis dataKey="label" type="category" tick={{ fontSize:10, fill: darkMode ? '#666' : '#999', fontWeight: 800 }} axisLine={false} tickLine={false} width={80} />
+              <YAxis dataKey="label" type="category" tick={{ fontSize:10, fill: darkMode ? '#fff' : '#999', fontWeight: 800 }} axisLine={false} tickLine={false} width={80} />
             </>
           ) : (
             <>
-              <XAxis dataKey="label" tick={{ fontSize:10, fill: darkMode ? '#666' : '#999', fontWeight: 800 }} axisLine={false} tickLine={false} />
+              <XAxis dataKey="label" tick={{ fontSize:10, fill: darkMode ? '#fff' : '#999', fontWeight: 800 }} axisLine={false} tickLine={false} />
               <YAxis hide />
             </>
           )}
