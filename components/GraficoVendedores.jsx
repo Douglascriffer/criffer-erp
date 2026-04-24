@@ -85,9 +85,14 @@ export default function GraficoVendedores({ sellers = [], darkMode = false }) {
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 16, fontWeight: 900, color: '#FF6A22',
                 position: 'relative', zIndex: 1,
-                border: `2px solid ${darkMode ? '#0c0c14' : '#fff'}`
+                border: `2px solid ${darkMode ? '#0c0c14' : '#fff'}`,
+                overflow: 'hidden'
               }}>
-                {s.img}
+                {s.img.startsWith('/vendedores/') ? (
+                  <img src={s.img} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : (
+                  s.img
+                )}
               </div>
             </div>
 

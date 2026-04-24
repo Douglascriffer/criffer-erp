@@ -111,11 +111,15 @@ def process_excel():
             seller_group.columns = ['ano', 'vendedor', 'total']
             
             for _, row in seller_group.iterrows():
+                seller_name = str(row['vendedor']).strip()
+                # Tentar mapear imagem (Gabriel Klein.jpg -> Gabriel Klein)
+                img_path = f"/vendedores/{seller_name}.jpg"
+                
                 result["bySeller"].append({
                     "ano": int(row['ano']),
-                    "name": str(row['vendedor']),
+                    "name": seller_name,
                     "val": float(row['total']),
-                    "img": str(row['vendedor'])[:2].upper()
+                    "img": img_path if os.path.exists(os.path.join(os.path.dirname(__file__), "public", "vendedores", f"{seller_name}.jpg")) else seller_name[:2].upper()
                 })
         # 3. Processar METAS
         if "METAS" in xl.sheet_names:

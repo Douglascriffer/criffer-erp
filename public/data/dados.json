@@ -1218,7 +1218,7 @@
       "ano": 2025,
       "name": "Gabriel Dias",
       "val": 3825126.56,
-      "img": "GA"
+      "img": "/vendedores/Gabriel Dias.jpg"
     },
     {
       "ano": 2025,
@@ -1230,13 +1230,13 @@
       "ano": 2025,
       "name": "Gabriel Klein",
       "val": 3975351.02,
-      "img": "GA"
+      "img": "/vendedores/Gabriel Klein.jpg"
     },
     {
       "ano": 2025,
       "name": "Gabriel Medeiros",
       "val": 199795.61,
-      "img": "GA"
+      "img": "/vendedores/Gabriel Medeiros.jpg"
     },
     {
       "ano": 2025,
@@ -1290,7 +1290,7 @@
       "ano": 2025,
       "name": "Vanessa Ferreira",
       "val": 686561.38,
-      "img": "VA"
+      "img": "/vendedores/Vanessa Ferreira.jpg"
     },
     {
       "ano": 2026,
@@ -1308,7 +1308,7 @@
       "ano": 2026,
       "name": "Gabriel Dias",
       "val": 38380.0,
-      "img": "GA"
+      "img": "/vendedores/Gabriel Dias.jpg"
     },
     {
       "ano": 2026,
@@ -1320,13 +1320,13 @@
       "ano": 2026,
       "name": "Gabriel Klein",
       "val": 1327565.85,
-      "img": "GA"
+      "img": "/vendedores/Gabriel Klein.jpg"
     },
     {
       "ano": 2026,
       "name": "Gabriel Medeiros",
       "val": 1074470.38,
-      "img": "GA"
+      "img": "/vendedores/Gabriel Medeiros.jpg"
     },
     {
       "ano": 2026,
@@ -1356,7 +1356,7 @@
       "ano": 2026,
       "name": "Vanessa Ferreira",
       "val": 21636.5,
-      "img": "VA"
+      "img": "/vendedores/Vanessa Ferreira.jpg"
     }
   ],
   "meta": {
