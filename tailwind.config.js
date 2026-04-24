@@ -23,8 +23,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'Gotham', 'Inter', 'Roboto', 'sans-serif'],
-        display: ['var(--font-syne)', 'Syne', 'sans-serif'],
+        sans: ['Gotham', 'sans-serif'],
+        display: ['Gotham', 'sans-serif'],
       },
       borderRadius: {
         '2xl': '1rem',

@@ -38,7 +38,7 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Gotham', 'Syne', system-ui, sans-serif;
+    font-family: 'Gotham', system-ui, sans-serif;
   }
 
   /* Scrollbar */

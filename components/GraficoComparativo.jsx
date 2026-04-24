@@ -10,32 +10,50 @@ function fmtBR(v) {
 function InsideLabel({ x, y, width, height, value }) {
   if (!value || !width) return null
   const inside = width > 90
-  if (inside) return <text x={x+width-10} y={y+height/2+4} fill="white" fontSize={11} fontWeight={700} textAnchor="end">{fmtBR(value)}</text>
-  return <text x={x+width+8} y={y+height/2+4} fill="#444" fontSize={11} fontWeight={700} textAnchor="start">{fmtBR(value)}</text>
+  return (
+    <text 
+      x={inside ? x + width - 10 : x + width + 8} 
+      y={y + height / 2 + 4} 
+      fill={inside ? "white" : "#666"} 
+      fontSize={10} 
+      fontWeight={800} 
+      textAnchor={inside ? "end" : "start"}
+    >
+      {fmtBR(value)}
+    </text>
+  )
 }
 
-function Tip({ active, payload, label }) {
+function Tip({ active, payload, label, darkMode }) {
   if (!active || !payload?.length) return null
   return (
-    <div style={{ background:'#111', borderRadius:10, padding:'10px 16px', fontSize:13, border:'1px solid rgba(255,255,255,0.1)' }}>
-      <p style={{ color:'#FF6A22', marginBottom:6, fontWeight:800 }}>{label}</p>
+    <div style={{ 
+      background: darkMode ? '#1a1a1a' : '#ffffff', 
+      borderRadius: 16, 
+      padding: '16px', 
+      fontSize: 13, 
+      border: darkMode ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.05)',
+      boxShadow: '0 8px 32px rgba(0,0,0,.15)',
+      color: darkMode ? '#fff' : '#000'
+    }}>
+      <p style={{ color: '#FF6A22', marginBottom: 12, fontWeight: 900, textTransform: 'uppercase' }}>{label}</p>
       {payload.map(p => (
-        <div key={p.name} style={{ display:'flex', justifyContent:'space-between', gap:16, marginBottom:3 }}>
-          <div style={{ display:'flex', alignItems:'center', gap:6 }}>
-            <div style={{ width:8, height:8, borderRadius:2, background:p.fill }}/>
-            <span style={{ color:'#BBB' }}>{p.name}</span>
+        <div key={p.name} style={{ display: 'flex', justifyContent: 'space-between', gap: 24, marginBottom: 6 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ width: 10, height: 10, borderRadius: '50%', background: p.fill }}/>
+            <span style={{ color: darkMode ? '#aaa' : '#666', fontWeight: 600 }}>{p.name}</span>
           </div>
-          <span style={{ color:'white', fontWeight:800 }}>{fmtBR(p.value)}</span>
+          <span style={{ fontWeight: 800 }}>R$ {fmtBR(p.value)}</span>
         </div>
       ))}
     </div>
   )
 }
 
-const CORES = ['#FF6A22','#FFB899','#9CA3AF']
-const CATS  = ['Vendas','Serviços','Locação']
+const CORES = ['#FF6A22', '#3b82f6', '#8b5cf6']
+const CATS  = ['Vendas', 'Serviços', 'Locação']
 
-export default function GraficoComparativo({ currentData, previousData, currentLabel, previousLabel, showComparison = true }) {
+export default function GraficoComparativo({ currentData, previousData, currentLabel, previousLabel, showComparison = true, darkMode = false }) {
   if (!currentData) return null
 
   if (!showComparison || !previousData) {
@@ -43,15 +61,16 @@ export default function GraficoComparativo({ currentData, previousData, currentL
       cat,
       val: currentData[cat==='Serviços'?'servicos':cat==='Locação'?'locacao':cat.toLowerCase()] || 0,
     })).sort((a,b) => b.val - a.val)
+    
     return (
-      <ResponsiveContainer width="100%" height={200}>
-        <BarChart data={data} layout="vertical" margin={{ top:4, right:16, left:70, bottom:4 }} barCategoryGap="30%">
-          <XAxis type="number" hide/>
-          <YAxis type="category" dataKey="cat" tick={{ fontSize:13, fill:'#555', fontWeight:600 }} axisLine={false} tickLine={false}/>
-          <Tooltip content={<Tip/>}/>
-          <Bar dataKey="val" radius={[0,5,5,0]}>
-            {data.map((_, i) => <Cell key={i} fill={CORES[i]}/>)}
-            <LabelList content={<InsideLabel/>}/>
+      <ResponsiveContainer width="100%" height={240}>
+        <BarChart data={data} layout="vertical" margin={{ top: 10, right: 40, left: 20, bottom: 10 }} barCategoryGap="35%">
+          <XAxis type="number" hide />
+          <YAxis type="category" dataKey="cat" tick={{ fontSize: 11, fill: darkMode ? '#888' : '#666', fontWeight: 800 }} axisLine={false} tickLine={false} width={80} />
+          <Tooltip content={<Tip darkMode={darkMode}/>} cursor={{ fill: 'transparent' }} />
+          <Bar dataKey="val" radius={[0, 8, 8, 0]}>
+            {data.map((_, i) => <Cell key={i} fill={CORES[i % CORES.length]} />)}
+            <LabelList content={<InsideLabel />} />
           </Bar>
         </BarChart>
       </ResponsiveContainer>
@@ -59,46 +78,59 @@ export default function GraficoComparativo({ currentData, previousData, currentL
   }
 
   const chartData = [
-    { cat:'Vendas',   curr:currentData.vendas||0,   prev:previousData.vendas||0 },
-    { cat:'Serviços', curr:currentData.servicos||0, prev:previousData.servicos||0 },
-    { cat:'Locação',  curr:currentData.locacao||0,  prev:previousData.locacao||0 },
-  ].sort((a,b) => b.curr - a.curr)
+    { cat: 'Vendas',   curr: currentData.vendas || 0,   prev: previousData.vendas || 0 },
+    { cat: 'Serviços', curr: currentData.servicos || 0, prev: previousData.servicos || 0 },
+    { cat: 'Locação',  curr: currentData.locacao || 0,  prev: previousData.locacao || 0 },
+  ].sort((a, b) => b.curr - a.curr)
 
   return (
-    <div style={{ display:'flex', flexDirection:'column', gap:10 }}>
-      {/* Cards variação — SEM % nos subtítulos, SEM valores brutos */}
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:8 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      {/* Variação Cards */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
         {chartData.map(d => {
           const diff = d.prev > 0 ? ((d.curr - d.prev) / d.prev * 100) : 0
           const isPos = diff >= 0
           return (
-            <div key={d.cat} style={{ background:isPos?'#F0FDF4':'#FEF2F2', borderRadius:10, padding:'10px 8px', textAlign:'center', border:`1px solid ${isPos?'#BBF7D0':'#FECACA'}` }}>
-              <div style={{ fontSize:13, fontWeight:700, color:'#333', marginBottom:4 }}>{d.cat}</div>
-              <span style={{ fontSize:16, fontWeight:900, color:isPos?'#16a34a':'#EF4444' }}>
-                {isPos?'▲':'▼'} {Math.abs(diff).toFixed(1)}%
-              </span>
+            <div key={d.cat} style={{ 
+              background: isPos ? '#22c55e10' : '#ef444410', 
+              borderRadius: 16, 
+              padding: '16px 12px', 
+              textAlign: 'center', 
+              border: `1.5px solid ${isPos ? '#22c55e20' : '#ef444420'}` 
+            }}>
+              <div style={{ fontSize: 11, fontWeight: 800, color: darkMode ? '#aaa' : '#666', marginBottom: 8, textTransform: 'uppercase', letterSpacing: 0.5 }}>{d.cat}</div>
+              <div style={{ fontSize: 18, fontWeight: 900, color: isPos ? '#22c55e' : '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
+                {isPos ? '▲' : '▼'} {Math.abs(diff).toFixed(1)}%
+              </div>
             </div>
           )
         })}
       </div>
-      {/* Barras horizontais — 2026 laranja forte, 2025 cinza escuro */}
-      <ResponsiveContainer width="100%" height={210}>
-        <BarChart data={chartData} layout="vertical" margin={{ top:4, right:16, left:70, bottom:4 }} barCategoryGap="25%" barGap={3}>
-          <XAxis type="number" hide/>
-          <YAxis type="category" dataKey="cat" tick={{ fontSize:13, fill:'#555', fontWeight:600 }} axisLine={false} tickLine={false}/>
-          <Tooltip content={<Tip/>}/>
-          <Bar dataKey="curr" name={currentLabel}  fill="#FF6A22" radius={[0,5,5,0]}><LabelList content={<InsideLabel/>}/></Bar>
-          <Bar dataKey="prev" name={previousLabel} fill="#6B7280" radius={[0,5,5,0]}><LabelList content={<InsideLabel/>}/></Bar>
+
+      {/* Gráfico de Barras */}
+      <ResponsiveContainer width="100%" height={260}>
+        <BarChart data={chartData} layout="vertical" margin={{ top: 10, right: 40, left: 20, bottom: 10 }} barCategoryGap="30%" barGap={6}>
+          <XAxis type="number" hide />
+          <YAxis type="category" dataKey="cat" tick={{ fontSize: 11, fill: darkMode ? '#888' : '#666', fontWeight: 800 }} axisLine={false} tickLine={false} width={80} />
+          <Tooltip content={<Tip darkMode={darkMode}/>} cursor={{ fill: 'transparent' }} />
+          <Bar dataKey="curr" name={currentLabel}  fill="#FF6A22" radius={[0, 6, 6, 0]}>
+            <LabelList content={<InsideLabel />} />
+          </Bar>
+          <Bar dataKey="prev" name={previousLabel} fill={darkMode ? '#333' : '#e5e7eb'} radius={[0, 6, 6, 0]}>
+            <LabelList content={<InsideLabel />} />
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
+
       {/* Legenda */}
-      <div style={{ display:'flex', gap:16, justifyContent:'center' }}>
-        {[[currentLabel,'#FF6A22'],[previousLabel,'#6B7280']].map(([l,c]) => (
-          <div key={l} style={{ display:'flex', alignItems:'center', gap:6, fontSize:12, color:'#555' }}>
-            <div style={{ width:10, height:10, borderRadius:2, background:c }}/>{l}
+      <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+        {[[currentLabel, '#FF6A22'], [previousLabel, darkMode ? '#333' : '#e5e7eb']].map(([l, c]) => (
+          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 800, color: darkMode ? '#888' : '#666', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <div style={{ width: 12, height: 12, borderRadius: '50%', background: c }} />{l}
           </div>
         ))}
       </div>
     </div>
   )
 }
+

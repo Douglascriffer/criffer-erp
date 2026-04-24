@@ -11,7 +11,7 @@
       "card_bg_gradient": "Subtle themed gradients (linear-gradient(180deg, #ffffff 0%, ... [accent] 100%))"
     },
     "typography": {
-      "font_family": "Gotham, Syne, sans-serif",
+      "font_family": "Gotham, sans-serif",
       "weights": {
         "titles": 700,
         "kpi_values": 900,

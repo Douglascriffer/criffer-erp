@@ -53,7 +53,7 @@ export default function LoginPage() {
       width: '100%',
       overflow: 'hidden',
       background: '#e8e8e8',
-      fontFamily: 'Syne, system-ui, sans-serif',
+      fontFamily: "'Gotham', system-ui, sans-serif",
     }}>
 
       <style>{`
@@ -186,7 +186,7 @@ export default function LoginPage() {
                     style={{
                       width: '100%', padding: '14px 40px 14px 18px',
                       /* ▼ campo com fundo branco bem visível */
-                      background: 'rgba(255,255,255,0.88)',
+                      background: '#ffffff',
                       border: '1.5px solid rgba(255,255,255,0.95)',
                       borderRadius: 14, fontSize: 14, color: '#222',
                       fontFamily: 'inherit', cursor: 'pointer',
@@ -220,7 +220,7 @@ export default function LoginPage() {
                     className="cf-input"
                     style={{
                       width: '100%', padding: '14px 44px 14px 18px',
-                      background: 'rgba(255,255,255,0.88)',
+                      background: '#ffffff',
                       border: '1.5px solid rgba(255,255,255,0.95)',
                       borderRadius: 14, fontSize: 14, color: '#222',
                       fontFamily: 'inherit', boxSizing: 'border-box',

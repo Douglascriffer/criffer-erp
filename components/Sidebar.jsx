@@ -32,12 +32,12 @@ export default function Sidebar({ user }) {
       {/* Logo */}
       <div className={`flex items-center h-16 px-4 border-b border-gray-100 ${collapsed ? 'justify-center' : 'gap-3'}`}>
         {!collapsed && (
-          <span className="text-xl font-black tracking-[3px] text-brand" style={{ fontFamily: 'Syne,sans-serif' }}>
+          <span className="text-xl font-black tracking-[3px] text-brand" style={{ fontFamily: "'Gotham', sans-serif" }}>
             CRIFFER
           </span>
         )}
         {collapsed && (
-          <span className="text-lg font-black text-brand" style={{ fontFamily: 'Syne,sans-serif' }}>C</span>
+          <span className="text-lg font-black text-brand" style={{ fontFamily: "'Gotham', sans-serif" }}>C</span>
         )}
       </div>
 

@@ -14,12 +14,12 @@ const THEMES = {
     text: '#ffffff',
     textSub: '#ffffff',
     textMuted: '#ffffff',
-    accent: '#ec6e2a',
+    accent: '#FF6A22',
     accentSoft: 'rgba(236,110,42,0.16)',
     iconBg: 'rgba(255,255,255,0.04)',
     iconBorder: 'rgba(255,255,255,0.10)',
     divider: 'rgba(255,255,255,0.09)',
-    grid: '#ec6e2a',
+    grid: '#FF6A22',
     gridOpacity: 0.025,
     pillBg: 'rgba(0,0,0,0.25)',
     statusActive: '#22c55e',
@@ -46,13 +46,13 @@ const THEMES = {
     text: '#000000', // Preto puro para contraste máximo
     textSub: '#111111',
     textMuted: '#333333',
-    accent: '#ec6e2a',
+    accent: '#FF6A22',
     accentSoft: 'rgba(236,110,42,0.10)',
     iconBg: '#ffffff',
     iconBorder: 'rgba(0,0,0,0.08)',
     divider: 'rgba(0,0,0,0.06)',
     dividerOpacity: 0.1,
-    grid: '#ec6e2a',
+    grid: '#FF6A22',
     gridOpacity: 0.04,
     pillBg: 'rgba(0,0,0,0.05)',
     statusActive: '#15803d',
@@ -115,8 +115,8 @@ function AnimFaturamento({ color }) {
       `}</style>
       <defs>
         <linearGradient id="fatBarGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#ec6e2a" stopOpacity="1"/>
-          <stop offset="100%" stopColor="#ec6e2a" stopOpacity="0.3"/>
+          <stop offset="0%" stopColor="#FF6A22" stopOpacity="1"/>
+          <stop offset="100%" stopColor="#FF6A22" stopOpacity="0.3"/>
         </linearGradient>
       </defs>
 
@@ -168,7 +168,7 @@ function AnimOrcamento({ color }) {
   
   const targetMeta = 82
   const cats = [
-    { label:'RECEITAS', w:100, c:'#ec6e2a', target:73 },
+    { label:'RECEITAS', w:100, c:'#FF6A22', target:73 },
     { label:'DESPESAS', w:75,  c:'#22c55e', target:42 },
     { label:'META',     y:136, w:115, c:'#3b82f6', target:59 },
   ]
@@ -323,7 +323,7 @@ export default function CapaPage() {
       disabled: false,
       status: 'active',
       badge: 'Ativo',
-      accentColor: '#ec6e2a',
+      accentColor: '#FF6A22',
     },
     {
       id: 'orcamento',
@@ -371,13 +371,11 @@ export default function CapaPage() {
       background: t.bg,
       display: 'flex',
       flexDirection: 'column',
-      fontFamily: "'Syne', system-ui, sans-serif",
+      fontFamily: "'Gotham', system-ui, sans-serif",
       overflow: 'hidden',
       transition: 'background 0.6s ease',
     }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&display=swap');
-
         /* ── Animações de entrada ── */
         @keyframes cardEntrance {
           from { opacity: 0; transform: translateY(40px) scale(0.96); }
@@ -564,7 +562,7 @@ export default function CapaPage() {
 
       {/* ══ TOPBAR — laranja + switcher de tema ══ */}
       <div className="cf-topbar" style={{
-        background: 'linear-gradient(135deg, #a84410 0%, #d4601a 42%, #ec6e2a 72%, #f07c38 100%)',
+        background: 'linear-gradient(135deg, #a84410 0%, #d4601a 42%, #FF6A22 72%, #f07c38 100%)',
         borderBottom: '1px solid rgba(0,0,0,0.18)',
         display: 'flex',
         alignItems: 'center',
@@ -749,9 +747,9 @@ export default function CapaPage() {
                   className="cf-anim-area cf-icon-wrap"
                   style={{
                     background: theme === 'dark'
-                      ? `linear-gradient(160deg, rgba(${m.accentColor === '#ec6e2a' ? '236,110,42' : m.accentColor === '#22c55e' ? '34,197,94' : m.accentColor === '#3b82f6' ? '59,130,246' : '239,68,68'},0.10) 0%, rgba(0,0,0,0.30) 100%)`
+                      ? `linear-gradient(160deg, rgba(${m.accentColor === '#FF6A22' ? '236,110,42' : m.accentColor === '#22c55e' ? '34,197,94' : m.accentColor === '#3b82f6' ? '59,130,246' : '239,68,68'},0.10) 0%, rgba(0,0,0,0.30) 100%)`
                       : theme === 'light'
-                      ? `linear-gradient(160deg, rgba(${m.accentColor === '#ec6e2a' ? '236,110,42' : m.accentColor === '#22c55e' ? '34,197,94' : m.accentColor === '#3b82f6' ? '59,130,246' : '239,68,68'},0.08) 0%, rgba(255,255,255,0.60) 100%)`
+                      ? `linear-gradient(160deg, rgba(${m.accentColor === '#FF6A22' ? '236,110,42' : m.accentColor === '#22c55e' ? '34,197,94' : m.accentColor === '#3b82f6' ? '59,130,246' : '239,68,68'},0.08) 0%, rgba(255,255,255,0.60) 100%)`
                       : 'rgba(255,255,255,0.08)',
                     border: `1px solid ${isHov ? borderColor + '55' : t.iconBorder}`,
                     boxShadow: isHov ? `0 14px 44px ${m.accentColor}30` : 'none',

@@ -24,7 +24,7 @@ function KpiCard({ label, value, change, changeLabel, icon: Icon, accent = false
           <Icon size={14} color={accent ? '#FF6A22' : danger ? '#EF4444' : '#AAA'} />
         </div>
       </div>
-      <p style={{ fontSize: 24, fontWeight: 800, color: accent ? '#FF6A22' : danger ? '#EF4444' : '#1A1A1A', fontFamily: 'Syne, sans-serif', lineHeight: 1, marginBottom: 6 }}>
+      <p style={{ fontSize: 24, fontWeight: 800, color: accent ? '#FF6A22' : danger ? '#EF4444' : '#1A1A1A', fontFamily: "'Gotham', sans-serif", lineHeight: 1, marginBottom: 6 }}>
         {value}
       </p>
       {change !== undefined && change !== null && (
