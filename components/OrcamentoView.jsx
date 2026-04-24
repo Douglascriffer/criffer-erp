@@ -232,16 +232,3 @@ export default function OrcamentoView({ mes='all', darkMode=false }) {
     </div>
   )
 }
-kLine={false} width={44}/>
-                <Tooltip content={<TipLinha/>}/>
-                <Legend iconType="circle" iconSize={8} wrapperStyle={{fontSize:12,color:'#666',paddingTop:8}}/>
-                <Line type="monotone" dataKey="meta" name="Meta" stroke="#C0BAB4" strokeWidth={2} strokeDasharray="5 3" dot={false} connectNulls/>
-                <Line type="monotone" dataKey="receita" name="Realizado" stroke="#FF6A22" strokeWidth={2.5} dot={{fill:'#FF6A22',r:4}} connectNulls={false}/>
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-      )}
-    </div>
-  )
-}
