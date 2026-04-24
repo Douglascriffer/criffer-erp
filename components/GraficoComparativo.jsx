@@ -14,7 +14,7 @@ function InsideLabel({ x, y, width, height, value }) {
     <text 
       x={inside ? x + width - 10 : x + width + 8} 
       y={y + height / 2 + 4} 
-      fill={inside ? "white" : "#666"} 
+      fill="#000" 
       fontSize={10} 
       fontWeight={800} 
       textAnchor={inside ? "end" : "start"}
@@ -111,12 +111,12 @@ export default function GraficoComparativo({ currentData, previousData, currentL
       <ResponsiveContainer width="100%" height={260}>
         <BarChart data={chartData} layout="vertical" margin={{ top: 10, right: 40, left: 20, bottom: 10 }} barCategoryGap="30%" barGap={6}>
           <XAxis type="number" hide />
-          <YAxis type="category" dataKey="cat" tick={{ fontSize: 11, fill: darkMode ? '#888' : '#666', fontWeight: 800 }} axisLine={false} tickLine={false} width={80} />
+          <YAxis type="category" dataKey="cat" tick={{ fontSize: 11, fill: '#000', fontWeight: 800 }} axisLine={false} tickLine={false} width={80} />
           <Tooltip content={<Tip darkMode={darkMode}/>} cursor={{ fill: 'transparent' }} />
           <Bar dataKey="curr" name={currentLabel}  fill="#FF6A22" radius={[0, 6, 6, 0]}>
             <LabelList content={<InsideLabel />} />
           </Bar>
-          <Bar dataKey="prev" name={previousLabel} fill={darkMode ? '#333' : '#e5e7eb'} radius={[0, 6, 6, 0]}>
+          <Bar dataKey="prev" name={previousLabel} fill={darkMode ? '#444' : '#e5e7eb'} radius={[0, 6, 6, 0]}>
             <LabelList content={<InsideLabel />} />
           </Bar>
         </BarChart>
@@ -124,9 +124,9 @@ export default function GraficoComparativo({ currentData, previousData, currentL
 
       {/* Legenda */}
       <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
-        {[[currentLabel, '#FF6A22'], [previousLabel, darkMode ? '#333' : '#e5e7eb']].map(([l, c]) => (
-          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 800, color: darkMode ? '#888' : '#666', textTransform: 'uppercase', letterSpacing: 0.5 }}>
-            <div style={{ width: 12, height: 12, borderRadius: '50%', background: c }} />{l}
+        {[[currentLabel, '#FF6A22'], [previousLabel, darkMode ? '#444' : '#e5e7eb']].map(([l, c]) => (
+          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 800, color: '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            {l}
           </div>
         ))}
       </div>

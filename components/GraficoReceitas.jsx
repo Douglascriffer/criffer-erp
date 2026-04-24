@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 
-const C = { Vendas:'#FF6A22', 'Serviços':'#3b82f6', 'Locação':'#8b5cf6', 'Devoluções':'#ef4444' }
+const C = { Vendas:'#FF6A22', 'Serviços':'#3b82f6', 'Locação':'#8b5cf6' }
 
 function TooltipC({ active, payload, label, darkMode }) {
   if (!active || !payload?.length) return null
@@ -30,13 +30,12 @@ function TooltipC({ active, payload, label, darkMode }) {
   )
 }
 
-export default function GraficoReceitas({ periodData = [], darkMode = false, horizontal = false }) {
+export default function GraficoReceitas({ periodData = [], darkMode = false, horizontal = true }) {
   const chartData = periodData.map(d => ({
     label: d.label.toUpperCase(),
     Vendas:   d.vendas   || 0,
     Serviços: d.servicos || 0,
     Locação:  d.locacao  || 0,
-    Devoluções: d.devolucoes || 0,
   }))
 
   return (

@@ -331,19 +331,28 @@ export default function DashboardClient() {
                 }}>{y}</button>
               ))}
             </div>
-            <select value={filters.mes} onChange={e => setFilters(f => ({ ...f, mes: e.target.value }))} style={{
-              background: t.card,
-              border: `1.5px solid ${t.border}`,
-              padding: '8px 16px',
-              borderRadius: 12,
-              color: t.text,
-              fontSize: 13,
-              fontWeight: 700,
+            <select 
+            value={filters.mes} 
+            onChange={(e) => setFilters({ ...filters, mes: e.target.value })}
+            style={{
+              background: 'rgba(0,0,0,0.1)',
+              border: '1px solid rgba(255,255,255,0.2)',
+              borderRadius: 24,
+              padding: '10px 20px',
+              color: '#fff',
+              fontSize: 14,
+              fontWeight: 800,
               cursor: 'pointer',
-              outline: 'none'
-            }}>
-              {Object.entries(MES).map(([v, l]) => <option key={v} value={v}>{l}</option>)}
-            </select>
+              outline: 'none',
+              appearance: 'none',
+              WebkitAppearance: 'none'
+            }}
+          >
+            <option value="all" style={{ background: '#1a1a1a', color: '#fff' }}>Todos os Meses</option>
+            {['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'].map((m, i) => (
+              <option key={m} value={i+1} style={{ background: '#1a1a1a', color: '#fff' }}>{m}</option>
+            ))}
+          </select>
           </div>
 
           {/* Sub-abas de Navegação Interna */}
@@ -367,8 +376,8 @@ export default function DashboardClient() {
           )}
         </div>
 
-        {/* ══ CARDS DE KPI (Top 6) ══ */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20, marginBottom: 40 }}>
+        {/* ══ CARDS DE KPI (Top 7) ══ */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 16, marginBottom: 40, width: '100%' }}>
           <KpiCard label="VENDAS" value={kpis.vendas || 0} prevValue={pkpis.vendas || 0} icon={ShoppingCart} color="#FF6A22" />
           <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
           <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
