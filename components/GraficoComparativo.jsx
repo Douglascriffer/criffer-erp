@@ -7,7 +7,7 @@ function fmtBR(v) {
   return Math.round(v).toLocaleString('pt-BR')
 }
 
-function InsideLabel({ x, y, width, height, value }) {
+function InsideLabel({ x, y, width, height, value, darkMode }) {
   if (!value || !width) return null
   const inside = width > 90
   return (
@@ -53,7 +53,7 @@ function Tip({ active, payload, label, darkMode }) {
 const CORES = ['#FF6A22', '#3b82f6', '#8b5cf6']
 const CATS  = ['Vendas', 'Serviços', 'Locação']
 
-export default function GraficoComparativo({ currentData, previousData, currentLabel, previousLabel, showComparison = true, darkMode = false }) {
+export default function GraficoComparativo({ currentData, previousData, currentLabel = '2026', previousLabel = '2025', showComparison = true, darkMode = false }) {
   if (!currentData) return null
 
   if (!showComparison || !previousData) {
@@ -70,7 +70,7 @@ export default function GraficoComparativo({ currentData, previousData, currentL
           <Tooltip content={<Tip darkMode={darkMode}/>} cursor={{ fill: 'transparent' }} />
           <Bar dataKey="val" radius={[0, 8, 8, 0]}>
             {data.map((_, i) => <Cell key={i} fill={CORES[i % CORES.length]} />)}
-            <LabelList content={<InsideLabel />} />
+            <LabelList content={<InsideLabel darkMode={darkMode} />} />
           </Bar>
         </BarChart>
       </ResponsiveContainer>
@@ -114,10 +114,10 @@ export default function GraficoComparativo({ currentData, previousData, currentL
           <YAxis type="category" dataKey="cat" tick={{ fontSize: 11, fill: darkMode ? '#fff' : '#000', fontWeight: 800 }} axisLine={false} tickLine={false} width={80} />
           <Tooltip content={<Tip darkMode={darkMode}/>} cursor={{ fill: 'transparent' }} />
           <Bar dataKey="curr" name={currentLabel}  fill="#FF6A22" radius={[0, 6, 6, 0]}>
-            <LabelList content={<InsideLabel />} />
+            <LabelList content={<InsideLabel darkMode={darkMode} />} />
           </Bar>
           <Bar dataKey="prev" name={previousLabel} fill={darkMode ? '#444' : '#e5e7eb'} radius={[0, 6, 6, 0]}>
-            <LabelList content={<InsideLabel />} />
+            <LabelList content={<InsideLabel darkMode={darkMode} />} />
           </Bar>
         </BarChart>
       </ResponsiveContainer>

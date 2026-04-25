@@ -16,7 +16,7 @@ function fmtN(v) {
   return Math.round(v).toLocaleString('pt-BR')
 }
 
-export default function MapaRegional({ stateData=[], compareData=null }) {
+export default function MapaRegional({ stateData=[], compareData=null, darkMode = false }) {
   const regioes = useMemo(() => {
     const m = {}
     stateData.forEach(({ estado, faturamento }) => {
@@ -52,8 +52,8 @@ export default function MapaRegional({ stateData=[], compareData=null }) {
             {/* Label row */}
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:4 }}>
               <div style={{ display:'flex', alignItems:'center', gap:6 }}>
-                <span style={{ fontSize:11, color:'#AAA', fontWeight:700, width:16 }}>{i+1}</span>
-                <span style={{ fontSize:13, fontWeight:700, color:'#333' }}>{row.r}</span>
+                <span style={{ fontSize:11, color: darkMode ? '#888' : '#AAA', fontWeight:700, width:16 }}>{i+1}</span>
+                <span style={{ fontSize:13, fontWeight:700, color: darkMode ? '#fff' : '#333' }}>{row.r}</span>
               </div>
               {diff!==null && (
                 <span style={{ fontSize:12, fontWeight:700, color:diff>=0?'#16a34a':'#EF4444' }}>
@@ -73,7 +73,7 @@ export default function MapaRegional({ stateData=[], compareData=null }) {
                 {inside && <span style={{ fontSize:12, fontWeight:700, color:'white', whiteSpace:'nowrap' }}>{fmtN(row.fat)}</span>}
               </div>
               {!inside && (
-                <span style={{ position:'absolute', left:`${barW+1}%`, top:'50%', transform:'translateY(-50%)', fontSize:12, fontWeight:700, color:'#444', whiteSpace:'nowrap', paddingLeft:6 }}>{fmtN(row.fat)}</span>
+                <span style={{ position:'absolute', left:`${barW+1}%`, top:'50%', transform:'translateY(-50%)', fontSize:12, fontWeight:700, color: darkMode ? '#fff' : '#444', whiteSpace:'nowrap', paddingLeft:6 }}>{fmtN(row.fat)}</span>
               )}
             </div>
           </div>

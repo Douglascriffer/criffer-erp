@@ -408,6 +408,9 @@ export default function DashboardClient() {
                     <h3 style={{ fontSize: 18, fontWeight: 900, marginBottom: 24 }}>Comparativo Anual (2025 vs 2026)</h3>
                     <GraficoComparativo 
                       showComparison={true}
+                      darkMode={theme === 'dark'}
+                      currentLabel="2026"
+                      previousLabel="2025"
                       currentData={data?.byPeriod?.filter(p => p.ano === 2026)?.reduce((acc, curr) => ({
                         vendas: acc.vendas + curr.vendas,
                         servicos: acc.servicos + curr.servicos,
@@ -438,7 +441,7 @@ export default function DashboardClient() {
                   </div>
                   <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
                     <h3 style={{ fontSize: 18, fontWeight: 900, marginBottom: 24 }}>Distribuição Regional (Faturamento)</h3>
-                    <MapaRegional stateData={data?.byState?.filter(s => s.ano === 2026) || []} />
+                    <MapaRegional stateData={data?.byState?.filter(s => s.ano === 2026) || []} darkMode={theme === 'dark'} />
                   </div>
                 </div>
               )}
