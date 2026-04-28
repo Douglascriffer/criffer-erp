@@ -230,7 +230,7 @@ export default function DashboardClient() {
       {/* ══ TOPBAR PREMIUM (Sincronizada com Capa) ══ */}
       <header style={{
         background: 'linear-gradient(135deg, #a84410 0%, #d4601a 42%, #FF6A22 72%, #f07c38 100%)',
-        padding: '36px 4%',
+        padding: '16px 4%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -247,7 +247,7 @@ export default function DashboardClient() {
           </div>
           <div>
             <div style={{ fontSize: 28, fontWeight: 900, color: '#fff', letterSpacing: 3, lineHeight: 1 }}>CRIFFER</div>
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.9)', fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase' }}>ERP Financeiro</div>
+            <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.9)', fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase' }}>ERP Financeiro</div>
           </div>
         </div>
 
@@ -258,21 +258,21 @@ export default function DashboardClient() {
             const Icon = tabItem.icon
             return (
               <button key={tabItem.id} onClick={() => goTab(tabItem.id)} style={{
-                padding: '8px 20px',
-                borderRadius: 8,
+                padding: '12px 24px',
+                borderRadius: 10,
                 border: 'none',
                 cursor: 'pointer',
                 fontFamily: 'inherit',
-                fontSize: 13,
-                fontWeight: 700,
+                fontSize: 16,
+                fontWeight: 800,
                 display: 'flex',
                 alignItems: 'center',
-                gap: 8,
+                gap: 10,
                 background: active ? '#fff' : 'transparent',
                 color: active ? '#FF6A22' : 'rgba(255,255,255,0.85)',
                 transition: 'all 0.2s',
               }}>
-                <Icon size={16} />
+                <Icon size={18} />
                 {tabItem.label}
               </button>
             )
@@ -297,17 +297,17 @@ export default function DashboardClient() {
           </button>
 
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 20, fontWeight: 900, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', fontWeight: 600 }}>Tenha um ótimo dia</div>
+            <div style={{ fontSize: 22, fontWeight: 900, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
+            <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', fontWeight: 600 }}>Tenha um ótimo dia</div>
           </div>
           <button onClick={() => { localStorage.clear(); router.push('/login') }} style={{
             background: 'transparent',
             border: '1.5px solid rgba(255,255,255,0.4)',
             color: '#fff',
-            padding: '6px 16px',
-            borderRadius: 8,
-            fontSize: 13,
-            fontWeight: 700,
+            padding: '8px 20px',
+            borderRadius: 10,
+            fontSize: 14,
+            fontWeight: 800,
             cursor: 'pointer'
           }}>Sair</button>
         </div>
