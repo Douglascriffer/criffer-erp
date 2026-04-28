@@ -247,7 +247,7 @@ export default function DashboardClient() {
           </div>
           <div>
             <div style={{ fontSize: 36, fontWeight: 900, color: '#fff', letterSpacing: 3, lineHeight: 1 }}>CRIFFER</div>
-            <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.9)', fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase' }}>ERP Financeiro</div>
+            <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.9)', fontWeight: 500, letterSpacing: 2, textTransform: 'uppercase' }}>ERP Financeiro</div>
           </div>
         </div>
 
@@ -264,7 +264,7 @@ export default function DashboardClient() {
                 cursor: 'pointer',
                 fontFamily: 'inherit',
                 fontSize: 20,
-                fontWeight: 900,
+                fontWeight: 500,
                 display: 'flex',
                 alignItems: 'center',
                 gap: 12,
@@ -291,7 +291,7 @@ export default function DashboardClient() {
             padding: '14px 28px',
             color: '#fff',
             fontSize: 16,
-            fontWeight: 800,
+            fontWeight: 500,
             cursor: 'pointer',
             transition: 'all 0.2s'
           }}>
@@ -299,8 +299,8 @@ export default function DashboardClient() {
           </button>
 
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 26, fontWeight: 900, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
-            <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.9)', fontWeight: 700 }}>Tenha um ótimo dia</div>
+            <div style={{ fontSize: 26, fontWeight: 500, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
+            <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.9)', fontWeight: 500 }}>Tenha um ótimo dia</div>
           </div>
           <button onClick={() => { localStorage.clear(); router.push('/login') }} style={{
             background: 'transparent',
@@ -309,7 +309,7 @@ export default function DashboardClient() {
             padding: '12px 28px',
             borderRadius: 14,
             fontSize: 16,
-            fontWeight: 900,
+            fontWeight: 500,
             cursor: 'pointer',
             transition: 'all 0.2s'
           }}>Sair</button>
