@@ -85,21 +85,21 @@ export default function GraficoComparativo({ currentData, previousData, currentL
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      {/* Variação Cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+      {/* Variação Cards - Janelas Reduzidas */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
         {chartData.map(d => {
           const diff = d.prev > 0 ? ((d.curr - d.prev) / d.prev * 100) : 0
           const isPos = diff >= 0
           return (
             <div key={d.cat} style={{ 
               background: isPos ? '#22c55e10' : '#ef444410', 
-              borderRadius: 16, 
-              padding: '16px 12px', 
+              borderRadius: 12, 
+              padding: '10px 8px', 
               textAlign: 'center', 
               border: `1.5px solid ${isPos ? '#22c55e20' : '#ef444420'}` 
             }}>
-              <div style={{ fontSize: 13, fontWeight: 900, color: darkMode ? '#aaa' : '#666', marginBottom: 8, textTransform: 'uppercase', letterSpacing: 0.5 }}>{d.cat}</div>
-              <div style={{ fontSize: 24, fontWeight: 900, color: isPos ? '#22c55e' : '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
+              <div style={{ fontSize: 11, fontWeight: 900, color: darkMode ? '#aaa' : '#666', marginBottom: 4, textTransform: 'uppercase', letterSpacing: 0.5 }}>{d.cat}</div>
+              <div style={{ fontSize: 18, fontWeight: 900, color: isPos ? '#22c55e' : '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
                 {isPos ? '▲' : '▼'} {Math.abs(diff).toFixed(1)}%
               </div>
             </div>
@@ -111,7 +111,7 @@ export default function GraficoComparativo({ currentData, previousData, currentL
       <ResponsiveContainer width="100%" height={260}>
         <BarChart data={chartData} layout="vertical" margin={{ top: 10, right: 50, left: 20, bottom: 10 }} barCategoryGap="20%" barGap={4}>
           <XAxis type="number" hide />
-          <YAxis type="category" dataKey="cat" tick={{ fontSize: 13, fill: darkMode ? '#fff' : '#000', fontWeight: 900 }} axisLine={false} tickLine={false} width={90} />
+          <YAxis dataKey="cat" type="category" tick={{ fontSize: 14, fill: darkMode ? '#fff' : '#000', fontWeight: 900 }} axisLine={false} tickLine={false} width={90} />
           <Tooltip content={<Tip darkMode={darkMode}/>} cursor={{ fill: 'transparent' }} />
           <Bar dataKey="curr" name={currentLabel}  fill="#FF6A22" radius={[0, 6, 6, 0]}>
             <LabelList content={<InsideLabel darkMode={darkMode} />} />

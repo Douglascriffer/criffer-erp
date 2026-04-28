@@ -37,19 +37,19 @@ export default function GraficoFaturamentoMeta({ metaData = [], darkMode = false
   }
 
   return (
-    <div style={{ width: '100%', height: 350 }}>
+    <div style={{ width: '100%', height: 400 }}>
       <ResponsiveContainer>
         <ComposedChart
           data={chartData}
-          margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+          margin={{ top: 20, right: 20, bottom: 40, left: 20 }}
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} />
-          <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize:10, fill: darkMode ? '#fff' : '#999', fontWeight: 800 }} />
+          <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize:12, fill: darkMode ? '#fff' : '#999', fontWeight: 900 }} />
           <YAxis hide />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', radius: 12 }} />
-          <Legend wrapperStyle={{ fontSize: 12, fontWeight: 700 }} />
+          <Legend wrapperStyle={{ fontSize: 13, fontWeight: 900, paddingTop: 20 }} />
           <Bar dataKey="Faturamento" barSize={40} fill={darkMode ? '#ffffff' : '#333333'} radius={[6, 6, 0, 0]} />
-          <Line type="monotone" dataKey="Meta" stroke="#FF6A22" strokeWidth={4} dot={{ r: 5, strokeWidth: 2 }} activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="Meta" stroke="#FF6A22" strokeWidth={4} dot={{ r: 6, strokeWidth: 2 }} activeDot={{ r: 9 }} />
         </ComposedChart>
       </ResponsiveContainer>
     </div>
