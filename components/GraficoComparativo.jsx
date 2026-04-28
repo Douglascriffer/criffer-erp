@@ -84,12 +84,12 @@ export default function GraficoComparativo({ currentData, previousData, currentL
   ].sort((a, b) => b.curr - a.curr)
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: 330 }}>
       {/* Container Superior: Gráfico + Cards de Variação */}
-      <div style={{ display: 'flex', gap: 24, alignItems: 'stretch' }}>
+      <div style={{ display: 'flex', gap: 24, alignItems: 'stretch', height: 280 }}>
         {/* Coluna da Esquerda: Gráfico */}
         <div style={{ flex: 1.8, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <ResponsiveContainer width="100%" height={260}>
+          <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData} layout="vertical" margin={{ top: 10, right: 60, left: 20, bottom: 0 }} barCategoryGap="20%" barGap={4}>
               <XAxis type="number" hide />
               <YAxis dataKey="cat" type="category" tick={{ fontSize: 14, fill: darkMode ? '#fff' : '#000', fontWeight: 900 }} axisLine={false} tickLine={false} width={90} />
@@ -113,7 +113,7 @@ export default function GraficoComparativo({ currentData, previousData, currentL
               <div key={d.cat} style={{ 
                 background: isPos ? '#22c55e05' : '#ef444405', 
                 borderRadius: 16, 
-                padding: '16px', 
+                padding: '12px 8px', 
                 textAlign: 'center', 
                 border: `1.5px solid ${isPos ? '#22c55e20' : '#ef444420'}`,
                 display: 'flex',
@@ -121,8 +121,8 @@ export default function GraficoComparativo({ currentData, previousData, currentL
                 justifyContent: 'center',
                 flex: 1
               }}>
-                <div style={{ fontSize: 13, fontWeight: 900, color: darkMode ? '#aaa' : '#666', marginBottom: 8, textTransform: 'uppercase', letterSpacing: 1 }}>{d.cat}</div>
-                <div style={{ fontSize: 24, fontWeight: 900, color: isPos ? '#22c55e' : '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                <div style={{ fontSize: 12, fontWeight: 900, color: darkMode ? '#aaa' : '#666', marginBottom: 4, textTransform: 'uppercase', letterSpacing: 0.5 }}>{d.cat}</div>
+                <div style={{ fontSize: 20, fontWeight: 900, color: isPos ? '#22c55e' : '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
                   {isPos ? '▲' : '▼'} {Math.abs(diff).toFixed(1)}%
                 </div>
               </div>
@@ -131,8 +131,8 @@ export default function GraficoComparativo({ currentData, previousData, currentL
         </div>
       </div>
 
-      {/* Legenda na base de todo o card */}
-      <div style={{ display: 'flex', gap: 32, justifyContent: 'center', marginTop: 10 }}>
+      {/* Legenda na base de todo o card - Forçada para o fundo */}
+      <div style={{ display: 'flex', gap: 32, justifyContent: 'center', marginTop: 'auto' }}>
         {[[currentLabel, '#FF6A22'], [previousLabel, darkMode ? '#444' : '#e5e7eb']].map(([l, c]) => (
           <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 900, color: darkMode ? '#fff' : '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
             <div style={{ width: 12, height: 12, borderRadius: '50%', background: c }} />

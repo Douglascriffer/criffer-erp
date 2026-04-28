@@ -37,8 +37,8 @@ export default function GraficoFaturamentoMeta({ metaData = [], darkMode = false
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-      <div style={{ width: '100%', height: 260 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: 330 }}>
+      <div style={{ width: '100%', height: 280 }}>
         <ResponsiveContainer>
           <ComposedChart
             data={chartData}
@@ -54,11 +54,11 @@ export default function GraficoFaturamentoMeta({ metaData = [], darkMode = false
         </ResponsiveContainer>
       </div>
 
-      {/* Legenda Manual para Alinhamento Perfeito com o outro card */}
-      <div style={{ display: 'flex', gap: 32, justifyContent: 'center', marginTop: 10 }}>
+      {/* Legenda Manual - Forçada para o fundo */}
+      <div style={{ display: 'flex', gap: 32, justifyContent: 'center', marginTop: 'auto' }}>
         {[['Faturamento', darkMode ? '#ffffff' : '#333333'], ['Meta', '#FF6A22']].map(([l, c]) => (
           <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 900, color: darkMode ? '#fff' : '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
-            <div style={{ width: 12, height: 12, borderRadius: l === 'Meta' ? '50%' : 2, background: c }} />
+            <div style={{ width: 12, height: 12, borderRadius: '50%', background: c }} />
             {l}
           </div>
         ))}
