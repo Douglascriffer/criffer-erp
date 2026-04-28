@@ -63,7 +63,11 @@ def process_excel():
                     if isinstance(date_val, datetime):
                         dt = date_val
                     else:
-                        dt = pd.to_datetime(str(date_val), format='%b-%y')
+                        date_str = str(date_val).strip().lower()
+                        pt_to_en = {'fev':'feb', 'abr':'apr', 'mai':'may', 'ago':'aug', 'set':'sep', 'out':'oct', 'dez':'dec'}
+                        for pt, en in pt_to_en.items():
+                            date_str = date_str.replace(pt, en)
+                        dt = pd.to_datetime(date_str, format='%b-%y')
                 except:
                     continue
 
@@ -135,7 +139,12 @@ def process_excel():
                     dt = headers.iloc[i]
                     if pd.isna(dt) or str(dt) == 'Total' or 'Diferença' in str(dt): continue
                     if not isinstance(dt, datetime):
-                        try: dt = pd.to_datetime(dt)
+                        try:
+                            date_str = str(dt).strip().lower()
+                            pt_to_en = {'fev':'feb', 'abr':'apr', 'mai':'may', 'ago':'aug', 'set':'sep', 'out':'oct', 'dez':'dec'}
+                            for pt, en in pt_to_en.items():
+                                date_str = date_str.replace(pt, en)
+                            dt = pd.to_datetime(date_str)
                         except: continue
                     
                     m_val = float(metas.iloc[i]) if pd.notna(metas.iloc[i]) else 0

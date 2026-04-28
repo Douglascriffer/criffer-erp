@@ -15,8 +15,8 @@ function InsideLabel({ x, y, width, height, value, darkMode }) {
       x={inside ? x + width - 10 : x + width + 8} 
       y={y + height / 2 + 4} 
       fill={darkMode ? "#fff" : "#000"} 
-      fontSize={10} 
-      fontWeight={800} 
+      fontSize={13} 
+      fontWeight={900} 
       textAnchor={inside ? "end" : "start"}
     >
       {fmtBR(value)}
@@ -98,8 +98,8 @@ export default function GraficoComparativo({ currentData, previousData, currentL
               textAlign: 'center', 
               border: `1.5px solid ${isPos ? '#22c55e20' : '#ef444420'}` 
             }}>
-              <div style={{ fontSize: 11, fontWeight: 800, color: darkMode ? '#aaa' : '#666', marginBottom: 8, textTransform: 'uppercase', letterSpacing: 0.5 }}>{d.cat}</div>
-              <div style={{ fontSize: 18, fontWeight: 900, color: isPos ? '#22c55e' : '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
+              <div style={{ fontSize: 13, fontWeight: 900, color: darkMode ? '#aaa' : '#666', marginBottom: 8, textTransform: 'uppercase', letterSpacing: 0.5 }}>{d.cat}</div>
+              <div style={{ fontSize: 24, fontWeight: 900, color: isPos ? '#22c55e' : '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
                 {isPos ? '▲' : '▼'} {Math.abs(diff).toFixed(1)}%
               </div>
             </div>
@@ -109,9 +109,9 @@ export default function GraficoComparativo({ currentData, previousData, currentL
 
       {/* Gráfico de Barras */}
       <ResponsiveContainer width="100%" height={260}>
-        <BarChart data={chartData} layout="vertical" margin={{ top: 10, right: 40, left: 20, bottom: 10 }} barCategoryGap="30%" barGap={6}>
+        <BarChart data={chartData} layout="vertical" margin={{ top: 10, right: 50, left: 20, bottom: 10 }} barCategoryGap="20%" barGap={4}>
           <XAxis type="number" hide />
-          <YAxis type="category" dataKey="cat" tick={{ fontSize: 11, fill: darkMode ? '#fff' : '#000', fontWeight: 800 }} axisLine={false} tickLine={false} width={80} />
+          <YAxis type="category" dataKey="cat" tick={{ fontSize: 13, fill: darkMode ? '#fff' : '#000', fontWeight: 900 }} axisLine={false} tickLine={false} width={90} />
           <Tooltip content={<Tip darkMode={darkMode}/>} cursor={{ fill: 'transparent' }} />
           <Bar dataKey="curr" name={currentLabel}  fill="#FF6A22" radius={[0, 6, 6, 0]}>
             <LabelList content={<InsideLabel darkMode={darkMode} />} />

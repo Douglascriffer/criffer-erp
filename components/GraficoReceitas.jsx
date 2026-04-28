@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
-const C = { Vendas:'#FF6A22', 'Serviços':'#333333', 'Locação':'#A84410' }
+const C = { Vendas:'#FF6A22', 'Serviços':'#888888', 'Locação':'#A84410' }
 function TooltipC({ active, payload, label, darkMode }) {
   if (!active || !payload?.length) return null
   return (

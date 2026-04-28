@@ -35,12 +35,12 @@ const MES = {'1':'Jan','2':'Fev','3':'Mar','4':'Abr','5':'Mai','6':'Jun','7':'Ju
 /* ─── Temas Sincronizados (Padrão Capa) ─── */
 const THEME = {
   light: {
-    bg: '#f3f4f6',
+    bg: '#fafafa',
     card: '#ffffff',
     border: 'rgba(0,0,0,0.08)',
     text: '#000000',
-    textSub: '#1a1a1a',
-    textMuted: '#333333',
+    textSub: '#333333',
+    textMuted: '#666666',
     accent: '#FF6A22',
     pillBg: 'rgba(0,0,0,0.05)',
     grid: '#FF6A22',
@@ -165,7 +165,7 @@ export default function DashboardClient() {
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
       }} className="hover-lift">
-        <p style={{ fontSize: 13, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 4 }}>{label}</p>
+        <p style={{ fontSize: 15, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 4 }}>{label}</p>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ 
@@ -180,7 +180,7 @@ export default function DashboardClient() {
             <Icon size={24} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-             <p style={{ fontSize: 32, fontWeight: 500, color: t.text, lineHeight: 1 }}>
+             <p style={{ fontSize: 36, fontWeight: 500, color: t.text, lineHeight: 1 }}>
                {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
              </p>
           </div>
@@ -191,7 +191,7 @@ export default function DashboardClient() {
             display: 'inline-flex', 
             alignItems: 'center', 
             gap: 4, 
-            fontSize: 12, 
+            fontSize: 14, 
             fontWeight: 800, 
             color: isUp ? '#22c55e' : '#ef4444',
             marginBottom: 4
@@ -199,8 +199,8 @@ export default function DashboardClient() {
             {isUp ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
             {Math.abs(pct).toFixed(1)}%
           </div>
-          <p style={{ fontSize: 12, color: t.textMuted, fontWeight: 500 }}>
-            Anterior: <span style={{ fontWeight: 600, fontSize: 13 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
+          <p style={{ fontSize: 14, color: t.textMuted, fontWeight: 500 }}>
+            Anterior: <span style={{ fontWeight: 600, fontSize: 15 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
           </p>
         </div>
       </div>
@@ -240,12 +240,12 @@ export default function DashboardClient() {
       }}>
         {/* Logo + Brand */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }} onClick={() => router.push('/capa')}>
-          <div style={{ background: '#fff', borderRadius: '50%', width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
-            <Image src="/logo-base.png" alt="Criffer" width={28} height={28} style={{ objectFit: 'contain' }}/>
+          <div style={{ background: '#fff', borderRadius: '50%', width: 56, height: 56, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+            <Image src="/logo-base.png" alt="Criffer" width={40} height={40} style={{ objectFit: 'contain' }}/>
           </div>
           <div>
-            <div style={{ fontSize: 20, fontWeight: 900, color: '#fff', letterSpacing: 3, lineHeight: 1 }}>CRIFFER</div>
-            <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.9)', fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase' }}>ERP Financeiro</div>
+            <div style={{ fontSize: 28, fontWeight: 900, color: '#fff', letterSpacing: 3, lineHeight: 1 }}>CRIFFER</div>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.9)', fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase' }}>ERP Financeiro</div>
           </div>
         </div>
 
@@ -295,8 +295,8 @@ export default function DashboardClient() {
           </button>
 
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 16, fontWeight: 900, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.8)', fontWeight: 600 }}>Tenha um ótimo dia</div>
+            <div style={{ fontSize: 20, fontWeight: 900, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', fontWeight: 600 }}>Tenha um ótimo dia</div>
           </div>
           <button onClick={() => { localStorage.clear(); router.push('/login') }} style={{
             background: 'transparent',
@@ -378,7 +378,7 @@ export default function DashboardClient() {
         </div>
 
         {/* ══ CARDS DE KPI (Top 7) ══ */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16, marginBottom: 40, width: '100%' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 16, marginBottom: 40, width: '100%', overflowX: 'auto', paddingBottom: 10 }}>
           <KpiCard label="VENDAS" value={kpis.vendas || 0} prevValue={pkpis.vendas || 0} icon={ShoppingCart} color="#FF6A22" />
           <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
           <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
@@ -403,7 +403,12 @@ export default function DashboardClient() {
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
                       <h3 style={{ fontSize: 18, fontWeight: 900 }}>Evolução de Receita (2026)</h3>
                     </div>
-                    <GraficoReceitas periodData={data?.byPeriod?.filter(p => p.ano === 2026) || []} darkMode={theme === 'dark'} horizontal={false}/>
+                    <GraficoReceitas periodData={(data?.byPeriod?.filter(p => p.ano === 2026) || []).map(p => ({
+                      ...p,
+                      vendas: p.vendas > 0.01 ? p.vendas : null,
+                      servicos: p.servicos > 0.01 ? p.servicos : null,
+                      locacao: p.locacao > 0.01 ? p.locacao : null
+                    }))} darkMode={theme === 'dark'} horizontal={false}/>
                   </div>
                   <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
                     <h3 style={{ fontSize: 18, fontWeight: 900, marginBottom: 24 }}>Comparativo Anual (2025 vs 2026)</h3>
