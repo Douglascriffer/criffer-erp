@@ -41,13 +41,13 @@ export default function GraficoFaturamentoMeta({ metaData = [], darkMode = false
       <ResponsiveContainer>
         <ComposedChart
           data={chartData}
-          margin={{ top: 20, right: 20, bottom: 40, left: 20 }}
+          margin={{ top: 20, right: 20, bottom: 60, left: 20 }}
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} />
           <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize:12, fill: darkMode ? '#fff' : '#999', fontWeight: 500 }} />
           <YAxis hide />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', radius: 12 }} />
-          <Legend wrapperStyle={{ fontSize: 13, fontWeight: 500, paddingTop: 20 }} />
+          <Legend wrapperStyle={{ fontSize: 13, fontWeight: 500, paddingTop: 40 }} />
           <Bar dataKey="Faturamento" barSize={40} fill={darkMode ? '#ffffff' : '#333333'} radius={[6, 6, 0, 0]} />
           <Line type="monotone" dataKey="Meta" stroke="#FF6A22" strokeWidth={4} dot={{ r: 6, strokeWidth: 2 }} activeDot={{ r: 9 }} />
         </ComposedChart>
