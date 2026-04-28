@@ -37,6 +37,7 @@ export default function GraficoReceitas({ periodData = [], darkMode = false, hor
   }))
 
   return (
+    <div style={{ width: '100%' }}>
       <ResponsiveContainer width="100%" height={horizontal ? chartData.length * 80 + 60 : 350}>
         <BarChart 
           data={chartData} 
