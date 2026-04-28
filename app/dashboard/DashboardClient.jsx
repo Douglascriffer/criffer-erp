@@ -182,7 +182,7 @@ export default function DashboardClient() {
             <Icon size={28} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-             <p style={{ fontSize: 42, fontWeight: 600, color: t.text, lineHeight: 1 }}>
+             <p style={{ fontSize: 42, fontWeight: 500, color: t.text, lineHeight: 1 }}>
                {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
              </p>
           </div>
@@ -194,15 +194,15 @@ export default function DashboardClient() {
             alignItems: 'center', 
             gap: 4, 
             fontSize: 14, 
-            fontWeight: 800, 
+            fontWeight: 500, 
             color: isUp ? '#22c55e' : '#ef4444',
             marginBottom: 4
           }}>
             {isUp ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
             {Math.abs(pct).toFixed(1)}%
           </div>
-          <p style={{ fontSize: 16, color: t.textMuted, fontWeight: 600 }}>
-            Anterior: <span style={{ fontWeight: 800, fontSize: 17 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
+          <p style={{ fontSize: 16, color: t.textMuted, fontWeight: 500 }}>
+            Anterior: <span style={{ fontWeight: 500, fontSize: 17 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
           </p>
         </div>
       </div>
@@ -314,7 +314,7 @@ export default function DashboardClient() {
       </header>
 
       {/* ══ CONTEÚDO PRINCIPAL ══ */}
-      <main style={{ maxWidth: '100%', margin: '0 auto', padding: '20px 2%' }}>
+      <main style={{ maxWidth: '100%', margin: '0 auto', padding: '10px 2%' }}>
         
         {/* Filtros de Período (Design SaaS Moderno) */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
@@ -396,7 +396,7 @@ export default function DashboardClient() {
           
           {/* ABA FATURAMENTO (Desempenho) */}
           {tab === 'desempenho' && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               
               {/* Sub-aba: RECEITA */}
               {activeSub === 'vendas' && (
