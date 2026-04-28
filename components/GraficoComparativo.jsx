@@ -84,57 +84,61 @@ export default function GraficoComparativo({ currentData, previousData, currentL
   ].sort((a, b) => b.curr - a.curr)
 
   return (
-    <div style={{ display: 'flex', gap: 24, alignItems: 'stretch' }}>
-      {/* Coluna da Esquerda: Gráfico + Legenda */}
-      <div style={{ flex: 1.8, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <ResponsiveContainer width="100%" height={240}>
-          <BarChart data={chartData} layout="vertical" margin={{ top: 10, right: 60, left: 20, bottom: 10 }} barCategoryGap="20%" barGap={4}>
-            <XAxis type="number" hide />
-            <YAxis dataKey="cat" type="category" tick={{ fontSize: 14, fill: darkMode ? '#fff' : '#000', fontWeight: 900 }} axisLine={false} tickLine={false} width={90} />
-            <Tooltip content={<Tip darkMode={darkMode}/>} cursor={{ fill: 'transparent' }} />
-            <Bar dataKey="curr" name={currentLabel}  fill="#FF6A22" radius={[0, 6, 6, 0]}>
-              <LabelList content={<InsideLabel darkMode={darkMode} />} />
-            </Bar>
-            <Bar dataKey="prev" name={previousLabel} fill={darkMode ? '#444' : '#e5e7eb'} radius={[0, 6, 6, 0]}>
-              <LabelList content={<InsideLabel darkMode={darkMode} />} />
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+      {/* Container Superior: Gráfico + Cards de Variação */}
+      <div style={{ display: 'flex', gap: 24, alignItems: 'stretch' }}>
+        {/* Coluna da Esquerda: Gráfico */}
+        <div style={{ flex: 1.8, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <ResponsiveContainer width="100%" height={260}>
+            <BarChart data={chartData} layout="vertical" margin={{ top: 10, right: 60, left: 20, bottom: 0 }} barCategoryGap="20%" barGap={4}>
+              <XAxis type="number" hide />
+              <YAxis dataKey="cat" type="category" tick={{ fontSize: 14, fill: darkMode ? '#fff' : '#000', fontWeight: 900 }} axisLine={false} tickLine={false} width={90} />
+              <Tooltip content={<Tip darkMode={darkMode}/>} cursor={{ fill: 'transparent' }} />
+              <Bar dataKey="curr" name={currentLabel}  fill="#FF6A22" radius={[0, 6, 6, 0]}>
+                <LabelList content={<InsideLabel darkMode={darkMode} />} />
+              </Bar>
+              <Bar dataKey="prev" name={previousLabel} fill={darkMode ? '#444' : '#e5e7eb'} radius={[0, 6, 6, 0]}>
+                <LabelList content={<InsideLabel darkMode={darkMode} />} />
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
 
-        <div style={{ display: 'flex', gap: 24, justifyContent: 'center', marginTop: 16 }}>
-          {[[currentLabel, '#FF6A22'], [previousLabel, darkMode ? '#444' : '#e5e7eb']].map(([l, c]) => (
-            <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 900, color: darkMode ? '#fff' : '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
-              <div style={{ width: 12, height: 12, borderRadius: '50%', background: c }} />
-              {l}
-            </div>
-          ))}
+        {/* Coluna da Direita: Cards de Variação Empilhados */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10, justifyContent: 'center' }}>
+          {chartData.map(d => {
+            const diff = d.prev > 0 ? ((d.curr - d.prev) / d.prev * 100) : 0
+            const isPos = diff >= 0
+            return (
+              <div key={d.cat} style={{ 
+                background: isPos ? '#22c55e05' : '#ef444405', 
+                borderRadius: 16, 
+                padding: '16px', 
+                textAlign: 'center', 
+                border: `1.5px solid ${isPos ? '#22c55e20' : '#ef444420'}`,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                flex: 1
+              }}>
+                <div style={{ fontSize: 13, fontWeight: 900, color: darkMode ? '#aaa' : '#666', marginBottom: 8, textTransform: 'uppercase', letterSpacing: 1 }}>{d.cat}</div>
+                <div style={{ fontSize: 24, fontWeight: 900, color: isPos ? '#22c55e' : '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                  {isPos ? '▲' : '▼'} {Math.abs(diff).toFixed(1)}%
+                </div>
+              </div>
+            )
+          })}
         </div>
       </div>
 
-      {/* Coluna da Direita: Cards de Variação Empilhados */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10, justifyContent: 'center' }}>
-        {chartData.map(d => {
-          const diff = d.prev > 0 ? ((d.curr - d.prev) / d.prev * 100) : 0
-          const isPos = diff >= 0
-          return (
-            <div key={d.cat} style={{ 
-              background: isPos ? '#22c55e05' : '#ef444405', 
-              borderRadius: 16, 
-              padding: '16px', 
-              textAlign: 'center', 
-              border: `1.5px solid ${isPos ? '#22c55e20' : '#ef444420'}`,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              flex: 1
-            }}>
-              <div style={{ fontSize: 13, fontWeight: 900, color: darkMode ? '#aaa' : '#666', marginBottom: 8, textTransform: 'uppercase', letterSpacing: 1 }}>{d.cat}</div>
-              <div style={{ fontSize: 24, fontWeight: 900, color: isPos ? '#22c55e' : '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                {isPos ? '▲' : '▼'} {Math.abs(diff).toFixed(1)}%
-              </div>
-            </div>
-          )
-        })}
+      {/* Legenda na base de todo o card */}
+      <div style={{ display: 'flex', gap: 32, justifyContent: 'center', marginTop: 10 }}>
+        {[[currentLabel, '#FF6A22'], [previousLabel, darkMode ? '#444' : '#e5e7eb']].map(([l, c]) => (
+          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 900, color: darkMode ? '#fff' : '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <div style={{ width: 12, height: 12, borderRadius: '50%', background: c }} />
+            {l}
+          </div>
+        ))}
       </div>
     </div>
   )
