@@ -37,21 +37,32 @@ export default function GraficoFaturamentoMeta({ metaData = [], darkMode = false
   }
 
   return (
-    <div style={{ width: '100%', height: 300 }}>
-      <ResponsiveContainer>
-        <ComposedChart
-          data={chartData}
-          margin={{ top: 20, right: 20, bottom: 60, left: 20 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} />
-          <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize:12, fill: darkMode ? '#fff' : '#999', fontWeight: 500 }} />
-          <YAxis hide />
-          <Tooltip content={<CustomTooltip />} cursor={{ fill: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', radius: 12 }} />
-          <Legend wrapperStyle={{ fontSize: 13, fontWeight: 500, paddingTop: 40 }} />
-          <Bar dataKey="Faturamento" barSize={40} fill={darkMode ? '#ffffff' : '#333333'} radius={[6, 6, 0, 0]} />
-          <Line type="monotone" dataKey="Meta" stroke="#FF6A22" strokeWidth={4} dot={{ r: 6, strokeWidth: 2 }} activeDot={{ r: 9 }} />
-        </ComposedChart>
-      </ResponsiveContainer>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+      <div style={{ width: '100%', height: 260 }}>
+        <ResponsiveContainer>
+          <ComposedChart
+            data={chartData}
+            margin={{ top: 10, right: 20, bottom: 0, left: 20 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} />
+            <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize:12, fill: darkMode ? '#fff' : '#999', fontWeight: 500 }} />
+            <YAxis hide />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', radius: 12 }} />
+            <Bar dataKey="Faturamento" barSize={40} fill={darkMode ? '#ffffff' : '#333333'} radius={[6, 6, 0, 0]} />
+            <Line type="monotone" dataKey="Meta" stroke="#FF6A22" strokeWidth={4} dot={{ r: 6, strokeWidth: 2 }} activeDot={{ r: 9 }} />
+          </ComposedChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* Legenda Manual para Alinhamento Perfeito com o outro card */}
+      <div style={{ display: 'flex', gap: 32, justifyContent: 'center', marginTop: 10 }}>
+        {[['Faturamento', darkMode ? '#ffffff' : '#333333'], ['Meta', '#FF6A22']].map(([l, c]) => (
+          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 900, color: darkMode ? '#fff' : '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <div style={{ width: 12, height: 12, borderRadius: l === 'Meta' ? '50%' : 2, background: c }} />
+            {l}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
