@@ -401,17 +401,24 @@ export default function DashboardClient() {
               {/* Sub-aba: RECEITA */}
               {activeSub === 'vendas' && (
                 <>
-                <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 24 }}>
+                {/* 1. Evolução de Receita - Full Width */}
+                <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 24 }}>
+                    <h3 style={{ fontSize: 22, fontWeight: 900, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
+                  </div>
+                  <GraficoReceitas periodData={(data?.byPeriod?.filter(p => p.ano === 2026) || []).map(p => ({
+                    ...p,
+                    vendas: p.vendas > 0.01 ? p.vendas : null,
+                    servicos: p.servicos > 0.01 ? p.servicos : null,
+                    locacao: p.locacao > 0.01 ? p.locacao : null
+                  }))} darkMode={theme === 'dark'} horizontal={false}/>
+                </div>
+
+                {/* 2. Grid para Faturamento vs Meta e Comparativo Anual */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
                   <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 24 }}>
-                      <h3 style={{ fontSize: 22, fontWeight: 900, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
-                    </div>
-                    <GraficoReceitas periodData={(data?.byPeriod?.filter(p => p.ano === 2026) || []).map(p => ({
-                      ...p,
-                      vendas: p.vendas > 0.01 ? p.vendas : null,
-                      servicos: p.servicos > 0.01 ? p.servicos : null,
-                      locacao: p.locacao > 0.01 ? p.locacao : null
-                    }))} darkMode={theme === 'dark'} horizontal={false}/>
+                    <h3 style={{ fontSize: 22, fontWeight: 900, marginBottom: 24, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
+                    <GraficoFaturamentoMeta metaData={data?.meta?.[2026] || []} darkMode={theme === 'dark'} />
                   </div>
                   <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
                     <h3 style={{ fontSize: 22, fontWeight: 900, marginBottom: 24, textAlign: 'center' }}>Comparativo Anual (2025 vs 2026)</h3>
@@ -432,10 +439,6 @@ export default function DashboardClient() {
                       }), { vendas: 0, servicos: 0, locacao: 0 })}
                     />
                   </div>
-                </div>
-                <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, marginTop: 24 }}>
-                    <h3 style={{ fontSize: 22, fontWeight: 900, marginBottom: 24, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
-                  <GraficoFaturamentoMeta metaData={data?.meta?.[2026] || []} darkMode={theme === 'dark'} />
                 </div>
                 </>
               )}
