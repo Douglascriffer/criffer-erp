@@ -427,12 +427,12 @@ export default function DashboardClient() {
                       darkMode={theme === 'dark'}
                       currentLabel="2026"
                       previousLabel="2025"
-                      currentData={data?.byPeriod?.filter(p => p.ano === 2026)?.reduce((acc, curr) => ({
+                      currentData={data?.byPeriod?.filter(p => p.ano === 2026 && (filters.mes === 'all' || p.mes <= Number(filters.mes)))?.reduce((acc, curr) => ({
                         vendas: acc.vendas + curr.vendas,
                         servicos: acc.servicos + curr.servicos,
                         locacao: acc.locacao + curr.locacao
                       }), { vendas: 0, servicos: 0, locacao: 0 })}
-                      previousData={data?.byPeriod?.filter(p => p.ano === 2025)?.reduce((acc, curr) => ({
+                      previousData={data?.byPeriod?.filter(p => p.ano === 2025 && (filters.mes === 'all' || p.mes <= Number(filters.mes)))?.reduce((acc, curr) => ({
                         vendas: acc.vendas + curr.vendas,
                         servicos: acc.servicos + curr.servicos,
                         locacao: acc.locacao + curr.locacao

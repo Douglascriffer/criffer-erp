@@ -122,10 +122,10 @@ export default function GraficoComparativo({ currentData, previousData, currentL
         </BarChart>
       </ResponsiveContainer>
 
-      {/* Legenda */}
-      <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+      <div style={{ display: 'flex', gap: 24, justifyContent: 'center', marginTop: 12 }}>
         {[[currentLabel, '#FF6A22'], [previousLabel, darkMode ? '#444' : '#e5e7eb']].map(([l, c]) => (
-          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 500, color: darkMode ? '#fff' : '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 500, color: darkMode ? '#fff' : '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <div style={{ width: 12, height: 12, borderRadius: '50%', background: c }} />
             {l}
           </div>
         ))}
