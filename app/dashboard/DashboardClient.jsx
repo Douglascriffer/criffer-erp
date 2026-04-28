@@ -18,6 +18,7 @@ const GraficoComparativo   = dynamic(() => import('@/components/GraficoComparati
 const MapaRegional         = dynamic(() => import('@/components/MapaRegional'),         { ssr:false, loading:()=><Skeleton h={240}/> })
 const OrcamentoView        = dynamic(() => import('@/components/OrcamentoView'),        { ssr:false, loading:()=><Skeleton h={500}/> })
 const GraficoVendedores    = dynamic(() => import('@/components/GraficoVendedores'),    { ssr:false, loading:()=><Skeleton h={400}/> })
+const GraficoFaturamentoMeta = dynamic(() => import('@/components/GraficoFaturamentoMeta'), { ssr:false, loading:()=><Skeleton h={300}/> })
 
 function Skeleton({ h=200 }) { return <div style={{ height:h, background:'rgba(0,0,0,0.05)', borderRadius:16, animation:'pulse 1.5s infinite' }} /> }
 
@@ -34,12 +35,12 @@ const MES = {'1':'Jan','2':'Fev','3':'Mar','4':'Abr','5':'Mai','6':'Jun','7':'Ju
 /* ─── Temas Sincronizados (Padrão Capa) ─── */
 const THEME = {
   light: {
-    bg: '#ffffff',
+    bg: '#f3f4f6',
     card: '#ffffff',
     border: 'rgba(0,0,0,0.08)',
     text: '#000000',
-    textSub: '#333333',
-    textMuted: '#666666',
+    textSub: '#1a1a1a',
+    textMuted: '#333333',
     accent: '#FF6A22',
     pillBg: 'rgba(0,0,0,0.05)',
     grid: '#FF6A22',
@@ -164,7 +165,7 @@ export default function DashboardClient() {
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
       }} className="hover-lift">
-        <p style={{ fontSize: 10, fontWeight: 800, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 4 }}>{label}</p>
+        <p style={{ fontSize: 13, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 4 }}>{label}</p>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ 
@@ -179,7 +180,7 @@ export default function DashboardClient() {
             <Icon size={24} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-             <p style={{ fontSize: 24, fontWeight: 900, color: t.text, lineHeight: 1 }}>
+             <p style={{ fontSize: 32, fontWeight: 500, color: t.text, lineHeight: 1 }}>
                {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
              </p>
           </div>
@@ -198,8 +199,8 @@ export default function DashboardClient() {
             {isUp ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
             {Math.abs(pct).toFixed(1)}%
           </div>
-          <p style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>
-            Anterior: <span style={{ fontWeight: 800, fontSize: 13 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
+          <p style={{ fontSize: 12, color: t.textMuted, fontWeight: 500 }}>
+            Anterior: <span style={{ fontWeight: 600, fontSize: 13 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
           </p>
         </div>
       </div>
@@ -377,7 +378,7 @@ export default function DashboardClient() {
         </div>
 
         {/* ══ CARDS DE KPI (Top 7) ══ */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 16, marginBottom: 40, width: '100%' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16, marginBottom: 40, width: '100%' }}>
           <KpiCard label="VENDAS" value={kpis.vendas || 0} prevValue={pkpis.vendas || 0} icon={ShoppingCart} color="#FF6A22" />
           <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
           <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
@@ -396,11 +397,11 @@ export default function DashboardClient() {
               
               {/* Sub-aba: RECEITA */}
               {activeSub === 'vendas' && (
+                <>
                 <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 24 }}>
                   <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
                       <h3 style={{ fontSize: 18, fontWeight: 900 }}>Evolução de Receita (2026)</h3>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: t.textMuted }}>Barras Horizontais</div>
                     </div>
                     <GraficoReceitas periodData={data?.byPeriod?.filter(p => p.ano === 2026) || []} darkMode={theme === 'dark'} horizontal={false}/>
                   </div>
@@ -424,6 +425,11 @@ export default function DashboardClient() {
                     />
                   </div>
                 </div>
+                <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, marginTop: 24 }}>
+                  <h3 style={{ fontSize: 18, fontWeight: 900, marginBottom: 24 }}>Faturamento Total Mensal vs Meta</h3>
+                  <GraficoFaturamentoMeta metaData={data?.meta?.[2026] || []} darkMode={theme === 'dark'} />
+                </div>
+                </>
               )}
 
               {/* Sub-aba: MAPA */}
