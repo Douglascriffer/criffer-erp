@@ -230,7 +230,7 @@ export default function DashboardClient() {
       {/* ══ TOPBAR PREMIUM (Sincronizada com Capa) ══ */}
       <header style={{
         background: 'linear-gradient(135deg, #a84410 0%, #d4601a 42%, #FF6A22 72%, #f07c38 100%)',
-        padding: '16px 4%',
+        padding: '24px 4%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -238,41 +238,43 @@ export default function DashboardClient() {
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        gap: 20
+        gap: 32
       }}>
         {/* Logo + Brand */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }} onClick={() => router.push('/capa')}>
-          <div style={{ background: '#fff', borderRadius: '50%', width: 56, height: 56, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
-            <Image src="/logo-base.png" alt="Criffer" width={40} height={40} style={{ objectFit: 'contain' }}/>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, cursor: 'pointer' }} onClick={() => router.push('/capa')}>
+          <div style={{ background: '#fff', borderRadius: '50%', width: 75, height: 75, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+            <Image src="/logo-base.png" alt="Criffer" width={55} height={55} style={{ objectFit: 'contain' }}/>
           </div>
           <div>
-            <div style={{ fontSize: 28, fontWeight: 900, color: '#fff', letterSpacing: 3, lineHeight: 1 }}>CRIFFER</div>
-            <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.9)', fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase' }}>ERP Financeiro</div>
+            <div style={{ fontSize: 36, fontWeight: 900, color: '#fff', letterSpacing: 3, lineHeight: 1 }}>CRIFFER</div>
+            <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.9)', fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase' }}>ERP Financeiro</div>
           </div>
         </div>
 
         {/* Top Tabs Navigation */}
-        <nav style={{ display: 'flex', gap: 6, background: 'rgba(0,0,0,0.15)', padding: 5, borderRadius: 12, backdropFilter: 'blur(10px)' }}>
+        <nav style={{ display: 'flex', gap: 10, background: 'rgba(0,0,0,0.15)', padding: 8, borderRadius: 20, backdropFilter: 'blur(10px)' }}>
           {TOP_TABS.map(tabItem => {
             const active = tab === tabItem.id
             const Icon = tabItem.icon
             return (
               <button key={tabItem.id} onClick={() => goTab(tabItem.id)} style={{
-                padding: '12px 24px',
-                borderRadius: 10,
+                padding: '16px 36px',
+                borderRadius: 16,
                 border: 'none',
                 cursor: 'pointer',
                 fontFamily: 'inherit',
-                fontSize: 16,
-                fontWeight: 800,
+                fontSize: 20,
+                fontWeight: 900,
                 display: 'flex',
                 alignItems: 'center',
-                gap: 10,
+                gap: 12,
                 background: active ? '#fff' : 'transparent',
                 color: active ? '#FF6A22' : 'rgba(255,255,255,0.85)',
                 transition: 'all 0.2s',
+                textTransform: 'uppercase',
+                letterSpacing: 0.5
               }}>
-                <Icon size={18} />
+                <Icon size={24} />
                 {tabItem.label}
               </button>
             )
@@ -280,15 +282,15 @@ export default function DashboardClient() {
         </nav>
 
         {/* User & Settings */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
           {/* Theme Switcher sutil */}
           <button onClick={() => changeTheme(theme === 'light' ? 'dark' : 'light')} style={{
             background: 'rgba(0,0,0,0.1)',
             border: '1px solid rgba(255,255,255,0.2)',
-            borderRadius: 24,
-            padding: '10px 20px',
+            borderRadius: 30,
+            padding: '14px 28px',
             color: '#fff',
-            fontSize: 14,
+            fontSize: 16,
             fontWeight: 800,
             cursor: 'pointer',
             transition: 'all 0.2s'
@@ -297,18 +299,19 @@ export default function DashboardClient() {
           </button>
 
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 22, fontWeight: 900, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
-            <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', fontWeight: 600 }}>Tenha um ótimo dia</div>
+            <div style={{ fontSize: 26, fontWeight: 900, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
+            <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.9)', fontWeight: 700 }}>Tenha um ótimo dia</div>
           </div>
           <button onClick={() => { localStorage.clear(); router.push('/login') }} style={{
             background: 'transparent',
-            border: '1.5px solid rgba(255,255,255,0.4)',
+            border: '2.5px solid rgba(255,255,255,0.4)',
             color: '#fff',
-            padding: '8px 20px',
-            borderRadius: 10,
-            fontSize: 14,
-            fontWeight: 800,
-            cursor: 'pointer'
+            padding: '12px 28px',
+            borderRadius: 14,
+            fontSize: 16,
+            fontWeight: 900,
+            cursor: 'pointer',
+            transition: 'all 0.2s'
           }}>Sair</button>
         </div>
       </header>
