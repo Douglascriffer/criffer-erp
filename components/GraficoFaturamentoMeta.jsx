@@ -37,12 +37,12 @@ export default function GraficoFaturamentoMeta({ metaData = [], darkMode = false
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: 330 }}>
-      <div style={{ width: '100%', height: 280 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: 220 }}>
+      <div style={{ width: '100%', height: 180 }}>
         <ResponsiveContainer>
           <ComposedChart
             data={chartData}
-            margin={{ top: 10, right: 20, bottom: 0, left: 20 }}
+            margin={{ top: 5, right: 20, bottom: 0, left: 20 }}
           >
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} />
             <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize:12, fill: darkMode ? '#fff' : '#999', fontWeight: 500 }} />
@@ -55,10 +55,10 @@ export default function GraficoFaturamentoMeta({ metaData = [], darkMode = false
       </div>
 
       {/* Legenda Manual - Forçada para o fundo */}
-      <div style={{ display: 'flex', gap: 32, justifyContent: 'center', marginTop: 'auto' }}>
+      <div style={{ display: 'flex', gap: 24, justifyContent: 'center', marginTop: 'auto' }}>
         {[['Faturamento', darkMode ? '#ffffff' : '#333333'], ['Meta', '#FF6A22']].map(([l, c]) => (
-          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 900, color: darkMode ? '#fff' : '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
-            <div style={{ width: 12, height: 12, borderRadius: '50%', background: c }} />
+          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 900, color: darkMode ? '#fff' : '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <div style={{ width: 10, height: 10, borderRadius: '50%', background: c }} />
             {l}
           </div>
         ))}

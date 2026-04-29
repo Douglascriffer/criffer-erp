@@ -38,7 +38,7 @@ export default function GraficoReceitas({ periodData = [], darkMode = false, hor
 
   return (
     <div style={{ width: '100%' }}>
-      <ResponsiveContainer width="100%" height={horizontal ? chartData.length * 80 + 60 : 280}>
+      <ResponsiveContainer width="100%" height={horizontal ? chartData.length * 80 + 60 : 180}>
         <BarChart 
           data={chartData} 
           layout={horizontal ? 'vertical' : 'horizontal'}
@@ -49,11 +49,11 @@ export default function GraficoReceitas({ periodData = [], darkMode = false, hor
           {horizontal ? (
             <>
               <XAxis type="number" hide />
-              <YAxis dataKey="label" type="category" tick={{ fontSize:12, fill: darkMode ? '#fff' : '#999', fontWeight: 500 }} axisLine={false} tickLine={false} width={80} />
+              <YAxis dataKey="label" type="category" tick={{ fontSize:10, fill: darkMode ? '#fff' : '#999', fontWeight: 500 }} axisLine={false} tickLine={false} width={80} />
             </>
           ) : (
             <>
-              <XAxis dataKey="label" tick={{ fontSize:12, fill: darkMode ? '#fff' : '#999', fontWeight: 500 }} axisLine={false} tickLine={false} />
+              <XAxis dataKey="label" tick={{ fontSize:10, fill: darkMode ? '#fff' : '#999', fontWeight: 500 }} axisLine={false} tickLine={false} />
               <YAxis hide />
             </>
           )}
@@ -74,10 +74,10 @@ export default function GraficoReceitas({ periodData = [], darkMode = false, hor
       </ResponsiveContainer>
 
       {/* Legenda na Base */}
-      <div style={{ display:'flex', gap:20, justifyContent:'center', marginTop:24, flexWrap: 'wrap' }}>
+      <div style={{ display:'flex', gap:20, justifyContent:'center', marginTop:12, flexWrap: 'wrap' }}>
         {Object.entries(C).map(([k, c]) => (
-          <div key={k} style={{ display:'flex', alignItems:'center', gap:6, fontSize:12, fontWeight: 500, color: darkMode ? '#fff' : '#666', textTransform: 'uppercase', letterSpacing: 0.5 }}>
-            <div style={{ width:12, height:12, borderRadius: '50%', background:c }}/>
+          <div key={k} style={{ display:'flex', alignItems:'center', gap:6, fontSize:11, fontWeight: 500, color: darkMode ? '#fff' : '#666', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <div style={{ width:10, height:10, borderRadius: '50%', background:c }}/>
             {k}
           </div>
         ))}

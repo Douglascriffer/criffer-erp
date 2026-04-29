@@ -157,32 +157,32 @@ export default function DashboardClient() {
       <div style={{
         background: t.card,
         border: `1.5px solid ${t.border}`,
-        borderRadius: 6,
-        padding: '4px',
+        borderRadius: 8,
+        padding: '6px',
         display: 'flex',
         flexDirection: 'column',
-        gap: 1,
+        gap: 2,
         alignItems: 'center',
         textAlign: 'center',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
       }} className="hover-lift">
-        <p style={{ fontSize: 7.5, fontWeight: 500, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 0, width: '100%' }}>{label}</p>
+        <p style={{ fontSize: 8.5, fontWeight: 500, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 0, width: '100%' }}>{label}</p>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ 
             background: `${color}15`, 
             color: color, 
-            padding: 3, 
-            borderRadius: 5,
+            padding: 4, 
+            borderRadius: 6,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <Icon size={10} />
+            <Icon size={12} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-             <p style={{ fontSize: 14, fontWeight: 500, color: t.text, lineHeight: 1 }}>
+             <p style={{ fontSize: 16, fontWeight: 500, color: t.text, lineHeight: 1 }}>
                {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
              </p>
           </div>
@@ -193,16 +193,16 @@ export default function DashboardClient() {
             display: 'inline-flex', 
             alignItems: 'center', 
             gap: 2, 
-            fontSize: 8, 
+            fontSize: 9, 
             fontWeight: 500, 
             color: isUp ? '#22c55e' : '#ef4444',
             marginBottom: 0
           }}>
-            {isUp ? <TrendingUp size={8} /> : <TrendingDown size={8} />}
+            {isUp ? <TrendingUp size={9} /> : <TrendingDown size={9} />}
             {Math.abs(pct).toFixed(1)}%
           </div>
-          <p style={{ fontSize: 9, color: t.textMuted, fontWeight: 500 }}>
-            Ant.: <span style={{ fontWeight: 500, fontSize: 10 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
+          <p style={{ fontSize: 10, color: t.textMuted, fontWeight: 500 }}>
+            Ant.: <span style={{ fontWeight: 500, fontSize: 11 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
           </p>
         </div>
       </div>
