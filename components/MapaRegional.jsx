@@ -27,14 +27,14 @@ export default function MapaRegional({ stateData = [], darkMode = false }) {
   const maxVal = data[0]?.value || 1
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
       {data.map((item, i) => {
         const pct = (item.value / maxVal) * 100
         return (
           <div key={item.name}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, fontSize: 12 }}>
-              <span style={{ color: darkMode ? '#fff' : '#333' }}>{item.name}</span>
-              <span style={{ color: darkMode ? '#aaa' : '#666' }}>R$ {item.value.toLocaleString('pt-BR')}</span>
+              <span style={{ color: darkMode ? '#fff' : '#333', fontWeight: 600 }}>{item.name}</span>
+              <span style={{ color: darkMode ? '#aaa' : '#666', fontWeight: 400 }}>R$ {item.value.toLocaleString('pt-BR')}</span>
             </div>
             <div style={{ height: 6, background: darkMode ? 'rgba(255,255,255,0.05)' : '#eee', borderRadius: 3, overflow: 'hidden' }}>
               <div style={{ 
