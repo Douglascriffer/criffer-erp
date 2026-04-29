@@ -2,8 +2,16 @@
 import { useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 const C = { Vendas:'#FF6A22', 'Serviços':'#888888', 'Locação':'#A84410' }
+const MES_MAP = {
+  'JAN': 'JAN', 'FEB': 'FEV', 'MAR': 'MAR', 'APR': 'ABR', 'MAY': 'MAI', 'JUN': 'JUN',
+  'JUL': 'JUL', 'AUG': 'AGO', 'SEP': 'SET', 'OCT': 'OUT', 'NOV': 'NOV', 'DEC': 'DEZ'
+}
+
 function TooltipC({ active, payload, label, darkMode }) {
   if (!active || !payload?.length) return null
+  const cleanLabel = label?.split('/')[0]
+  const displayLabel = MES_MAP[cleanLabel] ? `${MES_MAP[cleanLabel]}/${label?.split('/')[1]}` : label
+
   return (
     <div style={{ 
       background: darkMode ? '#1a1a1a' : '#ffffff', 
@@ -14,14 +22,14 @@ function TooltipC({ active, payload, label, darkMode }) {
       boxShadow: '0 8px 32px rgba(0,0,0,.15)',
       color: darkMode ? '#fff' : '#000'
     }}>
-      <p style={{ color: '#FF6A22', marginBottom: 12, fontWeight: 900, fontSize: 14, textTransform: 'uppercase' }}>{label}</p>
+      <p style={{ color: '#FF6A22', marginBottom: 12, fontWeight: 700, fontSize: 14, textTransform: 'uppercase' }}>{displayLabel}</p>
       {payload.map(p => (
         <div key={p.name} style={{ display: 'flex', justifyContent: 'space-between', gap: 32, marginBottom: 6 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: p.fill }}/>
-            <span style={{ color: darkMode ? '#aaa' : '#666', fontWeight: 500 }}>{p.name}</span>
+            <span style={{ color: darkMode ? '#aaa' : '#666', fontWeight: 400 }}>{p.name}</span>
           </div>
-          <span style={{ fontWeight: 500 }}>{Math.round(p.value).toLocaleString('pt-BR')}</span>
+          <span style={{ fontWeight: 400 }}>{Math.round(p.value).toLocaleString('pt-BR')}</span>
         </div>
       ))}
     </div>
@@ -29,16 +37,23 @@ function TooltipC({ active, payload, label, darkMode }) {
 }
 
 export default function GraficoReceitas({ periodData = [], darkMode = false, horizontal = false }) {
-  const chartData = periodData.map(d => ({
-    label: d.label.toUpperCase(),
-    Vendas:   d.vendas   || 0,
-    Serviços: d.servicos || 0,
-    Locação:  d.locacao  || 0,
-  }))
+  const chartData = periodData.map(d => {
+    const rawLabel = d.label.toUpperCase()
+    const cleanMonth = rawLabel.split('/')[0]
+    const mappedMonth = MES_MAP[cleanMonth] || cleanMonth
+    const displayLabel = rawLabel.includes('/') ? `${mappedMonth}/${rawLabel.split('/')[1]}` : mappedMonth
+
+    return {
+      label: displayLabel,
+      Vendas:   d.vendas   || 0,
+      Serviços: d.servicos || 0,
+      Locação:  d.locacao  || 0,
+    }
+  })
 
   return (
     <div style={{ width: '100%' }}>
-      <ResponsiveContainer width="100%" height={horizontal ? chartData.length * 80 + 60 : 280}>
+      <ResponsiveContainer width="100%" height={horizontal ? chartData.length * 80 + 60 : 220}>
         <BarChart 
           data={chartData} 
           layout={horizontal ? 'vertical' : 'horizontal'}
@@ -49,11 +64,11 @@ export default function GraficoReceitas({ periodData = [], darkMode = false, hor
           {horizontal ? (
             <>
               <XAxis type="number" hide />
-              <YAxis dataKey="label" type="category" tick={{ fontSize:10, fill: darkMode ? '#fff' : '#999', fontWeight: 500 }} axisLine={false} tickLine={false} width={80} />
+              <YAxis dataKey="label" type="category" tick={{ fontSize:10, fill: darkMode ? '#fff' : '#999', fontWeight: 400 }} axisLine={false} tickLine={false} width={80} />
             </>
           ) : (
             <>
-              <XAxis dataKey="label" tick={{ fontSize:10, fill: darkMode ? '#fff' : '#999', fontWeight: 500 }} axisLine={false} tickLine={false} />
+              <XAxis dataKey="label" tick={{ fontSize:10, fill: darkMode ? '#fff' : '#999', fontWeight: 400 }} axisLine={false} tickLine={false} />
               <YAxis hide />
             </>
           )}
@@ -76,7 +91,7 @@ export default function GraficoReceitas({ periodData = [], darkMode = false, hor
       {/* Legenda na Base */}
       <div style={{ display:'flex', gap:20, justifyContent:'center', marginTop:12, flexWrap: 'wrap' }}>
         {Object.entries(C).map(([k, c]) => (
-          <div key={k} style={{ display:'flex', alignItems:'center', gap:6, fontSize:11, fontWeight: 500, color: darkMode ? '#fff' : '#666', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+          <div key={k} style={{ display:'flex', alignItems:'center', gap:6, fontSize:11, fontWeight: 400, color: darkMode ? '#fff' : '#666', textTransform: 'uppercase', letterSpacing: 0.5 }}>
             <div style={{ width:10, height:10, borderRadius: '50%', background:c }}/>
             {k}
           </div>

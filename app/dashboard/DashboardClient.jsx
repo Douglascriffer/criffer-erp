@@ -167,43 +167,43 @@ export default function DashboardClient() {
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
       }} className="hover-lift">
-        <p style={{ fontSize: 8.5, fontWeight: 500, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 0, width: '100%' }}>{label}</p>
+        <p style={{ fontSize: 10, fontWeight: 500, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4, width: '100%' }}>{label}</p>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ 
             background: `${color}15`, 
             color: color, 
-            padding: 3.5, 
-            borderRadius: 5,
+            padding: 4, 
+            borderRadius: 6,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <Icon size={11} />
+            <Icon size={14} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-             <p style={{ fontSize: 15, fontWeight: 500, color: t.text, lineHeight: 1 }}>
+             <p style={{ fontSize: 20, fontWeight: 500, color: t.text, lineHeight: 1 }}>
                {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
              </p>
           </div>
         </div>
         
-        <div style={{ marginTop: 0, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ marginTop: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{ 
             display: 'inline-flex', 
             alignItems: 'center', 
             gap: 2, 
-            fontSize: 9, 
-            fontWeight: 500, 
+            fontSize: 11, 
+            fontWeight: 400, 
             color: isUp ? '#22c55e' : '#ef4444',
             lineHeight: 1,
-            marginBottom: 1
+            marginBottom: 2
           }}>
-            {isUp ? <TrendingUp size={9} /> : <TrendingDown size={9} />}
+            {isUp ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
             {Math.abs(pct).toFixed(1)}%
           </div>
-          <p style={{ fontSize: 9, color: t.textMuted, fontWeight: 500, lineHeight: 1 }}>
-            Ant.: <span style={{ fontWeight: 500, fontSize: 10.5 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
+          <p style={{ fontSize: 12, color: t.textMuted, fontWeight: 400, lineHeight: 1 }}>
+            Ant.: <span style={{ fontWeight: 400, fontSize: 13 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
           </p>
         </div>
       </div>
@@ -363,12 +363,13 @@ export default function DashboardClient() {
                   fontWeight: 600,
                   cursor: 'pointer',
                   outline: 'none',
-                  appearance: 'none'
+                  appearance: 'none',
+                  colorScheme: theme === 'dark' ? 'dark' : 'light'
                 }}
               >
-                <option value="all">Todos os Meses</option>
+                <option value="all" style={{ background: '#1a1a1a', color: '#fff' }}>Todos os Meses</option>
                 {['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'].map((m, i) => (
-                  <option key={m} value={i+1}>{m}</option>
+                  <option key={m} value={i+1} style={{ background: '#1a1a1a', color: '#fff' }}>{m}</option>
                 ))}
               </select>
             </div>
@@ -419,8 +420,8 @@ export default function DashboardClient() {
                 <>
                 {/* 1. Evolução de Receita - Full Width */}
                 <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6 }}>
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 2 }}>
-                    <h3 style={{ fontSize: 10, fontWeight: 500, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 6 }}>
+                    <h3 style={{ fontSize: 14, fontWeight: 700, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
                   </div>
                   <GraficoReceitas periodData={(data?.byPeriod?.filter(p => p.ano === 2026) || []).map(p => ({
                     ...p,
@@ -433,11 +434,11 @@ export default function DashboardClient() {
                 {/* 2. Grid para Faturamento vs Meta e Comparativo Anual */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
                   <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6 }}>
-                    <h3 style={{ fontSize: 10, fontWeight: 500, marginBottom: 2, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
+                    <h3 style={{ fontSize: 14, fontWeight: 700, marginBottom: 6, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
                     <GraficoFaturamentoMeta metaData={data?.meta?.[2026] || []} darkMode={theme === 'dark'} />
                   </div>
                   <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6 }}>
-                    <h3 style={{ fontSize: 10, fontWeight: 500, marginBottom: 2, textAlign: 'center' }}>Comparativo Anual (2025 vs 2026)</h3>
+                    <h3 style={{ fontSize: 14, fontWeight: 700, marginBottom: 6, textAlign: 'center' }}>Comparativo Anual acumulado (2025 vs 2026)</h3>
                     <GraficoComparativo 
                       showComparison={true}
                       darkMode={theme === 'dark'}

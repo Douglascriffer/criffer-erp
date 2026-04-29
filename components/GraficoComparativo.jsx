@@ -16,7 +16,7 @@ function InsideLabel({ x, y, width, height, value, darkMode }) {
       y={y + height / 2 + 4} 
       fill={darkMode ? "#fff" : "#000"} 
       fontSize={13} 
-      fontWeight={500} 
+      fontWeight={400} 
       textAnchor={inside ? "end" : "start"}
     >
       {fmtBR(value)}
@@ -41,9 +41,9 @@ function Tip({ active, payload, label, darkMode }) {
         <div key={p.name} style={{ display: 'flex', justifyContent: 'space-between', gap: 24, marginBottom: 6 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: p.fill }}/>
-            <span style={{ color: darkMode ? '#aaa' : '#666', fontWeight: 500 }}>{p.name}</span>
+            <span style={{ color: darkMode ? '#aaa' : '#666', fontWeight: 400 }}>{p.name}</span>
           </div>
-          <span style={{ fontWeight: 500 }}>{fmtBR(p.value)}</span>
+          <span style={{ fontWeight: 400 }}>{fmtBR(p.value)}</span>
         </div>
       ))}
     </div>
@@ -92,7 +92,7 @@ export default function GraficoComparativo({ currentData, previousData, currentL
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData} layout="vertical" margin={{ top: 10, right: 60, left: 20, bottom: 0 }} barCategoryGap="20%" barGap={4}>
               <XAxis type="number" hide />
-              <YAxis dataKey="cat" type="category" tick={{ fontSize: 14, fill: darkMode ? '#fff' : '#000', fontWeight: 900 }} axisLine={false} tickLine={false} width={90} />
+              <YAxis dataKey="cat" type="category" tick={{ fontSize: 14, fill: darkMode ? '#fff' : '#000', fontWeight: 400 }} axisLine={false} tickLine={false} width={90} />
               <Tooltip content={<Tip darkMode={darkMode}/>} cursor={{ fill: 'transparent' }} />
               <Bar dataKey="curr" name={currentLabel}  fill="#FF6A22" radius={[0, 6, 6, 0]}>
                 <LabelList content={<InsideLabel darkMode={darkMode} />} />
@@ -121,8 +121,8 @@ export default function GraficoComparativo({ currentData, previousData, currentL
                 justifyContent: 'center',
                 flex: 1
               }}>
-                <div style={{ fontSize: 12, fontWeight: 900, color: darkMode ? '#aaa' : '#666', marginBottom: 4, textTransform: 'uppercase', letterSpacing: 0.5 }}>{d.cat}</div>
-                <div style={{ fontSize: 20, fontWeight: 900, color: isPos ? '#22c55e' : '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
+                <div style={{ fontSize: 12, fontWeight: 400, color: darkMode ? '#aaa' : '#666', marginBottom: 4, textTransform: 'uppercase', letterSpacing: 0.5 }}>{d.cat}</div>
+                <div style={{ fontSize: 20, fontWeight: 400, color: isPos ? '#22c55e' : '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
                   {isPos ? '▲' : '▼'} {Math.abs(diff).toFixed(1)}%
                 </div>
               </div>
@@ -134,7 +134,7 @@ export default function GraficoComparativo({ currentData, previousData, currentL
       {/* Legenda na base de todo o card - Forçada para o fundo */}
       <div style={{ display: 'flex', gap: 24, justifyContent: 'center', marginTop: 'auto' }}>
         {[[currentLabel, '#FF6A22'], [previousLabel, darkMode ? '#444' : '#e5e7eb']].map(([l, c]) => (
-          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 900, color: darkMode ? '#fff' : '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+          <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 400, color: darkMode ? '#fff' : '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: c }} />
             {l}
           </div>
