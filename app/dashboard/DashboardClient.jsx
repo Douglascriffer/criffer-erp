@@ -119,7 +119,7 @@ export default function DashboardClient() {
   }
 
   const activeSubs = SUB_TABS[tab] || []
-  const activeSub  = subTab || activeSubs[0]?.id || ''
+  const activeSub  = subTab || (tab === 'desempenho' ? 'vendas' : activeSubs[0]?.id || '')
 
   function goTab(id) { router.push(`/dashboard?tab=${id}`) }
   function goSub(id) { router.push(`/dashboard?tab=${tab}&sub=${id}`) }
