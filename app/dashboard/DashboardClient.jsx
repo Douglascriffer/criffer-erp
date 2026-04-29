@@ -157,32 +157,32 @@ export default function DashboardClient() {
       <div style={{
         background: t.card,
         border: `1.5px solid ${t.border}`,
-        borderRadius: 12,
-        padding: '10px',
+        borderRadius: 10,
+        padding: '8px',
         display: 'flex',
         flexDirection: 'column',
-        gap: 6,
+        gap: 4,
         alignItems: 'center',
         textAlign: 'center',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
       }} className="hover-lift">
-        <p style={{ fontSize: 10, fontWeight: 500, color: t.text, textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 1, width: '100%' }}>{label}</p>
+        <p style={{ fontSize: 9, fontWeight: 500, color: t.text, textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 0.5, width: '100%' }}>{label}</p>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ 
             background: `${color}15`, 
             color: color, 
-            padding: 6, 
-            borderRadius: 10,
+            padding: 5, 
+            borderRadius: 8,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <Icon size={18} />
+            <Icon size={14} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-             <p style={{ fontSize: 22, fontWeight: 500, color: t.text, lineHeight: 1 }}>
+             <p style={{ fontSize: 18, fontWeight: 500, color: t.text, lineHeight: 1 }}>
                {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
              </p>
           </div>
@@ -230,7 +230,7 @@ export default function DashboardClient() {
       {/* ══ TOPBAR PREMIUM (Sincronizada com Capa) ══ */}
       <header style={{
         background: 'linear-gradient(135deg, #a84410 0%, #d4601a 42%, #FF6A22 72%, #f07c38 100%)',
-        padding: '12px 4%',
+        padding: '8px 4%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -241,13 +241,13 @@ export default function DashboardClient() {
         gap: 32
       }}>
         {/* Logo + Brand */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }} onClick={() => router.push('/capa')}>
-          <div style={{ background: '#fff', borderRadius: '50%', width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
-            <Image src="/logo-base.png" alt="Criffer" width={32} height={32} style={{ objectFit: 'contain' }}/>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }} onClick={() => router.push('/capa')}>
+          <div style={{ background: '#fff', borderRadius: '50%', width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+            <Image src="/logo-base.png" alt="Criffer" width={26} height={26} style={{ objectFit: 'contain' }}/>
           </div>
           <div>
-            <div style={{ fontSize: 24, fontWeight: 500, color: '#fff', letterSpacing: 2, lineHeight: 1 }}>CRIFFER</div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)', fontWeight: 400, letterSpacing: 1.5, textTransform: 'uppercase' }}>ERP Financeiro</div>
+            <div style={{ fontSize: 18, fontWeight: 500, color: '#fff', letterSpacing: 2, lineHeight: 1 }}>CRIFFER</div>
+            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.9)', fontWeight: 400, letterSpacing: 1.5, textTransform: 'uppercase' }}>ERP Financeiro</div>
           </div>
         </div>
 
@@ -258,23 +258,23 @@ export default function DashboardClient() {
             const Icon = tabItem.icon
             return (
               <button key={tabItem.id} onClick={() => goTab(tabItem.id)} style={{
-                padding: '10px 20px',
-                borderRadius: 10,
+                padding: '6px 14px',
+                borderRadius: 8,
                 border: 'none',
                 cursor: 'pointer',
                 fontFamily: 'inherit',
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: 400,
                 display: 'flex',
                 alignItems: 'center',
-                gap: 8,
+                gap: 6,
                 background: active ? '#fff' : 'transparent',
                 color: active ? '#FF6A22' : 'rgba(255,255,255,0.85)',
                 transition: 'all 0.2s',
                 textTransform: 'uppercase',
                 letterSpacing: 0.5
               }}>
-                <Icon size={18} />
+                <Icon size={16} />
                 {tabItem.label}
               </button>
             )
@@ -288,9 +288,9 @@ export default function DashboardClient() {
             background: 'rgba(0,0,0,0.1)',
             border: '1px solid rgba(255,255,255,0.2)',
             borderRadius: 30,
-            padding: '8px 18px',
+            padding: '6px 14px',
             color: '#fff',
-            fontSize: 13,
+            fontSize: 12,
             fontWeight: 400,
             cursor: 'pointer',
             transition: 'all 0.2s'
@@ -299,16 +299,16 @@ export default function DashboardClient() {
           </button>
 
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 17, fontWeight: 400, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)', fontWeight: 400 }}>Tenha um ótimo dia</div>
+            <div style={{ fontSize: 15, fontWeight: 400, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
+            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.9)', fontWeight: 400 }}>Tenha um ótimo dia</div>
           </div>
           <button onClick={() => { localStorage.clear(); router.push('/login') }} style={{
             background: 'transparent',
             border: '2px solid rgba(255,255,255,0.4)',
             color: '#fff',
-            padding: '8px 18px',
-            borderRadius: 10,
-            fontSize: 13,
+            padding: '6px 14px',
+            borderRadius: 8,
+            fontSize: 12,
             fontWeight: 400,
             cursor: 'pointer',
             transition: 'all 0.2s'
@@ -317,21 +317,21 @@ export default function DashboardClient() {
       </header>
 
       {/* ══ CONTEÚDO PRINCIPAL ══ */}
-      <main style={{ maxWidth: '100%', margin: '0 auto', padding: '4px 2%' }}>
+      <main style={{ maxWidth: '100%', margin: '0 auto', padding: '2px 2%' }}>
         
         {/* Filtros de Período (Design SaaS Moderno) */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{ display: 'flex', background: t.pillBg, padding: 4, borderRadius: 12 }}>
               {['2025', '2026'].map(y => (
                 <button key={y} onClick={() => setFilters(f => ({ ...f, ano: y }))} style={{
-                  padding: '5px 12px',
-                  borderRadius: 8,
+                  padding: '4px 10px',
+                  borderRadius: 6,
                   border: 'none',
                   background: filters.ano === y ? t.card : 'transparent',
                   color: filters.ano === y ? t.accent : t.textSub,
                   fontWeight: 500,
-                  fontSize: 12,
+                  fontSize: 11,
                   cursor: 'pointer',
                   boxShadow: filters.ano === y ? '0 2px 8px rgba(0,0,0,0.05)' : 'none'
                 }}>{y}</button>
@@ -344,9 +344,9 @@ export default function DashboardClient() {
               background: 'rgba(0,0,0,0.1)',
               border: '1px solid rgba(255,255,255,0.2)',
               borderRadius: 24,
-              padding: '8px 16px',
+              padding: '6px 12px',
               color: '#fff',
-              fontSize: 13,
+              fontSize: 12,
               fontWeight: 500,
               cursor: 'pointer',
               outline: 'none',
@@ -384,7 +384,7 @@ export default function DashboardClient() {
         </div>
 
         {/* ══ CARDS DE KPI (Top 7) ══ */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 12, marginBottom: 24, width: '100%', overflowX: 'auto', paddingBottom: 10 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 10, marginBottom: 16, width: '100%', overflowX: 'auto', paddingBottom: 10 }}>
           <KpiCard label="VENDAS" value={kpis.vendas || 0} prevValue={pkpis.vendas || 0} icon={ShoppingCart} color="#FF6A22" />
           <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
           <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
@@ -405,9 +405,9 @@ export default function DashboardClient() {
               {activeSub === 'vendas' && (
                 <>
                 {/* 1. Evolução de Receita - Full Width */}
-                <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 12 }}>
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 8 }}>
-                    <h3 style={{ fontSize: 14, fontWeight: 500, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
+                <div style={{ background: t.card, borderRadius: 10, border: `1.5px solid ${t.border}`, padding: 10 }}>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 6 }}>
+                    <h3 style={{ fontSize: 12, fontWeight: 500, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
                   </div>
                   <GraficoReceitas periodData={(data?.byPeriod?.filter(p => p.ano === 2026) || []).map(p => ({
                     ...p,
@@ -418,13 +418,13 @@ export default function DashboardClient() {
                 </div>
 
                 {/* 2. Grid para Faturamento vs Meta e Comparativo Anual */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                  <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 12 }}>
-                    <h3 style={{ fontSize: 14, fontWeight: 500, marginBottom: 8, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                  <div style={{ background: t.card, borderRadius: 10, border: `1.5px solid ${t.border}`, padding: 10 }}>
+                    <h3 style={{ fontSize: 12, fontWeight: 500, marginBottom: 6, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
                     <GraficoFaturamentoMeta metaData={data?.meta?.[2026] || []} darkMode={theme === 'dark'} />
                   </div>
-                  <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 12 }}>
-                    <h3 style={{ fontSize: 14, fontWeight: 500, marginBottom: 8, textAlign: 'center' }}>Comparativo Anual (2025 vs 2026)</h3>
+                  <div style={{ background: t.card, borderRadius: 10, border: `1.5px solid ${t.border}`, padding: 10 }}>
+                    <h3 style={{ fontSize: 12, fontWeight: 500, marginBottom: 6, textAlign: 'center' }}>Comparativo Anual (2025 vs 2026)</h3>
                     <GraficoComparativo 
                       showComparison={true}
                       darkMode={theme === 'dark'}
