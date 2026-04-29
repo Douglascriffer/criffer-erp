@@ -1,5 +1,5 @@
 'use client'
-import { useState, useMemo, useEffect } from 'react'
+import { useMemo } from 'react'
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 import { scaleLinear } from 'd3-scale'
 
@@ -23,9 +23,7 @@ const UF_NAMES = {
   'SC':'Santa Catarina','SP':'São Paulo','SE':'Sergipe','TO':'Tocantins'
 }
 
-export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
+export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncIndex = 0 }) {
   // Consolida o faturamento por estado
   const stats = useMemo(() => {
     const map = {}
@@ -36,27 +34,16 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
     return map
   }, [stateData])
 
-  // Lista de estados ativos (com faturamento > 0)
-  const activeStates = useMemo(() => {
-    return Object.entries(stats)
-      .filter(([_, val]) => val > 0)
-      .sort((a,b) => b[1] - a[1])
-  }, [stats])
+  // Lista de estados ativos (com faturamento > 0) para o ciclo
+  // Importante: usamos uma lista fixa de UFs para garantir sincronia entre 2025/2026
+  const allUFs = useMemo(() => Object.keys(UF_NAMES).sort(), [])
+  
+  const currentUF = allUFs[syncIndex % allUFs.length]
+  const currentVal = stats[currentUF] || 0
 
   const maxVal = Math.max(...Object.values(stats), 1)
 
-  // Ciclo automático a cada 3 segundos
-  useEffect(() => {
-    if (activeStates.length === 0) return
-    const interval = setInterval(() => {
-      setCurrentIndex(prev => (prev + 1) % activeStates.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [activeStates])
-
-  const currentUF = activeStates[currentIndex]?.[0] || null
-  const currentVal = activeStates[currentIndex]?.[1] || 0
-
+  // Escala de cores: Tons de Laranja Criffer
   const colorScale = scaleLinear()
     .domain([0, maxVal * 0.2, maxVal])
     .range(darkMode ? ['#1a1a1a', '#FF6A2240', '#FF6A22'] : ['#f9f9f9', '#ffccb3', '#FF6A22'])
@@ -66,15 +53,15 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
       
       {/* Labels Dinâmicos (Esquerda) */}
       <div style={{ 
-        position: 'absolute', left: 0, top: '45%', transform: 'translateY(-50%)', 
-        zIndex: 10, pointerEvents: 'none', textAlign: 'left', width: '40%' 
+        position: 'absolute', left: 0, top: '35%', transform: 'translateY(-50%)', 
+        zIndex: 10, pointerEvents: 'none', textAlign: 'left', width: '45%' 
       }}>
         <div style={{ animation: 'fadeInLeft 0.5s ease' }} key={currentUF}>
-          <div style={{ fontSize: 16, fontWeight: 500, color: darkMode ? '#fff' : '#333', marginBottom: 4 }}>
+          <div style={{ fontSize: 16, fontWeight: 400, color: '#FFFFFF', marginBottom: 4 }}>
             {currentUF} - {UF_NAMES[currentUF]}
           </div>
-          <div style={{ fontSize: 14, fontWeight: 400, color: darkMode ? '#888' : '#666' }}>
-            Faturamento: {Math.round(currentVal / 1000)}k
+          <div style={{ fontSize: 14, fontWeight: 400, color: '#FFFFFF', opacity: 0.8 }}>
+            Faturamento: R$ {Math.round(currentVal).toLocaleString('pt-BR')}
           </div>
         </div>
       </div>
@@ -84,7 +71,7 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
       `}</style>
 
       {/* Mapa (Direita/Centro) */}
-      <div style={{ width: '100%', marginLeft: '20%' }}>
+      <div style={{ width: '100%', marginLeft: '15%' }}>
         <ComposableMap
           projection="geoMercator"
           projectionConfig={{ center: [-55, -18], scale: 300 }}

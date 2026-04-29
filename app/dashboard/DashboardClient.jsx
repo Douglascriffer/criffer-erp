@@ -69,6 +69,16 @@ export default function DashboardClient() {
   const [user, setUser]             = useState('')
   const [filters, setFilters]       = useState({ ano:'2026', mes:String(new Date().getMonth() + 1) })
   const [theme, setTheme]           = useState('light')
+  const [highlightIndex, setHighlightIndex] = useState(0)
+
+  // Sincronização do ciclo de estados dos mapas (3s)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHighlightIndex(prev => prev + 1)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [])
+  
   const t = THEME[theme]
 
   const { data, loading, refetch } = useFinancialData()
@@ -467,24 +477,32 @@ export default function DashboardClient() {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                   {/* Coluna 2026 */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                      <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'center', marginBottom: 12 }}>2026</h3>
-                      <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2026) || []} darkMode={theme === 'dark'} />
+                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                      <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'left', marginBottom: 12, color: '#fff' }}>2026</h3>
+                      <MapaHeatBrasil 
+                        stateData={data?.byState?.filter(s => s.ano === 2026) || []} 
+                        darkMode={theme === 'dark'} 
+                        syncIndex={highlightIndex}
+                      />
                     </div>
                     <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
-                      <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'center', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1 }}>DISTRIBUIÇÃO REGIONAL 2026</h3>
+                      <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'left', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1, color: '#fff' }}>DISTRIBUIÇÃO REGIONAL 2026</h3>
                       <MapaRegional stateData={data?.byState?.filter(s => s.ano === 2026) || []} darkMode={theme === 'dark'} />
                     </div>
                   </div>
 
                   {/* Coluna 2025 */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                      <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'center', marginBottom: 12 }}>2025</h3>
-                      <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2025) || []} darkMode={theme === 'dark'} />
+                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                      <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'left', marginBottom: 12, color: '#fff' }}>2025</h3>
+                      <MapaHeatBrasil 
+                        stateData={data?.byState?.filter(s => s.ano === 2025) || []} 
+                        darkMode={theme === 'dark'} 
+                        syncIndex={highlightIndex}
+                      />
                     </div>
                     <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
-                      <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'center', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1 }}>DISTRIBUIÇÃO REGIONAL 2025</h3>
+                      <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'left', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1, color: '#fff' }}>DISTRIBUIÇÃO REGIONAL 2025</h3>
                       <MapaRegional stateData={data?.byState?.filter(s => s.ano === 2025) || []} darkMode={theme === 'dark'} />
                     </div>
                   </div>
