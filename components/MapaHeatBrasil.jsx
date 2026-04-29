@@ -23,27 +23,39 @@ const UF_NAMES = {
   'SC':'Santa Catarina','SP':'São Paulo','SE':'Sergipe','TO':'Tocantins'
 }
 
+const REGIONS = {
+  'AC':'Norte','AM':'Norte','AP':'Norte','PA':'Norte','RO':'Norte','RR':'Norte','TO':'Norte',
+  'AL':'Nordeste','BA':'Nordeste','CE':'Nordeste','MA':'Nordeste','PB':'Nordeste','PE':'Nordeste','PI':'Nordeste','RN':'Nordeste','SE':'Nordeste',
+  'DF':'Centro-Oeste','GO':'Centro-Oeste','MS':'Centro-Oeste','MT':'Centro-Oeste',
+  'ES':'Sudeste','MG':'Sudeste','RJ':'Sudeste','SP':'Sudeste',
+  'PR':'Sul','RS':'Sul','SC':'Sul'
+}
+
 export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncIndex = 0 }) {
-  // Consolida o faturamento por estado
-  const stats = useMemo(() => {
-    const map = {}
+  // Consolida o faturamento por estado e por região
+  const { stats, regionTotals } = useMemo(() => {
+    const s = {}
+    const r = {}
     stateData.forEach(d => {
       const uf = d.estado || d.uf
-      map[uf] = (map[uf] || 0) + (d.faturamento || d.valor || 0)
+      const val = d.faturamento || d.valor || 0
+      s[uf] = (s[uf] || 0) + val
+      
+      const region = REGIONS[uf] || 'Outros'
+      r[region] = (r[region] || 0) + val
     })
-    return map
+    return { stats: s, regionTotals: r }
   }, [stateData])
 
-  // Lista de estados ativos (com faturamento > 0) para o ciclo
-  // Importante: usamos uma lista fixa de UFs para garantir sincronia entre 2025/2026
   const allUFs = useMemo(() => Object.keys(UF_NAMES).sort(), [])
-  
   const currentUF = allUFs[syncIndex % allUFs.length]
   const currentVal = stats[currentUF] || 0
+  const currentRegion = REGIONS[currentUF] || 'Outros'
+  const regionTotal = regionTotals[currentRegion] || 1
+  const regionPct = ((currentVal / regionTotal) * 100).toFixed(0)
 
   const maxVal = Math.max(...Object.values(stats), 1)
 
-  // Escala de cores: Claro para o Escuro (Laranja Criffer)
   const colorScale = scaleLinear()
     .domain([0, maxVal])
     .range(['#fff5f0', '#FF6A22'])
@@ -53,15 +65,22 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncI
       
       {/* Labels Dinâmicos (Esquerda) */}
       <div style={{ 
-        position: 'absolute', left: 0, top: '35%', transform: 'translateY(-50%)', 
+        position: 'absolute', left: 0, top: '45%', transform: 'translateY(-50%)', 
         zIndex: 10, pointerEvents: 'none', textAlign: 'left', width: '45%' 
       }}>
         <div style={{ animation: 'fadeInLeft 0.5s ease' }} key={currentUF}>
           <div style={{ fontSize: 16, fontWeight: 400, color: '#FFFFFF', marginBottom: 4 }}>
             {currentUF} - {UF_NAMES[currentUF]}
           </div>
-          <div style={{ fontSize: 14, fontWeight: 400, color: '#FFFFFF', opacity: 0.8 }}>
+          <div style={{ fontSize: 14, fontWeight: 400, color: '#FFFFFF', opacity: 0.8, marginBottom: 32 }}>
             Faturamento: R$ {Math.round(currentVal).toLocaleString('pt-BR')}
+          </div>
+
+          <div style={{ fontSize: 16, fontWeight: 400, color: '#FFFFFF', marginBottom: 16 }}>
+            Representação região
+          </div>
+          <div style={{ fontSize: 18, fontWeight: 400, color: '#FFFFFF' }}>
+            {regionPct}%
           </div>
         </div>
       </div>
