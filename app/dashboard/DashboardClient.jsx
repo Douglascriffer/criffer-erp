@@ -157,32 +157,32 @@ export default function DashboardClient() {
       <div style={{
         background: t.card,
         border: `1.5px solid ${t.border}`,
-        borderRadius: 8,
-        padding: '6px',
+        borderRadius: 6,
+        padding: '4px',
         display: 'flex',
         flexDirection: 'column',
-        gap: 2,
+        gap: 1,
         alignItems: 'center',
         textAlign: 'center',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
       }} className="hover-lift">
-        <p style={{ fontSize: 8.5, fontWeight: 500, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 0, width: '100%' }}>{label}</p>
+        <p style={{ fontSize: 7.5, fontWeight: 500, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 0, width: '100%' }}>{label}</p>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ 
             background: `${color}15`, 
             color: color, 
-            padding: 4, 
-            borderRadius: 6,
+            padding: 3, 
+            borderRadius: 5,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <Icon size={12} />
+            <Icon size={10} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-             <p style={{ fontSize: 16, fontWeight: 500, color: t.text, lineHeight: 1 }}>
+             <p style={{ fontSize: 14, fontWeight: 500, color: t.text, lineHeight: 1 }}>
                {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
              </p>
           </div>
@@ -193,16 +193,16 @@ export default function DashboardClient() {
             display: 'inline-flex', 
             alignItems: 'center', 
             gap: 2, 
-            fontSize: 9, 
+            fontSize: 8, 
             fontWeight: 500, 
             color: isUp ? '#22c55e' : '#ef4444',
             marginBottom: 0
           }}>
-            {isUp ? <TrendingUp size={9} /> : <TrendingDown size={9} />}
+            {isUp ? <TrendingUp size={8} /> : <TrendingDown size={8} />}
             {Math.abs(pct).toFixed(1)}%
           </div>
-          <p style={{ fontSize: 10, color: t.textMuted, fontWeight: 500 }}>
-            Ant.: <span style={{ fontWeight: 500, fontSize: 11 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
+          <p style={{ fontSize: 9, color: t.textMuted, fontWeight: 500 }}>
+            Ant.: <span style={{ fontWeight: 500, fontSize: 10 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
           </p>
         </div>
       </div>
@@ -317,10 +317,10 @@ export default function DashboardClient() {
       </header>
 
       {/* ══ CONTEÚDO PRINCIPAL ══ */}
-      <main style={{ maxWidth: '100%', margin: '0 auto', padding: '2px 2%' }}>
+      <main style={{ maxWidth: '100%', margin: '0 auto', padding: '0px 2%' }}>
         
         {/* Filtros de Período (Design SaaS Moderno) */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{ display: 'flex', background: t.pillBg, padding: 4, borderRadius: 12 }}>
               {['2025', '2026'].map(y => (
@@ -384,7 +384,7 @@ export default function DashboardClient() {
         </div>
 
         {/* ══ CARDS DE KPI (Top 7) ══ */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 10, marginBottom: 16, width: '100%', overflowX: 'auto', paddingBottom: 10 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8, marginBottom: 12, width: '100%', overflowX: 'auto', paddingBottom: 6 }}>
           <KpiCard label="VENDAS" value={kpis.vendas || 0} prevValue={pkpis.vendas || 0} icon={ShoppingCart} color="#FF6A22" />
           <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
           <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
@@ -405,9 +405,9 @@ export default function DashboardClient() {
               {activeSub === 'vendas' && (
                 <>
                 {/* 1. Evolução de Receita - Full Width */}
-                <div style={{ background: t.card, borderRadius: 8, border: `1.5px solid ${t.border}`, padding: 8 }}>
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 4 }}>
-                    <h3 style={{ fontSize: 11, fontWeight: 500, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
+                <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6 }}>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 2 }}>
+                    <h3 style={{ fontSize: 10, fontWeight: 500, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
                   </div>
                   <GraficoReceitas periodData={(data?.byPeriod?.filter(p => p.ano === 2026) || []).map(p => ({
                     ...p,
@@ -418,13 +418,13 @@ export default function DashboardClient() {
                 </div>
 
                 {/* 2. Grid para Faturamento vs Meta e Comparativo Anual */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-                  <div style={{ background: t.card, borderRadius: 8, border: `1.5px solid ${t.border}`, padding: 8 }}>
-                    <h3 style={{ fontSize: 11, fontWeight: 500, marginBottom: 4, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
+                  <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6 }}>
+                    <h3 style={{ fontSize: 10, fontWeight: 500, marginBottom: 2, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
                     <GraficoFaturamentoMeta metaData={data?.meta?.[2026] || []} darkMode={theme === 'dark'} />
                   </div>
-                  <div style={{ background: t.card, borderRadius: 8, border: `1.5px solid ${t.border}`, padding: 8 }}>
-                    <h3 style={{ fontSize: 11, fontWeight: 500, marginBottom: 4, textAlign: 'center' }}>Comparativo Anual (2025 vs 2026)</h3>
+                  <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6 }}>
+                    <h3 style={{ fontSize: 10, fontWeight: 500, marginBottom: 2, textAlign: 'center' }}>Comparativo Anual (2025 vs 2026)</h3>
                     <GraficoComparativo 
                       showComparison={true}
                       darkMode={theme === 'dark'}
