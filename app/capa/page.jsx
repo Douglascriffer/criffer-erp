@@ -403,9 +403,9 @@ export default function CapaPage() {
         .cf-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: clamp(24px, 2.8vw, 48px);
+          gap: clamp(16px, 1.8vw, 32px);
           width: 100%;
-          max-width: min(2200px, 96vw); /* Aumentado para preencher monitores de 17"+ */
+          max-width: min(1800px, 94vw); /* Reduzido para evitar cards gigantes em monitores 4K */
           position: relative;
           z-index: 2;
         }
@@ -426,12 +426,12 @@ export default function CapaPage() {
 
         /* ── Card com altura fluida ── */
         .cf-card {
-          border-radius: clamp(16px, 1.5vw, 24px);
+          border-radius: clamp(12px, 1vw, 18px);
           position: relative;
           overflow: hidden;
           cursor: pointer;
-          min-height: clamp(500px, 54vh, 660px);
-          padding: clamp(18px, 1.8vw, 26px) clamp(18px, 1.8vw, 26px) clamp(16px, 1.6vw, 24px);
+          min-height: clamp(380px, 42vh, 520px);
+          padding: clamp(12px, 1.2vw, 18px) clamp(12px, 1.2vw, 18px) clamp(10px, 1vw, 16px);
           display: flex;
           flex-direction: column;
           transition:
@@ -446,15 +446,15 @@ export default function CapaPage() {
         /* ── Área da animação — ajustada para dar mais espaço aos textos inferiores ── */
         .cf-anim-area {
           width: 100%;
-          flex: 0.85; /* Reduzido levemente para sobrar espaço para tags legíveis */
+          flex: 0.70; /* Reduzido levemente para sobrar espaço para tags legíveis */
           min-height: 0;
           display: flex;
           align-items: stretch;
           justify-content: stretch;
-          border-radius: clamp(12px, 1.2vw, 18px);
+          border-radius: clamp(8px, 0.8vw, 14px);
           overflow: hidden;
           flex-shrink: 0;
-          margin-bottom: clamp(12px, 2vh, 20px);
+          margin-bottom: clamp(8px, 1.2vh, 14px);
           position: relative;
         }
         .cf-anim-area > svg {
@@ -467,7 +467,7 @@ export default function CapaPage() {
         /* ── Título do card ── */
         .cf-card-title {
           font-family: 'Gotham', sans-serif;
-          font-size: clamp(14px, 1.2vw, 18px);
+          font-size: clamp(13px, 1vw, 16px);
           font-weight: 700;
           letter-spacing: 0.5px;
           line-height: 1.2;
@@ -476,7 +476,7 @@ export default function CapaPage() {
         }
         .cf-card-desc {
           font-family: 'Gotham', sans-serif;
-          font-size: clamp(15px, 1.4vw, 20px);
+          font-size: clamp(13px, 1.2vw, 16px);
           line-height: 1.6;
           font-weight: 500;
           margin-top: 8px;
@@ -754,7 +754,7 @@ export default function CapaPage() {
                     border: `1px solid ${isHov ? borderColor + '55' : t.iconBorder}`,
                     boxShadow: isHov ? `0 14px 44px ${m.accentColor}30` : 'none',
                     transition: 'background 0.5s, border-color 0.4s, box-shadow 0.4s',
-                    minHeight: 'clamp(230px, 28vh, 340px)',
+                    minHeight: 'clamp(160px, 20vh, 240px)',
                   }}
                 >
                   <AnimComponent color={t.text}/>
@@ -770,18 +770,18 @@ export default function CapaPage() {
                   </div>
 
                   {/* Tags com leitura mais clara */}
-                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 'auto', paddingTop: 20 }}>
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 'auto', paddingTop: 16 }}>
                     {m.tags.map(tag => (
                       <span key={tag} style={{
                         fontFamily: 'Gotham, sans-serif',
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: 500,
-                        padding: '6px 14px',
-                        borderRadius: 8,
+                        padding: '4px 10px',
+                        borderRadius: 6,
                         background: t.pillBg,
                         color: t.text,
-                        border: `1.5px solid ${t.divider}`,
-                        boxShadow: theme === 'dark' ? '0 2px 4px rgba(0,0,0,0.25)' : '0 2px 4px rgba(0,0,0,0.05)'
+                        border: `1px solid ${t.divider}`,
+                        boxShadow: theme === 'dark' ? '0 1px 2px rgba(0,0,0,0.2)' : '0 1px 2px rgba(0,0,0,0.03)'
                       }}>
                         {tag}
                       </span>

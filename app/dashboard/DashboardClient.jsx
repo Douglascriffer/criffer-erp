@@ -157,52 +157,52 @@ export default function DashboardClient() {
       <div style={{
         background: t.card,
         border: `1.5px solid ${t.border}`,
-        borderRadius: 24,
-        padding: '20px',
+        borderRadius: 16,
+        padding: '12px',
         display: 'flex',
         flexDirection: 'column',
-        gap: 12,
+        gap: 8,
         alignItems: 'center',
         textAlign: 'center',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
       }} className="hover-lift">
-        <p style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 8, width: '100%' }}>{label}</p>
+        <p style={{ fontSize: 11, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 2, width: '100%' }}>{label}</p>
         
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ 
             background: `${color}15`, 
             color: color, 
-            padding: 10, 
-            borderRadius: 14,
+            padding: 6, 
+            borderRadius: 10,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <Icon size={28} />
+            <Icon size={18} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-             <p style={{ fontSize: 42, fontWeight: 500, color: t.text, lineHeight: 1 }}>
+             <p style={{ fontSize: 26, fontWeight: 500, color: t.text, lineHeight: 1 }}>
                {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
              </p>
           </div>
         </div>
         
-        <div style={{ marginTop: 4 }}>
+        <div style={{ marginTop: 2 }}>
           <div style={{ 
             display: 'inline-flex', 
             alignItems: 'center', 
             gap: 4, 
-            fontSize: 14, 
+            fontSize: 12, 
             fontWeight: 500, 
             color: isUp ? '#22c55e' : '#ef4444',
-            marginBottom: 4
+            marginBottom: 2
           }}>
-            {isUp ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
+            {isUp ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
             {Math.abs(pct).toFixed(1)}%
           </div>
-          <p style={{ fontSize: 16, color: t.textMuted, fontWeight: 500 }}>
-            Anterior: <span style={{ fontWeight: 500, fontSize: 17 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
+          <p style={{ fontSize: 14, color: t.textMuted, fontWeight: 500 }}>
+            Anterior: <span style={{ fontWeight: 500, fontSize: 15 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
           </p>
         </div>
       </div>
@@ -230,7 +230,7 @@ export default function DashboardClient() {
       {/* ══ TOPBAR PREMIUM (Sincronizada com Capa) ══ */}
       <header style={{
         background: 'linear-gradient(135deg, #a84410 0%, #d4601a 42%, #FF6A22 72%, #f07c38 100%)',
-        padding: '24px 4%',
+        padding: '12px 4%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -241,40 +241,40 @@ export default function DashboardClient() {
         gap: 32
       }}>
         {/* Logo + Brand */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, cursor: 'pointer' }} onClick={() => router.push('/capa')}>
-          <div style={{ background: '#fff', borderRadius: '50%', width: 75, height: 75, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
-            <Image src="/logo-base.png" alt="Criffer" width={55} height={55} style={{ objectFit: 'contain' }}/>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }} onClick={() => router.push('/capa')}>
+          <div style={{ background: '#fff', borderRadius: '50%', width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+            <Image src="/logo-base.png" alt="Criffer" width={32} height={32} style={{ objectFit: 'contain' }}/>
           </div>
           <div>
-            <div style={{ fontSize: 36, fontWeight: 900, color: '#fff', letterSpacing: 3, lineHeight: 1 }}>CRIFFER</div>
-            <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.9)', fontWeight: 500, letterSpacing: 2, textTransform: 'uppercase' }}>ERP Financeiro</div>
+            <div style={{ fontSize: 24, fontWeight: 900, color: '#fff', letterSpacing: 2, lineHeight: 1 }}>CRIFFER</div>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)', fontWeight: 500, letterSpacing: 1.5, textTransform: 'uppercase' }}>ERP Financeiro</div>
           </div>
         </div>
 
         {/* Top Tabs Navigation */}
-        <nav style={{ display: 'flex', gap: 10, background: 'rgba(0,0,0,0.15)', padding: 8, borderRadius: 20, backdropFilter: 'blur(10px)' }}>
+        <nav style={{ display: 'flex', gap: 6, background: 'rgba(0,0,0,0.15)', padding: 5, borderRadius: 12, backdropFilter: 'blur(10px)' }}>
           {TOP_TABS.map(tabItem => {
             const active = tab === tabItem.id
             const Icon = tabItem.icon
             return (
               <button key={tabItem.id} onClick={() => goTab(tabItem.id)} style={{
-                padding: '16px 36px',
-                borderRadius: 16,
+                padding: '10px 20px',
+                borderRadius: 10,
                 border: 'none',
                 cursor: 'pointer',
                 fontFamily: 'inherit',
-                fontSize: 20,
+                fontSize: 14,
                 fontWeight: 500,
                 display: 'flex',
                 alignItems: 'center',
-                gap: 12,
+                gap: 8,
                 background: active ? '#fff' : 'transparent',
                 color: active ? '#FF6A22' : 'rgba(255,255,255,0.85)',
                 transition: 'all 0.2s',
                 textTransform: 'uppercase',
                 letterSpacing: 0.5
               }}>
-                <Icon size={24} />
+                <Icon size={18} />
                 {tabItem.label}
               </button>
             )
@@ -282,33 +282,33 @@ export default function DashboardClient() {
         </nav>
 
         {/* User & Settings */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           {/* Theme Switcher sutil */}
           <button onClick={() => changeTheme(theme === 'light' ? 'dark' : 'light')} style={{
             background: 'rgba(0,0,0,0.1)',
             border: '1px solid rgba(255,255,255,0.2)',
             borderRadius: 30,
-            padding: '14px 28px',
+            padding: '8px 18px',
             color: '#fff',
-            fontSize: 16,
+            fontSize: 13,
             fontWeight: 500,
             cursor: 'pointer',
             transition: 'all 0.2s'
           }}>
-            {theme === 'light' ? '🌙 Modo Escuro' : '☀️ Modo Claro'}
+            {theme === 'light' ? '🌙 Escuro' : '☀️ Claro'}
           </button>
 
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 26, fontWeight: 500, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
-            <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.9)', fontWeight: 500 }}>Tenha um ótimo dia</div>
+            <div style={{ fontSize: 17, fontWeight: 500, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)', fontWeight: 500 }}>Tenha um ótimo dia</div>
           </div>
           <button onClick={() => { localStorage.clear(); router.push('/login') }} style={{
             background: 'transparent',
-            border: '2.5px solid rgba(255,255,255,0.4)',
+            border: '2px solid rgba(255,255,255,0.4)',
             color: '#fff',
-            padding: '12px 28px',
-            borderRadius: 14,
-            fontSize: 16,
+            padding: '8px 18px',
+            borderRadius: 10,
+            fontSize: 13,
             fontWeight: 500,
             cursor: 'pointer',
             transition: 'all 0.2s'
@@ -317,7 +317,7 @@ export default function DashboardClient() {
       </header>
 
       {/* ══ CONTEÚDO PRINCIPAL ══ */}
-      <main style={{ maxWidth: '100%', margin: '0 auto', padding: '10px 2%' }}>
+      <main style={{ maxWidth: '100%', margin: '0 auto', padding: '8px 2%' }}>
         
         {/* Filtros de Período (Design SaaS Moderno) */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
@@ -405,9 +405,9 @@ export default function DashboardClient() {
               {activeSub === 'vendas' && (
                 <>
                 {/* 1. Evolução de Receita - Full Width */}
-                <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 24 }}>
-                    <h3 style={{ fontSize: 22, fontWeight: 900, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
+                <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 12 }}>
+                    <h3 style={{ fontSize: 16, fontWeight: 900, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
                   </div>
                   <GraficoReceitas periodData={(data?.byPeriod?.filter(p => p.ano === 2026) || []).map(p => ({
                     ...p,
@@ -418,13 +418,13 @@ export default function DashboardClient() {
                 </div>
 
                 {/* 2. Grid para Faturamento vs Meta e Comparativo Anual */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
-                  <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
-                    <h3 style={{ fontSize: 22, fontWeight: 900, marginBottom: 24, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                  <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                    <h3 style={{ fontSize: 16, fontWeight: 900, marginBottom: 12, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
                     <GraficoFaturamentoMeta metaData={data?.meta?.[2026] || []} darkMode={theme === 'dark'} />
                   </div>
-                  <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
-                    <h3 style={{ fontSize: 22, fontWeight: 900, marginBottom: 24, textAlign: 'center' }}>Comparativo Anual (2025 vs 2026)</h3>
+                  <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                    <h3 style={{ fontSize: 16, fontWeight: 900, marginBottom: 12, textAlign: 'center' }}>Comparativo Anual (2025 vs 2026)</h3>
                     <GraficoComparativo 
                       showComparison={true}
                       darkMode={theme === 'dark'}

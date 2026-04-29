@@ -4,7 +4,22 @@ Este documento contém o resumo consolidado de todas as alterações visuais e t
 
 ---
 
-## ✅ ITENS APROVADOS HOJE (24/04/2026) — AJUSTES E GRADIENTES
+## ✅ ITENS APROVADOS HOJE (29/04/2026) — AJUSTE DE ESCALA (ZOOM)
+*Otimização global para reduzir a sensação de zoom e melhorar a densidade de informação.*
+
+1.  **Compactação da Central de Gestão**:
+    *   Redução da altura mínima dos cards (`min-height`) para liberar mais espaço vertical.
+    *   Ajuste do `max-width` do grid para **1800px**, evitando cards excessivamente largos em monitores 4K.
+    *   Redução proporcional de paddings internos, fontes de descrição e tags.
+
+2.  **Escala Global de Sub-abas (Faturamento/Receitas)**:
+    *   **Topbar**: Redução de padding, tamanho da logo e fontes de navegação em ~30%.
+    *   **KPIs**: Cards mais densos com fontes de valores reduzidas de **42px** para **26px**.
+    *   **Gráficos**: Redução drástica de paddings nos containers para maximizar a área útil dos dados.
+
+---
+
+## ✅ ITENS ANTERIORES (24/04/2026) — AJUSTES E GRADIENTES
 *Ajustes solicitados para melhorar a semântica do orçamento e a profundidade visual do tema claro.*
 
 1.  **Semântica do Orçamento**:
