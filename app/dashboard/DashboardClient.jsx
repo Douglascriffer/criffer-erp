@@ -467,7 +467,7 @@ export default function DashboardClient() {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                   {/* Coluna 2026 */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, minHeight: 380, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                       <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'center', marginBottom: 12 }}>2026</h3>
                       <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2026) || []} darkMode={theme === 'dark'} />
                     </div>
@@ -479,7 +479,7 @@ export default function DashboardClient() {
 
                   {/* Coluna 2025 */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, minHeight: 380, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                       <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'center', marginBottom: 12 }}>2025</h3>
                       <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2025) || []} darkMode={theme === 'dark'} />
                     </div>
