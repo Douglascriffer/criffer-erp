@@ -657,7 +657,7 @@ export default function CapaPage() {
         alignItems: 'center',
         justifyContent: 'flex-start',
         position: 'relative',
-        padding: 'clamp(24px, 3.5vh, 44px) 4% clamp(24px, 3vh, 40px)',
+        padding: 'clamp(60px, 10vh, 110px) 4% clamp(24px, 3vh, 40px)',
         overflow: 'hidden',
       }}>
 
@@ -678,7 +678,7 @@ export default function CapaPage() {
         {/* ── Título Central de Gestão ── */}
         <div style={{
           textAlign: 'center',
-          marginBottom: 'clamp(60px, 12vh, 140px)',
+          marginBottom: 'clamp(60px, 10vh, 110px)',
           position: 'relative', zIndex: 2,
           width: '100%',
           opacity: visible ? 1 : 0,
