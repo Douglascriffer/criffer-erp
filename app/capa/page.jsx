@@ -403,9 +403,9 @@ export default function CapaPage() {
         .cf-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: clamp(16px, 1.8vw, 32px);
+          gap: clamp(24px, 2.5vw, 44px);
           width: 100%;
-          max-width: min(1800px, 94vw); /* Reduzido para evitar cards gigantes em monitores 4K */
+          max-width: min(2000px, 96vw); /* Ajustado para equilíbrio visual */
           position: relative;
           z-index: 2;
         }
@@ -426,12 +426,12 @@ export default function CapaPage() {
 
         /* ── Card com altura fluida ── */
         .cf-card {
-          border-radius: clamp(12px, 1vw, 18px);
+          border-radius: clamp(14px, 1.2vw, 20px);
           position: relative;
           overflow: hidden;
           cursor: pointer;
-          min-height: clamp(380px, 42vh, 520px);
-          padding: clamp(12px, 1.2vw, 18px) clamp(12px, 1.2vw, 18px) clamp(10px, 1vw, 16px);
+          min-height: clamp(480px, 52vh, 620px);
+          padding: clamp(16px, 1.6vw, 24px) clamp(16px, 1.6vw, 24px) clamp(14px, 1.4vw, 20px);
           display: flex;
           flex-direction: column;
           transition:
@@ -446,15 +446,15 @@ export default function CapaPage() {
         /* ── Área da animação — ajustada para dar mais espaço aos textos inferiores ── */
         .cf-anim-area {
           width: 100%;
-          flex: 0.70; /* Reduzido levemente para sobrar espaço para tags legíveis */
+          flex: 0.75; /* Reduzido levemente para sobrar espaço para tags legíveis */
           min-height: 0;
           display: flex;
           align-items: stretch;
           justify-content: stretch;
-          border-radius: clamp(8px, 0.8vw, 14px);
+          border-radius: clamp(10px, 1vw, 16px);
           overflow: hidden;
           flex-shrink: 0;
-          margin-bottom: clamp(8px, 1.2vh, 14px);
+          margin-bottom: clamp(12px, 2vh, 20px);
           position: relative;
         }
         .cf-anim-area > svg {
@@ -678,7 +678,7 @@ export default function CapaPage() {
         {/* ── Título Central de Gestão ── */}
         <div style={{
           textAlign: 'center',
-          marginBottom: 'clamp(50px, 10vh, 120px)',
+          marginBottom: 'clamp(60px, 12vh, 140px)',
           position: 'relative', zIndex: 2,
           width: '100%',
           opacity: visible ? 1 : 0,
@@ -755,7 +755,7 @@ export default function CapaPage() {
                     border: `1px solid ${isHov ? borderColor + '55' : t.iconBorder}`,
                     boxShadow: isHov ? `0 14px 44px ${m.accentColor}30` : 'none',
                     transition: 'background 0.5s, border-color 0.4s, box-shadow 0.4s',
-                    minHeight: 'clamp(160px, 20vh, 240px)',
+                    minHeight: 'clamp(200px, 26vh, 320px)',
                   }}
                 >
                   <AnimComponent color={t.text}/>
@@ -800,8 +800,8 @@ export default function CapaPage() {
                   transition: 'border-color 0.5s',
                 }}>
                   <span style={{
-                    fontSize: 15, fontWeight: 500,
-                    color: t.text, letterSpacing: 0.2,
+                    fontSize: 14, fontWeight: 900,
+                    color: t.text, letterSpacing: 1,
                     textTransform: 'uppercase',
                     transition: 'color 0.5s',
                   }}>
