@@ -107,10 +107,10 @@ export default function DashboardClient() {
 
   const SUB_TABS = {
     desempenho: [
-      { id:'metas',  label:'METAS' },
-      { id:'rank',   label:'VENDEDORES' },
-      { id:'mapa',   label:'MAPA' },
       { id:'vendas', label:'RECEITAS' },
+      { id:'mapa',   label:'MAPA' },
+      { id:'rank',   label:'VENDEDORES' },
+      { id:'metas',  label:'METAS' },
     ],
     orcamento: [
       { id:'dre',  label:'DRE Simplificado' },
@@ -405,7 +405,7 @@ export default function DashboardClient() {
           <KpiCard label="DEVOLUÇÕES" value={kpis.devolucoes || 0} prevValue={pkpis.devolucoes || 0} icon={RotateCcw} color="#ef4444" />
           <KpiCard label="RECEITA BRUTA" value={kpis.totalRealizado || 0} prevValue={pkpis.totalRealizado || 0} icon={DollarSign} color="#10b981" />
           <KpiCard label="META" value={kpis.totalMeta || 0} prevValue={pkpis.totalMeta || 0} icon={() => <TargetIcon percent={kpis.pctAtingido}/>} color="#f59e0b" />
-          <KpiCard label="ATINGIMENTO" value={kpis.pctAtingido || 0} prevValue={pkpis.pctAtingido || 0} icon={TrendingUp} color="#FF6A22" isPercent={true} />
+          <KpiCard label="DESEMPENHO" value={kpis.pctAtingido || 0} prevValue={pkpis.pctAtingido || 0} icon={TrendingUp} color="#FF6A22" isPercent={true} />
         </div>
 
         {/* ══ CONTEÚDO DINÂMICO POR ABA ══ */}
