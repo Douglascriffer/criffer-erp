@@ -397,16 +397,18 @@ export default function DashboardClient() {
           )}
         </div>
 
-        {/* ══ CARDS DE KPI (Top 7) ══ */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8, marginBottom: 12, width: '100%', overflowX: 'auto', paddingBottom: 6 }}>
-          <KpiCard label="VENDAS" value={kpis.vendas || 0} prevValue={pkpis.vendas || 0} icon={ShoppingCart} color="#FF6A22" />
-          <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
-          <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
-          <KpiCard label="DEVOLUÇÕES" value={kpis.devolucoes || 0} prevValue={pkpis.devolucoes || 0} icon={RotateCcw} color="#ef4444" />
-          <KpiCard label="RECEITA BRUTA" value={kpis.totalRealizado || 0} prevValue={pkpis.totalRealizado || 0} icon={DollarSign} color="#10b981" />
-          <KpiCard label="META" value={kpis.totalMeta || 0} prevValue={pkpis.totalMeta || 0} icon={() => <TargetIcon percent={kpis.pctAtingido}/>} color="#f59e0b" />
-          <KpiCard label="DESEMPENHO" value={kpis.pctAtingido || 0} prevValue={pkpis.pctAtingido || 0} icon={TrendingUp} color="#FF6A22" isPercent={true} />
-        </div>
+        {/* ══ CARDS DE KPI (Top 7) - Ocultos no MAPA ══ */}
+        {activeSub !== 'mapa' && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8, marginBottom: 12, width: '100%', overflowX: 'auto', paddingBottom: 6 }}>
+            <KpiCard label="VENDAS" value={kpis.vendas || 0} prevValue={pkpis.vendas || 0} icon={ShoppingCart} color="#FF6A22" />
+            <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
+            <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
+            <KpiCard label="DEVOLUÇÕES" value={kpis.devolucoes || 0} prevValue={pkpis.devolucoes || 0} icon={RotateCcw} color="#ef4444" />
+            <KpiCard label="RECEITA BRUTA" value={kpis.totalRealizado || 0} prevValue={pkpis.totalRealizado || 0} icon={DollarSign} color="#10b981" />
+            <KpiCard label="META" value={kpis.totalMeta || 0} prevValue={pkpis.totalMeta || 0} icon={() => <TargetIcon percent={kpis.pctAtingido}/>} color="#f59e0b" />
+            <KpiCard label="DESEMPENHO" value={kpis.pctAtingido || 0} prevValue={pkpis.pctAtingido || 0} icon={TrendingUp} color="#FF6A22" isPercent={true} />
+          </div>
+        )}
 
         {/* ══ CONTEÚDO DINÂMICO POR ABA ══ */}
         <div style={{ opacity: loading ? 0.6 : 1, transition: 'opacity 0.3s' }}>
@@ -462,19 +464,19 @@ export default function DashboardClient() {
 
                {/* Sub-aba: MAPA */}
               {activeSub === 'mapa' && (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-                    <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 12 }}>
-                      <h3 style={{ fontSize: 14, fontWeight: 500, textAlign: 'center', marginBottom: 8 }}>MAPA RECEITA 2026</h3>
-                      <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2026) || []} />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 12 }}>
+                      <h3 style={{ fontSize: 18, fontWeight: 700, textAlign: 'center', marginBottom: 4 }}>2026</h3>
+                      <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2026) || []} darkMode={theme === 'dark'} />
                     </div>
-                    <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 12 }}>
-                      <h3 style={{ fontSize: 14, fontWeight: 500, textAlign: 'center', marginBottom: 8 }}>MAPA RECEITA 2025</h3>
-                      <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2025) || []} />
+                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 12 }}>
+                      <h3 style={{ fontSize: 18, fontWeight: 700, textAlign: 'center', marginBottom: 4 }}>2025</h3>
+                      <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2025) || []} darkMode={theme === 'dark'} />
                     </div>
                   </div>
-                  <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
-                    <h3 style={{ fontSize: 15, fontWeight: 500, marginBottom: 12 }}>Distribuição Regional (Faturamento)</h3>
+                  <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 12 }}>
+                    <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 12, textAlign: 'center' }}>DISTRIBUIÇÃO REGIONAL</h3>
                     <MapaRegional stateData={data?.byState?.filter(s => s.ano === 2026) || []} darkMode={theme === 'dark'} />
                   </div>
                 </div>

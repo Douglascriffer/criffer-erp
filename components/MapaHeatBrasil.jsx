@@ -75,7 +75,7 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
         <div key={displayUF} style={{
           position:'absolute', top: 0, left:'50%', transform:'translateX(-50%)',
           background: '#FF6A22', color:'white', borderRadius: 50,
-          padding:'6px 16px', fontSize: 11, fontWeight: 900, zIndex: 10,
+          padding:'6px 16px', fontSize: 11, fontWeight: 400, zIndex: 10,
           boxShadow: '0 4px 20px rgba(255,106,34,0.4)',
           animation: 'fadeInUp 0.3s ease forwards',
           whiteSpace: 'nowrap',
@@ -89,8 +89,8 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
 
       <ComposableMap
         projection="geoMercator"
-        projectionConfig={{ center:[-54,-22], scale: 800 }}
-        width={500} height={380}
+        projectionConfig={{ center:[-55,-15], scale: 550 }}
+        width={500} height={320}
         style={{ width:'100%', height:'auto' }}>
         <Geographies geography={GEO_URL}>
           {({ geographies }) =>
@@ -128,8 +128,8 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
               <text
                 textAnchor="middle"
                 fill={isActive ? '#fff' : (darkMode ? '#888' : '#333')}
-                fontSize={isActive ? 14 : 10}
-                fontWeight={900}
+                fontSize={isActive ? 13 : 10}
+                fontWeight={400}
                 style={{ pointerEvents:'none', transition:'all 0.3s', fontFamily: "'Gotham', sans-serif" }}
               >
                 {uf}
@@ -139,10 +139,10 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
         })}
       </ComposableMap>
 
-      <div style={{ display:'flex', alignItems:'center', gap:10, justifyContent:'center', marginTop: -20 }}>
-        <span style={{ fontSize:9, fontWeight: 800, color: darkMode ? '#555' : '#999', textTransform: 'uppercase' }}>Mín</span>
+      <div style={{ display:'flex', alignItems:'center', gap:10, justifyContent:'center', marginTop: -10 }}>
+        <span style={{ fontSize:9, fontWeight: 400, color: darkMode ? '#555' : '#999', textTransform: 'uppercase' }}>Mín</span>
         <div style={{ width:100, height:4, borderRadius:2, background: `linear-gradient(to right, ${darkMode ? '#1a1a1a' : '#f8f9fa'}, #FF6A22)` }}/>
-        <span style={{ fontSize:9, fontWeight: 800, color: darkMode ? '#555' : '#999', textTransform: 'uppercase' }}>Máx</span>
+        <span style={{ fontSize:9, fontWeight: 400, color: darkMode ? '#555' : '#999', textTransform: 'uppercase' }}>Máx</span>
       </div>
     </div>
   )

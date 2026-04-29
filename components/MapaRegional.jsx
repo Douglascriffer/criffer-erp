@@ -52,11 +52,11 @@ export default function MapaRegional({ stateData=[], compareData=null, darkMode 
             {/* Label row */}
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:4 }}>
               <div style={{ display:'flex', alignItems:'center', gap:6 }}>
-                <span style={{ fontSize:11, color: darkMode ? '#888' : '#AAA', fontWeight:700, width:16 }}>{i+1}</span>
-                <span style={{ fontSize:13, fontWeight:700, color: darkMode ? '#fff' : '#333' }}>{row.r}</span>
+                <span style={{ fontSize:11, color: darkMode ? '#888' : '#AAA', fontWeight:400, width:16 }}>{i+1}</span>
+                <span style={{ fontSize:13, fontWeight:400, color: darkMode ? '#fff' : '#333' }}>{row.r}</span>
               </div>
               {diff!==null && (
-                <span style={{ fontSize:12, fontWeight:700, color:diff>=0?'#16a34a':'#EF4444' }}>
+                <span style={{ fontSize:12, fontWeight:400, color:diff>=0?'#16a34a':'#EF4444' }}>
                   {diff>=0?'▲':'▼'}{Math.abs(diff).toFixed(1)}%
                 </span>
               )}
@@ -70,10 +70,10 @@ export default function MapaRegional({ stateData=[], compareData=null, darkMode 
                 justifyContent: inside?'flex-end':'flex-start',
                 padding:'0 8px', transition:'width .6s ease',
               }}>
-                {inside && <span style={{ fontSize:12, fontWeight:700, color:'white', whiteSpace:'nowrap' }}>{fmtN(row.fat)}</span>}
+                {inside && <span style={{ fontSize:12, fontWeight:400, color:'white', whiteSpace:'nowrap' }}>{fmtN(row.fat)}</span>}
               </div>
               {!inside && (
-                <span style={{ position:'absolute', left:`${barW+1}%`, top:'50%', transform:'translateY(-50%)', fontSize:12, fontWeight:700, color: darkMode ? '#fff' : '#444', whiteSpace:'nowrap', paddingLeft:6 }}>{fmtN(row.fat)}</span>
+                <span style={{ position:'absolute', left:`${barW+1}%`, top:'50%', transform:'translateY(-50%)', fontSize:12, fontWeight:400, color: darkMode ? '#fff' : '#444', whiteSpace:'nowrap', paddingLeft:6 }}>{fmtN(row.fat)}</span>
               )}
             </div>
           </div>
