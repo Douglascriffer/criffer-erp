@@ -43,10 +43,10 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncI
 
   const maxVal = Math.max(...Object.values(stats), 1)
 
-  // Escala de cores: Tons de Laranja Criffer
+  // Escala de cores: Claro para o Escuro (Laranja Criffer)
   const colorScale = scaleLinear()
-    .domain([0, maxVal * 0.2, maxVal])
-    .range(darkMode ? ['#1a1a1a', '#FF6A2240', '#FF6A22'] : ['#f9f9f9', '#ffccb3', '#FF6A22'])
+    .domain([0, maxVal])
+    .range(['#fff5f0', '#FF6A22'])
 
   return (
     <div style={{ position: 'relative', width: '100%', height: 300, display: 'flex', alignItems: 'center' }}>
@@ -108,7 +108,7 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncI
       {/* Legenda de calor compacta */}
       <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 8 }}>
         <span style={{ fontSize: 9, color: '#888' }}>MÍN</span>
-        <div style={{ width: 80, height: 4, borderRadius: 2, background: `linear-gradient(to right, ${darkMode ? '#1a1a1a' : '#eee'}, #FF6A22)` }} />
+        <div style={{ width: 80, height: 4, borderRadius: 2, background: `linear-gradient(to right, #fff5f0, #FF6A22)` }} />
         <span style={{ fontSize: 9, color: '#888' }}>MÁX</span>
       </div>
     </div>
