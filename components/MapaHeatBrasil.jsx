@@ -53,8 +53,8 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
 
       <ComposableMap
         projection="geoMercator"
-        projectionConfig={{ center: [-55, -15], scale: 600 }}
-        width={500} height={340}
+        projectionConfig={{ center: [-55, -15], scale: 450 }}
+        width={500} height={300}
         style={{ width: '100%', height: 'auto' }}
       >
         <Geographies geography={GEO_URL}>
