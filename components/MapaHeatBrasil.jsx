@@ -89,7 +89,7 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncI
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill={isActive ? '#FF6A22' : (val > 0 ? colorScale(val) : (darkMode ? '#151515' : '#eee'))}
+                    fill={isActive ? '#FF6A22' : (val > 0 ? colorScale(val) : '#fff5f0')}
                     stroke={isActive ? '#fff' : (darkMode ? '#333' : '#fff')}
                     strokeWidth={isActive ? 1.5 : 0.5}
                     style={{
