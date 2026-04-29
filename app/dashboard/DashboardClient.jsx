@@ -107,10 +107,10 @@ export default function DashboardClient() {
 
   const SUB_TABS = {
     desempenho: [
-      { id:'vendas', label:'RECEITAS' },
-      { id:'mapa',   label:'MAPA' },
-      { id:'rank',   label:'VENDEDORES' },
       { id:'metas',  label:'METAS' },
+      { id:'rank',   label:'VENDEDORES' },
+      { id:'mapa',   label:'MAPA' },
+      { id:'vendas', label:'RECEITAS' },
     ],
     orcamento: [
       { id:'dre',  label:'DRE Simplificado' },
@@ -188,7 +188,7 @@ export default function DashboardClient() {
           </div>
         </div>
         
-        <div style={{ marginTop: 0 }}>
+        <div style={{ marginTop: 0, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{ 
             display: 'inline-flex', 
             alignItems: 'center', 
@@ -196,13 +196,14 @@ export default function DashboardClient() {
             fontSize: 8, 
             fontWeight: 500, 
             color: isUp ? '#22c55e' : '#ef4444',
-            marginBottom: 0
+            lineHeight: 1,
+            marginBottom: 1
           }}>
             {isUp ? <TrendingUp size={8} /> : <TrendingDown size={8} />}
             {Math.abs(pct).toFixed(1)}%
           </div>
-          <p style={{ fontSize: 9, color: t.textMuted, fontWeight: 500 }}>
-            Ant.: <span style={{ fontWeight: 500, fontSize: 10 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
+          <p style={{ fontSize: 8.5, color: t.textMuted, fontWeight: 500, lineHeight: 1 }}>
+            Ant.: <span style={{ fontWeight: 500, fontSize: 9.5 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
           </p>
         </div>
       </div>
@@ -317,62 +318,74 @@ export default function DashboardClient() {
       </header>
 
       {/* ══ CONTEÚDO PRINCIPAL ══ */}
-      <main style={{ maxWidth: '100%', margin: '0 auto', padding: '16px 2% 0px 2%' }}>
+      <main style={{ maxWidth: '100%', margin: '0 auto', padding: '0px 2% 0px 2%' }}>
         
-        {/* Filtros de Período (Design SaaS Moderno) */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+        {/* Barra de Filtros e Sub-abas (Design SaaS Moderno) */}
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center', 
+          marginBottom: 12,
+          background: 'rgba(0,0,0,0.15)',
+          padding: '12px 20px',
+          borderRadius: '0 0 16px 16px',
+          border: '1px solid rgba(255,255,255,0.05)',
+          borderTop: 'none'
+        }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{ display: 'flex', background: t.pillBg, padding: 4, borderRadius: 12 }}>
+            <div style={{ display: 'flex', background: t.pillBg, padding: 3, borderRadius: 10 }}>
               {['2025', '2026'].map(y => (
                 <button key={y} onClick={() => setFilters(f => ({ ...f, ano: y }))} style={{
-                  padding: '4px 10px',
-                  borderRadius: 6,
+                  padding: '4px 12px',
+                  borderRadius: 7,
                   border: 'none',
                   background: filters.ano === y ? t.card : 'transparent',
                   color: filters.ano === y ? t.accent : t.textSub,
-                  fontWeight: 500,
-                  fontSize: 11,
+                  fontWeight: 600,
+                  fontSize: 10.5,
                   cursor: 'pointer',
-                  boxShadow: filters.ano === y ? '0 2px 8px rgba(0,0,0,0.05)' : 'none'
+                  transition: 'all 0.2s'
                 }}>{y}</button>
               ))}
             </div>
-            <select 
-            value={filters.mes} 
-            onChange={(e) => setFilters({ ...filters, mes: e.target.value })}
-            style={{
-              background: 'rgba(0,0,0,0.1)',
-              border: '1px solid rgba(255,255,255,0.2)',
-              borderRadius: 24,
-              padding: '6px 12px',
-              color: '#fff',
-              fontSize: 12,
-              fontWeight: 500,
-              cursor: 'pointer',
-              outline: 'none',
-              appearance: 'none',
-              WebkitAppearance: 'none'
-            }}
-          >
-            <option value="all" style={{ background: '#1a1a1a', color: '#fff' }}>Todos os Meses</option>
-            {['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'].map((m, i) => (
-              <option key={m} value={i+1} style={{ background: '#1a1a1a', color: '#fff' }}>{m}</option>
-            ))}
-          </select>
+            
+            <div style={{ position: 'relative' }}>
+              <select 
+                value={filters.mes} 
+                onChange={(e) => setFilters({ ...filters, mes: e.target.value })}
+                style={{
+                  background: t.pillBg,
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  borderRadius: 10,
+                  padding: '5px 12px',
+                  color: '#fff',
+                  fontSize: 11,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  outline: 'none',
+                  appearance: 'none'
+                }}
+              >
+                <option value="all">Todos os Meses</option>
+                {['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'].map((m, i) => (
+                  <option key={m} value={i+1}>{m}</option>
+                ))}
+              </select>
+            </div>
           </div>
 
           {/* Sub-abas de Navegação Interna */}
           {activeSubs.length > 0 && (
-            <div style={{ display: 'flex', gap: 8 }}>
+            <div style={{ display: 'flex', gap: 6 }}>
               {activeSubs.map(sub => (
                 <button key={sub.id} onClick={() => goSub(sub.id)} style={{
-                padding: '6px 16px',
+                  padding: '6px 16px',
                   borderRadius: 30,
                   border: 'none',
-                  background: activeSub === sub.id ? t.accent : t.pillBg,
+                  background: activeSub === sub.id ? t.accent : 'transparent',
                   color: activeSub === sub.id ? '#fff' : t.textSub,
-                  fontSize: 12, 
-                  fontWeight: 500, 
+                  fontSize: 10.5, 
+                  fontWeight: 700, 
                   letterSpacing: 0.5, 
                   textTransform: 'uppercase', 
                   cursor: 'pointer',
