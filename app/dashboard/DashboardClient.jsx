@@ -475,37 +475,52 @@ export default function DashboardClient() {
                {/* Sub-aba: MAPA */}
               {activeSub === 'mapa' && (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-                  {/* Coluna 2026 */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                      <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'left', marginBottom: 12, color: '#fff' }}>2026</h3>
-                      <MapaHeatBrasil 
-                        stateData={data?.byState?.filter(s => s.ano === 2026) || []} 
-                        darkMode={theme === 'dark'} 
-                        syncIndex={highlightIndex}
-                      />
-                    </div>
-                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
-                      <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'left', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1, color: '#fff' }}>DISTRIBUIÇÃO REGIONAL 2026</h3>
-                      <MapaRegional stateData={data?.byState?.filter(s => s.ano === 2026) || []} darkMode={theme === 'dark'} />
-                    </div>
-                  </div>
+                  {(() => {
+                    const lastMonth2026 = data?.byState?.filter(s => s.ano === 2026 && s.faturamento > 0)
+                      ?.reduce((max, s) => Math.max(max, s.mes), 1) || 12
+                    
+                    const filterByMonth = (s, targetAno) => {
+                      const isAll = filters.mes === 'all'
+                      const targetMes = isAll ? lastMonth2026 : Number(filters.mes)
+                      return s.ano === targetAno && (isAll ? s.mes <= targetMes : s.mes === targetMes)
+                    }
 
-                  {/* Coluna 2025 */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                      <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'left', marginBottom: 12, color: '#fff' }}>2025</h3>
-                      <MapaHeatBrasil 
-                        stateData={data?.byState?.filter(s => s.ano === 2025) || []} 
-                        darkMode={theme === 'dark'} 
-                        syncIndex={highlightIndex}
-                      />
-                    </div>
-                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
-                      <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'left', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1, color: '#fff' }}>DISTRIBUIÇÃO REGIONAL 2025</h3>
-                      <MapaRegional stateData={data?.byState?.filter(s => s.ano === 2025) || []} darkMode={theme === 'dark'} />
-                    </div>
-                  </div>
+                    return (
+                      <>
+                        {/* Coluna 2026 */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                          <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                            <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'left', marginBottom: 12, color: '#fff' }}>2026</h3>
+                            <MapaHeatBrasil 
+                              stateData={data?.byState?.filter(s => filterByMonth(s, 2026)) || []} 
+                              darkMode={theme === 'dark'} 
+                              syncIndex={highlightIndex}
+                            />
+                          </div>
+                          <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                            <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'left', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1, color: '#fff' }}>DISTRIBUIÇÃO REGIONAL 2026</h3>
+                            <MapaRegional stateData={data?.byState?.filter(s => filterByMonth(s, 2026)) || []} darkMode={theme === 'dark'} />
+                          </div>
+                        </div>
+
+                        {/* Coluna 2025 */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                          <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                            <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'left', marginBottom: 12, color: '#fff' }}>2025</h3>
+                            <MapaHeatBrasil 
+                              stateData={data?.byState?.filter(s => filterByMonth(s, 2025)) || []} 
+                              darkMode={theme === 'dark'} 
+                              syncIndex={highlightIndex}
+                            />
+                          </div>
+                          <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                            <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'left', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1, color: '#fff' }}>DISTRIBUIÇÃO REGIONAL 2025</h3>
+                            <MapaRegional stateData={data?.byState?.filter(s => filterByMonth(s, 2025)) || []} darkMode={theme === 'dark'} />
+                          </div>
+                        </div>
+                      </>
+                    )
+                  })()}
                 </div>
               )}
 
