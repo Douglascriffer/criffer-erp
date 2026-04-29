@@ -157,52 +157,52 @@ export default function DashboardClient() {
       <div style={{
         background: t.card,
         border: `1.5px solid ${t.border}`,
-        borderRadius: 10,
-        padding: '8px',
+        borderRadius: 8,
+        padding: '6px',
         display: 'flex',
         flexDirection: 'column',
-        gap: 4,
+        gap: 2,
         alignItems: 'center',
         textAlign: 'center',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
       }} className="hover-lift">
-        <p style={{ fontSize: 9, fontWeight: 500, color: t.text, textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 0.5, width: '100%' }}>{label}</p>
+        <p style={{ fontSize: 8.5, fontWeight: 500, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 0, width: '100%' }}>{label}</p>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ 
             background: `${color}15`, 
             color: color, 
-            padding: 5, 
-            borderRadius: 8,
+            padding: 4, 
+            borderRadius: 6,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <Icon size={14} />
+            <Icon size={12} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-             <p style={{ fontSize: 18, fontWeight: 500, color: t.text, lineHeight: 1 }}>
+             <p style={{ fontSize: 16, fontWeight: 500, color: t.text, lineHeight: 1 }}>
                {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
              </p>
           </div>
         </div>
         
-        <div style={{ marginTop: 2 }}>
+        <div style={{ marginTop: 0 }}>
           <div style={{ 
             display: 'inline-flex', 
             alignItems: 'center', 
-            gap: 4, 
-            fontSize: 10, 
+            gap: 2, 
+            fontSize: 9, 
             fontWeight: 500, 
             color: isUp ? '#22c55e' : '#ef4444',
-            marginBottom: 1
+            marginBottom: 0
           }}>
-            {isUp ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
+            {isUp ? <TrendingUp size={9} /> : <TrendingDown size={9} />}
             {Math.abs(pct).toFixed(1)}%
           </div>
-          <p style={{ fontSize: 11, color: t.textMuted, fontWeight: 500 }}>
-            Ant.: <span style={{ fontWeight: 500, fontSize: 12 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
+          <p style={{ fontSize: 10, color: t.textMuted, fontWeight: 500 }}>
+            Ant.: <span style={{ fontWeight: 500, fontSize: 11 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
           </p>
         </div>
       </div>
@@ -230,7 +230,7 @@ export default function DashboardClient() {
       {/* ══ TOPBAR PREMIUM (Sincronizada com Capa) ══ */}
       <header style={{
         background: 'linear-gradient(135deg, #a84410 0%, #d4601a 42%, #FF6A22 72%, #f07c38 100%)',
-        padding: '8px 4%',
+        padding: '12px 4%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -241,13 +241,13 @@ export default function DashboardClient() {
         gap: 32
       }}>
         {/* Logo + Brand */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }} onClick={() => router.push('/capa')}>
-          <div style={{ background: '#fff', borderRadius: '50%', width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
-            <Image src="/logo-base.png" alt="Criffer" width={26} height={26} style={{ objectFit: 'contain' }}/>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }} onClick={() => router.push('/capa')}>
+          <div style={{ background: '#fff', borderRadius: '50%', width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
+            <Image src="/logo-base.png" alt="Criffer" width={32} height={32} style={{ objectFit: 'contain' }}/>
           </div>
           <div>
-            <div style={{ fontSize: 18, fontWeight: 500, color: '#fff', letterSpacing: 2, lineHeight: 1 }}>CRIFFER</div>
-            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.9)', fontWeight: 400, letterSpacing: 1.5, textTransform: 'uppercase' }}>ERP Financeiro</div>
+            <div style={{ fontSize: 24, fontWeight: 500, color: '#fff', letterSpacing: 2, lineHeight: 1 }}>CRIFFER</div>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)', fontWeight: 400, letterSpacing: 1.5, textTransform: 'uppercase' }}>ERP Financeiro</div>
           </div>
         </div>
 
@@ -258,23 +258,23 @@ export default function DashboardClient() {
             const Icon = tabItem.icon
             return (
               <button key={tabItem.id} onClick={() => goTab(tabItem.id)} style={{
-                padding: '6px 14px',
-                borderRadius: 8,
+                padding: '10px 20px',
+                borderRadius: 10,
                 border: 'none',
                 cursor: 'pointer',
                 fontFamily: 'inherit',
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: 400,
                 display: 'flex',
                 alignItems: 'center',
-                gap: 6,
+                gap: 8,
                 background: active ? '#fff' : 'transparent',
                 color: active ? '#FF6A22' : 'rgba(255,255,255,0.85)',
                 transition: 'all 0.2s',
                 textTransform: 'uppercase',
                 letterSpacing: 0.5
               }}>
-                <Icon size={16} />
+                <Icon size={18} />
                 {tabItem.label}
               </button>
             )
@@ -288,9 +288,9 @@ export default function DashboardClient() {
             background: 'rgba(0,0,0,0.1)',
             border: '1px solid rgba(255,255,255,0.2)',
             borderRadius: 30,
-            padding: '6px 14px',
+            padding: '8px 18px',
             color: '#fff',
-            fontSize: 12,
+            fontSize: 13,
             fontWeight: 400,
             cursor: 'pointer',
             transition: 'all 0.2s'
@@ -299,16 +299,16 @@ export default function DashboardClient() {
           </button>
 
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 15, fontWeight: 400, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
-            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.9)', fontWeight: 400 }}>Tenha um ótimo dia</div>
+            <div style={{ fontSize: 17, fontWeight: 400, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)', fontWeight: 400 }}>Tenha um ótimo dia</div>
           </div>
           <button onClick={() => { localStorage.clear(); router.push('/login') }} style={{
             background: 'transparent',
             border: '2px solid rgba(255,255,255,0.4)',
             color: '#fff',
-            padding: '6px 14px',
-            borderRadius: 8,
-            fontSize: 12,
+            padding: '8px 18px',
+            borderRadius: 10,
+            fontSize: 13,
             fontWeight: 400,
             cursor: 'pointer',
             transition: 'all 0.2s'
@@ -405,9 +405,9 @@ export default function DashboardClient() {
               {activeSub === 'vendas' && (
                 <>
                 {/* 1. Evolução de Receita - Full Width */}
-                <div style={{ background: t.card, borderRadius: 10, border: `1.5px solid ${t.border}`, padding: 10 }}>
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 6 }}>
-                    <h3 style={{ fontSize: 12, fontWeight: 500, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
+                <div style={{ background: t.card, borderRadius: 8, border: `1.5px solid ${t.border}`, padding: 8 }}>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 4 }}>
+                    <h3 style={{ fontSize: 11, fontWeight: 500, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
                   </div>
                   <GraficoReceitas periodData={(data?.byPeriod?.filter(p => p.ano === 2026) || []).map(p => ({
                     ...p,
@@ -418,13 +418,13 @@ export default function DashboardClient() {
                 </div>
 
                 {/* 2. Grid para Faturamento vs Meta e Comparativo Anual */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                  <div style={{ background: t.card, borderRadius: 10, border: `1.5px solid ${t.border}`, padding: 10 }}>
-                    <h3 style={{ fontSize: 12, fontWeight: 500, marginBottom: 6, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                  <div style={{ background: t.card, borderRadius: 8, border: `1.5px solid ${t.border}`, padding: 8 }}>
+                    <h3 style={{ fontSize: 11, fontWeight: 500, marginBottom: 4, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
                     <GraficoFaturamentoMeta metaData={data?.meta?.[2026] || []} darkMode={theme === 'dark'} />
                   </div>
-                  <div style={{ background: t.card, borderRadius: 10, border: `1.5px solid ${t.border}`, padding: 10 }}>
-                    <h3 style={{ fontSize: 12, fontWeight: 500, marginBottom: 6, textAlign: 'center' }}>Comparativo Anual (2025 vs 2026)</h3>
+                  <div style={{ background: t.card, borderRadius: 8, border: `1.5px solid ${t.border}`, padding: 8 }}>
+                    <h3 style={{ fontSize: 11, fontWeight: 500, marginBottom: 4, textAlign: 'center' }}>Comparativo Anual (2025 vs 2026)</h3>
                     <GraficoComparativo 
                       showComparison={true}
                       darkMode={theme === 'dark'}
