@@ -468,11 +468,11 @@ export default function DashboardClient() {
                   {/* Coluna 2026 */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                     <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 12 }}>
-                      <h3 style={{ fontSize: 18, fontWeight: 700, textAlign: 'center', marginBottom: 4 }}>2026</h3>
+                      <h3 style={{ fontSize: 18, fontWeight: 700, textAlign: 'center', marginBottom: 8 }}>2026</h3>
                       <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2026) || []} darkMode={theme === 'dark'} />
                     </div>
                     <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 12 }}>
-                      <h3 style={{ fontSize: 14, fontWeight: 700, textAlign: 'center', marginBottom: 12 }}>DISTRIBUIÇÃO 2026</h3>
+                      <h3 style={{ fontSize: 13, fontWeight: 700, textAlign: 'center', marginBottom: 12, color: t.textSub, textTransform: 'uppercase' }}>Distribuição Regional 2026</h3>
                       <MapaRegional stateData={data?.byState?.filter(s => s.ano === 2026) || []} darkMode={theme === 'dark'} />
                     </div>
                   </div>
@@ -480,11 +480,11 @@ export default function DashboardClient() {
                   {/* Coluna 2025 */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                     <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 12 }}>
-                      <h3 style={{ fontSize: 18, fontWeight: 700, textAlign: 'center', marginBottom: 4 }}>2025</h3>
+                      <h3 style={{ fontSize: 18, fontWeight: 700, textAlign: 'center', marginBottom: 8 }}>2025</h3>
                       <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2025) || []} darkMode={theme === 'dark'} />
                     </div>
                     <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 12 }}>
-                      <h3 style={{ fontSize: 14, fontWeight: 700, textAlign: 'center', marginBottom: 12 }}>DISTRIBUIÇÃO 2025</h3>
+                      <h3 style={{ fontSize: 13, fontWeight: 700, textAlign: 'center', marginBottom: 12, color: t.textSub, textTransform: 'uppercase' }}>Distribuição Regional 2025</h3>
                       <MapaRegional stateData={data?.byState?.filter(s => s.ano === 2025) || []} darkMode={theme === 'dark'} />
                     </div>
                   </div>
