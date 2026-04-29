@@ -4,6 +4,24 @@ Este documento contém o resumo consolidado de todas as alterações visuais e t
 
 ---
 
+## ✅ ETAPA 3 — FATURAMENTO E SUBJANELAS (29/04/2026)
+*Redimensionamento global das abas internas para alinhar com a estética Executive.*
+
+1.  **KPI Cards Internos**:
+    *   Redução de padding e gap para um grid mais denso.
+    *   Fonte dos valores principais reduzida para **22px**.
+    *   Linguagem visual sincronizada com a Capa (sem negritos excessivos).
+
+2.  **Containers de Gráficos e Mapas**:
+    *   Redução drástica de paddings (`32px` ➔ `12px/16px`) e arredondamentos (`24px` ➔ `12px`).
+    *   Títulos dos gráficos simplificados com peso **500** e tamanho menor.
+
+3.  **Navegação e Filtros**:
+    *   Botões de sub-abas e filtros de período mais compactos.
+    *   Remoção de negrito em toda a Topbar e filtros.
+
+---
+
 ## ✅ ITENS APROVADOS HOJE (29/04/2026) — AJUSTE DE ESCALA (ZOOM)
 *Otimização global para reduzir a sensação de zoom e melhorar a densidade de informação.*
 
