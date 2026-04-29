@@ -466,12 +466,12 @@ export default function DashboardClient() {
               {activeSub === 'mapa' && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 12 }}>
-                      <h3 style={{ fontSize: 18, fontWeight: 700, textAlign: 'center', marginBottom: 4 }}>2026</h3>
+                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 8 }}>
+                      <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'center', marginBottom: 2 }}>2026</h3>
                       <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2026) || []} darkMode={theme === 'dark'} />
                     </div>
-                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 12 }}>
-                      <h3 style={{ fontSize: 18, fontWeight: 700, textAlign: 'center', marginBottom: 4 }}>2025</h3>
+                    <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 8 }}>
+                      <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'center', marginBottom: 2 }}>2025</h3>
                       <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2025) || []} darkMode={theme === 'dark'} />
                     </div>
                   </div>
