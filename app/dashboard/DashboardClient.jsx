@@ -157,17 +157,17 @@ export default function DashboardClient() {
       <div style={{
         background: t.card,
         border: `1.5px solid ${t.border}`,
-        borderRadius: 16,
-        padding: '12px',
+        borderRadius: 12,
+        padding: '10px',
         display: 'flex',
         flexDirection: 'column',
-        gap: 8,
+        gap: 6,
         alignItems: 'center',
         textAlign: 'center',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
       }} className="hover-lift">
-        <p style={{ fontSize: 11, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 2, width: '100%' }}>{label}</p>
+        <p style={{ fontSize: 10, fontWeight: 500, color: t.text, textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 1, width: '100%' }}>{label}</p>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ 
@@ -182,7 +182,7 @@ export default function DashboardClient() {
             <Icon size={18} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-             <p style={{ fontSize: 26, fontWeight: 500, color: t.text, lineHeight: 1 }}>
+             <p style={{ fontSize: 22, fontWeight: 500, color: t.text, lineHeight: 1 }}>
                {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
              </p>
           </div>
@@ -193,16 +193,16 @@ export default function DashboardClient() {
             display: 'inline-flex', 
             alignItems: 'center', 
             gap: 4, 
-            fontSize: 12, 
+            fontSize: 10, 
             fontWeight: 500, 
             color: isUp ? '#22c55e' : '#ef4444',
-            marginBottom: 2
+            marginBottom: 1
           }}>
-            {isUp ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
+            {isUp ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
             {Math.abs(pct).toFixed(1)}%
           </div>
-          <p style={{ fontSize: 14, color: t.textMuted, fontWeight: 500 }}>
-            Anterior: <span style={{ fontWeight: 500, fontSize: 15 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
+          <p style={{ fontSize: 11, color: t.textMuted, fontWeight: 500 }}>
+            Ant.: <span style={{ fontWeight: 500, fontSize: 12 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
           </p>
         </div>
       </div>
@@ -317,21 +317,21 @@ export default function DashboardClient() {
       </header>
 
       {/* ══ CONTEÚDO PRINCIPAL ══ */}
-      <main style={{ maxWidth: '100%', margin: '0 auto', padding: '8px 2%' }}>
+      <main style={{ maxWidth: '100%', margin: '0 auto', padding: '4px 2%' }}>
         
         {/* Filtros de Período (Design SaaS Moderno) */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{ display: 'flex', background: t.pillBg, padding: 4, borderRadius: 12 }}>
               {['2025', '2026'].map(y => (
                 <button key={y} onClick={() => setFilters(f => ({ ...f, ano: y }))} style={{
-                  padding: '6px 16px',
+                  padding: '5px 12px',
                   borderRadius: 8,
                   border: 'none',
                   background: filters.ano === y ? t.card : 'transparent',
                   color: filters.ano === y ? t.accent : t.textSub,
-                  fontWeight: 800,
-                  fontSize: 13,
+                  fontWeight: 500,
+                  fontSize: 12,
                   cursor: 'pointer',
                   boxShadow: filters.ano === y ? '0 2px 8px rgba(0,0,0,0.05)' : 'none'
                 }}>{y}</button>
@@ -344,10 +344,10 @@ export default function DashboardClient() {
               background: 'rgba(0,0,0,0.1)',
               border: '1px solid rgba(255,255,255,0.2)',
               borderRadius: 24,
-              padding: '10px 20px',
+              padding: '8px 16px',
               color: '#fff',
-              fontSize: 14,
-              fontWeight: 800,
+              fontSize: 13,
+              fontWeight: 500,
               cursor: 'pointer',
               outline: 'none',
               appearance: 'none',
@@ -366,14 +366,14 @@ export default function DashboardClient() {
             <div style={{ display: 'flex', gap: 8 }}>
               {activeSubs.map(sub => (
                 <button key={sub.id} onClick={() => goSub(sub.id)} style={{
-                  padding: '8px 20px',
+                padding: '6px 16px',
                   borderRadius: 30,
                   border: 'none',
                   background: activeSub === sub.id ? t.accent : t.pillBg,
                   color: activeSub === sub.id ? '#fff' : t.textSub,
-                  fontSize: 14, 
-                  fontWeight: 900, 
-                  letterSpacing: 1, 
+                  fontSize: 12, 
+                  fontWeight: 500, 
+                  letterSpacing: 0.5, 
                   textTransform: 'uppercase', 
                   cursor: 'pointer',
                   transition: 'all 0.2s'
@@ -384,7 +384,7 @@ export default function DashboardClient() {
         </div>
 
         {/* ══ CARDS DE KPI (Top 7) ══ */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 16, marginBottom: 40, width: '100%', overflowX: 'auto', paddingBottom: 10 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 12, marginBottom: 24, width: '100%', overflowX: 'auto', paddingBottom: 10 }}>
           <KpiCard label="VENDAS" value={kpis.vendas || 0} prevValue={pkpis.vendas || 0} icon={ShoppingCart} color="#FF6A22" />
           <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
           <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
@@ -405,9 +405,9 @@ export default function DashboardClient() {
               {activeSub === 'vendas' && (
                 <>
                 {/* 1. Evolução de Receita - Full Width */}
-                <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 16 }}>
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 12 }}>
-                    <h3 style={{ fontSize: 16, fontWeight: 900, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
+                <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 12 }}>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 8 }}>
+                    <h3 style={{ fontSize: 14, fontWeight: 500, textAlign: 'center' }}>Evolução de Receita (2026)</h3>
                   </div>
                   <GraficoReceitas periodData={(data?.byPeriod?.filter(p => p.ano === 2026) || []).map(p => ({
                     ...p,
@@ -418,13 +418,13 @@ export default function DashboardClient() {
                 </div>
 
                 {/* 2. Grid para Faturamento vs Meta e Comparativo Anual */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-                  <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 16 }}>
-                    <h3 style={{ fontSize: 16, fontWeight: 900, marginBottom: 12, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                  <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 12 }}>
+                    <h3 style={{ fontSize: 14, fontWeight: 500, marginBottom: 8, textAlign: 'center' }}>Faturamento Total Mensal vs Meta</h3>
                     <GraficoFaturamentoMeta metaData={data?.meta?.[2026] || []} darkMode={theme === 'dark'} />
                   </div>
-                  <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 16 }}>
-                    <h3 style={{ fontSize: 16, fontWeight: 900, marginBottom: 12, textAlign: 'center' }}>Comparativo Anual (2025 vs 2026)</h3>
+                  <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 12 }}>
+                    <h3 style={{ fontSize: 14, fontWeight: 500, marginBottom: 8, textAlign: 'center' }}>Comparativo Anual (2025 vs 2026)</h3>
                     <GraficoComparativo 
                       showComparison={true}
                       darkMode={theme === 'dark'}
@@ -446,49 +446,49 @@ export default function DashboardClient() {
                 </>
               )}
 
-              {/* Sub-aba: MAPA */}
+               {/* Sub-aba: MAPA */}
               {activeSub === 'mapa' && (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
-                    <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 24 }}>
-                      <h3 style={{ fontSize: 16, fontWeight: 900, textAlign: 'center', marginBottom: 16 }}>MAPA RECEITA 2026</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                    <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 12 }}>
+                      <h3 style={{ fontSize: 14, fontWeight: 500, textAlign: 'center', marginBottom: 8 }}>MAPA RECEITA 2026</h3>
                       <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2026) || []} />
                     </div>
-                    <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 24 }}>
-                      <h3 style={{ fontSize: 16, fontWeight: 900, textAlign: 'center', marginBottom: 16 }}>MAPA RECEITA 2025</h3>
+                    <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 12 }}>
+                      <h3 style={{ fontSize: 14, fontWeight: 500, textAlign: 'center', marginBottom: 8 }}>MAPA RECEITA 2025</h3>
                       <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2025) || []} />
                     </div>
                   </div>
-                  <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
-                    <h3 style={{ fontSize: 18, fontWeight: 900, marginBottom: 24 }}>Distribuição Regional (Faturamento)</h3>
+                  <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                    <h3 style={{ fontSize: 15, fontWeight: 500, marginBottom: 12 }}>Distribuição Regional (Faturamento)</h3>
                     <MapaRegional stateData={data?.byState?.filter(s => s.ano === 2026) || []} darkMode={theme === 'dark'} />
                   </div>
                 </div>
               )}
 
-              {/* Sub-aba: METAS */}
+               {/* Sub-aba: METAS */}
               {activeSub === 'metas' && (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
-                  <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
-                    <h3 style={{ fontSize: 18, fontWeight: 900, marginBottom: 24 }}>Meta vs Realizado (Mês Selecionado)</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                  <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                    <h3 style={{ fontSize: 15, fontWeight: 500, marginBottom: 12 }}>Meta vs Realizado (Mês Selecionado)</h3>
                     <GraficoMetaRealizado metaData={data?.meta?.[filters.ano]?.filter(m => m.mes === Number(filters.mes)) || []}/>
                   </div>
-                  <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <h3 style={{ fontSize: 18, fontWeight: 900, marginBottom: 24 }}>Atingimento Acumulado 2026</h3>
-                    <div style={{ fontSize: 64, fontWeight: 900, color: t.accent }}>
+                  <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <h3 style={{ fontSize: 15, fontWeight: 500, marginBottom: 12 }}>Atingimento Acumulado 2026</h3>
+                    <div style={{ fontSize: 42, fontWeight: 500, color: t.accent }}>
                       {kpis.pctAtingido ? `${kpis.pctAtingido.toFixed(1)}%` : '—'}
                     </div>
-                    <p style={{ fontSize: 14, color: t.textMuted, fontWeight: 600 }}>Performance em relação à meta anual</p>
+                    <p style={{ fontSize: 12, color: t.textMuted, fontWeight: 500 }}>Performance em relação à meta anual</p>
                   </div>
                 </div>
               )}
 
-              {/* Sub-aba: VENDEDORES */}
+               {/* Sub-aba: VENDEDORES */}
               {activeSub === 'rank' && (
-                <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-                    <h3 style={{ fontSize: 18, fontWeight: 900 }}>Ranking de Performance</h3>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: t.textMuted }}>Comparativo YoY (2025 vs 2026)</div>
+                <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                    <h3 style={{ fontSize: 15, fontWeight: 500 }}>Ranking de Performance</h3>
+                    <div style={{ fontSize: 11, fontWeight: 500, color: t.textMuted }}>Comparativo YoY (2025 vs 2026)</div>
                   </div>
                   <GraficoVendedores sellers={data?.bySeller || []} darkMode={theme === 'dark'} />
                 </div>
@@ -498,17 +498,17 @@ export default function DashboardClient() {
 
           {/* ABA ORÇAMENTO */}
           {tab === 'orcamento' && (
-            <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
+            <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
               <OrcamentoView mes={filters.mes} darkMode={theme === 'dark'} />
             </div>
           )}
 
           {/* ABA FLUXO DE CAIXA */}
           {tab === 'fluxo' && (
-            <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 80, textAlign: 'center' }}>
-              <Activity size={48} color={t.accent} style={{ marginBottom: 20 }} />
-              <h2 style={{ fontSize: 24, fontWeight: 900 }}>Fluxo de Caixa em Homologação</h2>
-              <p style={{ color: t.textMuted, maxWidth: 500, margin: '12px auto' }}>Estamos integrando os dados bancários reais para oferecer uma visão preditiva do seu caixa.</p>
+            <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 40, textAlign: 'center' }}>
+              <Activity size={32} color={t.accent} style={{ marginBottom: 12 }} />
+              <h2 style={{ fontSize: 18, fontWeight: 500 }}>Fluxo de Caixa em Homologação</h2>
+              <p style={{ color: t.textMuted, maxWidth: 400, margin: '8px auto', fontSize: 13 }}>Estamos integrando os dados bancários reais para oferecer uma visão preditiva do seu caixa.</p>
             </div>
           )}
         </div>
