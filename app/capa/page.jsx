@@ -259,8 +259,8 @@ function AnimInadimplencia({ color }) {
   const currentVal = Math.floor(70 * p)
 
   return (
-    <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" style={{ display: 'block' }}>
-      <g transform="translate(140,118)">
+    <svg viewBox="0 0 280 185" preserveAspectRatio="xMidYMid meet" width="100%" height="100%" style={{ display: 'block' }}>
+      <g transform="translate(140,125)">
         <path d="M -90 0 A 90 90 0 0 1 90 0" fill="none" stroke={`${color}15`} strokeWidth="18" strokeLinecap="round"/>
         
         <path d="M -90 0 A 90 90 0 0 1 -45 -78" fill="none" stroke="#22c55e" strokeWidth="18" strokeLinecap="round" opacity="0.6"/>
@@ -273,11 +273,11 @@ function AnimInadimplencia({ color }) {
           <circle r="5" fill="white"/>
         </g>
 
-        <text x="-105" y="25" fill="#22c55e" fontSize="13" fontWeight="900" textAnchor="middle" fontFamily="Gotham">BAIXO</text>
-        <text x="0"   y="-105" fill="#f59e0b" fontSize="13" fontWeight="900" textAnchor="middle" fontFamily="Gotham">MÉDIO</text>
-        <text x="105"  y="25" fill="#ef4444" fontSize="13" fontWeight="900" textAnchor="middle" fontFamily="Gotham">ALTO</text>
+        <text x="-105" y="25" fill="#22c55e" fontSize="12" fontWeight="900" textAnchor="middle" fontFamily="Gotham">BAIXO</text>
+        <text x="0"   y="-105" fill="#f59e0b" fontSize="12" fontWeight="900" textAnchor="middle" fontFamily="Gotham">MÉDIO</text>
+        <text x="105"  y="25" fill="#ef4444" fontSize="12" fontWeight="900" textAnchor="middle" fontFamily="Gotham">ALTO</text>
         
-        <text y="50" fill="#ef4444" fontSize="36" fontWeight="950" textAnchor="middle" fontFamily="Gotham">{currentVal}%</text>
+        <text y="50" fill="#ef4444" fontSize="32" fontWeight="950" textAnchor="middle" fontFamily="Gotham">{currentVal}%</text>
       </g>
     </svg>
   )
@@ -480,6 +480,7 @@ export default function CapaPage() {
           line-height: 1.6;
           font-weight: 500;
           margin-top: 8px;
+          flex-grow: 1; /* Garante que o texto ocupe o espaço e empurre o rodapé */
         }
 
         /* ── Título da página ── */
