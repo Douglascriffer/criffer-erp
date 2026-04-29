@@ -246,8 +246,8 @@ export default function DashboardClient() {
             <Image src="/logo-base.png" alt="Criffer" width={32} height={32} style={{ objectFit: 'contain' }}/>
           </div>
           <div>
-            <div style={{ fontSize: 24, fontWeight: 900, color: '#fff', letterSpacing: 2, lineHeight: 1 }}>CRIFFER</div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)', fontWeight: 500, letterSpacing: 1.5, textTransform: 'uppercase' }}>ERP Financeiro</div>
+            <div style={{ fontSize: 24, fontWeight: 500, color: '#fff', letterSpacing: 2, lineHeight: 1 }}>CRIFFER</div>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)', fontWeight: 400, letterSpacing: 1.5, textTransform: 'uppercase' }}>ERP Financeiro</div>
           </div>
         </div>
 
@@ -264,7 +264,7 @@ export default function DashboardClient() {
                 cursor: 'pointer',
                 fontFamily: 'inherit',
                 fontSize: 14,
-                fontWeight: 500,
+                fontWeight: 400,
                 display: 'flex',
                 alignItems: 'center',
                 gap: 8,
@@ -291,7 +291,7 @@ export default function DashboardClient() {
             padding: '8px 18px',
             color: '#fff',
             fontSize: 13,
-            fontWeight: 500,
+            fontWeight: 400,
             cursor: 'pointer',
             transition: 'all 0.2s'
           }}>
@@ -299,8 +299,8 @@ export default function DashboardClient() {
           </button>
 
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 17, fontWeight: 500, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)', fontWeight: 500 }}>Tenha um ótimo dia</div>
+            <div style={{ fontSize: 17, fontWeight: 400, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)', fontWeight: 400 }}>Tenha um ótimo dia</div>
           </div>
           <button onClick={() => { localStorage.clear(); router.push('/login') }} style={{
             background: 'transparent',
@@ -309,7 +309,7 @@ export default function DashboardClient() {
             padding: '8px 18px',
             borderRadius: 10,
             fontSize: 13,
-            fontWeight: 500,
+            fontWeight: 400,
             cursor: 'pointer',
             transition: 'all 0.2s'
           }}>Sair</button>

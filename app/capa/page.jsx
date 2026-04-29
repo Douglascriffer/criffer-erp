@@ -530,7 +530,7 @@ export default function CapaPage() {
           border: none;
           border-radius: 20px;
           font-family: inherit;
-          font-weight: 700;
+          font-weight: 500;
           font-size: clamp(10px, 0.85vw, 13px);
           letter-spacing: 0.05em;
           padding: 8px clamp(14px, 1.4vw, 22px);
@@ -544,7 +544,7 @@ export default function CapaPage() {
         .topbar-exit-btn {
           border-radius: 10px;
           font-family: inherit;
-          font-weight: 700;
+          font-weight: 500;
           font-size: clamp(11px, 0.9vw, 14px);
           cursor: pointer;
           padding: clamp(7px, 0.8vh, 10px) clamp(14px, 1.4vw, 22px);
@@ -585,10 +585,10 @@ export default function CapaPage() {
             <Image src="/logo-base.png" alt="Criffer" fill style={{ objectFit: 'contain', padding: 6 }}/>
           </div>
           <div>
-            <div className="cf-brand-name" style={{ fontWeight: 700, color: '#fff', fontSize: '1.4rem', lineHeight: 1, textShadow: '0 2px 10px rgba(0,0,0,0.4)' }}>
+            <div className="cf-brand-name" style={{ fontWeight: 500, color: '#fff', fontSize: '1.4rem', lineHeight: 1, textShadow: '0 2px 10px rgba(0,0,0,0.4)' }}>
               CRIFFER
             </div>
-            <div className="cf-brand-sub" style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.95)', fontWeight: 700, letterSpacing: 2.5, textTransform: 'uppercase', marginTop: 4 }}>
+            <div className="cf-brand-sub" style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.95)', fontWeight: 500, letterSpacing: 2.5, textTransform: 'uppercase', marginTop: 4 }}>
               ERP Financeiro
             </div>
           </div>
@@ -633,10 +633,10 @@ export default function CapaPage() {
         {/* Usuário + Sair */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexShrink: 0 }}>
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 18, color: '#fff', fontWeight: 900, lineHeight: 1.1, textShadow: '0 2px 8px rgba(0,0,0,0.30)', textTransform: 'uppercase' }}>
+            <div style={{ fontSize: 18, color: '#fff', fontWeight: 500, lineHeight: 1.1, textShadow: '0 2px 8px rgba(0,0,0,0.30)', textTransform: 'uppercase' }}>
               FINANCEIRO
             </div>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.92)', fontWeight: 600 }}>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.92)', fontWeight: 400 }}>
               Tenha um ótimo dia
             </div>
           </div>
