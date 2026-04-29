@@ -37,7 +37,7 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
     .range(darkMode ? ['#1a1a1a', '#FF6A2240', '#FF6A22'] : ['#f9f9f9', '#ffccb3', '#FF6A22'])
 
   return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: 350, margin: '0 auto' }}>
+    <div style={{ position: 'relative', width: '100%', margin: '0 auto' }}>
       {/* Tooltip flutuante simplificado */}
       {hoverUF && stats[hoverUF] > 0 && (
         <div style={{
@@ -53,8 +53,8 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
 
       <ComposableMap
         projection="geoMercator"
-        projectionConfig={{ center: [-55, -15], scale: 450 }}
-        width={500} height={300}
+        projectionConfig={{ center: [-55, -15], scale: 600 }}
+        width={500} height={340}
         style={{ width: '100%', height: 'auto' }}
       >
         <Geographies geography={GEO_URL}>
