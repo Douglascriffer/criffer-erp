@@ -1,5 +1,5 @@
 'use client'
-import { useState, useMemo, useEffect, useRef } from 'react'
+import { useState, useMemo } from 'react'
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'
 import { scaleLinear } from 'd3-scale'
 
@@ -29,7 +29,7 @@ function fmtN(v) {
   return Math.round(v).toLocaleString('pt-BR')
 }
 
-export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
+export default function MapaHeatBrasil({ stateData = [], darkMode = false, maxWidth = 380 }) {
   const [activeUF, setActiveUF] = useState(null)
   const [hoverUF, setHoverUF]   = useState(null)
 
@@ -57,15 +57,13 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
     setActiveUF(uf)
   }
 
-  const handleLeave = () => {
-    setHoverUF(null)
-  }
+  const handleLeave = () => setHoverUF(null)
 
   const displayUF = hoverUF || activeUF
   const displayVal = displayUF ? stateMap[displayUF] : null
 
   return (
-    <div style={{ position:'relative', width: '100%' }}>
+    <div style={{ position:'relative', width:'100%', maxWidth, margin:'0 auto' }}>
       <style>{`
         @keyframes fadeInUp { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
         .state-lift { transform: scale(1.05) translateY(-2px); z-index: 100; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2)); }
@@ -147,4 +145,3 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false }) {
     </div>
   )
 }
-
