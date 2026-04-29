@@ -430,8 +430,8 @@ export default function CapaPage() {
           position: relative;
           overflow: hidden;
           cursor: pointer;
-          min-height: clamp(480px, 52vh, 620px);
-          padding: clamp(16px, 1.6vw, 24px) clamp(16px, 1.6vw, 24px) clamp(14px, 1.4vw, 20px);
+          min-height: clamp(380px, 48vh, 620px);
+          padding: clamp(14px, 1.4vw, 22px) clamp(14px, 1.4vw, 22px) clamp(12px, 1.2vw, 18px);
           display: flex;
           flex-direction: column;
           transition:
@@ -446,7 +446,7 @@ export default function CapaPage() {
         /* ── Área da animação — ajustada para dar mais espaço aos textos inferiores ── */
         .cf-anim-area {
           width: 100%;
-          flex: 0.75; /* Reduzido levemente para sobrar espaço para tags legíveis */
+          flex: 0.65; /* Reduzido para sobrar mais espaço para o texto em notebooks */
           min-height: 0;
           display: flex;
           align-items: stretch;
@@ -454,7 +454,7 @@ export default function CapaPage() {
           border-radius: clamp(10px, 1vw, 16px);
           overflow: hidden;
           flex-shrink: 0;
-          margin-bottom: clamp(12px, 2vh, 20px);
+          margin-bottom: clamp(10px, 1.5vh, 16px);
           position: relative;
         }
         .cf-anim-area > svg {
@@ -657,7 +657,7 @@ export default function CapaPage() {
         alignItems: 'center',
         justifyContent: 'flex-start',
         position: 'relative',
-        padding: 'clamp(60px, 10vh, 110px) 4% clamp(24px, 3vh, 40px)',
+        padding: 'clamp(30px, 6vh, 100px) 4% clamp(20px, 3vh, 40px)',
         overflow: 'hidden',
       }}>
 
@@ -678,7 +678,7 @@ export default function CapaPage() {
         {/* ── Título Central de Gestão ── */}
         <div style={{
           textAlign: 'center',
-          marginBottom: 'clamp(60px, 10vh, 110px)',
+          marginBottom: 'clamp(30px, 6vh, 100px)',
           position: 'relative', zIndex: 2,
           width: '100%',
           opacity: visible ? 1 : 0,
@@ -755,7 +755,7 @@ export default function CapaPage() {
                     border: `1px solid ${isHov ? borderColor + '55' : t.iconBorder}`,
                     boxShadow: isHov ? `0 14px 44px ${m.accentColor}30` : 'none',
                     transition: 'background 0.5s, border-color 0.4s, box-shadow 0.4s',
-                    minHeight: 'clamp(200px, 26vh, 320px)',
+                    minHeight: 'clamp(150px, 22vh, 320px)',
                   }}
                 >
                   <AnimComponent color={t.text}/>
