@@ -84,9 +84,9 @@ export default function GraficoComparativo({ currentData, previousData, currentL
   ].sort((a, b) => b.curr - a.curr)
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: 330 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: 260 }}>
       {/* Container Superior: Gráfico + Cards de Variação */}
-      <div style={{ display: 'flex', gap: 24, alignItems: 'stretch', height: 280 }}>
+      <div style={{ display: 'flex', gap: 24, alignItems: 'stretch', height: 210 }}>
         {/* Coluna da Esquerda: Gráfico */}
         <div style={{ flex: 1.8, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <ResponsiveContainer width="100%" height="100%">
