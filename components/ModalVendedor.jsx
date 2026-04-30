@@ -88,12 +88,13 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
         padding: '4px' // Espaço ideal para o brilho
       }} onClick={e => e.stopPropagation()}>
         
-        {/* Camada de Brilho Giratório (Dual Snake Border - Laranja Criffer) */}
+        {/* Camada de Brilho Giratório (Snake Border Centralizado) */}
         <div style={{
           position: 'absolute',
-          top: '-150%', left: '-150%',
-          width: '400%', height: '400%',
-          background: `conic-gradient(from 0deg, ${t.accent} 0deg, ${t.accent} 60deg, transparent 60deg, transparent 180deg, ${t.accent} 180deg, ${t.accent} 240deg, transparent 240deg)`,
+          top: '50%', left: '50%',
+          width: '150%', height: '150%',
+          transform: 'translate(-50%, -50%)',
+          background: 'conic-gradient(#FF6A22 0deg, #FF6A22 60deg, transparent 60deg, transparent 180deg, #FF6A22 180deg, #FF6A22 240deg, transparent 240deg)',
           animation: 'borderRotate 4s linear infinite',
           zIndex: 0
         }} />
@@ -191,8 +192,8 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
           to { opacity: 1; transform: scale(1) translateY(0); }
         }
         @keyframes borderRotate {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+          from { transform: translate(-50%, -50%) rotate(0deg); }
+          to { transform: translate(-50%, -50%) rotate(360deg); }
         }
       `}</style>
     </div>
