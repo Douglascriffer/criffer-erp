@@ -70,7 +70,7 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
     .sort((a, b) => b.valMonth - a.valMonth)
 
   const SellerList = ({ items, title }) => (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12, height: '100%', overflowY: 'auto', paddingRight: 4 }}>
+    <div className="no-scrollbar" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12, height: '100%', overflowY: 'auto', paddingRight: 4 }}>
       <h4 style={{ 
         fontSize: 15, 
         fontWeight: 700, 
@@ -171,11 +171,12 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
     </div>
   )
 
-
   return (
     <div style={{ width: '100%', height: '100%', display: 'flex', gap: 48, overflow: 'hidden' }}>
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
       
       <SellerList items={salesTeam} title="Equipe de Vendas" />
