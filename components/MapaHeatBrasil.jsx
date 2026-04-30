@@ -69,17 +69,17 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncI
         zIndex: 10, pointerEvents: 'none', textAlign: 'left', width: '45%' 
       }}>
         <div style={{ animation: 'fadeInLeft 0.5s ease' }} key={currentUF}>
-          <div style={{ fontSize: 16, fontWeight: 400, color: '#FFFFFF', marginBottom: 4 }}>
+          <div style={{ fontSize: 16, fontWeight: 400, color: darkMode ? '#ffffff' : '#000000', marginBottom: 4 }}>
             {currentUF} - {UF_NAMES[currentUF]}
           </div>
-          <div style={{ fontSize: 14, fontWeight: 400, color: '#FFFFFF', opacity: 0.8, marginBottom: 32 }}>
+          <div style={{ fontSize: 14, fontWeight: 400, color: darkMode ? '#ffffff' : '#000000', opacity: 0.8, marginBottom: 32 }}>
             Faturamento: R$ {Math.round(currentVal).toLocaleString('pt-BR')}
           </div>
 
-          <div style={{ fontSize: 16, fontWeight: 400, color: '#FFFFFF', marginBottom: 16 }}>
+          <div style={{ fontSize: 16, fontWeight: 400, color: darkMode ? '#ffffff' : '#000000', marginBottom: 16 }}>
             Representação região
           </div>
-          <div style={{ fontSize: 18, fontWeight: 400, color: '#FFFFFF' }}>
+          <div style={{ fontSize: 18, fontWeight: 400, color: darkMode ? '#ffffff' : '#000000' }}>
             {regionPct}%
           </div>
         </div>
