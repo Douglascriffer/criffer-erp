@@ -41,7 +41,7 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
   const totalValue = items.reduce((acc, s) => acc + s.valMonth, 0)
 
   return (
-    <div className="no-scrollbar" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10, height: '100%', overflowY: 'auto', paddingRight: 4 }}>
+    <div className="no-scrollbar" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8, height: '100%', overflowY: 'auto', paddingRight: 4 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16, paddingLeft: 12, paddingRight: 12 }}>
         <h4 style={{ 
           fontSize: 15, 

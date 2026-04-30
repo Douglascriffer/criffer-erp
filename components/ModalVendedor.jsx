@@ -169,6 +169,14 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
                     />
                     <Bar dataKey="atual" name="2026" fill="#FF6A22" radius={[4, 4, 0, 0]} barSize={20} />
                     <Bar dataKey="anterior" name="2025" fill={darkMode ? '#444' : '#ccc'} radius={[4, 4, 0, 0]} barSize={20} />
+                    <Legend 
+                      verticalAlign="bottom" 
+                      align="center" 
+                      iconType="circle"
+                      iconSize={8}
+                      wrapperStyle={{ paddingTop: 20 }}
+                      formatter={(value) => <span style={{ color: darkMode ? '#ccc' : '#666', fontWeight: 600, fontSize: 11, textTransform: 'uppercase', marginLeft: 4 }}>{value}</span>}
+                    />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
