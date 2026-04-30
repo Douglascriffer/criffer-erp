@@ -120,7 +120,7 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
                   src={`/vendedores/${sellerName}.jpg`} 
                   alt={sellerName}
                   onError={(e) => { e.target.src = '/vendedores/default.jpg' }}
-                  style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
               </div>
             </div>
@@ -154,10 +154,10 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 16 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: t.textSub }}>
-                  <div style={{ width: 12, height: 3, background: '#FF6A22', borderRadius: 2 }} /> 2026 (ATUAL)
+                  <div style={{ width: 12, height: 3, background: '#FF6A22', borderRadius: 2 }} /> 2026
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: t.textSub }}>
-                  <div style={{ width: 12, height: 3, background: darkMode ? '#444' : '#ccc', borderRadius: 2, borderStyle: 'dashed' }} /> 2025 (ANTERIOR)
+                  <div style={{ width: 12, height: 3, background: darkMode ? '#444' : '#ccc', borderRadius: 2, borderStyle: 'dashed' }} /> 2025
                 </div>
               </div>
             </div>
@@ -179,7 +179,8 @@ function KpiCard({ title, value, color, darkMode, suffix }) {
   return (
     <div style={{ 
       background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
-      borderRadius: 20, padding: '24px', border: `1px solid ${darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`
+      borderRadius: 20, padding: '24px', border: `1px solid ${darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
+      textAlign: 'center'
     }}>
       <div style={{ fontSize: 12, fontWeight: 700, color: darkMode ? '#aaa' : '#666', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 12 }}>{title}</div>
       <div style={{ fontSize: 28, fontWeight: 700, color: color }}>{value}</div>
