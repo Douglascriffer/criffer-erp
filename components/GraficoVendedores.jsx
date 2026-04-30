@@ -67,9 +67,9 @@ function SellerList({ items, title, hovered, setHovered, darkMode }) {
               gap: 16,
               padding: '12px 16px',
               background: isHovered ? (darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)') : 'transparent',
-              border: `1px solid ${isHovered ? '#FF6A22' : 'transparent'}`,
+              border: '1px solid transparent',
               borderRadius: 12,
-              transition: 'all 0.2s ease',
+              transition: 'none',
               cursor: 'pointer',
               position: 'relative'
             }}
@@ -96,7 +96,7 @@ function SellerList({ items, title, hovered, setHovered, darkMode }) {
               height: 50, 
               borderRadius: '50%', 
               overflow: 'hidden', 
-              border: `2px solid ${isHovered ? '#FF6A22' : (darkMode ? '#333' : '#eee')}`,
+              border: `2px solid ${darkMode ? '#333' : '#eee'}`,
               background: !EQUIPE_VENDAS.includes(s.name) ? '#000000' : (darkMode ? '#1a1a24' : '#f8f8f8'),
               flexShrink: 0,
               display: 'flex',
