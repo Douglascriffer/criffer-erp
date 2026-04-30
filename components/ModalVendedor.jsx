@@ -73,12 +73,13 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
       }} onClick={e => e.stopPropagation()}>
         
         {/* Header */}
-        <div style={{ padding: '24px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: `1px solid ${t.border}` }}>
-          <div>
+        <div style={{ padding: '24px 32px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderBottom: `1px solid ${t.border}`, position: 'relative' }}>
+          <div style={{ textAlign: 'center' }}>
             <h2 style={{ fontSize: 24, fontWeight: 700, color: t.text, margin: 0 }}>{sellerName}</h2>
             <p style={{ fontSize: 14, color: t.textSub, margin: '4px 0 0 0' }}>Resumo de Performance Executiva</p>
           </div>
           <button onClick={onClose} style={{ 
+            position: 'absolute', right: 32,
             background: 'rgba(255,255,255,0.05)', border: 'none', borderRadius: '50%', 
             width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center',
             cursor: 'pointer', color: t.text
