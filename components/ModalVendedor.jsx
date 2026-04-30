@@ -30,7 +30,7 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
   // Faturamento Total da Empresa no Mês (Lógica oficial: Vendas + Serviços + Locação - Devoluções)
   const periodData = data?.byPeriod?.find(p => p.ano === targetYear && p.mes === targetMonth)
   const totalEmpresa = periodData 
-    ? (periodData.vendas + periodData.servicos + periodData.locacao - (periodData.devolucoes || 0))
+    ? (periodData.vendas + periodData.servicos + periodData.locacao + (periodData.devolucoes || 0))
     : 0
 
   // Faturamento do Vendedor no Mês
