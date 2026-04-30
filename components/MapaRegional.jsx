@@ -12,17 +12,29 @@ const REGIONS = {
 
 const COLORS = ['#FF6A22', '#FF854D', '#FFA378', '#FFC1A3', '#FFDECE']
 
-export default function MapaRegional({ stateData = [], darkMode = false }) {
+export default function MapaRegional({ stateData = [], officialTotal = 0, darkMode = false }) {
   const data = useMemo(() => {
     const map = {}
     stateData.forEach(d => {
       const reg = REGIONS[d.estado] || 'Outros'
       map[reg] = (map[reg] || 0) + (d.faturamento || d.valor || 0)
     })
-    return Object.entries(map)
+    
+    let entries = Object.entries(map)
       .map(([name, value]) => ({ name, value: Math.round(value) }))
       .sort((a, b) => b.value - a.value)
-  }, [stateData])
+
+    // Reconciliação com o Total Oficial
+    if (officialTotal > 0) {
+      const currentGross = entries.reduce((acc, curr) => acc + curr.value, 0)
+      const adjustment = officialTotal - currentGross
+      if (Math.abs(adjustment) > 1) {
+        entries.push({ name: 'Devoluções e Ajustes', value: Math.round(adjustment) })
+      }
+    }
+
+    return entries
+  }, [stateData, officialTotal])
 
   const maxVal = data[0]?.value || 1
 

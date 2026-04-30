@@ -507,7 +507,11 @@ export default function DashboardClient() {
                           </div>
                           <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
                             <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'left', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1, color: t.text }}>DISTRIBUIÇÃO REGIONAL 2026</h3>
-                            <MapaRegional stateData={data?.byState?.filter(s => filterByMonth(s, 2026)) || []} darkMode={theme === 'dark'} />
+                            <MapaRegional 
+                              stateData={data?.byState?.filter(s => filterByMonth(s, 2026)) || []} 
+                              officialTotal={getOfficialTotal(2026)}
+                              darkMode={theme === 'dark'} 
+                            />
                           </div>
                         </div>
 
@@ -526,7 +530,11 @@ export default function DashboardClient() {
                           </div>
                           <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
                             <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'left', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1, color: t.text }}>DISTRIBUIÇÃO REGIONAL 2025</h3>
-                            <MapaRegional stateData={data?.byState?.filter(s => filterByMonth(s, 2025)) || []} darkMode={theme === 'dark'} />
+                            <MapaRegional 
+                              stateData={data?.byState?.filter(s => filterByMonth(s, 2025)) || []} 
+                              officialTotal={getOfficialTotal(2025)}
+                              darkMode={theme === 'dark'} 
+                            />
                           </div>
                         </div>
                       </>
