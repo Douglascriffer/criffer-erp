@@ -38,18 +38,24 @@ const CHANNEL_ICONS = {
 }
 
 function SellerList({ items, title, hovered, setHovered, darkMode }) {
+  const totalValue = items.reduce((acc, s) => acc + s.valMonth, 0)
+
   return (
     <div className="no-scrollbar" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12, height: '100%', overflowY: 'auto', paddingRight: 4 }}>
-      <h4 style={{ 
-        fontSize: 15, 
-        fontWeight: 700, 
-        color: '#FF6A22', 
-        letterSpacing: 1.5, 
-        textTransform: 'uppercase',
-        marginBottom: 16,
-        paddingLeft: 12,
-        opacity: 0.8
-      }}>{title}</h4>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16, paddingLeft: 12, paddingRight: 12 }}>
+        <h4 style={{ 
+          fontSize: 15, 
+          fontWeight: 700, 
+          color: '#FF6A22', 
+          letterSpacing: 1.5, 
+          textTransform: 'uppercase',
+          opacity: 0.8,
+          margin: 0
+        }}>{title}</h4>
+        <div style={{ fontSize: 16, fontWeight: 700, color: darkMode ? '#fff' : '#000', opacity: 0.9 }}>
+          {fmt(totalValue)}
+        </div>
+      </div>
       
       {items.map((s, i) => {
         const isHovered = hovered === s.name
