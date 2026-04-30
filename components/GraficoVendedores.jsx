@@ -37,39 +37,8 @@ const CHANNEL_ICONS = {
   '-Nenhum vendedor-': { type: 'text' }
 }
 
-export default function GraficoVendedores({ sellers = [], darkMode = false, filters = { ano: '2026', mes: '3' } }) {
-  const [hovered, setHovered] = useState(null)
-
-  // Filtrar dados pelo Mês e Ano selecionado
-  const sellersMap = {}
-  sellers.forEach(s => {
-    // Se o filtro de mês for 'all', somamos tudo do ano. 
-    // Se for um mês específico, filtramos apenas aquele mês.
-    const matchAno = s.ano === Number(filters.ano)
-    const matchMes = filters.mes === 'all' || s.mes === Number(filters.mes)
-
-    if (matchAno && matchMes) {
-      if (!sellersMap[s.name]) {
-        sellersMap[s.name] = { 
-          name: s.name, 
-          valMonth: 0, 
-          img: PHOTO_MAP[s.name] || s.img 
-        }
-      }
-      sellersMap[s.name].valMonth += s.val
-    }
-  })
-
-  const allSellers = Object.values(sellersMap)
-  const salesTeam = allSellers
-    .filter(s => EQUIPE_VENDAS.includes(s.name))
-    .sort((a, b) => b.valMonth - a.valMonth)
-  
-  const otherChannels = allSellers
-    .filter(s => !EQUIPE_VENDAS.includes(s.name))
-    .sort((a, b) => b.valMonth - a.valMonth)
-
-  const SellerList = ({ items, title }) => (
+function SellerList({ items, title, hovered, setHovered, darkMode }) {
+  return (
     <div className="no-scrollbar" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12, height: '100%', overflowY: 'auto', paddingRight: 4 }}>
       <h4 style={{ 
         fontSize: 15, 
@@ -170,6 +139,37 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
       })}
     </div>
   )
+}
+
+export default function GraficoVendedores({ sellers = [], darkMode = false, filters = { ano: '2026', mes: '3' } }) {
+  const [hovered, setHovered] = useState(null)
+
+  // Filtrar dados pelo Mês e Ano selecionado
+  const sellersMap = {}
+  sellers.forEach(s => {
+    const matchAno = s.ano === Number(filters.ano)
+    const matchMes = filters.mes === 'all' || s.mes === Number(filters.mes)
+
+    if (matchAno && matchMes) {
+      if (!sellersMap[s.name]) {
+        sellersMap[s.name] = { 
+          name: s.name, 
+          valMonth: 0, 
+          img: PHOTO_MAP[s.name] || s.img 
+        }
+      }
+      sellersMap[s.name].valMonth += s.val
+    }
+  })
+
+  const allSellers = Object.values(sellersMap)
+  const salesTeam = allSellers
+    .filter(s => EQUIPE_VENDAS.includes(s.name))
+    .sort((a, b) => b.valMonth - a.valMonth)
+  
+  const otherChannels = allSellers
+    .filter(s => !EQUIPE_VENDAS.includes(s.name))
+    .sort((a, b) => b.valMonth - a.valMonth)
 
   return (
     <div style={{ width: '100%', height: '100%', display: 'flex', gap: 48, overflow: 'hidden' }}>
@@ -179,9 +179,9 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
       
-      <SellerList items={salesTeam} title="Equipe de Vendas" />
+      <SellerList items={salesTeam} title="Equipe de Vendas" hovered={hovered} setHovered={setHovered} darkMode={darkMode} />
       <div style={{ width: 1, background: (darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)') }} />
-      <SellerList items={otherChannels} title="Outros Canais" />
+      <SellerList items={otherChannels} title="Outros Canais" hovered={hovered} setHovered={setHovered} darkMode={darkMode} />
     </div>
   )
 }
