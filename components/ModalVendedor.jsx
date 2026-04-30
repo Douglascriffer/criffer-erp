@@ -88,13 +88,13 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
         padding: '4px' // Espaço ideal para o brilho
       }} onClick={e => e.stopPropagation()}>
         
-        {/* Camada de Brilho Giratório (Foco Total) */}
+        {/* Camada de Brilho Giratório (Dual Snake Border - Laranja Criffer) */}
         <div style={{
           position: 'absolute',
           top: '-150%', left: '-150%',
           width: '400%', height: '400%',
-          background: `conic-gradient(from 0deg, transparent 60%, ${t.accent} 100%)`,
-          animation: 'borderRotate 3s linear infinite',
+          background: `conic-gradient(from 0deg, ${t.accent} 0deg, ${t.accent} 60deg, transparent 60deg, transparent 180deg, ${t.accent} 180deg, ${t.accent} 240deg, transparent 240deg)`,
+          animation: 'borderRotate 4s linear infinite',
           zIndex: 0
         }} />
 
