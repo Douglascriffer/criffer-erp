@@ -156,9 +156,9 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
             {/* Coluna de Acumulados (YTD) */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <h3 style={{ fontSize: 13, fontWeight: 700, color: t.textSub, textAlign: 'center', marginBottom: 8, textTransform: 'uppercase', letterSpacing: 1 }}>Saldos Acumulados</h3>
-              <KpiCard title="EMPRESA (ANO)" value={fmt(totalAcumuladoEmpresa)} color="#FF6A22" darkMode={darkMode} />
-              <KpiCard title="VENDEDOR (ANO)" value={fmt(totalAcumuladoVendedor)} color="#FF6A22" darkMode={darkMode} />
-              <KpiCard title="PART. ANUAL" value={`${representatividadeAcumulada.toFixed(1)}%`} color="#FF6A22" darkMode={darkMode} />
+              <KpiCard title="ACUMULADO EMPRESA" value={fmt(totalAcumuladoEmpresa)} color="#FF6A22" darkMode={darkMode} />
+              <KpiCard title="ACUMULADO VENDEDOR" value={fmt(totalAcumuladoVendedor)} color="#FF6A22" darkMode={darkMode} />
+              <KpiCard title="PARTICIPAÇÃO ANUAL" value={`${representatividadeAcumulada.toFixed(1)}%`} color="#FF6A22" darkMode={darkMode} />
             </div>
           </div>
         </div>
@@ -181,10 +181,11 @@ function KpiCard({ title, value, color, darkMode, suffix, large }) {
       borderRadius: 20, padding: large ? '24px' : '16px', border: `1px solid ${darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
       textAlign: 'center',
       flex: 1,
-      display: 'flex', flexDirection: 'column', justifyContent: 'center'
+      display: 'flex', flexDirection: 'column', justifyContent: 'center',
+      backdropFilter: 'blur(10px)'
     }}>
-      <div style={{ fontSize: large ? 12 : 10, fontWeight: 700, color: darkMode ? '#aaa' : '#666', textTransform: 'uppercase', letterSpacing: 1, marginBottom: large ? 12 : 8 }}>{title}</div>
-      <div style={{ fontSize: large ? 32 : 20, fontWeight: 700, color: color, letterSpacing: -0.5 }}>{value}</div>
+      <div style={{ fontSize: large ? 12 : 10, fontWeight: 700, color: darkMode ? '#aaa' : '#666', textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: large ? 12 : 8 }}>{title}</div>
+      <div style={{ fontSize: large ? 32 : 22, fontWeight: 900, color: color, letterSpacing: -0.5 }}>{value}</div>
       {suffix && <div style={{ fontSize: 10, color: darkMode ? '#666' : '#999', marginTop: 4 }}>{suffix}</div>}
     </div>
   )
