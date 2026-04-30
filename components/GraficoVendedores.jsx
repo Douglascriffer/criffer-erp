@@ -180,7 +180,7 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
   const isAll = filters.mes === 'all'
   const officialTotal = data?.byPeriod
     ?.filter(p => p.ano === Number(filters.ano) && (isAll ? true : p.mes === Number(filters.mes)))
-    ?.reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao - (p.devolucoes || 0)), 0) || 0
+    ?.reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao - Math.abs(p.devolucoes || 0)), 0) || 0
 
   const allSellers = Object.values(sellersMap)
   const salesTeam = allSellers
