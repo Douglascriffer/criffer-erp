@@ -70,15 +70,15 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
     .sort((a, b) => b.valMonth - a.valMonth)
 
   const SellerList = ({ items, title }) => (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 4, height: '100%', overflowY: 'auto', paddingRight: 4 }}>
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8, height: '100%', overflowY: 'auto', paddingRight: 8 }}>
       <h4 style={{ 
-        fontSize: 11, 
+        fontSize: 12, 
         fontWeight: 700, 
         color: '#FF6A22', 
-        letterSpacing: 1.5, 
+        letterSpacing: 2, 
         textTransform: 'uppercase',
-        marginBottom: 8,
-        paddingLeft: 12,
+        marginBottom: 12,
+        paddingLeft: 16,
         opacity: 0.8
       }}>{title}</h4>
       
@@ -95,11 +95,11 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 16,
-              padding: '10px 16px',
+              gap: 20,
+              padding: '14px 20px',
               background: isHovered ? (darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)') : 'transparent',
               border: `1px solid ${isHovered ? '#FF6A22' : 'transparent'}`,
-              borderRadius: 12,
+              borderRadius: 16,
               transition: 'all 0.2s ease',
               cursor: 'pointer',
               position: 'relative'
@@ -107,27 +107,27 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
           >
             {/* Rank/Badge */}
             <div style={{ 
-              width: 24, 
-              height: 24, 
+              width: 32, 
+              height: 32, 
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: 13,
+              fontSize: 16,
               fontWeight: 700,
               color: rank <= 3 && title.includes('EQUIPE') ? '#FF6A22' : (darkMode ? '#555' : '#bbb')
             }}>
               {rank <= 3 && title.includes('EQUIPE') ? (
-                <Star size={16} fill={rank === 1 ? '#FF6A22' : 'none'} />
+                <Star size={20} fill={rank === 1 ? '#FF6A22' : 'none'} />
               ) : rank}
             </div>
 
             {/* Avatar / Logo */}
             <div style={{ 
-              width: 44, 
-              height: 44, 
+              width: 60, 
+              height: 60, 
               borderRadius: '50%', 
               overflow: 'hidden', 
-              border: `2px solid ${isHovered ? '#FF6A22' : (darkMode ? '#333' : '#eee')}`,
+              border: `2.5px solid ${isHovered ? '#FF6A22' : (darkMode ? '#333' : '#eee')}`,
               background: darkMode ? '#1a1a24' : '#f8f8f8',
               flexShrink: 0,
               display: 'flex',
@@ -138,7 +138,7 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
                 if (EQUIPE_VENDAS.includes(s.name)) {
                   return s.img && s.img.startsWith('/') ? 
                     <img src={s.img} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> :
-                    <span style={{ fontSize: 14, fontWeight: 700 }}>{s.name.charAt(0)}</span>
+                    <span style={{ fontSize: 18, fontWeight: 700 }}>{s.name.charAt(0)}</span>
                 }
                 
                 if (channelCfg?.type === 'img') {
@@ -146,25 +146,25 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
                 }
                 if (channelCfg?.type === 'icon') {
                   const Icon = channelCfg.icon
-                  return <Icon size={24} color={channelCfg.color} />
+                  return <Icon size={32} color={channelCfg.color} />
                 }
-                return <span style={{ fontSize: 14, fontWeight: 700, opacity: 0.5 }}>{s.name.charAt(0)}</span>
+                return <span style={{ fontSize: 18, fontWeight: 700, opacity: 0.5 }}>{s.name.charAt(0)}</span>
               })()}
             </div>
 
             {/* Name */}
             <div style={{ flex: 1, minWidth: 0 }}>
-              <p style={{ margin: 0, fontSize: 15, fontWeight: 500, color: darkMode ? '#fff' : '#000', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              <p style={{ margin: 0, fontSize: 18, fontWeight: 600, color: darkMode ? '#fff' : '#000', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                 {s.name}
               </p>
             </div>
 
-            {/* Monthly Revenue (Valor no lugar do YoY) */}
+            {/* Monthly Revenue */}
             <div style={{ textAlign: 'right' }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#FF6A22' }}>
+              <div style={{ fontSize: 18, fontWeight: 800, color: '#FF6A22' }}>
                 {fmt(s.valMonth)}
               </div>
-              <div style={{ fontSize: 9, color: (darkMode ? '#666' : '#999'), textTransform: 'uppercase', letterSpacing: 0.8 }}>Mensal</div>
+              <div style={{ fontSize: 10, color: (darkMode ? '#666' : '#999'), textTransform: 'uppercase', letterSpacing: 1 }}>Mensal</div>
             </div>
           </div>
         )
@@ -173,7 +173,7 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
   )
 
   return (
-    <div style={{ width: '100%', height: '100%', display: 'flex', gap: 32, overflow: 'hidden' }}>
+    <div style={{ width: '100%', height: '100%', display: 'flex', gap: 48, overflow: 'hidden' }}>
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
       `}</style>
