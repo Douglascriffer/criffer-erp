@@ -85,16 +85,16 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
         border: `1px solid ${t.border}`, overflow: 'hidden', position: 'relative',
         boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
         animation: 'modalShow 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-        padding: '2px' // Espaço para a borda brilhar
+        padding: '3px' // Mais espaço para o brilho
       }} onClick={e => e.stopPropagation()}>
         
-        {/* Camada de Brilho Giratório */}
+        {/* Camada de Brilho Giratório (Turbinada) */}
         <div style={{
           position: 'absolute',
-          top: '-50%', left: '-50%',
-          width: '200%', height: '200%',
-          background: `conic-gradient(transparent, transparent, transparent, ${t.accent})`,
-          animation: 'borderRotate 4s linear infinite',
+          top: '-100%', left: '-100%',
+          width: '300%', height: '300%',
+          background: `conic-gradient(from 0deg, transparent 0%, transparent 60%, ${t.accent} 100%)`,
+          animation: 'borderRotate 3s linear infinite',
           zIndex: 0
         }} />
 
@@ -112,7 +112,6 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
         <div style={{ padding: '24px 32px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderBottom: `1px solid ${t.border}`, position: 'relative' }}>
           <div style={{ textAlign: 'center' }}>
             <h2 style={{ fontSize: 24, fontWeight: 700, color: t.text, margin: 0 }}>{sellerName}</h2>
-            <p style={{ fontSize: 14, color: t.textSub, margin: '4px 0 0 0' }}>Resumo de Performance Executiva</p>
           </div>
           <button onClick={onClose} style={{ 
             position: 'absolute', right: 32,
