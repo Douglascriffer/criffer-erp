@@ -25,18 +25,20 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
 
   // 1. Cálculos de Faturamento
   const targetYear = Number(filters.ano)
-  const targetMonth = filters.mes === 'all' ? 12 : Number(filters.mes) // Simplificação para 'all'
+  const targetMonth = filters.mes === 'all' ? 12 : Number(filters.mes)
 
-  // Faturamento Total da Empresa no Mês (Lógica oficial: Vendas + Serviços + Locação - Devoluções)
-  const periodData = data?.byPeriod?.find(p => p.ano === targetYear && p.mes === targetMonth)
-  const totalEmpresa = periodData 
+  // Faturamento Total da Empresa no Mês (Fonte Oficial: bySellerTotals ou byPeriod)
+  const officialData = data?.bySellerTotals?.find(p => p.ano === targetYear && (filters.mes === 'all' ? true : p.mes === targetMonth))
+  const periodData = data?.byPeriod?.find(p => p.ano === targetYear && (filters.mes === 'all' ? true : p.mes === targetMonth))
+  
+  const totalEmpresa = officialData?.total || (periodData 
     ? (periodData.vendas + periodData.servicos + periodData.locacao - Math.abs(periodData.devolucoes || 0))
-    : 0
+    : 0)
 
   // Faturamento do Vendedor no Mês
   const totalVendedor = data?.bySeller
-    ?.filter(s => s.name === sellerName && s.ano === targetYear && (filters.mes === 'all' ? true : s.mes === targetMonth))
-    ?.reduce((acc, curr) => acc + curr.val, 0) || 0
+    ?.filter(s => (s.vendedor === sellerName || s.name === sellerName) && s.ano === targetYear && (filters.mes === 'all' ? true : s.mes === targetMonth))
+    ?.reduce((acc, curr) => acc + (curr.valor || curr.val || 0), 0) || 0
 
   // Representatividade
   const representatividade = totalEmpresa > 0 ? (totalVendedor / totalEmpresa) * 100 : 0
@@ -45,11 +47,11 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
   const chartData = Array.from({ length: 12 }, (_, i) => {
     const mes = i + 1
     const val2026 = data?.bySeller
-      ?.filter(s => s.name === sellerName && s.ano === 2026 && s.mes === mes)
-      ?.reduce((acc, curr) => acc + curr.val, 0) || 0
+      ?.filter(s => (s.vendedor === sellerName || s.name === sellerName) && s.ano === 2026 && s.mes === mes)
+      ?.reduce((acc, curr) => acc + (curr.valor || curr.val || 0), 0) || 0
     const val2025 = data?.bySeller
-      ?.filter(s => s.name === sellerName && s.ano === 2025 && s.mes === mes)
-      ?.reduce((acc, curr) => acc + curr.val, 0) || 0
+      ?.filter(s => (s.vendedor === sellerName || s.name === sellerName) && s.ano === 2025 && s.mes === mes)
+      ?.reduce((acc, curr) => acc + (curr.valor || curr.val || 0), 0) || 0
     
     return {
       name: MES_MAP[mes],
