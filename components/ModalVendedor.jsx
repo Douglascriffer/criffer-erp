@@ -27,10 +27,11 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
   const targetYear = Number(filters.ano)
   const targetMonth = filters.mes === 'all' ? 12 : Number(filters.mes) // Simplificação para 'all'
 
-  // Faturamento Total da Empresa no Mês (Soma de todos os vendedores/canais)
-  const totalEmpresa = data?.bySeller
-    ?.filter(s => s.ano === targetYear && (filters.mes === 'all' ? true : s.mes === targetMonth))
-    ?.reduce((acc, curr) => acc + curr.val, 0) || 0
+  // Faturamento Total da Empresa no Mês (Lógica oficial: Vendas + Serviços + Locação - Devoluções)
+  const periodData = data?.byPeriod?.find(p => p.ano === targetYear && p.mes === targetMonth)
+  const totalEmpresa = periodData 
+    ? (periodData.vendas + periodData.servicos + periodData.locacao - (periodData.devolucoes || 0))
+    : 0
 
   // Faturamento do Vendedor no Mês
   const totalVendedor = data?.bySeller

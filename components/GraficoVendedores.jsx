@@ -33,6 +33,7 @@ const CHANNEL_ICONS = {
   'Mercado Livre': { type: 'icon', icon: ShoppingCart, color: '#FFE600' },
   'Site': { type: 'img', src: '/logo-base.png' },
   'Assistência Técnica': { type: 'icon', icon: Wrench, color: '#3b82f6' },
+  'Devoluções e Ajustes': { type: 'icon', icon: RotateCcw, color: '#ef4444' },
   '-Nenhum vendedor-': { type: 'text' }
 }
 
@@ -175,14 +176,33 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
     }
   })
 
+  // 1. Cálculo do Faturamento Oficial (Lógica da janela Receitas)
+  const periodData = data?.byPeriod?.find(p => p.ano === Number(filters.ano) && p.mes === Number(filters.mes))
+  const officialTotal = periodData 
+    ? (periodData.vendas + periodData.servicos + periodData.locacao - (periodData.devolucoes || 0))
+    : 0
+
   const allSellers = Object.values(sellersMap)
   const salesTeam = allSellers
     .filter(s => EQUIPE_VENDAS.includes(s.name))
     .sort((a, b) => b.valMonth - a.valMonth)
   
-  const otherChannels = allSellers
+  let otherChannels = allSellers
     .filter(s => !EQUIPE_VENDAS.includes(s.name))
     .sort((a, b) => b.valMonth - a.valMonth)
+
+  // 2. Reconciliação (Ajustes e Devoluções)
+  // Somamos o bruto e subtraímos do oficial para achar o "Ajuste" necessário
+  const currentGrossTotal = salesTeam.reduce((acc, s) => acc + s.valMonth, 0) + otherChannels.reduce((acc, s) => acc + s.valMonth, 0)
+  const adjustmentValue = officialTotal - currentGrossTotal
+
+  if (Math.abs(adjustmentValue) > 1) {
+    otherChannels.push({
+      name: 'Devoluções e Ajustes',
+      valMonth: adjustmentValue,
+      img: null
+    })
+  }
 
   return (
     <div style={{ width: '100%', height: '100%', display: 'flex', gap: 48, overflow: 'hidden' }}>
