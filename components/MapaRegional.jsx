@@ -24,12 +24,15 @@ export default function MapaRegional({ stateData = [], officialTotal = 0, darkMo
       .map(([name, value]) => ({ name, value: Math.round(value) }))
       .sort((a, b) => b.value - a.value)
 
-    // Reconciliação com o Total Oficial
+    // Ajuste Proporcional para bater com o Total Oficial
     if (officialTotal > 0) {
       const currentGross = entries.reduce((acc, curr) => acc + curr.value, 0)
-      const adjustment = officialTotal - currentGross
-      if (Math.abs(adjustment) > 1) {
-        entries.push({ name: 'Devoluções e Ajustes', value: Math.round(adjustment) })
+      if (currentGross > 0) {
+        const scaleFactor = officialTotal / currentGross
+        entries = entries.map(item => ({
+          ...item,
+          value: Math.round(item.value * scaleFactor)
+        }))
       }
     }
 
