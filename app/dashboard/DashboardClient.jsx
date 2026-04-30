@@ -485,12 +485,22 @@ export default function DashboardClient() {
                       return s.ano === targetAno && (isAll ? s.mes <= targetMes : s.mes === targetMes)
                     }
 
+                    const getOfficialTotal = (targetAno) => {
+                      const isAll = filters.mes === 'all'
+                      return data?.byPeriod
+                        ?.filter(p => p.ano === targetAno && (isAll ? p.mes <= lastMonth2026 : p.mes === Number(filters.mes)))
+                        ?.reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao - (p.devolucoes || 0)), 0) || 0
+                    }
+
                     return (
                       <>
                         {/* Coluna 2026 */}
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                           <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                            <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'left', marginBottom: 12, color: t.text }}>2026</h3>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                              <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'left', margin: 0, color: t.text }}>2026</h3>
+                              <span style={{ fontSize: 18, fontWeight: 700, color: t.text }}>R$ {fmt(getOfficialTotal(2026))}</span>
+                            </div>
                             <MapaHeatBrasil 
                               stateData={data?.byState?.filter(s => filterByMonth(s, 2026)) || []} 
                               darkMode={theme === 'dark'} 
@@ -506,7 +516,10 @@ export default function DashboardClient() {
                         {/* Coluna 2025 */}
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                           <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                            <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'left', marginBottom: 12, color: t.text }}>2025</h3>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                              <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'left', margin: 0, color: t.text }}>2025</h3>
+                              <span style={{ fontSize: 18, fontWeight: 700, color: t.text }}>R$ {fmt(getOfficialTotal(2025))}</span>
+                            </div>
                             <MapaHeatBrasil 
                               stateData={data?.byState?.filter(s => filterByMonth(s, 2025)) || []} 
                               darkMode={theme === 'dark'} 
