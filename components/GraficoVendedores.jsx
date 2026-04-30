@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { TrendingUp, TrendingDown, Star, ShoppingCart, Wrench, Globe } from 'lucide-react'
+import { TrendingUp, TrendingDown, Star, ShoppingCart, Wrench, Globe, RotateCcw } from 'lucide-react'
 import ModalVendedor from './ModalVendedor'
 
 function fmt(v) {
@@ -177,10 +177,10 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
   })
 
   // 1. Cálculo do Faturamento Oficial (Lógica da janela Receitas)
-  const periodData = data?.byPeriod?.find(p => p.ano === Number(filters.ano) && p.mes === Number(filters.mes))
-  const officialTotal = periodData 
-    ? (periodData.vendas + periodData.servicos + periodData.locacao - (periodData.devolucoes || 0))
-    : 0
+  const isAll = filters.mes === 'all'
+  const officialTotal = data?.byPeriod
+    ?.filter(p => p.ano === Number(filters.ano) && (isAll ? true : p.mes === Number(filters.mes)))
+    ?.reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao - (p.devolucoes || 0)), 0) || 0
 
   const allSellers = Object.values(sellersMap)
   const salesTeam = allSellers
