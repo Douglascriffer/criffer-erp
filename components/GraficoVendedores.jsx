@@ -114,7 +114,7 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
               justifyContent: 'center',
               fontSize: 20,
               fontWeight: 400,
-              color: rank <= 3 && title.includes('EQUIPE') ? '#FF6A22' : '#fff'
+              color: rank <= 3 && title.includes('EQUIPE') ? '#FF6A22' : (darkMode ? '#fff' : '#000')
             }}>
               {rank <= 3 && title.includes('EQUIPE') ? (
                 <Star size={20} fill={rank === 1 ? '#FF6A22' : 'none'} />
