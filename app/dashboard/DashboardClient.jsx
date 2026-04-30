@@ -35,7 +35,7 @@ const MES = {'1':'Jan','2':'Fev','3':'Mar','4':'Abr','5':'Mai','6':'Jun','7':'Ju
 /* ─── Temas Sincronizados (Padrão Capa) ─── */
 const THEME = {
   light: {
-    bg: '#e0e0e0',
+    bg: '#cccccc',
     card: '#ffffff',
     border: 'rgba(0,0,0,0.08)',
     text: '#000000',
@@ -431,7 +431,7 @@ export default function DashboardClient() {
               {activeSub === 'vendas' && (
                 <>
                 {/* 1. Evolução de Receita - Full Width */}
-                <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6, height: 300, display: 'flex', flexDirection: 'column' }}>
+                <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6, height: 310, display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 12 }}>
                     <h3 style={{ fontSize: 16, fontWeight: 700, textAlign: 'center', color: t.text }}>Evolução de Receita (2026)</h3>
                   </div>
