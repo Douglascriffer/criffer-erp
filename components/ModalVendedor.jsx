@@ -100,35 +100,24 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
           <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: 32 }}>
             {/* Foto Vendedor */}
             <div style={{ 
-              background: darkMode ? '#000000' : '#f8f8f8',
-              borderRadius: 32, padding: 24, display: 'flex', alignItems: 'center', justifyContent: 'center',
-              border: `1px solid ${t.border}`, position: 'relative', overflow: 'hidden'
+              background: darkMode ? '#000' : '#fff',
+              borderRadius: 6, overflow: 'hidden',
+              border: `1.5px solid ${t.border}`,
+              height: '100%', minHeight: 350
             }}>
-              {/* Glow Effect */}
-              <div style={{ 
-                position: 'absolute', bottom: -20, left: '50%', transform: 'translateX(-50%)',
-                width: '120%', height: 60, background: 'radial-gradient(ellipse at center, rgba(255,106,34,0.15) 0%, transparent 70%)',
-                filter: 'blur(20px)', pointerEvents: 'none'
-              }} />
-
-              <div style={{ 
-                width: 220, height: 260, borderRadius: 24, overflow: 'hidden',
-                border: `2.5px solid ${darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}`,
-                background: '#000', boxShadow: '0 15px 35px rgba(0,0,0,0.2)'
-              }}>
-                <img 
-                  src={`/vendedores/${sellerName}.jpg`} 
-                  alt={sellerName}
-                  onError={(e) => { e.target.src = '/vendedores/default.jpg' }}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                />
-              </div>
+              <img 
+                src={`/vendedores/${sellerName}.jpg`} 
+                alt={sellerName}
+                onError={(e) => { e.target.src = '/vendedores/default.jpg' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
             </div>
 
             {/* Gráfico de Evolução */}
             <div style={{ 
-              background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
-              borderRadius: 24, padding: 24, border: `1px solid ${t.border}`
+              background: t.card,
+              borderRadius: 6, padding: 24, border: `1.5px solid ${t.border}`,
+              display: 'flex', flexDirection: 'column'
             }}>
               <h3 style={{ fontSize: 16, fontWeight: 700, color: t.text, marginBottom: 24, textTransform: 'uppercase', letterSpacing: 1 }}>Evolução de Faturamento (Vendedor)</h3>
               <div style={{ height: 260 }}>
