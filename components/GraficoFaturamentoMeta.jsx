@@ -57,14 +57,14 @@ export default function GraficoFaturamentoMeta({ metaData = [], darkMode = false
             <YAxis hide />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', radius: 12 }} />
             <Bar dataKey="Faturamento" barSize={35} fill="#FF6A22" radius={[6, 6, 0, 0]} />
-            <Line type="monotone" dataKey="Meta" stroke="#000000" strokeWidth={3} dot={{ r: 4, fill: '#000000', strokeWidth: 2 }} activeDot={{ r: 6 }} />
+            <Line type="monotone" dataKey="Meta" stroke="#666666" strokeWidth={3} dot={{ r: 4, fill: '#666666', strokeWidth: 2 }} activeDot={{ r: 6 }} />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
 
       {/* Legenda Manual - Forçada para o fundo */}
       <div style={{ display: 'flex', gap: 24, justifyContent: 'center', marginTop: 'auto' }}>
-        {[['Faturamento', '#FF6A22'], ['Meta', '#000000']].map(([l, c]) => (
+        {[['Faturamento', '#FF6A22'], ['Meta', '#666666']].map(([l, c]) => (
           <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 400, color: darkMode ? '#fff' : '#000', textTransform: 'uppercase', letterSpacing: 0.5 }}>
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: c }} />
             {l}
