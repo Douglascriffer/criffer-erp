@@ -112,9 +112,9 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: 18,
+              fontSize: 20,
               fontWeight: 400,
-              color: rank <= 3 && title.includes('EQUIPE') ? '#FF6A22' : (darkMode ? '#555' : '#bbb')
+              color: rank <= 3 && title.includes('EQUIPE') ? '#FF6A22' : '#fff'
             }}>
               {rank <= 3 && title.includes('EQUIPE') ? (
                 <Star size={20} fill={rank === 1 ? '#FF6A22' : 'none'} />
@@ -123,8 +123,8 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
 
             {/* Avatar / Logo */}
             <div style={{ 
-              width: 60, 
-              height: 60, 
+              width: 50, 
+              height: 50, 
               borderRadius: '50%', 
               overflow: 'hidden', 
               border: `2px solid ${isHovered ? '#FF6A22' : (darkMode ? '#333' : '#eee')}`,
@@ -138,7 +138,7 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
                 if (EQUIPE_VENDAS.includes(s.name)) {
                   return s.img && s.img.startsWith('/') ? 
                     <img src={s.img} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> :
-                    <span style={{ fontSize: 20, fontWeight: 400 }}>{s.name.charAt(0)}</span>
+                    <span style={{ fontSize: 18, fontWeight: 400 }}>{s.name.charAt(0)}</span>
                 }
                 
                 if (channelCfg?.type === 'img') {
@@ -148,7 +148,7 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
                   const Icon = channelCfg.icon
                   return <Icon size={30} color={channelCfg.color} />
                 }
-                return <span style={{ fontSize: 20, fontWeight: 400, opacity: 0.5 }}>{s.name.charAt(0)}</span>
+                return <span style={{ fontSize: 18, fontWeight: 400, opacity: 0.5 }}>{s.name.charAt(0)}</span>
               })()}
             </div>
 
