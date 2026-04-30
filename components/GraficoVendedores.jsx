@@ -13,21 +13,18 @@ const EQUIPE_VENDAS = [
   'Gabriel Ferreira dos Santos',
   'Gabriel Klein',
   'Gabriel Medeiros',
-  'Josiane Covoni Lanzarini',
-  'Juliano Chagas',
-  'Leonardo Schons de Oliveira',
-  'Nilson Borges',
+  'Josiane Govoni Lanzarini',
   'Rogislei Vieira Padilha',
   'Vanessa Ferreira'
 ]
 
 const PHOTO_MAP = {
-  'Rogislei Vieira Padilha': '/vendedores/Rogislei Vieira Padilha.jpg',
-  'Gabriel Klein': '/vendedores/Gabriel Klein.jpg',
+  'Gabriel Dias': '/vendedores/Gabriel Dias.jpg',
   'Gabriel Ferreira dos Santos': '/vendedores/Gabriel Ferreira dos Santos.jpg',
+  'Gabriel Klein': '/vendedores/Gabriel Klein.jpg',
   'Gabriel Medeiros': '/vendedores/Gabriel Medeiros.jpg',
   'Josiane Govoni Lanzarini': '/vendedores/Josiane Govoni Lanzarini.jpg',
-  'Gabriel Dias': '/vendedores/Gabriel Dias.jpg',
+  'Rogislei Vieira Padilha': '/vendedores/Rogislei Vieira Padilha.jpg',
   'Vanessa Ferreira': '/vendedores/Vanessa Ferreira.jpg'
 }
 
