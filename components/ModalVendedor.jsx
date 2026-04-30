@@ -84,8 +84,29 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
         width: '100%', maxWidth: 1250, background: t.bg, borderRadius: 24,
         border: `1px solid ${t.border}`, overflow: 'hidden', position: 'relative',
         boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
-        animation: 'modalShow 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+        animation: 'modalShow 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+        padding: '2px' // Espaço para a borda brilhar
       }} onClick={e => e.stopPropagation()}>
+        
+        {/* Camada de Brilho Giratório */}
+        <div style={{
+          position: 'absolute',
+          top: '-50%', left: '-50%',
+          width: '200%', height: '200%',
+          background: `conic-gradient(transparent, transparent, transparent, ${t.accent})`,
+          animation: 'borderRotate 4s linear infinite',
+          zIndex: 0
+        }} />
+
+        {/* Conteúdo Real (Sobre o brilho) */}
+        <div style={{
+          position: 'relative',
+          zIndex: 1,
+          background: t.bg,
+          borderRadius: 22,
+          width: '100%', height: '100%',
+          overflow: 'hidden'
+        }}>
         
         {/* Header */}
         <div style={{ padding: '24px 32px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderBottom: `1px solid ${t.border}`, position: 'relative' }}>
@@ -168,6 +189,10 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
         @keyframes modalShow {
           from { opacity: 0; transform: scale(0.95) translateY(10px); }
           to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes borderRotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
       `}</style>
     </div>
