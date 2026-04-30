@@ -5,8 +5,6 @@ import ModalVendedor from './ModalVendedor'
 
 function fmt(v) {
   if (!v && v !== 0) return '—'
-  if (Math.abs(v) >= 1e6) return `R$ ${(v/1e6).toFixed(2)}M`
-  if (Math.abs(v) >= 1e3) return `R$ ${(v/1e3).toFixed(1)}K`
   return `R$ ${Math.round(v).toLocaleString('pt-BR')}`
 }
 
