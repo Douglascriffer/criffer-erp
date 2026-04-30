@@ -114,12 +114,15 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
                     <span style={{ fontSize: 18, fontWeight: 400 }}>{s.name.charAt(0)}</span>
                 }
                 
+                if (channelCfg?.type === 'icon' && s.name !== 'Sem Vendedor') {
+                  const Icon = channelCfg.icon
+                  return <Icon size={30} color={channelCfg.color} />
+                }
                 if (channelCfg?.type === 'img') {
                   return <img src={channelCfg.src} alt={s.name} style={{ width: '70%', height: '70%', objectFit: 'contain' }} />
                 }
-                if (channelCfg?.type === 'icon') {
-                  const Icon = channelCfg.icon
-                  return <Icon size={30} color={channelCfg.color} />
+                if (s.name === 'Sem Vendedor') {
+                  return <span style={{ fontSize: 24, fontWeight: 700, color: '#888' }}>?</span>
                 }
                 return <span style={{ fontSize: 18, fontWeight: 400, opacity: 0.5 }}>{s.name.charAt(0)}</span>
               })()}
