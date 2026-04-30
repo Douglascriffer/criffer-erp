@@ -465,6 +465,7 @@ export default function DashboardClient() {
                         vendas: acc.vendas + curr.vendas,
                         servicos: acc.servicos + curr.servicos,
                         locacao: acc.locacao + curr.locacao
+                      }), { vendas: 0, servicos: 0, locacao: 0 })}
                     />
                   </div>
                 </div>
