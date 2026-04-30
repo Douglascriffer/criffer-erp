@@ -183,6 +183,7 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
             </div>
           </div>
         </div>
+        </div>
       </div>
 
       <style>{`
