@@ -431,7 +431,7 @@ export default function DashboardClient() {
               {activeSub === 'vendas' && (
                 <>
                 {/* 1. Evolução de Receita - Full Width */}
-                <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6, height: 310, display: 'flex', flexDirection: 'column' }}>
+                <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6, height: 300, display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 12 }}>
                     <h3 style={{ fontSize: 16, fontWeight: 700, textAlign: 'center', color: t.text }}>Evolução de Receita (2026)</h3>
                   </div>
@@ -445,11 +445,11 @@ export default function DashboardClient() {
 
                 {/* 2. Grid para Faturamento vs Meta e Comparativo Anual */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-                  <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6 }}>
+                  <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6, height: 300, display: 'flex', flexDirection: 'column' }}>
                     <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16, textAlign: 'center', color: t.text }}>Faturamento Total Mensal vs Meta</h3>
                     <GraficoFaturamentoMeta metaData={data?.meta?.[2026] || []} darkMode={theme === 'dark'} />
                   </div>
-                  <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                  <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6, height: 300, display: 'flex', flexDirection: 'column' }}>
                     <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16, textAlign: 'center', color: t.text }}>Comparativo Anual acumulado (2025 vs 2026)</h3>
                     <GraficoComparativo 
                       showComparison={true}

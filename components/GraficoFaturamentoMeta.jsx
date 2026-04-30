@@ -45,7 +45,7 @@ export default function GraficoFaturamentoMeta({ metaData = [], darkMode = false
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: 260 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: 255 }}>
       <div style={{ width: '100%', height: 210 }}>
         <ResponsiveContainer>
           <ComposedChart
