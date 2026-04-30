@@ -205,16 +205,49 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
   }
 
   return (
-    <div style={{ width: '100%', height: '100%', display: 'flex', gap: 48, overflow: 'hidden' }}>
-      <style>{`
-        @keyframes fadeIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
+    <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', gap: 24, overflow: 'hidden' }}>
       
-      <SellerList items={salesTeam} title="Equipe de Vendas" hovered={hovered} setHovered={setHovered} darkMode={darkMode} onSellerClick={handleSellerClick} />
-      <div style={{ width: 1, background: (darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)') }} />
-      <SellerList items={otherChannels} title="Outros Canais" hovered={hovered} setHovered={setHovered} darkMode={darkMode} onSellerClick={handleSellerClick} />
+      {/* Header de Resumo da Aba */}
+      <div style={{ 
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
+        background: darkMode ? 'rgba(255,106,34,0.05)' : 'rgba(255,106,34,0.02)',
+        padding: '12px 24px', borderRadius: 6, border: `1.5px solid ${t.border}`
+      }}>
+        <h2 style={{ fontSize: 13, fontWeight: 700, color: t.text, margin: 0, textTransform: 'uppercase', letterSpacing: 1 }}>Detalhamento por Canal de Venda</h2>
+        <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
+          <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 500 }}>FATURAMENTO OFICIAL (LÍQUIDO):</span>
+          <span style={{ fontSize: 18, fontWeight: 900, color: t.accent }}>R$ {fmt(officialTotal)}</span>
+        </div>
+      </div>
+
+      <div style={{ display: 'flex', gap: 48, flex: 1, overflow: 'hidden' }}>
+        <style>{`
+          @keyframes slideUp { from { opacity: 0; transform: translateY(10)px; } to { opacity: 1; transform: translateY(0); } }
+          .seller-row:hover { background: ${darkMode ? 'rgba(255,106,34,0.05)' : 'rgba(255,106,34,0.02)'} !important; }
+        `}</style>
+        
+        {/* Equipe de Vendas */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, borderBottom: `2px solid ${t.accent}`, paddingBottom: 10 }}>
+            <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, margin: 0, letterSpacing: 0.5 }}>EQUIPE DE VENDAS</h3>
+            <span style={{ fontSize: 16, fontWeight: 700, color: t.text }}>R$ {fmt(salesTeam.reduce((acc, s) => acc + s.valMonth, 0))}</span>
+          </div>
+          <div style={{ flex: 1, overflowY: 'auto', paddingRight: 8 }} className="custom-scroll">
+            <SellerList items={salesTeam} title="" hovered={hovered} setHovered={setHovered} darkMode={darkMode} onSellerClick={handleSellerClick} />
+          </div>
+        </div>
+
+        {/* Outros Canais */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, borderBottom: `2px solid ${t.border}`, paddingBottom: 10 }}>
+            <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, margin: 0, letterSpacing: 0.5 }}>OUTROS CANAIS</h3>
+            <span style={{ fontSize: 16, fontWeight: 700, color: t.text }}>R$ {fmt(otherChannels.reduce((acc, s) => acc + s.valMonth, 0))}</span>
+          </div>
+          <div style={{ flex: 1, overflowY: 'auto', paddingRight: 8 }} className="custom-scroll">
+            <SellerList items={otherChannels} title="" hovered={hovered} setHovered={setHovered} darkMode={darkMode} onSellerClick={handleSellerClick} />
+          </div>
+        </div>
+      </div>
 
       <ModalVendedor 
         isOpen={modalOpen}
