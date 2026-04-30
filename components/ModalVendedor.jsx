@@ -151,8 +151,6 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-                </div>
-              </div>
             </div>
 
             {/* Coluna de Acumulados (YTD) */}

@@ -230,7 +230,9 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
 
   return (
     <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', gap: 24, overflow: 'hidden' }}>
-      
+      <div style={{ textAlign: 'center', marginTop: 10 }}>
+        <h2 style={{ fontSize: 24, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 2, margin: 0 }}>VENDAS POR VENDEDOR</h2>
+      </div>
 
       <div style={{ display: 'flex', gap: 48, flex: 1, overflow: 'hidden' }}>
         <style>{`
