@@ -1,6 +1,6 @@
 'use client'
 import { useState, useMemo } from 'react'
-import { TrendingUp, TrendingDown, Star, ShoppingCart, Wrench, Globe, RotateCcw } from 'lucide-react'
+import { TrendingUp, TrendingDown, Star, ShoppingCart, Wrench, Globe, RotateCcw, HelpCircle } from 'lucide-react'
 import ModalVendedor from './ModalVendedor'
 
 function fmt(v) {
@@ -34,7 +34,7 @@ const CHANNEL_ICONS = {
   'Site': { type: 'img', src: '/logo-base.png' },
   'Assistência Técnica': { type: 'icon', icon: Wrench, color: '#3b82f6' },
   'Devoluções e Ajustes': { type: 'icon', icon: RotateCcw, color: '#ef4444' },
-  '-Nenhum vendedor-': { type: 'text' }
+  'Sem Vendedor': { type: 'icon', icon: HelpCircle, color: '#888888' }
 }
 
 function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick }) {
