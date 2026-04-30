@@ -431,7 +431,7 @@ export default function DashboardClient() {
               {activeSub === 'vendas' && (
                 <>
                 {/* 1. Evolução de Receita - Full Width */}
-                <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6 }}>
                   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 12 }}>
                     <h3 style={{ fontSize: 16, fontWeight: 700, textAlign: 'center', color: t.text }}>Evolução de Receita (2026)</h3>
                   </div>
@@ -445,7 +445,7 @@ export default function DashboardClient() {
 
                 {/* 2. Grid para Faturamento vs Meta e Comparativo Anual */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-                  <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                  <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6 }}>
                     <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16, textAlign: 'center', color: t.text }}>Faturamento Total Mensal vs Meta</h3>
                     <GraficoFaturamentoMeta metaData={data?.meta?.[2026] || []} darkMode={theme === 'dark'} />
                   </div>
@@ -489,7 +489,7 @@ export default function DashboardClient() {
                       <>
                         {/* Coluna 2026 */}
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                          <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                          <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                             <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'left', marginBottom: 12, color: '#fff' }}>2026</h3>
                             <MapaHeatBrasil 
                               stateData={data?.byState?.filter(s => filterByMonth(s, 2026)) || []} 
@@ -497,7 +497,7 @@ export default function DashboardClient() {
                               syncIndex={highlightIndex}
                             />
                           </div>
-                          <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                          <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
                             <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'left', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1, color: '#fff' }}>DISTRIBUIÇÃO REGIONAL 2026</h3>
                             <MapaRegional stateData={data?.byState?.filter(s => filterByMonth(s, 2026)) || []} darkMode={theme === 'dark'} />
                           </div>
@@ -505,7 +505,7 @@ export default function DashboardClient() {
 
                         {/* Coluna 2025 */}
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                          <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                          <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, height: 420, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                             <h3 style={{ fontSize: 20, fontWeight: 700, textAlign: 'left', marginBottom: 12, color: '#fff' }}>2025</h3>
                             <MapaHeatBrasil 
                               stateData={data?.byState?.filter(s => filterByMonth(s, 2025)) || []} 
@@ -513,7 +513,7 @@ export default function DashboardClient() {
                               syncIndex={highlightIndex}
                             />
                           </div>
-                          <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                          <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
                             <h3 style={{ fontSize: 15, fontWeight: 700, textAlign: 'left', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1, color: '#fff' }}>DISTRIBUIÇÃO REGIONAL 2025</h3>
                             <MapaRegional stateData={data?.byState?.filter(s => filterByMonth(s, 2025)) || []} darkMode={theme === 'dark'} />
                           </div>
@@ -527,11 +527,11 @@ export default function DashboardClient() {
                {/* Sub-aba: METAS */}
               {activeSub === 'metas' && (
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-                  <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                  <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
                     <h3 style={{ fontSize: 15, fontWeight: 500, marginBottom: 12 }}>Meta vs Realizado (Mês Selecionado)</h3>
                     <GraficoMetaRealizado metaData={data?.meta?.[filters.ano]?.filter(m => m.mes === Number(filters.mes)) || []}/>
                   </div>
-                  <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                  <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <h3 style={{ fontSize: 15, fontWeight: 500, marginBottom: 12 }}>Atingimento Acumulado 2026</h3>
                     <div style={{ fontSize: 42, fontWeight: 500, color: t.accent }}>
                       {kpis.pctAtingido ? `${kpis.pctAtingido.toFixed(1)}%` : '—'}
@@ -543,7 +543,7 @@ export default function DashboardClient() {
 
                {/* Sub-aba: VENDEDORES */}
               {activeSub === 'rank' && (
-                <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 24, height: 750, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 24, height: 750, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 20 }}>
                     <h3 style={{ fontSize: 22, fontWeight: 700, color: '#fff', letterSpacing: 1 }}>RANKING DE PERFORMANCE</h3>
                   </div>
