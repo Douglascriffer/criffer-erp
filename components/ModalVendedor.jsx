@@ -81,19 +81,19 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
     }} onClick={onClose}>
       
       <div style={{ 
-        width: '100%', maxWidth: 1250, background: t.bg, borderRadius: 24,
-        border: `1px solid ${t.border}`, overflow: 'hidden', position: 'relative',
+        width: '100%', maxWidth: 1250, background: 'transparent', borderRadius: 24,
+        overflow: 'hidden', position: 'relative',
         boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
         animation: 'modalShow 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-        padding: '3px' // Mais espaço para o brilho
+        padding: '4px' // Espaço ideal para o brilho
       }} onClick={e => e.stopPropagation()}>
         
-        {/* Camada de Brilho Giratório (Turbinada) */}
+        {/* Camada de Brilho Giratório (Foco Total) */}
         <div style={{
           position: 'absolute',
-          top: '-100%', left: '-100%',
-          width: '300%', height: '300%',
-          background: `conic-gradient(from 0deg, transparent 0%, transparent 60%, ${t.accent} 100%)`,
+          top: '-150%', left: '-150%',
+          width: '400%', height: '400%',
+          background: `conic-gradient(from 0deg, transparent 60%, ${t.accent} 100%)`,
           animation: 'borderRotate 3s linear infinite',
           zIndex: 0
         }} />
