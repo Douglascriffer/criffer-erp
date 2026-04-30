@@ -234,18 +234,6 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
   return (
     <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', gap: 24, overflow: 'hidden' }}>
       
-      {/* Header de Resumo da Aba */}
-      <div style={{ 
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
-        background: darkMode ? 'rgba(255,106,34,0.05)' : 'rgba(255,106,34,0.02)',
-        padding: '12px 24px', borderRadius: 6, border: `1.5px solid ${t.border}`
-      }}>
-        <h2 style={{ fontSize: 13, fontWeight: 700, color: t.text, margin: 0, textTransform: 'uppercase', letterSpacing: 1 }}>Detalhamento por Canal de Venda</h2>
-        <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
-          <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 500 }}>FATURAMENTO OFICIAL (LÍQUIDO):</span>
-          <span style={{ fontSize: 18, fontWeight: 900, color: t.accent }}>R$ {fmt(officialTotal)}</span>
-        </div>
-      </div>
 
       <div style={{ display: 'flex', gap: 48, flex: 1, overflow: 'hidden' }}>
         <style>{`
