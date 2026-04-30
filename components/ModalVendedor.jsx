@@ -122,7 +122,7 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
               borderRadius: 6, padding: 24, border: `1.5px solid ${t.border}`,
               display: 'flex', flexDirection: 'column'
             }}>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: t.text, marginBottom: 24, textTransform: 'uppercase', letterSpacing: 1 }}>Evolução de Faturamento</h3>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: t.text, marginBottom: 24, textTransform: 'uppercase', letterSpacing: 1, textAlign: 'center' }}>Evolução de Faturamento</h3>
               <div style={{ height: 260 }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
