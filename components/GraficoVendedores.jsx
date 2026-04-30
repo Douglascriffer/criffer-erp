@@ -238,6 +238,8 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
         <style>{`
           @keyframes slideUp { from { opacity: 0; transform: translateY(10)px; } to { opacity: 1; transform: translateY(0); } }
           .seller-row:hover { background: ${darkMode ? 'rgba(255,106,34,0.05)' : 'rgba(255,106,34,0.02)'} !important; }
+          .custom-scroll::-webkit-scrollbar { display: none; }
+          .custom-scroll { -ms-overflow-style: none; scrollbar-width: none; }
         `}</style>
         
         {/* Equipe de Vendas */}
@@ -246,7 +248,7 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
             <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, margin: 0, letterSpacing: 0.5 }}>EQUIPE DE VENDAS</h3>
             <span style={{ fontSize: 16, fontWeight: 700, color: t.text }}>{fmt(salesTeam.reduce((acc, s) => acc + s.valMonth, 0))}</span>
           </div>
-          <div style={{ flex: 1, overflowY: 'auto', paddingRight: 8 }} className="custom-scroll">
+          <div style={{ flex: 1, overflowY: 'auto' }} className="custom-scroll">
             <SellerList items={salesTeam} title="" hovered={hovered} setHovered={setHovered} darkMode={darkMode} onSellerClick={handleSellerClick} />
           </div>
         </div>
@@ -257,7 +259,7 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
             <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, margin: 0, letterSpacing: 0.5 }}>OUTROS CANAIS</h3>
             <span style={{ fontSize: 16, fontWeight: 700, color: t.text }}>{fmt(otherChannels.reduce((acc, s) => acc + s.valMonth, 0))}</span>
           </div>
-          <div style={{ flex: 1, overflowY: 'auto', paddingRight: 8 }} className="custom-scroll">
+          <div style={{ flex: 1, overflowY: 'auto' }} className="custom-scroll">
             <SellerList items={otherChannels} title="" hovered={hovered} setHovered={setHovered} darkMode={darkMode} onSellerClick={handleSellerClick} />
           </div>
         </div>
