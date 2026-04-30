@@ -93,26 +93,34 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24, marginBottom: 32 }}>
             <KpiCard title="FATURAMENTO MÊS" value={fmt(totalEmpresa)} color="#FF6A22" darkMode={darkMode} />
             <KpiCard title="Faturamento vendedor" value={fmt(totalVendedor)} color="#FF6A22" darkMode={darkMode} />
-            <KpiCard title="Representatividade" value={`${representatividade.toFixed(1)}%`} color="#FF6A22" darkMode={darkMode} suffix="do total Criffer" />
+            <KpiCard title="Representatividade" value={`${representatividade.toFixed(1)}%`} color="#FF6A22" darkMode={darkMode} />
           </div>
 
           {/* Bottom Row: Photo and Chart */}
           <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: 32 }}>
             {/* Foto Vendedor */}
             <div style={{ 
-              background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
-              borderRadius: 24, padding: 32, display: 'flex', alignItems: 'center', justifyContent: 'center',
-              border: `1px solid ${t.border}`
+              background: darkMode ? '#000000' : '#f8f8f8',
+              borderRadius: 32, padding: 24, display: 'flex', alignItems: 'center', justifyContent: 'center',
+              border: `1px solid ${t.border}`, position: 'relative', overflow: 'hidden'
             }}>
+              {/* Glow Effect */}
               <div style={{ 
-                width: 200, height: 200, borderRadius: '50%', overflow: 'hidden',
-                border: '4px solid #FF6A22', boxShadow: '0 0 30px rgba(255,106,34,0.2)'
+                position: 'absolute', bottom: -20, left: '50%', transform: 'translateX(-50%)',
+                width: '120%', height: 60, background: 'radial-gradient(ellipse at center, rgba(255,106,34,0.15) 0%, transparent 70%)',
+                filter: 'blur(20px)', pointerEvents: 'none'
+              }} />
+
+              <div style={{ 
+                width: 220, height: 260, borderRadius: 24, overflow: 'hidden',
+                border: `2.5px solid ${darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}`,
+                background: '#000', boxShadow: '0 15px 35px rgba(0,0,0,0.2)'
               }}>
                 <img 
                   src={`/vendedores/${sellerName}.jpg`} 
                   alt={sellerName}
                   onError={(e) => { e.target.src = '/vendedores/default.jpg' }}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
                 />
               </div>
             </div>
