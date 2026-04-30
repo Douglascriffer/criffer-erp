@@ -1,6 +1,6 @@
 'use client'
 import { X } from 'lucide-react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts'
 
 const MES_MAP = {
   1: 'JAN', 2: 'FEV', 3: 'MAR', 4: 'ABR', 5: 'MAI', 6: 'JUN',
@@ -122,26 +122,21 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
               borderRadius: 6, padding: 24, border: `1.5px solid ${t.border}`,
               display: 'flex', flexDirection: 'column'
             }}>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: t.text, marginBottom: 24, textTransform: 'uppercase', letterSpacing: 1 }}>Evolução de Faturamento (Vendedor)</h3>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: t.text, marginBottom: 24, textTransform: 'uppercase', letterSpacing: 1 }}>Evolução de Faturamento</h3>
               <div style={{ height: 260 }}>
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                    <defs>
-                      <linearGradient id="colorAtual" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#FF6A22" stopOpacity={0.3}/>
-                        <stop offset="95%" stopColor="#FF6A22" stopOpacity={0}/>
-                      </linearGradient>
-                    </defs>
+                  <BarChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} />
                     <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: t.textSub }} />
                     <YAxis hide />
                     <Tooltip 
+                      formatter={(val) => fmt(val)}
                       contentStyle={{ background: darkMode ? '#1a1a2d' : '#fff', border: 'none', borderRadius: 12, boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}
                       itemStyle={{ color: t.text }}
                     />
-                    <Area type="monotone" dataKey="atual" name="2026" stroke="#FF6A22" strokeWidth={3} fillOpacity={1} fill="url(#colorAtual)" />
-                    <Area type="monotone" dataKey="anterior" name="2025" stroke={darkMode ? '#444' : '#ccc'} strokeWidth={2} strokeDasharray="5 5" fill="none" />
-                  </AreaChart>
+                    <Bar dataKey="atual" name="2026" fill="#FF6A22" radius={[4, 4, 0, 0]} barSize={20} />
+                    <Bar dataKey="anterior" name="2025" fill={darkMode ? '#444' : '#ccc'} radius={[4, 4, 0, 0]} barSize={20} />
+                  </BarChart>
                 </ResponsiveContainer>
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 16 }}>
