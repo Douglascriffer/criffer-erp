@@ -80,7 +80,7 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
     }} onClick={onClose}>
       
       <div style={{ 
-        width: '100%', maxWidth: 1100, background: t.bg, borderRadius: 24,
+        width: '100%', maxWidth: 1250, background: t.bg, borderRadius: 24,
         border: `1px solid ${t.border}`, overflow: 'hidden', position: 'relative',
         boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
         animation: 'modalShow 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -103,25 +103,21 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
         </div>
 
         <div style={{ padding: 32 }}>
-          {/* Top Row: KPIs (6 Cards) */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 12, marginBottom: 32 }}>
-            <KpiCard title="FATURAMENTO MÊS" value={fmt(totalEmpresa)} color="#FF6A22" darkMode={darkMode} />
-            <KpiCard title="FAT. VENDEDOR" value={fmt(totalVendedor)} color="#FF6A22" darkMode={darkMode} />
-            <KpiCard title="PARTICIPAÇÃO" value={`${representatividade.toFixed(1)}%`} color="#FF6A22" darkMode={darkMode} />
-            
-            <KpiCard title="ACUMULADO EMPRESA" value={fmt(totalAcumuladoEmpresa)} color="#FF6A22" darkMode={darkMode} />
-            <KpiCard title="ACUMULADO VENDEDOR" value={fmt(totalAcumuladoVendedor)} color="#FF6A22" darkMode={darkMode} />
-            <KpiCard title="PARTICIPAÇÃO ANUAL" value={`${representatividadeAcumulada.toFixed(1)}%`} color="#FF6A22" darkMode={darkMode} />
+          {/* Top Row: KPIs Mensais */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 32 }}>
+            <KpiCard title="FATURAMENTO MÊS" value={fmt(totalEmpresa)} color="#FF6A22" darkMode={darkMode} large />
+            <KpiCard title="FAT. VENDEDOR" value={fmt(totalVendedor)} color="#FF6A22" darkMode={darkMode} large />
+            <KpiCard title="PARTICIPAÇÃO" value={`${representatividade.toFixed(1)}%`} color="#FF6A22" darkMode={darkMode} large />
           </div>
 
-          {/* Bottom Row: Photo and Chart */}
-          <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: 32 }}>
+          {/* Bottom Row: Photo, Chart, and YTD Column */}
+          <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr 240px', gap: 32 }}>
             {/* Foto Vendedor */}
             <div style={{ 
               background: darkMode ? '#000' : '#fff',
-              borderRadius: 6, overflow: 'hidden',
+              borderRadius: 16, overflow: 'hidden',
               border: `1.5px solid ${t.border}`,
-              height: '100%', minHeight: 350
+              height: '100%', minHeight: 400
             }}>
               <img 
                 src={`/vendedores/${sellerName}.jpg`} 
@@ -155,13 +151,16 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
                 </ResponsiveContainer>
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 16 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: t.textSub }}>
-                  <div style={{ width: 12, height: 3, background: '#FF6A22', borderRadius: 2 }} /> 2026
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: t.textSub }}>
-                  <div style={{ width: 12, height: 3, background: darkMode ? '#444' : '#ccc', borderRadius: 2, borderStyle: 'dashed' }} /> 2025
                 </div>
               </div>
+            </div>
+
+            {/* Coluna de Acumulados (YTD) */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <h3 style={{ fontSize: 13, fontWeight: 700, color: t.textSub, textAlign: 'center', marginBottom: 8, textTransform: 'uppercase', letterSpacing: 1 }}>Saldos Acumulados</h3>
+              <KpiCard title="EMPRESA (ANO)" value={fmt(totalAcumuladoEmpresa)} color="#FF6A22" darkMode={darkMode} />
+              <KpiCard title="VENDEDOR (ANO)" value={fmt(totalAcumuladoVendedor)} color="#FF6A22" darkMode={darkMode} />
+              <KpiCard title="PART. ANUAL" value={`${representatividadeAcumulada.toFixed(1)}%`} color="#FF6A22" darkMode={darkMode} />
             </div>
           </div>
         </div>
@@ -177,16 +176,17 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
   )
 }
 
-function KpiCard({ title, value, color, darkMode, suffix }) {
+function KpiCard({ title, value, color, darkMode, suffix, large }) {
   return (
     <div style={{ 
       background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
-      borderRadius: 16, padding: '16px 12px', border: `1px solid ${darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
+      borderRadius: 20, padding: large ? '24px' : '16px', border: `1px solid ${darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
       textAlign: 'center',
+      flex: 1,
       display: 'flex', flexDirection: 'column', justifyContent: 'center'
     }}>
-      <div style={{ fontSize: 10, fontWeight: 700, color: darkMode ? '#aaa' : '#666', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8, whiteSpace: 'nowrap' }}>{title}</div>
-      <div style={{ fontSize: 18, fontWeight: 700, color: color, letterSpacing: -0.5 }}>{value}</div>
+      <div style={{ fontSize: large ? 12 : 10, fontWeight: 700, color: darkMode ? '#aaa' : '#666', textTransform: 'uppercase', letterSpacing: 1, marginBottom: large ? 12 : 8 }}>{title}</div>
+      <div style={{ fontSize: large ? 32 : 20, fontWeight: 700, color: color, letterSpacing: -0.5 }}>{value}</div>
       {suffix && <div style={{ fontSize: 10, color: darkMode ? '#666' : '#999', marginTop: 4 }}>{suffix}</div>}
     </div>
   )
