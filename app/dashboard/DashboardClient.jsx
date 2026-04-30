@@ -83,6 +83,7 @@ export default function DashboardClient() {
 
   // Dados Filtrados (Mês Atual)
   const filtered = useFilteredData(data, filters)
+  const totalEmpresa = filtered?.total || 0
   
   // Dados Ano Anterior (Mesmo Mês)
   const prevYearFilters = useMemo(() => ({
@@ -487,7 +488,7 @@ export default function DashboardClient() {
                       const isAll = filters.mes === 'all'
                       return data?.byPeriod
                         ?.filter(p => p.ano === targetAno && (isAll ? p.mes <= lastMonth2026 : p.mes === Number(filters.mes)))
-                        ?.reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao + (p.devolucoes || 0)), 0) || 0
+                        ?.reduce((acc, p) => acc + (p.total || 0), 0) || 0
                     }
 
                     return (
