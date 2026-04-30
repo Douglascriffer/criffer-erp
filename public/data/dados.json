@@ -2598,158 +2598,1038 @@
   "bySeller": [
     {
       "ano": 2025,
+      "mes": 1,
       "name": "-Nenhum vendedor-",
-      "val": 24083.739999999998,
+      "val": 0.0,
       "img": "-N"
     },
     {
       "ano": 2025,
+      "mes": 1,
       "name": "Assistência Técnica",
-      "val": 22460.15,
+      "val": 515.0,
       "img": "AS"
     },
     {
       "ano": 2025,
+      "mes": 1,
       "name": "Gabriel Dias",
-      "val": 3825126.56,
+      "val": 301502.25,
       "img": "/vendedores/Gabriel Dias.jpg"
     },
     {
       "ano": 2025,
+      "mes": 1,
       "name": "Gabriel Ferreira dos Santos",
-      "val": 5454202.6,
-      "img": "GA"
+      "val": 492183.89,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
     },
     {
       "ano": 2025,
+      "mes": 1,
       "name": "Gabriel Klein",
-      "val": 3975351.02,
+      "val": 232474.07,
       "img": "/vendedores/Gabriel Klein.jpg"
     },
     {
       "ano": 2025,
-      "name": "Gabriel Medeiros",
-      "val": 199795.61,
-      "img": "/vendedores/Gabriel Medeiros.jpg"
-    },
-    {
-      "ano": 2025,
-      "name": "Josiane Govoni Lanzarini",
-      "val": 332673.5,
-      "img": "JO"
-    },
-    {
-      "ano": 2025,
+      "mes": 1,
       "name": "Juliano Chagas",
-      "val": 97920.65,
+      "val": 40372.65,
       "img": "JU"
     },
     {
       "ano": 2025,
+      "mes": 1,
       "name": "Leonardo Schons de Oliveira",
-      "val": 5921236.04,
+      "val": 134218.87,
       "img": "LE"
     },
     {
       "ano": 2025,
-      "name": "Mercado Livre",
-      "val": 544135.78,
-      "img": "ME"
-    },
-    {
-      "ano": 2025,
-      "name": "Nilson Borges",
-      "val": 38754.45,
-      "img": "NI"
-    },
-    {
-      "ano": 2025,
+      "mes": 1,
       "name": "Rogislei Vieira Padilha",
-      "val": 6047219.91,
-      "img": "RO"
+      "val": 404186.45,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
     },
     {
       "ano": 2025,
+      "mes": 1,
+      "name": "Site",
+      "val": 49829.0,
+      "img": "SI"
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "name": "Vanessa Ferreira",
+      "val": 42905.95,
+      "img": "/vendedores/Vanessa Ferreira.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "name": "-Nenhum vendedor-",
+      "val": 8319.94,
+      "img": "-N"
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "name": "Assistência Técnica",
+      "val": 60.7,
+      "img": "AS"
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "name": "Gabriel Dias",
+      "val": 261186.0,
+      "img": "/vendedores/Gabriel Dias.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "name": "Gabriel Ferreira dos Santos",
+      "val": 563980.26,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "name": "Gabriel Klein",
+      "val": 318429.48,
+      "img": "/vendedores/Gabriel Klein.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "name": "Leonardo Schons de Oliveira",
+      "val": 482919.47,
+      "img": "LE"
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "name": "Rogislei Vieira Padilha",
+      "val": 539778.75,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "name": "Site",
+      "val": 10338.0,
+      "img": "SI"
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "name": "Vanessa Ferreira",
+      "val": 83199.07,
+      "img": "/vendedores/Vanessa Ferreira.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "name": "-Nenhum vendedor-",
+      "val": 193.8,
+      "img": "-N"
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "name": "Assistência Técnica",
+      "val": 134.5,
+      "img": "AS"
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "name": "Gabriel Dias",
+      "val": 307598.9,
+      "img": "/vendedores/Gabriel Dias.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "name": "Gabriel Ferreira dos Santos",
+      "val": 130586.15,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "name": "Gabriel Klein",
+      "val": 323608.55,
+      "img": "/vendedores/Gabriel Klein.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "name": "Leonardo Schons de Oliveira",
+      "val": 311404.0,
+      "img": "LE"
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "name": "Rogislei Vieira Padilha",
+      "val": 357105.48,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "name": "Site",
+      "val": 26394.0,
+      "img": "SI"
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "name": "Vanessa Ferreira",
+      "val": 77778.71,
+      "img": "/vendedores/Vanessa Ferreira.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "name": "-Nenhum vendedor-",
+      "val": 0.0,
+      "img": "-N"
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "name": "Assistência Técnica",
+      "val": 9844.7,
+      "img": "AS"
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "name": "Gabriel Dias",
+      "val": 413118.0,
+      "img": "/vendedores/Gabriel Dias.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "name": "Gabriel Ferreira dos Santos",
+      "val": 690514.58,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "name": "Gabriel Klein",
+      "val": 313265.0,
+      "img": "/vendedores/Gabriel Klein.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "name": "Juliano Chagas",
+      "val": 19899.91,
+      "img": "JU"
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "name": "Leonardo Schons de Oliveira",
+      "val": 304113.0,
+      "img": "LE"
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "name": "Rogislei Vieira Padilha",
+      "val": 617037.03,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
       "name": "Ruslan Santos",
       "val": 8000.0,
       "img": "RU"
     },
     {
       "ano": 2025,
+      "mes": 4,
       "name": "Site",
-      "val": 297404.2,
+      "val": 40064.0,
       "img": "SI"
     },
     {
       "ano": 2025,
+      "mes": 4,
       "name": "Vanessa Ferreira",
-      "val": 686561.38,
+      "val": 83044.91,
+      "img": "/vendedores/Vanessa Ferreira.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "name": "-Nenhum vendedor-",
+      "val": 216.0,
+      "img": "-N"
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "name": "Assistência Técnica",
+      "val": 734.0,
+      "img": "AS"
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "name": "Gabriel Dias",
+      "val": 257400.0,
+      "img": "/vendedores/Gabriel Dias.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "name": "Gabriel Ferreira dos Santos",
+      "val": 289985.97,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "name": "Gabriel Klein",
+      "val": 311511.93,
+      "img": "/vendedores/Gabriel Klein.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "name": "Leonardo Schons de Oliveira",
+      "val": 496146.7,
+      "img": "LE"
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "name": "Rogislei Vieira Padilha",
+      "val": 421809.48,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "name": "Site",
+      "val": 37768.2,
+      "img": "SI"
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "name": "Vanessa Ferreira",
+      "val": 72335.94,
+      "img": "/vendedores/Vanessa Ferreira.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "name": "-Nenhum vendedor-",
+      "val": 1029.0,
+      "img": "-N"
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "name": "Assistência Técnica",
+      "val": 573.0,
+      "img": "AS"
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "name": "Gabriel Dias",
+      "val": 284502.66,
+      "img": "/vendedores/Gabriel Dias.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "name": "Gabriel Ferreira dos Santos",
+      "val": 182119.35,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "name": "Gabriel Klein",
+      "val": 389068.41,
+      "img": "/vendedores/Gabriel Klein.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "name": "Leonardo Schons de Oliveira",
+      "val": 381365.5,
+      "img": "LE"
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "name": "Mercado Livre",
+      "val": 32073.2,
+      "img": "ME"
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "name": "Rogislei Vieira Padilha",
+      "val": 410970.85,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "name": "Site",
+      "val": 14263.0,
+      "img": "SI"
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "name": "Vanessa Ferreira",
+      "val": 82711.6,
+      "img": "/vendedores/Vanessa Ferreira.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "name": "Assistência Técnica",
+      "val": 6364.0,
+      "img": "AS"
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "name": "Gabriel Dias",
+      "val": 565828.0,
+      "img": "/vendedores/Gabriel Dias.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "name": "Gabriel Ferreira dos Santos",
+      "val": 384925.63,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "name": "Gabriel Klein",
+      "val": 342361.18,
+      "img": "/vendedores/Gabriel Klein.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "name": "Leonardo Schons de Oliveira",
+      "val": 842033.0,
+      "img": "LE"
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "name": "Mercado Livre",
+      "val": 34122.0,
+      "img": "ME"
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "name": "Nilson Borges",
+      "val": 20958.45,
+      "img": "NI"
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "name": "Rogislei Vieira Padilha",
+      "val": 448650.08,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "name": "Site",
+      "val": 45494.0,
+      "img": "SI"
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "name": "Vanessa Ferreira",
+      "val": 83025.5,
+      "img": "/vendedores/Vanessa Ferreira.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "name": "Gabriel Dias",
+      "val": 615289.75,
+      "img": "/vendedores/Gabriel Dias.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "name": "Gabriel Ferreira dos Santos",
+      "val": 547242.28,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "name": "Gabriel Klein",
+      "val": 276508.53,
+      "img": "/vendedores/Gabriel Klein.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "name": "Josiane Govoni Lanzarini",
+      "val": 53444.0,
+      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "name": "Leonardo Schons de Oliveira",
+      "val": 589551.0,
+      "img": "LE"
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "name": "Mercado Livre",
+      "val": 42065.55,
+      "img": "ME"
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "name": "Nilson Borges",
+      "val": 17796.0,
+      "img": "NI"
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "name": "Rogislei Vieira Padilha",
+      "val": 743128.75,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "name": "Site",
+      "val": 13637.0,
+      "img": "SI"
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "name": "Vanessa Ferreira",
+      "val": 61819.0,
+      "img": "/vendedores/Vanessa Ferreira.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "name": "Gabriel Dias",
+      "val": 271818.0,
+      "img": "/vendedores/Gabriel Dias.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "name": "Gabriel Ferreira dos Santos",
+      "val": 518952.59,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "name": "Gabriel Klein",
+      "val": 400419.35,
+      "img": "/vendedores/Gabriel Klein.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "name": "Josiane Govoni Lanzarini",
+      "val": 97340.0,
+      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "name": "Leonardo Schons de Oliveira",
+      "val": 408413.0,
+      "img": "LE"
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "name": "Mercado Livre",
+      "val": 185277.94,
+      "img": "ME"
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "name": "Rogislei Vieira Padilha",
+      "val": 677126.36,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "name": "Site",
+      "val": 45659.0,
+      "img": "SI"
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "name": "Vanessa Ferreira",
+      "val": 31070.05,
+      "img": "/vendedores/Vanessa Ferreira.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "name": "-Nenhum vendedor-",
+      "val": 1500.0,
+      "img": "-N"
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "name": "Gabriel Dias",
+      "val": 65297.0,
+      "img": "/vendedores/Gabriel Dias.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "name": "Gabriel Ferreira dos Santos",
+      "val": 507663.79,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "name": "Gabriel Klein",
+      "val": 504518.84,
+      "img": "/vendedores/Gabriel Klein.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "name": "Josiane Govoni Lanzarini",
+      "val": 71330.0,
+      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "name": "Juliano Chagas",
+      "val": 37648.09,
+      "img": "JU"
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "name": "Leonardo Schons de Oliveira",
+      "val": 1516508.0,
+      "img": "LE"
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "name": "Mercado Livre",
+      "val": 69812.26,
+      "img": "ME"
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "name": "Rogislei Vieira Padilha",
+      "val": 520335.8,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "name": "Site",
+      "val": 13230.0,
+      "img": "SI"
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "name": "Vanessa Ferreira",
+      "val": 40447.0,
+      "img": "/vendedores/Vanessa Ferreira.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "name": "-Nenhum vendedor-",
+      "val": 11036.0,
+      "img": "-N"
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "name": "Assistência Técnica",
+      "val": 1683.0,
+      "img": "AS"
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "name": "Gabriel Dias",
+      "val": 306522.0,
+      "img": "/vendedores/Gabriel Dias.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "name": "Gabriel Ferreira dos Santos",
+      "val": 731692.75,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "name": "Gabriel Klein",
+      "val": 251526.68,
+      "img": "/vendedores/Gabriel Klein.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "name": "Josiane Govoni Lanzarini",
+      "val": 68509.0,
+      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "name": "Leonardo Schons de Oliveira",
+      "val": 421973.5,
+      "img": "LE"
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "name": "Mercado Livre",
+      "val": 148781.73,
+      "img": "ME"
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "name": "Rogislei Vieira Padilha",
+      "val": 563562.43,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "name": "Site",
+      "val": 245.0,
+      "img": "SI"
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "name": "Vanessa Ferreira",
+      "val": 12296.0,
+      "img": "/vendedores/Vanessa Ferreira.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "name": "-Nenhum vendedor-",
+      "val": 1789.0,
+      "img": "-N"
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "name": "Assistência Técnica",
+      "val": 2551.25,
+      "img": "AS"
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "name": "Gabriel Dias",
+      "val": 175064.0,
+      "img": "/vendedores/Gabriel Dias.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "name": "Gabriel Ferreira dos Santos",
+      "val": 414355.36,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "name": "Gabriel Klein",
+      "val": 311659.0,
+      "img": "/vendedores/Gabriel Klein.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "name": "Gabriel Medeiros",
+      "val": 199795.61,
+      "img": "/vendedores/Gabriel Medeiros.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "name": "Josiane Govoni Lanzarini",
+      "val": 42050.5,
+      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "name": "Leonardo Schons de Oliveira",
+      "val": 32590.0,
+      "img": "LE"
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "name": "Mercado Livre",
+      "val": 32003.1,
+      "img": "ME"
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "name": "Rogislei Vieira Padilha",
+      "val": 343528.45,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "name": "Site",
+      "val": 483.0,
+      "img": "SI"
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "name": "Vanessa Ferreira",
+      "val": 15927.65,
       "img": "/vendedores/Vanessa Ferreira.jpg"
     },
     {
       "ano": 2026,
-      "name": "-Nenhum vendedor-",
-      "val": 32300.0,
-      "img": "-N"
-    },
-    {
-      "ano": 2026,
-      "name": "Assistência Técnica",
-      "val": 1439.0,
-      "img": "AS"
-    },
-    {
-      "ano": 2026,
+      "mes": 1,
       "name": "Gabriel Dias",
-      "val": 38380.0,
+      "val": 2097.0,
       "img": "/vendedores/Gabriel Dias.jpg"
     },
     {
       "ano": 2026,
+      "mes": 1,
       "name": "Gabriel Ferreira dos Santos",
-      "val": 1305889.21,
-      "img": "GA"
+      "val": 400887.18,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
     },
     {
       "ano": 2026,
+      "mes": 1,
       "name": "Gabriel Klein",
-      "val": 1327565.85,
+      "val": 272667.15,
       "img": "/vendedores/Gabriel Klein.jpg"
     },
     {
       "ano": 2026,
+      "mes": 1,
       "name": "Gabriel Medeiros",
-      "val": 1074470.38,
+      "val": 348954.23,
       "img": "/vendedores/Gabriel Medeiros.jpg"
     },
     {
       "ano": 2026,
+      "mes": 1,
       "name": "Josiane Govoni Lanzarini",
-      "val": 232119.85,
-      "img": "JO"
+      "val": 72626.1,
+      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
     },
     {
       "ano": 2026,
+      "mes": 1,
       "name": "Mercado Livre",
-      "val": 356552.52,
+      "val": 44313.2,
       "img": "ME"
     },
     {
       "ano": 2026,
+      "mes": 1,
       "name": "Rogislei Vieira Padilha",
-      "val": 1750939.36,
-      "img": "RO"
+      "val": 441052.02,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
     },
     {
       "ano": 2026,
+      "mes": 1,
       "name": "Site",
       "val": 20511.0,
       "img": "SI"
     },
     {
       "ano": 2026,
+      "mes": 1,
       "name": "Vanessa Ferreira",
-      "val": 21636.5,
+      "val": 14184.0,
+      "img": "/vendedores/Vanessa Ferreira.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "name": "-Nenhum vendedor-",
+      "val": 32300.0,
+      "img": "-N"
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "name": "Gabriel Dias",
+      "val": 15278.0,
+      "img": "/vendedores/Gabriel Dias.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "name": "Gabriel Ferreira dos Santos",
+      "val": 358533.22000000003,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "name": "Gabriel Klein",
+      "val": 511842.0,
+      "img": "/vendedores/Gabriel Klein.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "name": "Gabriel Medeiros",
+      "val": 327150.59,
+      "img": "/vendedores/Gabriel Medeiros.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "name": "Josiane Govoni Lanzarini",
+      "val": 76581.0,
+      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "name": "Mercado Livre",
+      "val": 144596.66,
+      "img": "ME"
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "name": "Rogislei Vieira Padilha",
+      "val": 424480.98,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "name": "Vanessa Ferreira",
+      "val": 2792.0,
+      "img": "/vendedores/Vanessa Ferreira.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 3,
+      "name": "Assistência Técnica",
+      "val": 1439.0,
+      "img": "AS"
+    },
+    {
+      "ano": 2026,
+      "mes": 3,
+      "name": "Gabriel Dias",
+      "val": 21005.0,
+      "img": "/vendedores/Gabriel Dias.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 3,
+      "name": "Gabriel Ferreira dos Santos",
+      "val": 546468.8099999999,
+      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 3,
+      "name": "Gabriel Klein",
+      "val": 543056.7,
+      "img": "/vendedores/Gabriel Klein.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 3,
+      "name": "Gabriel Medeiros",
+      "val": 398365.56,
+      "img": "/vendedores/Gabriel Medeiros.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 3,
+      "name": "Josiane Govoni Lanzarini",
+      "val": 82912.75,
+      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 3,
+      "name": "Mercado Livre",
+      "val": 167642.66,
+      "img": "ME"
+    },
+    {
+      "ano": 2026,
+      "mes": 3,
+      "name": "Rogislei Vieira Padilha",
+      "val": 885406.36,
+      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+    },
+    {
+      "ano": 2026,
+      "mes": 3,
+      "name": "Vanessa Ferreira",
+      "val": 4660.5,
       "img": "/vendedores/Vanessa Ferreira.jpg"
     }
   ],

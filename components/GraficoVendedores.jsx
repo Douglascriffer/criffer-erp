@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { TrendingUp, TrendingDown, Star } from 'lucide-react'
+import { TrendingUp, TrendingDown, Star, ShoppingCart, Wrench, Globe } from 'lucide-react'
 
 function fmt(v) {
   if (!v && v !== 0) return '—'
@@ -29,52 +29,63 @@ const PHOTO_MAP = {
   'Vanessa Ferreira': '/vendedores/Vanessa Ferreira.jpg'
 }
 
-export default function GraficoVendedores({ sellers = [], darkMode = false }) {
+// Mapeamento de Ícones para Outros Canais
+const CHANNEL_ICONS = {
+  'Mercado Livre': { type: 'icon', icon: ShoppingCart, color: '#FFE600' },
+  'Site': { type: 'img', src: '/logo-base.png' },
+  'Assistência Técnica': { type: 'icon', icon: Wrench, color: '#3b82f6' },
+  '-Nenhum vendedor-': { type: 'text' }
+}
+
+export default function GraficoVendedores({ sellers = [], darkMode = false, filters = { ano: '2026', mes: '3' } }) {
   const [hovered, setHovered] = useState(null)
 
-  // Agrupar dados por vendedor para YoY
+  // Filtrar dados pelo Mês e Ano selecionado
   const sellersMap = {}
   sellers.forEach(s => {
-    if (!sellersMap[s.name]) {
-      sellersMap[s.name] = { 
-        name: s.name, 
-        val2026: 0, 
-        val2025: 0, 
-        img: PHOTO_MAP[s.name] || s.img 
+    // Se o filtro de mês for 'all', somamos tudo do ano. 
+    // Se for um mês específico, filtramos apenas aquele mês.
+    const matchAno = s.ano === Number(filters.ano)
+    const matchMes = filters.mes === 'all' || s.mes === Number(filters.mes)
+
+    if (matchAno && matchMes) {
+      if (!sellersMap[s.name]) {
+        sellersMap[s.name] = { 
+          name: s.name, 
+          valMonth: 0, 
+          img: PHOTO_MAP[s.name] || s.img 
+        }
       }
+      sellersMap[s.name].valMonth += s.val
     }
-    if (s.ano === 2026) sellersMap[s.name].val2026 += s.val
-    if (s.ano === 2025) sellersMap[s.name].val2025 += s.val
   })
 
   const allSellers = Object.values(sellersMap)
   const salesTeam = allSellers
     .filter(s => EQUIPE_VENDAS.includes(s.name))
-    .sort((a, b) => b.val2026 - a.val2026)
+    .sort((a, b) => b.valMonth - a.valMonth)
   
   const otherChannels = allSellers
     .filter(s => !EQUIPE_VENDAS.includes(s.name))
-    .sort((a, b) => b.val2026 - a.val2026)
+    .sort((a, b) => b.valMonth - a.valMonth)
 
   const SellerList = ({ items, title }) => (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
       <h4 style={{ 
-        fontSize: 11, 
+        fontSize: 10, 
         fontWeight: 700, 
         color: '#FF6A22', 
-        letterSpacing: 1.5, 
+        letterSpacing: 1.2, 
         textTransform: 'uppercase',
-        marginBottom: 8,
+        marginBottom: 6,
         paddingLeft: 12,
-        opacity: 0.8
+        opacity: 0.7
       }}>{title}</h4>
       
       {items.map((s, i) => {
-        const diff = s.val2026 - s.val2025
-        const pct = s.val2025 > 0 ? (diff / s.val2025 * 100) : 0
-        const isUp = diff >= 0
         const isHovered = hovered === s.name
         const rank = i + 1
+        const channelCfg = CHANNEL_ICONS[s.name]
 
         return (
           <div 
@@ -84,11 +95,11 @@ export default function GraficoVendedores({ sellers = [], darkMode = false }) {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 16,
-              padding: '10px 16px',
+              gap: 14,
+              padding: '8px 14px',
               background: isHovered ? (darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)') : 'transparent',
               border: `1px solid ${isHovered ? '#FF6A22' : 'transparent'}`,
-              borderRadius: 12,
+              borderRadius: 10,
               transition: 'all 0.2s ease',
               cursor: 'pointer',
               position: 'relative'
@@ -96,93 +107,68 @@ export default function GraficoVendedores({ sellers = [], darkMode = false }) {
           >
             {/* Rank/Badge */}
             <div style={{ 
-              width: 24, 
-              height: 24, 
-              borderRadius: '50%', 
-              background: rank <= 3 && title.includes('EQUIPE') ? '#FF6A2215' : 'transparent',
+              width: 20, 
+              height: 20, 
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: 12,
+              fontSize: 11,
               fontWeight: 700,
-              color: rank <= 3 && title.includes('EQUIPE') ? '#FF6A22' : (darkMode ? '#666' : '#999')
+              color: rank <= 3 && title.includes('EQUIPE') ? '#FF6A22' : (darkMode ? '#555' : '#bbb')
             }}>
               {rank <= 3 && title.includes('EQUIPE') ? (
-                <Star size={14} fill={rank === 1 ? '#FF6A22' : 'none'} />
+                <Star size={12} fill={rank === 1 ? '#FF6A22' : 'none'} />
               ) : rank}
             </div>
 
-            {/* Avatar */}
+            {/* Avatar / Logo */}
             <div style={{ 
-              width: 36, 
-              height: 36, 
+              width: 32, 
+              height: 32, 
               borderRadius: '50%', 
               overflow: 'hidden', 
-              border: `2px solid ${isHovered ? '#FF6A22' : (darkMode ? '#333' : '#eee')}`,
-              background: '#f5f5f5',
-              flexShrink: 0
+              border: `1.5px solid ${isHovered ? '#FF6A22' : (darkMode ? '#333' : '#eee')}`,
+              background: darkMode ? '#1a1a24' : '#f8f8f8',
+              flexShrink: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}>
-              {s.img && s.img.startsWith('/') ? (
-                <img src={s.img} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              ) : (
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: '#999', fontWeight: 600 }}>
-                  {s.name.charAt(0)}
-                </div>
-              )}
+              {(() => {
+                if (EQUIPE_VENDAS.includes(s.name)) {
+                  return s.img && s.img.startsWith('/') ? 
+                    <img src={s.img} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> :
+                    <span style={{ fontSize: 11, fontWeight: 700 }}>{s.name.charAt(0)}</span>
+                }
+                
+                if (channelCfg?.type === 'img') {
+                  return <img src={channelCfg.src} alt={s.name} style={{ width: '70%', height: '70%', objectFit: 'contain' }} />
+                }
+                if (channelCfg?.type === 'icon') {
+                  const Icon = channelCfg.icon
+                  return <Icon size={18} color={channelCfg.color} />
+                }
+                return <span style={{ fontSize: 11, fontWeight: 700, opacity: 0.5 }}>{s.name.charAt(0)}</span>
+              })()}
             </div>
 
-            {/* Name & Revenue */}
+            {/* Name */}
             <div style={{ flex: 1, minWidth: 0 }}>
-              <p style={{ margin: 0, fontSize: 13, fontWeight: 500, color: darkMode ? '#fff' : '#000', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              <p style={{ margin: 0, fontSize: 12.5, fontWeight: 500, color: darkMode ? '#fff' : '#000', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                 {s.name}
               </p>
-              <p style={{ margin: 0, fontSize: 11, color: '#FF6A22', fontWeight: 600 }}>
-                {fmt(s.val2026)}
-              </p>
             </div>
 
-            {/* YoY Trend */}
-            <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-              <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: 2, 
-                fontSize: 10, 
-                fontWeight: 700, 
-                color: isUp ? '#22c55e' : '#ef4444' 
-              }}>
-                {isUp ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
-                {Math.abs(pct).toFixed(0)}%
+            {/* Monthly Revenue (Valor no lugar do YoY) */}
+            <div style={{ textAlign: 'right' }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#FF6A22' }}>
+                {fmt(s.valMonth)}
               </div>
-              <div style={{ fontSize: 9, color: (darkMode ? '#666' : '#999'), textTransform: 'uppercase' }}>YoY</div>
+              <div style={{ fontSize: 8, color: (darkMode ? '#666' : '#999'), textTransform: 'uppercase', letterSpacing: 0.5 }}>Mensal</div>
             </div>
 
-            {/* Tooltip Detalhado */}
-            {isHovered && (
-              <div style={{
-                position: 'absolute',
-                top: -10,
-                right: '105%',
-                width: 180,
-                background: darkMode ? '#1e1e2d' : '#fff',
-                border: `1px solid ${darkMode ? '#333' : '#eee'}`,
-                borderRadius: 8,
-                padding: 12,
-                boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-                zIndex: 100,
-                animation: 'fadeIn 0.2s ease'
-              }}>
-                <div style={{ fontSize: 9, fontWeight: 700, color: '#FF6A22', marginBottom: 8, textTransform: 'uppercase' }}>Detalhamento</div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                  <span style={{ fontSize: 10, color: (darkMode ? '#aaa' : '#666') }}>2026:</span>
-                  <span style={{ fontSize: 10, fontWeight: 600 }}>{fmt(s.val2026)}</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: 10, color: (darkMode ? '#aaa' : '#666') }}>2025:</span>
-                  <span style={{ fontSize: 10, fontWeight: 600 }}>{fmt(s.val2025)}</span>
-                </div>
-              </div>
-            )}
+            {/* Tooltip Detalhado - DESATIVADO conforme solicitado */}
+            {/* isHovered && ( ... ) */}
           </div>
         )
       })}

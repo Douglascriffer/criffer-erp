@@ -548,7 +548,7 @@ export default function DashboardClient() {
                     <h3 style={{ fontSize: 15, fontWeight: 500 }}>Ranking de Performance</h3>
                     <div style={{ fontSize: 11, fontWeight: 500, color: t.textMuted }}>Comparativo YoY (2025 vs 2026)</div>
                   </div>
-                  <GraficoVendedores sellers={data?.bySeller || []} darkMode={theme === 'dark'} />
+                  <GraficoVendedores sellers={data?.bySeller || []} darkMode={theme === 'dark'} filters={filters} />
                 </div>
               )}
             </div>

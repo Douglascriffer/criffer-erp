@@ -110,17 +110,19 @@ def process_excel():
             df = pd.read_excel(EXCEL_PATH, sheet_name="BASE DE DADOS")
             df['Data de Emissão'] = pd.to_datetime(df['Data de Emissão'], dayfirst=True)
             
-            # Ranking por Vendedor (Agrupado por Ano para permitir YoY no componente)
-            seller_group = df.groupby([df['Data de Emissão'].dt.year, 'Vendedor'])['Valor Total'].sum().reset_index()
-            seller_group.columns = ['ano', 'vendedor', 'total']
+            # Ranking por Vendedor (Agrupado por Ano e Mês)
+            df['ano_tmp'] = df['Data de Emissão'].dt.year
+            df['mes_tmp'] = df['Data de Emissão'].dt.month
+            seller_group = df.groupby(['ano_tmp', 'mes_tmp', 'Vendedor'])['Valor Total'].sum().reset_index()
+            seller_group.columns = ['ano', 'mes', 'vendedor', 'total']
             
             for _, row in seller_group.iterrows():
                 seller_name = str(row['vendedor']).strip()
-                # Tentar mapear imagem (Gabriel Klein.jpg -> Gabriel Klein)
                 img_path = f"/vendedores/{seller_name}.jpg"
                 
                 result["bySeller"].append({
                     "ano": int(row['ano']),
+                    "mes": int(row['mes']),
                     "name": seller_name,
                     "val": float(row['total']),
                     "img": img_path if os.path.exists(os.path.join(os.path.dirname(__file__), "public", "vendedores", f"{seller_name}.jpg")) else seller_name[:2].upper()
