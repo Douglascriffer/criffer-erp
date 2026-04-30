@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { TrendingUp, TrendingDown, Star, ShoppingCart, Wrench, Globe } from 'lucide-react'
+import ModalVendedor from './ModalVendedor'
 
 function fmt(v) {
   if (!v && v !== 0) return '—'
@@ -37,7 +38,7 @@ const CHANNEL_ICONS = {
   '-Nenhum vendedor-': { type: 'text' }
 }
 
-function SellerList({ items, title, hovered, setHovered, darkMode }) {
+function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick }) {
   const totalValue = items.reduce((acc, s) => acc + s.valMonth, 0)
 
   return (
@@ -67,6 +68,7 @@ function SellerList({ items, title, hovered, setHovered, darkMode }) {
             key={s.name}
             onMouseEnter={() => setHovered(s.name)}
             onMouseLeave={() => setHovered(null)}
+            onClick={() => onSellerClick(s.name)}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -147,8 +149,15 @@ function SellerList({ items, title, hovered, setHovered, darkMode }) {
   )
 }
 
-export default function GraficoVendedores({ sellers = [], darkMode = false, filters = { ano: '2026', mes: '3' } }) {
+export default function GraficoVendedores({ sellers = [], data, darkMode = false, filters = { ano: '2026', mes: '3' } }) {
   const [hovered, setHovered] = useState(null)
+  const [selectedSeller, setSelectedSeller] = useState(null)
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const handleSellerClick = (name) => {
+    setSelectedSeller(name)
+    setModalOpen(true)
+  }
 
   // Filtrar dados pelo Mês e Ano selecionado
   const sellersMap = {}
@@ -185,9 +194,18 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
       
-      <SellerList items={salesTeam} title="Equipe de Vendas" hovered={hovered} setHovered={setHovered} darkMode={darkMode} />
+      <SellerList items={salesTeam} title="Equipe de Vendas" hovered={hovered} setHovered={setHovered} darkMode={darkMode} onSellerClick={handleSellerClick} />
       <div style={{ width: 1, background: (darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)') }} />
-      <SellerList items={otherChannels} title="Outros Canais" hovered={hovered} setHovered={setHovered} darkMode={darkMode} />
+      <SellerList items={otherChannels} title="Outros Canais" hovered={hovered} setHovered={setHovered} darkMode={darkMode} onSellerClick={handleSellerClick} />
+
+      <ModalVendedor 
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        sellerName={selectedSeller}
+        data={data}
+        filters={filters}
+        darkMode={darkMode}
+      />
     </div>
   )
 }

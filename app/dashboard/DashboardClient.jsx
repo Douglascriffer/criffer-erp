@@ -542,12 +542,12 @@ export default function DashboardClient() {
               )}
 
                {/* Sub-aba: VENDEDORES */}
-              {activeSub === 'rank' && (
+               {activeSub === 'rank' && (
                 <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 24, height: 750, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 20 }}>
                     <h3 style={{ fontSize: 22, fontWeight: 700, color: t.text, letterSpacing: 1 }}>RANKING DE PERFORMANCE</h3>
                   </div>
-                  <GraficoVendedores sellers={data?.bySeller || []} darkMode={theme === 'dark'} filters={filters} />
+                  <GraficoVendedores sellers={data?.bySeller || []} data={data} darkMode={theme === 'dark'} filters={filters} />
                 </div>
               )}
             </div>
