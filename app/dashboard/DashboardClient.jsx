@@ -25,8 +25,6 @@ function Skeleton({ h=200 }) { return <div style={{ height:h, background:'rgba(0
 // Formatação Profissional
 function fmt(v) {
   if (!v && v !== 0) return '—'
-  if (Math.abs(v) >= 1e6) return `${(v/1e6).toFixed(2)}M`
-  if (Math.abs(v) >= 1e3) return `${(v/1e3).toFixed(1)}K`
   return `${Math.round(v).toLocaleString('pt-BR')}`
 }
 
