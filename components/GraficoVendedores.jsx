@@ -156,6 +156,14 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
   const [selectedSeller, setSelectedSeller] = useState(null)
   const [modalOpen, setModalOpen] = useState(false)
 
+  const t = {
+    card: darkMode ? '#1a1a24' : '#ffffff',
+    border: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)',
+    text: darkMode ? '#ffffff' : '#000000',
+    textMuted: darkMode ? '#888888' : '#666666',
+    accent: '#FF6A22'
+  }
+
   const handleSellerClick = (name) => {
     setSelectedSeller(name)
     setModalOpen(true)
