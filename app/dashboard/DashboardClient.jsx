@@ -35,7 +35,7 @@ const MES = {'1':'Jan','2':'Fev','3':'Mar','4':'Abr','5':'Mai','6':'Jun','7':'Ju
 /* ─── Temas Sincronizados (Padrão Capa) ─── */
 const THEME = {
   light: {
-    bg: '#f2f2f2',
+    bg: '#e0e0e0',
     card: '#ffffff',
     border: 'rgba(0,0,0,0.08)',
     text: '#000000',
