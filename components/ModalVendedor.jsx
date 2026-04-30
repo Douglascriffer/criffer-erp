@@ -43,6 +43,17 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
   // Representatividade
   const representatividade = totalEmpresa > 0 ? (totalVendedor / totalEmpresa) * 100 : 0
 
+  // 1.1 Cálculos Acumulados (YTD - Year To Date)
+  const totalAcumuladoEmpresa = data?.bySellerTotals
+    ?.filter(p => p.ano === targetYear && p.mes <= targetMonth)
+    ?.reduce((acc, p) => acc + (p.total || 0), 0) || 0
+
+  const totalAcumuladoVendedor = data?.bySeller
+    ?.filter(s => (s.vendedor === sellerName || s.name === sellerName) && s.ano === targetYear && s.mes <= targetMonth)
+    ?.reduce((acc, curr) => acc + (curr.valor || curr.val || 0), 0) || 0
+
+  const representatividadeAcumulada = totalAcumuladoEmpresa > 0 ? (totalAcumuladoVendedor / totalAcumuladoEmpresa) * 100 : 0
+
   // 2. Dados do Gráfico (Ano a Ano)
   const chartData = Array.from({ length: 12 }, (_, i) => {
     const mes = i + 1
@@ -92,11 +103,15 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
         </div>
 
         <div style={{ padding: 32 }}>
-          {/* Top Row: KPIs */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24, marginBottom: 32 }}>
+          {/* Top Row: KPIs (6 Cards) */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 12, marginBottom: 32 }}>
             <KpiCard title="FATURAMENTO MÊS" value={fmt(totalEmpresa)} color="#FF6A22" darkMode={darkMode} />
-            <KpiCard title="Faturamento vendedor" value={fmt(totalVendedor)} color="#FF6A22" darkMode={darkMode} />
-            <KpiCard title="Representatividade" value={`${representatividade.toFixed(1)}%`} color="#FF6A22" darkMode={darkMode} />
+            <KpiCard title="FAT. VENDEDOR" value={fmt(totalVendedor)} color="#FF6A22" darkMode={darkMode} />
+            <KpiCard title="PARTICIPAÇÃO" value={`${representatividade.toFixed(1)}%`} color="#FF6A22" darkMode={darkMode} />
+            
+            <KpiCard title="ACUMULADO EMPRESA" value={fmt(totalAcumuladoEmpresa)} color="#FF6A22" darkMode={darkMode} />
+            <KpiCard title="ACUMULADO VENDEDOR" value={fmt(totalAcumuladoVendedor)} color="#FF6A22" darkMode={darkMode} />
+            <KpiCard title="PARTICIPAÇÃO ANUAL" value={`${representatividadeAcumulada.toFixed(1)}%`} color="#FF6A22" darkMode={darkMode} />
           </div>
 
           {/* Bottom Row: Photo and Chart */}
@@ -166,12 +181,13 @@ function KpiCard({ title, value, color, darkMode, suffix }) {
   return (
     <div style={{ 
       background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
-      borderRadius: 20, padding: '24px', border: `1px solid ${darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
-      textAlign: 'center'
+      borderRadius: 16, padding: '16px 12px', border: `1px solid ${darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
+      textAlign: 'center',
+      display: 'flex', flexDirection: 'column', justifyContent: 'center'
     }}>
-      <div style={{ fontSize: 12, fontWeight: 700, color: darkMode ? '#aaa' : '#666', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 12 }}>{title}</div>
-      <div style={{ fontSize: 28, fontWeight: 700, color: color }}>{value}</div>
-      {suffix && <div style={{ fontSize: 12, color: darkMode ? '#666' : '#999', marginTop: 4 }}>{suffix}</div>}
+      <div style={{ fontSize: 10, fontWeight: 700, color: darkMode ? '#aaa' : '#666', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8, whiteSpace: 'nowrap' }}>{title}</div>
+      <div style={{ fontSize: 18, fontWeight: 700, color: color, letterSpacing: -0.5 }}>{value}</div>
+      {suffix && <div style={{ fontSize: 10, color: darkMode ? '#666' : '#999', marginTop: 4 }}>{suffix}</div>}
     </div>
   )
 }
