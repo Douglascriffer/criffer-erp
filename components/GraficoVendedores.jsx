@@ -181,9 +181,20 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
 
   // 1. Cálculo do Faturamento Oficial (Lógica da janela Receitas)
   const isAll = filters.mes === 'all'
-  const officialTotal = data?.byPeriod
-    ?.filter(p => p.ano === Number(filters.ano) && (isAll ? true : p.mes === Number(filters.mes)))
-    ?.reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao - Math.abs(p.devolucoes || 0)), 0) || 0
+  
+  // Faturamento Oficial da Janela Vendedores (Fonte: Coluna Realizado da aba COMERCIAL)
+  const officialTotal = useMemo(() => {
+    const commercialTotals = data?.bySellerTotals || []
+    if (commercialTotals.length > 0) {
+      return commercialTotals
+        .filter(p => p.ano === Number(filters.ano) && (isAll ? true : p.mes === Number(filters.mes)))
+        .reduce((acc, p) => acc + (p.total || 0), 0)
+    }
+    // Fallback para byPeriod se a aba Comercial não tiver os totais
+    return data?.byPeriod
+      ?.filter(p => p.ano === Number(filters.ano) && (isAll ? true : p.mes === Number(filters.mes)))
+      ?.reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao - Math.abs(p.devolucoes || 0)), 0) || 0
+  }, [data, filters, isAll])
 
   const allSellers = Object.values(sellersMap)
   const salesTeam = allSellers
