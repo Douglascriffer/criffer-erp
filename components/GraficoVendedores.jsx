@@ -9,12 +9,15 @@ function fmt(v) {
 }
 
 const EQUIPE_VENDAS = [
-  'Rogislei Vieira Padilha',
-  'Gabriel Klein',
-  'Gabriel Ferreira dos Santos',
-  'Gabriel Medeiros',
-  'Josiane Govoni Lanzarini',
   'Gabriel Dias',
+  'Gabriel Ferreira dos Santos',
+  'Gabriel Klein',
+  'Gabriel Medeiros',
+  'Josiane Covoni Lanzarini',
+  'Juliano Chagas',
+  'Leonardo Schons de Oliveira',
+  'Nilson Borges',
+  'Rogislei Vieira Padilha',
   'Vanessa Ferreira'
 ]
 
