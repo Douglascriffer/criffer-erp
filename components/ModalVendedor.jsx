@@ -93,7 +93,7 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24, marginBottom: 32 }}>
             <KpiCard title="FATURAMENTO MÊS" value={fmt(totalEmpresa)} color="#FF6A22" darkMode={darkMode} />
             <KpiCard title="Faturamento vendedor" value={fmt(totalVendedor)} color="#FF6A22" darkMode={darkMode} />
-            <KpiCard title="Representatividade" value={`${representatividade.toFixed(1)}%`} color="#FF6A22" darkMode={darkMode} suffix="do total Criffer" />
+            <KpiCard title="Representatividade" value={`${representatividade.toFixed(1)}%`} color="#FF6A22" darkMode={darkMode} />
           </div>
 
           {/* Bottom Row: Photo and Chart */}

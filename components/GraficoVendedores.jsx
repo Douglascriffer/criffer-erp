@@ -1,12 +1,11 @@
 'use client'
 import { useState } from 'react'
 import { TrendingUp, TrendingDown, Star, ShoppingCart, Wrench, Globe } from 'lucide-react'
-import ModalVendedor from './ModalVendedor'
 
 function fmt(v) {
   if (!v && v !== 0) return '—'
-  if (Math.abs(v) >= 1e6) return `R$ ${(v/1e6).toFixed(2)}M`
-  if (Math.abs(v) >= 1e3) return `R$ ${(v/1e3).toFixed(1)}K`
+  if (Math.abs(v) >= 1e6) return `R$ ${(v / 1e6).toFixed(2)}M`
+  if (Math.abs(v) >= 1e3) return `R$ ${(v / 1e3).toFixed(1)}K`
   return `R$ ${Math.round(v).toLocaleString('pt-BR')}`
 }
 
@@ -38,17 +37,17 @@ const CHANNEL_ICONS = {
   '-Nenhum vendedor-': { type: 'text' }
 }
 
-function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick }) {
+function SellerList({ items, title, hovered, setHovered, darkMode }) {
   const totalValue = items.reduce((acc, s) => acc + s.valMonth, 0)
 
   return (
     <div className="no-scrollbar" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12, height: '100%', overflowY: 'auto', paddingRight: 4 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16, paddingLeft: 12, paddingRight: 12 }}>
-        <h4 style={{ 
-          fontSize: 15, 
-          fontWeight: 700, 
-          color: '#FF6A22', 
-          letterSpacing: 1.5, 
+        <h4 style={{
+          fontSize: 15,
+          fontWeight: 700,
+          color: '#FF6A22',
+          letterSpacing: 1.5,
           textTransform: 'uppercase',
           opacity: 0.8,
           margin: 0
@@ -57,18 +56,17 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
           {fmt(totalValue)}
         </div>
       </div>
-      
+
       {items.map((s, i) => {
         const isHovered = hovered === s.name
         const rank = i + 1
         const channelCfg = CHANNEL_ICONS[s.name]
 
         return (
-          <div 
+          <div
             key={s.name}
             onMouseEnter={() => setHovered(s.name)}
             onMouseLeave={() => setHovered(null)}
-            onClick={() => onSellerClick(s.name)}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -83,9 +81,9 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
             }}
           >
             {/* Rank/Badge */}
-            <div style={{ 
-              width: 32, 
-              height: 32, 
+            <div style={{
+              width: 32,
+              height: 32,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -99,11 +97,11 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
             </div>
 
             {/* Avatar / Logo */}
-            <div style={{ 
-              width: 50, 
-              height: 50, 
-              borderRadius: '50%', 
-              overflow: 'hidden', 
+            <div style={{
+              width: 50,
+              height: 50,
+              borderRadius: '50%',
+              overflow: 'hidden',
               border: `2px solid ${darkMode ? '#333' : '#eee'}`,
               background: !EQUIPE_VENDAS.includes(s.name) ? '#000000' : (darkMode ? '#1a1a24' : '#f8f8f8'),
               flexShrink: 0,
@@ -113,11 +111,11 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
             }}>
               {(() => {
                 if (EQUIPE_VENDAS.includes(s.name)) {
-                  return s.img && s.img.startsWith('/') ? 
+                  return s.img && s.img.startsWith('/') ?
                     <img src={s.img} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> :
                     <span style={{ fontSize: 18, fontWeight: 400 }}>{s.name.charAt(0)}</span>
                 }
-                
+
                 if (channelCfg?.type === 'img') {
                   return <img src={channelCfg.src} alt={s.name} style={{ width: '70%', height: '70%', objectFit: 'contain' }} />
                 }
@@ -149,15 +147,8 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
   )
 }
 
-export default function GraficoVendedores({ sellers = [], data, darkMode = false, filters = { ano: '2026', mes: '3' } }) {
+export default function GraficoVendedores({ sellers = [], darkMode = false, filters = { ano: '2026', mes: '3' } }) {
   const [hovered, setHovered] = useState(null)
-  const [selectedSeller, setSelectedSeller] = useState(null)
-  const [modalOpen, setModalOpen] = useState(false)
-
-  const handleSellerClick = (name) => {
-    setSelectedSeller(name)
-    setModalOpen(true)
-  }
 
   // Filtrar dados pelo Mês e Ano selecionado
   const sellersMap = {}
@@ -167,10 +158,10 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
 
     if (matchAno && matchMes) {
       if (!sellersMap[s.name]) {
-        sellersMap[s.name] = { 
-          name: s.name, 
-          valMonth: 0, 
-          img: PHOTO_MAP[s.name] || s.img 
+        sellersMap[s.name] = {
+          name: s.name,
+          valMonth: 0,
+          img: PHOTO_MAP[s.name] || s.img
         }
       }
       sellersMap[s.name].valMonth += s.val
@@ -181,7 +172,7 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
   const salesTeam = allSellers
     .filter(s => EQUIPE_VENDAS.includes(s.name))
     .sort((a, b) => b.valMonth - a.valMonth)
-  
+
   const otherChannels = allSellers
     .filter(s => !EQUIPE_VENDAS.includes(s.name))
     .sort((a, b) => b.valMonth - a.valMonth)
@@ -193,19 +184,10 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
-      
-      <SellerList items={salesTeam} title="Equipe de Vendas" hovered={hovered} setHovered={setHovered} darkMode={darkMode} onSellerClick={handleSellerClick} />
-      <div style={{ width: 1, background: (darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)') }} />
-      <SellerList items={otherChannels} title="Outros Canais" hovered={hovered} setHovered={setHovered} darkMode={darkMode} onSellerClick={handleSellerClick} />
 
-      <ModalVendedor 
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        sellerName={selectedSeller}
-        data={data}
-        filters={filters}
-        darkMode={darkMode}
-      />
+      <SellerList items={salesTeam} title="Equipe de Vendas" hovered={hovered} setHovered={setHovered} darkMode={darkMode} />
+      <div style={{ width: 1, background: (darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)') }} />
+      <SellerList items={otherChannels} title="Outros Canais" hovered={hovered} setHovered={setHovered} darkMode={darkMode} />
     </div>
   )
 }
