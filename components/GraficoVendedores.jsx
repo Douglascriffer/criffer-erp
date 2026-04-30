@@ -171,21 +171,26 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
 
   // Filtrar dados pelo Mês e Ano selecionado
   const sellersMap = {}
-  sellers.forEach(s => {
-    const matchAno = s.ano === Number(filters.ano)
-    const matchMes = filters.mes === 'all' || s.mes === Number(filters.mes)
+  if (Array.isArray(sellers)) {
+    sellers.forEach(s => {
+      const sName = s.vendedor || s.name
+      const sVal = Number(s.valor || s.val || 0)
+      
+      const matchAno = s.ano === Number(filters.ano)
+      const matchMes = filters.mes === 'all' || s.mes === Number(filters.mes)
 
-    if (matchAno && matchMes) {
-      if (!sellersMap[s.name]) {
-        sellersMap[s.name] = { 
-          name: s.name, 
-          valMonth: 0, 
-          img: PHOTO_MAP[s.name] || s.img 
+      if (matchAno && matchMes && sName) {
+        if (!sellersMap[sName]) {
+          sellersMap[sName] = { 
+            name: sName, 
+            valMonth: 0, 
+            img: PHOTO_MAP[sName] || s.img 
+          }
         }
+        sellersMap[sName].valMonth += sVal
       }
-      sellersMap[s.name].valMonth += s.val
-    }
-  })
+    })
+  }
 
   // 1. Cálculo do Faturamento Oficial (Lógica da janela Receitas)
   const isAll = filters.mes === 'all'
