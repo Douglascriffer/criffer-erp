@@ -449,7 +449,7 @@ export default function DashboardClient() {
                     <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16, textAlign: 'center', color: t.text }}>Faturamento Total Mensal vs Meta</h3>
                     <GraficoFaturamentoMeta metaData={data?.meta?.[2026] || []} darkMode={theme === 'dark'} />
                   </div>
-                  <div style={{ background: theme === 'light' ? 'rgba(0,0,0,0.05)' : t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
+                  <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
                     <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16, textAlign: 'center', color: t.text }}>Comparativo Anual acumulado (2025 vs 2026)</h3>
                     <GraficoComparativo 
                       showComparison={true}
