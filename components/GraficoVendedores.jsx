@@ -55,9 +55,6 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
           opacity: 0.8,
           margin: 0
         }}>{title}</h4>
-        <div style={{ fontSize: 16, fontWeight: 700, color: darkMode ? '#fff' : '#000', opacity: 0.9 }}>
-          {fmt(totalValue)}
-        </div>
       </div>
       
       {items.map((s, i) => {
@@ -245,7 +242,7 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, borderBottom: `2px solid ${t.accent}`, paddingBottom: 10 }}>
             <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, margin: 0, letterSpacing: 0.5 }}>EQUIPE DE VENDAS</h3>
-            <span style={{ fontSize: 16, fontWeight: 700, color: t.text }}>R$ {fmt(salesTeam.reduce((acc, s) => acc + s.valMonth, 0))}</span>
+            <span style={{ fontSize: 16, fontWeight: 700, color: t.text }}>{fmt(salesTeam.reduce((acc, s) => acc + s.valMonth, 0))}</span>
           </div>
           <div style={{ flex: 1, overflowY: 'auto', paddingRight: 8 }} className="custom-scroll">
             <SellerList items={salesTeam} title="" hovered={hovered} setHovered={setHovered} darkMode={darkMode} onSellerClick={handleSellerClick} />
@@ -256,7 +253,7 @@ export default function GraficoVendedores({ sellers = [], data, darkMode = false
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, borderBottom: `2px solid ${t.border}`, paddingBottom: 10 }}>
             <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, margin: 0, letterSpacing: 0.5 }}>OUTROS CANAIS</h3>
-            <span style={{ fontSize: 16, fontWeight: 700, color: t.text }}>R$ {fmt(otherChannels.reduce((acc, s) => acc + s.valMonth, 0))}</span>
+            <span style={{ fontSize: 16, fontWeight: 700, color: t.text }}>{fmt(otherChannels.reduce((acc, s) => acc + s.valMonth, 0))}</span>
           </div>
           <div style={{ flex: 1, overflowY: 'auto', paddingRight: 8 }} className="custom-scroll">
             <SellerList items={otherChannels} title="" hovered={hovered} setHovered={setHovered} darkMode={darkMode} onSellerClick={handleSellerClick} />
