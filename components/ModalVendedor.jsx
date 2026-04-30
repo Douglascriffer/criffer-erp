@@ -151,7 +151,6 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 16 }}>
                 </div>
               </div>
             </div>
