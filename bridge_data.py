@@ -84,8 +84,8 @@ def process_excel():
                     val = df_rec.iloc[r - 2 + off, 30]
                     period_data[cat] = float(val) if pd.notna(val) else 0
 
-                # Receita Bruta = Vendas + Serviços + Locação
-                period_data["total"] = period_data["vendas"] + period_data["servicos"] + period_data["locacao"]
+                # Receita Líquida = Vendas + Serviços + Locação - |Devoluções|
+                period_data["total"] = period_data["vendas"] + period_data["servicos"] + period_data["locacao"] - abs(period_data["devolucoes"])
                 result["byPeriod"].append(period_data)
 
                 # Extrair dados para o Mapa (Vendas + Servicos + Locacao por estado)
@@ -104,29 +104,65 @@ def process_excel():
                             "faturamento": st_faturamento
                         })
 
-        # 2. Processar BASE DE DADOS para Ranking de Vendedores
-        if "BASE DE DADOS" in xl.sheet_names:
-            log("Processando Ranking de Vendedores (BASE DE DADOS)...")
-            df = pd.read_excel(EXCEL_PATH, sheet_name="BASE DE DADOS")
-            df['Data de Emissão'] = pd.to_datetime(df['Data de Emissão'], dayfirst=True)
+        # 2. Processar COMERCIAL para Ranking de Vendedores (Matriz Oficial)
+        if "COMERCIAL" in xl.sheet_names:
+            log("Processando Ranking de Vendedores (COMERCIAL)...")
+            df_com = pd.read_excel(EXCEL_PATH, sheet_name="COMERCIAL", header=None)
             
-            # Ranking por Vendedor (Agrupado por Ano e Mês)
-            df['ano_tmp'] = df['Data de Emissão'].dt.year
-            df['mes_tmp'] = df['Data de Emissão'].dt.month
-            seller_group = df.groupby(['ano_tmp', 'mes_tmp', 'Vendedor'])['Valor Total'].sum().reset_index()
-            seller_group.columns = ['ano', 'mes', 'vendedor', 'total']
-            
-            for _, row in seller_group.iterrows():
-                seller_name = str(row['vendedor']).strip()
-                img_path = f"/vendedores/{seller_name}.jpg"
+            # Mapeamento fixo conforme solicitado pelo Douglas
+            COLUMN_MAP = {
+                1:  'Assistência Técnica',
+                2:  'Gabriel Dias',
+                3:  'Gabriel Ferreira dos Santos',
+                4:  'Gabriel Klein',
+                5:  'Gabriel Medeiros',
+                6:  'Josiane Govoni Lanzarini',
+                7:  'Juliano Chagas',
+                8:  'Leonardo Schons de Oliveira',
+                9:  'Mercado Livre',
+                10: 'Sem Vendedor', # Coluna K
+                11: 'Nilson Borges',
+                12: 'Rogislei Vieira Padilha',
+                13: 'Site',
+                14: 'Vanessa Ferreira',
+                15: 'Sem Vendedor'  # Coluna P
+            }
+
+            result["bySeller"] = []
+            result["bySellerTotals"] = []
+
+            for r in range(1, len(df_com)):
+                date_val = df_com.iloc[r, 0]
+                if pd.isna(date_val): continue
                 
-                result["bySeller"].append({
-                    "ano": int(row['ano']),
-                    "mes": int(row['mes']),
-                    "name": seller_name,
-                    "val": float(row['total']),
-                    "img": img_path if os.path.exists(os.path.join(os.path.dirname(__file__), "public", "vendedores", f"{seller_name}.jpg")) else seller_name[:2].upper()
-                })
+                try:
+                    if isinstance(date_val, datetime):
+                        dt = date_val
+                    else:
+                        dt = pd.to_datetime(date_val)
+                except: continue
+
+                # Coluna R (índice 17) - Total Oficial
+                real_val = float(df_com.iloc[r, 17]) if pd.notna(df_com.iloc[r, 17]) else 0
+                if real_val > 0:
+                    result["bySellerTotals"].append({
+                        "ano": dt.year, "mes": dt.month, "total": real_val
+                    })
+
+                # Agregação por vendedor no mês
+                month_sellers = {}
+                for col_idx, name in COLUMN_MAP.items():
+                    val = float(df_com.iloc[r, col_idx]) if pd.notna(df_com.iloc[r, col_idx]) else 0
+                    if val != 0:
+                        month_sellers[name] = month_sellers.get(name, 0) + val
+
+                for name, val in month_sellers.items():
+                    result["bySeller"].append({
+                        "ano": dt.year,
+                        "mes": dt.month,
+                        "vendedor": name,
+                        "valor": val
+                    })
         # 3. Processar METAS
         if "METAS" in xl.sheet_names:
             log("Processando METAS...")

@@ -8,7 +8,7 @@
       "servicos": 232334.06999999998,
       "locacao": 42905.95,
       "devolucoes": 8070.0,
-      "total": 1705667.4699999997
+      "total": 1697597.4699999997
     },
     {
       "mes": 2,
@@ -18,7 +18,7 @@
       "servicos": 318429.48,
       "locacao": 77374.07,
       "devolucoes": 24267.87,
-      "total": 2236918.14
+      "total": 2212650.27
     },
     {
       "mes": 3,
@@ -28,7 +28,7 @@
       "servicos": 323351.35,
       "locacao": 73760.01,
       "devolucoes": 16569.7,
-      "total": 1520712.6099999996
+      "total": 1504142.9099999997
     },
     {
       "mes": 4,
@@ -38,7 +38,7 @@
       "servicos": 322754.7,
       "locacao": 70650.91,
       "devolucoes": 20990.0,
-      "total": 2503191.9800000004
+      "total": 2482201.9800000004
     },
     {
       "mes": 5,
@@ -48,7 +48,7 @@
       "servicos": 312184.02999999997,
       "locacao": 62401.94,
       "devolucoes": 46980.0,
-      "total": 1850377.2600000002
+      "total": 1803397.2600000002
     },
     {
       "mes": 6,
@@ -58,7 +58,7 @@
       "servicos": 389631.41000000003,
       "locacao": 80640.6,
       "devolucoes": 75313.0,
-      "total": 1706908.4300000002
+      "total": 1631595.4300000002
     },
     {
       "mes": 7,
@@ -68,7 +68,7 @@
       "servicos": 369683.63,
       "locacao": 46266.5,
       "devolucoes": 42688.0,
-      "total": 2733568.1799999997
+      "total": 2690880.1799999997
     },
     {
       "mes": 8,
@@ -78,7 +78,7 @@
       "servicos": 285729.53,
       "locacao": 78853.0,
       "devolucoes": 58097.3,
-      "total": 2912304.95
+      "total": 2854207.6500000004
     },
     {
       "mes": 9,
@@ -88,7 +88,7 @@
       "servicos": 400419.35000000003,
       "locacao": 70785.05,
       "devolucoes": 91596.0,
-      "total": 2557823.68
+      "total": 2466227.68
     },
     {
       "mes": 10,
@@ -98,7 +98,7 @@
       "servicos": 504518.83999999997,
       "locacao": 85835.0,
       "devolucoes": 23025.0,
-      "total": 3339109.0399999996
+      "total": 3316084.0399999996
     },
     {
       "mes": 11,
@@ -108,7 +108,7 @@
       "servicos": 239267.41999999998,
       "locacao": 56091.0,
       "devolucoes": 27657.0,
-      "total": 2492483.33
+      "total": 2464826.33
     },
     {
       "mes": 12,
@@ -118,7 +118,7 @@
       "servicos": 241263.66,
       "locacao": 52478.15,
       "devolucoes": 56969.67,
-      "total": 1520133.6199999999
+      "total": 1463163.95
     },
     {
       "mes": 1,
@@ -128,7 +128,7 @@
       "servicos": 348752.23,
       "locacao": 86110.1,
       "devolucoes": 12902.0,
-      "total": 1607823.9500000002
+      "total": 1594921.9500000002
     },
     {
       "mes": 2,
@@ -138,7 +138,7 @@
       "servicos": 326730.59,
       "locacao": 72860.0,
       "devolucoes": 65878.0,
-      "total": 1829347.5
+      "total": 1763469.5
     },
     {
       "mes": 3,
@@ -148,7 +148,7 @@
       "servicos": 399804.56000000006,
       "locacao": 86873.25,
       "devolucoes": 60157.6,
-      "total": 2530727.91
+      "total": 2530727.9099999997
     },
     {
       "mes": 4,
@@ -2599,1038 +2599,902 @@
     {
       "ano": 2025,
       "mes": 1,
-      "name": "-Nenhum vendedor-",
-      "val": 0.0,
-      "img": "-N"
+      "vendedor": "Gabriel Dias",
+      "valor": 301403.25
     },
     {
       "ano": 2025,
       "mes": 1,
-      "name": "Assistência Técnica",
-      "val": 515.0,
-      "img": "AS"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 476043.8899999999
     },
     {
       "ano": 2025,
       "mes": 1,
-      "name": "Gabriel Dias",
-      "val": 301502.25,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 232334.07
     },
     {
       "ano": 2025,
       "mes": 1,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 492183.89,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Juliano Chagas",
+      "valor": 40372.65
     },
     {
       "ano": 2025,
       "mes": 1,
-      "name": "Gabriel Klein",
-      "val": 232474.07,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Leonardo Schons de Oliveira",
+      "valor": 134218.87
     },
     {
       "ano": 2025,
       "mes": 1,
-      "name": "Juliano Chagas",
-      "val": 40372.65,
-      "img": "JU"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 402566.4499999996
     },
     {
       "ano": 2025,
       "mes": 1,
-      "name": "Leonardo Schons de Oliveira",
-      "val": 134218.87,
-      "img": "LE"
+      "vendedor": "Site",
+      "valor": 49829.0
     },
     {
       "ano": 2025,
       "mes": 1,
-      "name": "Rogislei Vieira Padilha",
-      "val": 404186.45,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 42905.95
     },
     {
       "ano": 2025,
       "mes": 1,
-      "name": "Site",
-      "val": 49829.0,
-      "img": "SI"
-    },
-    {
-      "ano": 2025,
-      "mes": 1,
-      "name": "Vanessa Ferreira",
-      "val": 42905.95,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Sem Vendedor",
+      "valor": 17923.340000000004
     },
     {
       "ano": 2025,
       "mes": 2,
-      "name": "-Nenhum vendedor-",
-      "val": 8319.94,
-      "img": "-N"
+      "vendedor": "Assistência Técnica",
+      "valor": 5.329070518200751e-15
     },
     {
       "ano": 2025,
       "mes": 2,
-      "name": "Assistência Técnica",
-      "val": 60.7,
-      "img": "AS"
+      "vendedor": "Gabriel Dias",
+      "valor": 260252.0
     },
     {
       "ano": 2025,
       "mes": 2,
-      "name": "Gabriel Dias",
-      "val": 261186.0,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 555820.26
     },
     {
       "ano": 2025,
       "mes": 2,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 563980.26,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 318429.48000000004
     },
     {
       "ano": 2025,
       "mes": 2,
-      "name": "Gabriel Klein",
-      "val": 318429.48,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Leonardo Schons de Oliveira",
+      "valor": 437791.73
     },
     {
       "ano": 2025,
       "mes": 2,
-      "name": "Leonardo Schons de Oliveira",
-      "val": 482919.47,
-      "img": "LE"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 538035.7499999995
     },
     {
       "ano": 2025,
       "mes": 2,
-      "name": "Rogislei Vieira Padilha",
-      "val": 539778.75,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Site",
+      "valor": 9710.0
     },
     {
       "ano": 2025,
       "mes": 2,
-      "name": "Site",
-      "val": 10338.0,
-      "img": "SI"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 83199.07
     },
     {
       "ano": 2025,
       "mes": 2,
-      "name": "Vanessa Ferreira",
-      "val": 83199.07,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Sem Vendedor",
+      "valor": 9411.979999999998
     },
     {
       "ano": 2025,
       "mes": 3,
-      "name": "-Nenhum vendedor-",
-      "val": 193.8,
-      "img": "-N"
+      "vendedor": "Gabriel Dias",
+      "valor": 306799.9
     },
     {
       "ano": 2025,
       "mes": 3,
-      "name": "Assistência Técnica",
-      "val": 134.5,
-      "img": "AS"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 130586.14999999998
     },
     {
       "ano": 2025,
       "mes": 3,
-      "name": "Gabriel Dias",
-      "val": 307598.9,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 322706.54999999993
     },
     {
       "ano": 2025,
       "mes": 3,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 130586.15,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Leonardo Schons de Oliveira",
+      "valor": 311404.0
     },
     {
       "ano": 2025,
       "mes": 3,
-      "name": "Gabriel Klein",
-      "val": 323608.55,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Sem Vendedor",
+      "valor": 3674.52
     },
     {
       "ano": 2025,
       "mes": 3,
-      "name": "Leonardo Schons de Oliveira",
-      "val": 311404.0,
-      "img": "LE"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 325836.48
     },
     {
       "ano": 2025,
       "mes": 3,
-      "name": "Rogislei Vieira Padilha",
-      "val": 357105.48,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Site",
+      "valor": 26394.0
     },
     {
       "ano": 2025,
       "mes": 3,
-      "name": "Site",
-      "val": 26394.0,
-      "img": "SI"
-    },
-    {
-      "ano": 2025,
-      "mes": 3,
-      "name": "Vanessa Ferreira",
-      "val": 77778.71,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 76741.30999999998
     },
     {
       "ano": 2025,
       "mes": 4,
-      "name": "-Nenhum vendedor-",
-      "val": 0.0,
-      "img": "-N"
+      "vendedor": "Assistência Técnica",
+      "valor": 9500.7
     },
     {
       "ano": 2025,
       "mes": 4,
-      "name": "Assistência Técnica",
-      "val": 9844.7,
-      "img": "AS"
+      "vendedor": "Gabriel Dias",
+      "valor": 412161.0
     },
     {
       "ano": 2025,
       "mes": 4,
-      "name": "Gabriel Dias",
-      "val": 413118.0,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 690514.5799999998
     },
     {
       "ano": 2025,
       "mes": 4,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 690514.58,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 313253.9999999999
     },
     {
       "ano": 2025,
       "mes": 4,
-      "name": "Gabriel Klein",
-      "val": 313265.0,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Juliano Chagas",
+      "valor": 19899.91
     },
     {
       "ano": 2025,
       "mes": 4,
-      "name": "Juliano Chagas",
-      "val": 19899.91,
-      "img": "JU"
+      "vendedor": "Leonardo Schons de Oliveira",
+      "valor": 304113.0
     },
     {
       "ano": 2025,
       "mes": 4,
-      "name": "Leonardo Schons de Oliveira",
-      "val": 304113.0,
-      "img": "LE"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 592838.0300000001
     },
     {
       "ano": 2025,
       "mes": 4,
-      "name": "Rogislei Vieira Padilha",
-      "val": 617037.03,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Site",
+      "valor": 30084.0
     },
     {
       "ano": 2025,
       "mes": 4,
-      "name": "Ruslan Santos",
-      "val": 8000.0,
-      "img": "RU"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 79144.90999999999
     },
     {
       "ano": 2025,
       "mes": 4,
-      "name": "Site",
-      "val": 40064.0,
-      "img": "SI"
-    },
-    {
-      "ano": 2025,
-      "mes": 4,
-      "name": "Vanessa Ferreira",
-      "val": 83044.91,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Sem Vendedor",
+      "valor": 30691.850000000006
     },
     {
       "ano": 2025,
       "mes": 5,
-      "name": "-Nenhum vendedor-",
-      "val": 216.0,
-      "img": "-N"
+      "vendedor": "Assistência Técnica",
+      "valor": 699.0
     },
     {
       "ano": 2025,
       "mes": 5,
-      "name": "Assistência Técnica",
-      "val": 734.0,
-      "img": "AS"
+      "vendedor": "Gabriel Dias",
+      "valor": 257339.0
     },
     {
       "ano": 2025,
       "mes": 5,
-      "name": "Gabriel Dias",
-      "val": 257400.0,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 289985.97
     },
     {
       "ano": 2025,
       "mes": 5,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 289985.97,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 311485.02999999997
     },
     {
       "ano": 2025,
       "mes": 5,
-      "name": "Gabriel Klein",
-      "val": 311511.93,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Leonardo Schons de Oliveira",
+      "valor": 462146.7
     },
     {
       "ano": 2025,
       "mes": 5,
-      "name": "Leonardo Schons de Oliveira",
-      "val": 496146.7,
-      "img": "LE"
+      "vendedor": "Sem Vendedor",
+      "valor": 10063.939999999995
     },
     {
       "ano": 2025,
       "mes": 5,
-      "name": "Rogislei Vieira Padilha",
-      "val": 421809.48,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 363553.48000000016
     },
     {
       "ano": 2025,
       "mes": 5,
-      "name": "Site",
-      "val": 37768.2,
-      "img": "SI"
+      "vendedor": "Site",
+      "valor": 35788.2
     },
     {
       "ano": 2025,
       "mes": 5,
-      "name": "Vanessa Ferreira",
-      "val": 72335.94,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 72335.94
     },
     {
       "ano": 2025,
       "mes": 6,
-      "name": "-Nenhum vendedor-",
-      "val": 1029.0,
-      "img": "-N"
+      "vendedor": "Assistência Técnica",
+      "valor": 573.0
     },
     {
       "ano": 2025,
       "mes": 6,
-      "name": "Assistência Técnica",
-      "val": 573.0,
-      "img": "AS"
+      "vendedor": "Gabriel Dias",
+      "valor": 284433.66000000003
     },
     {
       "ano": 2025,
       "mes": 6,
-      "name": "Gabriel Dias",
-      "val": 284502.66,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 136319.34999999998
     },
     {
       "ano": 2025,
       "mes": 6,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 182119.35,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 389058.4099999999
     },
     {
       "ano": 2025,
       "mes": 6,
-      "name": "Gabriel Klein",
-      "val": 389068.41,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Leonardo Schons de Oliveira",
+      "valor": 329405.5
     },
     {
       "ano": 2025,
       "mes": 6,
-      "name": "Leonardo Schons de Oliveira",
-      "val": 381365.5,
-      "img": "LE"
+      "vendedor": "Mercado Livre",
+      "valor": 32073.2
     },
     {
       "ano": 2025,
       "mes": 6,
-      "name": "Mercado Livre",
-      "val": 32073.2,
-      "img": "ME"
+      "vendedor": "Sem Vendedor",
+      "valor": 4850.860000000001
     },
     {
       "ano": 2025,
       "mes": 6,
-      "name": "Rogislei Vieira Padilha",
-      "val": 410970.85,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 357906.85
     },
     {
       "ano": 2025,
       "mes": 6,
-      "name": "Site",
-      "val": 14263.0,
-      "img": "SI"
+      "vendedor": "Site",
+      "valor": 14263.0
     },
     {
       "ano": 2025,
       "mes": 6,
-      "name": "Vanessa Ferreira",
-      "val": 82711.6,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 82711.6
     },
     {
       "ano": 2025,
       "mes": 7,
-      "name": "Assistência Técnica",
-      "val": 6364.0,
-      "img": "AS"
+      "vendedor": "Assistência Técnica",
+      "valor": 6364.0
     },
     {
       "ano": 2025,
       "mes": 7,
-      "name": "Gabriel Dias",
-      "val": 565828.0,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Dias",
+      "valor": 501828.0
     },
     {
       "ano": 2025,
       "mes": 7,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 384925.63,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 374949.62999999995
     },
     {
       "ano": 2025,
       "mes": 7,
-      "name": "Gabriel Klein",
-      "val": 342361.18,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 342361.1799999999
     },
     {
       "ano": 2025,
       "mes": 7,
-      "name": "Leonardo Schons de Oliveira",
-      "val": 842033.0,
-      "img": "LE"
+      "vendedor": "Leonardo Schons de Oliveira",
+      "valor": 842033.0
     },
     {
       "ano": 2025,
       "mes": 7,
-      "name": "Mercado Livre",
-      "val": 34122.0,
-      "img": "ME"
+      "vendedor": "Mercado Livre",
+      "valor": 34122.0
     },
     {
       "ano": 2025,
       "mes": 7,
-      "name": "Nilson Borges",
-      "val": 20958.45,
-      "img": "NI"
+      "vendedor": "Nilson Borges",
+      "valor": 20958.449999999997
     },
     {
       "ano": 2025,
       "mes": 7,
-      "name": "Rogislei Vieira Padilha",
-      "val": 448650.08,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 437250.0799999997
     },
     {
       "ano": 2025,
       "mes": 7,
-      "name": "Site",
-      "val": 45494.0,
-      "img": "SI"
+      "vendedor": "Site",
+      "valor": 45494.0
     },
     {
       "ano": 2025,
       "mes": 7,
-      "name": "Vanessa Ferreira",
-      "val": 83025.5,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 83025.5
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "vendedor": "Sem Vendedor",
+      "valor": 2494.34
     },
     {
       "ano": 2025,
       "mes": 8,
-      "name": "Gabriel Dias",
-      "val": 615289.75,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Dias",
+      "valor": 593991.75
     },
     {
       "ano": 2025,
       "mes": 8,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 547242.28,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 547242.2799999999
     },
     {
       "ano": 2025,
       "mes": 8,
-      "name": "Gabriel Klein",
-      "val": 276508.53,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 276508.5299999999
     },
     {
       "ano": 2025,
       "mes": 8,
-      "name": "Josiane Govoni Lanzarini",
-      "val": 53444.0,
-      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+      "vendedor": "Josiane Govoni Lanzarini",
+      "valor": 53444.0
     },
     {
       "ano": 2025,
       "mes": 8,
-      "name": "Leonardo Schons de Oliveira",
-      "val": 589551.0,
-      "img": "LE"
+      "vendedor": "Leonardo Schons de Oliveira",
+      "valor": 557151.0
     },
     {
       "ano": 2025,
       "mes": 8,
-      "name": "Mercado Livre",
-      "val": 42065.55,
-      "img": "ME"
+      "vendedor": "Mercado Livre",
+      "valor": 41867.549999999996
     },
     {
       "ano": 2025,
       "mes": 8,
-      "name": "Nilson Borges",
-      "val": 17796.0,
-      "img": "NI"
+      "vendedor": "Nilson Borges",
+      "valor": 17796.0
     },
     {
       "ano": 2025,
       "mes": 8,
-      "name": "Rogislei Vieira Padilha",
-      "val": 743128.75,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 680830.1499999993
     },
     {
       "ano": 2025,
       "mes": 8,
-      "name": "Site",
-      "val": 13637.0,
-      "img": "SI"
+      "vendedor": "Site",
+      "valor": 13637.0
     },
     {
       "ano": 2025,
       "mes": 8,
-      "name": "Vanessa Ferreira",
-      "val": 61819.0,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 61819.0
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "vendedor": "Sem Vendedor",
+      "valor": 9920.389999999998
     },
     {
       "ano": 2025,
       "mes": 9,
-      "name": "Gabriel Dias",
-      "val": 271818.0,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Dias",
+      "valor": 206038.0
     },
     {
       "ano": 2025,
       "mes": 9,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 518952.59,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 518952.58999999985
     },
     {
       "ano": 2025,
       "mes": 9,
-      "name": "Gabriel Klein",
-      "val": 400419.35,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 400419.35000000003
     },
     {
       "ano": 2025,
       "mes": 9,
-      "name": "Josiane Govoni Lanzarini",
-      "val": 97340.0,
-      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+      "vendedor": "Josiane Govoni Lanzarini",
+      "valor": 69340.0
     },
     {
       "ano": 2025,
       "mes": 9,
-      "name": "Leonardo Schons de Oliveira",
-      "val": 408413.0,
-      "img": "LE"
+      "vendedor": "Leonardo Schons de Oliveira",
+      "valor": 379813.0
     },
     {
       "ano": 2025,
       "mes": 9,
-      "name": "Mercado Livre",
-      "val": 185277.94,
-      "img": "ME"
+      "vendedor": "Mercado Livre",
+      "valor": 184465.94
     },
     {
       "ano": 2025,
       "mes": 9,
-      "name": "Rogislei Vieira Padilha",
-      "val": 677126.36,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 617126.3599999999
     },
     {
       "ano": 2025,
       "mes": 9,
-      "name": "Site",
-      "val": 45659.0,
-      "img": "SI"
+      "vendedor": "Site",
+      "valor": 45659.0
     },
     {
       "ano": 2025,
       "mes": 9,
-      "name": "Vanessa Ferreira",
-      "val": 31070.05,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 31070.05
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "vendedor": "Sem Vendedor",
+      "valor": 13343.39
     },
     {
       "ano": 2025,
       "mes": 10,
-      "name": "-Nenhum vendedor-",
-      "val": 1500.0,
-      "img": "-N"
+      "vendedor": "Gabriel Dias",
+      "valor": 53497.0
     },
     {
       "ano": 2025,
       "mes": 10,
-      "name": "Gabriel Dias",
-      "val": 65297.0,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 506963.79
     },
     {
       "ano": 2025,
       "mes": 10,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 507663.79,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 504518.8400000001
     },
     {
       "ano": 2025,
       "mes": 10,
-      "name": "Gabriel Klein",
-      "val": 504518.84,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Josiane Govoni Lanzarini",
+      "valor": 65680.0
     },
     {
       "ano": 2025,
       "mes": 10,
-      "name": "Josiane Govoni Lanzarini",
-      "val": 71330.0,
-      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+      "vendedor": "Juliano Chagas",
+      "valor": 37648.09
     },
     {
       "ano": 2025,
       "mes": 10,
-      "name": "Juliano Chagas",
-      "val": 37648.09,
-      "img": "JU"
+      "vendedor": "Leonardo Schons de Oliveira",
+      "valor": 1487908.0
     },
     {
       "ano": 2025,
       "mes": 10,
-      "name": "Leonardo Schons de Oliveira",
-      "val": 1516508.0,
-      "img": "LE"
+      "vendedor": "Mercado Livre",
+      "valor": 69812.25999999998
     },
     {
       "ano": 2025,
       "mes": 10,
-      "name": "Mercado Livre",
-      "val": 69812.26,
-      "img": "ME"
+      "vendedor": "Sem Vendedor",
+      "valor": 16043.259999999998
     },
     {
       "ano": 2025,
       "mes": 10,
-      "name": "Rogislei Vieira Padilha",
-      "val": 520335.8,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 520335.8
     },
     {
       "ano": 2025,
       "mes": 10,
-      "name": "Site",
-      "val": 13230.0,
-      "img": "SI"
+      "vendedor": "Site",
+      "valor": 13230.0
     },
     {
       "ano": 2025,
       "mes": 10,
-      "name": "Vanessa Ferreira",
-      "val": 40447.0,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 40447.0
     },
     {
       "ano": 2025,
       "mes": 11,
-      "name": "-Nenhum vendedor-",
-      "val": 11036.0,
-      "img": "-N"
+      "vendedor": "Assistência Técnica",
+      "valor": 1651.0
     },
     {
       "ano": 2025,
       "mes": 11,
-      "name": "Assistência Técnica",
-      "val": 1683.0,
-      "img": "AS"
+      "vendedor": "Gabriel Dias",
+      "valor": 274479.0
     },
     {
       "ano": 2025,
       "mes": 11,
-      "name": "Gabriel Dias",
-      "val": 306522.0,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 731692.7499999991
     },
     {
       "ano": 2025,
       "mes": 11,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 731692.75,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 251526.67999999973
     },
     {
       "ano": 2025,
       "mes": 11,
-      "name": "Gabriel Klein",
-      "val": 251526.68,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Josiane Govoni Lanzarini",
+      "valor": 68509.0
     },
     {
       "ano": 2025,
       "mes": 11,
-      "name": "Josiane Govoni Lanzarini",
-      "val": 68509.0,
-      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+      "vendedor": "Leonardo Schons de Oliveira",
+      "valor": 400673.5
     },
     {
       "ano": 2025,
       "mes": 11,
-      "name": "Leonardo Schons de Oliveira",
-      "val": 421973.5,
-      "img": "LE"
+      "vendedor": "Mercado Livre",
+      "valor": 146601.72999999998
     },
     {
       "ano": 2025,
       "mes": 11,
-      "name": "Mercado Livre",
-      "val": 148781.73,
-      "img": "ME"
+      "vendedor": "Sem Vendedor",
+      "valor": 14022.240000000002
     },
     {
       "ano": 2025,
       "mes": 11,
-      "name": "Rogislei Vieira Padilha",
-      "val": 563562.43,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 563129.43
     },
     {
       "ano": 2025,
       "mes": 11,
-      "name": "Site",
-      "val": 245.0,
-      "img": "SI"
+      "vendedor": "Site",
+      "valor": 245.0
     },
     {
       "ano": 2025,
       "mes": 11,
-      "name": "Vanessa Ferreira",
-      "val": 12296.0,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 12296.0
     },
     {
       "ano": 2025,
       "mes": 12,
-      "name": "-Nenhum vendedor-",
-      "val": 1789.0,
-      "img": "-N"
+      "vendedor": "Assistência Técnica",
+      "valor": 2539.25
     },
     {
       "ano": 2025,
       "mes": 12,
-      "name": "Assistência Técnica",
-      "val": 2551.25,
-      "img": "AS"
+      "vendedor": "Gabriel Dias",
+      "valor": 171983.33
     },
     {
       "ano": 2025,
       "mes": 12,
-      "name": "Gabriel Dias",
-      "val": 175064.0,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 380555.36
     },
     {
       "ano": 2025,
       "mes": 12,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 414355.36,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 311438.2000000001
     },
     {
       "ano": 2025,
       "mes": 12,
-      "name": "Gabriel Klein",
-      "val": 311659.0,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Gabriel Medeiros",
+      "valor": 199795.60999999996
     },
     {
       "ano": 2025,
       "mes": 12,
-      "name": "Gabriel Medeiros",
-      "val": 199795.61,
-      "img": "/vendedores/Gabriel Medeiros.jpg"
+      "vendedor": "Josiane Govoni Lanzarini",
+      "valor": 42050.5
     },
     {
       "ano": 2025,
       "mes": 12,
-      "name": "Josiane Govoni Lanzarini",
-      "val": 42050.5,
-      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+      "vendedor": "Leonardo Schons de Oliveira",
+      "valor": -32590.0
     },
     {
       "ano": 2025,
       "mes": 12,
-      "name": "Leonardo Schons de Oliveira",
-      "val": 32590.0,
-      "img": "LE"
+      "vendedor": "Mercado Livre",
+      "valor": 32003.09999999999
     },
     {
       "ano": 2025,
       "mes": 12,
-      "name": "Mercado Livre",
-      "val": 32003.1,
-      "img": "ME"
+      "vendedor": "Sem Vendedor",
+      "valor": 7249.500000000001
     },
     {
       "ano": 2025,
       "mes": 12,
-      "name": "Rogislei Vieira Padilha",
-      "val": 343528.45,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 331728.4499999999
     },
     {
       "ano": 2025,
       "mes": 12,
-      "name": "Site",
-      "val": 483.0,
-      "img": "SI"
+      "vendedor": "Site",
+      "valor": 483.0
     },
     {
       "ano": 2025,
       "mes": 12,
-      "name": "Vanessa Ferreira",
-      "val": 15927.65,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 15927.65
     },
     {
       "ano": 2026,
       "mes": 1,
-      "name": "Gabriel Dias",
-      "val": 2097.0,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Dias",
+      "valor": 900.0
     },
     {
       "ano": 2026,
       "mes": 1,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 400887.18,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 375083.17999999993
     },
     {
       "ano": 2026,
       "mes": 1,
-      "name": "Gabriel Klein",
-      "val": 272667.15,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 272569.15
     },
     {
       "ano": 2026,
       "mes": 1,
-      "name": "Gabriel Medeiros",
-      "val": 348954.23,
-      "img": "/vendedores/Gabriel Medeiros.jpg"
+      "vendedor": "Gabriel Medeiros",
+      "valor": 348752.23000000004
     },
     {
       "ano": 2026,
       "mes": 1,
-      "name": "Josiane Govoni Lanzarini",
-      "val": 72626.1,
-      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+      "vendedor": "Josiane Govoni Lanzarini",
+      "valor": 72626.1
     },
     {
       "ano": 2026,
       "mes": 1,
-      "name": "Mercado Livre",
-      "val": 44313.2,
-      "img": "ME"
+      "vendedor": "Mercado Livre",
+      "valor": 44313.2
     },
     {
       "ano": 2026,
       "mes": 1,
-      "name": "Rogislei Vieira Padilha",
-      "val": 441052.02,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 438800.01999999996
     },
     {
       "ano": 2026,
       "mes": 1,
-      "name": "Site",
-      "val": 20511.0,
-      "img": "SI"
+      "vendedor": "Site",
+      "valor": 20510.999999999996
     },
     {
       "ano": 2026,
       "mes": 1,
-      "name": "Vanessa Ferreira",
-      "val": 14184.0,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 14184.0
+    },
+    {
+      "ano": 2026,
+      "mes": 1,
+      "vendedor": "Sem Vendedor",
+      "valor": 7183.07
     },
     {
       "ano": 2026,
       "mes": 2,
-      "name": "-Nenhum vendedor-",
-      "val": 32300.0,
-      "img": "-N"
+      "vendedor": "Gabriel Dias",
+      "valor": 15140.0
     },
     {
       "ano": 2026,
       "mes": 2,
-      "name": "Gabriel Dias",
-      "val": 15278.0,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 358533.22000000003
     },
     {
       "ano": 2026,
       "mes": 2,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 358533.22000000003,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 384324.0
     },
     {
       "ano": 2026,
       "mes": 2,
-      "name": "Gabriel Klein",
-      "val": 511842.0,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Gabriel Medeiros",
+      "valor": 326730.58999999944
     },
     {
       "ano": 2026,
       "mes": 2,
-      "name": "Gabriel Medeiros",
-      "val": 327150.59,
-      "img": "/vendedores/Gabriel Medeiros.jpg"
+      "vendedor": "Josiane Govoni Lanzarini",
+      "valor": 76581.0
     },
     {
       "ano": 2026,
       "mes": 2,
-      "name": "Josiane Govoni Lanzarini",
-      "val": 76581.0,
-      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+      "vendedor": "Mercado Livre",
+      "valor": 144458.65999999997
     },
     {
       "ano": 2026,
       "mes": 2,
-      "name": "Mercado Livre",
-      "val": 144596.66,
-      "img": "ME"
+      "vendedor": "Sem Vendedor",
+      "valor": 36038.05
     },
     {
       "ano": 2026,
       "mes": 2,
-      "name": "Rogislei Vieira Padilha",
-      "val": 424480.98,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 418871.98000000016
     },
     {
       "ano": 2026,
       "mes": 2,
-      "name": "Vanessa Ferreira",
-      "val": 2792.0,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 2792.0
     },
     {
       "ano": 2026,
       "mes": 3,
-      "name": "Assistência Técnica",
-      "val": 1439.0,
-      "img": "AS"
+      "vendedor": "Assistência Técnica",
+      "valor": 1439.0
     },
     {
       "ano": 2026,
       "mes": 3,
-      "name": "Gabriel Dias",
-      "val": 21005.0,
-      "img": "/vendedores/Gabriel Dias.jpg"
+      "vendedor": "Gabriel Dias",
+      "valor": 13818.0
     },
     {
       "ano": 2026,
       "mes": 3,
-      "name": "Gabriel Ferreira dos Santos",
-      "val": 546468.8099999999,
-      "img": "/vendedores/Gabriel Ferreira dos Santos.jpg"
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 461984.8099999993
     },
     {
       "ano": 2026,
       "mes": 3,
-      "name": "Gabriel Klein",
-      "val": 543056.7,
-      "img": "/vendedores/Gabriel Klein.jpg"
+      "vendedor": "Gabriel Klein",
+      "valor": 532030.7
     },
     {
       "ano": 2026,
       "mes": 3,
-      "name": "Gabriel Medeiros",
-      "val": 398365.56,
-      "img": "/vendedores/Gabriel Medeiros.jpg"
+      "vendedor": "Gabriel Medeiros",
+      "valor": 398365.559999999
     },
     {
       "ano": 2026,
       "mes": 3,
-      "name": "Josiane Govoni Lanzarini",
-      "val": 82912.75,
-      "img": "/vendedores/Josiane Govoni Lanzarini.jpg"
+      "vendedor": "Josiane Govoni Lanzarini",
+      "valor": 82912.74999999999
     },
     {
       "ano": 2026,
       "mes": 3,
-      "name": "Mercado Livre",
-      "val": 167642.66,
-      "img": "ME"
+      "vendedor": "Mercado Livre",
+      "valor": 155231.45999999985
     },
     {
       "ano": 2026,
       "mes": 3,
-      "name": "Rogislei Vieira Padilha",
-      "val": 885406.36,
-      "img": "/vendedores/Rogislei Vieira Padilha.jpg"
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 872689.3600000006
     },
     {
       "ano": 2026,
       "mes": 3,
-      "name": "Vanessa Ferreira",
-      "val": 4660.5,
-      "img": "/vendedores/Vanessa Ferreira.jpg"
+      "vendedor": "Vanessa Ferreira",
+      "valor": 4660.5
+    },
+    {
+      "ano": 2026,
+      "mes": 3,
+      "vendedor": "Sem Vendedor",
+      "valor": 7595.7699999999995
     }
   ],
   "meta": {
@@ -3783,5 +3647,82 @@
       }
     ]
   },
-  "raw": []
+  "raw": [],
+  "bySellerTotals": [
+    {
+      "ano": 2025,
+      "mes": 1,
+      "total": 1697597.4699999997
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "total": 2212650.27
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "total": 1504142.9099999997
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "total": 2482201.9800000004
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "total": 1803397.2600000002
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "total": 1631595.4300000002
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "total": 2690880.1799999997
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "total": 2854207.6500000004
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "total": 2466227.68
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "total": 3316084.0399999996
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "total": 2464826.33
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "total": 1463163.95
+    },
+    {
+      "ano": 2026,
+      "mes": 1,
+      "total": 1594921.9500000002
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "total": 1763469.5
+    },
+    {
+      "ano": 2026,
+      "mes": 3,
+      "total": 2530727.9099999997
+    }
+  ]
 }
