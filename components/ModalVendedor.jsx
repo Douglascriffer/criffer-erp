@@ -1,4 +1,5 @@
 'use client'
+// Force redeploy for lateral layout
 import { X } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts'
 
