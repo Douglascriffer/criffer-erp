@@ -128,7 +128,7 @@ export default function GraficoVendedores({ sellers = [], darkMode = false, filt
               borderRadius: '50%', 
               overflow: 'hidden', 
               border: `2px solid ${isHovered ? '#FF6A22' : (darkMode ? '#333' : '#eee')}`,
-              background: darkMode ? '#1a1a24' : '#f8f8f8',
+              background: !EQUIPE_VENDAS.includes(s.name) ? '#000000' : (darkMode ? '#1a1a24' : '#f8f8f8'),
               flexShrink: 0,
               display: 'flex',
               alignItems: 'center',
