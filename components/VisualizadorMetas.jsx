@@ -37,7 +37,7 @@ function ThSmall({ children, align = 'left' }) {
 
 function TdSmall({ children, align = 'left', style }) {
   return (
-    <td style={{ padding: '8px 20px', fontSize: 14.5, color: 'inherit', textAlign: align, ...style }}>{children}</td>
+    <td style={{ padding: '8px 20px', fontSize: 15, color: 'inherit', textAlign: align, ...style }}>{children}</td>
   )
 }
 
@@ -209,7 +209,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
                           <span style={{ 
                             color: pct >= 100 ? '#22c55e' : (pct >= 80 ? '#f59e0b' : '#ef4444'),
                             fontWeight: 400,
-                            fontSize: 15
+                            fontSize: 16
                           }}>
                             {pct.toFixed(0)}%
                           </span>
