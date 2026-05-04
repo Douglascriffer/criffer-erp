@@ -1,7 +1,7 @@
 'use client'
 // Force redeploy for lateral layout
 import { X } from 'lucide-react'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts'
 
 const MES_MAP = {
   1: 'JAN', 2: 'FEV', 3: 'MAR', 4: 'ABR', 5: 'MAI', 6: 'JUN',
@@ -191,10 +191,10 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
             </div>
           </div>
         </div>
-        </div>
       </div>
+    </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes modalShow {
           from { opacity: 0; transform: scale(0.95) translateY(10px); }
           to { opacity: 1; transform: scale(1) translateY(0); }
@@ -203,7 +203,7 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
           from { transform: translate(-50%, -50%) rotate(0deg); }
           to { transform: translate(-50%, -50%) rotate(360deg); }
         }
-      `}</style>
+      ` }} />
     </div>
   )
 }
