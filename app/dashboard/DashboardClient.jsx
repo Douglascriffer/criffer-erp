@@ -124,6 +124,7 @@ export default function DashboardClient() {
     ],
     orcamento: [
       { id:'dre',  label:'DRE Simplificado' },
+      { id:'cc',   label:'Centro de Custo' },
       { id:'metas_orc', label:'Metas' },
     ],
   }
@@ -542,8 +543,13 @@ export default function DashboardClient() {
           {/* ABA ORÇAMENTO */}
           {tab === 'orcamento' && (
             <div className="w-full">
-              {activeSub === 'dre' && (
-                <OrcamentoView mes={filters.mes} data={data} darkMode={theme === 'dark'} />
+              {(activeSub === 'dre' || activeSub === 'cc') && (
+                <OrcamentoView 
+                  mes={filters.mes} 
+                  data={data} 
+                  darkMode={theme === 'dark'} 
+                  viewType={activeSub}
+                />
               )}
               {activeSub === 'metas_orc' && (
                 <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 40, textAlign: 'center' }}>
