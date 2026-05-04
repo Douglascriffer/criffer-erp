@@ -118,40 +118,31 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
           display: 'flex',
           flexDirection: 'column'
         }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 32 }}>
-            <div style={{ textAlign: 'center', marginBottom: 16 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 16 }}>
+            <div style={{ textAlign: 'center' }}>
               <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, letterSpacing: -0.5 }}>EVOLUÇÃO ANUAL DE METAS</h3>
               <p style={{ fontSize: 12, color: t.textSub }}>Objetivos vs Resultados</p>
-            </div>
-            <div style={{ display: 'flex', gap: 16 }}>
-               <LegendItem label="Realizado" color={t.accent} />
-               <LegendItem label="Meta" color={darkMode ? '#fff' : '#000'} isLine />
             </div>
           </div>
 
           <div style={{ flex: 1, width: '100%' }}>
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart data={metasAnuais}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} />
+                <CartesianGrid vertical={false} horizontal={false} />
                 <XAxis 
                   dataKey="labelPT" 
                   axisLine={false} 
                   tickLine={false} 
                   tick={{ fill: t.textSub, fontSize: 11, fontWeight: 700 }}
                 />
-                <YAxis 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fill: t.textSub, fontSize: 10, fontWeight: 600 }}
-                  tickFormatter={(v) => `R$${(v/1000).toFixed(0)}k`}
-                />
+                <YAxis hide={true} />
                 <Tooltip content={<CustomTooltip darkMode={darkMode} />} cursor={{ fill: 'rgba(255,106,34,0.05)' }} />
                 
                 <Bar 
                   dataKey="realizado" 
                   fill={t.accent} 
                   radius={[4, 4, 0, 0]} 
-                  barSize={24}
+                  barSize={45}
                 />
                 <Line 
                   type="monotone" 
@@ -162,6 +153,12 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
                 />
               </ComposedChart>
             </ResponsiveContainer>
+          </div>
+
+          {/* Legenda na parte inferior */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 16 }}>
+             <LegendItem label="Realizado" color={t.accent} />
+             <LegendItem label="Meta" color={darkMode ? '#fff' : '#000'} isLine />
           </div>
         </div>
 
