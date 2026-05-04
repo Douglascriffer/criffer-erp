@@ -99,7 +99,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
         <KpiCard 
           label="GAP PARA O OBJETIVO" 
           value={fmtBRL(stats.gap)} 
-          sub="Restante para fechar o ano"
+          sub="Falta para Meta Anual"
           icon={Compass} 
           color="#ef4444" 
           darkMode={darkMode}
