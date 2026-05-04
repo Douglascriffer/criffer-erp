@@ -31,13 +31,13 @@ const translateMonth = (label) => {
 
 function ThSmall({ children, align = 'left' }) {
   return (
-    <th style={{ padding: '12px 20px', fontSize: 10, fontWeight: 900, color: '#888', letterSpacing: 1, textAlign: align }}>{children}</th>
+    <th style={{ padding: '8px 20px', fontSize: 10, fontWeight: 900, color: '#888', letterSpacing: 1, textAlign: align }}>{children}</th>
   )
 }
 
 function TdSmall({ children, align = 'left', style }) {
   return (
-    <td style={{ padding: '12px 20px', fontSize: 13, color: 'inherit', textAlign: align, ...style }}>{children}</td>
+    <td style={{ padding: '8px 20px', fontSize: 11, color: 'inherit', textAlign: align, ...style }}>{children}</td>
   )
 }
 
