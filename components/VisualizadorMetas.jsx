@@ -279,6 +279,7 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, 
   // Identificação dos cards para ícones customizados
   const isDesempenho = label === "DESEMPENHO"
   const isRealizado = label === "REALIZADO ACUMULADO"
+  const isGap = label === "GAP PARA O OBJETIVO"
 
   return (
     <div style={{
@@ -331,12 +332,12 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, 
         <div style={{ marginRight: 24, opacity: 1 }}>
           {isDesempenho ? (
             <TargetIcon percent={percent} darkMode={darkMode} />
-          ) : isRealizado ? (
-            <GrowthIcon color="#FF6A22" darkMode={darkMode} />
+          ) : isGap ? (
+            <GrowthIcon color="#ef4444" darkMode={darkMode} />
           ) : (
             <Icon 
-              size={40} 
-              color={darkMode ? '#fff' : '#000'} 
+              size={isRealizado ? 48 : 40} 
+              color={isRealizado ? "#FF6A22" : (darkMode ? '#fff' : '#000')} 
             />
           )}
         </div>
