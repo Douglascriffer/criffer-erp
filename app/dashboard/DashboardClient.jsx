@@ -168,37 +168,33 @@ export default function DashboardClient() {
         background: t.card,
         border: `1.5px solid ${t.border}`,
         borderRadius: 12,
-        padding: '8px 4px',
+        padding: '12px 16px',
         display: 'flex',
-        flexDirection: 'column',
         alignItems: 'center',
-        textAlign: 'center',
-        gap: 4,
+        justifyContent: 'center',
+        position: 'relative',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
+        minHeight: 85
       }} className="hover-lift">
-        <Icon size={16} color={color} style={{ marginBottom: 4 }} />
-        <p style={{ fontSize: 10, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4, width: '100%' }}>{label}</p>
         
-        <p style={{ fontSize: 20, fontWeight: 400, color: t.text, lineHeight: 1, margin: '2px 0' }}>
-          {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
-        </p>
-        
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-          <div style={{ 
-            display: 'inline-flex', 
-            alignItems: 'center', 
-            gap: 2, 
-            fontSize: 10, 
-            fontWeight: 400, 
-            color: isUp ? '#22c55e' : '#ef4444',
-          }}>
-            {isUp ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
-            {Math.abs(pct).toFixed(1)}%
-          </div>
-          <p style={{ fontSize: 10, color: t.textMuted, fontWeight: 400 }}>
-            Ant.: <span style={{ fontWeight: 400 }}>{isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}</span>
+        {/* Conteúdo Centralizado */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1 }}>
+          <p style={{ fontSize: 10, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>{label}</p>
+          <p style={{ fontSize: 19, fontWeight: 400, color: t.text, lineHeight: 1, margin: '2px 0' }}>
+            {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
           </p>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 2, fontSize: 10, fontWeight: 400, color: isUp ? '#22c55e' : '#ef4444' }}>
+              {isUp ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
+              {Math.abs(pct).toFixed(1)}%
+            </div>
+          </div>
+        </div>
+
+        {/* Ícone à Direita Centralizado */}
+        <div style={{ marginLeft: 8, opacity: 0.8 }}>
+          <Icon size={18} color={color} />
         </div>
       </div>
     )
@@ -415,7 +411,7 @@ export default function DashboardClient() {
               {activeSub === 'vendas' && (
                 <>
                 {/* 1. Evolução de Receita - Full Width */}
-                <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6, height: 302, display: 'flex', flexDirection: 'column' }}>
+                <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6, height: 298, display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 12 }}>
                     <h3 style={{ fontSize: 16, fontWeight: 700, textAlign: 'center', color: t.text }}>Evolução de Receita (2026)</h3>
                   </div>
