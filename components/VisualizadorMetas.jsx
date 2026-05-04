@@ -4,7 +4,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
   ResponsiveContainer, Legend, LineChart, Line, ComposedChart, Area
 } from 'recharts'
-import { Target, TrendingUp, AlertCircle, CheckCircle2, ArrowRightCircle } from 'lucide-react'
+import { Target, TrendingUp, AlertCircle, CheckCircle2, ArrowRightCircle, Compass } from 'lucide-react'
 
 const fmtBRL = (v) => {
   if (v >= 1_000_000) return `R$ ${(v / 1_000_000).toFixed(2)}M`
@@ -94,12 +94,13 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
           icon={Target} 
           color="#22c55e" 
           darkMode={darkMode}
+          percent={stats.pctGeral}
         />
         <KpiCard 
           label="GAP PARA O OBJETIVO" 
           value={fmtBRL(stats.gap)} 
           sub="Restante para fechar o ano"
-          icon={AlertCircle} 
+          icon={Compass} 
           color="#ef4444" 
           darkMode={darkMode}
         />
@@ -228,7 +229,29 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
   )
 }
 
-function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder }) {
+// ── Componente: Ícone de Meta Dinâmico ──
+const TargetIcon = ({ percent, darkMode }) => {
+  const isHit = percent >= 100
+  const color = "#FF6A22"
+  return (
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke={darkMode ? '#fff' : '#000'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" />
+      <line 
+        x1={isHit ? "12" : "18"} 
+        y1={isHit ? "12" : "6"} 
+        x2={isHit ? "22" : "26"} 
+        y2={isHit ? "12" : "2"} 
+        stroke={color} 
+        strokeWidth="3" 
+      />
+      {isHit && <path d="M19 9l3 3-3 3" stroke={color} strokeWidth="3" />}
+    </svg>
+  )
+}
+
+function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, percent }) {
   const bg = darkMode ? '#1e1e2d' : '#ffffff'
   const border = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'
 
@@ -282,7 +305,14 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder }
       }}>
         {/* Ícone à Esquerda */}
         <div style={{ marginRight: 24, opacity: 1 }}>
-          <Icon size={40} color={darkMode ? '#fff' : '#000'} />
+          {label === "DESEMPENHO" ? (
+            <TargetIcon percent={percent} darkMode={darkMode} />
+          ) : (
+            <Icon 
+              size={label === "REALIZADO ACUMULADO" ? 48 : 40} 
+              color={label === "REALIZADO ACUMULADO" ? "#FF6A22" : (darkMode ? '#fff' : '#000')} 
+            />
+          )}
         </div>
 
         {/* Conteúdo Centralizado */}
