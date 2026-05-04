@@ -251,9 +251,34 @@ const TargetIcon = ({ percent, darkMode }) => {
   )
 }
 
+// ── Componente: Ícone de Crescimento (Baseado na imagem do usuário) ──
+const GrowthIcon = ({ color, darkMode }) => {
+  return (
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Barras em escada */}
+      <rect x="3" y="16" width="3" height="4" rx="1" fill={darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'} stroke="none" />
+      <rect x="8" y="12" width="3" height="8" rx="1" fill={darkMode ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'} stroke="none" />
+      <rect x="13" y="8" width="3" height="12" rx="1" fill={darkMode ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)'} stroke="none" />
+      <rect x="18" y="4" width="3" height="16" rx="1" fill={darkMode ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)'} stroke="none" />
+      {/* Seta de tendência */}
+      <path 
+        d="M3 18L9 12L13 16L21 6M21 6H16M21 6V11" 
+        stroke={color} 
+        strokeWidth="2.5" 
+        strokeLinecap="round" 
+        strokeLinejoin="round" 
+      />
+    </svg>
+  )
+}
+
 function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, percent }) {
   const bg = darkMode ? '#1e1e2d' : '#ffffff'
   const border = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'
+
+  // Identificação dos cards para ícones customizados
+  const isDesempenho = label === "DESEMPENHO"
+  const isRealizado = label === "REALIZADO ACUMULADO"
 
   return (
     <div style={{
@@ -264,8 +289,7 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, 
       position: 'relative',
       overflow: 'hidden',
       display: 'flex',
-      flexDirection: 'column',
-      gap: 8,
+      alignItems: 'center',
       boxShadow: '0 10px 30px rgba(0,0,0,0.05)'
     }}>
       {snakeBorder && (
@@ -305,12 +329,14 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, 
       }}>
         {/* Ícone à Esquerda */}
         <div style={{ marginRight: 24, opacity: 1 }}>
-          {label === "DESEMPENHO" ? (
+          {isDesempenho ? (
             <TargetIcon percent={percent} darkMode={darkMode} />
+          ) : isRealizado ? (
+            <GrowthIcon color="#FF6A22" darkMode={darkMode} />
           ) : (
             <Icon 
-              size={label === "REALIZADO ACUMULADO" ? 48 : 40} 
-              color={label === "REALIZADO ACUMULADO" ? "#FF6A22" : (darkMode ? '#fff' : '#000')} 
+              size={40} 
+              color={darkMode ? '#fff' : '#000'} 
             />
           )}
         </div>
