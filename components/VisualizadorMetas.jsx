@@ -292,15 +292,15 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder }
         width: '100%'
       }}>
         {/* Ícone à Esquerda */}
-        <div style={{ marginRight: 20, opacity: 0.9 }}>
-          <Icon size={32} color={color} />
+        <div style={{ marginRight: 24, opacity: 0.9 }}>
+          <Icon size={40} color={color} />
         </div>
 
         {/* Conteúdo Centralizado */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1 }}>
-          <p style={{ fontSize: 12, fontWeight: 900, color: darkMode ? '#888' : '#666', letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 6 }}>{label}</p>
-          <h2 style={{ fontSize: 34, fontWeight: 400, color: darkMode ? '#fff' : '#000', margin: '4px 0' }}>{value}</h2>
-          <p style={{ fontSize: 13, color: darkMode ? '#666' : '#999', fontWeight: 400 }}>{sub}</p>
+          <p style={{ fontSize: 14, fontWeight: 900, color: darkMode ? '#888' : '#666', letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 8 }}>{label}</p>
+          <h2 style={{ fontSize: 42, fontWeight: 400, color: darkMode ? '#fff' : '#000', margin: '4px 0', lineHeight: 1 }}>{value}</h2>
+          <p style={{ fontSize: 15, color: darkMode ? '#666' : '#999', fontWeight: 400 }}>{sub}</p>
         </div>
       </div>
     </div>
