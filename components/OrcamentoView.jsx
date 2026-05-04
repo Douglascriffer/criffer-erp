@@ -147,67 +147,103 @@ function TipLinha({ active, payload, label, darkMode }) {
       {/* ── VISÃO DRE SIMPLIFICADO ── */}
       {viewType === 'dre' && (
         <>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
-            {/* Card Resultado Líquido */}
+          {/* GRID DE KPIS SUPERIORES (5 CARDS) */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
+            
+            {/* Card 1: Resultado Líquido */}
             <div style={{ 
               background: resPos 
                 ? 'linear-gradient(135deg, #16a34a 0%, #22c55e 100%)' 
                 : 'linear-gradient(135deg, #dc2626 0%, #ef4444 100%)',
-              borderRadius: 24, padding: 32, color: '#fff', boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
-              display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 160, position: 'relative', overflow: 'hidden'
+              borderRadius: 20, padding: 24, color: '#fff', boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+              display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: 140, position: 'relative', overflow: 'hidden'
             }}>
-              <div style={{ position: 'absolute', right: -10, bottom: -10, opacity: 0.15 }}>
-                <Activity size={100} />
-              </div>
-              <p style={{ fontSize: 11, fontWeight: 900, opacity: 0.85, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Resultado Operacional {userContext.level === 'gestor' ? `(${userContext.sector})` : ''}</p>
-              <p style={{ fontSize: 42, fontWeight: 900, marginBottom: 8 }}>{fmt(resultado)}</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 700, background: 'rgba(255,255,255,0.15)', padding: '6px 12px', borderRadius: 12, width: 'fit-content' }}>
-                {resPos ? '🎉 Superávit' : '⚠️ Déficit'}
+              <p style={{ fontSize: 10, fontWeight: 900, opacity: 0.85, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Resultado Operacional</p>
+              <p style={{ fontSize: 28, fontWeight: 900, marginBottom: 4 }}>{fmt(resultado)}</p>
+              <div style={{ fontSize: 11, fontWeight: 700, background: 'rgba(255,255,255,0.15)', padding: '4px 10px', borderRadius: 10, width: 'fit-content' }}>
+                {resPos ? 'Performance Positiva' : 'Abaixo do Esperado'}
               </div>
             </div>
 
-            {/* Card Receitas */}
-            <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
-                <div>
-                  <p style={{ fontSize: 11, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Receitas Líquidas</p>
-                  <p style={{ fontSize: 32, fontWeight: 900, color: t.text }}>{fmt(recReal)}</p>
-                </div>
-                <div style={{ background: 'rgba(255,106,34,0.1)', padding: 12, borderRadius: 16 }}>
-                  <TrendingUp size={24} color={t.accent} />
-                </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <div style={{ flex: 1, height: 8, background: darkMode ? '#333' : '#f0f0f0', borderRadius: 4, overflow: 'hidden' }}>
+            {/* Card 2: Receitas Líquidas */}
+            <div style={{ background: t.card, borderRadius: 20, border: `1.5px solid ${t.border}`, padding: 24, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <p style={{ fontSize: 10, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Receitas Líquidas</p>
+              <p style={{ fontSize: 28, fontWeight: 900, color: t.text }}>{fmt(recReal)}</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 8 }}>
+                <div style={{ flex: 1, height: 6, background: darkMode ? '#333' : '#f0f0f0', borderRadius: 3, overflow: 'hidden' }}>
                   <div style={{ height: '100%', background: t.accent, width: `${Math.min((recReal||0)/(recMeta||1)*100, 100)}%` }} />
                 </div>
-                <span style={{ fontSize: 14, fontWeight: 900, color: t.text }}>{Math.round((recReal||0)/(recMeta||1)*100)}%</span>
+                <span style={{ fontSize: 12, fontWeight: 900, color: t.text }}>{Math.round((recReal||0)/(recMeta||1)*100)}%</span>
               </div>
             </div>
 
-            {/* Card Despesas */}
-            <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
-                <div>
-                  <p style={{ fontSize: 11, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Despesas Totais</p>
-                  <p style={{ fontSize: 32, fontWeight: 900, color: t.text }}>{fmt(despReal)}</p>
+            {/* Card 3: Variação de Receita (NOVO) */}
+            {(() => {
+              const diff = (recReal || 0) - (recMeta || 0)
+              const pct = recMeta > 0 ? (diff / recMeta * 100) : 0
+              const ok = diff >= 0
+              return (
+                <div style={{ background: t.card, borderRadius: 20, border: `1.5px solid ${t.border}`, padding: 24, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <p style={{ fontSize: 10, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>
+                    {mes === 'all' ? 'Variação Acumulada' : 'Variação Mensal'}
+                  </p>
+                  <p style={{ fontSize: 28, fontWeight: 900, color: ok ? '#22c55e' : '#ef4444' }}>
+                    {ok ? '+' : ''}{pct.toFixed(1)}%
+                  </p>
+                  <p style={{ fontSize: 12, color: t.textMuted, fontWeight: 700, marginTop: 4 }}>
+                    {ok ? '↑' : '↓'} {fmt(Math.abs(diff))} {ok ? 'acima da meta' : 'abaixo da meta'}
+                  </p>
                 </div>
-                <div style={{ background: 'rgba(239,68,68,0.1)', padding: 12, borderRadius: 16 }}>
-                  <DollarSign size={24} color="#ef4444" />
-                </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <div style={{ flex: 1, height: 8, background: darkMode ? '#333' : '#f0f0f0', borderRadius: 4, overflow: 'hidden' }}>
+              )
+            })()}
+
+            {/* Card 4: Despesas Totais */}
+            <div style={{ background: t.card, borderRadius: 20, border: `1.5px solid ${t.border}`, padding: 24, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <p style={{ fontSize: 10, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Despesas Totais</p>
+              <p style={{ fontSize: 28, fontWeight: 900, color: t.text }}>{fmt(despReal)}</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 8 }}>
+                <div style={{ flex: 1, height: 6, background: darkMode ? '#333' : '#f0f0f0', borderRadius: 3, overflow: 'hidden' }}>
                   <div style={{ height: '100%', background: (despReal||0) <= (despOrc||0) ? '#22c55e' : '#ef4444', width: `${Math.min((despReal||0)/(despOrc||1)*100, 100)}%` }} />
                 </div>
-                <span style={{ fontSize: 14, fontWeight: 900, color: t.text }}>{Math.round((despReal||0)/(despOrc||1)*100)}%</span>
+                <span style={{ fontSize: 12, fontWeight: 900, color: t.text }}>{Math.round((despReal||0)/(despOrc||1)*100)}%</span>
               </div>
             </div>
+
+            {/* Card 5: Redução de Despesas (NOVO) */}
+            {(() => {
+              const economizado = (despOrc || 0) - (despReal || 0)
+              const pct = despOrc > 0 ? (economizado / despOrc * 100) : 0
+              const ok = economizado >= 0
+              return (
+                <div style={{ background: t.card, borderRadius: 20, border: `1.5px solid ${t.border}`, padding: 24, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <p style={{ fontSize: 10, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>
+                    {mes === 'all' ? 'Redução Acumulada' : 'Redução Mensal'}
+                  </p>
+                  <p style={{ fontSize: 28, fontWeight: 900, color: ok ? '#22c55e' : '#ef4444' }}>
+                    {pct.toFixed(1)}%
+                  </p>
+                  <p style={{ fontSize: 12, color: t.textMuted, fontWeight: 700, marginTop: 4 }}>
+                    {ok ? '↓' : '↑'} {fmt(Math.abs(economizado))} {ok ? 'economizados' : 'acima do orçado'}
+                  </p>
+                </div>
+              )
+            })()}
+
           </div>
 
-          {/* Gráfico de Tendência */}
-          <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
-            <h3 style={{ fontSize: 18, fontWeight: 900, marginBottom: 32, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Tendência Orçamentária 2026</h3>
+          {/* Gráfico de Tendência Orçamentária */}
+          <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, marginTop: 8 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
+              <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Tendência Orçamentária 2026</h3>
+              <div style={{ display: 'flex', gap: 16 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 800, color: t.accent }}>
+                  <div style={{ width: 8, height: 8, borderRadius: '50%', background: t.accent }} /> RECEITA
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 800, color: '#ef4444' }}>
+                  <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} /> DESPESA
+                </div>
+              </div>
+            </div>
             <ResponsiveContainer width="100%" height={320}>
               <LineChart data={mensalLinha} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke={t.border} vertical={false} />
