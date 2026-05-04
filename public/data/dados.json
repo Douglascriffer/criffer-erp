@@ -3765,11 +3765,6 @@
             "real": 372615.56
           },
           {
-            "cc": "ADM",
-            "orc": 0,
-            "real": 0
-          },
-          {
             "cc": "Financeiro",
             "orc": 37031.14986666667,
             "real": 26305.040000000023
@@ -3795,7 +3790,7 @@
             "real": 55513.3
           },
           {
-            "cc": "Logistica",
+            "cc": "Logística",
             "orc": 120447.61487777777,
             "real": 86123.94000000002
           },
@@ -3810,23 +3805,13 @@
             "real": 315660.43000000005
           },
           {
-            "cc": "Suport Tec.",
-            "orc": 0,
-            "real": 0
-          },
-          {
-            "cc": "Sup. Tecnico",
+            "cc": "Sup. Técnico",
             "orc": 30946.25636666667,
             "real": 23789.65
-          },
-          {
-            "cc": "Total Geral",
-            "orc": 1343001.0606,
-            "real": 1282825.06
           }
         ],
-        "totalOrc": 2686002.1212,
-        "totalReal": 2565650.12
+        "totalOrc": 1343001.0606,
+        "totalReal": 1282825.06
       },
       "2026_2": {
         "centros": [
@@ -3866,11 +3851,6 @@
             "real": 1674821.99
           },
           {
-            "cc": "ADM",
-            "orc": 0,
-            "real": 0
-          },
-          {
             "cc": "Financeiro",
             "orc": 37784.11986666667,
             "real": 51423.42999999998
@@ -3896,7 +3876,7 @@
             "real": 36720.729999999996
           },
           {
-            "cc": "Logistica",
+            "cc": "Logística",
             "orc": 120483.57825555555,
             "real": 81519.06999999999
           },
@@ -3911,23 +3891,13 @@
             "real": 196298.88
           },
           {
-            "cc": "Suport Tec.",
-            "orc": 0,
-            "real": 0
-          },
-          {
-            "cc": "Sup. Tecnico",
+            "cc": "Sup. Técnico",
             "orc": 30946.25636666667,
             "real": 39410.54
-          },
-          {
-            "cc": "Total Geral",
-            "orc": 2904506.253977778,
-            "real": 2595817.6299999994
           }
         ],
-        "totalOrc": 5809012.507955556,
-        "totalReal": 5191635.259999999
+        "totalOrc": 2904506.253977778,
+        "totalReal": 2595817.6299999994
       },
       "2026_3": {
         "centros": [
@@ -3967,11 +3937,6 @@
             "real": 952244.66
           },
           {
-            "cc": "ADM",
-            "orc": 0,
-            "real": 0
-          },
-          {
             "cc": "Financeiro",
             "orc": 51478.319866666665,
             "real": -561188.23
@@ -3997,7 +3962,7 @@
             "real": 60250.55000000001
           },
           {
-            "cc": "Logistica",
+            "cc": "Logística",
             "orc": 115483.57825555555,
             "real": 53431.57
           },
@@ -4012,23 +3977,13 @@
             "real": 292328.27
           },
           {
-            "cc": "Suport Tec.",
-            "orc": 0,
-            "real": 0
-          },
-          {
-            "cc": "Sup. Tecnico",
+            "cc": "Sup. Técnico",
             "orc": 32946.25636666667,
             "real": 35508.920000000006
-          },
-          {
-            "cc": "Total Geral",
-            "orc": 2238709.3204222224,
-            "real": 1500505.9400000002
           }
         ],
-        "totalOrc": 4477418.640844445,
-        "totalReal": 3001011.8800000004
+        "totalOrc": 2238709.3204222224,
+        "totalReal": 1500505.9400000002
       },
       "2026_4": {
         "centros": [
@@ -4068,11 +4023,6 @@
             "real": 0
           },
           {
-            "cc": "ADM",
-            "orc": 0,
-            "real": 0
-          },
-          {
             "cc": "Financeiro",
             "orc": 40025.51986666666,
             "real": 0
@@ -4098,7 +4048,7 @@
             "real": 0
           },
           {
-            "cc": "Logistica",
+            "cc": "Logística",
             "orc": 155683.57825555553,
             "real": 0
           },
@@ -4113,22 +4063,12 @@
             "real": 0
           },
           {
-            "cc": "Suport Tec.",
-            "orc": 0,
-            "real": 0
-          },
-          {
-            "cc": "Sup. Tecnico",
+            "cc": "Sup. Técnico",
             "orc": 32946.25636666667,
-            "real": 0
-          },
-          {
-            "cc": "Total Geral",
-            "orc": 1883016.3104222226,
             "real": 0
           }
         ],
-        "totalOrc": 3766032.620844445,
+        "totalOrc": 1883016.3104222226,
         "totalReal": 0
       },
       "2026_5": {
@@ -4169,11 +4109,6 @@
             "real": 0
           },
           {
-            "cc": "ADM",
-            "orc": 0,
-            "real": 0
-          },
-          {
             "cc": "Financeiro",
             "orc": 40025.51986666666,
             "real": 0
@@ -4199,7 +4134,7 @@
             "real": 0
           },
           {
-            "cc": "Logistica",
+            "cc": "Logística",
             "orc": 116344.57825555555,
             "real": 0
           },
@@ -4214,22 +4149,12 @@
             "real": 0
           },
           {
-            "cc": "Suport Tec.",
-            "orc": 0,
-            "real": 0
-          },
-          {
-            "cc": "Sup. Tecnico",
+            "cc": "Sup. Técnico",
             "orc": 42446.25636666667,
-            "real": 0
-          },
-          {
-            "cc": "Total Geral",
-            "orc": 1590542.3604222222,
             "real": 0
           }
         ],
-        "totalOrc": 3181084.7208444444,
+        "totalOrc": 1590542.3604222222,
         "totalReal": 0
       },
       "2026_6": {
@@ -4270,11 +4195,6 @@
             "real": 0
           },
           {
-            "cc": "ADM",
-            "orc": 0,
-            "real": 0
-          },
-          {
             "cc": "Financeiro",
             "orc": 40025.51986666666,
             "real": 0
@@ -4300,7 +4220,7 @@
             "real": 0
           },
           {
-            "cc": "Logistica",
+            "cc": "Logística",
             "orc": 120483.57825555555,
             "real": 0
           },
@@ -4315,22 +4235,12 @@
             "real": 0
           },
           {
-            "cc": "Suport Tec.",
-            "orc": 0,
-            "real": 0
-          },
-          {
-            "cc": "Sup. Tecnico",
+            "cc": "Sup. Técnico",
             "orc": 37446.25636666667,
-            "real": 0
-          },
-          {
-            "cc": "Total Geral",
-            "orc": 1529130.510422222,
             "real": 0
           }
         ],
-        "totalOrc": 3058261.020844444,
+        "totalOrc": 1529130.510422222,
         "totalReal": 0
       },
       "2026_7": {
@@ -4371,11 +4281,6 @@
             "real": 0
           },
           {
-            "cc": "ADM",
-            "orc": 0,
-            "real": 0
-          },
-          {
             "cc": "Financeiro",
             "orc": 40025.51986666666,
             "real": 0
@@ -4401,7 +4306,7 @@
             "real": 0
           },
           {
-            "cc": "Logistica",
+            "cc": "Logística",
             "orc": 115483.57825555555,
             "real": 0
           },
@@ -4416,22 +4321,12 @@
             "real": 0
           },
           {
-            "cc": "Suport Tec.",
-            "orc": 0,
-            "real": 0
-          },
-          {
-            "cc": "Sup. Tecnico",
+            "cc": "Sup. Técnico",
             "orc": 50946.25636666667,
-            "real": 0
-          },
-          {
-            "cc": "Total Geral",
-            "orc": 2122051.132088889,
             "real": 0
           }
         ],
-        "totalOrc": 4244102.264177778,
+        "totalOrc": 2122051.132088889,
         "totalReal": 0
       },
       "2026_8": {
@@ -4472,11 +4367,6 @@
             "real": 0
           },
           {
-            "cc": "ADM",
-            "orc": 0,
-            "real": 0
-          },
-          {
             "cc": "Financeiro",
             "orc": 41283.469577777774,
             "real": 0
@@ -4502,7 +4392,7 @@
             "real": 0
           },
           {
-            "cc": "Logistica",
+            "cc": "Logística",
             "orc": 168139.39322222222,
             "real": 0
           },
@@ -4517,22 +4407,12 @@
             "real": 0
           },
           {
-            "cc": "Suport Tec.",
-            "orc": 0,
-            "real": 0
-          },
-          {
-            "cc": "Sup. Tecnico",
+            "cc": "Sup. Técnico",
             "orc": 35487.374022222226,
-            "real": 0
-          },
-          {
-            "cc": "Total Geral",
-            "orc": 1948603.7907777773,
             "real": 0
           }
         ],
-        "totalOrc": 3897207.5815555546,
+        "totalOrc": 1948603.7907777773,
         "totalReal": 0
       },
       "2026_9": {
@@ -4573,11 +4453,6 @@
             "real": 0
           },
           {
-            "cc": "ADM",
-            "orc": 0,
-            "real": 0
-          },
-          {
             "cc": "Financeiro",
             "orc": 40283.299577777776,
             "real": 0
@@ -4603,7 +4478,7 @@
             "real": 0
           },
           {
-            "cc": "Logistica",
+            "cc": "Logística",
             "orc": 123139.39322222222,
             "real": 0
           },
@@ -4618,22 +4493,12 @@
             "real": 0
           },
           {
-            "cc": "Suport Tec.",
-            "orc": 0,
-            "real": 0
-          },
-          {
-            "cc": "Sup. Tecnico",
+            "cc": "Sup. Técnico",
             "orc": 33487.374022222226,
-            "real": 0
-          },
-          {
-            "cc": "Total Geral",
-            "orc": 1767899.167011111,
             "real": 0
           }
         ],
-        "totalOrc": 3535798.334022222,
+        "totalOrc": 1767899.167011111,
         "totalReal": 0
       },
       "2026_10": {
@@ -4674,11 +4539,6 @@
             "real": 0
           },
           {
-            "cc": "ADM",
-            "orc": 0,
-            "real": 0
-          },
-          {
             "cc": "Financeiro",
             "orc": 40283.299577777776,
             "real": 0
@@ -4704,7 +4564,7 @@
             "real": 0
           },
           {
-            "cc": "Logistica",
+            "cc": "Logística",
             "orc": 118139.39322222222,
             "real": 0
           },
@@ -4719,22 +4579,12 @@
             "real": 0
           },
           {
-            "cc": "Suport Tec.",
-            "orc": 0,
-            "real": 0
-          },
-          {
-            "cc": "Sup. Tecnico",
+            "cc": "Sup. Técnico",
             "orc": 31487.374022222222,
-            "real": 0
-          },
-          {
-            "cc": "Total Geral",
-            "orc": 1968248.507011111,
             "real": 0
           }
         ],
-        "totalOrc": 3936497.014022222,
+        "totalOrc": 1968248.507011111,
         "totalReal": 0
       },
       "2026_11": {
@@ -4775,11 +4625,6 @@
             "real": 0
           },
           {
-            "cc": "ADM",
-            "orc": 0,
-            "real": 0
-          },
-          {
             "cc": "Financeiro",
             "orc": 40283.299577777776,
             "real": 0
@@ -4805,7 +4650,7 @@
             "real": 0
           },
           {
-            "cc": "Logistica",
+            "cc": "Logística",
             "orc": 121806.39322222222,
             "real": 0
           },
@@ -4820,22 +4665,12 @@
             "real": 0
           },
           {
-            "cc": "Suport Tec.",
-            "orc": 0,
-            "real": 0
-          },
-          {
-            "cc": "Sup. Tecnico",
+            "cc": "Sup. Técnico",
             "orc": 31487.374022222222,
-            "real": 0
-          },
-          {
-            "cc": "Total Geral",
-            "orc": 1847454.317011111,
             "real": 0
           }
         ],
-        "totalOrc": 3694908.634022222,
+        "totalOrc": 1847454.317011111,
         "totalReal": 0
       },
       "2026_12": {
@@ -4876,11 +4711,6 @@
             "real": 0
           },
           {
-            "cc": "ADM",
-            "orc": 0,
-            "real": 0
-          },
-          {
             "cc": "Financeiro",
             "orc": 72049.63957777777,
             "real": 0
@@ -4906,7 +4736,7 @@
             "real": 0
           },
           {
-            "cc": "Logistica",
+            "cc": "Logística",
             "orc": 122067.39322222222,
             "real": 0
           },
@@ -4921,22 +4751,12 @@
             "real": 0
           },
           {
-            "cc": "Suport Tec.",
-            "orc": 0,
-            "real": 0
-          },
-          {
-            "cc": "Sup. Tecnico",
+            "cc": "Sup. Técnico",
             "orc": 69149.60402222222,
-            "real": 0
-          },
-          {
-            "cc": "Total Geral",
-            "orc": 1863817.937011111,
             "real": 0
           }
         ],
-        "totalOrc": 3727635.874022222,
+        "totalOrc": 1863817.937011111,
         "totalReal": 0
       }
     },

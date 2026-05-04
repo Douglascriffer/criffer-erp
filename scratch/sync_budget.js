@@ -2,8 +2,7 @@ const XLSX = require('xlsx');
 const fs = require('fs');
 
 const workbook = XLSX.readFile('c:\\Douglas\\Projeto Antigravity\\RESULTADOS.xlsx');
-const orcamentoSheetName = 'ORÇAMENTO';
-const ws = workbook.Sheets[orcamentoSheetName];
+const ws = workbook.Sheets['ORÇAMENTO'];
 const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: 0 });
 
 const orcamentoData = {
@@ -11,52 +10,62 @@ const orcamentoData = {
   metas: {}
 };
 
-// Map months
+// Map months based on columns F (idx 5) to AC (idx 28)
 const months = [];
-for (let j = 5; j < 29; j += 2) {
-  months.push({ name: rows[0][j], orcIdx: j, realIdx: j + 1 });
+const monthNames = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+for (let i = 0; i < 12; i++) {
+  months.push({ 
+    name: monthNames[i], 
+    orcIdx: 5 + (i * 2), 
+    realIdx: 6 + (i * 2) 
+  });
 }
 
-// Parse Categories and Totals
-const centros = {};
-rows.forEach((row, i) => {
-  if (i < 2) return;
-  const cc = row[0];
-  const cat = row[1];
-  if (!cc || cc === 0) return;
-  if (!centros[cc]) centros[cc] = { items: [], totals: { orc: Array(12).fill(0), real: Array(12).fill(0) } };
-  if (cat === 'TOTAL') {
-    months.forEach((m, mIdx) => {
-      centros[cc].totals.orc[mIdx] = Number(row[m.orcIdx] || 0);
-      centros[cc].totals.real[mIdx] = Number(row[m.realIdx] || 0);
-    });
-  } else {
-    const item = { categoria: cat, orc: [], real: [] };
-    months.forEach((m) => {
-      item.orc.push(Number(row[m.orcIdx] || 0));
-      item.real.push(Number(row[m.realIdx] || 0));
-    });
-    centros[cc].items.push(item);
-  }
-});
+// Exact Row mapping (0-indexed)
+const CC_ROWS = [
+  { cc: 'Comercial', row: 9 },
+  { cc: 'Marketing', row: 17 },
+  { cc: 'Compras', row: 25 },
+  { cc: 'Lab. Calibração', row: 33 },
+  { cc: 'Lab. Manutenção', row: 41 },
+  { cc: 'Administrativo', row: 49 },
+  { cc: 'Diretoria', row: 57 },
+  { cc: 'Financeiro', row: 66 },
+  { cc: 'P&D', row: 74 },
+  { cc: 'RH', row: 82 },
+  { cc: 'Locação', row: 90 },
+  { cc: 'TI', row: 98 },
+  { cc: 'Logística', row: 106 },
+  { cc: 'Manutenção', row: 114 },
+  { cc: 'Produção', row: 122 },
+  { cc: 'Sup. Técnico', row: 130 }
+];
+
+// Row 132 (idx 131) is TOTAL GERAL
+const totalGeralRow = 131;
 
 // Consolidate into mensal data
 months.forEach((m, mIdx) => {
   const key = `2026_${mIdx + 1}`;
+  
+  const centros = CC_ROWS.map(map => ({
+    cc: map.cc,
+    orc: Number(rows[map.row]?.[m.orcIdx] || 0),
+    real: Number(rows[map.row]?.[m.realIdx] || 0)
+  }));
+
   orcamentoData.mensal[key] = {
-    centros: Object.entries(centros).map(([name, data]) => ({
-      cc: name,
-      orc: data.totals.orc[mIdx],
-      real: data.totals.real[mIdx]
-    })),
-    totalOrc: Object.values(centros).reduce((acc, c) => acc + c.totals.orc[mIdx], 0),
-    totalReal: Object.values(centros).reduce((acc, c) => acc + c.totals.real[mIdx], 0)
+    centros: centros,
+    totalOrc: Number(rows[totalGeralRow]?.[m.orcIdx] || 0),
+    totalReal: Number(rows[totalGeralRow]?.[m.realIdx] || 0)
   };
 });
 
-// Global targets
+// Update metas (based on footer rows)
+// We'll keep the previous footer logic if it worked, or find labels.
+// Actually, let's look for "Receita Bruta" etc. in the whole sheet.
 const findVal = (label) => {
-  const r = rows.find(row => row[1] === label);
+  const r = rows.find(row => row[1] === label || row[0] === label);
   return r ? Number(r[2] || 0) : 0;
 };
 orcamentoData.metas = {
@@ -74,4 +83,4 @@ const dados = JSON.parse(fs.readFileSync(dadosPath, 'utf8'));
 dados.orcamento = orcamentoData;
 fs.writeFileSync(dadosPath, JSON.stringify(dados, null, 2));
 
-console.log('Sync completed successfully!');
+console.log('Sync completed with exact row mapping!');
