@@ -7,7 +7,7 @@
       "vendas": 1430427.4499999997,
       "servicos": 232334.06999999998,
       "locacao": 42905.95,
-      "devolucoes": 8070.0,
+      "devolucoes": 8070,
       "total": 1697597.4699999997
     },
     {
@@ -37,7 +37,7 @@
       "vendas": 2109786.37,
       "servicos": 322754.7,
       "locacao": 70650.91,
-      "devolucoes": 20990.0,
+      "devolucoes": 20990,
       "total": 2482201.9800000004
     },
     {
@@ -47,7 +47,7 @@
       "vendas": 1475791.2900000003,
       "servicos": 312184.02999999997,
       "locacao": 62401.94,
-      "devolucoes": 46980.0,
+      "devolucoes": 46980,
       "total": 1803397.2600000002
     },
     {
@@ -57,7 +57,7 @@
       "vendas": 1236636.42,
       "servicos": 389631.41000000003,
       "locacao": 80640.6,
-      "devolucoes": 75313.0,
+      "devolucoes": 75313,
       "total": 1631595.4300000002
     },
     {
@@ -67,7 +67,7 @@
       "vendas": 2317618.05,
       "servicos": 369683.63,
       "locacao": 46266.5,
-      "devolucoes": 42688.0,
+      "devolucoes": 42688,
       "total": 2690880.1799999997
     },
     {
@@ -76,7 +76,7 @@
       "label": "aug/25",
       "vendas": 2547722.42,
       "servicos": 285729.53,
-      "locacao": 78853.0,
+      "locacao": 78853,
       "devolucoes": 58097.3,
       "total": 2854207.6500000004
     },
@@ -87,7 +87,7 @@
       "vendas": 2086619.2800000003,
       "servicos": 400419.35000000003,
       "locacao": 70785.05,
-      "devolucoes": 91596.0,
+      "devolucoes": 91596,
       "total": 2466227.68
     },
     {
@@ -96,8 +96,8 @@
       "label": "oct/25",
       "vendas": 2748755.1999999997,
       "servicos": 504518.83999999997,
-      "locacao": 85835.0,
-      "devolucoes": 23025.0,
+      "locacao": 85835,
+      "devolucoes": 23025,
       "total": 3316084.0399999996
     },
     {
@@ -106,8 +106,8 @@
       "label": "nov/25",
       "vendas": 2197124.91,
       "servicos": 239267.41999999998,
-      "locacao": 56091.0,
-      "devolucoes": 27657.0,
+      "locacao": 56091,
+      "devolucoes": 27657,
       "total": 2464826.33
     },
     {
@@ -127,7 +127,7 @@
       "vendas": 1172961.62,
       "servicos": 348752.23,
       "locacao": 86110.1,
-      "devolucoes": 12902.0,
+      "devolucoes": 12902,
       "total": 1594921.9500000002
     },
     {
@@ -136,8 +136,8 @@
       "label": "feb/26",
       "vendas": 1429756.91,
       "servicos": 326730.59,
-      "locacao": 72860.0,
-      "devolucoes": 65878.0,
+      "locacao": 72860,
+      "devolucoes": 65878,
       "total": 1763469.5
     },
     {
@@ -154,91 +154,91 @@
       "mes": 4,
       "ano": 2026,
       "label": "apr/26",
-      "vendas": 0.0,
-      "servicos": 0.0,
-      "locacao": 0.0,
-      "devolucoes": 0.0,
-      "total": 0.0
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
     },
     {
       "mes": 5,
       "ano": 2026,
       "label": "may/26",
-      "vendas": 0.0,
-      "servicos": 0.0,
-      "locacao": 0.0,
-      "devolucoes": 0.0,
-      "total": 0.0
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
     },
     {
       "mes": 6,
       "ano": 2026,
       "label": "jun/26",
-      "vendas": 0.0,
-      "servicos": 0.0,
-      "locacao": 0.0,
-      "devolucoes": 0.0,
-      "total": 0.0
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
     },
     {
       "mes": 7,
       "ano": 2026,
       "label": "jul/26",
-      "vendas": 0.0,
-      "servicos": 0.0,
-      "locacao": 0.0,
-      "devolucoes": 0.0,
-      "total": 0.0
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
     },
     {
       "mes": 8,
       "ano": 2026,
       "label": "aug/26",
-      "vendas": 0.0,
-      "servicos": 0.0,
-      "locacao": 0.0,
-      "devolucoes": 0.0,
-      "total": 0.0
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
     },
     {
       "mes": 9,
       "ano": 2026,
       "label": "sep/26",
-      "vendas": 0.0,
-      "servicos": 0.0,
-      "locacao": 0.0,
-      "devolucoes": 0.0,
-      "total": 0.0
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
     },
     {
       "mes": 10,
       "ano": 2026,
       "label": "oct/26",
-      "vendas": 0.0,
-      "servicos": 0.0,
-      "locacao": 0.0,
-      "devolucoes": 0.0,
-      "total": 0.0
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
     },
     {
       "mes": 11,
       "ano": 2026,
       "label": "nov/26",
-      "vendas": 0.0,
-      "servicos": 0.0,
-      "locacao": 0.0,
-      "devolucoes": 0.0,
-      "total": 0.0
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
     },
     {
       "mes": 12,
       "ano": 2026,
       "label": "dec/26",
-      "vendas": 0.0,
-      "servicos": 0.0,
-      "locacao": 0.0,
-      "devolucoes": 0.0,
-      "total": 0.0
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
     }
   ],
   "byState": [
@@ -246,7 +246,7 @@
       "ano": 2025,
       "mes": 1,
       "estado": "AL",
-      "faturamento": 11323.0
+      "faturamento": 11323
     },
     {
       "ano": 2025,
@@ -258,7 +258,7 @@
       "ano": 2025,
       "mes": 1,
       "estado": "AM",
-      "faturamento": 13276.0
+      "faturamento": 13276
     },
     {
       "ano": 2025,
@@ -276,7 +276,7 @@
       "ano": 2025,
       "mes": 1,
       "estado": "DF",
-      "faturamento": 2648.0
+      "faturamento": 2648
     },
     {
       "ano": 2025,
@@ -294,7 +294,7 @@
       "ano": 2025,
       "mes": 1,
       "estado": "MA",
-      "faturamento": 13697.0
+      "faturamento": 13697
     },
     {
       "ano": 2025,
@@ -306,7 +306,7 @@
       "ano": 2025,
       "mes": 1,
       "estado": "MS",
-      "faturamento": 7881.0
+      "faturamento": 7881
     },
     {
       "ano": 2025,
@@ -324,13 +324,13 @@
       "ano": 2025,
       "mes": 1,
       "estado": "PB",
-      "faturamento": 1730.0
+      "faturamento": 1730
     },
     {
       "ano": 2025,
       "mes": 1,
       "estado": "PE",
-      "faturamento": 5318.0
+      "faturamento": 5318
     },
     {
       "ano": 2025,
@@ -354,13 +354,13 @@
       "ano": 2025,
       "mes": 1,
       "estado": "RN",
-      "faturamento": 16249.0
+      "faturamento": 16249
     },
     {
       "ano": 2025,
       "mes": 1,
       "estado": "RO",
-      "faturamento": 22900.0
+      "faturamento": 22900
     },
     {
       "ano": 2025,
@@ -402,13 +402,13 @@
       "ano": 2025,
       "mes": 2,
       "estado": "AL",
-      "faturamento": 8098.0
+      "faturamento": 8098
     },
     {
       "ano": 2025,
       "mes": 2,
       "estado": "AM",
-      "faturamento": 107726.0
+      "faturamento": 107726
     },
     {
       "ano": 2025,
@@ -426,13 +426,13 @@
       "ano": 2025,
       "mes": 2,
       "estado": "DF",
-      "faturamento": 21462.0
+      "faturamento": 21462
     },
     {
       "ano": 2025,
       "mes": 2,
       "estado": "ES",
-      "faturamento": 132197.0
+      "faturamento": 132197
     },
     {
       "ano": 2025,
@@ -444,7 +444,7 @@
       "ano": 2025,
       "mes": 2,
       "estado": "MA",
-      "faturamento": 19828.0
+      "faturamento": 19828
     },
     {
       "ano": 2025,
@@ -474,13 +474,13 @@
       "ano": 2025,
       "mes": 2,
       "estado": "PB",
-      "faturamento": 9585.0
+      "faturamento": 9585
     },
     {
       "ano": 2025,
       "mes": 2,
       "estado": "PE",
-      "faturamento": 19229.0
+      "faturamento": 19229
     },
     {
       "ano": 2025,
@@ -504,19 +504,19 @@
       "ano": 2025,
       "mes": 2,
       "estado": "RN",
-      "faturamento": 382.0
+      "faturamento": 382
     },
     {
       "ano": 2025,
       "mes": 2,
       "estado": "RO",
-      "faturamento": 825.0
+      "faturamento": 825
     },
     {
       "ano": 2025,
       "mes": 2,
       "estado": "RR",
-      "faturamento": 155.0
+      "faturamento": 155
     },
     {
       "ano": 2025,
@@ -546,7 +546,7 @@
       "ano": 2025,
       "mes": 2,
       "estado": "TO",
-      "faturamento": 21526.0
+      "faturamento": 21526
     },
     {
       "ano": 2025,
@@ -558,7 +558,7 @@
       "ano": 2025,
       "mes": 3,
       "estado": "AL",
-      "faturamento": 12936.0
+      "faturamento": 12936
     },
     {
       "ano": 2025,
@@ -570,7 +570,7 @@
       "ano": 2025,
       "mes": 3,
       "estado": "BA",
-      "faturamento": 54691.0
+      "faturamento": 54691
     },
     {
       "ano": 2025,
@@ -582,7 +582,7 @@
       "ano": 2025,
       "mes": 3,
       "estado": "DF",
-      "faturamento": 16800.0
+      "faturamento": 16800
     },
     {
       "ano": 2025,
@@ -642,7 +642,7 @@
       "ano": 2025,
       "mes": 3,
       "estado": "PI",
-      "faturamento": 2606.0
+      "faturamento": 2606
     },
     {
       "ano": 2025,
@@ -666,7 +666,7 @@
       "ano": 2025,
       "mes": 3,
       "estado": "RO",
-      "faturamento": 2285.0
+      "faturamento": 2285
     },
     {
       "ano": 2025,
@@ -732,7 +732,7 @@
       "ano": 2025,
       "mes": 4,
       "estado": "ES",
-      "faturamento": 52202.0
+      "faturamento": 52202
     },
     {
       "ano": 2025,
@@ -756,7 +756,7 @@
       "ano": 2025,
       "mes": 4,
       "estado": "MS",
-      "faturamento": 103961.0
+      "faturamento": 103961
     },
     {
       "ano": 2025,
@@ -768,7 +768,7 @@
       "ano": 2025,
       "mes": 4,
       "estado": "PA",
-      "faturamento": 157284.0
+      "faturamento": 157284
     },
     {
       "ano": 2025,
@@ -780,13 +780,13 @@
       "ano": 2025,
       "mes": 4,
       "estado": "PE",
-      "faturamento": 18469.0
+      "faturamento": 18469
     },
     {
       "ano": 2025,
       "mes": 4,
       "estado": "PI",
-      "faturamento": 18976.0
+      "faturamento": 18976
     },
     {
       "ano": 2025,
@@ -810,7 +810,7 @@
       "ano": 2025,
       "mes": 4,
       "estado": "RO",
-      "faturamento": 6820.0
+      "faturamento": 6820
     },
     {
       "ano": 2025,
@@ -840,7 +840,7 @@
       "ano": 2025,
       "mes": 4,
       "estado": "TO",
-      "faturamento": 7873.0
+      "faturamento": 7873
     },
     {
       "ano": 2025,
@@ -852,19 +852,19 @@
       "ano": 2025,
       "mes": 5,
       "estado": "AC",
-      "faturamento": 9980.0
+      "faturamento": 9980
     },
     {
       "ano": 2025,
       "mes": 5,
       "estado": "AL",
-      "faturamento": 12850.0
+      "faturamento": 12850
     },
     {
       "ano": 2025,
       "mes": 5,
       "estado": "AP",
-      "faturamento": 15990.0
+      "faturamento": 15990
     },
     {
       "ano": 2025,
@@ -882,7 +882,7 @@
       "ano": 2025,
       "mes": 5,
       "estado": "CE",
-      "faturamento": 39532.0
+      "faturamento": 39532
     },
     {
       "ano": 2025,
@@ -924,19 +924,19 @@
       "ano": 2025,
       "mes": 5,
       "estado": "MT",
-      "faturamento": 50496.0
+      "faturamento": 50496
     },
     {
       "ano": 2025,
       "mes": 5,
       "estado": "PA",
-      "faturamento": 33310.0
+      "faturamento": 33310
     },
     {
       "ano": 2025,
       "mes": 5,
       "estado": "PB",
-      "faturamento": 24607.0
+      "faturamento": 24607
     },
     {
       "ano": 2025,
@@ -966,13 +966,13 @@
       "ano": 2025,
       "mes": 5,
       "estado": "RN",
-      "faturamento": 2648.0
+      "faturamento": 2648
     },
     {
       "ano": 2025,
       "mes": 5,
       "estado": "RO",
-      "faturamento": 3171.0
+      "faturamento": 3171
     },
     {
       "ano": 2025,
@@ -990,7 +990,7 @@
       "ano": 2025,
       "mes": 5,
       "estado": "SE",
-      "faturamento": 10650.0
+      "faturamento": 10650
     },
     {
       "ano": 2025,
@@ -1020,7 +1020,7 @@
       "ano": 2025,
       "mes": 6,
       "estado": "AP",
-      "faturamento": 416.0
+      "faturamento": 416
     },
     {
       "ano": 2025,
@@ -1050,7 +1050,7 @@
       "ano": 2025,
       "mes": 6,
       "estado": "ES",
-      "faturamento": 75185.0
+      "faturamento": 75185
     },
     {
       "ano": 2025,
@@ -1074,7 +1074,7 @@
       "ano": 2025,
       "mes": 6,
       "estado": "MS",
-      "faturamento": 26271.0
+      "faturamento": 26271
     },
     {
       "ano": 2025,
@@ -1086,13 +1086,13 @@
       "ano": 2025,
       "mes": 6,
       "estado": "PA",
-      "faturamento": 43320.0
+      "faturamento": 43320
     },
     {
       "ano": 2025,
       "mes": 6,
       "estado": "PB",
-      "faturamento": 20761.0
+      "faturamento": 20761
     },
     {
       "ano": 2025,
@@ -1104,7 +1104,7 @@
       "ano": 2025,
       "mes": 6,
       "estado": "PI",
-      "faturamento": 37943.0
+      "faturamento": 37943
     },
     {
       "ano": 2025,
@@ -1146,7 +1146,7 @@
       "ano": 2025,
       "mes": 6,
       "estado": "SE",
-      "faturamento": 11522.0
+      "faturamento": 11522
     },
     {
       "ano": 2025,
@@ -1158,7 +1158,7 @@
       "ano": 2025,
       "mes": 6,
       "estado": "TO",
-      "faturamento": 29886.0
+      "faturamento": 29886
     },
     {
       "ano": 2025,
@@ -1170,19 +1170,19 @@
       "ano": 2025,
       "mes": 7,
       "estado": "AC",
-      "faturamento": 1088.0
+      "faturamento": 1088
     },
     {
       "ano": 2025,
       "mes": 7,
       "estado": "AL",
-      "faturamento": 27711.0
+      "faturamento": 27711
     },
     {
       "ano": 2025,
       "mes": 7,
       "estado": "AP",
-      "faturamento": 490.0
+      "faturamento": 490
     },
     {
       "ano": 2025,
@@ -1206,7 +1206,7 @@
       "ano": 2025,
       "mes": 7,
       "estado": "DF",
-      "faturamento": 42137.0
+      "faturamento": 42137
     },
     {
       "ano": 2025,
@@ -1218,13 +1218,13 @@
       "ano": 2025,
       "mes": 7,
       "estado": "GO",
-      "faturamento": 104587.0
+      "faturamento": 104587
     },
     {
       "ano": 2025,
       "mes": 7,
       "estado": "MA",
-      "faturamento": 38602.0
+      "faturamento": 38602
     },
     {
       "ano": 2025,
@@ -1254,7 +1254,7 @@
       "ano": 2025,
       "mes": 7,
       "estado": "PB",
-      "faturamento": 16549.0
+      "faturamento": 16549
     },
     {
       "ano": 2025,
@@ -1284,13 +1284,13 @@
       "ano": 2025,
       "mes": 7,
       "estado": "RN",
-      "faturamento": 16140.0
+      "faturamento": 16140
     },
     {
       "ano": 2025,
       "mes": 7,
       "estado": "RO",
-      "faturamento": 17834.0
+      "faturamento": 17834
     },
     {
       "ano": 2025,
@@ -1308,7 +1308,7 @@
       "ano": 2025,
       "mes": 7,
       "estado": "SE",
-      "faturamento": 52243.0
+      "faturamento": 52243
     },
     {
       "ano": 2025,
@@ -1320,7 +1320,7 @@
       "ano": 2025,
       "mes": 7,
       "estado": "TO",
-      "faturamento": 4598.0
+      "faturamento": 4598
     },
     {
       "ano": 2025,
@@ -1332,7 +1332,7 @@
       "ano": 2025,
       "mes": 8,
       "estado": "AC",
-      "faturamento": 30000.0
+      "faturamento": 30000
     },
     {
       "ano": 2025,
@@ -1356,13 +1356,13 @@
       "ano": 2025,
       "mes": 8,
       "estado": "CE",
-      "faturamento": 13498.0
+      "faturamento": 13498
     },
     {
       "ano": 2025,
       "mes": 8,
       "estado": "DF",
-      "faturamento": 10858.0
+      "faturamento": 10858
     },
     {
       "ano": 2025,
@@ -1374,13 +1374,13 @@
       "ano": 2025,
       "mes": 8,
       "estado": "GO",
-      "faturamento": 170375.0
+      "faturamento": 170375
     },
     {
       "ano": 2025,
       "mes": 8,
       "estado": "MA",
-      "faturamento": 22392.0
+      "faturamento": 22392
     },
     {
       "ano": 2025,
@@ -1392,7 +1392,7 @@
       "ano": 2025,
       "mes": 8,
       "estado": "MS",
-      "faturamento": 38703.0
+      "faturamento": 38703
     },
     {
       "ano": 2025,
@@ -1404,25 +1404,25 @@
       "ano": 2025,
       "mes": 8,
       "estado": "PA",
-      "faturamento": 56344.0
+      "faturamento": 56344
     },
     {
       "ano": 2025,
       "mes": 8,
       "estado": "PB",
-      "faturamento": 21184.0
+      "faturamento": 21184
     },
     {
       "ano": 2025,
       "mes": 8,
       "estado": "PE",
-      "faturamento": 87203.0
+      "faturamento": 87203
     },
     {
       "ano": 2025,
       "mes": 8,
       "estado": "PI",
-      "faturamento": 16990.0
+      "faturamento": 16990
     },
     {
       "ano": 2025,
@@ -1440,7 +1440,7 @@
       "ano": 2025,
       "mes": 8,
       "estado": "RN",
-      "faturamento": 3658.0
+      "faturamento": 3658
     },
     {
       "ano": 2025,
@@ -1476,7 +1476,7 @@
       "ano": 2025,
       "mes": 8,
       "estado": "TO",
-      "faturamento": 16780.0
+      "faturamento": 16780
     },
     {
       "ano": 2025,
@@ -1494,19 +1494,19 @@
       "ano": 2025,
       "mes": 9,
       "estado": "AL",
-      "faturamento": 4990.0
+      "faturamento": 4990
     },
     {
       "ano": 2025,
       "mes": 9,
       "estado": "AP",
-      "faturamento": 2155.0
+      "faturamento": 2155
     },
     {
       "ano": 2025,
       "mes": 9,
       "estado": "AM",
-      "faturamento": 1804.0
+      "faturamento": 1804
     },
     {
       "ano": 2025,
@@ -1518,19 +1518,19 @@
       "ano": 2025,
       "mes": 9,
       "estado": "CE",
-      "faturamento": 31831.0
+      "faturamento": 31831
     },
     {
       "ano": 2025,
       "mes": 9,
       "estado": "DF",
-      "faturamento": 1114.0
+      "faturamento": 1114
     },
     {
       "ano": 2025,
       "mes": 9,
       "estado": "ES",
-      "faturamento": 94205.0
+      "faturamento": 94205
     },
     {
       "ano": 2025,
@@ -1542,7 +1542,7 @@
       "ano": 2025,
       "mes": 9,
       "estado": "MA",
-      "faturamento": 39457.0
+      "faturamento": 39457
     },
     {
       "ano": 2025,
@@ -1572,7 +1572,7 @@
       "ano": 2025,
       "mes": 9,
       "estado": "PB",
-      "faturamento": 9372.0
+      "faturamento": 9372
     },
     {
       "ano": 2025,
@@ -1584,7 +1584,7 @@
       "ano": 2025,
       "mes": 9,
       "estado": "PI",
-      "faturamento": 7724.0
+      "faturamento": 7724
     },
     {
       "ano": 2025,
@@ -1602,7 +1602,7 @@
       "ano": 2025,
       "mes": 9,
       "estado": "RN",
-      "faturamento": 18042.0
+      "faturamento": 18042
     },
     {
       "ano": 2025,
@@ -1626,7 +1626,7 @@
       "ano": 2025,
       "mes": 9,
       "estado": "SE",
-      "faturamento": 6447.0
+      "faturamento": 6447
     },
     {
       "ano": 2025,
@@ -1638,7 +1638,7 @@
       "ano": 2025,
       "mes": 9,
       "estado": "TO",
-      "faturamento": 1712.0
+      "faturamento": 1712
     },
     {
       "ano": 2025,
@@ -1656,7 +1656,7 @@
       "ano": 2025,
       "mes": 10,
       "estado": "AL",
-      "faturamento": 39343.0
+      "faturamento": 39343
     },
     {
       "ano": 2025,
@@ -1680,13 +1680,13 @@
       "ano": 2025,
       "mes": 10,
       "estado": "CE",
-      "faturamento": 24844.0
+      "faturamento": 24844
     },
     {
       "ano": 2025,
       "mes": 10,
       "estado": "DF",
-      "faturamento": 7320.0
+      "faturamento": 7320
     },
     {
       "ano": 2025,
@@ -1704,7 +1704,7 @@
       "ano": 2025,
       "mes": 10,
       "estado": "MA",
-      "faturamento": 20922.0
+      "faturamento": 20922
     },
     {
       "ano": 2025,
@@ -1734,13 +1734,13 @@
       "ano": 2025,
       "mes": 10,
       "estado": "PB",
-      "faturamento": 29639.0
+      "faturamento": 29639
     },
     {
       "ano": 2025,
       "mes": 10,
       "estado": "PE",
-      "faturamento": 56797.0
+      "faturamento": 56797
     },
     {
       "ano": 2025,
@@ -1764,13 +1764,13 @@
       "ano": 2025,
       "mes": 10,
       "estado": "RN",
-      "faturamento": 46888.0
+      "faturamento": 46888
     },
     {
       "ano": 2025,
       "mes": 10,
       "estado": "RO",
-      "faturamento": 4990.0
+      "faturamento": 4990
     },
     {
       "ano": 2025,
@@ -1788,7 +1788,7 @@
       "ano": 2025,
       "mes": 10,
       "estado": "SE",
-      "faturamento": 2733.0
+      "faturamento": 2733
     },
     {
       "ano": 2025,
@@ -1842,7 +1842,7 @@
       "ano": 2025,
       "mes": 11,
       "estado": "CE",
-      "faturamento": 46526.0
+      "faturamento": 46526
     },
     {
       "ano": 2025,
@@ -1860,7 +1860,7 @@
       "ano": 2025,
       "mes": 11,
       "estado": "MA",
-      "faturamento": 2009.0
+      "faturamento": 2009
     },
     {
       "ano": 2025,
@@ -1872,7 +1872,7 @@
       "ano": 2025,
       "mes": 11,
       "estado": "MS",
-      "faturamento": 9117.0
+      "faturamento": 9117
     },
     {
       "ano": 2025,
@@ -1890,7 +1890,7 @@
       "ano": 2025,
       "mes": 11,
       "estado": "PB",
-      "faturamento": 19849.0
+      "faturamento": 19849
     },
     {
       "ano": 2025,
@@ -1902,7 +1902,7 @@
       "ano": 2025,
       "mes": 11,
       "estado": "PI",
-      "faturamento": 21679.0
+      "faturamento": 21679
     },
     {
       "ano": 2025,
@@ -1926,13 +1926,13 @@
       "ano": 2025,
       "mes": 11,
       "estado": "RO",
-      "faturamento": 14680.0
+      "faturamento": 14680
     },
     {
       "ano": 2025,
       "mes": 11,
       "estado": "RR",
-      "faturamento": 26800.0
+      "faturamento": 26800
     },
     {
       "ano": 2025,
@@ -1986,13 +1986,13 @@
       "ano": 2025,
       "mes": 12,
       "estado": "BA",
-      "faturamento": 26891.0
+      "faturamento": 26891
     },
     {
       "ano": 2025,
       "mes": 12,
       "estado": "CE",
-      "faturamento": 237.0
+      "faturamento": 237
     },
     {
       "ano": 2025,
@@ -2010,7 +2010,7 @@
       "ano": 2025,
       "mes": 12,
       "estado": "MA",
-      "faturamento": 69490.0
+      "faturamento": 69490
     },
     {
       "ano": 2025,
@@ -2040,7 +2040,7 @@
       "ano": 2025,
       "mes": 12,
       "estado": "PB",
-      "faturamento": 12856.0
+      "faturamento": 12856
     },
     {
       "ano": 2025,
@@ -2070,13 +2070,13 @@
       "ano": 2025,
       "mes": 12,
       "estado": "RN",
-      "faturamento": 2984.0
+      "faturamento": 2984
     },
     {
       "ano": 2025,
       "mes": 12,
       "estado": "RO",
-      "faturamento": 16773.0
+      "faturamento": 16773
     },
     {
       "ano": 2025,
@@ -2112,7 +2112,7 @@
       "ano": 2025,
       "mes": 12,
       "estado": "TO",
-      "faturamento": 2708.0
+      "faturamento": 2708
     },
     {
       "ano": 2025,
@@ -2124,19 +2124,19 @@
       "ano": 2026,
       "mes": 1,
       "estado": "AC",
-      "faturamento": 2845.0
+      "faturamento": 2845
     },
     {
       "ano": 2026,
       "mes": 1,
       "estado": "AL",
-      "faturamento": 1409.0
+      "faturamento": 1409
     },
     {
       "ano": 2026,
       "mes": 1,
       "estado": "AP",
-      "faturamento": 10022.0
+      "faturamento": 10022
     },
     {
       "ano": 2026,
@@ -2166,7 +2166,7 @@
       "ano": 2026,
       "mes": 1,
       "estado": "ES",
-      "faturamento": 6127.0
+      "faturamento": 6127
     },
     {
       "ano": 2026,
@@ -2196,7 +2196,7 @@
       "ano": 2026,
       "mes": 1,
       "estado": "MT",
-      "faturamento": 26548.0
+      "faturamento": 26548
     },
     {
       "ano": 2026,
@@ -2208,7 +2208,7 @@
       "ano": 2026,
       "mes": 1,
       "estado": "PB",
-      "faturamento": 6079.0
+      "faturamento": 6079
     },
     {
       "ano": 2026,
@@ -2238,19 +2238,19 @@
       "ano": 2026,
       "mes": 1,
       "estado": "RN",
-      "faturamento": 5538.0
+      "faturamento": 5538
     },
     {
       "ano": 2026,
       "mes": 1,
       "estado": "RO",
-      "faturamento": 30487.0
+      "faturamento": 30487
     },
     {
       "ano": 2026,
       "mes": 1,
       "estado": "RS",
-      "faturamento": 141631.0
+      "faturamento": 141631
     },
     {
       "ano": 2026,
@@ -2262,7 +2262,7 @@
       "ano": 2026,
       "mes": 1,
       "estado": "SE",
-      "faturamento": 34221.0
+      "faturamento": 34221
     },
     {
       "ano": 2026,
@@ -2274,7 +2274,7 @@
       "ano": 2026,
       "mes": 1,
       "estado": "TO",
-      "faturamento": 15955.0
+      "faturamento": 15955
     },
     {
       "ano": 2026,
@@ -2286,13 +2286,13 @@
       "ano": 2026,
       "mes": 2,
       "estado": "AC",
-      "faturamento": 5900.0
+      "faturamento": 5900
     },
     {
       "ano": 2026,
       "mes": 2,
       "estado": "AL",
-      "faturamento": 8140.0
+      "faturamento": 8140
     },
     {
       "ano": 2026,
@@ -2304,7 +2304,7 @@
       "ano": 2026,
       "mes": 2,
       "estado": "BA",
-      "faturamento": 36493.0
+      "faturamento": 36493
     },
     {
       "ano": 2026,
@@ -2328,7 +2328,7 @@
       "ano": 2026,
       "mes": 2,
       "estado": "GO",
-      "faturamento": 18401.0
+      "faturamento": 18401
     },
     {
       "ano": 2026,
@@ -2346,7 +2346,7 @@
       "ano": 2026,
       "mes": 2,
       "estado": "MS",
-      "faturamento": 21467.0
+      "faturamento": 21467
     },
     {
       "ano": 2026,
@@ -2376,13 +2376,13 @@
       "ano": 2026,
       "mes": 2,
       "estado": "PI",
-      "faturamento": 15713.0
+      "faturamento": 15713
     },
     {
       "ano": 2026,
       "mes": 2,
       "estado": "PR",
-      "faturamento": 52375.40
+      "faturamento": 52375.4
     },
     {
       "ano": 2026,
@@ -2442,7 +2442,7 @@
       "ano": 2026,
       "mes": 3,
       "estado": "AC",
-      "faturamento": 23800.0
+      "faturamento": 23800
     },
     {
       "ano": 2026,
@@ -2454,7 +2454,7 @@
       "ano": 2026,
       "mes": 3,
       "estado": "AM",
-      "faturamento": 21752.0
+      "faturamento": 21752
     },
     {
       "ano": 2026,
@@ -2520,7 +2520,7 @@
       "ano": 2026,
       "mes": 3,
       "estado": "PB",
-      "faturamento": 34144.0
+      "faturamento": 34144
     },
     {
       "ano": 2026,
@@ -2586,7 +2586,7 @@
       "ano": 2026,
       "mes": 3,
       "estado": "TO",
-      "faturamento": 8799.0
+      "faturamento": 8799
     },
     {
       "ano": 2026,
@@ -2636,7 +2636,7 @@
       "ano": 2025,
       "mes": 1,
       "vendedor": "Site",
-      "valor": 49829.0
+      "valor": 49829
     },
     {
       "ano": 2025,
@@ -2660,7 +2660,7 @@
       "ano": 2025,
       "mes": 2,
       "vendedor": "Gabriel Dias",
-      "valor": 260252.0
+      "valor": 260252
     },
     {
       "ano": 2025,
@@ -2690,7 +2690,7 @@
       "ano": 2025,
       "mes": 2,
       "vendedor": "Site",
-      "valor": 9710.0
+      "valor": 9710
     },
     {
       "ano": 2025,
@@ -2726,7 +2726,7 @@
       "ano": 2025,
       "mes": 3,
       "vendedor": "Leonardo Schons de Oliveira",
-      "valor": 311404.0
+      "valor": 311404
     },
     {
       "ano": 2025,
@@ -2744,7 +2744,7 @@
       "ano": 2025,
       "mes": 3,
       "vendedor": "Site",
-      "valor": 26394.0
+      "valor": 26394
     },
     {
       "ano": 2025,
@@ -2762,7 +2762,7 @@
       "ano": 2025,
       "mes": 4,
       "vendedor": "Gabriel Dias",
-      "valor": 412161.0
+      "valor": 412161
     },
     {
       "ano": 2025,
@@ -2786,7 +2786,7 @@
       "ano": 2025,
       "mes": 4,
       "vendedor": "Leonardo Schons de Oliveira",
-      "valor": 304113.0
+      "valor": 304113
     },
     {
       "ano": 2025,
@@ -2798,7 +2798,7 @@
       "ano": 2025,
       "mes": 4,
       "vendedor": "Site",
-      "valor": 30084.0
+      "valor": 30084
     },
     {
       "ano": 2025,
@@ -2816,13 +2816,13 @@
       "ano": 2025,
       "mes": 5,
       "vendedor": "Assistência Técnica",
-      "valor": 699.0
+      "valor": 699
     },
     {
       "ano": 2025,
       "mes": 5,
       "vendedor": "Gabriel Dias",
-      "valor": 257339.0
+      "valor": 257339
     },
     {
       "ano": 2025,
@@ -2870,7 +2870,7 @@
       "ano": 2025,
       "mes": 6,
       "vendedor": "Assistência Técnica",
-      "valor": 573.0
+      "valor": 573
     },
     {
       "ano": 2025,
@@ -2918,7 +2918,7 @@
       "ano": 2025,
       "mes": 6,
       "vendedor": "Site",
-      "valor": 14263.0
+      "valor": 14263
     },
     {
       "ano": 2025,
@@ -2930,13 +2930,13 @@
       "ano": 2025,
       "mes": 7,
       "vendedor": "Assistência Técnica",
-      "valor": 6364.0
+      "valor": 6364
     },
     {
       "ano": 2025,
       "mes": 7,
       "vendedor": "Gabriel Dias",
-      "valor": 501828.0
+      "valor": 501828
     },
     {
       "ano": 2025,
@@ -2954,13 +2954,13 @@
       "ano": 2025,
       "mes": 7,
       "vendedor": "Leonardo Schons de Oliveira",
-      "valor": 842033.0
+      "valor": 842033
     },
     {
       "ano": 2025,
       "mes": 7,
       "vendedor": "Mercado Livre",
-      "valor": 34122.0
+      "valor": 34122
     },
     {
       "ano": 2025,
@@ -2978,7 +2978,7 @@
       "ano": 2025,
       "mes": 7,
       "vendedor": "Site",
-      "valor": 45494.0
+      "valor": 45494
     },
     {
       "ano": 2025,
@@ -3014,13 +3014,13 @@
       "ano": 2025,
       "mes": 8,
       "vendedor": "Josiane Govoni Lanzarini",
-      "valor": 53444.0
+      "valor": 53444
     },
     {
       "ano": 2025,
       "mes": 8,
       "vendedor": "Leonardo Schons de Oliveira",
-      "valor": 557151.0
+      "valor": 557151
     },
     {
       "ano": 2025,
@@ -3032,7 +3032,7 @@
       "ano": 2025,
       "mes": 8,
       "vendedor": "Nilson Borges",
-      "valor": 17796.0
+      "valor": 17796
     },
     {
       "ano": 2025,
@@ -3044,13 +3044,13 @@
       "ano": 2025,
       "mes": 8,
       "vendedor": "Site",
-      "valor": 13637.0
+      "valor": 13637
     },
     {
       "ano": 2025,
       "mes": 8,
       "vendedor": "Vanessa Ferreira",
-      "valor": 61819.0
+      "valor": 61819
     },
     {
       "ano": 2025,
@@ -3062,7 +3062,7 @@
       "ano": 2025,
       "mes": 9,
       "vendedor": "Gabriel Dias",
-      "valor": 206038.0
+      "valor": 206038
     },
     {
       "ano": 2025,
@@ -3080,13 +3080,13 @@
       "ano": 2025,
       "mes": 9,
       "vendedor": "Josiane Govoni Lanzarini",
-      "valor": 69340.0
+      "valor": 69340
     },
     {
       "ano": 2025,
       "mes": 9,
       "vendedor": "Leonardo Schons de Oliveira",
-      "valor": 379813.0
+      "valor": 379813
     },
     {
       "ano": 2025,
@@ -3104,7 +3104,7 @@
       "ano": 2025,
       "mes": 9,
       "vendedor": "Site",
-      "valor": 45659.0
+      "valor": 45659
     },
     {
       "ano": 2025,
@@ -3122,7 +3122,7 @@
       "ano": 2025,
       "mes": 10,
       "vendedor": "Gabriel Dias",
-      "valor": 53497.0
+      "valor": 53497
     },
     {
       "ano": 2025,
@@ -3140,7 +3140,7 @@
       "ano": 2025,
       "mes": 10,
       "vendedor": "Josiane Govoni Lanzarini",
-      "valor": 65680.0
+      "valor": 65680
     },
     {
       "ano": 2025,
@@ -3152,7 +3152,7 @@
       "ano": 2025,
       "mes": 10,
       "vendedor": "Leonardo Schons de Oliveira",
-      "valor": 1487908.0
+      "valor": 1487908
     },
     {
       "ano": 2025,
@@ -3176,25 +3176,25 @@
       "ano": 2025,
       "mes": 10,
       "vendedor": "Site",
-      "valor": 13230.0
+      "valor": 13230
     },
     {
       "ano": 2025,
       "mes": 10,
       "vendedor": "Vanessa Ferreira",
-      "valor": 40447.0
+      "valor": 40447
     },
     {
       "ano": 2025,
       "mes": 11,
       "vendedor": "Assistência Técnica",
-      "valor": 1651.0
+      "valor": 1651
     },
     {
       "ano": 2025,
       "mes": 11,
       "vendedor": "Gabriel Dias",
-      "valor": 274479.0
+      "valor": 274479
     },
     {
       "ano": 2025,
@@ -3212,7 +3212,7 @@
       "ano": 2025,
       "mes": 11,
       "vendedor": "Josiane Govoni Lanzarini",
-      "valor": 68509.0
+      "valor": 68509
     },
     {
       "ano": 2025,
@@ -3242,13 +3242,13 @@
       "ano": 2025,
       "mes": 11,
       "vendedor": "Site",
-      "valor": 245.0
+      "valor": 245
     },
     {
       "ano": 2025,
       "mes": 11,
       "vendedor": "Vanessa Ferreira",
-      "valor": 12296.0
+      "valor": 12296
     },
     {
       "ano": 2025,
@@ -3290,7 +3290,7 @@
       "ano": 2025,
       "mes": 12,
       "vendedor": "Leonardo Schons de Oliveira",
-      "valor": -32590.0
+      "valor": -32590
     },
     {
       "ano": 2025,
@@ -3314,7 +3314,7 @@
       "ano": 2025,
       "mes": 12,
       "vendedor": "Site",
-      "valor": 483.0
+      "valor": 483
     },
     {
       "ano": 2025,
@@ -3326,7 +3326,7 @@
       "ano": 2026,
       "mes": 1,
       "vendedor": "Gabriel Dias",
-      "valor": 900.0
+      "valor": 900
     },
     {
       "ano": 2026,
@@ -3374,7 +3374,7 @@
       "ano": 2026,
       "mes": 1,
       "vendedor": "Vanessa Ferreira",
-      "valor": 14184.0
+      "valor": 14184
     },
     {
       "ano": 2026,
@@ -3386,7 +3386,7 @@
       "ano": 2026,
       "mes": 2,
       "vendedor": "Gabriel Dias",
-      "valor": 15140.0
+      "valor": 15140
     },
     {
       "ano": 2026,
@@ -3398,7 +3398,7 @@
       "ano": 2026,
       "mes": 2,
       "vendedor": "Gabriel Klein",
-      "valor": 384324.0
+      "valor": 384324
     },
     {
       "ano": 2026,
@@ -3410,7 +3410,7 @@
       "ano": 2026,
       "mes": 2,
       "vendedor": "Josiane Govoni Lanzarini",
-      "valor": 76581.0
+      "valor": 76581
     },
     {
       "ano": 2026,
@@ -3434,19 +3434,19 @@
       "ano": 2026,
       "mes": 2,
       "vendedor": "Vanessa Ferreira",
-      "valor": 2792.0
+      "valor": 2792
     },
     {
       "ano": 2026,
       "mes": 3,
       "vendedor": "Assistência Técnica",
-      "valor": 1439.0
+      "valor": 1439
     },
     {
       "ano": 2026,
       "mes": 3,
       "vendedor": "Gabriel Dias",
-      "valor": 13818.0
+      "valor": 13818
     },
     {
       "ano": 2026,
@@ -3595,55 +3595,55 @@
         "mes": 4,
         "label": "Apr",
         "meta": 2342806.52,
-        "realizado": 0.0
+        "realizado": 0
       },
       {
         "mes": 5,
         "label": "May",
         "meta": 1551831.76,
-        "realizado": 0.0
+        "realizado": 0
       },
       {
         "mes": 6,
         "label": "Jun",
         "meta": 1433850.84,
-        "realizado": 0.0
+        "realizado": 0
       },
       {
         "mes": 7,
         "label": "Jul",
         "meta": 2588973.92,
-        "realizado": 0.0
+        "realizado": 0
       },
       {
         "mes": 8,
         "label": "Aug",
         "meta": 3128206.82,
-        "realizado": 0.0
+        "realizado": 0
       },
       {
         "mes": 9,
         "label": "Sep",
         "meta": 2351282.48,
-        "realizado": 0.0
+        "realizado": 0
       },
       {
         "mes": 10,
         "label": "Oct",
         "meta": 3354278.18,
-        "realizado": 0.0
+        "realizado": 0
       },
       {
         "mes": 11,
         "label": "Nov",
         "meta": 2900618.56,
-        "realizado": 0.0
+        "realizado": 0
       },
       {
         "mes": 12,
         "label": "Dec",
-        "meta": 1439000.0,
-        "realizado": 0.0
+        "meta": 1439000,
+        "realizado": 0
       }
     ]
   },
@@ -3724,5 +3724,1229 @@
       "mes": 3,
       "total": 2530727.9099999997
     }
-  ]
+  ],
+  "orcamento": {
+    "mensal": {
+      "2026_1": {
+        "centros": [
+          {
+            "cc": "Comercial",
+            "orc": 72930.68166666667,
+            "real": 51352.409999999996
+          },
+          {
+            "cc": "Marketing",
+            "orc": 26208.764977777777,
+            "real": 19037.510000000002
+          },
+          {
+            "cc": "Compras",
+            "orc": 22597.612733333335,
+            "real": 17763.870000000003
+          },
+          {
+            "cc": "Lab. Calibração",
+            "orc": 68930.8834111111,
+            "real": 23707.73
+          },
+          {
+            "cc": "Lab. Manutenção",
+            "orc": 35658.70312222223,
+            "real": 34593.22
+          },
+          {
+            "cc": "Administrativo",
+            "orc": 85747.33333333333,
+            "real": 130469.59999999998
+          },
+          {
+            "cc": "Diretoria",
+            "orc": 362453.42333333334,
+            "real": 372615.56
+          },
+          {
+            "cc": "ADM",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Financeiro",
+            "orc": 37031.14986666667,
+            "real": 26305.040000000023
+          },
+          {
+            "cc": "P&D",
+            "orc": 66798.17,
+            "real": 84966.72
+          },
+          {
+            "cc": "RH",
+            "orc": 5627.2,
+            "real": 3351.2
+          },
+          {
+            "cc": "Locação",
+            "orc": 21661.52607777778,
+            "real": 19517.31
+          },
+          {
+            "cc": "TI",
+            "orc": 67025.99536666667,
+            "real": 55513.3
+          },
+          {
+            "cc": "Logistica",
+            "orc": 120447.61487777777,
+            "real": 86123.94000000002
+          },
+          {
+            "cc": "Manutenção",
+            "orc": 35465.62197777777,
+            "real": 18057.57
+          },
+          {
+            "cc": "Produção",
+            "orc": 283470.1234888889,
+            "real": 315660.43000000005
+          },
+          {
+            "cc": "Suport Tec.",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Sup. Tecnico",
+            "orc": 30946.25636666667,
+            "real": 23789.65
+          },
+          {
+            "cc": "Total Geral",
+            "orc": 1343001.0606,
+            "real": 1282825.06
+          }
+        ],
+        "totalOrc": 2686002.1212,
+        "totalReal": 2565650.12
+      },
+      "2026_2": {
+        "centros": [
+          {
+            "cc": "Comercial",
+            "orc": 72930.68166666667,
+            "real": 101700.95000000001
+          },
+          {
+            "cc": "Marketing",
+            "orc": 59208.76497777778,
+            "real": 47365.97
+          },
+          {
+            "cc": "Compras",
+            "orc": 22597.612733333335,
+            "real": 24062.239999999998
+          },
+          {
+            "cc": "Lab. Calibração",
+            "orc": 50430.883411111114,
+            "real": 37366.170000000006
+          },
+          {
+            "cc": "Lab. Manutenção",
+            "orc": 35658.70312222223,
+            "real": 39875.42
+          },
+          {
+            "cc": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 127075.9
+          },
+          {
+            "cc": "Diretoria",
+            "orc": 1662453.4233333333,
+            "real": 1674821.99
+          },
+          {
+            "cc": "ADM",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Financeiro",
+            "orc": 37784.11986666667,
+            "real": 51423.42999999998
+          },
+          {
+            "cc": "P&D",
+            "orc": 105798.17,
+            "real": 77548.78
+          },
+          {
+            "cc": "RH",
+            "orc": 13627.2,
+            "real": 8298.86
+          },
+          {
+            "cc": "Locação",
+            "orc": 21661.52607777778,
+            "real": 23447.26
+          },
+          {
+            "cc": "TI",
+            "orc": 78190.32536666667,
+            "real": 36720.729999999996
+          },
+          {
+            "cc": "Logistica",
+            "orc": 120483.57825555555,
+            "real": 81519.06999999999
+          },
+          {
+            "cc": "Manutenção",
+            "orc": 46706.62197777777,
+            "real": 28881.440000000002
+          },
+          {
+            "cc": "Produção",
+            "orc": 459881.0534888889,
+            "real": 196298.88
+          },
+          {
+            "cc": "Suport Tec.",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Sup. Tecnico",
+            "orc": 30946.25636666667,
+            "real": 39410.54
+          },
+          {
+            "cc": "Total Geral",
+            "orc": 2904506.253977778,
+            "real": 2595817.6299999994
+          }
+        ],
+        "totalOrc": 5809012.507955556,
+        "totalReal": 5191635.259999999
+      },
+      "2026_3": {
+        "centros": [
+          {
+            "cc": "Comercial",
+            "orc": 77430.68166666667,
+            "real": 150244.01
+          },
+          {
+            "cc": "Marketing",
+            "orc": 92708.76497777778,
+            "real": 76329.63
+          },
+          {
+            "cc": "Compras",
+            "orc": 22597.612733333335,
+            "real": 18794.45
+          },
+          {
+            "cc": "Lab. Calibração",
+            "orc": 90900.8834111111,
+            "real": 47895.59
+          },
+          {
+            "cc": "Lab. Manutenção",
+            "orc": 35658.70312222223,
+            "real": 32985.81
+          },
+          {
+            "cc": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 211750.34
+          },
+          {
+            "cc": "Diretoria",
+            "orc": 962453.4233333332,
+            "real": 952244.66
+          },
+          {
+            "cc": "ADM",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Financeiro",
+            "orc": 51478.319866666665,
+            "real": -561188.23
+          },
+          {
+            "cc": "P&D",
+            "orc": 66798.17,
+            "real": 63299.630000000005
+          },
+          {
+            "cc": "RH",
+            "orc": 5627.2,
+            "real": 4051.2
+          },
+          {
+            "cc": "Locação",
+            "orc": 21661.52607777778,
+            "real": 24316.74
+          },
+          {
+            "cc": "TI",
+            "orc": 72757.32536666667,
+            "real": 60250.55000000001
+          },
+          {
+            "cc": "Logistica",
+            "orc": 115483.57825555555,
+            "real": 53431.57
+          },
+          {
+            "cc": "Manutenção",
+            "orc": 36952.12842222222,
+            "real": 38262.8
+          },
+          {
+            "cc": "Produção",
+            "orc": 467107.4134888889,
+            "real": 292328.27
+          },
+          {
+            "cc": "Suport Tec.",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Sup. Tecnico",
+            "orc": 32946.25636666667,
+            "real": 35508.920000000006
+          },
+          {
+            "cc": "Total Geral",
+            "orc": 2238709.3204222224,
+            "real": 1500505.9400000002
+          }
+        ],
+        "totalOrc": 4477418.640844445,
+        "totalReal": 3001011.8800000004
+      },
+      "2026_4": {
+        "centros": [
+          {
+            "cc": "Comercial",
+            "orc": 81930.68166666667,
+            "real": 0
+          },
+          {
+            "cc": "Marketing",
+            "orc": 46508.76497777778,
+            "real": 0
+          },
+          {
+            "cc": "Compras",
+            "orc": 22597.612733333335,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Calibração",
+            "orc": 82430.8834111111,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Manutenção",
+            "orc": 35658.70312222223,
+            "real": 0
+          },
+          {
+            "cc": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0
+          },
+          {
+            "cc": "Diretoria",
+            "orc": 500453.42333333334,
+            "real": 0
+          },
+          {
+            "cc": "ADM",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Financeiro",
+            "orc": 40025.51986666666,
+            "real": 0
+          },
+          {
+            "cc": "P&D",
+            "orc": 166798.17,
+            "real": 0
+          },
+          {
+            "cc": "RH",
+            "orc": 13627.2,
+            "real": 0
+          },
+          {
+            "cc": "Locação",
+            "orc": 21661.52607777778,
+            "real": 0
+          },
+          {
+            "cc": "TI",
+            "orc": 60707.53536666668,
+            "real": 0
+          },
+          {
+            "cc": "Logistica",
+            "orc": 155683.57825555553,
+            "real": 0
+          },
+          {
+            "cc": "Manutenção",
+            "orc": 37252.12842222222,
+            "real": 0
+          },
+          {
+            "cc": "Produção",
+            "orc": 498586.9934888889,
+            "real": 0
+          },
+          {
+            "cc": "Suport Tec.",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Sup. Tecnico",
+            "orc": 32946.25636666667,
+            "real": 0
+          },
+          {
+            "cc": "Total Geral",
+            "orc": 1883016.3104222226,
+            "real": 0
+          }
+        ],
+        "totalOrc": 3766032.620844445,
+        "totalReal": 0
+      },
+      "2026_5": {
+        "centros": [
+          {
+            "cc": "Comercial",
+            "orc": 74480.68166666667,
+            "real": 0
+          },
+          {
+            "cc": "Marketing",
+            "orc": 58588.76497777778,
+            "real": 0
+          },
+          {
+            "cc": "Compras",
+            "orc": 22597.612733333335,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Calibração",
+            "orc": 72930.8834111111,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Manutenção",
+            "orc": 41158.70312222223,
+            "real": 0
+          },
+          {
+            "cc": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0
+          },
+          {
+            "cc": "Diretoria",
+            "orc": 500453.42333333334,
+            "real": 0
+          },
+          {
+            "cc": "ADM",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Financeiro",
+            "orc": 40025.51986666666,
+            "real": 0
+          },
+          {
+            "cc": "P&D",
+            "orc": 65798.17,
+            "real": 0
+          },
+          {
+            "cc": "RH",
+            "orc": 5627.2,
+            "real": 0
+          },
+          {
+            "cc": "Locação",
+            "orc": 21661.52607777778,
+            "real": 0
+          },
+          {
+            "cc": "TI",
+            "orc": 62237.53536666668,
+            "real": 0
+          },
+          {
+            "cc": "Logistica",
+            "orc": 116344.57825555555,
+            "real": 0
+          },
+          {
+            "cc": "Manutenção",
+            "orc": 36652.12842222222,
+            "real": 0
+          },
+          {
+            "cc": "Produção",
+            "orc": 343392.0434888889,
+            "real": 0
+          },
+          {
+            "cc": "Suport Tec.",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Sup. Tecnico",
+            "orc": 42446.25636666667,
+            "real": 0
+          },
+          {
+            "cc": "Total Geral",
+            "orc": 1590542.3604222222,
+            "real": 0
+          }
+        ],
+        "totalOrc": 3181084.7208444444,
+        "totalReal": 0
+      },
+      "2026_6": {
+        "centros": [
+          {
+            "cc": "Comercial",
+            "orc": 72930.68166666667,
+            "real": 0
+          },
+          {
+            "cc": "Marketing",
+            "orc": 52228.76497777778,
+            "real": 0
+          },
+          {
+            "cc": "Compras",
+            "orc": 22597.612733333335,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Calibração",
+            "orc": 37430.883411111114,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Manutenção",
+            "orc": 35658.70312222223,
+            "real": 0
+          },
+          {
+            "cc": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0
+          },
+          {
+            "cc": "Diretoria",
+            "orc": 500453.42333333334,
+            "real": 0
+          },
+          {
+            "cc": "ADM",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Financeiro",
+            "orc": 40025.51986666666,
+            "real": 0
+          },
+          {
+            "cc": "P&D",
+            "orc": 66798.17,
+            "real": 0
+          },
+          {
+            "cc": "RH",
+            "orc": 13627.2,
+            "real": 0
+          },
+          {
+            "cc": "Locação",
+            "orc": 21661.52607777778,
+            "real": 0
+          },
+          {
+            "cc": "TI",
+            "orc": 67892.86536666667,
+            "real": 0
+          },
+          {
+            "cc": "Logistica",
+            "orc": 120483.57825555555,
+            "real": 0
+          },
+          {
+            "cc": "Manutenção",
+            "orc": 35752.12842222222,
+            "real": 0
+          },
+          {
+            "cc": "Produção",
+            "orc": 317995.8634888889,
+            "real": 0
+          },
+          {
+            "cc": "Suport Tec.",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Sup. Tecnico",
+            "orc": 37446.25636666667,
+            "real": 0
+          },
+          {
+            "cc": "Total Geral",
+            "orc": 1529130.510422222,
+            "real": 0
+          }
+        ],
+        "totalOrc": 3058261.020844444,
+        "totalReal": 0
+      },
+      "2026_7": {
+        "centros": [
+          {
+            "cc": "Comercial",
+            "orc": 82872.90333333334,
+            "real": 0
+          },
+          {
+            "cc": "Marketing",
+            "orc": 397048.7649777778,
+            "real": 0
+          },
+          {
+            "cc": "Compras",
+            "orc": 22597.612733333335,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Calibração",
+            "orc": 37430.883411111114,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Manutenção",
+            "orc": 35658.70312222223,
+            "real": 0
+          },
+          {
+            "cc": "Administrativo",
+            "orc": 90848.33333333333,
+            "real": 0
+          },
+          {
+            "cc": "Diretoria",
+            "orc": 500453.42333333334,
+            "real": 0
+          },
+          {
+            "cc": "ADM",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Financeiro",
+            "orc": 40025.51986666666,
+            "real": 0
+          },
+          {
+            "cc": "P&D",
+            "orc": 65798.17,
+            "real": 0
+          },
+          {
+            "cc": "RH",
+            "orc": 5627.2,
+            "real": 0
+          },
+          {
+            "cc": "Locação",
+            "orc": 21661.52607777778,
+            "real": 0
+          },
+          {
+            "cc": "TI",
+            "orc": 71175.65536666667,
+            "real": 0
+          },
+          {
+            "cc": "Logistica",
+            "orc": 115483.57825555555,
+            "real": 0
+          },
+          {
+            "cc": "Manutenção",
+            "orc": 36602.12842222222,
+            "real": 0
+          },
+          {
+            "cc": "Produção",
+            "orc": 547820.4734888889,
+            "real": 0
+          },
+          {
+            "cc": "Suport Tec.",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Sup. Tecnico",
+            "orc": 50946.25636666667,
+            "real": 0
+          },
+          {
+            "cc": "Total Geral",
+            "orc": 2122051.132088889,
+            "real": 0
+          }
+        ],
+        "totalOrc": 4244102.264177778,
+        "totalReal": 0
+      },
+      "2026_8": {
+        "centros": [
+          {
+            "cc": "Comercial",
+            "orc": 80072.90333333335,
+            "real": 0
+          },
+          {
+            "cc": "Marketing",
+            "orc": 47684.67111111111,
+            "real": 0
+          },
+          {
+            "cc": "Compras",
+            "orc": 23050.437944444442,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Calibração",
+            "orc": 39525.15532222222,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Manutenção",
+            "orc": 37221.137411111114,
+            "real": 0
+          },
+          {
+            "cc": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0
+          },
+          {
+            "cc": "Diretoria",
+            "orc": 502289.4652333333,
+            "real": 0
+          },
+          {
+            "cc": "ADM",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Financeiro",
+            "orc": 41283.469577777774,
+            "real": 0
+          },
+          {
+            "cc": "P&D",
+            "orc": 99798.17,
+            "real": 0
+          },
+          {
+            "cc": "RH",
+            "orc": 5627.2,
+            "real": 0
+          },
+          {
+            "cc": "Locação",
+            "orc": 21928.626266666666,
+            "real": 0
+          },
+          {
+            "cc": "TI",
+            "orc": 61558.96193333334,
+            "real": 0
+          },
+          {
+            "cc": "Logistica",
+            "orc": 168139.39322222222,
+            "real": 0
+          },
+          {
+            "cc": "Manutenção",
+            "orc": 36706.94592222222,
+            "real": 0
+          },
+          {
+            "cc": "Produção",
+            "orc": 662082.5461444444,
+            "real": 0
+          },
+          {
+            "cc": "Suport Tec.",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Sup. Tecnico",
+            "orc": 35487.374022222226,
+            "real": 0
+          },
+          {
+            "cc": "Total Geral",
+            "orc": 1948603.7907777773,
+            "real": 0
+          }
+        ],
+        "totalOrc": 3897207.5815555546,
+        "totalReal": 0
+      },
+      "2026_9": {
+        "centros": [
+          {
+            "cc": "Comercial",
+            "orc": 75872.90333333334,
+            "real": 0
+          },
+          {
+            "cc": "Marketing",
+            "orc": 52315.07734444444,
+            "real": 0
+          },
+          {
+            "cc": "Compras",
+            "orc": 23050.437944444442,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Calibração",
+            "orc": 39525.15532222222,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Manutenção",
+            "orc": 37221.137411111114,
+            "real": 0
+          },
+          {
+            "cc": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0
+          },
+          {
+            "cc": "Diretoria",
+            "orc": 502289.4652333333,
+            "real": 0
+          },
+          {
+            "cc": "ADM",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Financeiro",
+            "orc": 40283.299577777776,
+            "real": 0
+          },
+          {
+            "cc": "P&D",
+            "orc": 126798.17,
+            "real": 0
+          },
+          {
+            "cc": "RH",
+            "orc": 5627.2,
+            "real": 0
+          },
+          {
+            "cc": "Locação",
+            "orc": 21928.626266666666,
+            "real": 0
+          },
+          {
+            "cc": "TI",
+            "orc": 60608.96193333334,
+            "real": 0
+          },
+          {
+            "cc": "Logistica",
+            "orc": 123139.39322222222,
+            "real": 0
+          },
+          {
+            "cc": "Manutenção",
+            "orc": 36706.94592222222,
+            "real": 0
+          },
+          {
+            "cc": "Produção",
+            "orc": 502897.68614444445,
+            "real": 0
+          },
+          {
+            "cc": "Suport Tec.",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Sup. Tecnico",
+            "orc": 33487.374022222226,
+            "real": 0
+          },
+          {
+            "cc": "Total Geral",
+            "orc": 1767899.167011111,
+            "real": 0
+          }
+        ],
+        "totalOrc": 3535798.334022222,
+        "totalReal": 0
+      },
+      "2026_10": {
+        "centros": [
+          {
+            "cc": "Comercial",
+            "orc": 130672.90333333335,
+            "real": 0
+          },
+          {
+            "cc": "Marketing",
+            "orc": 47685.27734444445,
+            "real": 0
+          },
+          {
+            "cc": "Compras",
+            "orc": 23050.437944444442,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Calibração",
+            "orc": 41805.15532222222,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Manutenção",
+            "orc": 37221.137411111114,
+            "real": 0
+          },
+          {
+            "cc": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0
+          },
+          {
+            "cc": "Diretoria",
+            "orc": 502289.4652333333,
+            "real": 0
+          },
+          {
+            "cc": "ADM",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Financeiro",
+            "orc": 40283.299577777776,
+            "real": 0
+          },
+          {
+            "cc": "P&D",
+            "orc": 66798.17,
+            "real": 0
+          },
+          {
+            "cc": "RH",
+            "orc": 20627.2,
+            "real": 0
+          },
+          {
+            "cc": "Locação",
+            "orc": 21928.626266666666,
+            "real": 0
+          },
+          {
+            "cc": "TI",
+            "orc": 59608.96193333334,
+            "real": 0
+          },
+          {
+            "cc": "Logistica",
+            "orc": 118139.39322222222,
+            "real": 0
+          },
+          {
+            "cc": "Manutenção",
+            "orc": 36706.94592222222,
+            "real": 0
+          },
+          {
+            "cc": "Produção",
+            "orc": 703796.8261444444,
+            "real": 0
+          },
+          {
+            "cc": "Suport Tec.",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Sup. Tecnico",
+            "orc": 31487.374022222222,
+            "real": 0
+          },
+          {
+            "cc": "Total Geral",
+            "orc": 1968248.507011111,
+            "real": 0
+          }
+        ],
+        "totalOrc": 3936497.014022222,
+        "totalReal": 0
+      },
+      "2026_11": {
+        "centros": [
+          {
+            "cc": "Comercial",
+            "orc": 75872.90333333334,
+            "real": 0
+          },
+          {
+            "cc": "Marketing",
+            "orc": 62885.27734444445,
+            "real": 0
+          },
+          {
+            "cc": "Compras",
+            "orc": 23050.437944444442,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Calibração",
+            "orc": 39525.15532222222,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Manutenção",
+            "orc": 41371.87741111111,
+            "real": 0
+          },
+          {
+            "cc": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0
+          },
+          {
+            "cc": "Diretoria",
+            "orc": 502289.4652333333,
+            "real": 0
+          },
+          {
+            "cc": "ADM",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Financeiro",
+            "orc": 40283.299577777776,
+            "real": 0
+          },
+          {
+            "cc": "P&D",
+            "orc": 65798.17,
+            "real": 0
+          },
+          {
+            "cc": "RH",
+            "orc": 25627.2,
+            "real": 0
+          },
+          {
+            "cc": "Locação",
+            "orc": 21928.626266666666,
+            "real": 0
+          },
+          {
+            "cc": "TI",
+            "orc": 59608.96193333334,
+            "real": 0
+          },
+          {
+            "cc": "Logistica",
+            "orc": 121806.39322222222,
+            "real": 0
+          },
+          {
+            "cc": "Manutenção",
+            "orc": 36706.94592222222,
+            "real": 0
+          },
+          {
+            "cc": "Produção",
+            "orc": 613064.8961444444,
+            "real": 0
+          },
+          {
+            "cc": "Suport Tec.",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Sup. Tecnico",
+            "orc": 31487.374022222222,
+            "real": 0
+          },
+          {
+            "cc": "Total Geral",
+            "orc": 1847454.317011111,
+            "real": 0
+          }
+        ],
+        "totalOrc": 3694908.634022222,
+        "totalReal": 0
+      },
+      "2026_12": {
+        "centros": [
+          {
+            "cc": "Comercial",
+            "orc": 78222.90333333335,
+            "real": 0
+          },
+          {
+            "cc": "Marketing",
+            "orc": 47685.27734444445,
+            "real": 0
+          },
+          {
+            "cc": "Compras",
+            "orc": 36050.43794444444,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Calibração",
+            "orc": 45525.15532222222,
+            "real": 0
+          },
+          {
+            "cc": "Lab. Manutenção",
+            "orc": 99871.87741111111,
+            "real": 0
+          },
+          {
+            "cc": "Administrativo",
+            "orc": 85747.33333333333,
+            "real": 0
+          },
+          {
+            "cc": "Diretoria",
+            "orc": 502289.4652333333,
+            "real": 0
+          },
+          {
+            "cc": "ADM",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Financeiro",
+            "orc": 72049.63957777777,
+            "real": 0
+          },
+          {
+            "cc": "P&D",
+            "orc": 161888.48,
+            "real": 0
+          },
+          {
+            "cc": "RH",
+            "orc": 15627.2,
+            "real": 0
+          },
+          {
+            "cc": "Locação",
+            "orc": 21928.626266666666,
+            "real": 0
+          },
+          {
+            "cc": "TI",
+            "orc": 135566.41193333332,
+            "real": 0
+          },
+          {
+            "cc": "Logistica",
+            "orc": 122067.39322222222,
+            "real": 0
+          },
+          {
+            "cc": "Manutenção",
+            "orc": 48206.94592222222,
+            "real": 0
+          },
+          {
+            "cc": "Produção",
+            "orc": 321941.18614444445,
+            "real": 0
+          },
+          {
+            "cc": "Suport Tec.",
+            "orc": 0,
+            "real": 0
+          },
+          {
+            "cc": "Sup. Tecnico",
+            "orc": 69149.60402222222,
+            "real": 0
+          },
+          {
+            "cc": "Total Geral",
+            "orc": 1863817.937011111,
+            "real": 0
+          }
+        ],
+        "totalOrc": 3727635.874022222,
+        "totalReal": 0
+      }
+    },
+    "metas": {
+      "inicial": {
+        "receita": 26674256.6098,
+        "despesas": 27797748,
+        "resultado": -1123491.3902000003,
+        "economia": 0.23
+      }
+    }
+  }
 }

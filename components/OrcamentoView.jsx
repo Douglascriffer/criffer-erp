@@ -11,83 +11,6 @@ function fmt(v) {
   return `R$ ${Math.round(Math.abs(v)).toLocaleString('pt-BR')}`
 }
 
-// ── Dados Reais (Acoplados para simulação de DRE - Sincronizados com Auditoria Net) ──
-const DADOS = {
-  '1': {
-    recReal:1594922, recMeta:1211291,
-    despReal:1282826, despOrc:1343002,
-    centros:[
-      {cc:'Comercial',      orc:72931,  real:51352 },
-      {cc:'Marketing',      orc:26209,  real:19038 },
-      {cc:'Compras',        orc:22598,  real:17764 },
-      {cc:'Lab. Calibração',orc:68931,  real:23708 },
-      {cc:'Lab. Manutenção',orc:35659,  real:34593 },
-      {cc:'Administrativo', orc:85747,  real:130470},
-      {cc:'Diretoria',      orc:362453, real:372616},
-      {cc:'Financeiro',     orc:37031,  real:26305 },
-      {cc:'P&D',            orc:66798,  real:84967 },
-      {cc:'RH',             orc:5627,   real:3351  },
-      {cc:'Locação',        orc:21662,  real:19517 },
-      {cc:'TI',             orc:67026,  real:55513 },
-      {cc:'Logística',      orc:120448, real:86124 },
-      {cc:'Manutenção',     orc:35466,  real:18058 },
-      {cc:'Produção',       orc:283470, real:315660},
-      {cc:'Sup. Técnico',   orc:30946,  real:23790 },
-    ],
-  },
-  '2': {
-    recReal:1763470, recMeta:2037149,
-    despReal:1534770, despOrc:1735261,
-    centros:[
-      {cc:'Comercial',      orc:72931,  real:101701},
-      {cc:'Marketing',      orc:59209,  real:47366 },
-      {cc:'Compras',        orc:22598,  real:24062 },
-      {cc:'Lab. Calibração',orc:50431,  real:37366 },
-      {cc:'Lab. Manutenção',orc:35659,  real:39875 },
-      {cc:'Administrativo', orc:86147,  real:127076},
-      {cc:'Diretoria',      orc:362453, real:374822},
-      {cc:'Financeiro',     orc:37784,  real:51423 },
-      {cc:'P&D',            orc:105798, real:77549 },
-      {cc:'RH',             orc:13627,  real:8299  },
-      {cc:'Locação',        orc:21662,  real:23447 },
-      {cc:'TI',             orc:78190,  real:36721 },
-      {cc:'Logística',      orc:120484, real:81519 },
-      {cc:'Manutenção',     orc:46707,  real:28881 },
-      {cc:'Produção',       orc:459881, real:196299},
-      {cc:'Sup. Técnico',   orc:30946,  real:39411 },
-    ],
-  },
-  'all': {
-    recReal:5889120, recMeta:3248440,
-    despReal:2817596, despOrc:3078263,
-    centros:[
-      {cc:'Comercial',      orc:145862, real:153053 },
-      {cc:'Marketing',      orc:85418,  real:66404  },
-      {cc:'Compras',        orc:45196,  real:41826  },
-      {cc:'Lab. Calibração',orc:119362, real:61074  },
-      {cc:'Lab. Manutenção',orc:71318,  real:74468  },
-      {cc:'Administrativo', orc:171894, real:257546 },
-      {cc:'Diretoria',      orc:724906, real:747438 },
-      {cc:'Financeiro',     orc:74815,  real:77728  },
-      {cc:'P&D',            orc:172596, real:162516 },
-      {cc:'RH',             orc:19254,  real:11650  },
-      {cc:'Locação',        orc:43324,  real:42964  },
-      {cc:'TI',             orc:145216, real:92234  },
-      {cc:'Logística',      orc:240932, real:167643 },
-      {cc:'Manutenção',     orc:82173,  real:46939  },
-      {cc:'Produção',       orc:743351, real:511959 },
-      {cc:'Sup. Técnico',   orc:61892,  real:63201  },
-    ],
-  },
-}
-
-const MENSAL_LINHA = [
-  { mes:'Jan', receita:1594922, despesa:1282826, meta:1211291 },
-  { mes:'Fev', receita:1763470, despesa:1534770, meta:2037149 },
-  { mes:'Mar', receita:2530728, despesa:null,    meta:1350000 },
-  { mes:'Abr', receita:null,    despesa:null,    meta:1380000 },
-]
-
 function TipLinha({ active, payload, label, darkMode }) {
   if (!active || !payload?.length) return null
   return (
@@ -114,11 +37,62 @@ function TipLinha({ active, payload, label, darkMode }) {
   )
 }
 
-export default function OrcamentoView({ mes='all', darkMode=false }) {
-  const dados = DADOS[mes] || DADOS['all']
+export default function OrcamentoView({ mes='all', data, darkMode=false }) {
+  const orcamento = data?.orcamento || {}
+  
+  // Derivar DADOS dinamicamente
+  const dynamicDados = useMemo(() => {
+    const res = {}
+    if (!orcamento?.mensal) return {}
+
+    Object.entries(orcamento.mensal).forEach(([key, mData]) => {
+      const monthNum = key.split('_')[1]
+      // Buscar receita real do byPeriod
+      const period = data?.byPeriod?.find(p => p.ano === 2026 && p.mes === Number(monthNum))
+      const meta   = data?.meta?.['2026']?.find(m => m.mes === Number(monthNum))
+
+      res[monthNum] = {
+        recReal:  period?.total || 0,
+        recMeta:  meta?.meta || 0,
+        despReal: mData.totalReal,
+        despOrc:  mData.totalOrc,
+        centros:  mData.centros
+      }
+    })
+
+    // Versão 'all' (Acumulado)
+    const validMonths = Object.values(res)
+    res['all'] = {
+      recReal:  validMonths.reduce((s, v) => s + v.recReal, 0),
+      recMeta:  validMonths.reduce((s, v) => s + v.recMeta, 0),
+      despReal: validMonths.reduce((s, v) => s + v.despReal, 0),
+      despOrc:  validMonths.reduce((s, v) => s + v.despOrc, 0),
+      centros:  orcamento.mensal['2026_1']?.centros.map(c => ({
+        cc: c.cc,
+        orc: validMonths.reduce((s, v) => s + (v.centros?.find(cc => cc.cc === c.cc)?.orc || 0), 0),
+        real: validMonths.reduce((s, v) => s + (v.centros?.find(cc => cc.cc === c.cc)?.real || 0), 0)
+      })) || []
+    }
+    return res
+  }, [data, orcamento])
+
+  const dados = dynamicDados[mes] || dynamicDados['all'] || { centros: [] }
   const { recReal, recMeta, despReal, despOrc } = dados
-  const resultado = recReal - despReal
+  const resultado = (recReal || 0) - (despReal || 0)
   const resPos    = resultado >= 0
+  
+  const mensalLinha = useMemo(() => {
+    return [1,2,3,4,5,6,7,8,9,10,11,12].map(m => {
+      const d = dynamicDados[m]
+      const label = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][m-1]
+      return {
+        mes: label,
+        receita: d?.recReal || null,
+        despesa: d?.despReal || null,
+        meta: d?.recMeta || null
+      }
+    })
+  }, [dynamicDados])
 
   const t = {
     text: darkMode ? '#ffffff' : '#000000',
@@ -155,7 +129,7 @@ export default function OrcamentoView({ mes='all', darkMode=false }) {
           <div style={{ position: 'absolute', right: -10, bottom: -10, opacity: 0.15 }}>
             <Activity size={100} />
           </div>
-          <p style={{ fontSize: 11, fontWeight: 900, opacity: 0.85, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Resultado Líquido</p>
+          <p style={{ fontSize: 11, fontWeight: 900, opacity: 0.85, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Resultado Operacional</p>
           <p style={{ fontSize: 42, fontWeight: 900, marginBottom: 8 }}>{fmt(resultado)}</p>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 700, background: 'rgba(255,255,255,0.15)', padding: '6px 12px', borderRadius: 12, width: 'fit-content' }}>
             {resPos ? '🎉 Performance Superavitária' : '⚠️ Atenção: Resultado Deficitário'}
@@ -183,9 +157,9 @@ export default function OrcamentoView({ mes='all', darkMode=false }) {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{ flex: 1, height: 8, background: darkMode ? '#333' : '#f0f0f0', borderRadius: 4, overflow: 'hidden' }}>
-              <div style={{ height: '100%', background: t.accent, width: `${Math.min(recReal/recMeta*100, 100)}%` }} />
+              <div style={{ height: '100%', background: t.accent, width: `${Math.min((recReal||0)/(recMeta||1)*100, 100)}%` }} />
             </div>
-            <span style={{ fontSize: 14, fontWeight: 900, color: t.text }}>{Math.round(recReal/recMeta*100)}%</span>
+            <span style={{ fontSize: 14, fontWeight: 900, color: t.text }}>{Math.round((recReal||0)/(recMeta||1)*100)}%</span>
           </div>
           <p style={{ fontSize: 12, color: t.textMuted, marginTop: 8, fontWeight: 600 }}>Meta: {fmt(recMeta)}</p>
         </div>
@@ -211,9 +185,9 @@ export default function OrcamentoView({ mes='all', darkMode=false }) {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{ flex: 1, height: 8, background: darkMode ? '#333' : '#f0f0f0', borderRadius: 4, overflow: 'hidden' }}>
-              <div style={{ height: '100%', background: despReal <= despOrc ? '#22c55e' : '#ef4444', width: `${Math.min(despReal/despOrc*100, 100)}%` }} />
+              <div style={{ height: '100%', background: (despReal||0) <= (despOrc||0) ? '#22c55e' : '#ef4444', width: `${Math.min((despReal||0)/(despOrc||1)*100, 100)}%` }} />
             </div>
-            <span style={{ fontSize: 14, fontWeight: 900, color: t.text }}>{Math.round(despReal/despOrc*100)}%</span>
+            <span style={{ fontSize: 14, fontWeight: 900, color: t.text }}>{Math.round((despReal||0)/(despOrc||1)*100)}%</span>
           </div>
           <p style={{ fontSize: 12, color: t.textMuted, marginTop: 8, fontWeight: 600 }}>Orçado: {fmt(despOrc)}</p>
         </div>
@@ -228,7 +202,7 @@ export default function OrcamentoView({ mes='all', darkMode=false }) {
           <h3 style={{ fontSize: 18, fontWeight: 900, marginBottom: 32, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Tendência Orçamentária 2026</h3>
           <div style={{ flex: 1 }}>
             <ResponsiveContainer width="100%" height={320}>
-              <LineChart data={MENSAL_LINHA} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+              <LineChart data={mensalLinha} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke={t.border} vertical={false} />
                 <XAxis dataKey="mes" tick={{ fontSize: 11, fill: t.textMuted, fontWeight: 800 }} axisLine={false} tickLine={false} />
                 <YAxis hide />
@@ -253,7 +227,7 @@ export default function OrcamentoView({ mes='all', darkMode=false }) {
           <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.01)' }}>
             <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Detalhamento por Centro de Custo</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 800, color: t.accent, background: 'rgba(255,106,34,0.1)', padding: '6px 12px', borderRadius: 12 }}>
-              <BarChart3 size={16} /> {dados.centros.length} CCs
+              <BarChart3 size={16} /> {dados.centros?.length || 0} CCs
             </div>
           </div>
           <div style={{ flex: 1, overflowY: 'auto', maxHeight: 400 }}>
@@ -267,7 +241,7 @@ export default function OrcamentoView({ mes='all', darkMode=false }) {
                 </tr>
               </thead>
               <tbody>
-                {dados.centros.map((c, i) => {
+                {dados.centros?.map((c, i) => {
                   const diff = c.orc > 0 ? ((c.real - c.orc) / c.orc * 100) : 0
                   const ok = diff <= 0
                   return (

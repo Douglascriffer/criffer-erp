@@ -540,9 +540,9 @@ export default function DashboardClient() {
           )}
 
           {/* ABA ORÇAMENTO */}
-          {tab === 'orcamento' && (
-            <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 16 }}>
-              <OrcamentoView mes={filters.mes} darkMode={theme === 'dark'} />
+          {filters.subTab === 'orcamento' && (
+            <div className="w-full">
+              <OrcamentoView mes={filters.mes} data={data} darkMode={theme === 'dark'} />
             </div>
           )}
 
