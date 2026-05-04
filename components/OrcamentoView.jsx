@@ -118,15 +118,15 @@ function TipLinha({ active, payload, label, darkMode }) {
     return res
   }, [data, orcamento, userContext])
 
-  const currentAcc = mes === 'all' ? dynamicDados['all'] : dynamicDados[`acc_${mes}`]
-  const dados = dynamicDados[mes] || dynamicDados['all'] || { centros: [] }
+  const currentAcc = (mes === 'all' ? dynamicDados?.['all'] : dynamicDados?.[`acc_${mes}`]) || {}
+  const dados = dynamicDados?.[mes] || dynamicDados?.['all'] || { centros: [] }
   const { recReal, recMeta, despReal, despOrc } = dados
   const resultado = (recReal || 0) - (despReal || 0)
   const resPos    = resultado >= 0
   
   const mensalLinha = useMemo(() => {
     return [1,2,3,4,5,6,7,8,9,10,11,12].map(m => {
-      const d = dynamicDados[m]
+      const d = dynamicDados?.[m]
       const label = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][m-1]
       return {
         mes: label,
@@ -252,7 +252,7 @@ function TipLinha({ active, payload, label, darkMode }) {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Acumulado 2026</h3>
                 <div style={{ background: 'rgba(255,106,34,0.1)', padding: '4px 10px', borderRadius: 20, fontSize: 11, fontWeight: 900, color: t.accent }}>
-                  Jan-{mes === 'all' ? (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][dynamicDados.latestMonth - 1]) : (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][Number(mes) - 1])}
+                  Jan-{mes === 'all' ? (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][(dynamicDados?.latestMonth || 1) - 1]) : (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][Number(mes) - 1])}
                 </div>
               </div>
 
@@ -321,7 +321,7 @@ function TipLinha({ active, payload, label, darkMode }) {
                         {ok ? 'ECONOMIA' : 'EXCESSO'} DE {fmt(Math.abs(saving))}
                       </p>
                       <p style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>
-                        Jan-{mes === 'all' ? (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][dynamicDados.latestMonth - 1]) : (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][Number(mes) - 1])} vs Orçado
+                        Jan-{mes === 'all' ? (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][(dynamicDados?.latestMonth || 1) - 1]) : (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][Number(mes) - 1])} vs Orçado
                       </p>
                     </>
                   )
