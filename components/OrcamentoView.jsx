@@ -96,26 +96,26 @@ function TipLinha({ active, payload, label, darkMode }) {
       }
     })
 
-    // 2. Criar Versão Acumulada para cada mês
+    // 2. Criar Versão Acumulada para cada mês (com proteção total)
     [1,2,3,4,5,6,7,8,9,10,11,12].forEach(m => {
-      const monthsUpToNow = Object.keys(res).filter(k => Number(k) <= m)
+      const monthsUpToNow = Object.keys(res).filter(k => Number(k) <= m && res[k]);
       res[`acc_${m}`] = {
-        recReal:  monthsUpToNow.reduce((s, k) => s + res[k].recReal, 0),
-        recMeta:  monthsUpToNow.reduce((s, k) => s + res[k].recMeta, 0),
-        despReal: monthsUpToNow.reduce((s, k) => s + res[k].despReal, 0),
-        despOrc:  monthsUpToNow.reduce((s, k) => s + res[k].despOrc, 0)
-      }
-    })
+        recReal:  monthsUpToNow.reduce((s, k) => s + (res[k]?.recReal || 0), 0),
+        recMeta:  monthsUpToNow.reduce((s, k) => s + (res[k]?.recMeta || 0), 0),
+        despReal: monthsUpToNow.reduce((s, k) => s + (res[k]?.despReal || 0), 0),
+        despOrc:  monthsUpToNow.reduce((s, k) => s + (res[k]?.despOrc || 0), 0)
+      };
+    });
 
     // Versão 'all' (Acumulado até o último mês com dados)
     const latestMonthWithData = Object.keys(res)
-      .filter(k => !k.startsWith('acc_') && res[k].despReal > 0)
-      .reduce((max, k) => Math.max(max, Number(k)), 1)
+      .filter(k => !k.startsWith('acc_') && res[k]?.despReal > 0)
+      .reduce((max, k) => Math.max(max, Number(k)), 1);
     
-    res['all'] = res[`acc_${latestMonthWithData}`]
-    res['latestMonth'] = latestMonthWithData
+    res['all'] = res[`acc_${latestMonthWithData}`] || { recReal: 0, recMeta: 0, despReal: 0, despOrc: 0 };
+    res['latestMonth'] = latestMonthWithData;
 
-    return res
+    return res;
   }, [data, orcamento, userContext])
 
   const currentAcc = (mes === 'all' ? dynamicDados?.['all'] : dynamicDados?.[`acc_${mes}`]) || {}
