@@ -12,7 +12,25 @@ const fmtBRL = (v) => {
   return `R$ ${v.toFixed(2)}`
 }
 
+const fmtBRLShort = (v) => {
+  if (v >= 1_000_000) return `R$ ${(v / 1_000_000).toFixed(2)}M`
+  if (v >= 1_000) return `R$ ${(v / 1_000).toFixed(0)}k`
+  return `R$ ${v.toFixed(0)}`
+}
+
 const fmtPct = (v) => `${v.toFixed(1)}%`
+
+function ThSmall({ children, align = 'left' }) {
+  return (
+    <th style={{ padding: '12px 20px', fontSize: 10, fontWeight: 900, color: '#888', letterSpacing: 1, textAlign: align }}>{children}</th>
+  )
+}
+
+function TdSmall({ children, align = 'left', style }) {
+  return (
+    <td style={{ padding: '12px 20px', fontSize: 13, color: 'inherit', textAlign: align, ...style }}>{children}</td>
+  )
+}
 
 export default function VisualizadorMetas({ data, filters, darkMode }) {
   const t = {
@@ -82,131 +100,126 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
         />
       </div>
 
-      {/* ── GRÁFICO DE EVOLUÇÃO ANUAL ── */}
-      <div style={{ 
-        background: t.card, 
-        borderRadius: 12, 
-        border: `1.5px solid ${t.border}`, 
-        padding: 24,
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-          <div>
-            <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, letterSpacing: -0.5 }}>EVOLUÇÃO ANUAL DE METAS</h3>
-            <p style={{ fontSize: 12, color: t.textSub }}>Comparativo mensal entre objetivos e resultados reais</p>
+      {/* ── CONTEÚDO PRINCIPAL: GRÁFICO + TABELA LADO A LADO ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr', gap: 24, alignItems: 'start' }}>
+        
+        {/* COLUNA ESQUERDA: GRÁFICO */}
+        <div style={{ 
+          background: t.card, 
+          borderRadius: 12, 
+          border: `1.5px solid ${t.border}`, 
+          padding: 24,
+          height: 520,
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
+            <div>
+              <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, letterSpacing: -0.5 }}>EVOLUÇÃO ANUAL DE METAS</h3>
+              <p style={{ fontSize: 12, color: t.textSub }}>Objetivos vs Resultados</p>
+            </div>
+            <div style={{ display: 'flex', gap: 16 }}>
+               <LegendItem label="Realizado" color={t.accent} />
+               <LegendItem label="Meta" color={darkMode ? '#fff' : '#000'} isLine />
+            </div>
           </div>
-          <div style={{ display: 'flex', gap: 16 }}>
-             <LegendItem label="Realizado" color={t.accent} />
-             <LegendItem label="Meta" color={darkMode ? '#fff' : '#000'} isLine />
+
+          <div style={{ flex: 1, width: '100%' }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={metasAnuais}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} />
+                <XAxis 
+                  dataKey="label" 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tick={{ fill: t.textSub, fontSize: 11, fontWeight: 700 }}
+                />
+                <YAxis 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tick={{ fill: t.textSub, fontSize: 10, fontWeight: 600 }}
+                  tickFormatter={(v) => `R$${(v/1000).toFixed(0)}k`}
+                />
+                <Tooltip content={<CustomTooltip darkMode={darkMode} />} cursor={{ fill: 'rgba(255,106,34,0.05)' }} />
+                
+                <Bar 
+                  dataKey="realizado" 
+                  fill={t.accent} 
+                  radius={[4, 4, 0, 0]} 
+                  barSize={24}
+                />
+                <Line 
+                  type="monotone" 
+                  dataKey="meta" 
+                  stroke={darkMode ? '#fff' : '#000'} 
+                  strokeWidth={3} 
+                  dot={{ r: 3, strokeWidth: 2, fill: t.card }}
+                />
+              </ComposedChart>
+            </ResponsiveContainer>
           </div>
         </div>
 
-        <div style={{ height: 350, width: '100%' }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <ComposedChart data={metasAnuais}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} />
-              <XAxis 
-                dataKey="label" 
-                axisLine={false} 
-                tickLine={false} 
-                tick={{ fill: t.textSub, fontSize: 12, fontWeight: 700 }}
-              />
-              <YAxis 
-                axisLine={false} 
-                tickLine={false} 
-                tick={{ fill: t.textSub, fontSize: 11, fontWeight: 600 }}
-                tickFormatter={(v) => `R$${(v/1000).toFixed(0)}k`}
-              />
-              <Tooltip content={<CustomTooltip darkMode={darkMode} />} cursor={{ fill: 'rgba(255,106,34,0.05)' }} />
-              
-              <Bar 
-                dataKey="realizado" 
-                fill={t.accent} 
-                radius={[6, 6, 0, 0]} 
-                barSize={32}
-                name="Realizado"
-              />
-              <Line 
-                type="monotone" 
-                dataKey="meta" 
-                stroke={darkMode ? '#fff' : '#000'} 
-                strokeWidth={3} 
-                dot={{ r: 4, strokeWidth: 2, fill: t.card }}
-                activeDot={{ r: 6, strokeWidth: 0, fill: t.accent }}
-                name="Meta"
-              />
-            </ComposedChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      {/* ── TABELA DE PERFORMANCE MENSAL ── */}
-      <div style={{ 
-        background: t.card, 
-        borderRadius: 12, 
-        border: `1.5px solid ${t.border}`, 
-        padding: 0,
-        overflow: 'hidden'
-      }}>
-        <div style={{ padding: '20px 24px', borderBottom: `1px solid ${t.border}` }}>
-          <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text }}>DETALHAMENTO MENSAL</h3>
-        </div>
-        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-          <thead>
-            <tr style={{ background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)' }}>
-              <Th>MÊS</Th>
-              <Th>META</Th>
-              <Th>REALIZADO</Th>
-              <Th>DIFERENÇA</Th>
-              <Th align="right">% ATINGIMENTO</Th>
-            </tr>
-          </thead>
-          <tbody>
-            {metasAnuais.map((m, idx) => {
-              const pct = m.meta > 0 ? (m.realizado / m.meta) * 100 : 0
-              const diff = m.realizado - m.meta
-              const isPositive = diff >= 0
-              const isFuture = m.realizado === 0 && m.mes > stats.mesesComFaturamento
-
-              return (
-                <tr key={idx} style={{ 
-                  borderBottom: `1px solid ${t.border}`,
-                  opacity: isFuture ? 0.5 : 1,
-                  background: isFuture ? 'transparent' : 'inherit'
-                }}>
-                  <Td style={{ fontWeight: 800 }}>{m.label.toUpperCase()}</Td>
-                  <Td>{fmtBRL(m.meta)}</Td>
-                  <Td style={{ fontWeight: 700, color: m.realizado > 0 ? t.text : t.textSub }}>
-                    {m.realizado > 0 ? fmtBRL(m.realizado) : '—'}
-                  </Td>
-                  <Td style={{ color: isFuture ? t.textSub : (isPositive ? '#22c55e' : '#ef4444'), fontWeight: 600 }}>
-                    {isFuture ? '—' : `${isPositive ? '+' : ''}${fmtBRL(diff)}`}
-                  </Td>
-                  <Td align="right">
-                    {!isFuture && (
-                      <div style={{ 
-                        display: 'inline-flex', 
-                        alignItems: 'center', 
-                        gap: 8, 
-                        padding: '4px 12px', 
-                        borderRadius: 20,
-                        background: pct >= 100 ? 'rgba(34,197,94,0.1)' : (pct >= 80 ? 'rgba(245,158,11,0.1)' : 'rgba(239,68,68,0.1)'),
-                        color: pct >= 100 ? '#22c55e' : (pct >= 80 ? '#f59e0b' : '#ef4444'),
-                        fontSize: 12,
-                        fontWeight: 900
-                      }}>
-                        {pct >= 100 ? <CheckCircle2 size={12} /> : <Target size={12} />}
-                        {pct.toFixed(1)}%
-                      </div>
-                    )}
-                    {isFuture && <span style={{ color: t.textSub }}>Agendado</span>}
-                  </Td>
+        {/* COLUNA DIREITA: TABELA COMPACTA */}
+        <div style={{ 
+          background: t.card, 
+          borderRadius: 12, 
+          border: `1.5px solid ${t.border}`, 
+          padding: 0,
+          height: 520,
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
+          <div style={{ padding: '16px 20px', borderBottom: `1px solid ${t.border}`, background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)' }}>
+            <h3 style={{ fontSize: 14, fontWeight: 900, color: t.text, letterSpacing: 0.5 }}>PERFORMANCE MENSAL</h3>
+          </div>
+          <div style={{ flex: 1, overflowY: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+              <thead>
+                <tr style={{ borderBottom: `1px solid ${t.border}` }}>
+                  <ThSmall>MÊS</ThSmall>
+                  <ThSmall>META</ThSmall>
+                  <ThSmall>REAL.</ThSmall>
+                  <ThSmall align="right">%</ThSmall>
                 </tr>
-              )
-            })}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {metasAnuais.map((m, idx) => {
+                  const pct = m.meta > 0 ? (m.realizado / m.meta) * 100 : 0
+                  const isFuture = m.realizado === 0 && m.mes > stats.mesesComFaturamento
+
+                  return (
+                    <tr key={idx} style={{ 
+                      borderBottom: `1px solid ${t.border}`,
+                      opacity: isFuture ? 0.4 : 1,
+                    }}>
+                      <TdSmall style={{ fontWeight: 800 }}>{m.label.toUpperCase()}</TdSmall>
+                      <TdSmall>{fmtBRLShort(m.meta)}</TdSmall>
+                      <TdSmall style={{ fontWeight: 700, color: m.realizado > 0 ? t.text : t.textSub }}>
+                        {m.realizado > 0 ? fmtBRLShort(m.realizado) : '—'}
+                      </TdSmall>
+                      <TdSmall align="right">
+                        {!isFuture ? (
+                          <span style={{ 
+                            color: pct >= 100 ? '#22c55e' : (pct >= 80 ? '#f59e0b' : '#ef4444'),
+                            fontWeight: 900,
+                            fontSize: 12
+                          }}>
+                            {pct.toFixed(0)}%
+                          </span>
+                        ) : (
+                          <span style={{ color: t.textSub, fontSize: 10 }}>—</span>
+                        )}
+                      </TdSmall>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
 
     </div>
