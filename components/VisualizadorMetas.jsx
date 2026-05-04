@@ -106,7 +106,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
       </div>
 
       {/* ── CONTEÚDO PRINCIPAL: GRÁFICO + TABELA LADO A LADO ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '70% 30%', gap: 24, alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '75% 25%', gap: 24, alignItems: 'start' }}>
         
         {/* COLUNA ESQUERDA: GRÁFICO */}
         <div style={{ 
