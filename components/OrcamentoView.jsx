@@ -231,29 +231,90 @@ function TipLinha({ active, payload, label, darkMode }) {
 
           </div>
 
-          {/* Gráfico de Tendência Orçamentária */}
-          <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, marginTop: 8 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-              <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Tendência Orçamentária 2026</h3>
-              <div style={{ display: 'flex', gap: 16 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 800, color: t.accent }}>
-                  <div style={{ width: 8, height: 8, borderRadius: '50%', background: t.accent }} /> RECEITA
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 800, color: '#ef4444' }}>
-                  <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} /> DESPESA
+          {/* ── SEÇÃO INFERIOR: TENDÊNCIA E ACUMULADO ── */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1.8fr) minmax(300px, 1fr))', gap: 24, marginTop: 16 }}>
+            
+            {/* Coluna 1: Gráfico de Tendência (65%) */}
+            <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
+                <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Tendência Orçamentária 2026</h3>
+                <div style={{ display: 'flex', gap: 16 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 800, color: t.accent }}>
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: t.accent }} /> RECEITA
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 800, color: '#ef4444' }}>
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} /> DESPESA
+                  </div>
                 </div>
               </div>
+              <div style={{ flex: 1 }}>
+                <ResponsiveContainer width="100%" height={340}>
+                  <LineChart data={mensalLinha} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke={t.border} vertical={false} />
+                    <XAxis dataKey="mes" tick={{ fontSize: 11, fill: t.textMuted, fontWeight: 800 }} axisLine={false} tickLine={false} />
+                    <YAxis hide />
+                    <Tooltip content={<TipLinha darkMode={darkMode} />} />
+                    <Line type="monotone" dataKey="receita" name="Receita" stroke={t.accent} strokeWidth={5} dot={{ r: 6, fill: t.accent, stroke: '#fff' }} />
+                    <Line type="monotone" dataKey="despesa" name="Despesa" stroke="#ef4444" strokeWidth={3} strokeDasharray="5 5" dot={false} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
             </div>
-            <ResponsiveContainer width="100%" height={320}>
-              <LineChart data={mensalLinha} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke={t.border} vertical={false} />
-                <XAxis dataKey="mes" tick={{ fontSize: 11, fill: t.textMuted, fontWeight: 800 }} axisLine={false} tickLine={false} />
-                <YAxis hide />
-                <Tooltip content={<TipLinha darkMode={darkMode} />} />
-                <Line type="monotone" dataKey="receita" name="Receita" stroke={t.accent} strokeWidth={5} dot={{ r: 6, fill: t.accent, stroke: '#fff' }} />
-                <Line type="monotone" dataKey="despesa" name="Despesa" stroke="#ef4444" strokeWidth={3} strokeDasharray="5 5" dot={false} />
-              </LineChart>
-            </ResponsiveContainer>
+
+            {/* Coluna 2: Painel de Acumulado (35%) */}
+            <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column', gap: 24 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Acumulado Jan-Dez</h3>
+                <div style={{ background: 'rgba(34,197,94,0.1)', padding: '4px 10px', borderRadius: 20, fontSize: 11, fontWeight: 900, color: '#22c55e' }}>2026</div>
+              </div>
+
+              {/* Progress: Receitas */}
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <span style={{ fontSize: 12, fontWeight: 800, color: t.textSub }}>REALIZADO RECEITA</span>
+                  <span style={{ fontSize: 12, fontWeight: 900, color: t.text }}>{fmt(dynamicDados['all']?.recReal)}</span>
+                </div>
+                <div style={{ height: 12, background: darkMode ? '#1a1a25' : '#f0f0f0', borderRadius: 6, overflow: 'hidden', position: 'relative' }}>
+                  <div style={{ height: '100%', background: t.accent, width: `${Math.min((dynamicDados['all']?.recReal/dynamicDados['all']?.recMeta)*100, 100)}%`, borderRadius: 6 }} />
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
+                  <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>Meta: {fmt(dynamicDados['all']?.recMeta)}</span>
+                  <span style={{ fontSize: 11, color: t.accent, fontWeight: 900 }}>{((dynamicDados['all']?.recReal/dynamicDados['all']?.recMeta)*100).toFixed(1)}%</span>
+                </div>
+              </div>
+
+              {/* Progress: Despesas */}
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <span style={{ fontSize: 12, fontWeight: 800, color: t.textSub }}>REALIZADO DESPESA</span>
+                  <span style={{ fontSize: 12, fontWeight: 900, color: t.text }}>{fmt(dynamicDados['all']?.despReal)}</span>
+                </div>
+                <div style={{ height: 12, background: darkMode ? '#1a1a25' : '#f0f0f0', borderRadius: 6, overflow: 'hidden', position: 'relative' }}>
+                  <div style={{ height: '100%', background: '#ef4444', width: `${Math.min((dynamicDados['all']?.despReal/dynamicDados['all']?.despOrc)*100, 100)}%`, borderRadius: 6 }} />
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
+                  <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>Orçado: {fmt(dynamicDados['all']?.despOrc)}</span>
+                  <span style={{ fontSize: 11, color: '#ef4444', fontWeight: 900 }}>{((dynamicDados['all']?.despReal/dynamicDados['all']?.despOrc)*100).toFixed(1)}%</span>
+                </div>
+              </div>
+
+              {/* Economy/Efficiency Circle (Mockup style but dynamic) */}
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderTop: `1.5px solid ${t.border}`, paddingTop: 24 }}>
+                <div style={{ position: 'relative', width: 140, height: 140, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg width="140" height="140" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke={darkMode ? '#1a1a25' : '#f0f0f0'} strokeWidth="8" />
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#22c55e" strokeWidth="8" strokeDasharray={`${Math.max(0, (1 - (dynamicDados['all']?.despReal / dynamicDados['all']?.despOrc)) * 283)}, 283`} strokeLinecap="round" transform="rotate(-90 50 50)" />
+                  </svg>
+                  <div style={{ position: 'absolute', textAlign: 'center' }}>
+                    <p style={{ fontSize: 24, fontWeight: 900, color: '#22c55e', lineHeight: 1 }}>{((1 - (dynamicDados['all']?.despReal / dynamicDados['all']?.despOrc)) * 100).toFixed(1)}%</p>
+                    <p style={{ fontSize: 9, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase' }}>Eficiência</p>
+                  </div>
+                </div>
+                <p style={{ fontSize: 13, fontWeight: 900, color: t.text, marginTop: 16 }}>ECONOMIA DE {fmt(dynamicDados['all']?.despOrc - dynamicDados['all']?.despReal)}</p>
+                <p style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>Jan-Dez vs Orçado Proporcional</p>
+              </div>
+            </div>
+
           </div>
         </>
       )}
