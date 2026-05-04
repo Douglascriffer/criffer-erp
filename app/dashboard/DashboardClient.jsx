@@ -168,7 +168,7 @@ export default function DashboardClient() {
         background: t.card,
         border: `1.5px solid ${t.border}`,
         borderRadius: 12,
-        padding: '16px 8px',
+        padding: '8px 4px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -415,7 +415,7 @@ export default function DashboardClient() {
               {activeSub === 'vendas' && (
                 <>
                 {/* 1. Evolução de Receita - Full Width */}
-                <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6, height: 300, display: 'flex', flexDirection: 'column' }}>
+                <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 6, height: 302, display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 12 }}>
                     <h3 style={{ fontSize: 16, fontWeight: 700, textAlign: 'center', color: t.text }}>Evolução de Receita (2026)</h3>
                   </div>
