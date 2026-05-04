@@ -390,11 +390,11 @@ export default function DashboardClient() {
         {/* ══ CARDS DE KPI (Top 7) - Ocultos no MAPA e VENDEDORES ══ */}
         {activeSub === 'vendas' && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8, marginBottom: 12, width: '100%', overflowX: 'auto', paddingBottom: 6 }}>
-            <KpiCard label="VENDAS" value={kpis.vendas || 0} prevValue={pkpis.vendas || 0} icon={ShoppingCart} color="#FF6A22" />
+            <KpiCard label="VENDAS" value={(kpis.vendas || 0) - (kpis.devolucoes || 0)} prevValue={(pkpis.vendas || 0) - (pkpis.devolucoes || 0)} icon={ShoppingCart} color="#FF6A22" />
             <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
             <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
             <KpiCard label="DEVOLUÇÕES" value={kpis.devolucoes || 0} prevValue={pkpis.devolucoes || 0} icon={RotateCcw} color="#ef4444" />
-            <KpiCard label="RECEITA BRUTA" value={kpis.totalRealizado || 0} prevValue={pkpis.totalRealizado || 0} icon={DollarSign} color="#10b981" />
+            <KpiCard label="RECEITA LÍQUIDA" value={kpis.totalRealizado || 0} prevValue={pkpis.totalRealizado || 0} icon={DollarSign} color="#10b981" />
             <KpiCard label="META" value={kpis.totalMeta || 0} prevValue={pkpis.totalMeta || 0} icon={() => <TargetIcon percent={kpis.pctAtingido}/>} color="#f59e0b" />
             <KpiCard label="DESEMPENHO" value={kpis.pctAtingido || 0} prevValue={pkpis.pctAtingido || 0} icon={TrendingUp} color="#FF6A22" isPercent={true} />
           </div>
@@ -417,7 +417,7 @@ export default function DashboardClient() {
                   </div>
                   <GraficoReceitas periodData={(data?.byPeriod?.filter(p => p.ano === 2026) || []).map(p => ({
                     ...p,
-                    vendas: p.vendas > 0.01 ? p.vendas : null,
+                    vendas: (p.vendas - (p.devolucoes || 0)) > 0.01 ? (p.vendas - (p.devolucoes || 0)) : null,
                     servicos: p.servicos > 0.01 ? p.servicos : null,
                     locacao: p.locacao > 0.01 ? p.locacao : null
                   }))} darkMode={theme === 'dark'} horizontal={false}/>
@@ -437,12 +437,12 @@ export default function DashboardClient() {
                       currentLabel="2026"
                       previousLabel="2025"
                       currentData={data?.byPeriod?.filter(p => p.ano === 2026 && (filters.mes === 'all' || p.mes <= Number(filters.mes)))?.reduce((acc, curr) => ({
-                        vendas: acc.vendas + curr.vendas,
+                        vendas: acc.vendas + curr.vendas - (curr.devolucoes || 0),
                         servicos: acc.servicos + curr.servicos,
                         locacao: acc.locacao + curr.locacao
                       }), { vendas: 0, servicos: 0, locacao: 0 })}
                       previousData={data?.byPeriod?.filter(p => p.ano === 2025 && (filters.mes === 'all' || p.mes <= Number(filters.mes)))?.reduce((acc, curr) => ({
-                        vendas: acc.vendas + curr.vendas,
+                        vendas: acc.vendas + curr.vendas - (curr.devolucoes || 0),
                         servicos: acc.servicos + curr.servicos,
                         locacao: acc.locacao + curr.locacao
                       }), { vendas: 0, servicos: 0, locacao: 0 })}
