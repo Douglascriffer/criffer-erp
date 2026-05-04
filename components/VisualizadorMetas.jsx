@@ -274,9 +274,15 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder }
             zIndex: 1,
             borderRadius: 10
           }} />
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes borderRotate {
+              0% { background-position: 0% 50%; }
+              100% { background-position: 200% 50%; }
+            }
+          ` }} />
         </>
       )}
-      
+
       <div style={{ position: 'relative', zIndex: 2 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <p style={{ fontSize: 11, fontWeight: 900, color: darkMode ? '#888' : '#666', letterSpacing: 1 }}>{label}</p>
@@ -285,13 +291,6 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder }
         <h2 style={{ fontSize: 26, fontWeight: 400, color: darkMode ? '#fff' : '#000', margin: '4px 0' }}>{value}</h2>
         <p style={{ fontSize: 11, color: darkMode ? '#666' : '#999', fontWeight: 400 }}>{sub}</p>
       </div>
-
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes borderRotate {
-          0% { background-position: 0% 50%; }
-          100% { background-position: 200% 50%; }
-        }
-      ` }} />
     </div>
   )
 }
