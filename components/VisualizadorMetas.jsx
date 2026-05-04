@@ -333,7 +333,7 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, 
           {isDesempenho ? (
             <TargetIcon percent={percent} darkMode={darkMode} />
           ) : isGap ? (
-            <GrowthIcon color="#ef4444" darkMode={darkMode} />
+            <GrowthIcon color="#FF6A22" darkMode={darkMode} />
           ) : (
             <Icon 
               size={isRealizado ? 48 : 40} 
