@@ -126,8 +126,8 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
           display: 'flex',
           flexDirection: 'column'
         }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-            <div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 32 }}>
+            <div style={{ textAlign: 'center', marginBottom: 16 }}>
               <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, letterSpacing: -0.5 }}>EVOLUÇÃO ANUAL DE METAS</h3>
               <p style={{ fontSize: 12, color: t.textSub }}>Objetivos vs Resultados</p>
             </div>
@@ -184,7 +184,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
           display: 'flex',
           flexDirection: 'column'
         }}>
-          <div style={{ padding: '16px 20px', borderBottom: `1px solid ${t.border}`, background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)' }}>
+          <div style={{ padding: '16px 20px', borderBottom: `1px solid ${t.border}`, background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)', textAlign: 'center' }}>
             <h3 style={{ fontSize: 14, fontWeight: 900, color: t.text, letterSpacing: 0.5 }}>PERFORMANCE MENSAL</h3>
           </div>
           <div style={{ flex: 1, overflowY: 'auto' }}>
