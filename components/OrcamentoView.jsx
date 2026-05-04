@@ -166,7 +166,7 @@ function TipLinha({ active, payload, label, darkMode }) {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, fontFamily: "'Gotham', sans-serif" }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, fontFamily: "'Gotham', sans-serif" }}>
       
       {/* ── VISÃO DRE SIMPLIFICADO ── */}
       {viewType === 'dre' && (
@@ -234,7 +234,7 @@ function TipLinha({ active, payload, label, darkMode }) {
           </div>
 
           {/* ── SEÇÃO INFERIOR: TENDÊNCIA E ACUMULADO ── */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1.8fr) minmax(300px, 1fr))', gap: 24, marginTop: 16 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1.8fr) minmax(300px, 1fr))', gap: 24, marginTop: 8 }}>
             
             {/* Coluna 1: Gráfico de Tendência (65%) */}
             <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column' }}>
