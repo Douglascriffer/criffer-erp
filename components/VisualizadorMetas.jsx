@@ -291,16 +291,16 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder }
         justifyContent: 'center',
         width: '100%'
       }}>
+        {/* Ícone à Esquerda */}
+        <div style={{ marginRight: 16, opacity: 0.9 }}>
+          <Icon size={28} color={color} />
+        </div>
+
         {/* Conteúdo Centralizado */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1 }}>
           <p style={{ fontSize: 10, fontWeight: 900, color: darkMode ? '#888' : '#666', letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 8 }}>{label}</p>
           <h2 style={{ fontSize: 28, fontWeight: 400, color: darkMode ? '#fff' : '#000', margin: '4px 0' }}>{value}</h2>
           <p style={{ fontSize: 11, color: darkMode ? '#666' : '#999', fontWeight: 400 }}>{sub}</p>
-        </div>
-
-        {/* Ícone à Direita */}
-        <div style={{ marginLeft: 12, opacity: 0.8 }}>
-          <Icon size={22} color={color} />
         </div>
       </div>
     </div>

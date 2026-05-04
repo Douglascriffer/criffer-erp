@@ -178,6 +178,11 @@ export default function DashboardClient() {
         minHeight: 85
       }} className="hover-lift">
         
+        {/* Ícone à Esquerda Centralizado */}
+        <div style={{ marginRight: 12, opacity: 0.9 }}>
+          <Icon size={24} color={color} />
+        </div>
+
         {/* Conteúdo Centralizado */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1 }}>
           <p style={{ fontSize: 10, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>{label}</p>
@@ -190,11 +195,6 @@ export default function DashboardClient() {
               {Math.abs(pct).toFixed(1)}%
             </div>
           </div>
-        </div>
-
-        {/* Ícone à Direita Centralizado */}
-        <div style={{ marginLeft: 8, opacity: 0.8 }}>
-          <Icon size={18} color={color} />
         </div>
       </div>
     )
