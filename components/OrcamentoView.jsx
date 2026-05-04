@@ -4,16 +4,17 @@ import {
   LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid,
   ResponsiveContainer, Legend, ReferenceLine
 } from 'recharts'
+import { Activity, TrendingUp, DollarSign, PieChart, BarChart3, AlertCircle } from 'lucide-react'
 
 function fmt(v) {
   if (!v && v !== 0) return '—'
   return `R$ ${Math.round(Math.abs(v)).toLocaleString('pt-BR')}`
 }
 
-// ── Dados Reais (Acoplados para simulação de DRE) ──
+// ── Dados Reais (Acoplados para simulação de DRE - Sincronizados com Auditoria Net) ──
 const DADOS = {
   '1': {
-    recReal:1607824, recMeta:1211291,
+    recReal:1594922, recMeta:1211291,
     despReal:1282826, despOrc:1343002,
     centros:[
       {cc:'Comercial',      orc:72931,  real:51352 },
@@ -35,7 +36,7 @@ const DADOS = {
     ],
   },
   '2': {
-    recReal:1829348, recMeta:2037149,
+    recReal:1763470, recMeta:2037149,
     despReal:1534770, despOrc:1735261,
     centros:[
       {cc:'Comercial',      orc:72931,  real:101701},
@@ -57,7 +58,7 @@ const DADOS = {
     ],
   },
   'all': {
-    recReal:3437172, recMeta:3248440,
+    recReal:5889120, recMeta:3248440,
     despReal:2817596, despOrc:3078263,
     centros:[
       {cc:'Comercial',      orc:145862, real:153053 },
@@ -81,16 +82,11 @@ const DADOS = {
 }
 
 const MENSAL_LINHA = [
-  { mes:'Jan', receita:1607824, despesa:1282826, meta:1211291 },
-  { mes:'Fev', receita:1829348, despesa:1534770, meta:2037149 },
-  { mes:'Mar', receita:null,    despesa:null,    meta:1350000 },
+  { mes:'Jan', receita:1594922, despesa:1282826, meta:1211291 },
+  { mes:'Fev', receita:1763470, despesa:1534770, meta:2037149 },
+  { mes:'Mar', receita:2530728, despesa:null,    meta:1350000 },
   { mes:'Abr', receita:null,    despesa:null,    meta:1380000 },
 ]
-
-const METAS = {
-  inicial:    { receita:26674257, despesas:27797748, resultado:-1123491, economia:23 },
-  atualizada: { receita:27120192, despesas:26955883, resultado:164309,   economia:16 },
-}
 
 function TipLinha({ active, payload, label, darkMode }) {
   if (!active || !payload?.length) return null
@@ -120,114 +116,183 @@ function TipLinha({ active, payload, label, darkMode }) {
 
 export default function OrcamentoView({ mes='all', darkMode=false }) {
   const dados = DADOS[mes] || DADOS['all']
-  
-  const totalOrc  = useMemo(() => dados.centros.reduce((s,c)=>s+c.orc, 0), [dados])
-  const totalReal = useMemo(() => dados.centros.reduce((s,c)=>s+c.real,0), [dados])
-
   const { recReal, recMeta, despReal, despOrc } = dados
-  const recBom   = recReal >= recMeta
-  const despBom  = despReal <= despOrc
   const resultado = recReal - despReal
   const resPos    = resultado >= 0
 
-  const border = darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'
-  const card   = darkMode ? 'rgba(255,255,255,0.02)' : '#fff'
+  const t = {
+    text: darkMode ? '#ffffff' : '#000000',
+    textSub: darkMode ? '#cccccc' : '#666666',
+    textMuted: darkMode ? '#666666' : '#999999',
+    border: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
+    card: darkMode ? 'rgba(255,255,255,0.02)' : '#ffffff',
+    accent: '#FF6A22',
+    bg: darkMode ? '#0c0c14' : '#f8f9fa'
+  }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, fontFamily: "'Gotham', sans-serif" }}>
       
-      {/* ── SEÇÃO SUPERIOR: RESUMO DRE ── */}
+      {/* ── HEADER DE KPIS PREMIUM ── */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
         
-        {/* Card Resultado */}
+        {/* Card Resultado Líquido */}
         <div style={{ 
-          background: resPos ? 'linear-gradient(135deg, #16a34a 0%, #22c55e 100%)' : 'linear-gradient(135deg, #dc2626 0%, #ef4444 100%)',
-          borderRadius: 24, padding: 32, color: '#fff', boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
+          background: resPos 
+            ? 'linear-gradient(135deg, #16a34a 0%, #22c55e 100%)' 
+            : 'linear-gradient(135deg, #dc2626 0%, #ef4444 100%)',
+          borderRadius: 24, 
+          padding: 32, 
+          color: '#fff', 
+          boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          minHeight: 160,
+          position: 'relative',
+          overflow: 'hidden'
         }}>
-          <p style={{ fontSize: 12, fontWeight: 800, opacity: 0.8, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Resultado Líquido</p>
+          <div style={{ position: 'absolute', right: -10, bottom: -10, opacity: 0.15 }}>
+            <Activity size={100} />
+          </div>
+          <p style={{ fontSize: 11, fontWeight: 900, opacity: 0.85, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Resultado Líquido</p>
           <p style={{ fontSize: 42, fontWeight: 900, marginBottom: 8 }}>{fmt(resultado)}</p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 700, background: 'rgba(255,255,255,0.15)', padding: '6px 12px', borderRadius: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 700, background: 'rgba(255,255,255,0.15)', padding: '6px 12px', borderRadius: 12, width: 'fit-content' }}>
             {resPos ? '🎉 Performance Superavitária' : '⚠️ Atenção: Resultado Deficitário'}
           </div>
         </div>
 
-        {/* Card Receitas */}
-        <div style={{ background: card, borderRadius: 24, border: `1.5px solid ${border}`, padding: 32 }}>
-          <p style={{ fontSize: 11, fontWeight: 800, color: darkMode ? '#888' : '#666', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>RECEITAS (vs Meta)</p>
-          <p style={{ fontSize: 28, fontWeight: 900, color: darkMode ? '#fff' : '#000' }}>{fmt(recReal)}</p>
-          <p style={{ fontSize: 13, color: darkMode ? '#666' : '#999', marginTop: 4 }}>Meta: {fmt(recMeta)}</p>
-          <div style={{ height: 6, background: darkMode ? '#333' : '#f0f0f0', borderRadius: 3, marginTop: 16, overflow: 'hidden' }}>
-            <div style={{ height: '100%', background: recBom ? '#16a34a' : '#ef4444', width: `${Math.min(recReal/recMeta*100, 100)}%`, borderRadius: 3 }} />
+        {/* Card Receitas vs Meta */}
+        <div style={{ 
+          background: t.card, 
+          borderRadius: 24, 
+          border: `1.5px solid ${t.border}`, 
+          padding: 32,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
+            <div>
+              <p style={{ fontSize: 11, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Receitas Líquidas</p>
+              <p style={{ fontSize: 32, fontWeight: 900, color: t.text }}>{fmt(recReal)}</p>
+            </div>
+            <div style={{ background: 'rgba(255,106,34,0.1)', padding: 12, borderRadius: 16 }}>
+              <TrendingUp size={24} color={t.accent} />
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div style={{ flex: 1, height: 8, background: darkMode ? '#333' : '#f0f0f0', borderRadius: 4, overflow: 'hidden' }}>
+              <div style={{ height: '100%', background: t.accent, width: `${Math.min(recReal/recMeta*100, 100)}%` }} />
+            </div>
+            <span style={{ fontSize: 14, fontWeight: 900, color: t.text }}>{Math.round(recReal/recMeta*100)}%</span>
+          </div>
+          <p style={{ fontSize: 12, color: t.textMuted, marginTop: 8, fontWeight: 600 }}>Meta: {fmt(recMeta)}</p>
+        </div>
+
+        {/* Card Despesas vs Orçado */}
+        <div style={{ 
+          background: t.card, 
+          borderRadius: 24, 
+          border: `1.5px solid ${t.border}`, 
+          padding: 32,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
+            <div>
+              <p style={{ fontSize: 11, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Despesas Totais</p>
+              <p style={{ fontSize: 32, fontWeight: 900, color: t.text }}>{fmt(despReal)}</p>
+            </div>
+            <div style={{ background: 'rgba(239,68,68,0.1)', padding: 12, borderRadius: 16 }}>
+              <DollarSign size={24} color="#ef4444" />
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div style={{ flex: 1, height: 8, background: darkMode ? '#333' : '#f0f0f0', borderRadius: 4, overflow: 'hidden' }}>
+              <div style={{ height: '100%', background: despReal <= despOrc ? '#22c55e' : '#ef4444', width: `${Math.min(despReal/despOrc*100, 100)}%` }} />
+            </div>
+            <span style={{ fontSize: 14, fontWeight: 900, color: t.text }}>{Math.round(despReal/despOrc*100)}%</span>
+          </div>
+          <p style={{ fontSize: 12, color: t.textMuted, marginTop: 8, fontWeight: 600 }}>Orçado: {fmt(despOrc)}</p>
+        </div>
+
+      </div>
+
+      {/* ── GRID INFERIOR: TENDÊNCIA E CENTROS DE CUSTO ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: 24 }}>
+        
+        {/* Coluna 1: Tendência */}
+        <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column' }}>
+          <h3 style={{ fontSize: 18, fontWeight: 900, marginBottom: 32, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Tendência Orçamentária 2026</h3>
+          <div style={{ flex: 1 }}>
+            <ResponsiveContainer width="100%" height={320}>
+              <LineChart data={MENSAL_LINHA} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke={t.border} vertical={false} />
+                <XAxis dataKey="mes" tick={{ fontSize: 11, fill: t.textMuted, fontWeight: 800 }} axisLine={false} tickLine={false} />
+                <YAxis hide />
+                <Tooltip content={<TipLinha darkMode={darkMode} />} cursor={{ stroke: t.accent, strokeWidth: 1 }} />
+                <Line type="monotone" dataKey="receita" name="Receita" stroke={t.accent} strokeWidth={5} dot={{ r: 6, fill: t.accent, strokeWidth: 3, stroke: '#fff' }} activeDot={{ r: 8 }} />
+                <Line type="monotone" dataKey="despesa" name="Despesa" stroke="#ef4444" strokeWidth={3} strokeDasharray="5 5" dot={false} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          <div style={{ display: 'flex', gap: 24, justifyContent: 'center', marginTop: 24 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: t.textSub, fontWeight: 700 }}>
+              <div style={{ width: 10, height: 10, borderRadius: '50%', background: t.accent }} /> Receita
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: t.textSub, fontWeight: 700 }}>
+              <div style={{ width: 12, height: 3, background: '#ef4444', borderRadius: 2 }} /> Despesa
+            </div>
           </div>
         </div>
 
-        {/* Card Despesas */}
-        <div style={{ background: card, borderRadius: 24, border: `1.5px solid ${border}`, padding: 32 }}>
-          <p style={{ fontSize: 11, fontWeight: 800, color: darkMode ? '#888' : '#666', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>DESPESAS (vs Orçado)</p>
-          <p style={{ fontSize: 28, fontWeight: 900, color: darkMode ? '#fff' : '#000' }}>{fmt(despReal)}</p>
-          <p style={{ fontSize: 13, color: darkMode ? '#666' : '#999', marginTop: 4 }}>Orçado: {fmt(despOrc)}</p>
-          <div style={{ height: 6, background: darkMode ? '#333' : '#f0f0f0', borderRadius: 3, marginTop: 16, overflow: 'hidden' }}>
-            <div style={{ height: '100%', background: despBom ? '#16a34a' : '#ef4444', width: `${Math.min(despReal/despOrc*100, 100)}%`, borderRadius: 3 }} />
+        {/* Coluna 2: Detalhamento CC */}
+        <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.01)' }}>
+            <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Detalhamento por Centro de Custo</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 800, color: t.accent, background: 'rgba(255,106,34,0.1)', padding: '6px 12px', borderRadius: 12 }}>
+              <BarChart3 size={16} /> {dados.centros.length} CCs
+            </div>
+          </div>
+          <div style={{ flex: 1, overflowY: 'auto', maxHeight: 400 }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <thead style={{ position: 'sticky', top: 0, background: darkMode ? '#1a1a25' : '#f8f9fa', zIndex: 10 }}>
+                <tr>
+                  <th style={{ padding: '16px 32px', textAlign: 'left', fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>Centro de Custo</th>
+                  <th style={{ padding: '16px 32px', textAlign: 'right', fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>Orçado</th>
+                  <th style={{ padding: '16px 32px', textAlign: 'right', fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>Realizado</th>
+                  <th style={{ padding: '16px 32px', textAlign: 'right', fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>Var.</th>
+                </tr>
+              </thead>
+              <tbody>
+                {dados.centros.map((c, i) => {
+                  const diff = c.orc > 0 ? ((c.real - c.orc) / c.orc * 100) : 0
+                  const ok = diff <= 0
+                  return (
+                    <tr key={c.cc} style={{ borderBottom: `1px solid ${t.border}`, background: i % 2 === 0 ? 'transparent' : 'rgba(0,0,0,0.01)' }}>
+                      <td style={{ padding: '16px 32px', fontSize: 14, fontWeight: 700, color: t.text }}>{c.cc}</td>
+                      <td style={{ padding: '16px 32px', textAlign: 'right', fontSize: 13, color: t.textMuted }}>{fmt(c.orc)}</td>
+                      <td style={{ padding: '16px 32px', textAlign: 'right', fontSize: 14, fontWeight: 900, color: t.text }}>{fmt(c.real)}</td>
+                      <td style={{ padding: '16px 32px', textAlign: 'right' }}>
+                        <span style={{ 
+                          fontSize: 11, fontWeight: 900, 
+                          color: ok ? '#22c55e' : '#ef4444',
+                          background: ok ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)',
+                          padding: '6px 12px', borderRadius: 20
+                        }}>
+                          {diff > 0 ? '+' : ''}{diff.toFixed(1)}%
+                        </span>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
           </div>
         </div>
-      </div>
 
-      {/* ── SEÇÃO MÉDIA: GRÁFICO TENDÊNCIA ── */}
-      <div style={{ background: card, borderRadius: 24, border: `1.5px solid ${border}`, padding: 32 }}>
-        <h3 style={{ fontSize: 18, fontWeight: 900, marginBottom: 24 }}>Tendência Orçamentária 2026</h3>
-        <ResponsiveContainer width="100%" height={280}>
-          <LineChart data={MENSAL_LINHA} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke={border} vertical={false} />
-            <XAxis dataKey="mes" tick={{ fontSize: 11, fill: '#888', fontWeight: 800 }} axisLine={false} tickLine={false} />
-            <YAxis tickFormatter={v => `R$ ${(v/1e6).toFixed(1)}M`} tick={{ fontSize: 11, fill: '#888', fontWeight: 800 }} axisLine={false} tickLine={false} />
-            <Tooltip content={<TipLinha darkMode={darkMode} />} />
-            <Legend iconType="circle" />
-            <Line type="monotone" dataKey="receita" name="Receita" stroke="#FF6A22" strokeWidth={3} dot={{ r: 6, fill: '#FF6A22' }} />
-            <Line type="monotone" dataKey="despesa" name="Despesa" stroke="#ef4444" strokeWidth={3} strokeDasharray="5 5" dot={{ r: 4, fill: '#ef4444' }} />
-            <Line type="monotone" dataKey="meta" name="Meta" stroke="#999" strokeWidth={2} strokeDasharray="3 3" dot={false} />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-
-      {/* ── SEÇÃO INFERIOR: CENTROS DE CUSTO ── */}
-      <div style={{ background: card, borderRadius: 24, border: `1.5px solid ${border}`, overflow: 'hidden' }}>
-        <div style={{ padding: '24px 32px', borderBottom: `1.5px solid ${border}` }}>
-          <h3 style={{ fontSize: 18, fontWeight: 900 }}>Detalhamento por Centro de Custo</h3>
-        </div>
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead>
-              <tr style={{ background: darkMode ? 'rgba(255,255,255,0.03)' : '#f8f9fa' }}>
-                {['Centro de Custo', 'Orçado', 'Realizado', 'Variação'].map(h => (
-                  <th key={h} style={{ padding: '16px 32px', textAlign: h === 'Centro de Custo' ? 'left' : 'right', fontSize: 11, fontWeight: 900, color: '#888', textTransform: 'uppercase', letterSpacing: 0.5 }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {dados.centros.map((c, i) => {
-                const diff = c.orc > 0 ? ((c.real - c.orc) / c.orc * 100) : 0
-                const bom = diff <= 0
-                return (
-                  <tr key={c.cc} style={{ borderBottom: `1px solid ${border}` }}>
-                    <td style={{ padding: '16px 32px', fontWeight: 700, fontSize: 14 }}>{c.cc}</td>
-                    <td style={{ padding: '16px 32px', textAlign: 'right', color: '#888' }}>{fmt(c.orc)}</td>
-                    <td style={{ padding: '16px 32px', textAlign: 'right', fontWeight: 800 }}>{fmt(c.real)}</td>
-                    <td style={{ padding: '16px 32px', textAlign: 'right' }}>
-                      <span style={{ 
-                        fontSize: 12, fontWeight: 900, 
-                        color: bom ? '#16a34a' : '#ef4444',
-                        background: bom ? '#16a34a15' : '#ef444415',
-                        padding: '4px 10px', borderRadius: 20
-                      }}>
-                        {diff > 0 ? '+' : ''}{diff.toFixed(1)}%
-                      </span>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
   )
