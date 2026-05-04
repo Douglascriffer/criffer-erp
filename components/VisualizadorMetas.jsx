@@ -114,7 +114,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
           borderRadius: 12, 
           border: `1.5px solid ${t.border}`, 
           padding: 24,
-          height: 520,
+          height: 530,
           display: 'flex',
           flexDirection: 'column'
         }}>
@@ -171,7 +171,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
           borderRadius: 12, 
           border: `1.5px solid ${t.border}`, 
           padding: 0,
-          height: 520,
+          height: 530,
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column'
