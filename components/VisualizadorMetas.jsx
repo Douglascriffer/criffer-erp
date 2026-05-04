@@ -85,7 +85,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
           icon={TrendingUp} 
           color={t.accent} 
           darkMode={darkMode}
-          snakeBorder={true}
+          snakeBorder={false}
         />
         <KpiCard 
           label="ATINGIMENTO GERAL" 
@@ -207,16 +207,16 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
                       borderBottom: `1px solid ${t.border}`,
                       opacity: isFuture ? 0.4 : 1,
                     }}>
-                      <TdSmall style={{ fontWeight: 800 }}>{m.labelPT}</TdSmall>
-                      <TdSmall>{fmtBRLShort(m.meta)}</TdSmall>
-                      <TdSmall style={{ fontWeight: 700, color: m.realizado > 0 ? t.text : t.textSub }}>
+                      <TdSmall style={{ fontWeight: 400 }}>{m.labelPT}</TdSmall>
+                      <TdSmall style={{ fontWeight: 400 }}>{fmtBRLShort(m.meta)}</TdSmall>
+                      <TdSmall style={{ fontWeight: 400, color: m.realizado > 0 ? t.text : t.textSub }}>
                         {m.realizado > 0 ? fmtBRLShort(m.realizado) : '—'}
                       </TdSmall>
                       <TdSmall align="right">
                         {!isFuture ? (
                           <span style={{ 
                             color: pct >= 100 ? '#22c55e' : (pct >= 80 ? '#f59e0b' : '#ef4444'),
-                            fontWeight: 900,
+                            fontWeight: 400,
                             fontSize: 12
                           }}>
                             {pct.toFixed(0)}%
@@ -282,8 +282,8 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder }
           <p style={{ fontSize: 11, fontWeight: 900, color: darkMode ? '#888' : '#666', letterSpacing: 1 }}>{label}</p>
           <Icon size={18} color={color} />
         </div>
-        <h2 style={{ fontSize: 26, fontWeight: 900, color: darkMode ? '#fff' : '#000', margin: '4px 0' }}>{value}</h2>
-        <p style={{ fontSize: 11, color: darkMode ? '#666' : '#999', fontWeight: 600 }}>{sub}</p>
+        <h2 style={{ fontSize: 26, fontWeight: 400, color: darkMode ? '#fff' : '#000', margin: '4px 0' }}>{value}</h2>
+        <p style={{ fontSize: 11, color: darkMode ? '#666' : '#999', fontWeight: 400 }}>{sub}</p>
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
