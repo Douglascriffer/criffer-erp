@@ -20,6 +20,15 @@ const fmtBRLShort = (v) => {
 
 const fmtPct = (v) => `${v.toFixed(1)}%`
 
+const translateMonth = (label) => {
+  const map = {
+    'Jan': 'JAN', 'Feb': 'FEV', 'Mar': 'MAR', 'Apr': 'ABR', 
+    'May': 'MAI', 'Jun': 'JUN', 'Jul': 'JUL', 'Aug': 'AGO', 
+    'Sep': 'SET', 'Oct': 'OUT', 'Nov': 'NOV', 'Dec': 'DEZ'
+  }
+  return map[label] || label.toUpperCase()
+}
+
 function ThSmall({ children, align = 'left' }) {
   return (
     <th style={{ padding: '12px 20px', fontSize: 10, fontWeight: 900, color: '#888', letterSpacing: 1, textAlign: align }}>{children}</th>
@@ -43,7 +52,11 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
 
   const metasAnuais = useMemo(() => {
     if (!data?.meta || !filters.ano) return []
-    return data.meta[filters.ano] || []
+    const raw = data.meta[filters.ano] || []
+    return raw.map(m => ({
+      ...m,
+      labelPT: translateMonth(m.label)
+    }))
   }, [data, filters.ano])
 
   const stats = useMemo(() => {
@@ -129,7 +142,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
               <ComposedChart data={metasAnuais}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} />
                 <XAxis 
-                  dataKey="label" 
+                  dataKey="labelPT" 
                   axisLine={false} 
                   tickLine={false} 
                   tick={{ fill: t.textSub, fontSize: 11, fontWeight: 700 }}
@@ -194,7 +207,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
                       borderBottom: `1px solid ${t.border}`,
                       opacity: isFuture ? 0.4 : 1,
                     }}>
-                      <TdSmall style={{ fontWeight: 800 }}>{m.label.toUpperCase()}</TdSmall>
+                      <TdSmall style={{ fontWeight: 800 }}>{m.labelPT}</TdSmall>
                       <TdSmall>{fmtBRLShort(m.meta)}</TdSmall>
                       <TdSmall style={{ fontWeight: 700, color: m.realizado > 0 ? t.text : t.textSub }}>
                         {m.realizado > 0 ? fmtBRLShort(m.realizado) : '—'}
@@ -336,7 +349,7 @@ function CustomTooltip({ active, payload, darkMode }) {
       boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
       minWidth: 200
     }}>
-      <p style={{ fontWeight: 900, fontSize: 14, marginBottom: 12, color: '#FF6A22' }}>{data.label.toUpperCase()}</p>
+      <p style={{ fontWeight: 900, fontSize: 14, marginBottom: 12, color: '#FF6A22' }}>{data.labelPT}</p>
       
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: 24 }}>
