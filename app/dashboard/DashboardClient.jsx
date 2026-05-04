@@ -19,6 +19,7 @@ const MapaRegional         = dynamic(() => import('@/components/MapaRegional'), 
 const OrcamentoView        = dynamic(() => import('@/components/OrcamentoView'),        { ssr:false, loading:()=><Skeleton h={500}/> })
 const GraficoVendedores    = dynamic(() => import('@/components/GraficoVendedores'),    { ssr:false, loading:()=><Skeleton h={400}/> })
 const GraficoFaturamentoMeta = dynamic(() => import('@/components/GraficoFaturamentoMeta'), { ssr:false, loading:()=><Skeleton h={300}/> })
+const VisualizadorMetas = dynamic(() => import('@/components/VisualizadorMetas'), { ssr:false, loading:()=><Skeleton h={600}/> })
 
 function Skeleton({ h=200 }) { return <div style={{ height:h, background:'rgba(0,0,0,0.05)', borderRadius:16, animation:'pulse 1.5s infinite' }} /> }
 
@@ -546,19 +547,7 @@ export default function DashboardClient() {
 
                {/* Sub-aba: METAS */}
               {activeSub === 'metas' && (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-                  <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16 }}>
-                    <h3 style={{ fontSize: 15, fontWeight: 500, marginBottom: 12 }}>Meta vs Realizado (Mês Selecionado)</h3>
-                    <GraficoMetaRealizado metaData={data?.meta?.[filters.ano]?.filter(m => m.mes === Number(filters.mes)) || []}/>
-                  </div>
-                  <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 16, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <h3 style={{ fontSize: 15, fontWeight: 500, marginBottom: 12 }}>Atingimento Acumulado 2026</h3>
-                    <div style={{ fontSize: 42, fontWeight: 500, color: t.accent }}>
-                      {kpis.pctAtingido ? `${kpis.pctAtingido.toFixed(1)}%` : '—'}
-                    </div>
-                    <p style={{ fontSize: 12, color: t.textMuted, fontWeight: 500 }}>Performance em relação à meta anual</p>
-                  </div>
-                </div>
+                <VisualizadorMetas data={data} filters={filters} darkMode={theme === 'dark'} />
               )}
 
                {/* Sub-aba: VENDEDORES */}

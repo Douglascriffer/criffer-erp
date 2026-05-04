@@ -23,7 +23,14 @@ Este documento contém o resumo consolidado de todas as alterações visuais e t
     *   **Comparativo Anual**: Altura **260px**. Título: "**Comparativo Anual acumulado (2025 vs 2026)**".
     *   **Alinhamento**: Todos os gráficos da base perfeitamente nivelados em 260px para simetria de legendas.
 
+## ✅ ETAPA 4 — VENDEDORES (CONCLUÍDA - 30/04/2026)
+*Interface de ranking vertical e modal detalhado com Snake Border.*
+
+1.  **Ranking Individual**: Espaçamento de 8px, Gotham 900 e ícones personalizados.
+2.  **Modal Vendedor**: Largura de 1250px, 3 colunas e animação Snake Border dual laranja.
+3.  **Dados Comerciais**: Extração direta da aba COMERCIAL e reconciliação oficial.
+
 ---
 
-## 🚀 PRÓXIMA ETAPA: JANELA MAPA
-*Iniciando refinamento da visualização geográfica.*
+## 🚀 PRÓXIMA ETAPA: SUBJANELA METAS
+*Refinamento da visualização de objetivos e atingimento anual.*
