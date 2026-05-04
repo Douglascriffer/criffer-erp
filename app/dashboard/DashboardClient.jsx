@@ -532,7 +532,7 @@ export default function DashboardClient() {
 
                {/* Sub-aba: VENDEDORES */}
                {activeSub === 'rank' && (
-                <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 24, height: 748, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ background: t.card, borderRadius: 6, border: `1.5px solid ${t.border}`, padding: 24, height: 747, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                   <GraficoVendedores sellers={data?.bySeller || []} data={data} darkMode={theme === 'dark'} filters={filters} />
                 </div>
               )}
