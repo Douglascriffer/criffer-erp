@@ -540,9 +540,18 @@ export default function DashboardClient() {
           )}
 
           {/* ABA ORÇAMENTO */}
-          {filters.subTab === 'orcamento' && (
+          {tab === 'orcamento' && (
             <div className="w-full">
-              <OrcamentoView mes={filters.mes} data={data} darkMode={theme === 'dark'} />
+              {activeSub === 'dre' && (
+                <OrcamentoView mes={filters.mes} data={data} darkMode={theme === 'dark'} />
+              )}
+              {activeSub === 'metas_orc' && (
+                <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 40, textAlign: 'center' }}>
+                  <Target size={32} color={t.accent} style={{ marginBottom: 12 }} />
+                  <h2 style={{ fontSize: 18, fontWeight: 500 }}>Metas Orçamentárias</h2>
+                  <p style={{ color: t.textMuted, maxWidth: 400, margin: '8px auto', fontSize: 13 }}>Visualização detalhada das metas anuais e revisões orçamentárias em desenvolvimento.</p>
+                </div>
+              )}
             </div>
           )}
 
