@@ -53,7 +53,7 @@ export default function GraficoReceitas({ periodData = [], darkMode = false, hor
 
   return (
     <div style={{ width: '100%' }}>
-      <ResponsiveContainer width="100%" height={horizontal ? chartData.length * 80 + 60 : 230}>
+      <ResponsiveContainer width="100%" height={horizontal ? chartData.length * 80 + 60 : 220}>
         <BarChart 
           data={chartData} 
           layout={horizontal ? 'vertical' : 'horizontal'}
@@ -89,7 +89,7 @@ export default function GraficoReceitas({ periodData = [], darkMode = false, hor
       </ResponsiveContainer>
 
       {/* Legenda na Base */}
-      <div style={{ display:'flex', gap:20, justifyContent:'center', marginTop:12, flexWrap: 'wrap' }}>
+      <div style={{ display:'flex', gap:20, justifyContent:'center', marginTop:0, flexWrap: 'wrap' }}>
         {Object.entries(C).map(([k, c]) => (
           <div key={k} style={{ display:'flex', alignItems:'center', gap:6, fontSize:11, fontWeight: 400, color: darkMode ? '#fff' : '#666', textTransform: 'uppercase', letterSpacing: 0.5 }}>
             <div style={{ width:10, height:10, borderRadius: '50%', background:c }}/>
