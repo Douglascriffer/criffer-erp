@@ -77,7 +77,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24, paddingBottom: 40 }}>
       
       {/* ── HEADER DE KPIS PREMIUM ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
         <KpiCard 
           label="REALIZADO ACUMULADO" 
           value={fmtBRL(stats.realizadoTotal)} 
@@ -101,14 +101,6 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
           sub="Restante para fechar o ano"
           icon={AlertCircle} 
           color="#ef4444" 
-          darkMode={darkMode}
-        />
-        <KpiCard 
-          label="PROJEÇÃO" 
-          value={fmtBRL(stats.projecaoAnual)} 
-          sub={`Tendência: ${fmtPct((stats.projecaoAnual / stats.metaTotal) * 100)} da meta`}
-          icon={ArrowRightCircle} 
-          color="#3b82f6" 
           darkMode={darkMode}
         />
       </div>
