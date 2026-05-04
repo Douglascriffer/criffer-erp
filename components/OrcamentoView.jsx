@@ -96,23 +96,29 @@ function TipLinha({ active, payload, label, darkMode }) {
       }
     })
 
-    const validMonths = Object.values(res)
-    res['all'] = {
-      recReal:  validMonths.reduce((s, v) => s + v.recReal, 0),
-      recMeta:  validMonths.reduce((s, v) => s + v.recMeta, 0),
-      despReal: validMonths.reduce((s, v) => s + v.despReal, 0),
-      despOrc:  validMonths.reduce((s, v) => s + v.despOrc, 0),
-      centros:  orcamento.mensal['2026_1']?.centros
-        .filter(c => userContext.level === 'master' || c.cc === targetCC)
-        .map(c => ({
-          cc: c.cc,
-          orc: validMonths.reduce((s, v) => s + (v.centros?.find(cc => cc.cc === c.cc)?.orc || 0), 0),
-          real: validMonths.reduce((s, v) => s + (v.centros?.find(cc => cc.cc === c.cc)?.real || 0), 0)
-        })) || []
-    }
+    // 2. Criar Versão Acumulada para cada mês
+    [1,2,3,4,5,6,7,8,9,10,11,12].forEach(m => {
+      const monthsUpToNow = Object.keys(res).filter(k => Number(k) <= m)
+      res[`acc_${m}`] = {
+        recReal:  monthsUpToNow.reduce((s, k) => s + res[k].recReal, 0),
+        recMeta:  monthsUpToNow.reduce((s, k) => s + res[k].recMeta, 0),
+        despReal: monthsUpToNow.reduce((s, k) => s + res[k].despReal, 0),
+        despOrc:  monthsUpToNow.reduce((s, k) => s + res[k].despOrc, 0)
+      }
+    })
+
+    // Versão 'all' (Acumulado até o último mês com dados)
+    const latestMonthWithData = Object.keys(res)
+      .filter(k => !k.startsWith('acc_') && res[k].despReal > 0)
+      .reduce((max, k) => Math.max(max, Number(k)), 1)
+    
+    res['all'] = res[`acc_${latestMonthWithData}`]
+    res['latestMonth'] = latestMonthWithData
+
     return res
   }, [data, orcamento, userContext])
 
+  const currentAcc = mes === 'all' ? dynamicDados['all'] : dynamicDados[`acc_${mes}`]
   const dados = dynamicDados[mes] || dynamicDados['all'] || { centros: [] }
   const { recReal, recMeta, despReal, despOrc } = dados
   const resultado = (recReal || 0) - (despReal || 0)
@@ -134,11 +140,13 @@ function TipLinha({ active, payload, label, darkMode }) {
   const t = {
     text: darkMode ? '#ffffff' : '#000000',
     textSub: darkMode ? '#cccccc' : '#666666',
-    textMuted: darkMode ? '#666666' : '#999999',
+    textMuted: darkMode ? '#888888' : '#999999',
     border: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
     card: darkMode ? 'rgba(255,255,255,0.02)' : '#ffffff',
     accent: '#FF6A22',
-    bg: darkMode ? '#0c0c14' : '#f8f9fa'
+    bg: darkMode ? '#0c0c14' : '#f8f9fa',
+    green: '#22c55e',
+    red: '#ef4444'
   }
 
   return (
@@ -264,22 +272,36 @@ function TipLinha({ active, payload, label, darkMode }) {
             {/* Coluna 2: Painel de Acumulado (35%) */}
             <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column', gap: 24 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Acumulado Jan-Dez</h3>
-                <div style={{ background: 'rgba(34,197,94,0.1)', padding: '4px 10px', borderRadius: 20, fontSize: 11, fontWeight: 900, color: '#22c55e' }}>2026</div>
+                <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Acumulado 2026</h3>
+                <div style={{ background: 'rgba(255,106,34,0.1)', padding: '4px 10px', borderRadius: 20, fontSize: 11, fontWeight: 900, color: t.accent }}>
+                  Jan-{mes === 'all' ? (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][dynamicDados.latestMonth - 1]) : (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][Number(mes) - 1])}
+                </div>
               </div>
+
+              {/* Resultado Operacional Acumulado (Destaque) */}
+              {(() => {
+                const resAcc = (currentAcc?.recReal || 0) - (currentAcc?.despReal || 0)
+                const resOk = resAcc >= 0
+                return (
+                  <div style={{ background: resOk ? 'rgba(34,197,94,0.05)' : 'rgba(239,68,68,0.05)', borderRadius: 16, padding: '16px 20px', border: `1px solid ${resOk ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)'}` }}>
+                    <p style={{ fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>Resultado Operacional Acumulado</p>
+                    <p style={{ fontSize: 24, fontWeight: 900, color: resOk ? t.green : t.red }}>{fmt(resAcc)}</p>
+                  </div>
+                )
+              })()}
 
               {/* Progress: Receitas */}
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
                   <span style={{ fontSize: 12, fontWeight: 800, color: t.textSub }}>REALIZADO RECEITA</span>
-                  <span style={{ fontSize: 12, fontWeight: 900, color: t.text }}>{fmt(dynamicDados['all']?.recReal)}</span>
+                  <span style={{ fontSize: 12, fontWeight: 900, color: t.text }}>{fmt(currentAcc?.recReal)}</span>
                 </div>
                 <div style={{ height: 12, background: darkMode ? '#1a1a25' : '#f0f0f0', borderRadius: 6, overflow: 'hidden', position: 'relative' }}>
-                  <div style={{ height: '100%', background: t.accent, width: `${Math.min((dynamicDados['all']?.recReal/dynamicDados['all']?.recMeta)*100, 100)}%`, borderRadius: 6 }} />
+                  <div style={{ height: '100%', background: t.accent, width: `${Math.min((currentAcc?.recReal/currentAcc?.recMeta)*100, 100)}%`, borderRadius: 6 }} />
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
-                  <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>Meta: {fmt(dynamicDados['all']?.recMeta)}</span>
-                  <span style={{ fontSize: 11, color: t.accent, fontWeight: 900 }}>{((dynamicDados['all']?.recReal/dynamicDados['all']?.recMeta)*100).toFixed(1)}%</span>
+                  <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>Meta: {fmt(currentAcc?.recMeta)}</span>
+                  <span style={{ fontSize: 11, color: t.accent, fontWeight: 900 }}>{((currentAcc?.recReal/currentAcc?.recMeta)*100 || 0).toFixed(1)}%</span>
                 </div>
               </div>
 
@@ -287,31 +309,45 @@ function TipLinha({ active, payload, label, darkMode }) {
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
                   <span style={{ fontSize: 12, fontWeight: 800, color: t.textSub }}>REALIZADO DESPESA</span>
-                  <span style={{ fontSize: 12, fontWeight: 900, color: t.text }}>{fmt(dynamicDados['all']?.despReal)}</span>
+                  <span style={{ fontSize: 12, fontWeight: 900, color: t.text }}>{fmt(currentAcc?.despReal)}</span>
                 </div>
                 <div style={{ height: 12, background: darkMode ? '#1a1a25' : '#f0f0f0', borderRadius: 6, overflow: 'hidden', position: 'relative' }}>
-                  <div style={{ height: '100%', background: '#ef4444', width: `${Math.min((dynamicDados['all']?.despReal/dynamicDados['all']?.despOrc)*100, 100)}%`, borderRadius: 6 }} />
+                  <div style={{ height: '100%', background: (currentAcc?.despReal <= currentAcc?.despOrc) ? t.green : t.red, width: `${Math.min((currentAcc?.despReal/currentAcc?.despOrc)*100, 100)}%`, borderRadius: 6 }} />
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
-                  <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>Orçado: {fmt(dynamicDados['all']?.despOrc)}</span>
-                  <span style={{ fontSize: 11, color: '#ef4444', fontWeight: 900 }}>{((dynamicDados['all']?.despReal/dynamicDados['all']?.despOrc)*100).toFixed(1)}%</span>
+                  <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>Orçado: {fmt(currentAcc?.despOrc)}</span>
+                  <span style={{ fontSize: 11, color: (currentAcc?.despReal <= currentAcc?.despOrc) ? t.green : t.red, fontWeight: 900 }}>{((currentAcc?.despReal/currentAcc?.despOrc)*100 || 0).toFixed(1)}%</span>
                 </div>
               </div>
 
-              {/* Economy/Efficiency Circle (Mockup style but dynamic) */}
+              {/* Economy/Efficiency Circle */}
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderTop: `1.5px solid ${t.border}`, paddingTop: 24 }}>
-                <div style={{ position: 'relative', width: 140, height: 140, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <svg width="140" height="140" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke={darkMode ? '#1a1a25' : '#f0f0f0'} strokeWidth="8" />
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="#22c55e" strokeWidth="8" strokeDasharray={`${Math.max(0, (1 - (dynamicDados['all']?.despReal / dynamicDados['all']?.despOrc)) * 283)}, 283`} strokeLinecap="round" transform="rotate(-90 50 50)" />
-                  </svg>
-                  <div style={{ position: 'absolute', textAlign: 'center' }}>
-                    <p style={{ fontSize: 24, fontWeight: 900, color: '#22c55e', lineHeight: 1 }}>{((1 - (dynamicDados['all']?.despReal / dynamicDados['all']?.despOrc)) * 100).toFixed(1)}%</p>
-                    <p style={{ fontSize: 9, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase' }}>Eficiência</p>
-                  </div>
-                </div>
-                <p style={{ fontSize: 13, fontWeight: 900, color: t.text, marginTop: 16 }}>ECONOMIA DE {fmt(dynamicDados['all']?.despOrc - dynamicDados['all']?.despReal)}</p>
-                <p style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>Jan-Dez vs Orçado Proporcional</p>
+                {(() => {
+                  const saving = (currentAcc?.despOrc || 0) - (currentAcc?.despReal || 0)
+                  const effPct = (currentAcc?.despOrc > 0) ? ((saving / currentAcc.despOrc) * 100) : 0
+                  const ok = saving >= 0
+                  
+                  return (
+                    <>
+                      <div style={{ position: 'relative', width: 140, height: 140, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <svg width="140" height="140" viewBox="0 0 100 100">
+                          <circle cx="50" cy="50" r="45" fill="none" stroke={darkMode ? '#1a1a25' : '#f0f0f0'} strokeWidth="8" />
+                          <circle cx="50" cy="50" r="45" fill="none" stroke={ok ? t.green : t.red} strokeWidth="8" strokeDasharray={`${Math.abs(effPct) * 2.83}, 283`} strokeLinecap="round" transform="rotate(-90 50 50)" />
+                        </svg>
+                        <div style={{ position: 'absolute', textAlign: 'center' }}>
+                          <p style={{ fontSize: 24, fontWeight: 900, color: ok ? t.green : t.red, lineHeight: 1 }}>{effPct.toFixed(1)}%</p>
+                          <p style={{ fontSize: 9, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase' }}>Eficiência</p>
+                        </div>
+                      </div>
+                      <p style={{ fontSize: 13, fontWeight: 900, color: t.text, marginTop: 16 }}>
+                        {ok ? 'ECONOMIA' : 'EXCESSO'} DE {fmt(Math.abs(saving))}
+                      </p>
+                      <p style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>
+                        Jan-{mes === 'all' ? (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][dynamicDados.latestMonth - 1]) : (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][Number(mes) - 1])} vs Orçado
+                      </p>
+                    </>
+                  )
+                })()}
               </div>
             </div>
 
