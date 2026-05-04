@@ -250,7 +250,7 @@ function TipLinha({ active, payload, label, darkMode }) {
                 </div>
               </div>
               <div style={{ flex: 1, width: '100%' }}>
-                <ResponsiveContainer width="100%" height={320}>
+                <ResponsiveContainer width="100%" height={305}>
                   <LineChart data={mensalLinha} margin={{ top: 10, right: 30, left: -20, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke={t.border} vertical={false} />
                     <XAxis dataKey="mes" tick={{ fontSize: 11, fill: t.textMuted, fontWeight: 600 }} axisLine={false} tickLine={false} />
