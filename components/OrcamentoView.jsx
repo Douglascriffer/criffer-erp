@@ -74,33 +74,38 @@ function TipLinha({ active, payload, label, darkMode }) {
     const res = {}
     if (!orcamento?.mensal) return {}
 
+    // 1. Inicializar estrutura básica para todos os 12 meses
+    for (let m = 1; m <= 12; m++) {
+      res[m] = { recReal: 0, recMeta: 0, despReal: 0, despOrc: 0, centros: [] };
+    }
+
     const targetCC = mapSectorToCC(userContext.sector)
 
     Object.entries(orcamento.mensal).forEach(([key, mData]) => {
-      const monthNum = key.split('_')[1]
-      const period = data?.byPeriod?.find(p => p.ano === 2026 && p.mes === Number(monthNum))
-      const meta   = data?.meta?.['2026']?.find(m => m.mes === Number(monthNum))
+      const monthNum = Number(key.split('_')[1]);
+      if (!monthNum) return;
 
-      // Filtrar centros se for gestor
-      let filteredCentros = mData.centros
+      const period = data?.byPeriod?.find(p => p.ano === 2026 && p.mes === monthNum);
+      const meta   = data?.meta?.['2026']?.find(m => m.mes === monthNum);
+
+      let filteredCentros = mData.centros || [];
       if (userContext.level === 'gestor' && targetCC) {
-        filteredCentros = mData.centros.filter(c => c.cc === targetCC)
+        filteredCentros = filteredCentros.filter(c => c.cc === targetCC);
       }
 
       res[monthNum] = {
         recReal:  period?.total || 0,
         recMeta:  meta?.meta || 0,
-        despReal: filteredCentros.reduce((s, c) => s + c.real, 0),
-        despOrc:  filteredCentros.reduce((s, c) => s + c.orc, 0),
+        despReal: filteredCentros.reduce((s, c) => s + (c.real || 0), 0),
+        despOrc:  filteredCentros.reduce((s, c) => s + (c.orc || 0), 0),
         centros:  filteredCentros
-      }
-    })
+      };
+    });
 
-    // 2. Criar Versão Acumulada para cada mês (com proteção total e Centros de Custo)
-    [1,2,3,4,5,6,7,8,9,10,11,12].forEach(m => {
-      const monthsUpToNow = Object.keys(res).filter(k => !k.startsWith('acc_') && Number(k) <= m && res[k]);
+    // 3. Criar Versão Acumulada
+    for (let m = 1; m <= 12; m++) {
+      const monthsUpToNow = [1,2,3,4,5,6,7,8,9,10,11,12].filter(v => v <= m);
       
-      // Acumular totais
       const accObj = {
         recReal:  monthsUpToNow.reduce((s, k) => s + (res[k]?.recReal || 0), 0),
         recMeta:  monthsUpToNow.reduce((s, k) => s + (res[k]?.recMeta || 0), 0),
@@ -109,8 +114,7 @@ function TipLinha({ active, payload, label, darkMode }) {
         centros: []
       };
 
-      // Acumular cada Centro de Custo individualmente
-      const firstMonthCentros = res[monthsUpToNow[0]]?.centros || [];
+      const firstMonthCentros = res[1]?.centros || [];
       accObj.centros = firstMonthCentros.map(c => {
         const ccName = c.cc;
         return {
@@ -121,14 +125,10 @@ function TipLinha({ active, payload, label, darkMode }) {
       });
 
       res[`acc_${m}`] = accObj;
-    });
+    }
 
-    // Versão 'all' (Acumulado até o último mês com dados)
-    const latestMonthWithData = Object.keys(res)
-      .filter(k => !k.startsWith('acc_') && res[k]?.despReal > 0)
-      .reduce((max, k) => Math.max(max, Number(k)), 1);
-    
-    res['all'] = res[`acc_${latestMonthWithData}`] || { recReal: 0, recMeta: 0, despReal: 0, despOrc: 0 };
+    const latestMonthWithData = [1,2,3,4,5,6,7,8,9,10,11,12].reverse().find(m => res[m].despReal > 0) || 1;
+    res['all'] = res[`acc_${latestMonthWithData}`];
     res['latestMonth'] = latestMonthWithData;
 
     return res;
