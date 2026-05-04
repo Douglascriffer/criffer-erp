@@ -37,7 +37,7 @@ function ThSmall({ children, align = 'left' }) {
 
 function TdSmall({ children, align = 'left', style }) {
   return (
-    <td style={{ padding: '8px 20px', fontSize: 14, color: 'inherit', textAlign: align, ...style }}>{children}</td>
+    <td style={{ padding: '8px 20px', fontSize: 14.5, color: 'inherit', textAlign: align, ...style }}>{children}</td>
   )
 }
 
