@@ -31,13 +31,13 @@ const translateMonth = (label) => {
 
 function ThSmall({ children, align = 'left' }) {
   return (
-    <th style={{ padding: '8px 20px', fontSize: 10, fontWeight: 900, color: '#888', letterSpacing: 1, textAlign: align }}>{children}</th>
+    <th style={{ padding: '8px 20px', fontSize: 11, fontWeight: 900, color: '#888', letterSpacing: 1, textAlign: align }}>{children}</th>
   )
 }
 
 function TdSmall({ children, align = 'left', style }) {
   return (
-    <td style={{ padding: '8px 20px', fontSize: 12, color: 'inherit', textAlign: align, ...style }}>{children}</td>
+    <td style={{ padding: '8px 20px', fontSize: 14, color: 'inherit', textAlign: align, ...style }}>{children}</td>
   )
 }
 
@@ -209,7 +209,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
                           <span style={{ 
                             color: pct >= 100 ? '#22c55e' : (pct >= 80 ? '#f59e0b' : '#ef4444'),
                             fontWeight: 400,
-                            fontSize: 13
+                            fontSize: 15
                           }}>
                             {pct.toFixed(0)}%
                           </span>
