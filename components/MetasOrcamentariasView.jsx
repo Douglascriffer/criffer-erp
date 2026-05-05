@@ -101,7 +101,7 @@ function GoalCard({ title, data, t, darkMode, borderColor, highlight }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
         <ItemRow label="Receita Bruta" value={data.receita} color={t.green} t={t} />
         <ItemRow label="Despesas" value={data.despesas} color={t.red} t={t} />
-        <ItemRow label="Resultado" value={data.resultado} color={data.resultado >= 0 ? t.green : t.red} t={t} prefix={data.resultado >= 0 ? '+' : ''}/>
+        <ItemRow label="Resultado" value={data.resultado} color={data.resultado >= 0 ? t.green : t.red} t={t} />
         <ItemRow label="Lucro Esperado" value={data.lucro} color={t.blue} t={t} />
         <ItemRow label="Ganho Necessário" value={data.ganho} color={t.red} t={t} />
       </div>
@@ -116,7 +116,7 @@ function GoalCard({ title, data, t, darkMode, borderColor, highlight }) {
         border: `1px solid ${highlight ? 'rgba(255,106,34,0.1)' : 'rgba(59,130,246,0.1)'}`
       }}>
         <p style={{ fontSize: 18, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Economia Necessária</p>
-        <p style={{ fontSize: 18, fontWeight: 900, color: highlight ? t.accent : t.blue }}>
+        <p style={{ fontSize: 20, fontWeight: 900, color: highlight ? t.accent : t.blue, fontVariantNumeric: 'tabular-nums' }}>
           {(data.economia * 100).toFixed(1)}%
         </p>
       </div>
@@ -124,12 +124,12 @@ function GoalCard({ title, data, t, darkMode, borderColor, highlight }) {
   )
 }
 
-function ItemRow({ label, value, color, t, prefix = '' }) {
+function ItemRow({ label, value, color, t }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: `1px solid ${t.border}`, paddingBottom: 12 }}>
       <span style={{ fontSize: 18, fontWeight: 900, color: t.textSub }}>{label}</span>
-      <span style={{ fontSize: 18, fontWeight: 900, color: color }}>
-        {prefix}{fmtBRL(value)}
+      <span style={{ fontSize: 20, fontWeight: 900, color: color, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>
+        {fmtBRL(value)}
       </span>
     </div>
   )
