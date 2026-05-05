@@ -3,7 +3,7 @@ import React from 'react'
 import { Target, TrendingUp, ArrowDownCircle, DollarSign, PieChart, AlertTriangle } from 'lucide-react'
 
 const fmtBRL = (v) => {
-  return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+  return Math.round(v).toLocaleString('pt-BR')
 }
 
 const fmtFull = (v) => {
@@ -47,7 +47,7 @@ export default function MetasOrcamentariasView({ darkMode }) {
       
       {/* Título Superior */}
       <div style={{ borderBottom: `1px solid ${t.border}`, paddingBottom: 16, textAlign: 'center' }}>
-         <h2 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>
+         <h2 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>
             Meta Inicial vs Meta Atualizada — 2026
          </h2>
       </div>
@@ -93,7 +93,7 @@ function GoalCard({ title, data, t, darkMode, borderColor, highlight }) {
       overflow: 'hidden'
     }}>
       {/* Label Principal */}
-      <h3 style={{ fontSize: 18, fontWeight: 900, color: highlight ? t.accent : t.blue, textTransform: 'uppercase', letterSpacing: 1.5, textAlign: 'center' }}>
+      <h3 style={{ fontSize: 20, fontWeight: 900, color: highlight ? t.accent : t.blue, textTransform: 'uppercase', letterSpacing: 1.5, textAlign: 'center' }}>
         {title}
       </h3>
 
@@ -115,7 +115,7 @@ function GoalCard({ title, data, t, darkMode, borderColor, highlight }) {
         textAlign: 'center',
         border: `1px solid ${highlight ? 'rgba(255,106,34,0.1)' : 'rgba(59,130,246,0.1)'}`
       }}>
-        <p style={{ fontSize: 15, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Economia Necessária</p>
+        <p style={{ fontSize: 18, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Economia Necessária</p>
         <p style={{ fontSize: 48, fontWeight: 900, color: highlight ? t.accent : t.blue }}>
           {(data.economia * 100).toFixed(1)}%
         </p>
@@ -127,7 +127,7 @@ function GoalCard({ title, data, t, darkMode, borderColor, highlight }) {
 function ItemRow({ label, value, color, t, isBold, prefix = '' }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: `1px solid ${t.border}`, paddingBottom: 12 }}>
-      <span style={{ fontSize: 15, fontWeight: 500, color: t.textSub }}>{label}</span>
+      <span style={{ fontSize: 18, fontWeight: 500, color: t.textSub }}>{label}</span>
       <span style={{ fontSize: 18, fontWeight: isBold ? 900 : 700, color: color }}>
         {prefix}{fmtBRL(value)}
       </span>
