@@ -20,6 +20,7 @@ const OrcamentoView        = dynamic(() => import('@/components/OrcamentoView'),
 const GraficoVendedores    = dynamic(() => import('@/components/GraficoVendedores'),    { ssr:false, loading:()=><Skeleton h={400}/> })
 const GraficoFaturamentoMeta = dynamic(() => import('@/components/GraficoFaturamentoMeta'), { ssr:false, loading:()=><Skeleton h={300}/> })
 const VisualizadorMetas = dynamic(() => import('@/components/VisualizadorMetas'), { ssr:false, loading:()=><Skeleton h={600}/> })
+const MetasOrcamentariasView = dynamic(() => import('@/components/MetasOrcamentariasView'), { ssr:false, loading:()=><Skeleton h={600}/> })
 
 function Skeleton({ h=200 }) { return <div style={{ height:h, background:'rgba(0,0,0,0.05)', borderRadius:16, animation:'pulse 1.5s infinite' }} /> }
 
@@ -552,11 +553,7 @@ export default function DashboardClient() {
                 />
               )}
               {activeSub === 'metas_orc' && (
-                <div style={{ background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 40, textAlign: 'center' }}>
-                  <Target size={32} color={t.accent} style={{ marginBottom: 12 }} />
-                  <h2 style={{ fontSize: 18, fontWeight: 500 }}>Metas Orçamentárias</h2>
-                  <p style={{ color: t.textMuted, maxWidth: 400, margin: '8px auto', fontSize: 13 }}>Visualização detalhada das metas anuais e revisões orçamentárias em desenvolvimento.</p>
-                </div>
+                <MetasOrcamentariasView darkMode={theme === 'dark'} />
               )}
             </div>
           )}
