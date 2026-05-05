@@ -207,16 +207,35 @@ def process_excel():
             for m in range(1, 13):
                 result["orcamento"]["mensal"][f"month_{m}"] = {"centros": []}
             
+            def normalize_cc(name):
+                n = str(name).strip()
+                if 'Produ' in n: return 'Produção'
+                if 'Logistica' in n: return 'Logística'
+                if 'Manuten' in n and 'Lab' not in n: return 'Manutenção'
+                if 'Sup' in n and 'Tec' in n: return 'Sup. Técnico'
+                if 'Loca' in n: return 'Locação'
+                if 'Calibra' in n: return 'Lab. Calibração'
+                if 'Lab. Manuten' in n: return 'Lab. Manutenção'
+                if 'Comercial' in n: return 'Comercial'
+                if 'Vendas' in n: return 'Comercial'
+                if 'Financeiro' in n: return 'Financeiro'
+                if 'RH' in n: return 'RH'
+                if 'TI' in n: return 'TI'
+                if 'Diretoria' in n: return 'Diretoria'
+                if 'Marketing' in n: return 'Marketing'
+                if 'Compras' in n: return 'Compras'
+                return n
+
             current_cc = None
             cc_rows = []
-            
+
             for r in range(2, len(df_orc)):
                 cc_candidate = df_orc.iloc[r, 0]
                 category = df_orc.iloc[r, 1]
                 
                 # Se encontrou um novo CC na coluna 0
                 if pd.notna(cc_candidate) and str(cc_candidate).strip() != "":
-                    current_cc = str(cc_candidate).strip()
+                    current_cc = normalize_cc(cc_candidate)
                     if current_cc == "Total Geral": break
                     
                 if not current_cc: continue
