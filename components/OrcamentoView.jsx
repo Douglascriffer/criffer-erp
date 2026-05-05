@@ -28,7 +28,7 @@ function TipLinha({ active, payload, label, darkMode }) {
         <div key={p.name} style={{ display: 'flex', justifyContent: 'space-between', gap: 20, marginBottom: 4 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: p.color }}/>
-            <span style={{ color: darkMode ? '#aaa' : '#666', fontWeight: 600 }}>{p.name}</span>
+            <span style={{ color: darkMode ? '#ffffff' : '#666666', fontWeight: 600 }}>{p.name}</span>
           </div>
           <span style={{ fontWeight: 800 }}>{fmt(p.value)}</span>
         </div>
@@ -155,9 +155,9 @@ function TipLinha({ active, payload, label, darkMode }) {
 
   const t = {
     text: darkMode ? '#ffffff' : '#000000',
-    textSub: darkMode ? '#cccccc' : '#666666',
-    textMuted: darkMode ? '#888888' : '#999999',
-    border: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
+    textSub: darkMode ? '#ffffff' : '#666666',
+    textMuted: darkMode ? '#ffffff' : '#999999',
+    border: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)',
     card: darkMode ? 'rgba(255,255,255,0.02)' : '#ffffff',
     accent: '#FF6A22',
     bg: darkMode ? '#0c0c14' : '#f8f9fa',
@@ -250,14 +250,14 @@ function TipLinha({ active, payload, label, darkMode }) {
                 </div>
               </div>
               <div style={{ flex: 1, width: '100%' }}>
-                <ResponsiveContainer width="100%" height={305}>
-                  <LineChart data={mensalLinha} margin={{ top: 10, right: 30, left: -20, bottom: 0 }}>
+                <ResponsiveContainer width="100%" height={280}>
+                  <LineChart data={mensalLinha} margin={{ top: 10, right: 30, left: -20, bottom: -5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke={t.border} vertical={false} />
-                    <XAxis dataKey="mes" tick={{ fontSize: 11, fill: t.textMuted, fontWeight: 600 }} axisLine={false} tickLine={false} />
-                    <YAxis hide />
+                    <XAxis dataKey="mes" tick={{ fontSize: 11, fill: t.textSub, fontWeight: 700 }} axisLine={false} tickLine={false} />
+                    <YAxis hide domain={['auto', 'auto']} />
                     <Tooltip content={<TipLinha darkMode={darkMode} />} />
-                    <Line type="monotone" dataKey="receita" name="Receita" stroke={t.accent} strokeWidth={5} dot={{ r: 6, fill: t.accent, stroke: '#fff' }} />
-                    <Line type="monotone" dataKey="despesa" name="Despesa" stroke="#ef4444" strokeWidth={3} strokeDasharray="5 5" dot={false} />
+                    <Line type="monotone" dataKey="receita" name="Receita" stroke={t.accent} strokeWidth={5} dot={{ r: 6, fill: t.accent, stroke: '#fff' }} connectNulls />
+                    <Line type="monotone" dataKey="despesa" name="Despesa" stroke="#ef4444" strokeWidth={3} strokeDasharray="5 5" dot={false} connectNulls />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
