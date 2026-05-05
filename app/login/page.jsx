@@ -18,6 +18,7 @@ const USUARIOS = [
   { nome: 'Felipe Immich',      display: 'Felipe Immich',    nivel: 'gestor', setor: 'Laboratório Calibração' },
   { nome: 'Gabriel Dias',       display: 'Gabriel Dias',     nivel: 'gestor', setor: 'Vendas' },
   { nome: 'Ruslan Santos',      display: 'Ruslan Santos',    nivel: 'gestor', setor: 'Suporte Técnico' },
+  { nome: 'Natasha Osório da Silva', display: 'Natasha Osório', nível: 'gestor', setor: 'RH' },
 ]
 const SENHA = 'Criffer2026'
 

@@ -64,7 +64,8 @@ function TipLinha({ active, payload, label, darkMode }) {
       'Manutenção':               'Manutenção',
       'Logística':                'Logística',
       'Marketing':                'Marketing',
-      'P&D':                      'P&D'
+      'P&D':                      'P&D',
+      'RH':                       'RH'
     }
     return map[sector] || sector
   }
