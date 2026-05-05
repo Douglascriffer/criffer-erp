@@ -401,7 +401,8 @@ function TipLinha({ active, payload, label, darkMode }) {
                   overflow: 'hidden',
                   height: 750,
                   display: 'flex',
-                  flexDirection: 'column'
+                  flexDirection: 'column',
+                  marginRight: 2
                 }}>
                   {/* Cabeçalho Fixo */}
                   <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.01)' }}>
