@@ -3,13 +3,7 @@ import React from 'react'
 import { Target, TrendingUp, ArrowDownCircle, DollarSign, PieChart, AlertTriangle } from 'lucide-react'
 
 const fmtBRL = (v) => {
-  const abs = Math.abs(v)
-  let valStr = ''
-  if (abs >= 1_000_000) valStr = `${(abs / 1_000_000).toFixed(2)}M`
-  else if (abs >= 1_000) valStr = `${(abs / 1_000).toFixed(1)}k`
-  else valStr = abs.toLocaleString('pt-BR')
-  
-  return `${v < 0 ? '-' : ''}R$ ${valStr}`
+  return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
 
 const fmtFull = (v) => {
