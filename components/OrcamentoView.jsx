@@ -393,7 +393,16 @@ function TipLinha({ active, payload, label, darkMode }) {
               const centerAcc = (currentAcc.centros?.find(c => c.cc === center.cc)) || center;
 
               return (
-                <div key={center.cc} style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, overflow: 'hidden' }}>
+                <div key={center.cc} style={{ 
+                  background: t.card, 
+                  borderRadius: 24, 
+                  border: `1.5px solid ${t.border}`, 
+                  overflow: 'hidden',
+                  height: 600,
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}>
+                  {/* Cabeçalho Fixo */}
                   <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.01)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                       <div style={{ background: t.accent, width: 4, height: 24, borderRadius: 2 }} />
@@ -406,15 +415,16 @@ function TipLinha({ active, payload, label, darkMode }) {
                     </div>
                   </div>
 
-                  <div style={{ overflowX: 'auto' }}>
+                  {/* Área da Tabela com Scroll Interno */}
+                  <div style={{ overflowX: 'auto', overflowY: 'auto', flex: 1 }} className="custom-scrollbar">
                     <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                       <thead>
-                        <tr style={{ background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)' }}>
+                        <tr style={{ background: darkMode ? '#1e1e2d' : '#ffffff', position: 'sticky', top: 0, zIndex: 20 }}>
                           <th rowSpan={2} style={{ padding: '16px 32px', textAlign: 'left', fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', borderBottom: `1px solid ${t.border}` }}>Despesas Detalhadas</th>
                           <th colSpan={3} style={{ padding: '12px 20px', textAlign: 'center', fontSize: 11, fontWeight: 900, color: t.text, textTransform: 'uppercase', borderBottom: `1px solid ${t.border}`, borderLeft: `1px solid ${t.border}` }}>Acumulado Jan - {mes === 'all' ? (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][(dynamicDados?.latestMonth || 1) - 1]) : (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][Number(mes) - 1])}</th>
                           <th colSpan={3} style={{ padding: '12px 20px', textAlign: 'center', fontSize: 11, fontWeight: 900, color: t.text, textTransform: 'uppercase', borderBottom: `1px solid ${t.border}`, borderLeft: `1px solid ${t.border}` }}>{mes === 'all' ? 'Média Mensal' : 'Mensal Selecionado'}</th>
                         </tr>
-                        <tr style={{ background: darkMode ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)' }}>
+                        <tr style={{ background: darkMode ? '#1e1e2d' : '#ffffff', position: 'sticky', top: 40, zIndex: 20 }}>
                           <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 9, fontWeight: 900, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>ORÇADO</th>
                           <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 9, fontWeight: 900, color: t.textMuted }}>REALIZADO</th>
                           <th style={{ padding: '10px 20px', textAlign: 'center', fontSize: 9, fontWeight: 900, color: t.textMuted }}>% VAR.</th>
