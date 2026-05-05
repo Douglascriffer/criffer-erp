@@ -89,9 +89,8 @@ function TipLinha({ active, payload, label, darkMode }) {
       const meta   = data?.meta?.['2026']?.find(m => m.mes === monthNum);
 
       let filteredCentros = mData.centros || [];
-      if (userContext.level === 'gestor' && targetCC) {
-        filteredCentros = filteredCentros.filter(c => c.cc === targetCC);
-      }
+      // REMOVIDO: Filtro por setor aqui estava afetando o DRE total. 
+      // O filtro será aplicado apenas na visualização de Centro de Custo.
 
       res[monthNum] = {
         recReal:  period?.total || 0,
