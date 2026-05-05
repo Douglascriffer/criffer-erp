@@ -22,7 +22,7 @@ export default function MetasOrcamentariasView({ darkMode }) {
     textSub: darkMode ? '#cccccc' : '#444444',
     textMuted: darkMode ? '#888888' : '#666666',
     border: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
-    card: darkMode ? '#1a1a25' : '#ffffff',
+    card: darkMode ? '#252538' : '#ffffff',
     accent: '#FF6A22',
     blue: '#3b82f6',
     green: '#22c55e',
@@ -52,7 +52,7 @@ export default function MetasOrcamentariasView({ darkMode }) {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       
       {/* Título Superior */}
-      <div style={{ borderBottom: `1px solid ${t.border}`, paddingBottom: 16 }}>
+      <div style={{ borderBottom: `1px solid ${t.border}`, paddingBottom: 16, textAlign: 'center' }}>
          <h2 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>
             Meta Inicial vs Meta Atualizada — 2026
          </h2>
@@ -99,7 +99,7 @@ function GoalCard({ title, data, t, darkMode, borderColor, highlight }) {
       overflow: 'hidden'
     }}>
       {/* Label Principal */}
-      <h3 style={{ fontSize: 18, fontWeight: 900, color: highlight ? t.accent : t.blue, textTransform: 'uppercase', letterSpacing: 1.5 }}>
+      <h3 style={{ fontSize: 18, fontWeight: 900, color: highlight ? t.accent : t.blue, textTransform: 'uppercase', letterSpacing: 1.5, textAlign: 'center' }}>
         {title}
       </h3>
 
