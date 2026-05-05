@@ -17,10 +17,13 @@ Este documento consolida as alterações e refinamentos aprovados pelo usuário 
     - Tons de cinza escurecidos para maior contraste no modo claro.
     - Listrado (zebra) da tabela mais visível.
     - Adição de linha de separação horizontal abaixo dos cabeçalhos.
+    - Padding das linhas aumentado para **22px** para melhor legibilidade.
+    - Margem direita do card fixada em **5px** para alinhamento horizontal.
 
 ## 3. Lógica Financeira (DRE & Orçamento)
 - **DRE Global**: Restaurada a visualização de totais da empresa na janela "DRE SIMPLIFICADO", mantendo a trava de setor apenas na aba específica de Centro de Custo.
 - **Acumulado (YTD) Dinâmico**: O cálculo do acumulado agora respeita rigorosamente o mês selecionado (ex: ao selecionar Maio, o sistema soma Jan-Mai, e não o ano todo).
+- **Ajuste de Layout DRE**: Altura dos cards de Tendência e Acumulado fixada em **564px**.
 - **Metas Orçamentárias 2026**:
     - Nova interface gerencial comparando **Meta Inicial vs Meta Atualizada**.
     - Tipografia: Títulos **20px**, Rótulos e Números **18px**.
