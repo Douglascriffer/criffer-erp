@@ -21,24 +21,24 @@ for (let i = 0; i < 12; i++) {
   });
 }
 
-// Exact Row mapping (0-indexed)
-const CC_ROWS = [
-  { cc: 'Comercial', row: 9 },
-  { cc: 'Marketing', row: 17 },
-  { cc: 'Compras', row: 25 },
-  { cc: 'Lab. Calibração', row: 33 },
-  { cc: 'Lab. Manutenção', row: 41 },
-  { cc: 'Administrativo', row: 49 },
-  { cc: 'Diretoria', row: 57 },
-  { cc: 'Financeiro', row: 66 },
-  { cc: 'P&D', row: 74 },
-  { cc: 'RH', row: 82 },
-  { cc: 'Locação', row: 90 },
-  { cc: 'TI', row: 98 },
-  { cc: 'Logística', row: 106 },
-  { cc: 'Manutenção', row: 114 },
-  { cc: 'Produção', row: 122 },
-  { cc: 'Sup. Técnico', row: 130 }
+// Exact Row mapping for TOTALS (to keep compatibility with DRE if needed)
+const CC_MAP = [
+  { cc: 'Comercial', start: 2, end: 9 },
+  { cc: 'Marketing', start: 10, end: 17 },
+  { cc: 'Compras', start: 18, end: 25 },
+  { cc: 'Lab. Calibração', start: 26, end: 33 },
+  { cc: 'Lab. Manutenção', start: 34, end: 41 },
+  { cc: 'Administrativo', start: 42, end: 49 },
+  { cc: 'Diretoria', start: 50, end: 57 },
+  { cc: 'Financeiro', start: 58, end: 66 },
+  { cc: 'P&D', start: 67, end: 74 },
+  { cc: 'RH', start: 75, end: 82 },
+  { cc: 'Locação', start: 83, end: 90 },
+  { cc: 'TI', start: 91, end: 98 },
+  { cc: 'Logística', start: 99, end: 106 },
+  { cc: 'Manutenção', start: 107, end: 114 },
+  { cc: 'Produção', start: 115, end: 122 },
+  { cc: 'Sup. Técnico', start: 123, end: 130 }
 ];
 
 // Row 132 (idx 131) is TOTAL GERAL
@@ -48,11 +48,33 @@ const totalGeralRow = 131;
 months.forEach((m, mIdx) => {
   const key = `2026_${mIdx + 1}`;
   
-  const centros = CC_ROWS.map(map => ({
-    cc: map.cc,
-    orc: Number(rows[map.row]?.[m.orcIdx] || 0),
-    real: Number(rows[map.row]?.[m.realIdx] || 0)
-  }));
+  const centros = CC_MAP.map(map => {
+    const totalRow = rows[map.end];
+    const categories = [];
+    
+    // Extract categories between start and end (exclusive of end which is TOTAL)
+    for (let r = map.start; r < map.end; r++) {
+      const row = rows[r];
+      if (row && row[1] && row[1] !== 'TOTAL') {
+        categories.push({
+          name: row[1],
+          orc: Number(row[m.orcIdx] || 0),
+          real: Number(row[m.realIdx] || 0),
+          accOrc: Number(row[2] || 0), // Column C
+          accReal: Number(row[3] || 0) // Column D
+        });
+      }
+    }
+
+    return {
+      cc: map.cc,
+      orc: Number(totalRow?.[m.orcIdx] || 0),
+      real: Number(totalRow?.[m.realIdx] || 0),
+      accOrc: Number(totalRow?.[2] || 0),
+      accReal: Number(totalRow?.[3] || 0),
+      categories: categories
+    };
+  });
 
   orcamentoData.mensal[key] = {
     centros: centros,
@@ -62,8 +84,6 @@ months.forEach((m, mIdx) => {
 });
 
 // Update metas (based on footer rows)
-// We'll keep the previous footer logic if it worked, or find labels.
-// Actually, let's look for "Receita Bruta" etc. in the whole sheet.
 const findVal = (label) => {
   const r = rows.find(row => row[1] === label || row[0] === label);
   return r ? Number(r[2] || 0) : 0;
@@ -83,4 +103,4 @@ const dados = JSON.parse(fs.readFileSync(dadosPath, 'utf8'));
 dados.orcamento = orcamentoData;
 fs.writeFileSync(dadosPath, JSON.stringify(dados, null, 2));
 
-console.log('Sync completed with exact row mapping!');
+console.log('Sync completed with detailed categories and YTD columns!');

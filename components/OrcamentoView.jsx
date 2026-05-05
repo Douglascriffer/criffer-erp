@@ -362,43 +362,128 @@ function TipLinha({ active, payload, label, darkMode }) {
 
       {/* ── VISÃO CENTRO DE CUSTO ── */}
       {viewType === 'cc' && (
-        <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, overflow: 'hidden' }}>
-          <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.01)' }}>
-            <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Detalhamento por Centro de Custo {userContext.level === 'gestor' ? `(${userContext.sector})` : ''}</h3>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 800, color: t.accent, background: 'rgba(255,106,34,0.1)', padding: '6px 12px', borderRadius: 12 }}>
-              <BarChart3 size={16} /> {dados.centros?.length || 0} Setores Ativos
-            </div>
-          </div>
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <thead style={{ position: 'sticky', top: 0, background: darkMode ? '#1a1a25' : '#f8f9fa', zIndex: 10 }}>
-                <tr>
-                  <th style={{ padding: '16px 32px', textAlign: 'left', fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>Centro de Custo</th>
-                  <th style={{ padding: '16px 32px', textAlign: 'right', fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>Orçado</th>
-                  <th style={{ padding: '16px 32px', textAlign: 'right', fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>Realizado</th>
-                  <th style={{ padding: '16px 32px', textAlign: 'right', fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>Variação</th>
-                </tr>
-              </thead>
-              <tbody>
-                {dados.centros?.map((c, i) => {
-                  const diff = c.orc > 0 ? ((c.real - c.orc) / c.orc * 100) : 0
-                  const ok = diff <= 0
-                  return (
-                    <tr key={c.cc} style={{ borderBottom: `1px solid ${t.border}`, background: i % 2 === 0 ? 'transparent' : 'rgba(0,0,0,0.01)' }}>
-                      <td style={{ padding: '20px 32px', fontSize: 14, fontWeight: 700, color: t.text }}>{c.cc}</td>
-                      <td style={{ padding: '20px 32px', textAlign: 'right', fontSize: 13, color: t.textMuted }}>{fmt(c.orc)}</td>
-                      <td style={{ padding: '20px 32px', textAlign: 'right', fontSize: 14, fontWeight: 900, color: t.text }}>{fmt(c.real)}</td>
-                      <td style={{ padding: '20px 32px', textAlign: 'right' }}>
-                        <span style={{ fontSize: 11, fontWeight: 900, color: ok ? '#22c55e' : '#ef4444', background: ok ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)', padding: '6px 12px', borderRadius: 20 }}>
-                          {diff > 0 ? '+' : ''}{diff.toFixed(1)}%
-                        </span>
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+          {(() => {
+            // Filtrar centros baseado no acesso do gestor
+            const targetCC = mapSectorToCC(userContext.sector);
+            const filteredCentros = (userContext.level === 'gestor' && targetCC)
+              ? (dados.centros?.filter(c => c.cc === targetCC) || [])
+              : (dados.centros || []);
+
+            if (filteredCentros.length === 0) {
+              return (
+                <div style={{ background: t.card, padding: 48, borderRadius: 24, textAlign: 'center', border: `1.5px solid ${t.border}` }}>
+                  <AlertCircle size={48} color={t.textMuted} style={{ marginBottom: 16 }} />
+                  <p style={{ color: t.text, fontWeight: 600 }}>Nenhum Centro de Custo disponível para este acesso.</p>
+                </div>
+              );
+            }
+
+            return filteredCentros.map(center => (
+              <div key={center.cc} style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, overflow: 'hidden' }}>
+                <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.01)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                    <div style={{ background: t.accent, width: 4, height: 24, borderRadius: 2 }} />
+                    <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>
+                      CENTRO DE CUSTO: {center.cc}
+                    </h3>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 800, color: t.accent, background: 'rgba(255,106,34,0.1)', padding: '6px 16px', borderRadius: 12 }}>
+                    {mes === 'all' ? 'VISÃO ANUAL' : `COMPETÊNCIA: ${['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO','SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO'][Number(mes)-1]}`}
+                  </div>
+                </div>
+
+                <div style={{ overflowX: 'auto' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <thead>
+                      <tr style={{ background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)' }}>
+                        <th rowSpan={2} style={{ padding: '16px 32px', textAlign: 'left', fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', borderBottom: `1px solid ${t.border}` }}>Despesas Detalhadas</th>
+                        <th colSpan={3} style={{ padding: '12px 20px', textAlign: 'center', fontSize: 11, fontWeight: 900, color: t.text, textTransform: 'uppercase', borderBottom: `1px solid ${t.border}`, borderLeft: `1px solid ${t.border}` }}>Acumulado Jan - {mes === 'all' ? (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][(dynamicDados?.latestMonth || 1) - 1]) : (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][Number(mes) - 1])}</th>
+                        <th colSpan={3} style={{ padding: '12px 20px', textAlign: 'center', fontSize: 11, fontWeight: 900, color: t.text, textTransform: 'uppercase', borderBottom: `1px solid ${t.border}`, borderLeft: `1px solid ${t.border}` }}>{mes === 'all' ? 'Média Mensal' : 'Mensal Selecionado'}</th>
+                      </tr>
+                      <tr style={{ background: darkMode ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.01)' }}>
+                        <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 9, fontWeight: 900, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>ORÇADO</th>
+                        <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 9, fontWeight: 900, color: t.textMuted }}>REALIZADO</th>
+                        <th style={{ padding: '10px 20px', textAlign: 'center', fontSize: 9, fontWeight: 900, color: t.textMuted }}>% VAR.</th>
+                        <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 9, fontWeight: 900, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>ORÇADO</th>
+                        <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 9, fontWeight: 900, color: t.textMuted }}>REALIZADO</th>
+                        <th style={{ padding: '10px 20px', textAlign: 'center', fontSize: 9, fontWeight: 900, color: t.textMuted }}>% VAR.</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {center.categories?.map((cat, idx) => {
+                        const accVar = cat.accOrc > 0 ? ((cat.accReal - cat.accOrc) / cat.accOrc * 100) : 0;
+                        const menVar = cat.orc > 0 ? ((cat.real - cat.orc) / cat.orc * 100) : 0;
+                        const accOk = accVar <= 0;
+                        const menOk = menVar <= 0;
+
+                        return (
+                          <tr key={cat.name} style={{ borderBottom: `1px solid ${t.border}`, background: idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
+                            <td style={{ padding: '16px 32px', fontSize: 12, fontWeight: 600, color: t.textSub }}>{cat.name}</td>
+                            
+                            {/* ACUMULADO */}
+                            <td style={{ padding: '16px 20px', textAlign: 'right', fontSize: 12, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>{fmt(cat.accOrc)}</td>
+                            <td style={{ padding: '16px 20px', textAlign: 'right', fontSize: 12, fontWeight: 700, color: t.text }}>{fmt(cat.accReal)}</td>
+                            <td style={{ padding: '16px 20px', textAlign: 'center' }}>
+                              <span style={{ fontSize: 10, fontWeight: 900, color: accOk ? t.green : t.red }}>
+                                {Math.abs(accVar).toFixed(1)}% {accVar >= 0 ? 'acima' : 'abaixo'}
+                              </span>
+                            </td>
+
+                            {/* MENSAL */}
+                            <td style={{ padding: '16px 20px', textAlign: 'right', fontSize: 12, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>{fmt(cat.orc)}</td>
+                            <td style={{ padding: '16px 20px', textAlign: 'right', fontSize: 12, fontWeight: 700, color: t.text }}>{fmt(cat.real)}</td>
+                            <td style={{ padding: '16px 20px', textAlign: 'center' }}>
+                              <span style={{ fontSize: 10, fontWeight: 900, color: menOk ? t.green : t.red }}>
+                                {Math.abs(menVar).toFixed(1)}% {menVar >= 0 ? 'acima' : 'abaixo'}
+                              </span>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                      
+                      {/* TOTAL ROW */}
+                      <tr style={{ background: darkMode ? 'rgba(255,106,34,0.08)' : 'rgba(255,106,34,0.04)', borderTop: `2px solid ${t.accent}` }}>
+                        <td style={{ padding: '20px 32px', fontSize: 14, fontWeight: 900, color: t.text }}>TOTAL {center.cc}</td>
+                        
+                        {/* TOTAL ACUMULADO */}
+                        {(() => {
+                          const varAcc = center.accOrc > 0 ? ((center.accReal - center.accOrc) / center.accOrc * 100) : 0;
+                          return (
+                            <>
+                              <td style={{ padding: '20px 20px', textAlign: 'right', fontSize: 13, fontWeight: 700, color: t.text, borderLeft: `1px solid ${t.border}` }}>{fmt(center.accOrc)}</td>
+                              <td style={{ padding: '20px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.text }}>{fmt(center.accReal)}</td>
+                              <td style={{ padding: '20px 20px', textAlign: 'center' }}>
+                                <div style={{ background: varAcc <= 0 ? t.green : t.red, color: '#fff', padding: '4px 10px', borderRadius: 8, fontSize: 10, fontWeight: 900 }}>
+                                  {Math.abs(varAcc).toFixed(1)}% {varAcc >= 0 ? 'acima' : 'abaixo'}
+                                </div>
+                              </td>
+                            </>
+                          );
+                        })()}
+
+                        {/* TOTAL MENSAL */}
+                        {(() => {
+                          const varMen = center.orc > 0 ? ((center.real - center.orc) / center.orc * 100) : 0;
+                          return (
+                            <>
+                              <td style={{ padding: '20px 20px', textAlign: 'right', fontSize: 13, fontWeight: 700, color: t.text, borderLeft: `1px solid ${t.border}` }}>{fmt(center.orc)}</td>
+                              <td style={{ padding: '20px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.text }}>{fmt(center.real)}</td>
+                              <td style={{ padding: '20px 20px', textAlign: 'center' }}>
+                                <div style={{ background: varMen <= 0 ? t.green : t.red, color: '#fff', padding: '4px 10px', borderRadius: 8, fontSize: 10, fontWeight: 900 }}>
+                                  {Math.abs(varMen).toFixed(1)}% {varMen >= 0 ? 'acima' : 'abaixo'}
+                                </div>
+                              </td>
+                            </>
+                          );
+                        })()}
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ));
+          })()}
         </div>
       )}
     </div>
