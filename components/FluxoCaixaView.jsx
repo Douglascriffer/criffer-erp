@@ -89,27 +89,27 @@ const FluxoCaixaView = ({ dados, mes, darkMode }) => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, padding: '0 4px' }}>
       
       {/* KPI Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
         {kpis.map((kpi, i) => (
           <div key={i} style={{ 
             background: t.card, 
-            borderRadius: 20, 
-            padding: '20px 24px', 
+            borderRadius: 16, 
+            padding: '16px 20px', 
             border: `1.5px solid ${t.border}`,
             display: 'flex',
             flexDirection: 'column',
-            gap: 10,
+            gap: 6,
             boxShadow: '0 4px 20px rgba(0,0,0,0.02)'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div style={{ padding: 8, borderRadius: 12, background: `${kpi.color}10` }}>
-                <kpi.icon size={20} color={kpi.color} />
+              <div style={{ padding: 6, borderRadius: 10, background: `${kpi.color}10` }}>
+                <kpi.icon size={18} color={kpi.color} />
               </div>
-              <span style={{ fontSize: 12, fontWeight: 800, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.8 }}>{kpi.label}</span>
+              <span style={{ fontSize: 11, fontWeight: 800, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>{kpi.label}</span>
             </div>
             <div>
-              <p style={{ fontSize: 24, fontWeight: 900, color: t.text, marginBottom: 2, letterSpacing: -0.5 }}>{fmt(kpi.value)}</p>
-              <p style={{ fontSize: 12, color: t.textSub, fontWeight: 500, opacity: 0.8 }}>{kpi.sub}</p>
+              <p style={{ fontSize: 22, fontWeight: 900, color: t.text, marginBottom: 0, letterSpacing: -0.5 }}>{fmt(kpi.value)}</p>
+              <p style={{ fontSize: 11, color: t.textSub, fontWeight: 500, opacity: 0.7 }}>{kpi.sub}</p>
             </div>
           </div>
         ))}
