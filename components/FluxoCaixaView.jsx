@@ -88,8 +88,8 @@ const FluxoCaixaView = ({ dados, mes, darkMode }) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, padding: '0 4px' }}>
       
-      {/* KPI Grid - Padronizado com as outras janelas */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
+      {/* KPI Grid - Padronizado com 7 colunas para manter o tamanho idêntico aos outros módulos */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8 }}>
         {kpis.map((kpi, i) => (
           <div key={i} style={{
             background: t.card,
