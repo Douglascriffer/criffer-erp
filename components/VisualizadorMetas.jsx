@@ -31,13 +31,13 @@ const translateMonth = (label) => {
 
 function ThSmall({ children, align = 'left' }) {
   return (
-    <th style={{ padding: '8px 20px', fontSize: 11, fontWeight: 900, color: '#888', letterSpacing: 1, textAlign: align }}>{children}</th>
+    <th style={{ padding: '8px 20px', fontSize: 18, fontWeight: 900, color: '#888', letterSpacing: 1, textAlign: align }}>{children}</th>
   )
 }
 
 function TdSmall({ children, align = 'left', style }) {
   return (
-    <td style={{ padding: '8px 20px', fontSize: 15.1, color: 'inherit', textAlign: align, ...style }}>{children}</td>
+    <td style={{ padding: '8px 20px', fontSize: 15, color: 'inherit', textAlign: align, ...style }}>{children}</td>
   )
 }
 
@@ -122,7 +122,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 16 }}>
             <div style={{ textAlign: 'center' }}>
               <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, letterSpacing: -0.5 }}>EVOLUÇÃO ANUAL DE METAS</h3>
-              <p style={{ fontSize: 12, color: t.textSub }}>Objetivos vs Resultados</p>
+              <p style={{ fontSize: 15, color: t.textSub }}>Objetivos vs Resultados</p>
             </div>
           </div>
 
@@ -134,7 +134,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
                   dataKey="labelPT" 
                   axisLine={false} 
                   tickLine={false} 
-                  tick={{ fill: t.textSub, fontSize: 11, fontWeight: 700 }}
+                  tick={{ fill: t.textSub, fontSize: 15, fontWeight: 700 }}
                 />
                 <YAxis hide={true} />
                 <Tooltip content={<CustomTooltip darkMode={darkMode} />} cursor={{ fill: 'rgba(255,106,34,0.05)' }} />
@@ -175,7 +175,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
           flexDirection: 'column'
         }}>
           <div style={{ padding: '16px 20px', borderBottom: `1px solid ${t.border}`, background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)', textAlign: 'center' }}>
-            <h3 style={{ fontSize: 14, fontWeight: 900, color: t.text, letterSpacing: 0.5 }}>PERFORMANCE MENSAL</h3>
+            <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, letterSpacing: 0.5 }}>PERFORMANCE MENSAL</h3>
           </div>
           <div style={{ flex: 1, overflowY: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
@@ -207,12 +207,12 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
                           <span style={{ 
                             color: pct >= 100 ? '#22c55e' : (pct >= 80 ? '#f59e0b' : '#ef4444'),
                             fontWeight: 400,
-                            fontSize: 16.1
+                            fontSize: 15
                           }}>
                             {pct.toFixed(0)}%
                           </span>
                         ) : (
-                          <span style={{ color: t.textSub, fontSize: 10 }}>—</span>
+                          <span style={{ color: t.textSub, fontSize: 15 }}>—</span>
                         )}
                       </TdSmall>
                     </tr>
@@ -344,7 +344,7 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, 
 
         {/* Conteúdo Centralizado */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1 }}>
-          <p style={{ fontSize: 14, fontWeight: 900, color: darkMode ? '#fff' : '#000', letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 8 }}>{label}</p>
+          <p style={{ fontSize: 18, fontWeight: 900, color: darkMode ? '#fff' : '#000', letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 8 }}>{label}</p>
           <h2 style={{ fontSize: 42, fontWeight: 400, color: darkMode ? '#fff' : '#000', margin: '4px 0', lineHeight: 1 }}>{value}</h2>
           <p style={{ fontSize: 15, color: darkMode ? '#fff' : '#000', fontWeight: 400 }}>{sub}</p>
         </div>
@@ -362,7 +362,7 @@ function LegendItem({ label, color, isLine }) {
         borderRadius: isLine ? 2 : 3, 
         background: color 
       }} />
-      <span style={{ fontSize: 12, fontWeight: 700, color: 'inherit' }}>{label}</span>
+      <span style={{ fontSize: 15, fontWeight: 700, color: 'inherit' }}>{label}</span>
     </div>
   )
 }
