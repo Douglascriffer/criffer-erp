@@ -198,8 +198,6 @@ def process_excel():
             extract_meta_year(6, "2026")
 
         # 4. Processar ORÇAMENTO (Centros de Custo e DRE)
-        # Aba Orçamento tem Centros de Custo na Col 0, Totais na Col 1 ("TOTAL")
-        # Janeiro Orçado Col 5, Janeiro Realizado Col 6, etc.
         target_orc_sheet = next((s for s in xl.sheet_names if "OR" in s.upper() and "AMENTO" in s.upper()), None)
         if target_orc_sheet:
             log(f"Processando {target_orc_sheet}...")
@@ -210,28 +208,59 @@ def process_excel():
                 result["orcamento"]["mensal"][f"month_{m}"] = {"centros": []}
             
             current_cc = None
+            cc_rows = []
+            
             for r in range(2, len(df_orc)):
                 cc_candidate = df_orc.iloc[r, 0]
-                if pd.notna(cc_candidate):
-                    current_cc = str(cc_candidate).strip()
+                category = df_orc.iloc[r, 1]
                 
-                cat = df_orc.iloc[r, 1]
-                if pd.notna(cat) and str(cat).strip().upper() == "TOTAL" and current_cc:
-                    if current_cc == "Total Geral": continue
+                # Se encontrou um novo CC na coluna 0
+                if pd.notna(cc_candidate) and str(cc_candidate).strip() != "":
+                    current_cc = str(cc_candidate).strip()
+                    if current_cc == "Total Geral": break
                     
+                if not current_cc: continue
+                
+                # Coletar dados mensais para esta linha (categoria ou total)
+                if pd.notna(category) and str(category).strip() != "":
+                    cat_name = str(category).strip()
+                    
+                    monthly_values = []
                     for m in range(1, 13):
                         col_orc = 5 + (m-1)*2
                         col_real = 6 + (m-1)*2
-                        
-                        if col_real < len(df_orc.columns):
-                            val_orc = float(df_orc.iloc[r, col_orc]) if pd.notna(df_orc.iloc[r, col_orc]) else 0
-                            val_real = float(df_orc.iloc[r, col_real]) if pd.notna(df_orc.iloc[r, col_real]) else 0
+                        val_orc = float(df_orc.iloc[r, col_orc]) if pd.notna(df_orc.iloc[r, col_orc]) else 0
+                        val_real = float(df_orc.iloc[r, col_real]) if pd.notna(df_orc.iloc[r, col_real]) else 0
+                        monthly_values.append({"m": m, "orc": val_orc, "real": val_real})
+                    
+                    if cat_name.upper() == "TOTAL":
+                        # Finalizar o CC atual e adicionar ao resultado
+                        for mv in monthly_values:
+                            # Encontrar ou criar o registro do mês
+                            month_key = f"month_{mv['m']}"
                             
-                            result["orcamento"]["mensal"][f"month_{m}"]["centros"].append({
-                                "nome": current_cc,
-                                "orc": val_orc,
-                                "real": val_real
-                            })
+                            # Procurar se já existe este CC neste mês
+                            existing_cc = next((c for c in result["orcamento"]["mensal"][month_key]["centros"] if c["cc"] == current_cc), None)
+                            if not existing_cc:
+                                existing_cc = {"cc": current_cc, "orc": mv["orc"], "real": mv["real"], "categories": []}
+                                result["orcamento"]["mensal"][month_key]["centros"].append(existing_cc)
+                            else:
+                                existing_cc["orc"] = mv["orc"]
+                                existing_cc["real"] = mv["real"]
+                                
+                            # Adicionar as categorias acumuladas para este CC
+                            for crow in cc_rows:
+                                existing_cc["categories"].append({
+                                    "name": crow["name"],
+                                    "orc": crow["values"][mv["m"]-1]["orc"],
+                                    "real": crow["values"][mv["m"]-1]["real"]
+                                })
+                        
+                        # Limpar para o próximo CC
+                        cc_rows = []
+                    else:
+                        # Adicionar categoria à lista temporária do CC atual
+                        cc_rows.append({"name": cat_name, "values": monthly_values})
 
         log("Processamento concluído com sucesso.")
         return result
