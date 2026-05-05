@@ -247,7 +247,7 @@ function TipLinha({ active, payload, label, darkMode }) {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1.8fr) minmax(300px, 1fr))', gap: 24, marginTop: 8 }}>
             
             {/* Coluna 1: Gráfico de Tendência (65%) */}
-            <div style={{ height: 555, background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
+            <div style={{ height: 558, background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 20 }}>
                 <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Tendência Orçamentária 2026</h3>
               </div>
@@ -276,7 +276,7 @@ function TipLinha({ active, payload, label, darkMode }) {
             </div>
 
             {/* Coluna 2: Painel de Acumulado (35%) */}
-            <div style={{ height: 555, background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, textAlign: 'center' }}>
+            <div style={{ height: 558, background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, textAlign: 'center' }}>
               <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Acumulado 2026</h3>
                 <div style={{ background: 'rgba(255,106,34,0.1)', padding: '4px 12px', borderRadius: 20, fontSize: 15, fontWeight: 600, color: t.accent }}>
