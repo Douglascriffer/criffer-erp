@@ -55,41 +55,23 @@ const FluxoCaixaView = ({ dados, mes, darkMode }) => {
   }, [chartData, mes]);
 
   const kpis = [
-    { 
-      label: 'Saldo em Conta', 
-      value: currentMonthData?.saldo, 
-      icon: Wallet, 
-      color: t.accent,
-      sub: `Posição final em ${currentMonthData?.name}/26`
-    },
-    { 
-      label: 'Entradas (Real)', 
-      value: currentMonthData?.entradas, 
-      icon: ArrowUpRight, 
-      color: t.green,
-      sub: 'Total recebido no período'
-    },
-    { 
-      label: 'Saídas (Real)', 
-      value: currentMonthData?.saidas, 
-      icon: ArrowDownRight, 
-      color: t.red,
-      sub: 'Total pago no período'
-    },
-    { 
-      label: 'Geração de Caixa', 
-      value: currentMonthData?.resultado, 
-      icon: Activity, 
-      color: (currentMonthData?.resultado >= 0) ? t.green : t.red,
-      sub: 'Fluxo líquido operacional'
-    },
+    { label: 'SALDO EM CONTA', value: currentMonthData?.saldo, icon: Wallet, color: t.accent },
+    { label: 'ENTRADAS (REAL)', value: currentMonthData?.entradas, icon: ArrowUpRight, color: t.green },
+    { label: 'SAÍDAS (REAL)', value: currentMonthData?.saidas, icon: ArrowDownRight, color: t.red },
+    { label: 'GERAÇÃO DE CAIXA', value: currentMonthData?.resultado, icon: Activity, color: (currentMonthData?.resultado >= 0) ? t.green : t.red },
   ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20, padding: '0 4px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 20, padding: 0 }}>
       
-      {/* KPI Grid - Padronizado com 7 colunas para manter o tamanho idêntico aos outros módulos */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8 }}>
+      {/* KPI Grid - Padronização Absoluta (Estilo SaaS Criffer) */}
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(7, 1fr)', 
+        gap: 8, 
+        width: '100%',
+        marginBottom: 12
+      }}>
         {kpis.map((kpi, i) => (
           <div key={i} style={{
             background: t.card,
@@ -100,6 +82,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode }) => {
             alignItems: 'center',
             justifyContent: 'center',
             minHeight: 85,
+            transition: 'transform 0.3s ease',
             boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
           }}>
             {/* Ícone à Esquerda */}
@@ -113,7 +96,6 @@ const FluxoCaixaView = ({ dados, mes, darkMode }) => {
               <p style={{ fontSize: 19, fontWeight: 400, color: t.text, lineHeight: 1, margin: '2px 0' }}>
                 {fmt(kpi.value)}
               </p>
-              <p style={{ fontSize: 9, color: t.textSub, fontWeight: 500, marginTop: 4, opacity: 0.7 }}>{kpi.sub}</p>
             </div>
           </div>
         ))}
