@@ -425,12 +425,12 @@ function TipLinha({ active, payload, label, darkMode }) {
                           <th colSpan={3} style={{ padding: '12px 20px', textAlign: 'center', fontSize: 17, fontWeight: 900, color: t.text, textTransform: 'uppercase', borderBottom: `1px solid ${t.border}`, borderLeft: `1px solid ${t.border}` }}>{mes === 'all' ? 'Média Mensal' : 'Mensal Selecionado'}</th>
                         </tr>
                         <tr style={{ background: darkMode ? '#1e1e2d' : '#ffffff', position: 'sticky', top: 40, zIndex: 20 }}>
-                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>ORÇADO</th>
-                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.textMuted }}>REALIZADO</th>
-                          <th style={{ padding: '10px 20px', textAlign: 'center', fontSize: 15, fontWeight: 900, color: t.textMuted }}>% VAR.</th>
-                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>ORÇADO</th>
-                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.textMuted }}>REALIZADO</th>
-                          <th style={{ padding: '10px 20px', textAlign: 'center', fontSize: 15, fontWeight: 900, color: t.textMuted }}>% VAR.</th>
+                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.textMuted, borderLeft: `1px solid ${t.border}`, borderBottom: `1px solid ${t.border}` }}>ORÇADO</th>
+                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.textMuted, borderBottom: `1px solid ${t.border}` }}>REALIZADO</th>
+                          <th style={{ padding: '10px 20px', textAlign: 'center', fontSize: 15, fontWeight: 900, color: t.textMuted, borderBottom: `1px solid ${t.border}` }}>% VAR.</th>
+                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.textMuted, borderLeft: `1px solid ${t.border}`, borderBottom: `1px solid ${t.border}` }}>ORÇADO</th>
+                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.textMuted, borderBottom: `1px solid ${t.border}` }}>REALIZADO</th>
+                          <th style={{ padding: '10px 20px', textAlign: 'center', fontSize: 15, fontWeight: 900, color: t.textMuted, borderBottom: `1px solid ${t.border}` }}>% VAR.</th>
                         </tr>
                       </thead>
                       <tbody>
