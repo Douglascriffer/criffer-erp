@@ -420,17 +420,17 @@ function TipLinha({ active, payload, label, darkMode }) {
                     <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                       <thead>
                         <tr style={{ background: darkMode ? '#1e1e2d' : '#ffffff', position: 'sticky', top: 0, zIndex: 20 }}>
-                          <th rowSpan={2} style={{ padding: '16px 32px', textAlign: 'left', fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', borderBottom: `1px solid ${t.border}` }}>Despesas Detalhadas</th>
-                          <th colSpan={3} style={{ padding: '12px 20px', textAlign: 'center', fontSize: 11, fontWeight: 900, color: t.text, textTransform: 'uppercase', borderBottom: `1px solid ${t.border}`, borderLeft: `1px solid ${t.border}` }}>Acumulado Jan - {mes === 'all' ? (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][(dynamicDados?.latestMonth || 1) - 1]) : (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][Number(mes) - 1])}</th>
-                          <th colSpan={3} style={{ padding: '12px 20px', textAlign: 'center', fontSize: 11, fontWeight: 900, color: t.text, textTransform: 'uppercase', borderBottom: `1px solid ${t.border}`, borderLeft: `1px solid ${t.border}` }}>{mes === 'all' ? 'Média Mensal' : 'Mensal Selecionado'}</th>
+                          <th rowSpan={2} style={{ padding: '16px 32px', textAlign: 'left', fontSize: 17, fontWeight: 900, color: t.text, textTransform: 'uppercase', borderBottom: `1px solid ${t.border}` }}>Despesas Detalhadas</th>
+                          <th colSpan={3} style={{ padding: '12px 20px', textAlign: 'center', fontSize: 17, fontWeight: 900, color: t.text, textTransform: 'uppercase', borderBottom: `1px solid ${t.border}`, borderLeft: `1px solid ${t.border}` }}>Acumulado Jan - {mes === 'all' ? (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][(dynamicDados?.latestMonth || 1) - 1]) : (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][Number(mes) - 1])}</th>
+                          <th colSpan={3} style={{ padding: '12px 20px', textAlign: 'center', fontSize: 17, fontWeight: 900, color: t.text, textTransform: 'uppercase', borderBottom: `1px solid ${t.border}`, borderLeft: `1px solid ${t.border}` }}>{mes === 'all' ? 'Média Mensal' : 'Mensal Selecionado'}</th>
                         </tr>
                         <tr style={{ background: darkMode ? '#1e1e2d' : '#ffffff', position: 'sticky', top: 40, zIndex: 20 }}>
-                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 9, fontWeight: 900, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>ORÇADO</th>
-                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 9, fontWeight: 900, color: t.textMuted }}>REALIZADO</th>
-                          <th style={{ padding: '10px 20px', textAlign: 'center', fontSize: 9, fontWeight: 900, color: t.textMuted }}>% VAR.</th>
-                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 9, fontWeight: 900, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>ORÇADO</th>
-                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 9, fontWeight: 900, color: t.textMuted }}>REALIZADO</th>
-                          <th style={{ padding: '10px 20px', textAlign: 'center', fontSize: 9, fontWeight: 900, color: t.textMuted }}>% VAR.</th>
+                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>ORÇADO</th>
+                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.textMuted }}>REALIZADO</th>
+                          <th style={{ padding: '10px 20px', textAlign: 'center', fontSize: 15, fontWeight: 900, color: t.textMuted }}>% VAR.</th>
+                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>ORÇADO</th>
+                          <th style={{ padding: '10px 20px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.textMuted }}>REALIZADO</th>
+                          <th style={{ padding: '10px 20px', textAlign: 'center', fontSize: 15, fontWeight: 900, color: t.textMuted }}>% VAR.</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -448,19 +448,19 @@ function TipLinha({ active, payload, label, darkMode }) {
                               <td style={{ padding: '22px 32px', fontSize: 15, fontWeight: 600, color: t.textSub }}>{cat.name}</td>
                               
                               {/* ACUMULADO DINÂMICO */}
-                              <td style={{ padding: '22px 20px', textAlign: 'right', fontSize: 14, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>{fmt(catAcc.orc)}</td>
-                              <td style={{ padding: '22px 20px', textAlign: 'right', fontSize: 14, fontWeight: 700, color: t.text }}>{fmt(catAcc.real)}</td>
+                              <td style={{ padding: '22px 20px', textAlign: 'right', fontSize: 15, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>{fmt(catAcc.orc)}</td>
+                              <td style={{ padding: '22px 20px', textAlign: 'right', fontSize: 15, fontWeight: 700, color: t.text }}>{fmt(catAcc.real)}</td>
                               <td style={{ padding: '22px 20px', textAlign: 'center' }}>
-                                <span style={{ fontSize: 11, fontWeight: 900, color: accOk ? t.green : t.red }}>
+                                <span style={{ fontSize: 12, fontWeight: 900, color: accOk ? t.green : t.red }}>
                                   {Math.abs(accVar).toFixed(1)}% {accVar >= 0 ? 'acima' : 'abaixo'}
                                 </span>
                               </td>
 
                               {/* MENSAL */}
-                              <td style={{ padding: '22px 20px', textAlign: 'right', fontSize: 14, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>{fmt(cat.orc)}</td>
-                              <td style={{ padding: '22px 20px', textAlign: 'right', fontSize: 14, fontWeight: 700, color: t.text }}>{fmt(cat.real)}</td>
+                              <td style={{ padding: '22px 20px', textAlign: 'right', fontSize: 15, color: t.textMuted, borderLeft: `1px solid ${t.border}` }}>{fmt(cat.orc)}</td>
+                              <td style={{ padding: '22px 20px', textAlign: 'right', fontSize: 15, fontWeight: 700, color: t.text }}>{fmt(cat.real)}</td>
                               <td style={{ padding: '22px 20px', textAlign: 'center' }}>
-                                <span style={{ fontSize: 11, fontWeight: 900, color: menOk ? t.green : t.red }}>
+                                <span style={{ fontSize: 12, fontWeight: 900, color: menOk ? t.green : t.red }}>
                                   {Math.abs(menVar).toFixed(1)}% {menVar >= 0 ? 'acima' : 'abaixo'}
                                 </span>
                               </td>
@@ -470,17 +470,17 @@ function TipLinha({ active, payload, label, darkMode }) {
                         
                         {/* TOTAL ROW DINÂMICO */}
                         <tr style={{ background: darkMode ? 'rgba(255,106,34,0.12)' : 'rgba(255,106,34,0.06)', borderTop: `2px solid ${t.accent}` }}>
-                          <td style={{ padding: '28px 32px', fontSize: 16, fontWeight: 900, color: t.text }}>TOTAL {center.cc}</td>
+                          <td style={{ padding: '28px 32px', fontSize: 17, fontWeight: 900, color: t.text }}>TOTAL {center.cc}</td>
                           
                           {/* TOTAL ACUMULADO DINÂMICO */}
                           {(() => {
                             const varAcc = centerAcc.orc > 0 ? ((centerAcc.real - centerAcc.orc) / centerAcc.orc * 100) : 0;
                             return (
                               <>
-                                <td style={{ padding: '28px 20px', textAlign: 'right', fontSize: 15, fontWeight: 700, color: t.text, borderLeft: `1px solid ${t.border}` }}>{fmt(centerAcc.orc)}</td>
-                                <td style={{ padding: '28px 20px', textAlign: 'right', fontSize: 18, fontWeight: 900, color: t.text }}>{fmt(centerAcc.real)}</td>
+                                <td style={{ padding: '28px 20px', textAlign: 'right', fontSize: 17, fontWeight: 700, color: t.text, borderLeft: `1px solid ${t.border}` }}>{fmt(centerAcc.orc)}</td>
+                                <td style={{ padding: '28px 20px', textAlign: 'right', fontSize: 17, fontWeight: 900, color: t.text }}>{fmt(centerAcc.real)}</td>
                                 <td style={{ padding: '28px 20px', textAlign: 'center' }}>
-                                  <div style={{ background: varAcc <= 0 ? t.green : t.red, color: '#fff', padding: '6px 14px', borderRadius: 10, fontSize: 11, fontWeight: 900 }}>
+                                  <div style={{ background: varAcc <= 0 ? t.green : t.red, color: '#fff', padding: '6px 14px', borderRadius: 10, fontSize: 12, fontWeight: 900 }}>
                                     {Math.abs(varAcc).toFixed(1)}% {varAcc >= 0 ? 'acima' : 'abaixo'}
                                   </div>
                                 </td>
@@ -493,10 +493,10 @@ function TipLinha({ active, payload, label, darkMode }) {
                             const varMen = center.orc > 0 ? ((center.real - center.orc) / center.orc * 100) : 0;
                             return (
                               <>
-                                <td style={{ padding: '28px 20px', textAlign: 'right', fontSize: 15, fontWeight: 700, color: t.text, borderLeft: `1px solid ${t.border}` }}>{fmt(center.orc)}</td>
-                                <td style={{ padding: '28px 20px', textAlign: 'right', fontSize: 18, fontWeight: 900, color: t.text }}>{fmt(center.real)}</td>
+                                <td style={{ padding: '28px 20px', textAlign: 'right', fontSize: 17, fontWeight: 700, color: t.text, borderLeft: `1px solid ${t.border}` }}>{fmt(center.orc)}</td>
+                                <td style={{ padding: '28px 20px', textAlign: 'right', fontSize: 17, fontWeight: 900, color: t.text }}>{fmt(center.real)}</td>
                                 <td style={{ padding: '28px 20px', textAlign: 'center' }}>
-                                  <div style={{ background: varMen <= 0 ? t.green : t.red, color: '#fff', padding: '6px 14px', borderRadius: 10, fontSize: 11, fontWeight: 900 }}>
+                                  <div style={{ background: varMen <= 0 ? t.green : t.red, color: '#fff', padding: '6px 14px', borderRadius: 10, fontSize: 12, fontWeight: 900 }}>
                                     {Math.abs(varMen).toFixed(1)}% {varMen >= 0 ? 'acima' : 'abaixo'}
                                   </div>
                                 </td>
