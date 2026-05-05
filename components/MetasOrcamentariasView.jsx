@@ -23,22 +23,22 @@ export default function MetasOrcamentariasView({ darkMode }) {
     red: '#ef4444'
   }
 
-  // Dados extraídos da planilha
+  // Dados extraídos da planilha RESULTADOS.xlsx (Linhas 146-161)
   const metaInicial = {
-    receita: 26674257,
-    despesas: -27797748,
+    receita: 26674256.61,
+    despesas: -27797748.00,
     resultado: -1123491.39,
-    lucro: 3000000,
-    ganho: -4123491.39,
-    economia: 0.23 // 23%
+    lucro: 3000000.00,
+    ganho: 4123491.39,
+    economia: 0.23 // 23.0%
   }
 
   const metaAtualizada = {
     receita: 27119218.15,
     despesas: -27072000.38,
     resultado: 47217.77,
-    lucro: 3000000,
-    ganho: -2952782.23,
+    lucro: 3000000.00,
+    ganho: 2952782.23,
     economia: 0.1669 // 16.7%
   }
 
