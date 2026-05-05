@@ -276,70 +276,60 @@ function TipLinha({ active, payload, label, darkMode }) {
             </div>
 
             {/* Coluna 2: Painel de Acumulado (35%) */}
-            <div style={{ height: 564, background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, textAlign: 'center' }}>
+            <div style={{ height: 564, background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: '24px 32px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, textAlign: 'center' }}>
               <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Acumulado 2026</h3>
-                <div style={{ background: 'rgba(255,106,34,0.1)', padding: '4px 12px', borderRadius: 20, fontSize: 15, fontWeight: 600, color: t.accent }}>
+                <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Acumulado 2026</h3>
+                <div style={{ background: 'rgba(255,106,34,0.1)', padding: '2px 12px', borderRadius: 20, fontSize: 14, fontWeight: 600, color: t.accent }}>
                   Jan-{mes === 'all' ? (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][(dynamicDados?.latestMonth || 1) - 1]) : (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][Number(mes) - 1])}
                 </div>
               </div>
 
-              {/* Resultado Operacional Acumulado (Destaque) */}
+              {/* Resultado Operacional Acumulado */}
               {(() => {
                 const resAcc = (currentAcc?.recReal || 0) - (currentAcc?.despReal || 0)
                 const resOk = resAcc >= 0
                 return (
-                  <div style={{ width: '100%', background: resOk ? 'rgba(34,197,94,0.05)' : 'rgba(239,68,68,0.05)', borderRadius: 16, padding: '16px 20px', border: `1px solid ${resOk ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)'}` }}>
-                    <p style={{ fontSize: 18, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>Resultado Operacional Acumulado</p>
-                    <p style={{ fontSize: 24, fontWeight: 600, color: resOk ? t.green : t.red }}>{fmt(resAcc)}</p>
+                  <div style={{ width: '100%', background: resOk ? 'rgba(34,197,94,0.05)' : 'rgba(239,68,68,0.05)', borderRadius: 16, padding: '12px 16px', border: `1px solid ${resOk ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)'}` }}>
+                    <p style={{ fontSize: 16, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 2 }}>Resultado Acumulado</p>
+                    <p style={{ fontSize: 22, fontWeight: 600, color: resOk ? t.green : t.red }}>{fmt(resAcc)}</p>
                   </div>
                 )
               })()}
 
               {/* Progress: Receitas */}
               <div style={{ width: '100%' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                  <span style={{ fontSize: 15, fontWeight: 600, color: t.textSub }}>REALIZADO RECEITA</span>
-                  <span style={{ fontSize: 15, fontWeight: 600, color: t.text }}>{fmt(currentAcc?.recReal)}</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: t.textSub }}>REALIZADO RECEITA</span>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: t.text }}>{fmt(currentAcc?.recReal)}</span>
                 </div>
-                <div style={{ height: 12, background: darkMode ? '#1a1a25' : '#f0f0f0', borderRadius: 6, overflow: 'hidden', position: 'relative' }}>
-                  <div style={{ height: '100%', background: t.accent, width: `${Math.min((currentAcc?.recReal/currentAcc?.recMeta)*100, 100)}%`, borderRadius: 6 }} />
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
-                  <span style={{ fontSize: 15, color: t.textMuted, fontWeight: 500 }}>Meta: {fmt(currentAcc?.recMeta)}</span>
-                  <span style={{ fontSize: 15, color: t.accent, fontWeight: 600 }}>
-                    {(() => {
-                      const pct = (currentAcc?.recReal / currentAcc?.recMeta) * 100 || 0;
-                      if (pct >= 100) return `${(pct - 100).toFixed(1)}% acima`;
-                      return `${(100 - pct).toFixed(1)}% abaixo`;
-                    })()}
-                  </span>
+                <div style={{ height: 8, background: darkMode ? '#1a1a25' : '#f0f0f0', borderRadius: 4, overflow: 'hidden' }}>
+                  <div style={{ height: '100%', background: t.accent, width: `${Math.min((currentAcc?.recReal/currentAcc?.recMeta)*100, 100)}%` }} />
                 </div>
               </div>
 
               {/* Progress: Despesas */}
               <div style={{ width: '100%' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                  <span style={{ fontSize: 15, fontWeight: 600, color: t.textSub }}>REALIZADO DESPESA</span>
-                  <span style={{ fontSize: 15, fontWeight: 600, color: t.text }}>{fmt(currentAcc?.despReal)}</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: t.textSub }}>REALIZADO DESPESA</span>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: t.text }}>{fmt(currentAcc?.despReal)}</span>
                 </div>
-                <div style={{ height: 12, background: darkMode ? '#1a1a25' : '#f0f0f0', borderRadius: 6, overflow: 'hidden', position: 'relative' }}>
-                  <div style={{ height: '100%', background: (currentAcc?.despReal <= currentAcc?.despOrc) ? t.green : t.red, width: `${Math.min((currentAcc?.despReal/currentAcc?.despOrc)*100, 100)}%`, borderRadius: 6 }} />
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
-                  <span style={{ fontSize: 15, color: t.textMuted, fontWeight: 500 }}>Orçado: {fmt(currentAcc?.despOrc)}</span>
-                  <span style={{ fontSize: 15, color: (currentAcc?.despReal <= currentAcc?.despOrc) ? t.green : t.red, fontWeight: 600 }}>
-                    {(() => {
-                      const pct = (currentAcc?.despReal / currentAcc?.despOrc) * 100 || 0;
-                      if (pct >= 100) return `${(pct - 100).toFixed(1)}% acima`;
-                      return `${(100 - pct).toFixed(1)}% abaixo`;
-                    })()}
-                  </span>
+                <div style={{ height: 8, background: darkMode ? '#1a1a25' : '#f0f0f0', borderRadius: 4, overflow: 'hidden' }}>
+                  <div style={{ height: '100%', background: (currentAcc?.despReal <= currentAcc?.despOrc) ? t.green : t.red, width: `${Math.min((currentAcc?.despReal/currentAcc?.despOrc)*100, 100)}%` }} />
                 </div>
               </div>
 
-              {/* Economy/Efficiency Circle */}
-              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderTop: `1.5px solid ${t.border}`, paddingTop: 24, width: '100%' }}>
+              {/* Economy/Efficiency Circle - Ajustado para cima */}
+              <div style={{ 
+                flex: 1, 
+                display: 'flex', 
+                flexDirection: 'column', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                borderTop: `1.5px solid ${t.border}`, 
+                paddingTop: 12, 
+                marginTop: 4,
+                width: '100%' 
+              }}>
                 {(() => {
                   const saving = (currentAcc?.despOrc || 0) - (currentAcc?.despReal || 0)
                   const effPct = (currentAcc?.despOrc > 0) ? ((saving / currentAcc.despOrc) * 100) : 0
@@ -347,17 +337,17 @@ function TipLinha({ active, payload, label, darkMode }) {
                   
                   return (
                     <>
-                      <div style={{ position: 'relative', width: 120, height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <svg width="120" height="120" viewBox="0 0 100 100">
-                          <circle cx="50" cy="50" r="45" fill="none" stroke={darkMode ? '#1a1a25' : '#f0f0f0'} strokeWidth="8" />
-                          <circle cx="50" cy="50" r="45" fill="none" stroke={ok ? t.green : t.red} strokeWidth="8" strokeDasharray={`${Math.abs(effPct) * 2.83}, 283`} strokeLinecap="round" transform="rotate(-90 50 50)" />
+                      <div style={{ position: 'relative', width: 110, height: 110, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <svg width="110" height="110" viewBox="0 0 100 100">
+                          <circle cx="50" cy="50" r="42" fill="none" stroke={darkMode ? '#1a1a25' : '#f0f0f0'} strokeWidth="10" />
+                          <circle cx="50" cy="50" r="42" fill="none" stroke={ok ? t.green : t.red} strokeWidth="10" strokeDasharray={`${Math.min(Math.abs(effPct), 100) * 2.64}, 264`} strokeLinecap="round" transform="rotate(-90 50 50)" />
                         </svg>
                         <div style={{ position: 'absolute', textAlign: 'center' }}>
-                          <p style={{ fontSize: 22, fontWeight: 600, color: ok ? t.green : t.red, lineHeight: 1 }}>{effPct.toFixed(1)}%</p>
+                          <p style={{ fontSize: 20, fontWeight: 600, color: ok ? t.green : t.red, lineHeight: 1 }}>{effPct.toFixed(1)}%</p>
                           <p style={{ fontSize: 9, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase' }}>Eficiência</p>
                         </div>
                       </div>
-                      <p style={{ fontSize: 13, fontWeight: 600, color: t.text, marginTop: 16 }}>
+                      <p style={{ fontSize: 13, fontWeight: 600, color: t.text, marginTop: 12 }}>
                         {ok ? 'ECONOMIA' : 'EXCESSO'} DE {fmt(Math.abs(saving))}
                       </p>
                     </>
