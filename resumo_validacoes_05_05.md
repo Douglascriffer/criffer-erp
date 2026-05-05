@@ -21,6 +21,16 @@ Este documento consolida as alterações e refinamentos aprovados pelo usuário 
 ## 3. Lógica Financeira (DRE & Orçamento)
 - **DRE Global**: Restaurada a visualização de totais da empresa na janela "DRE SIMPLIFICADO", mantendo a trava de setor apenas na aba específica de Centro de Custo.
 - **Acumulado (YTD) Dinâmico**: O cálculo do acumulado agora respeita rigorosamente o mês selecionado (ex: ao selecionar Maio, o sistema soma Jan-Mai, e não o ano todo).
+- **Metas Orçamentárias 2026**:
+    - Nova interface gerencial comparando **Meta Inicial vs Meta Atualizada**.
+    - Tipografia: Títulos **20px**, Rótulos e Números **18px**.
+    - Formatação: Valores inteiros sem R$ e sem centavos (ex: 26.674.257).
+    - Destaque para **Economia Necessária** em cada cenário.
+
+## 4. Gestão de Acessos
+- **Novo Usuário**: Natasha Osório da Silva adicionada como **Gestora do RH**.
+- **Trava de Setor Natasha**: Mapeamento garantido para que ela visualize apenas o CC do RH.
+- **Ordenação**: Lista de login organizada em ordem alfabética.
 
 ---
 **Status**: Todas as alterações acima foram validadas e sincronizadas com o repositório principal.
