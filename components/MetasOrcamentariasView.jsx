@@ -106,19 +106,35 @@ function GoalCard({ title, data, t, darkMode, borderColor, highlight }) {
         <ItemRow label="Ganho Necessário" value={data.ganho} color={t.red} t={t} />
       </div>
 
-      {/* Box de Economia */}
+      {/* Box de Economia: Design Premium */}
       <div style={{ 
         marginTop: 'auto',
-        background: highlight ? 'rgba(255,106,34,0.05)' : 'rgba(59,130,246,0.05)',
-        borderRadius: 20,
-        padding: '24px',
+        background: highlight ? 'linear-gradient(135deg, rgba(255,106,34,0.1) 0%, rgba(255,106,34,0.02) 100%)' : 'linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(59,130,246,0.02) 100%)',
+        borderRadius: 24,
+        padding: '32px 24px',
         textAlign: 'center',
-        border: `1px solid ${highlight ? 'rgba(255,106,34,0.1)' : 'rgba(59,130,246,0.1)'}`
+        border: `1.5px solid ${highlight ? 'rgba(255,106,34,0.2)' : 'rgba(59,130,246,0.2)'}`,
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <p style={{ fontSize: 18, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Economia Necessária</p>
-        <p style={{ fontSize: 20, fontWeight: 900, color: highlight ? t.accent : t.blue, fontVariantNumeric: 'tabular-nums' }}>
-          {(data.economia * 100).toFixed(1)}%
-        </p>
+        {/* Ícone de Fundo Decorativo */}
+        <Target 
+          size={80} 
+          color={highlight ? t.accent : t.blue} 
+          style={{ position: 'absolute', right: -20, bottom: -20, opacity: 0.1, transform: 'rotate(-15deg)' }} 
+        />
+
+        <p style={{ fontSize: 16, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 2, marginBottom: 12 }}>Economia Necessária</p>
+        
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+          <p style={{ fontSize: 42, fontWeight: 900, color: highlight ? t.accent : t.blue, margin: 0, lineHeight: 1 }}>
+            {(data.economia * 100).toFixed(1)}%
+          </p>
+          {/* Barra Decorativa de Meta */}
+          <div style={{ width: 120, height: 4, background: highlight ? 'rgba(255,106,34,0.1)' : 'rgba(59,130,246,0.1)', borderRadius: 2, overflow: 'hidden' }}>
+            <div style={{ width: `${data.economia * 100}%`, height: '100%', background: highlight ? t.accent : t.blue }} />
+          </div>
+        </div>
       </div>
     </div>
   )
