@@ -4,21 +4,21 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
 const USUARIOS = [
-  { nome: 'Douglas Bitencourt', display: 'Financeiro - ADM', nivel: 'master', setor: 'Diretoria' },
-  { nome: 'Juliano Chagas',     display: 'Juliano Chagas',   nivel: 'master', setor: 'Financeiro' },
-  { nome: 'Faiblan',            display: 'Faiblan',          nivel: 'master', setor: 'TI' },
   { nome: 'Andressa Barth',     display: 'Andressa Barth',   nivel: 'gestor', setor: 'Produção' },
-  { nome: 'Rodrigo Santos',     display: 'Rodrigo Santos',   nivel: 'gestor', setor: 'Compras' },
   { nome: 'Carlos Rocha',       display: 'Carlos Rocha',     nivel: 'gestor', setor: 'Laboratório de Manutenção' },
   { nome: 'Cleiton Staehler',   display: 'Cleiton Staehler', nivel: 'gestor', setor: 'Manutenção' },
   { nome: 'Douglas Schmitz',    display: 'Douglas Schmitz',  nivel: 'gestor', setor: 'Logística' },
-  { nome: 'Felipe Oliveira',    display: 'Felipe Oliveira',  nivel: 'gestor', setor: 'Marketing' },
+  { nome: 'Faiblan',            display: 'Faiblan',          nivel: 'master', setor: 'TI' },
   { nome: 'Felipe Charão',      display: 'Felipe Charão',    nivel: 'gestor', setor: 'TI' },
-  { nome: 'Fernando Malta',     display: 'Fernando Malta',   nivel: 'gestor', setor: 'P&D' },
   { nome: 'Felipe Immich',      display: 'Felipe Immich',    nivel: 'gestor', setor: 'Laboratório Calibração' },
+  { nome: 'Felipe Oliveira',    display: 'Felipe Oliveira',  nivel: 'gestor', setor: 'Marketing' },
+  { nome: 'Fernando Malta',     display: 'Fernando Malta',   nivel: 'gestor', setor: 'P&D' },
+  { nome: 'Douglas Bitencourt', display: 'Financeiro - ADM', nivel: 'master', setor: 'Diretoria' },
   { nome: 'Gabriel Dias',       display: 'Gabriel Dias',     nivel: 'gestor', setor: 'Vendas' },
-  { nome: 'Ruslan Santos',      display: 'Ruslan Santos',    nivel: 'gestor', setor: 'Suporte Técnico' },
+  { nome: 'Juliano Chagas',     display: 'Juliano Chagas',   nivel: 'master', setor: 'Financeiro' },
   { nome: 'Natasha Osório da Silva', display: 'Natasha Osório', nivel: 'gestor', setor: 'RH' },
+  { nome: 'Rodrigo Santos',     display: 'Rodrigo Santos',   nivel: 'gestor', setor: 'Compras' },
+  { nome: 'Ruslan Santos',      display: 'Ruslan Santos',    nivel: 'gestor', setor: 'Suporte Técnico' },
 ]
 const SENHA = 'Criffer2026'
 
