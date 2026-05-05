@@ -86,61 +86,61 @@ const FluxoCaixaView = ({ dados, mes, darkMode }) => {
   ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, padding: '0 8px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 20, padding: '0 4px' }}>
       
       {/* KPI Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
         {kpis.map((kpi, i) => (
           <div key={i} style={{ 
             background: t.card, 
-            borderRadius: 24, 
-            padding: '24px 28px', 
+            borderRadius: 20, 
+            padding: '20px 24px', 
             border: `1.5px solid ${t.border}`,
             display: 'flex',
             flexDirection: 'column',
-            gap: 12,
+            gap: 10,
             boxShadow: '0 4px 20px rgba(0,0,0,0.02)'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div style={{ padding: 10, borderRadius: 14, background: `${kpi.color}15` }}>
-                <kpi.icon size={22} color={kpi.color} />
+              <div style={{ padding: 8, borderRadius: 12, background: `${kpi.color}10` }}>
+                <kpi.icon size={20} color={kpi.color} />
               </div>
-              <span style={{ fontSize: 13, fontWeight: 700, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>{kpi.label}</span>
+              <span style={{ fontSize: 12, fontWeight: 800, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.8 }}>{kpi.label}</span>
             </div>
             <div>
-              <p style={{ fontSize: 26, fontWeight: 900, color: t.text, marginBottom: 4 }}>{fmt(kpi.value)}</p>
-              <p style={{ fontSize: 13, color: t.textSub, fontWeight: 500 }}>{kpi.sub}</p>
+              <p style={{ fontSize: 24, fontWeight: 900, color: t.text, marginBottom: 2, letterSpacing: -0.5 }}>{fmt(kpi.value)}</p>
+              <p style={{ fontSize: 12, color: t.textSub, fontWeight: 500, opacity: 0.8 }}>{kpi.sub}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 20 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 1.2fr', gap: 16 }}>
         
         {/* Gráfico Principal */}
-        <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
+        <div style={{ background: t.card, borderRadius: 20, border: `1.5px solid ${t.border}`, padding: '24px 32px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
             <div>
-              <h3 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase' }}>Evolução Mensal</h3>
-              <p style={{ fontSize: 14, color: t.textSub }}>Movimentação de Entradas vs Saídas</p>
+              <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 0.5 }}>Evolução Mensal</h3>
+              <p style={{ fontSize: 13, color: t.textSub }}>Movimentação de Entradas vs Saídas</p>
             </div>
             <div style={{ display: 'flex', gap: 16 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <div style={{ width: 12, height: 12, borderRadius: 3, background: t.green }} />
-                <span style={{ fontSize: 12, fontWeight: 700, color: t.textMuted }}>ENTRADAS</span>
+                <div style={{ width: 10, height: 10, borderRadius: 2, background: t.green }} />
+                <span style={{ fontSize: 11, fontWeight: 700, color: t.textMuted }}>ENTRADAS</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <div style={{ width: 12, height: 12, borderRadius: 3, background: t.red }} />
-                <span style={{ fontSize: 12, fontWeight: 700, color: t.textMuted }}>SAÍDAS</span>
+                <div style={{ width: 10, height: 10, borderRadius: 2, background: t.red }} />
+                <span style={{ fontSize: 11, fontWeight: 700, color: t.textMuted }}>SAÍDAS</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <div style={{ width: 12, height: 2, background: t.accent }} />
-                <span style={{ fontSize: 12, fontWeight: 700, color: t.textMuted }}>SALDO</span>
+                <div style={{ width: 10, height: 2, background: t.accent }} />
+                <span style={{ fontSize: 11, fontWeight: 700, color: t.textMuted }}>SALDO</span>
               </div>
             </div>
           </div>
           
-          <div style={{ height: 350, width: '100%' }}>
+          <div style={{ height: 400, width: '100%' }}>
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={t.border} />
@@ -148,21 +148,21 @@ const FluxoCaixaView = ({ dados, mes, darkMode }) => {
                   dataKey="name" 
                   axisLine={false} 
                   tickLine={false} 
-                  tick={{ fill: t.textSub, fontSize: 12, fontWeight: 600 }}
+                  tick={{ fill: t.textSub, fontSize: 11, fontWeight: 600 }}
                   dy={10}
                 />
                 <YAxis 
                   axisLine={false} 
                   tickLine={false} 
-                  tick={{ fill: t.textSub, fontSize: 11 }}
+                  tick={{ fill: t.textSub, fontSize: 10 }}
                   tickFormatter={(v) => `R$ ${(v/1000).toFixed(0)}k`}
                 />
                 <Tooltip 
-                  contentStyle={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 12, boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
+                  contentStyle={{ background: t.card, border: `1.5px solid ${t.border}`, borderRadius: 16, boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
                   formatter={(v) => [fmt(v), '']}
                 />
-                <Bar dataKey="entradas" fill={t.green} radius={[4, 4, 0, 0]} barSize={30} />
-                <Bar dataKey="saidas" fill={t.red} radius={[4, 4, 0, 0]} barSize={30} />
+                <Bar dataKey="entradas" fill={t.green} radius={[4, 4, 0, 0]} barSize={24} />
+                <Bar dataKey="saidas" fill={t.red} radius={[4, 4, 0, 0]} barSize={24} />
                 <Line 
                   type="monotone" 
                   dataKey="saldo" 
@@ -176,10 +176,10 @@ const FluxoCaixaView = ({ dados, mes, darkMode }) => {
           </div>
         </div>
 
-        {/* Composição das Saídas (Donut ou Barras) */}
-        <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
-          <h3 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', marginBottom: 24 }}>Distribuição de Saídas</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+        {/* Composição das Saídas */}
+        <div style={{ background: t.card, borderRadius: 20, border: `1.5px solid ${t.border}`, padding: '24px 28px' }}>
+          <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', marginBottom: 20, letterSpacing: 0.5 }}>Distribuição de Saídas</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
             {(() => {
               const m = dados?.fluxo?.mensal?.[parseInt(mes === 'all' ? (dynamicDados?.latestMonth || 1) : mes)];
               const categories = [
@@ -195,15 +195,20 @@ const FluxoCaixaView = ({ dados, mes, darkMode }) => {
               return categories.map((cat, i) => (
                 <div key={i} style={{ width: '100%' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: t.text }}>{cat.label}</span>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: t.textSub }}>{fmt(cat.val)}</span>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: t.text }}>{cat.label}</span>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: t.textSub }}>{fmt(cat.val)}</span>
                   </div>
-                  <div style={{ height: 6, background: darkMode ? '#1a1a25' : '#f0f0f0', borderRadius: 3, overflow: 'hidden' }}>
-                    <div style={{ height: '100%', background: t.accent, width: `${(cat.val/total)*100}%`, opacity: 1 - (i*0.15) }} />
+                  <div style={{ height: 7, background: darkMode ? '#1a1a25' : '#f0f0f0', borderRadius: 4, overflow: 'hidden' }}>
+                    <div style={{ height: '100%', background: t.accent, width: `${(cat.val/total)*100}%`, opacity: 1 - (i*0.12) }} />
                   </div>
                 </div>
               ));
             })()}
+          </div>
+          <div style={{ marginTop: 24, paddingTop: 20, borderTop: `1px solid ${t.border}` }}>
+            <p style={{ fontSize: 12, color: t.textMuted, fontWeight: 600, textAlign: 'center' }}>
+              Baseado na competência do mês selecionado
+            </p>
           </div>
         </div>
 
