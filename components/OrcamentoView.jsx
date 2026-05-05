@@ -398,7 +398,7 @@ function TipLinha({ active, payload, label, darkMode }) {
                   borderRadius: 24, 
                   border: `1.5px solid ${t.border}`, 
                   overflow: 'hidden',
-                  height: 600,
+                  height: 650,
                   display: 'flex',
                   flexDirection: 'column'
                 }}>
