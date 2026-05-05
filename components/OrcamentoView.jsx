@@ -1,7 +1,7 @@
 'use client'
 import { useState, useMemo, useEffect, useRef } from 'react'
 import {
-  LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid,
+  BarChart, Bar, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid,
   ResponsiveContainer, Legend, ReferenceLine
 } from 'recharts'
 import { Activity, TrendingUp, DollarSign, PieChart, BarChart3, AlertCircle } from 'lucide-react'
@@ -238,28 +238,31 @@ function TipLinha({ active, payload, label, darkMode }) {
             
             {/* Coluna 1: Gráfico de Tendência (65%) */}
             <div style={{ height: 580, background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24 }}>
-                <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 12 }}>Tendência Orçamentária 2026</h3>
-                <div style={{ display: 'flex', gap: 16 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 600, color: t.accent }}>
-                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: t.accent }} /> RECEITA
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 600, color: '#ef4444' }}>
-                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} /> DESPESA
-                  </div>
-                </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 20 }}>
+                <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Tendência Orçamentária 2026</h3>
               </div>
-              <div style={{ flex: 1, width: '100%' }}>
-                <ResponsiveContainer width="100%" height={280}>
-                  <LineChart data={mensalLinha} margin={{ top: 10, right: 30, left: -20, bottom: -5 }}>
+              
+              <div style={{ flex: 1, width: '100%', marginBottom: 16 }}>
+                <ResponsiveContainer width="100%" height={340}>
+                  <BarChart data={mensalLinha} margin={{ top: 10, right: 30, left: -20, bottom: 0 }} barGap={8}>
                     <CartesianGrid strokeDasharray="3 3" stroke={t.border} vertical={false} />
                     <XAxis dataKey="mes" tick={{ fontSize: 11, fill: t.textSub, fontWeight: 700 }} axisLine={false} tickLine={false} />
                     <YAxis hide domain={['auto', 'auto']} />
-                    <Tooltip content={<TipLinha darkMode={darkMode} />} />
-                    <Line type="monotone" dataKey="receita" name="Receita" stroke={t.accent} strokeWidth={5} dot={{ r: 6, fill: t.accent, stroke: '#fff' }} connectNulls />
-                    <Line type="monotone" dataKey="despesa" name="Despesa" stroke="#ef4444" strokeWidth={3} strokeDasharray="5 5" dot={false} connectNulls />
-                  </LineChart>
+                    <Tooltip content={<TipLinha darkMode={darkMode} />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
+                    <Bar dataKey="receita" name="Receita" fill={t.accent} radius={[4, 4, 0, 0]} barSize={24} />
+                    <Bar dataKey="despesa" name="Despesa" fill="#ef4444" radius={[4, 4, 0, 0]} barSize={24} />
+                  </BarChart>
                 </ResponsiveContainer>
+              </div>
+
+              {/* Legenda na Parte Inferior */}
+              <div style={{ display: 'flex', justifyContent: 'center', gap: 24, paddingTop: 16, borderTop: `1px solid ${t.border}` }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>
+                  <div style={{ width: 10, height: 10, borderRadius: 3, background: t.accent }} /> RECEITA
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 900, color: '#ef4444', textTransform: 'uppercase' }}>
+                  <div style={{ width: 10, height: 10, borderRadius: 3, background: '#ef4444' }} /> DESPESA
+                </div>
               </div>
             </div>
 
