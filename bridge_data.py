@@ -281,6 +281,60 @@ def process_excel():
                         # Adicionar categoria à lista temporária do CC atual
                         cc_rows.append({"name": cat_name, "values": monthly_values})
 
+        # 5. Processar FLUXO DE CAIXA
+        target_fluxo_sheet = next((s for s in xl.sheet_names if "FLUXO" in s.upper()), None)
+        if target_fluxo_sheet:
+            log(f"Processando {target_fluxo_sheet}...")
+            df_fluxo = pd.read_excel(EXCEL_PATH, sheet_name=target_fluxo_sheet, header=None)
+            
+            result["fluxo"] = {"mensal": {}}
+            
+            # Linhas fixas baseadas na análise da planilha (index 0)
+            rows_map = {
+                "saldo_inicial": 2,
+                "vendas": 3,
+                "outros_recebiveis": 4,
+                "total_entradas": 5,
+                "materia_prima": 6,
+                "fretes": 7,
+                "pessoal": 8,
+                "impostos": 9,
+                "manut_predial": 10,
+                "despesas_op": 11,
+                "consultorias": 12,
+                "pd": 13,
+                "tarifas": 14,
+                "total_saidas": 15,
+                "diretoria": 16,
+                "outros_gastos": 17,
+                "rendimentos": 21,
+                "resultado_ativ": 25,
+                "entradas_saidas": 26,
+                "geracao_caixa": 27,
+                "saldo_final": 28
+            }
+
+            def safe_float(val):
+                try:
+                    if pd.isna(val) or val == "": return 0.0
+                    return float(val)
+                except:
+                    return 0.0
+
+            for m in range(1, 13):
+                col_orc = 1 + (m * 3)
+                col_real = 2 + (m * 3)
+                
+                if col_real < len(df_fluxo.columns):
+                    month_data = {}
+                    for key, row_idx in rows_map.items():
+                        if row_idx < len(df_fluxo):
+                            val_orc = safe_float(df_fluxo.iloc[row_idx, col_orc])
+                            val_real = safe_float(df_fluxo.iloc[row_idx, col_real])
+                            month_data[key] = {"real": val_real, "orc": val_orc}
+                    
+                    result["fluxo"]["mensal"][m] = month_data
+
         log("Processamento concluído com sucesso.")
         return result
     except Exception as e:
