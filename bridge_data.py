@@ -197,6 +197,42 @@ def process_excel():
             extract_meta_year(1, "2025")
             extract_meta_year(6, "2026")
 
+        # 4. Processar ORÇAMENTO (Centros de Custo e DRE)
+        # Aba Orçamento tem Centros de Custo na Col 0, Totais na Col 1 ("TOTAL")
+        # Janeiro Orçado Col 5, Janeiro Realizado Col 6, etc.
+        target_orc_sheet = next((s for s in xl.sheet_names if "OR" in s.upper() and "AMENTO" in s.upper()), None)
+        if target_orc_sheet:
+            log(f"Processando {target_orc_sheet}...")
+            df_orc = pd.read_excel(EXCEL_PATH, sheet_name=target_orc_sheet, header=None)
+            
+            result["orcamento"] = {"mensal": {}}
+            for m in range(1, 13):
+                result["orcamento"]["mensal"][f"month_{m}"] = {"centros": []}
+            
+            current_cc = None
+            for r in range(2, len(df_orc)):
+                cc_candidate = df_orc.iloc[r, 0]
+                if pd.notna(cc_candidate):
+                    current_cc = str(cc_candidate).strip()
+                
+                cat = df_orc.iloc[r, 1]
+                if pd.notna(cat) and str(cat).strip().upper() == "TOTAL" and current_cc:
+                    if current_cc == "Total Geral": continue
+                    
+                    for m in range(1, 13):
+                        col_orc = 5 + (m-1)*2
+                        col_real = 6 + (m-1)*2
+                        
+                        if col_real < len(df_orc.columns):
+                            val_orc = float(df_orc.iloc[r, col_orc]) if pd.notna(df_orc.iloc[r, col_orc]) else 0
+                            val_real = float(df_orc.iloc[r, col_real]) if pd.notna(df_orc.iloc[r, col_real]) else 0
+                            
+                            result["orcamento"]["mensal"][f"month_{m}"]["centros"].append({
+                                "nome": current_cc,
+                                "orc": val_orc,
+                                "real": val_real
+                            })
+
         log("Processamento concluído com sucesso.")
         return result
     except Exception as e:

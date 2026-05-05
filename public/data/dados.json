@@ -3724,5 +3724,1017 @@
       "mes": 3,
       "total": 2530727.9099999997
     }
-  ]
+  ],
+  "orcamento": {
+    "mensal": {
+      "month_1": {
+        "centros": [
+          {
+            "nome": "Comercial",
+            "orc": 72930.68166666667,
+            "real": 51352.409999999996
+          },
+          {
+            "nome": "Marketing",
+            "orc": 26208.764977777777,
+            "real": 19037.510000000002
+          },
+          {
+            "nome": "Compras",
+            "orc": 22597.612733333335,
+            "real": 17763.870000000003
+          },
+          {
+            "nome": "Lab. Calibração",
+            "orc": 68930.8834111111,
+            "real": 23707.73
+          },
+          {
+            "nome": "Lab. Manutenção",
+            "orc": 35658.70312222223,
+            "real": 34593.22
+          },
+          {
+            "nome": "Administrativo",
+            "orc": 85747.33333333333,
+            "real": 130469.59999999998
+          },
+          {
+            "nome": "Diretoria",
+            "orc": 362453.42333333334,
+            "real": 372615.56
+          },
+          {
+            "nome": "Financeiro",
+            "orc": 37031.14986666667,
+            "real": 26305.040000000023
+          },
+          {
+            "nome": "P&D",
+            "orc": 66798.17,
+            "real": 84966.72
+          },
+          {
+            "nome": "RH",
+            "orc": 5627.2,
+            "real": 3351.2
+          },
+          {
+            "nome": "Locação",
+            "orc": 21661.52607777778,
+            "real": 19517.31
+          },
+          {
+            "nome": "TI",
+            "orc": 67025.99536666667,
+            "real": 55513.3
+          },
+          {
+            "nome": "Logistica",
+            "orc": 120447.61487777777,
+            "real": 86123.94000000002
+          },
+          {
+            "nome": "Manutenção",
+            "orc": 35465.62197777777,
+            "real": 18057.57
+          },
+          {
+            "nome": "Produção",
+            "orc": 283470.1234888889,
+            "real": 315660.43000000005
+          },
+          {
+            "nome": "Sup. Tecnico",
+            "orc": 30946.25636666667,
+            "real": 23789.65
+          }
+        ]
+      },
+      "month_2": {
+        "centros": [
+          {
+            "nome": "Comercial",
+            "orc": 72930.68166666667,
+            "real": 101700.95000000001
+          },
+          {
+            "nome": "Marketing",
+            "orc": 59208.76497777778,
+            "real": 47365.97
+          },
+          {
+            "nome": "Compras",
+            "orc": 22597.612733333335,
+            "real": 24062.239999999998
+          },
+          {
+            "nome": "Lab. Calibração",
+            "orc": 50430.883411111114,
+            "real": 37366.170000000006
+          },
+          {
+            "nome": "Lab. Manutenção",
+            "orc": 35658.70312222223,
+            "real": 39875.42
+          },
+          {
+            "nome": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 127075.9
+          },
+          {
+            "nome": "Diretoria",
+            "orc": 1662453.4233333333,
+            "real": 1674821.99
+          },
+          {
+            "nome": "Financeiro",
+            "orc": 37784.11986666667,
+            "real": 51423.42999999998
+          },
+          {
+            "nome": "P&D",
+            "orc": 105798.17,
+            "real": 77548.78
+          },
+          {
+            "nome": "RH",
+            "orc": 13627.2,
+            "real": 8298.86
+          },
+          {
+            "nome": "Locação",
+            "orc": 21661.52607777778,
+            "real": 23447.26
+          },
+          {
+            "nome": "TI",
+            "orc": 78190.32536666667,
+            "real": 36720.729999999996
+          },
+          {
+            "nome": "Logistica",
+            "orc": 120483.57825555555,
+            "real": 81519.06999999999
+          },
+          {
+            "nome": "Manutenção",
+            "orc": 46706.62197777777,
+            "real": 28881.440000000002
+          },
+          {
+            "nome": "Produção",
+            "orc": 459881.0534888889,
+            "real": 196298.88
+          },
+          {
+            "nome": "Sup. Tecnico",
+            "orc": 30946.25636666667,
+            "real": 39410.54
+          }
+        ]
+      },
+      "month_3": {
+        "centros": [
+          {
+            "nome": "Comercial",
+            "orc": 77430.68166666667,
+            "real": 150244.01
+          },
+          {
+            "nome": "Marketing",
+            "orc": 92708.76497777778,
+            "real": 76329.63
+          },
+          {
+            "nome": "Compras",
+            "orc": 22597.612733333335,
+            "real": 18794.45
+          },
+          {
+            "nome": "Lab. Calibração",
+            "orc": 90900.8834111111,
+            "real": 47895.59
+          },
+          {
+            "nome": "Lab. Manutenção",
+            "orc": 35658.70312222223,
+            "real": 32985.81
+          },
+          {
+            "nome": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 211750.34
+          },
+          {
+            "nome": "Diretoria",
+            "orc": 962453.4233333332,
+            "real": 952244.66
+          },
+          {
+            "nome": "Financeiro",
+            "orc": 51478.319866666665,
+            "real": -561188.23
+          },
+          {
+            "nome": "P&D",
+            "orc": 66798.17,
+            "real": 63299.630000000005
+          },
+          {
+            "nome": "RH",
+            "orc": 5627.2,
+            "real": 4051.2
+          },
+          {
+            "nome": "Locação",
+            "orc": 21661.52607777778,
+            "real": 24316.74
+          },
+          {
+            "nome": "TI",
+            "orc": 72757.32536666667,
+            "real": 60250.55000000001
+          },
+          {
+            "nome": "Logistica",
+            "orc": 115483.57825555555,
+            "real": 53431.57
+          },
+          {
+            "nome": "Manutenção",
+            "orc": 36952.12842222222,
+            "real": 38262.8
+          },
+          {
+            "nome": "Produção",
+            "orc": 467107.4134888889,
+            "real": 292328.27
+          },
+          {
+            "nome": "Sup. Tecnico",
+            "orc": 32946.25636666667,
+            "real": 35508.920000000006
+          }
+        ]
+      },
+      "month_4": {
+        "centros": [
+          {
+            "nome": "Comercial",
+            "orc": 81930.68166666667,
+            "real": 0.0
+          },
+          {
+            "nome": "Marketing",
+            "orc": 46508.76497777778,
+            "real": 0.0
+          },
+          {
+            "nome": "Compras",
+            "orc": 22597.612733333335,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Calibração",
+            "orc": 82430.8834111111,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Manutenção",
+            "orc": 35658.70312222223,
+            "real": 0.0
+          },
+          {
+            "nome": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Diretoria",
+            "orc": 500453.42333333334,
+            "real": 0.0
+          },
+          {
+            "nome": "Financeiro",
+            "orc": 40025.51986666666,
+            "real": 0.0
+          },
+          {
+            "nome": "P&D",
+            "orc": 166798.17,
+            "real": 0.0
+          },
+          {
+            "nome": "RH",
+            "orc": 13627.2,
+            "real": 0.0
+          },
+          {
+            "nome": "Locação",
+            "orc": 21661.52607777778,
+            "real": 0.0
+          },
+          {
+            "nome": "TI",
+            "orc": 60707.53536666668,
+            "real": 0.0
+          },
+          {
+            "nome": "Logistica",
+            "orc": 155683.57825555553,
+            "real": 0.0
+          },
+          {
+            "nome": "Manutenção",
+            "orc": 37252.12842222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Produção",
+            "orc": 498586.9934888889,
+            "real": 0.0
+          },
+          {
+            "nome": "Sup. Tecnico",
+            "orc": 32946.25636666667,
+            "real": 0.0
+          }
+        ]
+      },
+      "month_5": {
+        "centros": [
+          {
+            "nome": "Comercial",
+            "orc": 74480.68166666667,
+            "real": 0.0
+          },
+          {
+            "nome": "Marketing",
+            "orc": 58588.76497777778,
+            "real": 0.0
+          },
+          {
+            "nome": "Compras",
+            "orc": 22597.612733333335,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Calibração",
+            "orc": 72930.8834111111,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Manutenção",
+            "orc": 41158.70312222223,
+            "real": 0.0
+          },
+          {
+            "nome": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Diretoria",
+            "orc": 500453.42333333334,
+            "real": 0.0
+          },
+          {
+            "nome": "Financeiro",
+            "orc": 40025.51986666666,
+            "real": 0.0
+          },
+          {
+            "nome": "P&D",
+            "orc": 65798.17,
+            "real": 0.0
+          },
+          {
+            "nome": "RH",
+            "orc": 5627.2,
+            "real": 0.0
+          },
+          {
+            "nome": "Locação",
+            "orc": 21661.52607777778,
+            "real": 0.0
+          },
+          {
+            "nome": "TI",
+            "orc": 62237.53536666668,
+            "real": 0.0
+          },
+          {
+            "nome": "Logistica",
+            "orc": 116344.57825555555,
+            "real": 0.0
+          },
+          {
+            "nome": "Manutenção",
+            "orc": 36652.12842222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Produção",
+            "orc": 343392.0434888889,
+            "real": 0.0
+          },
+          {
+            "nome": "Sup. Tecnico",
+            "orc": 42446.25636666667,
+            "real": 0.0
+          }
+        ]
+      },
+      "month_6": {
+        "centros": [
+          {
+            "nome": "Comercial",
+            "orc": 72930.68166666667,
+            "real": 0.0
+          },
+          {
+            "nome": "Marketing",
+            "orc": 52228.76497777778,
+            "real": 0.0
+          },
+          {
+            "nome": "Compras",
+            "orc": 22597.612733333335,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Calibração",
+            "orc": 37430.883411111114,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Manutenção",
+            "orc": 35658.70312222223,
+            "real": 0.0
+          },
+          {
+            "nome": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Diretoria",
+            "orc": 500453.42333333334,
+            "real": 0.0
+          },
+          {
+            "nome": "Financeiro",
+            "orc": 40025.51986666666,
+            "real": 0.0
+          },
+          {
+            "nome": "P&D",
+            "orc": 66798.17,
+            "real": 0.0
+          },
+          {
+            "nome": "RH",
+            "orc": 13627.2,
+            "real": 0.0
+          },
+          {
+            "nome": "Locação",
+            "orc": 21661.52607777778,
+            "real": 0.0
+          },
+          {
+            "nome": "TI",
+            "orc": 67892.86536666667,
+            "real": 0.0
+          },
+          {
+            "nome": "Logistica",
+            "orc": 120483.57825555555,
+            "real": 0.0
+          },
+          {
+            "nome": "Manutenção",
+            "orc": 35752.12842222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Produção",
+            "orc": 317995.8634888889,
+            "real": 0.0
+          },
+          {
+            "nome": "Sup. Tecnico",
+            "orc": 37446.25636666667,
+            "real": 0.0
+          }
+        ]
+      },
+      "month_7": {
+        "centros": [
+          {
+            "nome": "Comercial",
+            "orc": 82872.90333333334,
+            "real": 0.0
+          },
+          {
+            "nome": "Marketing",
+            "orc": 397048.7649777778,
+            "real": 0.0
+          },
+          {
+            "nome": "Compras",
+            "orc": 22597.612733333335,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Calibração",
+            "orc": 37430.883411111114,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Manutenção",
+            "orc": 35658.70312222223,
+            "real": 0.0
+          },
+          {
+            "nome": "Administrativo",
+            "orc": 90848.33333333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Diretoria",
+            "orc": 500453.42333333334,
+            "real": 0.0
+          },
+          {
+            "nome": "Financeiro",
+            "orc": 40025.51986666666,
+            "real": 0.0
+          },
+          {
+            "nome": "P&D",
+            "orc": 65798.17,
+            "real": 0.0
+          },
+          {
+            "nome": "RH",
+            "orc": 5627.2,
+            "real": 0.0
+          },
+          {
+            "nome": "Locação",
+            "orc": 21661.52607777778,
+            "real": 0.0
+          },
+          {
+            "nome": "TI",
+            "orc": 71175.65536666667,
+            "real": 0.0
+          },
+          {
+            "nome": "Logistica",
+            "orc": 115483.57825555555,
+            "real": 0.0
+          },
+          {
+            "nome": "Manutenção",
+            "orc": 36602.12842222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Produção",
+            "orc": 547820.4734888889,
+            "real": 0.0
+          },
+          {
+            "nome": "Sup. Tecnico",
+            "orc": 50946.25636666667,
+            "real": 0.0
+          }
+        ]
+      },
+      "month_8": {
+        "centros": [
+          {
+            "nome": "Comercial",
+            "orc": 80072.90333333335,
+            "real": 0.0
+          },
+          {
+            "nome": "Marketing",
+            "orc": 47684.67111111111,
+            "real": 0.0
+          },
+          {
+            "nome": "Compras",
+            "orc": 23050.437944444442,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Calibração",
+            "orc": 39525.15532222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Manutenção",
+            "orc": 37221.137411111114,
+            "real": 0.0
+          },
+          {
+            "nome": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Diretoria",
+            "orc": 502289.4652333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Financeiro",
+            "orc": 41283.469577777774,
+            "real": 0.0
+          },
+          {
+            "nome": "P&D",
+            "orc": 99798.17,
+            "real": 0.0
+          },
+          {
+            "nome": "RH",
+            "orc": 5627.2,
+            "real": 0.0
+          },
+          {
+            "nome": "Locação",
+            "orc": 21928.626266666666,
+            "real": 0.0
+          },
+          {
+            "nome": "TI",
+            "orc": 61558.96193333334,
+            "real": 0.0
+          },
+          {
+            "nome": "Logistica",
+            "orc": 168139.39322222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Manutenção",
+            "orc": 36706.94592222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Produção",
+            "orc": 662082.5461444444,
+            "real": 0.0
+          },
+          {
+            "nome": "Sup. Tecnico",
+            "orc": 35487.374022222226,
+            "real": 0.0
+          }
+        ]
+      },
+      "month_9": {
+        "centros": [
+          {
+            "nome": "Comercial",
+            "orc": 75872.90333333334,
+            "real": 0.0
+          },
+          {
+            "nome": "Marketing",
+            "orc": 52315.07734444444,
+            "real": 0.0
+          },
+          {
+            "nome": "Compras",
+            "orc": 23050.437944444442,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Calibração",
+            "orc": 39525.15532222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Manutenção",
+            "orc": 37221.137411111114,
+            "real": 0.0
+          },
+          {
+            "nome": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Diretoria",
+            "orc": 502289.4652333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Financeiro",
+            "orc": 40283.299577777776,
+            "real": 0.0
+          },
+          {
+            "nome": "P&D",
+            "orc": 126798.17,
+            "real": 0.0
+          },
+          {
+            "nome": "RH",
+            "orc": 5627.2,
+            "real": 0.0
+          },
+          {
+            "nome": "Locação",
+            "orc": 21928.626266666666,
+            "real": 0.0
+          },
+          {
+            "nome": "TI",
+            "orc": 60608.96193333334,
+            "real": 0.0
+          },
+          {
+            "nome": "Logistica",
+            "orc": 123139.39322222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Manutenção",
+            "orc": 36706.94592222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Produção",
+            "orc": 502897.68614444445,
+            "real": 0.0
+          },
+          {
+            "nome": "Sup. Tecnico",
+            "orc": 33487.374022222226,
+            "real": 0.0
+          }
+        ]
+      },
+      "month_10": {
+        "centros": [
+          {
+            "nome": "Comercial",
+            "orc": 130672.90333333335,
+            "real": 0.0
+          },
+          {
+            "nome": "Marketing",
+            "orc": 47685.27734444445,
+            "real": 0.0
+          },
+          {
+            "nome": "Compras",
+            "orc": 23050.437944444442,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Calibração",
+            "orc": 41805.15532222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Manutenção",
+            "orc": 37221.137411111114,
+            "real": 0.0
+          },
+          {
+            "nome": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Diretoria",
+            "orc": 502289.4652333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Financeiro",
+            "orc": 40283.299577777776,
+            "real": 0.0
+          },
+          {
+            "nome": "P&D",
+            "orc": 66798.17,
+            "real": 0.0
+          },
+          {
+            "nome": "RH",
+            "orc": 20627.2,
+            "real": 0.0
+          },
+          {
+            "nome": "Locação",
+            "orc": 21928.626266666666,
+            "real": 0.0
+          },
+          {
+            "nome": "TI",
+            "orc": 59608.96193333334,
+            "real": 0.0
+          },
+          {
+            "nome": "Logistica",
+            "orc": 118139.39322222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Manutenção",
+            "orc": 36706.94592222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Produção",
+            "orc": 703796.8261444444,
+            "real": 0.0
+          },
+          {
+            "nome": "Sup. Tecnico",
+            "orc": 31487.374022222222,
+            "real": 0.0
+          }
+        ]
+      },
+      "month_11": {
+        "centros": [
+          {
+            "nome": "Comercial",
+            "orc": 75872.90333333334,
+            "real": 0.0
+          },
+          {
+            "nome": "Marketing",
+            "orc": 62885.27734444445,
+            "real": 0.0
+          },
+          {
+            "nome": "Compras",
+            "orc": 23050.437944444442,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Calibração",
+            "orc": 39525.15532222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Manutenção",
+            "orc": 41371.87741111111,
+            "real": 0.0
+          },
+          {
+            "nome": "Administrativo",
+            "orc": 86147.33333333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Diretoria",
+            "orc": 502289.4652333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Financeiro",
+            "orc": 40283.299577777776,
+            "real": 0.0
+          },
+          {
+            "nome": "P&D",
+            "orc": 65798.17,
+            "real": 0.0
+          },
+          {
+            "nome": "RH",
+            "orc": 25627.2,
+            "real": 0.0
+          },
+          {
+            "nome": "Locação",
+            "orc": 21928.626266666666,
+            "real": 0.0
+          },
+          {
+            "nome": "TI",
+            "orc": 59608.96193333334,
+            "real": 0.0
+          },
+          {
+            "nome": "Logistica",
+            "orc": 121806.39322222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Manutenção",
+            "orc": 36706.94592222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Produção",
+            "orc": 613064.8961444444,
+            "real": 0.0
+          },
+          {
+            "nome": "Sup. Tecnico",
+            "orc": 31487.374022222222,
+            "real": 0.0
+          }
+        ]
+      },
+      "month_12": {
+        "centros": [
+          {
+            "nome": "Comercial",
+            "orc": 78222.90333333335,
+            "real": 0.0
+          },
+          {
+            "nome": "Marketing",
+            "orc": 47685.27734444445,
+            "real": 0.0
+          },
+          {
+            "nome": "Compras",
+            "orc": 36050.43794444444,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Calibração",
+            "orc": 45525.15532222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Lab. Manutenção",
+            "orc": 99871.87741111111,
+            "real": 0.0
+          },
+          {
+            "nome": "Administrativo",
+            "orc": 85747.33333333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Diretoria",
+            "orc": 502289.4652333333,
+            "real": 0.0
+          },
+          {
+            "nome": "Financeiro",
+            "orc": 72049.63957777777,
+            "real": 0.0
+          },
+          {
+            "nome": "P&D",
+            "orc": 161888.48,
+            "real": 0.0
+          },
+          {
+            "nome": "RH",
+            "orc": 15627.2,
+            "real": 0.0
+          },
+          {
+            "nome": "Locação",
+            "orc": 21928.626266666666,
+            "real": 0.0
+          },
+          {
+            "nome": "TI",
+            "orc": 135566.41193333332,
+            "real": 0.0
+          },
+          {
+            "nome": "Logistica",
+            "orc": 122067.39322222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Manutenção",
+            "orc": 48206.94592222222,
+            "real": 0.0
+          },
+          {
+            "nome": "Produção",
+            "orc": 321941.18614444445,
+            "real": 0.0
+          },
+          {
+            "nome": "Sup. Tecnico",
+            "orc": 69149.60402222222,
+            "real": 0.0
+          }
+        ]
+      }
+    }
+  }
 }
