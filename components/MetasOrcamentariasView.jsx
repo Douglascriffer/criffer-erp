@@ -90,35 +90,44 @@ function GoalCard({ title, data, t, darkMode, borderColor, highlight }) {
       gap: 32,
       boxShadow: '0 10px 40px rgba(0,0,0,0.05)',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      height: '100%'
     }}>
       {/* Label Principal */}
       <h3 style={{ fontSize: 20, fontWeight: 900, color: highlight ? t.accent : t.blue, textTransform: 'uppercase', letterSpacing: 1.5, textAlign: 'center' }}>
         {title}
       </h3>
 
-      {/* Lista de Itens */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-        <ItemRow label="Receita Bruta" value={data.receita} color={t.green} t={t} />
-        <ItemRow label="Despesas" value={data.despesas} color={t.red} t={t} />
-        <ItemRow label="Resultado" value={data.resultado} color={data.resultado >= 0 ? t.green : t.red} t={t} isBold prefix={data.resultado >= 0 ? '+' : ''}/>
-        <ItemRow label="Lucro Esperado" value={data.lucro} color={t.blue} t={t} />
-        <ItemRow label="Ganho Necessário" value={data.ganho} color={t.red} t={t} />
-      </div>
+      {/* Conteúdo: Lado a Lado */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: 32, alignItems: 'center' }}>
+        
+        {/* LADO ESQUERDO: Lista de Itens */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <ItemRow label="Receita Bruta" value={data.receita} color={t.green} t={t} />
+          <ItemRow label="Despesas" value={data.despesas} color={t.red} t={t} />
+          <ItemRow label="Resultado" value={data.resultado} color={data.resultado >= 0 ? t.green : t.red} t={t} isBold prefix={data.resultado >= 0 ? '+' : ''}/>
+          <ItemRow label="Lucro Esperado" value={data.lucro} color={t.blue} t={t} />
+          <ItemRow label="Ganho Necessário" value={data.ganho} color={t.red} t={t} />
+        </div>
 
-      {/* Box de Economia */}
-      <div style={{ 
-        marginTop: 'auto',
-        background: highlight ? 'rgba(255,106,34,0.05)' : 'rgba(59,130,246,0.05)',
-        borderRadius: 20,
-        padding: '24px',
-        textAlign: 'center',
-        border: `1px solid ${highlight ? 'rgba(255,106,34,0.1)' : 'rgba(59,130,246,0.1)'}`
-      }}>
-        <p style={{ fontSize: 18, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Economia Necessária</p>
-        <p style={{ fontSize: 48, fontWeight: 900, color: highlight ? t.accent : t.blue }}>
-          {(data.economia * 100).toFixed(1)}%
-        </p>
+        {/* LADO DIREITO: Box de Economia */}
+        <div style={{ 
+          background: highlight ? 'rgba(255,106,34,0.05)' : 'rgba(59,130,246,0.05)',
+          borderRadius: 20,
+          padding: '32px 24px',
+          textAlign: 'center',
+          border: `1px solid ${highlight ? 'rgba(255,106,34,0.1)' : 'rgba(59,130,246,0.1)'}`,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          height: '100%'
+        }}>
+          <p style={{ fontSize: 18, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Economia Necessária</p>
+          <p style={{ fontSize: 48, fontWeight: 900, color: highlight ? t.accent : t.blue }}>
+            {(data.economia * 100).toFixed(1)}%
+          </p>
+        </div>
+
       </div>
     </div>
   )
