@@ -43,7 +43,7 @@ function TipLinha({ active, payload, label, darkMode }) {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const level = localStorage.getItem('criffer_user_level') || 'master'
+      const level = localStorage.getItem('criffer_role') || 'master'
       const sector = localStorage.getItem('criffer_sector') || ''
       setUserContext({ level, sector })
     }

@@ -291,7 +291,7 @@ export default function DashboardClient() {
           </button>
 
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 17, fontWeight: 400, color: '#fff', lineHeight: 1 }}>FINANCEIRO</div>
+            <div style={{ fontSize: 17, fontWeight: 400, color: '#fff', lineHeight: 1 }}>{user ? user.split(' ')[0].toUpperCase() : 'USUÁRIO'}</div>
             <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)', fontWeight: 400 }}>Tenha um ótimo dia</div>
           </div>
           <button onClick={() => { localStorage.clear(); router.push('/login') }} style={{
