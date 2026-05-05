@@ -243,9 +243,8 @@ function TipLinha({ active, payload, label, darkMode }) {
               </div>
               
               <div style={{ flex: 1, width: '100%', marginBottom: 16 }}>
-                <ResponsiveContainer width="100%" height={340}>
+                <ResponsiveContainer width="100%" height={420}>
                   <BarChart data={mensalLinha} margin={{ top: 10, right: 30, left: -20, bottom: 0 }} barGap={8}>
-                    <CartesianGrid strokeDasharray="3 3" stroke={t.border} vertical={false} />
                     <XAxis dataKey="mes" tick={{ fontSize: 11, fill: t.textSub, fontWeight: 700 }} axisLine={false} tickLine={false} />
                     <YAxis hide domain={['auto', 'auto']} />
                     <Tooltip content={<TipLinha darkMode={darkMode} />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
