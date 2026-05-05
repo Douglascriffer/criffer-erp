@@ -158,7 +158,7 @@ function TipLinha({ active, payload, label, darkMode }) {
     textSub: darkMode ? '#ffffff' : '#666666',
     textMuted: darkMode ? '#ffffff' : '#999999',
     border: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)',
-    card: darkMode ? 'rgba(255,255,255,0.05)' : '#ffffff',
+    card: darkMode ? 'rgba(255,255,255,0.08)' : '#ffffff',
     accent: '#FF6A22',
     bg: darkMode ? '#0c0c14' : '#f8f9fa',
     green: '#22c55e',
