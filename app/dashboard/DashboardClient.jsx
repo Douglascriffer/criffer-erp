@@ -390,16 +390,33 @@ export default function DashboardClient() {
           )}
         </div>
 
-        {/* ══ CARDS DE KPI (Top 7) - Ocultos no MAPA e VENDEDORES ══ */}
-        {activeSub === 'vendas' && (
+        {/* ══ CARDS DE KPI (Top 7) ══ */}
+        {(activeSub === 'vendas' || tab === 'fluxo') && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8, marginBottom: 12, width: '100%', overflowX: 'auto', paddingBottom: 6 }}>
-            <KpiCard label="VENDAS" value={(kpis.vendas || 0) - (kpis.devolucoes || 0)} prevValue={(pkpis.vendas || 0) - (pkpis.devolucoes || 0)} icon={ShoppingCart} color="#FF6A22" />
-            <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
-            <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
-            <KpiCard label="DEVOLUÇÕES" value={kpis.devolucoes || 0} prevValue={pkpis.devolucoes || 0} icon={RotateCcw} color="#ef4444" />
-            <KpiCard label="RECEITA BRUTA" value={kpis.totalRealizado || 0} prevValue={pkpis.totalRealizado || 0} icon={DollarSign} color="#10b981" />
-            <KpiCard label="META" value={kpis.totalMeta || 0} prevValue={pkpis.totalMeta || 0} icon={() => <TargetIcon percent={kpis.pctAtingido}/>} color="#f59e0b" />
-            <KpiCard label="DESEMPENHO" value={kpis.pctAtingido || 0} prevValue={pkpis.pctAtingido || 0} icon={TrendingUp} color="#FF6A22" isPercent={true} />
+            {tab === 'fluxo' ? (
+              (() => {
+                const curMes = filters.mes === 'all' ? (data?.fluxo?.latestMonth || 1) : filters.mes;
+                const m = data?.fluxo?.mensal?.[curMes] || {};
+                return (
+                  <>
+                    <KpiCard label="SALDO EM CONTA" value={m.saldo_final?.real || 0} prevValue={m.saldo_inicial?.real || 0} icon={Wallet} color="#FF6A22" />
+                    <KpiCard label="ENTRADAS (REAL)" value={m.total_entradas?.real || 0} prevValue={m.total_entradas?.orc || 0} icon={ArrowUpRight} color="#22c55e" />
+                    <KpiCard label="SAÍDAS (REAL)" value={Math.abs(m.total_saidas?.real || 0)} prevValue={Math.abs(m.total_saidas?.orc || 0)} icon={ArrowDownRight} color="#ef4444" />
+                    <KpiCard label="GERAÇÃO CAIXA" value={m.geracao_caixa?.real || 0} prevValue={m.geracao_caixa?.orc || 0} icon={Activity} color="#FF6A22" />
+                  </>
+                );
+              })()
+            ) : (
+              <>
+                <KpiCard label="VENDAS" value={(kpis.vendas || 0) - (kpis.devolucoes || 0)} prevValue={(pkpis.vendas || 0) - (pkpis.devolucoes || 0)} icon={ShoppingCart} color="#FF6A22" />
+                <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
+                <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
+                <KpiCard label="DEVOLUÇÕES" value={kpis.devolucoes || 0} prevValue={pkpis.devolucoes || 0} icon={RotateCcw} color="#ef4444" />
+                <KpiCard label="RECEITA BRUTA" value={kpis.totalRealizado || 0} prevValue={pkpis.totalRealizado || 0} icon={DollarSign} color="#10b981" />
+                <KpiCard label="META" value={kpis.totalMeta || 0} prevValue={pkpis.totalMeta || 0} icon={() => <TargetIcon percent={kpis.pctAtingido}/>} color="#f59e0b" />
+                <KpiCard label="DESEMPENHO" value={kpis.pctAtingido || 0} prevValue={pkpis.pctAtingido || 0} icon={TrendingUp} color="#FF6A22" isPercent={true} />
+              </>
+            )}
           </div>
         )}
 

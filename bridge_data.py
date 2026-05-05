@@ -335,6 +335,13 @@ def process_excel():
                     
                     result["fluxo"]["mensal"][m] = month_data
 
+            # Identificar o último mês com dados reais para o Fluxo
+            latest = 1
+            for m in range(1, 13):
+                if m in result["fluxo"]["mensal"] and result["fluxo"]["mensal"][m]["total_entradas"]["real"] != 0:
+                    latest = m
+            result["fluxo"]["latestMonth"] = latest
+
         log("Processamento concluído com sucesso.")
         return result
     except Exception as e:
