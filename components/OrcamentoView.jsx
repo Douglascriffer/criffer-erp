@@ -297,7 +297,13 @@ function TipLinha({ active, payload, label, darkMode }) {
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
                   <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 500 }}>Meta: {fmt(currentAcc?.recMeta)}</span>
-                  <span style={{ fontSize: 11, color: t.accent, fontWeight: 600 }}>{((currentAcc?.recReal/currentAcc?.recMeta)*100 || 0).toFixed(1)}%</span>
+                  <span style={{ fontSize: 11, color: t.accent, fontWeight: 600 }}>
+                    {(() => {
+                      const pct = (currentAcc?.recReal / currentAcc?.recMeta) * 100 || 0;
+                      if (pct >= 100) return `${(pct - 100).toFixed(1)}% acima`;
+                      return `${(100 - pct).toFixed(1)}% abaixo`;
+                    })()}
+                  </span>
                 </div>
               </div>
 
@@ -312,7 +318,13 @@ function TipLinha({ active, payload, label, darkMode }) {
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
                   <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 500 }}>Orçado: {fmt(currentAcc?.despOrc)}</span>
-                  <span style={{ fontSize: 11, color: (currentAcc?.despReal <= currentAcc?.despOrc) ? t.green : t.red, fontWeight: 600 }}>{((currentAcc?.despReal/currentAcc?.despOrc)*100 || 0).toFixed(1)}%</span>
+                  <span style={{ fontSize: 11, color: (currentAcc?.despReal <= currentAcc?.despOrc) ? t.green : t.red, fontWeight: 600 }}>
+                    {(() => {
+                      const pct = (currentAcc?.despReal / currentAcc?.despOrc) * 100 || 0;
+                      if (pct >= 100) return `${(pct - 100).toFixed(1)}% acima`;
+                      return `${(100 - pct).toFixed(1)}% abaixo`;
+                    })()}
+                  </span>
                 </div>
               </div>
 
