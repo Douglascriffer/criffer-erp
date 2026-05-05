@@ -164,8 +164,8 @@ function TipLinha({ active, payload, label, darkMode }) {
 
   const t = {
     text: darkMode ? '#ffffff' : '#000000',
-    textSub: darkMode ? '#ffffff' : '#666666',
-    textMuted: darkMode ? '#ffffff' : '#999999',
+    textSub: darkMode ? '#ffffff' : '#444444',
+    textMuted: darkMode ? '#ffffff' : '#666666',
     border: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)',
     card: darkMode ? 'rgba(255,255,255,0.08)' : '#ffffff',
     accent: '#FF6A22',
@@ -444,7 +444,7 @@ function TipLinha({ active, payload, label, darkMode }) {
                           const menOk = menVar <= 0;
 
                           return (
-                            <tr key={cat.name} style={{ borderBottom: `1px solid ${t.border}`, background: idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)' }}>
+                            <tr key={cat.name} style={{ borderBottom: `1px solid ${t.border}`, background: idx % 2 === 0 ? 'transparent' : (darkMode ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.03)') }}>
                               <td style={{ padding: '22px 32px', fontSize: 15, fontWeight: 600, color: t.textSub }}>{cat.name}</td>
                               
                               {/* ACUMULADO DINÂMICO */}
