@@ -88,28 +88,32 @@ const FluxoCaixaView = ({ dados, mes, darkMode }) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, padding: '0 4px' }}>
       
-      {/* KPI Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+      {/* KPI Grid - Padronizado com as outras janelas */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
         {kpis.map((kpi, i) => (
-          <div key={i} style={{ 
-            background: t.card, 
-            borderRadius: 16, 
-            padding: '16px 20px', 
+          <div key={i} style={{
+            background: t.card,
             border: `1.5px solid ${t.border}`,
+            borderRadius: 12,
+            padding: '12px 16px',
             display: 'flex',
-            flexDirection: 'column',
-            gap: 6,
-            boxShadow: '0 4px 20px rgba(0,0,0,0.02)'
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: 85,
+            boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div style={{ padding: 6, borderRadius: 10, background: `${kpi.color}10` }}>
-                <kpi.icon size={18} color={kpi.color} />
-              </div>
-              <span style={{ fontSize: 11, fontWeight: 800, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>{kpi.label}</span>
+            {/* Ícone à Esquerda */}
+            <div style={{ marginRight: 12, opacity: 0.9 }}>
+              <kpi.icon size={24} color={kpi.color} />
             </div>
-            <div>
-              <p style={{ fontSize: 22, fontWeight: 900, color: t.text, marginBottom: 0, letterSpacing: -0.5 }}>{fmt(kpi.value)}</p>
-              <p style={{ fontSize: 11, color: t.textSub, fontWeight: 500, opacity: 0.7 }}>{kpi.sub}</p>
+
+            {/* Conteúdo Centralizado */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1 }}>
+              <p style={{ fontSize: 10, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>{kpi.label}</p>
+              <p style={{ fontSize: 19, fontWeight: 400, color: t.text, lineHeight: 1, margin: '2px 0' }}>
+                {fmt(kpi.value)}
+              </p>
+              <p style={{ fontSize: 9, color: t.textSub, fontWeight: 500, marginTop: 4, opacity: 0.7 }}>{kpi.sub}</p>
             </div>
           </div>
         ))}
