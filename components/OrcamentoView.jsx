@@ -191,9 +191,9 @@ function TipLinha({ active, payload, label, darkMode }) {
               borderRadius: 20, padding: 24, color: '#fff', boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 140, position: 'relative', overflow: 'hidden'
             }}>
-              <p style={{ fontSize: 10, fontWeight: 900, opacity: 0.85, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Resultado Operacional</p>
+              <p style={{ fontSize: 18, fontWeight: 900, opacity: 0.85, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Resultado Operacional</p>
               <p style={{ fontSize: 32, fontWeight: 600, marginBottom: 4 }}>{fmt(resultado)}</p>
-              <div style={{ fontSize: 11, fontWeight: 600, background: 'rgba(255,255,255,0.15)', padding: '4px 10px', borderRadius: 10, width: 'fit-content' }}>
+              <div style={{ fontSize: 15, fontWeight: 600, background: 'rgba(255,255,255,0.15)', padding: '4px 12px', borderRadius: 10, width: 'fit-content' }}>
                 {resPos ? 'Performance Positiva' : 'Abaixo do Esperado'}
               </div>
             </div>
@@ -205,13 +205,13 @@ function TipLinha({ active, payload, label, darkMode }) {
               const ok = diff >= 0
               return (
                 <div style={{ background: t.card, borderRadius: 20, border: `1.5px solid ${t.border}`, padding: 24, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                  <p style={{ fontSize: 10, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Receitas Líquidas</p>
+                  <p style={{ fontSize: 18, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Receitas Líquidas</p>
                   <p style={{ fontSize: 32, fontWeight: 600, color: t.text }}>{fmt(recReal)}</p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}>
                     <span style={{ fontSize: 16, fontWeight: 700, color: ok ? t.green : t.red }}>
                       {ok ? '+' : ''}{pct.toFixed(1)}%
                     </span>
-                    <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>
+                    <span style={{ fontSize: 15, color: t.textMuted, fontWeight: 600 }}>
                       {ok ? '↑' : '↓'} {fmt(Math.abs(diff))} {ok ? 'acima da meta' : 'abaixo da meta'}
                     </span>
                   </div>
@@ -226,13 +226,13 @@ function TipLinha({ active, payload, label, darkMode }) {
               const ok = economizado >= 0
               return (
                 <div style={{ background: t.card, borderRadius: 20, border: `1.5px solid ${t.border}`, padding: 24, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                  <p style={{ fontSize: 10, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Despesas Totais</p>
+                  <p style={{ fontSize: 18, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Despesas Totais</p>
                   <p style={{ fontSize: 32, fontWeight: 600, color: t.text }}>{fmt(despReal)}</p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}>
                     <span style={{ fontSize: 16, fontWeight: 700, color: ok ? t.green : t.red }}>
                       {pct.toFixed(1)}%
                     </span>
-                    <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 600 }}>
+                    <span style={{ fontSize: 15, color: t.textMuted, fontWeight: 600 }}>
                       {ok ? '↓' : '↑'} {fmt(Math.abs(economizado))} {ok ? 'economizados' : 'acima do orçado'}
                     </span>
                   </div>
@@ -248,13 +248,13 @@ function TipLinha({ active, payload, label, darkMode }) {
             {/* Coluna 1: Gráfico de Tendência (65%) */}
             <div style={{ height: 580, background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 20 }}>
-                <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Tendência Orçamentária 2026</h3>
+                <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Tendência Orçamentária 2026</h3>
               </div>
               
               <div style={{ flex: 1, width: '100%', marginBottom: 16 }}>
                 <ResponsiveContainer width="100%" height={420}>
                   <BarChart data={mensalLinha} margin={{ top: 10, right: 30, left: -20, bottom: 0 }} barGap={8}>
-                    <XAxis dataKey="mes" tick={{ fontSize: 11, fill: t.textSub, fontWeight: 700 }} axisLine={false} tickLine={false} />
+                    <XAxis dataKey="mes" tick={{ fontSize: 15, fill: t.textSub, fontWeight: 700 }} axisLine={false} tickLine={false} />
                     <YAxis hide domain={['auto', 'auto']} />
                     <Tooltip content={<TipLinha darkMode={darkMode} />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
                     <Bar dataKey="receita" name="Receita" fill={t.accent} radius={[4, 4, 0, 0]} barSize={24} />
@@ -265,10 +265,10 @@ function TipLinha({ active, payload, label, darkMode }) {
 
               {/* Legenda na Parte Inferior */}
               <div style={{ display: 'flex', justifyContent: 'center', gap: 24, paddingTop: 16, borderTop: `1px solid ${t.border}` }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 15, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>
                   <div style={{ width: 10, height: 10, borderRadius: 3, background: t.accent }} /> RECEITA
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 900, color: '#ef4444', textTransform: 'uppercase' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 15, fontWeight: 900, color: '#ef4444', textTransform: 'uppercase' }}>
                   <div style={{ width: 10, height: 10, borderRadius: 3, background: '#ef4444' }} /> DESPESA
                 </div>
               </div>
@@ -277,8 +277,8 @@ function TipLinha({ active, payload, label, darkMode }) {
             {/* Coluna 2: Painel de Acumulado (35%) */}
             <div style={{ height: 580, background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, textAlign: 'center' }}>
               <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Acumulado 2026</h3>
-                <div style={{ background: 'rgba(255,106,34,0.1)', padding: '4px 10px', borderRadius: 20, fontSize: 11, fontWeight: 600, color: t.accent }}>
+                <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Acumulado 2026</h3>
+                <div style={{ background: 'rgba(255,106,34,0.1)', padding: '4px 12px', borderRadius: 20, fontSize: 15, fontWeight: 600, color: t.accent }}>
                   Jan-{mes === 'all' ? (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][(dynamicDados?.latestMonth || 1) - 1]) : (['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][Number(mes) - 1])}
                 </div>
               </div>
@@ -289,7 +289,7 @@ function TipLinha({ active, payload, label, darkMode }) {
                 const resOk = resAcc >= 0
                 return (
                   <div style={{ width: '100%', background: resOk ? 'rgba(34,197,94,0.05)' : 'rgba(239,68,68,0.05)', borderRadius: 16, padding: '16px 20px', border: `1px solid ${resOk ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)'}` }}>
-                    <p style={{ fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>Resultado Operacional Acumulado</p>
+                    <p style={{ fontSize: 18, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>Resultado Operacional Acumulado</p>
                     <p style={{ fontSize: 24, fontWeight: 600, color: resOk ? t.green : t.red }}>{fmt(resAcc)}</p>
                   </div>
                 )
@@ -298,15 +298,15 @@ function TipLinha({ active, payload, label, darkMode }) {
               {/* Progress: Receitas */}
               <div style={{ width: '100%' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                  <span style={{ fontSize: 12, fontWeight: 600, color: t.textSub }}>REALIZADO RECEITA</span>
-                  <span style={{ fontSize: 12, fontWeight: 600, color: t.text }}>{fmt(currentAcc?.recReal)}</span>
+                  <span style={{ fontSize: 15, fontWeight: 600, color: t.textSub }}>REALIZADO RECEITA</span>
+                  <span style={{ fontSize: 15, fontWeight: 600, color: t.text }}>{fmt(currentAcc?.recReal)}</span>
                 </div>
                 <div style={{ height: 12, background: darkMode ? '#1a1a25' : '#f0f0f0', borderRadius: 6, overflow: 'hidden', position: 'relative' }}>
                   <div style={{ height: '100%', background: t.accent, width: `${Math.min((currentAcc?.recReal/currentAcc?.recMeta)*100, 100)}%`, borderRadius: 6 }} />
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
-                  <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 500 }}>Meta: {fmt(currentAcc?.recMeta)}</span>
-                  <span style={{ fontSize: 11, color: t.accent, fontWeight: 600 }}>
+                  <span style={{ fontSize: 15, color: t.textMuted, fontWeight: 500 }}>Meta: {fmt(currentAcc?.recMeta)}</span>
+                  <span style={{ fontSize: 15, color: t.accent, fontWeight: 600 }}>
                     {(() => {
                       const pct = (currentAcc?.recReal / currentAcc?.recMeta) * 100 || 0;
                       if (pct >= 100) return `${(pct - 100).toFixed(1)}% acima`;
@@ -319,15 +319,15 @@ function TipLinha({ active, payload, label, darkMode }) {
               {/* Progress: Despesas */}
               <div style={{ width: '100%' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                  <span style={{ fontSize: 12, fontWeight: 600, color: t.textSub }}>REALIZADO DESPESA</span>
-                  <span style={{ fontSize: 12, fontWeight: 600, color: t.text }}>{fmt(currentAcc?.despReal)}</span>
+                  <span style={{ fontSize: 15, fontWeight: 600, color: t.textSub }}>REALIZADO DESPESA</span>
+                  <span style={{ fontSize: 15, fontWeight: 600, color: t.text }}>{fmt(currentAcc?.despReal)}</span>
                 </div>
                 <div style={{ height: 12, background: darkMode ? '#1a1a25' : '#f0f0f0', borderRadius: 6, overflow: 'hidden', position: 'relative' }}>
                   <div style={{ height: '100%', background: (currentAcc?.despReal <= currentAcc?.despOrc) ? t.green : t.red, width: `${Math.min((currentAcc?.despReal/currentAcc?.despOrc)*100, 100)}%`, borderRadius: 6 }} />
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
-                  <span style={{ fontSize: 11, color: t.textMuted, fontWeight: 500 }}>Orçado: {fmt(currentAcc?.despOrc)}</span>
-                  <span style={{ fontSize: 11, color: (currentAcc?.despReal <= currentAcc?.despOrc) ? t.green : t.red, fontWeight: 600 }}>
+                  <span style={{ fontSize: 15, color: t.textMuted, fontWeight: 500 }}>Orçado: {fmt(currentAcc?.despOrc)}</span>
+                  <span style={{ fontSize: 15, color: (currentAcc?.despReal <= currentAcc?.despOrc) ? t.green : t.red, fontWeight: 600 }}>
                     {(() => {
                       const pct = (currentAcc?.despReal / currentAcc?.despOrc) * 100 || 0;
                       if (pct >= 100) return `${(pct - 100).toFixed(1)}% acima`;
