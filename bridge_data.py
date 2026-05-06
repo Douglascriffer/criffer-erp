@@ -333,6 +333,17 @@ def process_excel():
                             val_real = safe_float(df_fluxo.iloc[row_idx, col_real])
                             month_data[key] = {"real": val_real, "orc": val_orc}
                     
+                    # ── AJUSTE SOLICITADO: CONSOLIDAR SAÍDAS ──
+                    # Saída Total = Linha 16 (index 15) + Linha 26 (index 25)
+                    ts_real = (month_data.get("total_saidas", {}).get("real") or 0) + (month_data.get("resultado_ativ", {}).get("real") or 0)
+                    ts_orc  = (month_data.get("total_saidas", {}).get("orc") or 0) + (month_data.get("resultado_ativ", {}).get("orc") or 0)
+                    month_data["total_saidas"] = {"real": ts_real, "orc": ts_orc}
+
+                    # Geração de Caixa = Total Entradas + Total Saídas Consolidado (Saídas são negativas)
+                    gc_real = (month_data.get("total_entradas", {}).get("real") or 0) + ts_real
+                    gc_orc  = (month_data.get("total_entradas", {}).get("orc") or 0) + ts_orc
+                    month_data["geracao_caixa"] = {"real": gc_real, "orc": gc_orc}
+                    
                     result["fluxo"]["mensal"][m] = month_data
 
             # Identificar o último mês com dados reais para o Fluxo
