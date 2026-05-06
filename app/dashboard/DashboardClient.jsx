@@ -189,7 +189,7 @@ export default function DashboardClient() {
         position: 'relative',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
-        minHeight: 85
+        minHeight: 95
       }} className="hover-lift">
         
         {/* Ícone à Esquerda Centralizado */}
