@@ -45,31 +45,31 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
       
       {/* ── VISÃO SIMPLIFICADA ── */}
       {viewType === 'simples' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '950px 1fr', gap: 20 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 420px', gap: 20 }}>
           
           {/* Situação Financeira */}
           <div style={{ 
             background: t.card, 
-            borderRadius: 12, 
+            borderRadius: 16, 
             border: `1.5px solid ${t.border}`, 
-            padding: '24px 32px',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+            padding: '32px 40px',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.2)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'
           }}>
-            <div style={{ marginBottom: 24, textAlign: 'center' }}>
-              <h3 style={{ fontSize: 24, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>Situação Financeira</h3>
-              <p style={{ fontSize: 13, color: t.textMuted, fontWeight: 500, marginTop: 4 }}>Posição atual versus objetivos anuais</p>
+            <div style={{ marginBottom: 32, textAlign: 'center' }}>
+              <h3 style={{ fontSize: 28, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 2, margin: 0 }}>Situação Financeira</h3>
+              <p style={{ fontSize: 14, color: t.textMuted, fontWeight: 500, marginTop: 6, letterSpacing: 0.5 }}>Posição atual versus objetivos anuais</p>
             </div>
             
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, width: '100%' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, width: '100%' }}>
               
               {/* Card: Meta Anual */}
-              <div style={{ background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)', borderRadius: 16, padding: 20, border: `1px solid ${t.border}` }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-                  <Target size={18} color={t.accent} />
-                  <span style={{ fontSize: 14, fontWeight: 900, color: t.text, textTransform: 'uppercase' }}>Meta Anual 2026</span>
+              <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 20, padding: 24, border: `1px solid ${t.border}` }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
+                  <Target size={22} color={t.accent} />
+                  <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Meta Anual 2026</span>
                 </div>
                 
                 {(() => {
@@ -80,18 +80,18 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   const pctDesvio = metaValue !== 0 ? (varAcc / metaValue * 100) : 0;
                   
                   return (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                      <div style={{ background: darkMode ? 'rgba(0,0,0,0.2)' : '#fff', padding: '12px 16px', borderRadius: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 12, color: t.textMuted, fontWeight: 600 }}>Meta 2026</span>
-                        <span style={{ fontSize: 16, fontWeight: 900, color: t.text }}>{fmt(metaValue)}</span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                      <div style={{ background: 'rgba(0,0,0,0.3)', padding: '20px 24px', borderRadius: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 14, color: t.textMuted, fontWeight: 500 }}>Meta 2026</span>
+                        <span style={{ fontSize: 20, fontWeight: 900, color: t.text }}>R$ {Math.round(metaValue).toLocaleString('pt-BR')}</span>
                       </div>
-                      <div style={{ border: `2px solid ${t.red}`, background: 'rgba(239,68,68,0.05)', padding: '12px 16px', borderRadius: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 12, color: t.textMuted, fontWeight: 600 }}>Variação Acumulada</span>
-                        <span style={{ fontSize: 16, fontWeight: 900, color: t.red }}>{fmt(varAcc)}</span>
+                      <div style={{ border: `2px solid ${t.red}`, background: 'rgba(239,68,68,0.08)', padding: '20px 24px', borderRadius: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 14, color: t.textMuted, fontWeight: 500 }}>Variação Acumulada</span>
+                        <span style={{ fontSize: 20, fontWeight: 900, color: t.red }}>-R$ {Math.abs(Math.round(varAcc)).toLocaleString('pt-BR')}</span>
                       </div>
-                      <div style={{ border: `2px solid ${t.accent}`, background: 'rgba(255,106,34,0.05)', padding: '12px 16px', borderRadius: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 12, color: t.textMuted, fontWeight: 600 }}>% Desvio</span>
-                        <span style={{ fontSize: 16, fontWeight: 900, color: t.accent }}>{pctDesvio.toFixed(2)}%</span>
+                      <div style={{ border: `2px solid ${t.accent}`, background: 'rgba(255,106,34,0.08)', padding: '20px 24px', borderRadius: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 14, color: t.textMuted, fontWeight: 500 }}>Percentual de Desvio</span>
+                        <span style={{ fontSize: 20, fontWeight: 900, color: t.accent }}>{pctDesvio.toFixed(2)}%</span>
                       </div>
                     </div>
                   );
@@ -99,33 +99,32 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
               </div>
 
               {/* Card: Posição Atual */}
-              <div style={{ background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)', borderRadius: 16, padding: 20, border: `1px solid ${t.border}` }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-                  <TrendingUp size={18} color={t.accent} />
-                  <span style={{ fontSize: 14, fontWeight: 900, color: t.text, textTransform: 'uppercase' }}>Posição Atual</span>
+              <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 20, padding: 24, border: `1px solid ${t.border}` }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
+                  <TrendingUp size={22} color={t.accent} />
+                  <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Posição Atual</span>
                 </div>
                 
                 {(() => {
                   const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
                   const m = dados?.fluxo?.mensal?.[currentMonth] || {};
-                  // Saldo Inicial de 2026 (Fixado em Janeiro - Célula F3)
                   const saldoIni2026 = dados?.fluxo?.mensal?.[1]?.saldo_inicial?.real || 0;
                   const saldoFin = m.saldo_final?.real || 0;
                   const varPer = saldoFin - saldoIni2026;
                   
                   return (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                      <div style={{ background: darkMode ? 'rgba(0,0,0,0.2)' : '#fff', padding: '12px 16px', borderRadius: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 12, color: t.textMuted, fontWeight: 600 }}>Saldo Inicial 2026</span>
-                        <span style={{ fontSize: 16, fontWeight: 900, color: t.text }}>{fmt(saldoIni2026)}</span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                      <div style={{ background: 'rgba(0,0,0,0.3)', padding: '20px 24px', borderRadius: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 14, color: t.textMuted, fontWeight: 500 }}>Saldo Inicial 2026</span>
+                        <span style={{ fontSize: 20, fontWeight: 900, color: t.text }}>R$ {Math.round(saldoIni2026).toLocaleString('pt-BR')}</span>
                       </div>
-                      <div style={{ background: darkMode ? 'rgba(0,0,0,0.2)' : '#fff', padding: '12px 16px', borderRadius: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 12, color: t.textMuted, fontWeight: 600 }}>Saldo {mesesLabels[currentMonth-1]}/26</span>
-                        <span style={{ fontSize: 16, fontWeight: 900, color: t.text }}>{fmt(saldoFin)}</span>
+                      <div style={{ background: 'rgba(0,0,0,0.3)', padding: '20px 24px', borderRadius: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 14, color: t.textMuted, fontWeight: 500 }}>Saldo Final {mesesLabels[currentMonth-1]}/26</span>
+                        <span style={{ fontSize: 20, fontWeight: 900, color: t.text }}>R$ {Math.round(saldoFin).toLocaleString('pt-BR')}</span>
                       </div>
-                      <div style={{ border: `2px solid ${t.red}`, background: 'rgba(239,68,68,0.05)', padding: '12px 16px', borderRadius: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 12, color: t.textMuted, fontWeight: 600 }}>Variação Período</span>
-                        <span style={{ fontSize: 16, fontWeight: 900, color: t.red }}>{fmt(varPer)}</span>
+                      <div style={{ border: `2px solid ${t.red}`, background: 'rgba(239,68,68,0.08)', padding: '20px 24px', borderRadius: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 14, color: t.textMuted, fontWeight: 500 }}>Variação Período</span>
+                        <span style={{ fontSize: 20, fontWeight: 900, color: t.red }}>-R$ {Math.abs(Math.round(varPer)).toLocaleString('pt-BR')}</span>
                       </div>
                     </div>
                   );
@@ -135,12 +134,12 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             </div>
           </div>
 
-          {/* Distribuição de Saídas */}
+          {/* Composição das Saídas */}
           <div style={{ 
-            background: t.card, borderRadius: 12, border: `1.5px solid ${t.border}`, padding: 0, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column'
+            background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 0, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.2)', display: 'flex', flexDirection: 'column'
           }}>
             <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}` }}>
-              <h3 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Composição das Saídas</h3>
+              <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>Composição das Saídas</h3>
             </div>
             <div style={{ flex: 1, overflowY: 'auto' }}>
               {(() => {
@@ -154,15 +153,12 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   { label: 'Diretoria', val: Math.abs(m?.diretoria?.real || 0) },
                   { label: 'Outros Gastos', val: Math.abs(m?.outros_gastos?.real || 0) },
                 ].sort((a,b) => b.val - a.val);
-                const max = cats.reduce((s,c) => s + c.val, 0);
                 return cats.map((c, i) => (
-                  <div key={i} style={{ padding: '20px 32px', background: i % 2 === 0 ? 'transparent' : t.zebra, borderBottom: i === cats.length - 1 ? 'none' : `1px solid ${t.border}` }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, alignItems: 'center' }}>
-                      <span style={{ fontSize: 15, fontWeight: 600, color: t.textSub }}>{c.label}</span>
-                      <span style={{ fontSize: 17, fontWeight: 900, color: t.text }}>{fmt(c.val)}</span>
-                    </div>
-                    <div style={{ height: 10, background: darkMode ? 'rgba(255,255,255,0.05)' : '#f0f0f0', borderRadius: 5, overflow: 'hidden' }}>
-                      <div style={{ height: '100%', background: `linear-gradient(90deg, ${t.accent} 0%, #f07c38 100%)`, width: `${max > 0 ? (c.val/max)*100 : 0}%`, borderRadius: 5 }} />
+                  <div key={i} style={{ padding: '16px 32px', background: i % 2 === 0 ? 'transparent' : t.zebra, borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: t.textSub }}>{c.label}</span>
+                    <div style={{ display: 'flex', gap: 40 }}>
+                      <span style={{ fontSize: 14, fontWeight: 900, color: t.textSub }}>R$</span>
+                      <span style={{ fontSize: 14, fontWeight: 900, color: t.text, minWidth: 80, textAlign: 'right' }}>{Math.round(c.val).toLocaleString('pt-BR')}</span>
                     </div>
                   </div>
                 ));
