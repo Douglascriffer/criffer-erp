@@ -200,7 +200,7 @@ export default function DashboardClient() {
         {/* Conteúdo Centralizado */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1 }}>
           <p style={{ fontSize: 19, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>{label}</p>
-          <p style={{ fontSize: 22, fontWeight: 400, color: t.text, lineHeight: 1, margin: '2px 0' }}>
+          <p style={{ fontSize: 22, fontWeight: 900, color: t.text, lineHeight: 1, margin: '2px 0' }}>
             {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
           </p>
             {!hideDiff && (
