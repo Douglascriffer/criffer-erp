@@ -79,7 +79,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
               flexDirection: 'column',
               alignItems: 'center',
               flex: 1,
-              minHeight: 464
+              minHeight: 635
             }}>
               <div style={{ marginBottom: 40, textAlign: 'center' }}>
                 <h3 style={{ fontSize: 28, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 2, margin: 0 }}>Situação Financeira</h3>
@@ -159,7 +159,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
 
           {/* COLUNA DA DIREITA: COMPOSIÇÃO DAS SAÍDAS (FULL HEIGHT) */}
           <div style={{ 
-            background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 0, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.2)', display: 'flex', flexDirection: 'column', height: 620
+            background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 0, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.2)', display: 'flex', flexDirection: 'column', height: 750
           }}>
             <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}` }}>
               <h3 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>Composição das Saídas</h3>
