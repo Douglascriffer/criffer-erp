@@ -131,7 +131,7 @@ export default function DashboardClient() {
       { id:'metas_orc', label:'Metas' },
     ],
     fluxo: [
-      { id:'simples', label:'Simplificado' },
+      { id:'simples', label:'Fluxo' },
       { id:'detalhe', label:'Detalhado' },
       { id:'metas_fluxo', label:'Metas' },
     ],
@@ -398,7 +398,7 @@ export default function DashboardClient() {
 
         {/* ══ CARDS DE KPI (Top 7) ══ */}
         {(activeSub === 'vendas' || tab === 'fluxo') && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8, marginBottom: 12, width: '100%', overflowX: 'auto', paddingBottom: 6 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${tab === 'fluxo' ? 5 : 7}, 1fr)`, gap: 8, marginBottom: 12, width: '100%', overflowX: 'auto', paddingBottom: 6 }}>
             {tab === 'fluxo' ? (
               (() => {
                 const curMes = filters.mes === 'all' ? (data?.fluxo?.latestMonth || 1) : filters.mes;
@@ -406,10 +406,8 @@ export default function DashboardClient() {
                 return (
                   <>
                     <KpiCard label="SALDO INICIAL" value={m.saldo_inicial?.real || 0} prevValue={m.saldo_inicial?.orc || 0} icon={Wallet} color="#FF6A22" />
-                    <KpiCard label="ENTRADAS (REAL)" value={m.total_entradas?.real || 0} prevValue={m.total_entradas?.orc || 0} icon={ArrowUpRight} color="#22c55e" />
-                    <KpiCard label="SAÍDAS (REAL)" value={Math.abs(m.total_saidas?.real || 0)} prevValue={Math.abs(m.total_saidas?.orc || 0)} icon={ArrowDownRight} color="#ef4444" />
-                    <KpiCard label="RESULTADO ATIV." value={m.resultado_ativ?.real || 0} prevValue={m.resultado_ativ?.orc || 0} icon={TrendingUp} color="#3b82f6" />
-                    <KpiCard label="RENDIMENTOS" value={m.rendimentos?.real || 0} prevValue={m.rendimentos?.orc || 0} icon={DollarSign} color="#10b981" />
+                    <KpiCard label="ENTRADAS" value={m.total_entradas?.real || 0} prevValue={m.total_entradas?.orc || 0} icon={ArrowUpRight} color="#22c55e" />
+                    <KpiCard label="SAÍDAS" value={Math.abs(m.total_saidas?.real || 0)} prevValue={Math.abs(m.total_saidas?.orc || 0)} icon={ArrowDownRight} color="#ef4444" />
                     <KpiCard label="GERAÇÃO CAIXA" value={m.geracao_caixa?.real || 0} prevValue={m.geracao_caixa?.orc || 0} icon={Activity} color="#FF6A22" />
                     <KpiCard label="SALDO FINAL" value={m.saldo_final?.real || 0} prevValue={m.saldo_final?.orc || 0} icon={Wallet} color="#FF6A22" />
                   </>
