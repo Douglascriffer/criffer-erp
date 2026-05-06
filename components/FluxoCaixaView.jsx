@@ -180,10 +180,10 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   { label: 'Tarifas Bancárias', val: m?.tarifas?.real || 0 },
                   { label: 'Diretoria', val: m?.diretoria?.real || 0 },
                   { label: 'Outros Gastos', val: m?.outros_gastos?.real || 0 },
-                  { label: 'Ativ. Financeiros', val: m?.ativ_financeiros?.real || 0 },
+                  { label: 'Atividades Financeiras', val: m?.ativ_financeiros?.real || 0 },
                 ].sort((a,b) => Math.abs(b.val) - Math.abs(a.val));
                 return cats.map((c, i) => (
-                  <div key={i} style={{ padding: '14.5px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div key={i} style={{ padding: '14.3px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: 18, fontWeight: 700, color: '#ffffff', textTransform: 'capitalize' }}>{c.label}</span>
                     <span style={{ fontSize: 18, fontWeight: 900, color: t.text, minWidth: 90, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>
                       {c.val < 0 ? '-' : ''}{Math.abs(Math.round(c.val)).toLocaleString('pt-BR')}

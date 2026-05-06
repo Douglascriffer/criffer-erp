@@ -339,10 +339,17 @@ def process_excel():
                             val_real = safe_float(df_fluxo.iloc[row_idx, col_real])
                             month_data[key] = {"real": val_real, "orc": val_orc}
                     
-                    # ── CONSOLIDAÇÃO ATIVIDADES FINANCEIRAS ──
-                    af_keys = ["emprestimos", "aplic_sicredi", "resgate_sicredi", "rend_aplic", "transf_sicredi", "transf_bb", "cash"]
-                    af_real = sum((month_data.get(k, {}).get("real") or 0) for k in af_keys)
-                    af_orc  = sum((month_data.get(k, {}).get("orc") or 0) for k in af_keys)
+                    # ── CONSOLIDAÇÃO ATIVIDADES FINANCEIRAS (LINHA 26) ──
+                    af_raw_real = month_data.get("ativ_fin_total", {}).get("real") or 0
+                    af_raw_orc = month_data.get("ativ_fin_total", {}).get("orc") or 0
+                    
+                    if af_raw_real != 0:
+                        af_real, af_orc = af_raw_real, af_raw_orc
+                    else:
+                        af_keys = ["emprestimos", "aplic_sicredi", "resgate_sicredi", "rend_aplic", "transf_sicredi", "transf_bb", "cash"]
+                        af_real = sum((month_data.get(k, {}).get("real") or 0) for k in af_keys)
+                        af_orc  = sum((month_data.get(k, {}).get("orc") or 0) for k in af_keys)
+                    
                     month_data["ativ_financeiros"] = {"real": af_real, "orc": af_orc}
 
                     # ── TOTAL DE SAÍDAS CONSOLIDADO ──
