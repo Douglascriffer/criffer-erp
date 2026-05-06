@@ -47,7 +47,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
       {viewType === 'simples' && (
         <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 1.2fr', gap: 20 }}>
           
-          {/* Gráfico de Evolução do Saldo */}
+          {/* Gráfico de Evolução do Saldo (Horizontal) */}
           <div style={{ 
             background: t.card, 
             borderRadius: 12, 
@@ -67,27 +67,28 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             
             <div style={{ height: 350, width: '100%' }}>
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData} margin={{ top: 30, right: 30, left: 30, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={t.border} />
-                  <XAxis 
+                <BarChart data={chartData} layout="vertical" margin={{ top: 5, right: 80, left: 40, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={t.border} />
+                  <XAxis type="number" hide />
+                  <YAxis 
                     dataKey="name" 
+                    type="category"
                     axisLine={false} 
                     tickLine={false} 
                     tick={{ fill: t.textMuted, fontSize: 12, fontWeight: 700 }} 
-                    dy={10} 
+                    width={80}
                   />
-                  <YAxis hide />
                   <Tooltip 
                     contentStyle={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 12, boxShadow: '0 8px 30px rgba(0,0,0,0.1)' }} 
                     itemStyle={{ fontSize: 13, fontWeight: 600 }}
-                    formatter={(v) => [fmt(v), '']} 
+                    formatter={(v) => [v.toLocaleString('pt-BR'), '']} 
                   />
                   <Legend verticalAlign="bottom" height={36} iconType="rect" wrapperStyle={{ paddingTop: 20 }} />
-                  <Bar dataKey="saldoInicial" name="SALDO INICIAL" fill="#9ca3af" barSize={45} radius={[4, 4, 0, 0]}>
-                    <LabelList dataKey="saldoInicial" position="top" formatter={(v) => fmt(v)} style={{ fontSize: 11, fontWeight: 900, fill: t.text }} offset={10} />
+                  <Bar dataKey="saldoInicial" name="SALDO INICIAL" fill="#9ca3af" barSize={25} radius={[0, 4, 4, 0]}>
+                    <LabelList dataKey="saldoInicial" position="right" formatter={(v) => v.toLocaleString('pt-BR')} style={{ fontSize: 11, fontWeight: 900, fill: t.text }} offset={10} />
                   </Bar>
-                  <Bar dataKey="saldoFinal" name="SALDO FINAL" fill={t.accent} barSize={45} radius={[4, 4, 0, 0]}>
-                    <LabelList dataKey="saldoFinal" position="top" formatter={(v) => fmt(v)} style={{ fontSize: 11, fontWeight: 900, fill: t.text }} offset={10} />
+                  <Bar dataKey="saldoFinal" name="SALDO FINAL" fill={t.accent} barSize={25} radius={[0, 4, 4, 0]}>
+                    <LabelList dataKey="saldoFinal" position="right" formatter={(v) => v.toLocaleString('pt-BR')} style={{ fontSize: 11, fontWeight: 900, fill: t.text }} offset={10} />
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
