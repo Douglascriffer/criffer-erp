@@ -107,6 +107,13 @@ export default function DashboardClient() {
     }
   },[])
 
+  // Forçar 2026 em Orçamento/Fluxo se estiver em 2025
+  useEffect(() => {
+    if ((tab === 'orcamento' || tab === 'fluxo') && filters.ano === '2025') {
+      setFilters(prev => ({ ...prev, ano: '2026' }))
+    }
+  }, [tab, filters.ano])
+
   const changeTheme = useCallback((next) => {
     setTheme(next)
     localStorage.setItem('criffer_theme', next)
@@ -333,7 +340,10 @@ export default function DashboardClient() {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{ display: 'flex', background: t.pillBg, padding: 3, borderRadius: 10 }}>
-              {['2025', '2026'].map(y => (
+              {['2025', '2026'].filter(y => {
+                if (tab === 'orcamento' || tab === 'fluxo') return y === '2026';
+                return true;
+              }).map(y => (
                 <button key={y} onClick={() => setFilters(f => ({ ...f, ano: y }))} style={{
                   padding: '4px 12px',
                   borderRadius: 7,
