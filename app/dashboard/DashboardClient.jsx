@@ -174,7 +174,7 @@ export default function DashboardClient() {
   }
 
   // ── Componente: Card de KPI Premium ──
-  const KpiCard = ({ label, value, prevValue, icon: Icon, color, isPercent=false }) => {
+  const KpiCard = ({ label, value, prevValue, icon: Icon, color, isPercent=false, hideDiff=false }) => {
     const diff = value - prevValue
     const pct = prevValue > 0 ? (diff / prevValue * 100) : 0
     const isUp = diff >= 0
@@ -205,12 +205,12 @@ export default function DashboardClient() {
           <p style={{ fontSize: 19, fontWeight: 400, color: t.text, lineHeight: 1, margin: '2px 0' }}>
             {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 2, fontSize: 10, fontWeight: 400, color: isUp ? '#22c55e' : '#ef4444' }}>
-              {isUp ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
-              {Math.abs(pct).toFixed(1)}%
-            </div>
-          </div>
+            {!hideDiff && (
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 2, fontSize: 10, fontWeight: 400, color: isUp ? '#22c55e' : '#ef4444' }}>
+                {isUp ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
+                {Math.abs(pct).toFixed(1)}%
+              </div>
+            )}
         </div>
       </div>
     )
@@ -415,11 +415,11 @@ export default function DashboardClient() {
                 const m = data?.fluxo?.mensal?.[curMes] || {};
                 return (
                   <>
-                    <KpiCard label="SALDO INICIAL" value={m.saldo_inicial?.real || 0} prevValue={m.saldo_inicial?.orc || 0} icon={Wallet} color="#FF6A22" />
-                    <KpiCard label="ENTRADAS" value={m.total_entradas?.real || 0} prevValue={m.total_entradas?.orc || 0} icon={ArrowUpRight} color="#22c55e" />
-                    <KpiCard label="SAÍDAS" value={Math.abs(m.total_saidas?.real || 0)} prevValue={Math.abs(m.total_saidas?.orc || 0)} icon={ArrowDownRight} color="#ef4444" />
-                    <KpiCard label="GERAÇÃO CAIXA" value={m.geracao_caixa?.real || 0} prevValue={m.geracao_caixa?.orc || 0} icon={Activity} color="#FF6A22" />
-                    <KpiCard label="SALDO FINAL" value={m.saldo_final?.real || 0} prevValue={m.saldo_final?.orc || 0} icon={Wallet} color="#FF6A22" />
+                    <KpiCard label="SALDO INICIAL" value={m.saldo_inicial?.real || 0} prevValue={m.saldo_inicial?.orc || 0} icon={Wallet} color="#FF6A22" hideDiff />
+                    <KpiCard label="ENTRADAS" value={m.total_entradas?.real || 0} prevValue={m.total_entradas?.orc || 0} icon={ArrowUpRight} color="#22c55e" hideDiff />
+                    <KpiCard label="SAÍDAS" value={Math.abs(m.total_saidas?.real || 0)} prevValue={Math.abs(m.total_saidas?.orc || 0)} icon={ArrowDownRight} color="#ef4444" hideDiff />
+                    <KpiCard label="GERAÇÃO CAIXA" value={m.geracao_caixa?.real || 0} prevValue={m.geracao_caixa?.orc || 0} icon={Activity} color="#FF6A22" hideDiff />
+                    <KpiCard label="SALDO FINAL" value={m.saldo_final?.real || 0} prevValue={m.saldo_final?.orc || 0} icon={Wallet} color="#FF6A22" hideDiff />
                   </>
                 );
               })()
