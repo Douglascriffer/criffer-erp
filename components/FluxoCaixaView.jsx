@@ -67,7 +67,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
               
               {/* Card: Meta Anual */}
               <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 20, padding: 32, border: `1px solid ${t.border}`, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 24 }}>
                   <Target size={22} color={t.accent} />
                   <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Meta Anual 2026</span>
                 </div>
@@ -111,7 +111,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
 
               {/* Card: Posição Atual */}
               <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 20, padding: 32, border: `1px solid ${t.border}`, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 24 }}>
                   <TrendingUp size={22} color={t.accent} />
                   <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Posição Atual</span>
                 </div>
