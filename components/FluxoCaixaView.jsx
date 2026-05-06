@@ -3,7 +3,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
   ResponsiveContainer, Line, ComposedChart, LabelList, Legend
 } from 'recharts';
-import { Activity } from 'lucide-react';
+import { Activity, Target, TrendingUp } from 'lucide-react';
 
 const fmt = (v) => {
   if (!v && v !== 0) return 'R$ 0';
@@ -47,7 +47,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
       {viewType === 'simples' && (
         <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 1.2fr', gap: 20 }}>
           
-          {/* Gráfico de Evolução do Saldo (Horizontal) */}
+          {/* Situação Financeira */}
           <div style={{ 
             background: t.card, 
             borderRadius: 12, 
@@ -55,43 +55,81 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             padding: 32,
             boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
             display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center'
+            flexDirection: 'column'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 32, width: '100%' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <Activity size={22} color={t.accent} />
-                <h3 style={{ fontSize: 22, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>Evolução do Saldo</h3>
-              </div>
+            <div style={{ marginBottom: 32 }}>
+              <h3 style={{ fontSize: 26, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>Situação Financeira</h3>
+              <p style={{ fontSize: 14, color: t.textMuted, fontWeight: 500, marginTop: 4 }}>Posição atual versus objetivos anuais</p>
             </div>
             
-            <div style={{ height: 350, width: '100%' }}>
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData} layout="vertical" margin={{ top: 5, right: 80, left: 40, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={t.border} />
-                  <XAxis type="number" hide />
-                  <YAxis 
-                    dataKey="name" 
-                    type="category"
-                    axisLine={false} 
-                    tickLine={false} 
-                    tick={{ fill: t.textMuted, fontSize: 12, fontWeight: 700 }} 
-                    width={80}
-                  />
-                  <Tooltip 
-                    contentStyle={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 12, boxShadow: '0 8px 30px rgba(0,0,0,0.1)' }} 
-                    itemStyle={{ fontSize: 13, fontWeight: 600 }}
-                    formatter={(v) => [v.toLocaleString('pt-BR'), '']} 
-                  />
-                  <Legend verticalAlign="bottom" height={36} iconType="rect" wrapperStyle={{ paddingTop: 20 }} />
-                  <Bar dataKey="saldoInicial" name="SALDO INICIAL" fill="#9ca3af" barSize={25} radius={[0, 4, 4, 0]}>
-                    <LabelList dataKey="saldoInicial" position="right" formatter={(v) => v.toLocaleString('pt-BR')} style={{ fontSize: 11, fontWeight: 900, fill: t.text }} offset={10} />
-                  </Bar>
-                  <Bar dataKey="saldoFinal" name="SALDO FINAL" fill={t.accent} barSize={25} radius={[0, 4, 4, 0]}>
-                    <LabelList dataKey="saldoFinal" position="right" formatter={(v) => v.toLocaleString('pt-BR')} style={{ fontSize: 11, fontWeight: 900, fill: t.text }} offset={10} />
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, flex: 1 }}>
+              
+              {/* Card: Meta Anual */}
+              <div style={{ background: theme === 'dark' ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)', borderRadius: 16, padding: 24, border: `1px solid ${t.border}` }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
+                  <Target size={20} color={t.accent} />
+                  <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase' }}>Meta Anual 2026</span>
+                </div>
+                
+                {(() => {
+                  const metaValue = 11000000; // Valor de exemplo da imagem, idealmente viria dos dados
+                  const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
+                  const saldoFinal = dados?.fluxo?.mensal?.[currentMonth]?.saldo_final?.real || 0;
+                  const varAcc = saldoFinal - metaValue;
+                  const pctDesvio = metaValue !== 0 ? (varAcc / metaValue * 100) : 0;
+                  
+                  return (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                      <div style={{ background: theme === 'dark' ? 'rgba(0,0,0,0.2)' : '#fff', padding: '16px 20px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 600 }}>Meta 2026</span>
+                        <span style={{ fontSize: 18, fontWeight: 900, color: t.text }}>{fmt(metaValue)}</span>
+                      </div>
+                      <div style={{ border: `2px solid ${t.red}`, background: 'rgba(239,68,68,0.05)', padding: '16px 20px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 600 }}>Variação Acumulada</span>
+                        <span style={{ fontSize: 18, fontWeight: 900, color: t.red }}>{fmt(varAcc)}</span>
+                      </div>
+                      <div style={{ border: `2px solid ${t.accent}`, background: 'rgba(255,106,34,0.05)', padding: '16px 20px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 600 }}>Percentual de Desvio</span>
+                        <span style={{ fontSize: 18, fontWeight: 900, color: t.accent }}>{pctDesvio.toFixed(2)}%</span>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+
+              {/* Card: Posição Atual */}
+              <div style={{ background: theme === 'dark' ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)', borderRadius: 16, padding: 24, border: `1px solid ${t.border}` }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
+                  <TrendingUp size={20} color={t.accent} />
+                  <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase' }}>Posição Atual</span>
+                </div>
+                
+                {(() => {
+                  const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
+                  const m = dados?.fluxo?.mensal?.[currentMonth] || {};
+                  const saldoIni = m.saldo_inicial?.real || 0;
+                  const saldoFin = m.saldo_final?.real || 0;
+                  const varPer = saldoFin - saldoIni;
+                  
+                  return (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                      <div style={{ background: theme === 'dark' ? 'rgba(0,0,0,0.2)' : '#fff', padding: '16px 20px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 600 }}>Saldo Inicial 2026</span>
+                        <span style={{ fontSize: 18, fontWeight: 900, color: t.text }}>{fmt(saldoIni)}</span>
+                      </div>
+                      <div style={{ background: theme === 'dark' ? 'rgba(0,0,0,0.2)' : '#fff', padding: '16px 20px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 600 }}>Saldo Final {mesesLabels[currentMonth-1]}/2026</span>
+                        <span style={{ fontSize: 18, fontWeight: 900, color: t.text }}>{fmt(saldoFin)}</span>
+                      </div>
+                      <div style={{ border: `2px solid ${t.red}`, background: 'rgba(239,68,68,0.05)', padding: '16px 20px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 600 }}>Variação no Período</span>
+                        <span style={{ fontSize: 18, fontWeight: 900, color: t.red }}>{fmt(varPer)}</span>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+
             </div>
           </div>
 

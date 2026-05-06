@@ -139,8 +139,6 @@ export default function DashboardClient() {
     ],
     fluxo: [
       { id:'simples', label:'Fluxo' },
-      { id:'detalhe', label:'Detalhado' },
-      { id:'metas_fluxo', label:'Metas' },
     ],
   }
 
