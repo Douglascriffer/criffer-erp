@@ -82,17 +82,16 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   return (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                       {/* Meta 2026 */}
-                      <div style={{ background: 'rgba(0,0,0,0.3)', padding: '22px 24px', borderRadius: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900 }}>META 2026</span>
+                      <div style={{ background: 'rgba(0,0,0,0.4)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Meta 2026</span>
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, fontVariantNumeric: 'tabular-nums' }}>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.textMuted, width: 10 }}></span>
                           <span style={{ fontSize: 22, fontWeight: 900, color: t.text }}>{Math.round(metaValue).toLocaleString('pt-BR')}</span>
                         </div>
                       </div>
                       
                       {/* Variação Acumulada */}
-                      <div style={{ border: `2px solid ${t.red}`, background: 'rgba(239,68,68,0.08)', padding: '22px 24px', borderRadius: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900 }}>VARIAÇÃO ACUMULADA</span>
+                      <div style={{ border: `1.5px solid ${t.red}`, background: 'rgba(239,68,68,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Variação Acumulada</span>
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, fontVariantNumeric: 'tabular-nums' }}>
                           <span style={{ fontSize: 22, fontWeight: 900, color: t.red, width: 10 }}>{varAcc < 0 ? '-' : ''}</span>
                           <span style={{ fontSize: 22, fontWeight: 900, color: t.red }}>{Math.abs(Math.round(varAcc)).toLocaleString('pt-BR')}</span>
@@ -100,8 +99,8 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                       </div>
 
                       {/* Percentual de Desvio */}
-                      <div style={{ border: `2px solid ${t.accent}`, background: 'rgba(255,106,34,0.08)', padding: '22px 24px', borderRadius: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900 }}>PERCENTUAL DE DESVIO</span>
+                      <div style={{ border: `1.5px solid ${t.accent}`, background: 'rgba(255,106,34,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Percentual de Desvio</span>
                         <span style={{ fontSize: 22, fontWeight: 900, color: t.accent, fontVariantNumeric: 'tabular-nums' }}>{pctDesvio.toFixed(2)}%</span>
                       </div>
                     </div>
@@ -124,28 +123,26 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   const varPer = saldoFin - saldoIni2026;
                   
                   return (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
                       {/* Saldo Inicial */}
-                      <div style={{ background: 'rgba(0,0,0,0.3)', padding: '22px 24px', borderRadius: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900 }}>SALDO INICIAL 2026</span>
+                      <div style={{ background: 'rgba(0,0,0,0.4)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Inicial 2026</span>
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, fontVariantNumeric: 'tabular-nums' }}>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.textMuted, width: 10 }}></span>
                           <span style={{ fontSize: 22, fontWeight: 900, color: t.text }}>{Math.round(saldoIni2026).toLocaleString('pt-BR')}</span>
                         </div>
                       </div>
 
                       {/* Saldo Final */}
-                      <div style={{ background: 'rgba(0,0,0,0.3)', padding: '22px 24px', borderRadius: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900 }}>SALDO FINAL {mesesLabels[currentMonth-1]}/26</span>
+                      <div style={{ background: 'rgba(0,0,0,0.4)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Final {mesesLabels[currentMonth-1]}/26</span>
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, fontVariantNumeric: 'tabular-nums' }}>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.textMuted, width: 10 }}></span>
                           <span style={{ fontSize: 22, fontWeight: 900, color: t.text }}>{Math.round(saldoFin).toLocaleString('pt-BR')}</span>
                         </div>
                       </div>
 
                       {/* Variação Período */}
-                      <div style={{ border: `2px solid ${t.red}`, background: 'rgba(239,68,68,0.08)', padding: '22px 24px', borderRadius: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900 }}>VARIAÇÃO PERÍODO</span>
+                      <div style={{ border: `1.5px solid ${t.red}`, background: 'rgba(239,68,68,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Variação Período</span>
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, fontVariantNumeric: 'tabular-nums' }}>
                           <span style={{ fontSize: 22, fontWeight: 900, color: t.red, width: 10 }}>{varPer < 0 ? '-' : ''}</span>
                           <span style={{ fontSize: 22, fontWeight: 900, color: t.red }}>{Math.abs(Math.round(varPer)).toLocaleString('pt-BR')}</span>
@@ -164,7 +161,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 0, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.2)', display: 'flex', flexDirection: 'column'
           }}>
             <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}` }}>
-              <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>Composição das Saídas</h3>
+              <h3 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>Composição das Saídas</h3>
             </div>
             <div style={{ flex: 1, overflowY: 'auto' }}>
               {(() => {
@@ -184,11 +181,9 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   { label: 'Ativ. Financeiros', val: Math.abs(m?.ativ_financeiros?.real || 0) },
                 ].sort((a,b) => b.val - a.val);
                 return cats.map((c, i) => (
-                  <div key={i} style={{ padding: '16px 32px', background: i % 2 === 0 ? 'transparent' : t.zebra, borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: 14, fontWeight: 700, color: t.textSub }}>{c.label}</span>
-                    <div style={{ display: 'flex', gap: 40 }}>
-                      <span style={{ fontSize: 16, fontWeight: 900, color: t.text, minWidth: 90, textAlign: 'right' }}>{Math.round(c.val).toLocaleString('pt-BR')}</span>
-                    </div>
+                  <div key={i} style={{ padding: '14px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.7)', textTransform: 'capitalize' }}>{c.label}</span>
+                    <span style={{ fontSize: 16, fontWeight: 900, color: t.text, minWidth: 90, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{Math.round(c.val).toLocaleString('pt-BR')}</span>
                   </div>
                 ));
               })()}
