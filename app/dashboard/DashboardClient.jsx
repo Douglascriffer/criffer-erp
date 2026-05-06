@@ -182,34 +182,38 @@ export default function DashboardClient() {
         background: t.card,
         border: `1.5px solid ${t.border}`,
         borderRadius: 12,
-        padding: '12px 16px',
+        padding: '12px',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: 'column',
         position: 'relative',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
         minHeight: 95
       }} className="hover-lift">
         
-        {/* Ícone à Esquerda Centralizado */}
-        <div style={{ marginRight: 12, opacity: 0.9 }}>
-          <Icon size={24} color={color} />
+        {/* Ícone no Topo Esquerdo */}
+        <div style={{ position: 'absolute', top: 12, left: 12, opacity: 0.8 }}>
+          <Icon size={18} color={color} />
         </div>
 
-        {/* Conteúdo Centralizado */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1 }}>
-          <p style={{ fontSize: 22, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>{label}</p>
-          <p style={{ fontSize: 22, fontWeight: 900, color: t.text, lineHeight: 1, margin: '2px 0' }}>
+        {/* Rótulo no Topo Centro */}
+        <div style={{ textAlign: 'center', width: '100%', marginTop: 2 }}>
+          <p style={{ fontSize: 13, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>{label}</p>
+        </div>
+
+        {/* Valor na Base Centro */}
+        <div style={{ textAlign: 'center', width: '100%', marginTop: 'auto', marginBottom: 4 }}>
+          <p style={{ fontSize: 22, fontWeight: 900, color: t.text, lineHeight: 1, margin: 0 }}>
             {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
           </p>
-            {!hideDiff && (
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 2, fontSize: 10, fontWeight: 400, color: isUp ? '#22c55e' : '#ef4444' }}>
-                {isUp ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
-                {Math.abs(pct).toFixed(1)}%
-              </div>
-            )}
         </div>
+
+        {!hideDiff && (
+          <div style={{ position: 'absolute', bottom: 8, right: 12, display: 'inline-flex', alignItems: 'center', gap: 2, fontSize: 10, fontWeight: 700, color: isUp ? '#22c55e' : '#ef4444' }}>
+            {isUp ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
+            {Math.abs(pct).toFixed(1)}%
+          </div>
+        )}
       </div>
     )
   }
