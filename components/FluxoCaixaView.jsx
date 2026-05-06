@@ -182,9 +182,9 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   { label: 'Ativ. Financeiros', val: Math.abs(m?.ativ_financeiros?.real || 0) },
                 ].sort((a,b) => b.val - a.val);
                 return cats.map((c, i) => (
-                  <div key={i} style={{ padding: '14px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.7)', textTransform: 'capitalize' }}>{c.label}</span>
-                    <span style={{ fontSize: 16, fontWeight: 900, color: t.text, minWidth: 90, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{Math.round(c.val).toLocaleString('pt-BR')}</span>
+                  <div key={i} style={{ padding: '22px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.7)', textTransform: 'capitalize' }}>{c.label}</span>
+                    <span style={{ fontSize: 18, fontWeight: 900, color: t.text, minWidth: 90, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{Math.round(c.val).toLocaleString('pt-BR')}</span>
                   </div>
                 ));
               })()}
