@@ -52,25 +52,28 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             background: t.card, 
             borderRadius: 12, 
             border: `1.5px solid ${t.border}`, 
-            padding: 24,
-            boxShadow: '0 4px 20px rgba(0,0,0,0.05)'
+            padding: 32,
+            boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <Activity size={20} color={t.accent} />
-                <h3 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 0.5, margin: 0 }}>Evolução do Saldo</h3>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: 32, width: '100%' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <Activity size={22} color={t.accent} />
+                <h3 style={{ fontSize: 22, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>Evolução do Saldo</h3>
               </div>
             </div>
             
-            <div style={{ height: 330, width: '100%' }}>
+            <div style={{ height: 350, width: '100%' }}>
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                <BarChart data={chartData} margin={{ top: 30, right: 30, left: 30, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={t.border} />
                   <XAxis 
                     dataKey="name" 
                     axisLine={false} 
                     tickLine={false} 
-                    tick={{ fill: t.textMuted, fontSize: 11, fontWeight: 700 }} 
+                    tick={{ fill: t.textMuted, fontSize: 12, fontWeight: 700 }} 
                     dy={10} 
                   />
                   <YAxis hide />
@@ -79,12 +82,12 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     itemStyle={{ fontSize: 13, fontWeight: 600 }}
                     formatter={(v) => [fmt(v), '']} 
                   />
-                  <Legend verticalAlign="bottom" height={36} iconType="rect" />
-                  <Bar dataKey="saldoInicial" name="SALDO INICIAL" fill="#9ca3af" barSize={35} radius={[2, 2, 0, 0]}>
-                    <LabelList dataKey="saldoInicial" position="top" formatter={(v) => fmt(v)} style={{ fontSize: 10, fontWeight: 700, fill: t.textMuted }} />
+                  <Legend verticalAlign="bottom" height={36} iconType="rect" wrapperStyle={{ paddingTop: 20 }} />
+                  <Bar dataKey="saldoInicial" name="SALDO INICIAL" fill="#9ca3af" barSize={45} radius={[4, 4, 0, 0]}>
+                    <LabelList dataKey="saldoInicial" position="top" formatter={(v) => fmt(v)} style={{ fontSize: 11, fontWeight: 900, fill: t.text }} offset={10} />
                   </Bar>
-                  <Bar dataKey="saldoFinal" name="SALDO FINAL" fill={t.accent} barSize={35} radius={[2, 2, 0, 0]}>
-                    <LabelList dataKey="saldoFinal" position="top" formatter={(v) => fmt(v)} style={{ fontSize: 10, fontWeight: 700, fill: t.textMuted }} />
+                  <Bar dataKey="saldoFinal" name="SALDO FINAL" fill={t.accent} barSize={45} radius={[4, 4, 0, 0]}>
+                    <LabelList dataKey="saldoFinal" position="top" formatter={(v) => fmt(v)} style={{ fontSize: 11, fontWeight: 900, fill: t.text }} offset={10} />
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
