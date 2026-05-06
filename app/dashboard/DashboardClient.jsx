@@ -171,53 +171,6 @@ export default function DashboardClient() {
     )
   }
 
-  // ── Componente: Card de KPI Premium ──
-  const KpiCard = ({ label, value, prevValue, icon: Icon, color, isPercent=false, hideDiff=false }) => {
-    const diff = value - prevValue
-    const pct = prevValue > 0 ? (diff / prevValue * 100) : 0
-    const isUp = diff >= 0
-
-    return (
-      <div style={{
-        background: t.card,
-        border: `1.5px solid ${t.border}`,
-        borderRadius: 12,
-        padding: '12px',
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'relative',
-        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-        boxShadow: theme === 'light' ? '0 4px 20px rgba(0,0,0,0.03)' : '0 4px 20px rgba(0,0,0,0.2)',
-        minHeight: 95
-      }} className="hover-lift">
-        
-        {/* Ícone no Topo Esquerdo */}
-        <div style={{ position: 'absolute', top: 12, left: 12, opacity: 0.8 }}>
-          <Icon size={18} color={color} />
-        </div>
-
-        {/* Rótulo no Topo Centro */}
-        <div style={{ textAlign: 'center', width: '100%', marginTop: 2 }}>
-          <p style={{ fontSize: 13, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>{label}</p>
-        </div>
-
-        {/* Valor na Base Centro */}
-        <div style={{ textAlign: 'center', width: '100%', marginTop: 'auto', marginBottom: 4 }}>
-          <p style={{ fontSize: 22, fontWeight: 900, color: t.text, lineHeight: 1, margin: 0 }}>
-            {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
-          </p>
-        </div>
-
-        {!hideDiff && (
-          <div style={{ position: 'absolute', bottom: 8, right: 12, display: 'inline-flex', alignItems: 'center', gap: 2, fontSize: 10, fontWeight: 700, color: isUp ? '#22c55e' : '#ef4444' }}>
-            {isUp ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
-            {Math.abs(pct).toFixed(1)}%
-          </div>
-        )}
-      </div>
-    )
-  }
-
   const kpis = filtered?.kpis || {}
   const pkpis = prevYearData?.kpis || {}
 
@@ -409,33 +362,15 @@ export default function DashboardClient() {
         </div>
 
         {/* ══ CARDS DE KPI (Top 7) ══ */}
-        {(activeSub === 'vendas' || tab === 'fluxo') && (
-          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${tab === 'fluxo' ? 5 : 7}, 1fr)`, gap: 8, marginBottom: 12, width: '100%', overflowX: 'auto', paddingBottom: 6 }}>
-            {tab === 'fluxo' ? (
-              (() => {
-                const curMes = filters.mes === 'all' ? (data?.fluxo?.latestMonth || 1) : filters.mes;
-                const m = data?.fluxo?.mensal?.[curMes] || {};
-                return (
-                  <>
-                    <KpiCard label="SALDO INICIAL" value={m.saldo_inicial?.real || 0} prevValue={m.saldo_inicial?.orc || 0} icon={Wallet} color="#FF6A22" hideDiff />
-                    <KpiCard label="ENTRADAS" value={m.total_entradas?.real || 0} prevValue={m.total_entradas?.orc || 0} icon={ArrowUpRight} color="#22c55e" hideDiff />
-                    <KpiCard label="SAÍDAS" value={Math.abs(m.total_saidas?.real || 0)} prevValue={Math.abs(m.total_saidas?.orc || 0)} icon={ArrowDownRight} color="#ef4444" hideDiff />
-                    <KpiCard label="GERAÇÃO CAIXA" value={m.geracao_caixa?.real || 0} prevValue={m.geracao_caixa?.orc || 0} icon={Activity} color="#FF6A22" hideDiff />
-                    <KpiCard label="SALDO FINAL" value={m.saldo_final?.real || 0} prevValue={m.saldo_final?.orc || 0} icon={Wallet} color="#FF6A22" hideDiff />
-                  </>
-                );
-              })()
-            ) : (
-              <>
-                <KpiCard label="VENDAS" value={(kpis.vendas || 0) - (kpis.devolucoes || 0)} prevValue={(pkpis.vendas || 0) - (pkpis.devolucoes || 0)} icon={ShoppingCart} color="#FF6A22" />
-                <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
-                <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
-                <KpiCard label="DEVOLUÇÕES" value={kpis.devolucoes || 0} prevValue={pkpis.devolucoes || 0} icon={RotateCcw} color="#ef4444" />
-                <KpiCard label="RECEITA BRUTA" value={kpis.totalRealizado || 0} prevValue={pkpis.totalRealizado || 0} icon={DollarSign} color="#10b981" />
-                <KpiCard label="META" value={kpis.totalMeta || 0} prevValue={pkpis.totalMeta || 0} icon={() => <TargetIcon percent={kpis.pctAtingido}/>} color="#f59e0b" />
-                <KpiCard label="DESEMPENHO" value={kpis.pctAtingido || 0} prevValue={pkpis.pctAtingido || 0} icon={TrendingUp} color="#FF6A22" isPercent={true} />
-              </>
-            )}
+        {(activeSub === 'vendas') && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8, marginBottom: 12, width: '100%', overflowX: 'auto', paddingBottom: 6 }}>
+            <KpiCard label="VENDAS" value={(kpis.vendas || 0) - (kpis.devolucoes || 0)} prevValue={(pkpis.vendas || 0) - (pkpis.devolucoes || 0)} icon={ShoppingCart} color="#FF6A22" />
+            <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
+            <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
+            <KpiCard label="DEVOLUÇÕES" value={kpis.devolucoes || 0} prevValue={pkpis.devolucoes || 0} icon={RotateCcw} color="#ef4444" />
+            <KpiCard label="RECEITA BRUTA" value={kpis.totalRealizado || 0} prevValue={pkpis.totalRealizado || 0} icon={DollarSign} color="#10b981" />
+            <KpiCard label="META" value={kpis.totalMeta || 0} prevValue={pkpis.totalMeta || 0} icon={() => <TargetIcon percent={kpis.pctAtingido}/>} color="#f59e0b" />
+            <KpiCard label="DESEMPENHO" value={kpis.pctAtingido || 0} prevValue={pkpis.pctAtingido || 0} icon={TrendingUp} color="#FF6A22" isPercent={true} />
           </div>
         )}
 

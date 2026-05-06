@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
-  ResponsiveContainer, Line, ComposedChart, LabelList, Legend
+  ResponsiveContainer
 } from 'recharts';
-import { Activity, Target, TrendingUp } from 'lucide-react';
+import { Target, TrendingUp, Wallet, ArrowUpRight, ArrowDownRight, Activity } from 'lucide-react';
+import KpiCard from './KpiCard';
 
 const fmt = (v) => {
   if (!v && v !== 0) return 'R$ 0';
@@ -45,120 +46,120 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
       
       {/* ── VISÃO SIMPLIFICADA ── */}
       {viewType === 'simples' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 420px', gap: 20, height: 620 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 420px', gap: 20 }}>
           
-          {/* Situação Financeira */}
-          <div style={{ 
-            background: t.card, 
-            borderRadius: 16, 
-            border: `1.5px solid ${t.border}`, 
-            padding: '40px',
-            boxShadow: '0 4px 24px rgba(0,0,0,0.2)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center'
-          }}>
-            <div style={{ marginBottom: 40, textAlign: 'center' }}>
-              <h3 style={{ fontSize: 28, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 2, margin: 0 }}>Situação Financeira</h3>
-              <p style={{ fontSize: 14, color: t.textMuted, fontWeight: 500, marginTop: 6, letterSpacing: 0.5 }}>Posição atual versus objetivos anuais</p>
-            </div>
+          {/* COLUNA DA ESQUERDA: KPIs + SITUAÇÃO FINANCEIRA */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, width: '100%', flex: 1 }}>
+            {/* KPIs SUPERIORES */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 10 }}>
+              {(() => {
+                const curMes = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
+                const m = dados?.fluxo?.mensal?.[curMes] || {};
+                return (
+                  <>
+                    <KpiCard label="SALDO INICIAL" value={m.saldo_inicial?.real || 0} prevValue={m.saldo_inicial?.orc || 0} icon={Wallet} color="#FF6A22" hideDiff darkMode={darkMode} />
+                    <KpiCard label="ENTRADAS" value={m.total_entradas?.real || 0} prevValue={m.total_entradas?.orc || 0} icon={ArrowUpRight} color="#22c55e" hideDiff darkMode={darkMode} />
+                    <KpiCard label="SAÍDAS" value={Math.abs(m.total_saidas?.real || 0)} prevValue={Math.abs(m.total_saidas?.orc || 0)} icon={ArrowDownRight} color="#ef4444" hideDiff darkMode={darkMode} />
+                    <KpiCard label="GERAÇÃO CAIXA" value={m.geracao_caixa?.real || 0} prevValue={m.geracao_caixa?.orc || 0} icon={Activity} color="#FF6A22" hideDiff darkMode={darkMode} />
+                    <KpiCard label="SALDO FINAL" value={m.saldo_final?.real || 0} prevValue={m.saldo_final?.orc || 0} icon={Wallet} color="#FF6A22" hideDiff darkMode={darkMode} />
+                  </>
+                );
+              })()}
+            </div>
+
+            {/* Situação Financeira */}
+            <div style={{ 
+              background: t.card, 
+              borderRadius: 16, 
+              border: `1.5px solid ${t.border}`, 
+              padding: '40px',
+              boxShadow: '0 4px 24px rgba(0,0,0,0.2)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              flex: 1,
+              minHeight: 464
+            }}>
+              <div style={{ marginBottom: 40, textAlign: 'center' }}>
+                <h3 style={{ fontSize: 28, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 2, margin: 0 }}>Situação Financeira</h3>
+                <p style={{ fontSize: 14, color: t.textMuted, fontWeight: 500, marginTop: 6, letterSpacing: 0.5 }}>Posição atual versus objetivos anuais</p>
+              </div>
               
-              {/* Card: Meta Anual */}
-              <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 20, padding: 32, border: `1px solid ${t.border}`, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 24 }}>
-                  <Target size={22} color={t.accent} />
-                  <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Meta Anual 2026</span>
-                </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, width: '100%', flex: 1 }}>
                 
-                {(() => {
-                  const metaValue = 11000000;
-                  const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
-                  const saldoFinal = dados?.fluxo?.mensal?.[currentMonth]?.saldo_final?.real || 0;
-                  const varAcc = saldoFinal - metaValue;
-                  const pctDesvio = metaValue !== 0 ? (varAcc / metaValue * 100) : 0;
+                {/* Card: Meta Anual */}
+                <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 20, padding: 32, border: `1px solid ${t.border}`, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 24 }}>
+                    <Target size={22} color={t.accent} />
+                    <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Meta Anual 2026</span>
+                  </div>
                   
-                  return (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                      {/* Meta 2026 */}
-                      <div style={{ background: 'rgba(0,0,0,0.4)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Meta 2026</span>
-                        <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, fontVariantNumeric: 'tabular-nums' }}>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.text }}>{Math.round(metaValue).toLocaleString('pt-BR')}</span>
+                  {(() => {
+                    const metaValue = 11000000;
+                    const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
+                    const saldoFinal = dados?.fluxo?.mensal?.[currentMonth]?.saldo_final?.real || 0;
+                    const varAcc = saldoFinal - metaValue;
+                    const pctDesvio = metaValue !== 0 ? (varAcc / metaValue * 100) : 0;
+                    
+                    return (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                        <div style={{ background: 'rgba(0,0,0,0.4)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Meta 2026</span>
+                          <span style={{ fontSize: 22, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(metaValue).toLocaleString('pt-BR')}</span>
+                        </div>
+                        <div style={{ border: `1.5px solid ${t.red}`, background: 'rgba(239,68,68,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Variação Acumulada</span>
+                          <span style={{ fontSize: 22, fontWeight: 900, color: t.red, fontVariantNumeric: 'tabular-nums' }}>{varAcc < 0 ? '-' : ''}{Math.abs(Math.round(varAcc)).toLocaleString('pt-BR')}</span>
+                        </div>
+                        <div style={{ border: `1.5px solid ${t.accent}`, background: 'rgba(255,106,34,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Percentual de Desvio</span>
+                          <span style={{ fontSize: 22, fontWeight: 900, color: t.accent, fontVariantNumeric: 'tabular-nums' }}>{pctDesvio.toFixed(2)}%</span>
                         </div>
                       </div>
-                      
-                      {/* Variação Acumulada */}
-                      <div style={{ border: `1.5px solid ${t.red}`, background: 'rgba(239,68,68,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Variação Acumulada</span>
-                        <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, fontVariantNumeric: 'tabular-nums' }}>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.red, width: 10 }}>{varAcc < 0 ? '-' : ''}</span>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.red }}>{Math.abs(Math.round(varAcc)).toLocaleString('pt-BR')}</span>
-                        </div>
-                      </div>
-
-                      {/* Percentual de Desvio */}
-                      <div style={{ border: `1.5px solid ${t.accent}`, background: 'rgba(255,106,34,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Percentual de Desvio</span>
-                        <span style={{ fontSize: 22, fontWeight: 900, color: t.accent, fontVariantNumeric: 'tabular-nums' }}>{pctDesvio.toFixed(2)}%</span>
-                      </div>
-                    </div>
-                  );
-                })()}
-              </div>
-
-              {/* Card: Posição Atual */}
-              <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 20, padding: 32, border: `1px solid ${t.border}`, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 24 }}>
-                  <TrendingUp size={22} color={t.accent} />
-                  <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Posição Atual</span>
+                    );
+                  })()}
                 </div>
-                
-                {(() => {
-                  const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
-                  const m = dados?.fluxo?.mensal?.[currentMonth] || {};
-                  const saldoIni2026 = dados?.fluxo?.mensal?.[1]?.saldo_inicial?.real || 0;
-                  const saldoFin = m.saldo_final?.real || 0;
-                  const varPer = saldoFin - saldoIni2026;
+
+                {/* Card: Posição Atual */}
+                <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 20, padding: 32, border: `1px solid ${t.border}`, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 24 }}>
+                    <TrendingUp size={22} color={t.accent} />
+                    <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Posição Atual</span>
+                  </div>
                   
-                  return (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-                      {/* Saldo Inicial */}
-                      <div style={{ background: 'rgba(0,0,0,0.4)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Inicial 2026</span>
-                        <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, fontVariantNumeric: 'tabular-nums' }}>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.text }}>{Math.round(saldoIni2026).toLocaleString('pt-BR')}</span>
+                  {(() => {
+                    const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
+                    const m = dados?.fluxo?.mensal?.[currentMonth] || {};
+                    const saldoIni2026 = dados?.fluxo?.mensal?.[1]?.saldo_inicial?.real || 0;
+                    const saldoFin = m.saldo_final?.real || 0;
+                    const varPer = saldoFin - saldoIni2026;
+                    
+                    return (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                        <div style={{ background: 'rgba(0,0,0,0.4)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Inicial 2026</span>
+                          <span style={{ fontSize: 22, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(saldoIni2026).toLocaleString('pt-BR')}</span>
+                        </div>
+                        <div style={{ background: 'rgba(0,0,0,0.4)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Final {mesesLabels[currentMonth-1]}/26</span>
+                          <span style={{ fontSize: 22, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(saldoFin).toLocaleString('pt-BR')}</span>
+                        </div>
+                        <div style={{ border: `1.5px solid ${t.red}`, background: 'rgba(239,68,68,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Variação Período</span>
+                          <span style={{ fontSize: 22, fontWeight: 900, color: t.red, fontVariantNumeric: 'tabular-nums' }}>{varPer < 0 ? '-' : ''}{Math.abs(Math.round(varPer)).toLocaleString('pt-BR')}</span>
                         </div>
                       </div>
-
-                      {/* Saldo Final */}
-                      <div style={{ background: 'rgba(0,0,0,0.4)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Final {mesesLabels[currentMonth-1]}/26</span>
-                        <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, fontVariantNumeric: 'tabular-nums' }}>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.text }}>{Math.round(saldoFin).toLocaleString('pt-BR')}</span>
-                        </div>
-                      </div>
-
-                      {/* Variação Período */}
-                      <div style={{ border: `1.5px solid ${t.red}`, background: 'rgba(239,68,68,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Variação Período</span>
-                        <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, fontVariantNumeric: 'tabular-nums' }}>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.red, width: 10 }}>{varPer < 0 ? '-' : ''}</span>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.red }}>{Math.abs(Math.round(varPer)).toLocaleString('pt-BR')}</span>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })()}
+                    );
+                  })()}
+                </div>
               </div>
-
             </div>
           </div>
 
-          {/* Composição das Saídas */}
+          {/* COLUNA DA DIREITA: COMPOSIÇÃO DAS SAÍDAS (FULL HEIGHT) */}
           <div style={{ 
-            background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 0, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.2)', display: 'flex', flexDirection: 'column'
+            background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 0, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.2)', display: 'flex', flexDirection: 'column', height: 620
           }}>
             <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}` }}>
               <h3 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>Composição das Saídas</h3>
