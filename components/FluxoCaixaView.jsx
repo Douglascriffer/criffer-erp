@@ -65,7 +65,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, flex: 1 }}>
               
               {/* Card: Meta Anual */}
-              <div style={{ background: theme === 'dark' ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)', borderRadius: 16, padding: 24, border: `1px solid ${t.border}` }}>
+              <div style={{ background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)', borderRadius: 16, padding: 24, border: `1px solid ${t.border}` }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
                   <Target size={20} color={t.accent} />
                   <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase' }}>Meta Anual 2026</span>
@@ -80,7 +80,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   
                   return (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                      <div style={{ background: theme === 'dark' ? 'rgba(0,0,0,0.2)' : '#fff', padding: '16px 20px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div style={{ background: darkMode ? 'rgba(0,0,0,0.2)' : '#fff', padding: '16px 20px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 600 }}>Meta 2026</span>
                         <span style={{ fontSize: 18, fontWeight: 900, color: t.text }}>{fmt(metaValue)}</span>
                       </div>
@@ -98,7 +98,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
               </div>
 
               {/* Card: Posição Atual */}
-              <div style={{ background: theme === 'dark' ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)', borderRadius: 16, padding: 24, border: `1px solid ${t.border}` }}>
+              <div style={{ background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)', borderRadius: 16, padding: 24, border: `1px solid ${t.border}` }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
                   <TrendingUp size={20} color={t.accent} />
                   <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase' }}>Posição Atual</span>
@@ -113,11 +113,11 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   
                   return (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                      <div style={{ background: theme === 'dark' ? 'rgba(0,0,0,0.2)' : '#fff', padding: '16px 20px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div style={{ background: darkMode ? 'rgba(0,0,0,0.2)' : '#fff', padding: '16px 20px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 600 }}>Saldo Inicial 2026</span>
                         <span style={{ fontSize: 18, fontWeight: 900, color: t.text }}>{fmt(saldoIni)}</span>
                       </div>
-                      <div style={{ background: theme === 'dark' ? 'rgba(0,0,0,0.2)' : '#fff', padding: '16px 20px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div style={{ background: darkMode ? 'rgba(0,0,0,0.2)' : '#fff', padding: '16px 20px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 600 }}>Saldo Final {mesesLabels[currentMonth-1]}/2026</span>
                         <span style={{ fontSize: 18, fontWeight: 900, color: t.text }}>{fmt(saldoFin)}</span>
                       </div>
