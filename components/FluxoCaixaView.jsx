@@ -45,7 +45,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
       
       {/* ── VISÃO SIMPLIFICADA ── */}
       {viewType === 'simples' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '920px 1fr', gap: 20 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '950px 1fr', gap: 20 }}>
           
           {/* Situação Financeira */}
           <div style={{ 
