@@ -164,7 +164,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}` }}>
               <h3 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>Composição das Saídas</h3>
             </div>
-            <div style={{ flex: 1, overflowY: 'auto' }}>
+            <div style={{ flex: 1, overflow: 'hidden' }}>
               {(() => {
                 const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
                 const m = dados?.fluxo?.mensal?.[currentMonth];
@@ -183,7 +183,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 ].sort((a,b) => b.val - a.val);
                 return cats.map((c, i) => (
                   <div key={i} style={{ padding: '16.5px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.7)', textTransform: 'capitalize' }}>{c.label}</span>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: '#ffffff', textTransform: 'capitalize' }}>{c.label}</span>
                     <span style={{ fontSize: 18, fontWeight: 900, color: t.text, minWidth: 90, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{Math.round(c.val).toLocaleString('pt-BR')}</span>
                   </div>
                 ));
