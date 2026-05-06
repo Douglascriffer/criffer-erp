@@ -291,9 +291,7 @@ def process_excel():
             
             # Linhas fixas baseadas na análise da planilha (index 0)
             rows_map = {
-                "saldo_inicial": 2,
-                "vendas": 3,
-                "outros_recebiveis": 4,
+                "saldo_inicial": 4,
                 "total_entradas": 5,
                 "materia_prima": 6,
                 "fretes": 7,
@@ -304,14 +302,19 @@ def process_excel():
                 "consultorias": 12,
                 "pd": 13,
                 "tarifas": 14,
-                "total_saidas": 15,
+                "total_saidas_op": 15, # Linha 16
                 "diretoria": 16,
                 "outros_gastos": 17,
-                "rendimentos": 21,
-                "resultado_ativ": 25,
-                "entradas_saidas": 26,
-                "geracao_caixa": 27,
-                "saldo_final": 28
+                "emprestimos": 18,
+                "aplic_sicredi": 19,
+                "resgate_sicredi": 20,
+                "rend_aplic": 21,
+                "transf_sicredi": 22,
+                "transf_bb": 23,
+                "cash": 24,
+                "ativ_fin_total": 25,  # Linha 26 (Resultados Ativ Fin)
+                "geracao_caixa": 26,   # Linha 27
+                "saldo_final": 27      # Linha 28
             }
 
             def safe_float(val):
@@ -333,16 +336,24 @@ def process_excel():
                             val_real = safe_float(df_fluxo.iloc[row_idx, col_real])
                             month_data[key] = {"real": val_real, "orc": val_orc}
                     
-                    # ── AJUSTE SOLICITADO: CONSOLIDAR SAÍDAS ──
-                    # Saída Total = Linha 16 (index 15) + Linha 26 (index 25)
-                    ts_real = (month_data.get("total_saidas", {}).get("real") or 0) + (month_data.get("resultado_ativ", {}).get("real") or 0)
-                    ts_orc  = (month_data.get("total_saidas", {}).get("orc") or 0) + (month_data.get("resultado_ativ", {}).get("orc") or 0)
-                    month_data["total_saidas"] = {"real": ts_real, "orc": ts_orc}
+                    # ── CONSOLIDAÇÃO ATIVIDADES FINANCEIRAS ──
+                    af_keys = ["emprestimos", "aplic_sicredi", "resgate_sicredi", "rend_aplic", "transf_sicredi", "transf_bb", "cash"]
+                    af_real = sum((month_data.get(k, {}).get("real") or 0) for k in af_keys)
+                    af_orc  = sum((month_data.get(k, {}).get("orc") or 0) for k in af_keys)
+                    month_data["ativ_financeiros"] = {"real": af_real, "orc": af_orc}
 
-                    # Geração de Caixa = Total Entradas + Total Saídas Consolidado (Saídas são negativas)
-                    gc_real = (month_data.get("total_entradas", {}).get("real") or 0) + ts_real
-                    gc_orc  = (month_data.get("total_entradas", {}).get("orc") or 0) + ts_orc
-                    month_data["geracao_caixa"] = {"real": gc_real, "orc": gc_orc}
+                    # ── TOTAL DE SAÍDAS CONSOLIDADO ──
+                    ts_real = (month_data.get("total_saidas_op", {}).get("real") or 0) + \
+                              (month_data.get("diretoria", {}).get("real") or 0) + \
+                              (month_data.get("outros_gastos", {}).get("real") or 0) + \
+                              (month_data.get("ativ_fin_total", {}).get("real") or 0)
+                    
+                    ts_orc = (month_data.get("total_saidas_op", {}).get("orc") or 0) + \
+                             (month_data.get("diretoria", {}).get("orc") or 0) + \
+                             (month_data.get("outros_gastos", {}).get("orc") or 0) + \
+                             (month_data.get("ativ_fin_total", {}).get("orc") or 0)
+                    
+                    month_data["total_saidas"] = {"real": ts_real, "orc": ts_orc}
                     
                     result["fluxo"]["mensal"][m] = month_data
 

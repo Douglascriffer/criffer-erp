@@ -172,17 +172,21 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 const m = dados?.fluxo?.mensal?.[currentMonth];
                 const cats = [
                   { label: 'Matéria Prima', val: Math.abs(m?.materia_prima?.real || 0) },
+                  { label: 'Fretes', val: Math.abs(m?.fretes?.real || 0) },
                   { label: 'Pessoal', val: Math.abs(m?.pessoal?.real || 0) },
                   { label: 'Impostos', val: Math.abs(m?.impostos?.real || 0) },
-                  { label: 'Operacional', val: Math.abs(m?.despesas_op?.real || 0) + Math.abs(m?.manut_predial?.real || 0) },
+                  { label: 'Manut. Predial', val: Math.abs(m?.manut_predial?.real || 0) },
+                  { label: 'Desp. Operacionais', val: Math.abs(m?.despesas_op?.real || 0) },
+                  { label: 'P&D', val: Math.abs(m?.pd?.real || 0) },
+                  { label: 'Tarifas Bancárias', val: Math.abs(m?.tarifas?.real || 0) },
                   { label: 'Diretoria', val: Math.abs(m?.diretoria?.real || 0) },
                   { label: 'Outros Gastos', val: Math.abs(m?.outros_gastos?.real || 0) },
+                  { label: 'Ativ. Financeiros', val: Math.abs(m?.ativ_financeiros?.real || 0) },
                 ].sort((a,b) => b.val - a.val);
                 return cats.map((c, i) => (
-                  <div key={i} style={{ padding: '24px 32px', background: i % 2 === 0 ? 'transparent' : t.zebra, borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: 15, fontWeight: 700, color: t.textSub }}>{c.label}</span>
+                  <div key={i} style={{ padding: '16px 32px', background: i % 2 === 0 ? 'transparent' : t.zebra, borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: t.textSub }}>{c.label}</span>
                     <div style={{ display: 'flex', gap: 40 }}>
-                      <span style={{ fontSize: 15, fontWeight: 900, color: t.textSub }}>R$</span>
                       <span style={{ fontSize: 16, fontWeight: 900, color: t.text, minWidth: 90, textAlign: 'right' }}>{Math.round(c.val).toLocaleString('pt-BR')}</span>
                     </div>
                   </div>
