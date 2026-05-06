@@ -3,6 +3,10 @@ import { useState, useEffect, useMemo, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { 
+  TrendingUp, Users, Target, Activity, 
+  Map as MapIcon, BarChart3, PieChart, 
+  TrendingDown, DollarSign, Package, Briefcase,
   ShoppingCart, Wrench, Key, RotateCcw,
   Wallet, ArrowUpRight, ArrowDownRight
 } from 'lucide-react'
