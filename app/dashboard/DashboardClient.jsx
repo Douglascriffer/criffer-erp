@@ -3,11 +3,8 @@ import { useState, useEffect, useMemo, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { 
-  TrendingUp, Users, Target, Activity, 
-  Map as MapIcon, BarChart3, PieChart, 
-  TrendingDown, DollarSign, Package, Briefcase,
-  ShoppingCart, Wrench, Key, RotateCcw
+  ShoppingCart, Wrench, Key, RotateCcw,
+  Wallet, ArrowUpRight, ArrowDownRight
 } from 'lucide-react'
 import { useFinancialData, useFilteredData } from '@/lib/hooks'
 
@@ -399,10 +396,13 @@ export default function DashboardClient() {
                 const m = data?.fluxo?.mensal?.[curMes] || {};
                 return (
                   <>
-                    <KpiCard label="SALDO EM CONTA" value={m.saldo_final?.real || 0} prevValue={m.saldo_inicial?.real || 0} icon={Wallet} color="#FF6A22" />
+                    <KpiCard label="SALDO INICIAL" value={m.saldo_inicial?.real || 0} prevValue={m.saldo_inicial?.orc || 0} icon={Wallet} color="#FF6A22" />
                     <KpiCard label="ENTRADAS (REAL)" value={m.total_entradas?.real || 0} prevValue={m.total_entradas?.orc || 0} icon={ArrowUpRight} color="#22c55e" />
                     <KpiCard label="SAÍDAS (REAL)" value={Math.abs(m.total_saidas?.real || 0)} prevValue={Math.abs(m.total_saidas?.orc || 0)} icon={ArrowDownRight} color="#ef4444" />
+                    <KpiCard label="RESULTADO ATIV." value={m.resultado_ativ?.real || 0} prevValue={m.resultado_ativ?.orc || 0} icon={TrendingUp} color="#3b82f6" />
+                    <KpiCard label="RENDIMENTOS" value={m.rendimentos?.real || 0} prevValue={m.rendimentos?.orc || 0} icon={DollarSign} color="#10b981" />
                     <KpiCard label="GERAÇÃO CAIXA" value={m.geracao_caixa?.real || 0} prevValue={m.geracao_caixa?.orc || 0} icon={Activity} color="#FF6A22" />
+                    <KpiCard label="SALDO FINAL" value={m.saldo_final?.real || 0} prevValue={m.saldo_final?.orc || 0} icon={Wallet} color="#FF6A22" />
                   </>
                 );
               })()
