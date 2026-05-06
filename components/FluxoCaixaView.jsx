@@ -169,23 +169,25 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
                 const m = dados?.fluxo?.mensal?.[currentMonth];
                 const cats = [
-                  { label: 'Matéria Prima', val: Math.abs(m?.materia_prima?.real || 0) },
-                  { label: 'Fretes', val: Math.abs(m?.fretes?.real || 0) },
-                  { label: 'Pessoal', val: Math.abs(m?.pessoal?.real || 0) },
-                  { label: 'Impostos', val: Math.abs(m?.impostos?.real || 0) },
-                  { label: 'Manut. Predial', val: Math.abs(m?.manut_predial?.real || 0) },
-                  { label: 'Desp. Operacionais', val: Math.abs(m?.despesas_op?.real || 0) },
-                  { label: 'Consultorias', val: Math.abs(m?.consultorias?.real || 0) },
-                  { label: 'P&D', val: Math.abs(m?.pd?.real || 0) },
-                  { label: 'Tarifas Bancárias', val: Math.abs(m?.tarifas?.real || 0) },
-                  { label: 'Diretoria', val: Math.abs(m?.diretoria?.real || 0) },
-                  { label: 'Outros Gastos', val: Math.abs(m?.outros_gastos?.real || 0) },
-                  { label: 'Ativ. Financeiros', val: Math.abs(m?.ativ_financeiros?.real || 0) },
-                ].sort((a,b) => b.val - a.val);
+                  { label: 'Matéria Prima', val: m?.materia_prima?.real || 0 },
+                  { label: 'Fretes', val: m?.fretes?.real || 0 },
+                  { label: 'Pessoal', val: m?.pessoal?.real || 0 },
+                  { label: 'Impostos', val: m?.impostos?.real || 0 },
+                  { label: 'Manut. Predial', val: m?.manut_predial?.real || 0 },
+                  { label: 'Desp. Operacionais', val: m?.despesas_op?.real || 0 },
+                  { label: 'Consultorias', val: m?.consultorias?.real || 0 },
+                  { label: 'P&D', val: m?.pd?.real || 0 },
+                  { label: 'Tarifas Bancárias', val: m?.tarifas?.real || 0 },
+                  { label: 'Diretoria', val: m?.diretoria?.real || 0 },
+                  { label: 'Outros Gastos', val: m?.outros_gastos?.real || 0 },
+                  { label: 'Ativ. Financeiros', val: m?.ativ_financeiros?.real || 0 },
+                ].sort((a,b) => Math.abs(b.val) - Math.abs(a.val));
                 return cats.map((c, i) => (
                   <div key={i} style={{ padding: '14.5px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: 18, fontWeight: 700, color: '#ffffff', textTransform: 'capitalize' }}>{c.label}</span>
-                    <span style={{ fontSize: 18, fontWeight: 900, color: t.text, minWidth: 90, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{Math.round(c.val).toLocaleString('pt-BR')}</span>
+                    <span style={{ fontSize: 18, fontWeight: 900, color: t.text, minWidth: 90, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>
+                      {c.val < 0 ? '-' : ''}{Math.abs(Math.round(c.val)).toLocaleString('pt-BR')}
+                    </span>
                   </div>
                 ));
               })()}
