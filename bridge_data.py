@@ -320,7 +320,10 @@ def process_excel():
             def safe_float(val):
                 try:
                     if pd.isna(val) or val == "": return 0.0
-                    return float(val)
+                    if isinstance(val, (int, float)): return float(val)
+                    s = str(val).replace('R$', '').replace('.', '').replace(',', '.').strip()
+                    if s == '-' or s == '': return 0.0
+                    return float(s)
                 except:
                     return 0.0
 

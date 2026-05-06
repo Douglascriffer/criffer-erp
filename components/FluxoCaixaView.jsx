@@ -175,6 +175,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   { label: 'Impostos', val: Math.abs(m?.impostos?.real || 0) },
                   { label: 'Manut. Predial', val: Math.abs(m?.manut_predial?.real || 0) },
                   { label: 'Desp. Operacionais', val: Math.abs(m?.despesas_op?.real || 0) },
+                  { label: 'Consultorias', val: Math.abs(m?.consultorias?.real || 0) },
                   { label: 'P&D', val: Math.abs(m?.pd?.real || 0) },
                   { label: 'Tarifas Bancárias', val: Math.abs(m?.tarifas?.real || 0) },
                   { label: 'Diretoria', val: Math.abs(m?.diretoria?.real || 0) },
@@ -182,7 +183,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   { label: 'Ativ. Financeiros', val: Math.abs(m?.ativ_financeiros?.real || 0) },
                 ].sort((a,b) => b.val - a.val);
                 return cats.map((c, i) => (
-                  <div key={i} style={{ padding: '16.5px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div key={i} style={{ padding: '14.5px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: 18, fontWeight: 700, color: '#ffffff', textTransform: 'capitalize' }}>{c.label}</span>
                     <span style={{ fontSize: 18, fontWeight: 900, color: t.text, minWidth: 90, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{Math.round(c.val).toLocaleString('pt-BR')}</span>
                   </div>
