@@ -130,10 +130,15 @@ export default function DashboardClient() {
       { id:'cc',   label:'Centro de Custo' },
       { id:'metas_orc', label:'Metas' },
     ],
+    fluxo: [
+      { id:'simples', label:'Simplificado' },
+      { id:'detalhe', label:'Detalhado' },
+      { id:'metas_fluxo', label:'Metas' },
+    ],
   }
 
   const activeSubs = SUB_TABS[tab] || []
-  const activeSub  = subTab || (tab === 'desempenho' ? 'vendas' : activeSubs[0]?.id || '')
+  const activeSub  = subTab || (tab === 'desempenho' ? 'vendas' : tab === 'fluxo' ? 'simples' : activeSubs[0]?.id || '')
 
   function goTab(id) { router.push(`/dashboard?tab=${id}`) }
   function goSub(id) { router.push(`/dashboard?tab=${tab}&sub=${id}`) }
@@ -582,7 +587,12 @@ export default function DashboardClient() {
 
           {/* ABA FLUXO DE CAIXA */}
           {tab === 'fluxo' && (
-            <FluxoCaixaView dados={data} mes={filters.mes} darkMode={theme === 'dark'} />
+            <FluxoCaixaView 
+              dados={data} 
+              mes={filters.mes} 
+              darkMode={theme === 'dark'} 
+              viewType={activeSub}
+            />
           )}
         </div>
       </main>
