@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
-  ResponsiveContainer, Line, ComposedChart
+  ResponsiveContainer, Line, ComposedChart, LabelList, Legend
 } from 'recharts';
+import { Activity } from 'lucide-react';
 
 const fmt = (v) => {
   if (!v && v !== 0) return 'R$ 0';
@@ -31,14 +32,10 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
   const chartData = useMemo(() => {
     if (!dados?.fluxo?.mensal) return [];
     return Object.entries(dados.fluxo.mensal).map(([m, val]) => ({
-      name: mesesLabels[parseInt(m) - 1],
+      name: mesesLabels[parseInt(m) - 1].toUpperCase(),
       monthNum: parseInt(m),
-      entradas: val.total_entradas?.real || 0,
-      entradasOrc: val.total_entradas?.orc || 0,
-      saidas: Math.abs(val.total_saidas?.real || 0),
-      saidasOrc: Math.abs(val.total_saidas?.orc || 0),
-      resultado: (val.total_entradas?.real || 0) + (val.total_saidas?.real || 0),
-      saldo: val.saldo_final?.real || 0,
+      saldoInicial: val.saldo_inicial?.real || 0,
+      saldoFinal: val.saldo_final?.real || 0,
       hasData: (val.total_entradas?.real !== 0 || val.total_saidas?.real !== 0)
     })).filter(d => d.monthNum <= (mes === 'all' ? 12 : parseInt(mes)));
   }, [dados, mes]);
@@ -50,7 +47,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
       {viewType === 'simples' && (
         <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 1.2fr', gap: 20 }}>
           
-          {/* Gráfico de Evolução */}
+          {/* Gráfico de Evolução do Saldo */}
           <div style={{ 
             background: t.card, 
             borderRadius: 12, 
@@ -59,41 +56,37 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             boxShadow: '0 4px 20px rgba(0,0,0,0.05)'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-              <div>
-                <h3 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 0.5 }}>Evolução de Caixa</h3>
-                <p style={{ fontSize: 13, color: t.textMuted, fontWeight: 500 }}>Movimentação Mensal Consolidada (Realizado)</p>
-              </div>
-              <div style={{ display: 'flex', gap: 20 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <div style={{ width: 12, height: 12, background: t.green, borderRadius: 3 }} />
-                  <span style={{ fontSize: 11, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase' }}>ENTRADAS</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <div style={{ width: 12, height: 12, background: t.red, borderRadius: 3 }} />
-                  <span style={{ fontSize: 11, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase' }}>SAÍDAS</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <div style={{ width: 20, height: 3, background: t.accent, borderRadius: 2 }} />
-                  <span style={{ fontSize: 11, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase' }}>SALDO</span>
-                </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <Activity size={20} color={t.accent} />
+                <h3 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 0.5, margin: 0 }}>Evolução do Saldo</h3>
               </div>
             </div>
             
             <div style={{ height: 330, width: '100%' }}>
               <ResponsiveContainer width="100%" height="100%">
-                <ComposedChart data={chartData}>
+                <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={t.border} />
-                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: t.textMuted, fontSize: 12, fontWeight: 500 }} dy={10} />
-                  <YAxis axisLine={false} tickLine={false} tick={{ fill: t.textMuted, fontSize: 11, fontWeight: 500 }} tickFormatter={(v) => `R$ ${(v/1000).toFixed(0)}k`} />
+                  <XAxis 
+                    dataKey="name" 
+                    axisLine={false} 
+                    tickLine={false} 
+                    tick={{ fill: t.textMuted, fontSize: 11, fontWeight: 700 }} 
+                    dy={10} 
+                  />
+                  <YAxis hide />
                   <Tooltip 
                     contentStyle={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 12, boxShadow: '0 8px 30px rgba(0,0,0,0.1)' }} 
                     itemStyle={{ fontSize: 13, fontWeight: 600 }}
                     formatter={(v) => [fmt(v), '']} 
                   />
-                  <Bar dataKey="entradas" fill={t.green} barSize={32} radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="saidas" fill={t.red} barSize={32} radius={[4, 4, 0, 0]} />
-                  <Line type="monotone" dataKey="saldo" stroke={t.accent} strokeWidth={4} dot={{ r: 5, fill: t.accent, strokeWidth: 2, stroke: t.card }} />
-                </ComposedChart>
+                  <Legend verticalAlign="bottom" height={36} iconType="rect" />
+                  <Bar dataKey="saldoInicial" name="SALDO INICIAL" fill="#9ca3af" barSize={35} radius={[2, 2, 0, 0]}>
+                    <LabelList dataKey="saldoInicial" position="top" formatter={(v) => fmt(v)} style={{ fontSize: 10, fontWeight: 700, fill: t.textMuted }} />
+                  </Bar>
+                  <Bar dataKey="saldoFinal" name="SALDO FINAL" fill={t.accent} barSize={35} radius={[2, 2, 0, 0]}>
+                    <LabelList dataKey="saldoFinal" position="top" formatter={(v) => fmt(v)} style={{ fontSize: 10, fontWeight: 700, fill: t.textMuted }} />
+                  </Bar>
+                </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
