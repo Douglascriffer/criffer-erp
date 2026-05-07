@@ -98,9 +98,11 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   {(() => {
                     const metaValue = 11000000;
                     const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
-                    const saldoFinal = dados?.fluxo?.mensal?.[currentMonth]?.saldo_final?.real || 0;
+                    const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
+                    const saldoFinal = m.saldo_final?.real || 0;
                     const varAcc = saldoFinal - metaValue;
                     const pctDesvio = metaValue !== 0 ? (varAcc / metaValue * 100) : 0;
+                    const isGoodAcc = varAcc >= 0;
                     
                     return (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -108,9 +110,9 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                           <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Meta 2026</span>
                           <span style={{ fontSize: 22, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(metaValue).toLocaleString('pt-BR')}</span>
                         </div>
-                        <div style={{ border: `1.5px solid ${t.red}`, background: 'rgba(239,68,68,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ border: `1.5px solid ${isGoodAcc ? t.green : t.red}`, background: isGoodAcc ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Variação Acumulada</span>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.red, fontVariantNumeric: 'tabular-nums' }}>{varAcc < 0 ? '-' : ''}{Math.abs(Math.round(varAcc)).toLocaleString('pt-BR')}</span>
+                          <span style={{ fontSize: 22, fontWeight: 900, color: isGoodAcc ? t.green : t.red, fontVariantNumeric: 'tabular-nums' }}>{varAcc < 0 ? '-' : '+'}{Math.abs(Math.round(varAcc)).toLocaleString('pt-BR')}</span>
                         </div>
                         <div style={{ border: `1.5px solid ${t.accent}`, background: 'rgba(255,106,34,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Percentual de Desvio</span>
@@ -130,10 +132,11 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   
                   {(() => {
                     const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
-                    const m = dados?.fluxo?.mensal?.[currentMonth] || {};
-                    const saldoIni2026 = dados?.fluxo?.mensal?.[1]?.saldo_inicial?.real || 0;
+                    const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
+                    const saldoIni2026 = dados?.fluxo?.mensal?.[String(1)]?.saldo_inicial?.real || dados?.fluxo?.mensal?.[1]?.saldo_inicial?.real || 0;
                     const saldoFin = m.saldo_final?.real || 0;
                     const varPer = saldoFin - saldoIni2026;
+                    const isGoodPer = varPer >= 0;
                     
                     return (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -145,9 +148,9 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                           <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Final {mesesLabels[currentMonth-1]}/26</span>
                           <span style={{ fontSize: 22, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(saldoFin).toLocaleString('pt-BR')}</span>
                         </div>
-                        <div style={{ border: `1.5px solid ${t.red}`, background: 'rgba(239,68,68,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ border: `1.5px solid ${isGoodPer ? t.green : t.red}`, background: isGoodPer ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Variação Período</span>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.red, fontVariantNumeric: 'tabular-nums' }}>{varPer < 0 ? '-' : ''}{Math.abs(Math.round(varPer)).toLocaleString('pt-BR')}</span>
+                          <span style={{ fontSize: 22, fontWeight: 900, color: isGoodPer ? t.green : t.red, fontVariantNumeric: 'tabular-nums' }}>{varPer < 0 ? '-' : '+'}{Math.abs(Math.round(varPer)).toLocaleString('pt-BR')}</span>
                         </div>
                       </div>
                     );
