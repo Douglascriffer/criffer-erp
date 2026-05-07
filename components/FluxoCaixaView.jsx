@@ -30,9 +30,9 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
 
   const mesesLabels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 
-  // Trava de Segurança: Apenas adm, juliano e faiblan vêem a composição de saídas
+  // Trava de Segurança: Apenas adm, juliano, faiblan e financeiro vêem a composição de saídas
   const user = typeof window !== 'undefined' ? localStorage.getItem('criffer_user')?.toLowerCase() : '';
-  const hasFullAccess = ['adm', 'juliano', 'faiblan'].includes(user);
+  const hasFullAccess = ['adm', 'juliano', 'faiblan', 'financeiro'].includes(user);
 
   const chartData = useMemo(() => {
     if (!dados?.fluxo?.mensal) return [];
