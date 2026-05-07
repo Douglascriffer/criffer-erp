@@ -273,14 +273,14 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     <div style={{ 
                       background: '#FF6A22', 
                       color: '#ffffff', 
-                      padding: '6px 15px', 
+                      padding: '4px 10px', 
                       borderTopRightRadius: 15,
                       borderBottomLeftRadius: 15,
-                      fontSize: 18, 
+                      fontSize: 16, 
                       fontWeight: 900,
                       boxShadow: '0 4px 15px rgba(255,106,34,0.3)',
                       display: 'flex',
-                      gap: 6
+                      gap: 4
                     }}>
                       <span>R$ {fmt(Math.abs(saldoFinal))}</span>
                     </div>
