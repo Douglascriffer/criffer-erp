@@ -214,43 +214,43 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
         </div>
       )}
 
-      {/* ── VISÃO ORÇAMENTO CAIXA (Referência Premium) ── */}
+      {/* ── VISÃO ORÇAMENTO CAIXA (Referência Premium Ajustada) ── */}
       {viewType === 'orcamento_caixa' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 30, position: 'relative' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20, position: 'relative' }}>
           
-          {/* Banner de Resultado Superior Direito */}
+          {/* Banner de Resultado Superior Direito - Compacto */}
           {(() => {
             const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
             const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
             const saldoFinal = m.saldo_final?.real || 0;
             const isPos = saldoFinal >= 0;
             return (
-              <div style={{ position: 'absolute', top: -100, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+              <div style={{ position: 'absolute', top: -75, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', zIndex: 10 }}>
                 <div style={{ 
                   background: '#FF6A22', 
                   color: '#ffffff', 
-                  padding: '10px 40px', 
-                  borderRadius: 8, 
-                  fontSize: 32, 
+                  padding: '6px 24px', 
+                  borderRadius: 6, 
+                  fontSize: 22, 
                   fontWeight: 900,
-                  boxShadow: '0 8px 32px rgba(255,106,34,0.3)'
+                  boxShadow: '0 4px 20px rgba(255,106,34,0.2)'
                 }}>
                   {fmt(Math.abs(saldoFinal))}
                 </div>
-                <div style={{ color: isPos ? t.green : t.red, fontSize: 18, fontWeight: 900, marginTop: 10, letterSpacing: 1 }}>
+                <div style={{ color: isPos ? t.green : t.red, fontSize: 13, fontWeight: 900, marginTop: 4, letterSpacing: 1 }}>
                   {isPos ? '↑ POSITIVO' : '↓ NEGATIVO'}
                 </div>
               </div>
             );
           })()}
 
-          <div style={{ display: 'grid', gridTemplateColumns: '400px 1fr', gap: 30, marginTop: 20 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 20, marginTop: 0 }}>
             
             {/* Coluna Esquerda: Resumo Operacional */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-                <Activity size={24} color={t.accent} />
-                <h3 style={{ fontSize: 22, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Resumo Operacional</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
+                <Activity size={18} color={t.accent} />
+                <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Resumo Operacional</h3>
               </div>
 
               {(() => {
@@ -265,19 +265,19 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
 
                 return cards.map((c, i) => (
                   <div key={i} style={{ 
-                    background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)', 
-                    borderRadius: 16, 
-                    padding: '24px 30px', 
-                    borderLeft: `6px solid ${c.color}`,
+                    background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)', 
+                    borderRadius: 12, 
+                    padding: '16px 20px', 
+                    borderLeft: `4px solid ${c.color}`,
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: 8
+                    gap: 4
                   }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: 16, fontWeight: 600, color: t.textMuted }}>{c.label}</span>
-                      <c.icon size={18} color={c.color} />
+                      <span style={{ fontSize: 13, fontWeight: 600, color: t.textMuted }}>{c.label}</span>
+                      <c.icon size={14} color={c.color} />
                     </div>
-                    <span style={{ fontSize: 28, fontWeight: 900, color: c.color }}>
+                    <span style={{ fontSize: 20, fontWeight: 900, color: c.color }}>
                       {c.val < 0 ? `(${fmt(Math.abs(c.val))})` : fmt(c.val)}
                     </span>
                   </div>
@@ -286,60 +286,65 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             </div>
 
             {/* Coluna Direita: Detalhamento de Gastos */}
-            <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: '40px', boxShadow: '0 12px 48px rgba(0,0,0,0.1)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 32 }}>
-                <Target size={24} color={t.accent} />
-                <h3 style={{ fontSize: 22, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Detalhamento de Gastos</h3>
+            <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: '24px 30px', boxShadow: '0 4px 24px rgba(0,0,0,0.05)', height: 710, display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
+                <Target size={20} color={t.accent} />
+                <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Detalhamento de Gastos</h3>
               </div>
 
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                  <tr style={{ borderBottom: `2px solid ${t.accent}` }}>
-                    <th style={{ padding: '12px 10px', textAlign: 'left', fontSize: 16, fontWeight: 900, color: t.accent }}>Categoria</th>
-                    <th style={{ padding: '12px 10px', textAlign: 'right', fontSize: 16, fontWeight: 900, color: t.accent }}>Orçado</th>
-                    <th style={{ padding: '12px 10px', textAlign: 'right', fontSize: 16, fontWeight: 900, color: t.accent }}>Realizado</th>
-                    <th style={{ padding: '12px 10px', textAlign: 'right', fontSize: 16, fontWeight: 900, color: t.accent }}>Δ</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {(() => {
-                    const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
-                    const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
-                    
-                    const rows = [
-                      { label: 'Matéria Prima/Prod', real: m.materia_prima?.real, orc: m.materia_prima?.orc },
-                      { label: 'Fretes', real: m.fretes?.real, orc: m.fretes?.orc },
-                      { label: 'Gastos com Pessoal', real: m.pessoal?.real, orc: m.pessoal?.orc },
-                      { label: 'Impostos/Taxas', real: m.impostos?.real, orc: m.impostos?.orc },
-                      { label: 'Manutenção Predial', real: m.manut_predial?.real, orc: m.manut_predial?.orc },
-                      { label: 'Despesas Operacionais', real: m.despesas_op?.real, orc: m.despesas_op?.orc },
-                      { label: 'Consultoria', real: m.consultorias?.real, orc: m.consultorias?.orc },
-                      { label: 'P&D', real: m.pd?.real, orc: m.pd?.orc },
-                      { label: 'Tarifas Bancárias', real: m.tarifas?.real, orc: m.tarifas?.orc },
-                    ];
+              <div style={{ flex: 1, overflowY: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                  <thead>
+                    <tr style={{ borderBottom: `2px solid ${t.accent}` }}>
+                      <th style={{ padding: '10px 5px', textAlign: 'left', fontSize: 14, fontWeight: 900, color: t.accent }}>Categoria</th>
+                      <th style={{ padding: '10px 5px', textAlign: 'right', fontSize: 14, fontWeight: 900, color: t.accent }}>Orçado</th>
+                      <th style={{ padding: '10px 5px', textAlign: 'right', fontSize: 14, fontWeight: 900, color: t.accent }}>Realizado</th>
+                      <th style={{ padding: '10px 5px', textAlign: 'right', fontSize: 14, fontWeight: 900, color: t.accent }}>Δ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(() => {
+                      const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
+                      const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
+                      
+                      const rows = [
+                        { label: 'Matéria Prima/Prod', real: m.materia_prima?.real, orc: m.materia_prima?.orc },
+                        { label: 'Fretes', real: m.fretes?.real, orc: m.fretes?.orc },
+                        { label: 'Gastos com Pessoal', real: m.pessoal?.real, orc: m.pessoal?.orc },
+                        { label: 'Impostos/Taxas', real: m.impostos?.real, orc: m.impostos?.orc },
+                        { label: 'Manutenção Predial', real: m.manut_predial?.real, orc: m.manut_predial?.orc },
+                        { label: 'Despesas Operacionais', real: m.despesas_op?.real, orc: m.despesas_op?.orc },
+                        { label: 'Consultoria', real: m.consultorias?.real, orc: m.consultorias?.orc },
+                        { label: 'P&D', real: m.pd?.real, orc: m.pd?.orc },
+                        { label: 'Tarifas Bancárias', real: m.tarifas?.real, orc: m.tarifas?.orc },
+                        { label: 'Diretoria', real: m.diretoria?.real, orc: m.diretoria?.orc },
+                        { label: 'Outros Gastos', real: m.outros_gastos?.real, orc: m.outros_gastos?.orc },
+                        { label: 'Atividades Financeiras', real: m.ativ_financeiros?.real, orc: m.ativ_financeiros?.orc },
+                      ];
 
-                    return rows.map((row, i) => {
-                      const diff = Math.abs(row.orc || 0) - Math.abs(row.real || 0); // Economia = Orçado - Realizado
-                      const isSaving = diff >= 0;
+                      return rows.map((row, i) => {
+                        const diff = Math.abs(row.orc || 0) - Math.abs(row.real || 0);
+                        const isSaving = diff >= 0;
 
-                      return (
-                        <tr key={i} style={{ borderBottom: `1px solid ${t.border}` }}>
-                          <td style={{ padding: '16px 10px', fontSize: 15, fontWeight: 700, color: t.text }}>{row.label}</td>
-                          <td style={{ padding: '16px 10px', textAlign: 'right', fontSize: 15, color: t.text }}>
-                            {row.orc < 0 ? `(${fmt(Math.abs(row.orc))})` : fmt(row.orc)}
-                          </td>
-                          <td style={{ padding: '16px 10px', textAlign: 'right', fontSize: 15, color: t.text }}>
-                            {row.real < 0 ? `(${fmt(Math.abs(row.real))})` : fmt(row.real)}
-                          </td>
-                          <td style={{ padding: '16px 10px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: isSaving ? t.green : t.red }}>
-                            {diff < 0 ? `(${fmt(Math.abs(diff))})` : fmt(diff)}
-                          </td>
-                        </tr>
-                      );
-                    });
-                  })()}
-                </tbody>
-              </table>
+                        return (
+                          <tr key={i} style={{ borderBottom: `1px solid ${t.border}` }}>
+                            <td style={{ padding: '12px 5px', fontSize: 13, fontWeight: 700, color: t.text }}>{row.label}</td>
+                            <td style={{ padding: '12px 5px', textAlign: 'right', fontSize: 13, color: t.text }}>
+                              {row.orc < 0 ? `(${fmt(Math.abs(row.orc))})` : fmt(row.orc)}
+                            </td>
+                            <td style={{ padding: '12px 5px', textAlign: 'right', fontSize: 13, color: t.text }}>
+                              {row.real < 0 ? `(${fmt(Math.abs(row.real))})` : fmt(row.real)}
+                            </td>
+                            <td style={{ padding: '12px 5px', textAlign: 'right', fontSize: 13, fontWeight: 900, color: isSaving ? t.green : t.red }}>
+                              {diff < 0 ? `(${fmt(Math.abs(diff))})` : fmt(diff)}
+                            </td>
+                          </tr>
+                        );
+                      });
+                    })()}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
