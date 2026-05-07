@@ -324,6 +324,7 @@ export default function CapaPage() {
       status: 'active',
       badge: 'Ativo',
       accentColor: '#FF6A22',
+      img: '/faturamento_3d.png'
     },
     {
       id: 'orcamento',
@@ -335,6 +336,7 @@ export default function CapaPage() {
       status: 'active',
       badge: 'Ativo',
       accentColor: '#22c55e',
+      img: '/orcamento_3d.png'
     },
     {
       id: 'fluxo',
@@ -346,6 +348,7 @@ export default function CapaPage() {
       status: 'active',
       badge: 'Ativo',
       accentColor: '#3b82f6',
+      img: '/fluxocaixa_3d.png'
     },
   ]
 
@@ -732,22 +735,26 @@ export default function CapaPage() {
                   </div>
                 </div>
 
-                {/* ── Área de Animação Viva ── */}
                 <div
                   className="cf-anim-area cf-icon-wrap"
                   style={{
-                    background: theme === 'dark'
-                      ? `linear-gradient(160deg, rgba(${m.accentColor === '#FF6A22' ? '236,110,42' : m.accentColor === '#22c55e' ? '34,197,94' : m.accentColor === '#3b82f6' ? '59,130,246' : '239,68,68'},0.10) 0%, rgba(0,0,0,0.30) 100%)`
-                      : theme === 'light'
-                      ? `linear-gradient(160deg, rgba(${m.accentColor === '#FF6A22' ? '236,110,42' : m.accentColor === '#22c55e' ? '34,197,94' : m.accentColor === '#3b82f6' ? '59,130,246' : '239,68,68'},0.08) 0%, rgba(255,255,255,0.60) 100%)`
-                      : 'rgba(255,255,255,0.08)',
-                    border: `1px solid ${isHov ? borderColor + '55' : t.iconBorder}`,
-                    boxShadow: isHov ? `0 14px 44px ${m.accentColor}30` : 'none',
-                    transition: 'background 0.5s, border-color 0.4s, box-shadow 0.4s',
-                    minHeight: 'clamp(150px, 22vh, 320px)',
+                    background: 'transparent',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transition: 'transform 0.5s ease',
+                    transform: isHov ? 'scale(1.15) translateY(-5px)' : 'scale(1)',
+                    minHeight: 'clamp(180px, 25vh, 320px)',
                   }}
                 >
-                  <AnimComponent color={t.text}/>
+                  <div style={{ position: 'relative', width: '90%', height: '90%', filter: isHov ? 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))' : 'none', transition: 'filter 0.4s' }}>
+                    <Image 
+                      src={m.img} 
+                      alt={m.label} 
+                      fill 
+                      style={{ objectFit: 'contain', animation: 'iconFloat 4s ease-in-out infinite' }} 
+                    />
+                  </div>
                 </div>
 
                 {/* Conteúdo textual — flex: 1 garante que o rodapé alinhe no final */}
