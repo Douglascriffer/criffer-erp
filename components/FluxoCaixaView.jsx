@@ -52,7 +52,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             
             {/* KPIs SUPERIORES */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 10 }}>
               {(() => {
                 const curMes = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
                 const m = dados?.fluxo?.mensal?.[String(curMes)] || dados?.fluxo?.mensal?.[curMes] || {};
@@ -61,8 +61,6 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     <KpiCard label="SALDO INICIAL" value={m.saldo_inicial?.real || 0} prevValue={m.saldo_inicial?.orc || 0} icon={Wallet} color="#FF6A22" hideDiff darkMode={darkMode} />
                     <KpiCard label="ENTRADAS" value={m.total_entradas?.real || 0} prevValue={m.total_entradas?.orc || 0} icon={ArrowUpRight} color="#22c55e" hideDiff darkMode={darkMode} />
                     <KpiCard label="SAÍDAS" value={Math.abs(m.total_saidas?.real || 0)} prevValue={Math.abs(m.total_saidas?.orc || 0)} icon={ArrowDownRight} color="#ef4444" hideDiff darkMode={darkMode} />
-                    <KpiCard label="RESULTADO ATIV." value={m.ativ_financeiros?.real || 0} prevValue={m.ativ_financeiros?.orc || 0} icon={Activity} color="#3b82f6" hideDiff darkMode={darkMode} />
-                    <KpiCard label="RENDIMENTOS" value={m.rend_aplic?.real || 0} prevValue={m.rend_aplic?.orc || 0} icon={TrendingUp} color="#10b981" hideDiff darkMode={darkMode} />
                     <KpiCard label="GERAÇÃO CAIXA" value={m.geracao_caixa?.real || 0} prevValue={m.geracao_caixa?.orc || 0} icon={Activity} color="#FF6A22" hideDiff darkMode={darkMode} />
                     <KpiCard label="SALDO FINAL" value={m.saldo_final?.real || 0} prevValue={m.saldo_final?.orc || 0} icon={Wallet} color="#FF6A22" hideDiff darkMode={darkMode} />
                   </>

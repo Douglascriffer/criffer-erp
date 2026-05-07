@@ -328,8 +328,8 @@ def process_excel():
                     return 0.0
 
             for m in range(1, 13):
-                col_orc = 1 + (m * 3)
-                col_real = 2 + (m * 3)
+                col_orc = (m - 1) * 3 + 1
+                col_real = (m - 1) * 3 + 2
                 
                 if col_real < len(df_fluxo.columns):
                     month_data = {}
