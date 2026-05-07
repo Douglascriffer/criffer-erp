@@ -459,28 +459,29 @@ export default function CapaPage() {
         /* ── Título do card ── */
         .cf-card-title {
           font-family: 'Gotham', sans-serif;
-          font-size: clamp(13px, 1vw, 16px);
+          font-size: clamp(18px, 1.5vw, 22px);
           font-weight: 700;
-          letter-spacing: 0.5px;
+          letter-spacing: 1px;
           line-height: 1.2;
           overflow-wrap: break-word;
           word-break: break-word;
         }
         .cf-card-desc {
           font-family: 'Gotham', sans-serif;
-          font-size: clamp(13px, 1.2vw, 16px);
+          font-size: clamp(13.5px, 1vw, 15px);
           line-height: 1.6;
-          font-weight: 500;
-          margin-top: 8px;
-          flex-grow: 1; /* Garante que o texto ocupe o espaço e empurre o rodapé */
+          font-weight: 400;
+          margin-top: 10px;
+          flex-grow: 1;
+          opacity: 0.85;
         }
 
         /* ── Título da página ── */
         .cf-page-title {
           font-family: 'Gotham', sans-serif;
-          font-size: clamp(32px, 4vw, 60px);
-          font-weight: 700;
-          letter-spacing: 2px;
+          font-size: clamp(28px, 3.5vw, 48px);
+          font-weight: 800;
+          letter-spacing: 2.5px;
           line-height: 1.1;
         }
 
