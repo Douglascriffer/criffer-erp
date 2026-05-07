@@ -46,7 +46,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
     text: darkMode ? '#ffffff' : '#000000',
     textSub: darkMode ? '#cccccc' : '#666666',
     border: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
-    card: darkMode ? '#2a2a3a' : '#f5f5f5',
+    card: darkMode ? 'rgba(255,255,255,0.08)' : '#ffffff',
     accent: '#FF6A22'
   }
 
