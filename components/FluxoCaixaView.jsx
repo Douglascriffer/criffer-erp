@@ -3,14 +3,14 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
   ResponsiveContainer
 } from 'recharts';
-import { Target, TrendingUp, Wallet, ArrowUpRight, ArrowDownRight, Activity } from 'lucide-react';
+import { 
+  Target, TrendingUp, Wallet, ArrowUpRight, ArrowDownRight, Activity, Calendar, List 
+} from 'lucide-react';
 import KpiCard from './KpiCard';
 
 const fmt = (v) => {
-  if (!v && v !== 0) return 'R$ 0';
+  if (!v && v !== 0) return '0';
   return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
     maximumFractionDigits: 0
   }).format(v);
 };
