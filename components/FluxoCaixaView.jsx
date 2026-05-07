@@ -236,13 +236,13 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                       <span style={{ fontSize: 13, fontWeight: 700, color: t.text }}>Resultado do Mês</span>
                     </div>
                     <div style={{ 
-                      background: '#FF6A22', 
+                      background: isPos ? t.green : t.red, 
                       color: '#ffffff', 
                       padding: '10px 25px', 
                       borderRadius: 8, 
                       fontSize: 28, 
                       fontWeight: 900,
-                      boxShadow: '0 8px 25px rgba(255,106,34,0.3)',
+                      boxShadow: `0 8px 25px ${isPos ? 'rgba(34,197,94,0.3)' : 'rgba(239,68,68,0.3)'}`,
                       width: '100%',
                       textAlign: 'center'
                     }}>
