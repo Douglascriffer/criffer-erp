@@ -92,7 +92,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 20, padding: 32, border: `1px solid ${t.border}`, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 24 }}>
                     <Target size={22} color={t.accent} />
-                    <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Meta Anual 2026</span>
+                    <span style={{ fontSize: 25, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Meta Anual 2026</span>
                   </div>
                   
                   {(() => {
@@ -105,18 +105,18 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     const isGoodAcc = varAcc >= 0;
                     
                     return (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                        <div style={{ background: 'rgba(0,0,0,0.4)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Meta 2026</span>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(metaValue).toLocaleString('pt-BR')}</span>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                        <div style={{ background: 'rgba(0,0,0,0.4)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Meta 2026</span>
+                          <span style={{ fontSize: 30, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(metaValue).toLocaleString('pt-BR')}</span>
                         </div>
-                        <div style={{ border: `1.5px solid ${isGoodAcc ? t.green : t.red}`, background: isGoodAcc ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Variação Acumulada</span>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: isGoodAcc ? t.green : t.red, fontVariantNumeric: 'tabular-nums' }}>{varAcc < 0 ? '-' : '+'}{Math.abs(Math.round(varAcc)).toLocaleString('pt-BR')}</span>
+                        <div style={{ border: `1.5px solid ${isGoodAcc ? t.green : t.red}`, background: isGoodAcc ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Variação Acumulada</span>
+                          <span style={{ fontSize: 30, fontWeight: 900, color: isGoodAcc ? t.green : t.red, fontVariantNumeric: 'tabular-nums' }}>{varAcc < 0 ? '-' : '+'}{Math.abs(Math.round(varAcc)).toLocaleString('pt-BR')}</span>
                         </div>
-                        <div style={{ border: `1.5px solid ${t.accent}`, background: 'rgba(255,106,34,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Percentual de Desvio</span>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.accent, fontVariantNumeric: 'tabular-nums' }}>{pctDesvio.toFixed(2)}%</span>
+                        <div style={{ border: `1.5px solid ${t.accent}`, background: 'rgba(255,106,34,0.1)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Percentual de Desvio</span>
+                          <span style={{ fontSize: 30, fontWeight: 900, color: t.accent, fontVariantNumeric: 'tabular-nums' }}>{pctDesvio.toFixed(2)}%</span>
                         </div>
                       </div>
                     );
@@ -127,7 +127,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 20, padding: 32, border: `1px solid ${t.border}`, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 24 }}>
                     <TrendingUp size={22} color={t.accent} />
-                    <span style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Posição Atual</span>
+                    <span style={{ fontSize: 25, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Posição Atual</span>
                   </div>
                   
                   {(() => {
@@ -139,18 +139,18 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     const isGoodPer = varPer >= 0;
                     
                     return (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                        <div style={{ background: 'rgba(0,0,0,0.4)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Inicial 2026</span>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(saldoIni2026).toLocaleString('pt-BR')}</span>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                        <div style={{ background: 'rgba(0,0,0,0.4)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Inicial 2026</span>
+                          <span style={{ fontSize: 30, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(saldoIni2026).toLocaleString('pt-BR')}</span>
                         </div>
-                        <div style={{ background: 'rgba(0,0,0,0.4)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Final {mesesLabels[currentMonth-1]}/26</span>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(saldoFin).toLocaleString('pt-BR')}</span>
+                        <div style={{ background: 'rgba(0,0,0,0.4)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Final {mesesLabels[currentMonth-1]}/26</span>
+                          <span style={{ fontSize: 30, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(saldoFin).toLocaleString('pt-BR')}</span>
                         </div>
-                        <div style={{ border: `1.5px solid ${isGoodPer ? t.green : t.red}`, background: isGoodPer ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)', padding: '16px 24px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontSize: 13, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Variação Período</span>
-                          <span style={{ fontSize: 22, fontWeight: 900, color: isGoodPer ? t.green : t.red, fontVariantNumeric: 'tabular-nums' }}>{varPer < 0 ? '-' : '+'}{Math.abs(Math.round(varPer)).toLocaleString('pt-BR')}</span>
+                        <div style={{ border: `1.5px solid ${isGoodPer ? t.green : t.red}`, background: isGoodPer ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Variação Período</span>
+                          <span style={{ fontSize: 30, fontWeight: 900, color: isGoodPer ? t.green : t.red, fontVariantNumeric: 'tabular-nums' }}>{varPer < 0 ? '-' : '+'}{Math.abs(Math.round(varPer)).toLocaleString('pt-BR')}</span>
                         </div>
                       </div>
                     );
