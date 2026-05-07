@@ -225,7 +225,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             const saldoFinal = m.saldo_final?.real || 0;
             const isPos = saldoFinal >= 0;
             return (
-              <div style={{ position: 'absolute', top: -75, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', zIndex: 10 }}>
+              <div style={{ position: 'absolute', top: -45, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', zIndex: 10 }}>
                 <div style={{ 
                   background: '#FF6A22', 
                   color: '#ffffff', 
