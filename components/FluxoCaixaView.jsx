@@ -221,10 +221,6 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
           {/* Header Superior */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <div style={{ width: 30, height: 3, background: t.accent, borderRadius: 2 }}></div>
-                <span style={{ fontSize: 14, fontWeight: 900, color: t.accent, textTransform: 'uppercase', letterSpacing: 1.5 }}>Movimentação Operacional</span>
-              </div>
               <h1 style={{ fontSize: 36, fontWeight: 900, color: t.text, margin: '5px 0 0 0', textTransform: 'uppercase' }}>
                 FLUXO DE CAIXA - {mes === 'all' ? 'ANO 2026' : chartData.find(d => String(d.monthNum) === String(mes))?.month || 'MÊS'}
               </h1>
