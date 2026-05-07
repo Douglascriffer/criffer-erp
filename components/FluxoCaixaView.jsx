@@ -52,15 +52,17 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             
             {/* KPIs SUPERIORES */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 10 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8 }}>
               {(() => {
                 const curMes = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
-                const m = dados?.fluxo?.mensal?.[curMes] || {};
+                const m = dados?.fluxo?.mensal?.[String(curMes)] || dados?.fluxo?.mensal?.[curMes] || {};
                 return (
                   <>
                     <KpiCard label="SALDO INICIAL" value={m.saldo_inicial?.real || 0} prevValue={m.saldo_inicial?.orc || 0} icon={Wallet} color="#FF6A22" hideDiff darkMode={darkMode} />
                     <KpiCard label="ENTRADAS" value={m.total_entradas?.real || 0} prevValue={m.total_entradas?.orc || 0} icon={ArrowUpRight} color="#22c55e" hideDiff darkMode={darkMode} />
                     <KpiCard label="SAÍDAS" value={Math.abs(m.total_saidas?.real || 0)} prevValue={Math.abs(m.total_saidas?.orc || 0)} icon={ArrowDownRight} color="#ef4444" hideDiff darkMode={darkMode} />
+                    <KpiCard label="RESULTADO ATIV." value={m.ativ_financeiros?.real || 0} prevValue={m.ativ_financeiros?.orc || 0} icon={Activity} color="#3b82f6" hideDiff darkMode={darkMode} />
+                    <KpiCard label="RENDIMENTOS" value={m.rend_aplic?.real || 0} prevValue={m.rend_aplic?.orc || 0} icon={TrendingUp} color="#10b981" hideDiff darkMode={darkMode} />
                     <KpiCard label="GERAÇÃO CAIXA" value={m.geracao_caixa?.real || 0} prevValue={m.geracao_caixa?.orc || 0} icon={Activity} color="#FF6A22" hideDiff darkMode={darkMode} />
                     <KpiCard label="SALDO FINAL" value={m.saldo_final?.real || 0} prevValue={m.saldo_final?.orc || 0} icon={Wallet} color="#FF6A22" hideDiff darkMode={darkMode} />
                   </>
@@ -167,7 +169,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             <div style={{ flex: 1, overflow: 'hidden' }}>
               {(() => {
                 const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
-                const m = dados?.fluxo?.mensal?.[currentMonth];
+                const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth];
                 const cats = [
                   { label: 'Matéria Prima', val: m?.materia_prima?.real || 0 },
                   { label: 'Fretes', val: m?.fretes?.real || 0 },
@@ -218,13 +220,12 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
               <tbody>
                 {(() => {
                   const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
-                  const m = dados?.fluxo?.mensal?.[currentMonth] || {};
+                  const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
                   
                   const rows = [
                     { label: 'ENTRADAS OPERACIONAIS', isHeader: true },
-                    { label: 'Vendas', real: m.vendas?.real, orc: m.vendas?.orc },
-                    { label: 'Outros Recebíveis', real: m.outros_recebiveis?.real, orc: m.outros_recebiveis?.orc },
-                    { label: 'TOTAL ENTRADAS', real: m.total_entradas?.real, orc: m.total_entradas?.orc, isTotal: true },
+                    { label: 'Total de Entradas', real: m.total_entradas?.real, orc: m.total_entradas?.orc, isTotal: true },
+                    
                     { label: 'SAÍDAS OPERACIONAIS', isHeader: true },
                     { label: 'Matéria Prima', real: m.materia_prima?.real, orc: m.materia_prima?.orc },
                     { label: 'Fretes', real: m.fretes?.real, orc: m.fretes?.orc },
@@ -235,11 +236,15 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     { label: 'Consultorias', real: m.consultorias?.real, orc: m.consultorias?.orc },
                     { label: 'P&D', real: m.pd?.real, orc: m.pd?.orc },
                     { label: 'Tarifas Bancárias', real: m.tarifas?.real, orc: m.tarifas?.orc },
-                    { label: 'TOTAL SAÍDAS', real: m.total_saidas?.real, orc: m.total_saidas?.orc, isTotal: true },
-                    { label: 'OUTROS FLUXOS', isHeader: true },
+                    { label: 'Subtotal Saídas OP', real: m.total_saidas_op?.real, orc: m.total_saidas_op?.orc, isTotal: true },
+
+                    { label: 'OUTROS FLUXOS E FINANÇAS', isHeader: true },
                     { label: 'Diretoria', real: m.diretoria?.real, orc: m.diretoria?.orc },
                     { label: 'Outros Gastos', real: m.outros_gastos?.real, orc: m.outros_gastos?.orc },
-                    { label: 'Rendimentos Aplic.', real: m.rendimentos?.real, orc: m.rendimentos?.orc },
+                    { label: 'Atividades Financeiras (L19-25)', real: m.ativ_financeiros?.real, orc: m.ativ_financeiros?.orc },
+                    { label: 'Rendimentos Aplic.', real: m.rend_aplic?.real, orc: m.rend_aplic?.orc },
+                    
+                    { label: 'TOTAL GERAL DE SAÍDAS', real: m.total_saidas?.real, orc: m.total_saidas?.orc, isTotal: true },
                     { label: 'GERAÇÃO DE CAIXA', real: m.geracao_caixa?.real, orc: m.geracao_caixa?.orc, isFinal: true },
                   ];
 

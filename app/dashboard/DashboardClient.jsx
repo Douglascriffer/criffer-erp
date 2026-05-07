@@ -23,6 +23,7 @@ const GraficoFaturamentoMeta = dynamic(() => import('@/components/GraficoFaturam
 const VisualizadorMetas = dynamic(() => import('@/components/VisualizadorMetas'), { ssr:false, loading:()=><Skeleton h={600}/> })
 const MetasOrcamentariasView = dynamic(() => import('@/components/MetasOrcamentariasView'), { ssr:false, loading:()=><Skeleton h={600}/> })
 const FluxoCaixaView = dynamic(() => import('@/components/FluxoCaixaView'), { ssr:false, loading:()=><Skeleton h={600}/> })
+const KpiCard = dynamic(() => import('@/components/KpiCard'), { ssr:false })
 
 function Skeleton({ h=200 }) { return <div style={{ height:h, background:'rgba(0,0,0,0.05)', borderRadius:16, animation:'pulse 1.5s infinite' }} /> }
 

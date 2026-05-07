@@ -381,13 +381,28 @@ def process_excel():
         traceback.print_exc()
         return None
 
+def clean_nans(obj):
+    if isinstance(obj, dict):
+        return {k: clean_nans(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [clean_nans(i) for i in obj]
+    elif isinstance(obj, float):
+        import math
+        if math.isnan(obj) or math.isinf(obj):
+            return 0.0
+    return obj
+
 def main():
     ensure_dirs()
     final_data = process_excel()
     
     if final_data:
+        # Limpar NaNs para evitar JSON inválido
+        final_data = clean_nans(final_data)
+        
+        json_str = json.dumps(final_data, ensure_ascii=False, indent=2)
         with open(JSON_OUTPUT, 'w', encoding='utf-8') as f:
-            json.dump(final_data, f, ensure_ascii=False, indent=2)
+            f.write(json_str)
         log(f"Dados sincronizados com sucesso em {JSON_OUTPUT}")
     else:
         log("Falha na sincronização.")
