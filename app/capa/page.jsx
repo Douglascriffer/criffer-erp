@@ -439,20 +439,20 @@ export default function CapaPage() {
         /* ── Área da animação — ajustada para dar mais espaço aos textos inferiores ── */
         .cf-anim-area {
           width: 100%;
-          flex: 0.85; /* Aumentado para dar mais espaço à animação */
-          min-height: 220px;
+          flex: 0.7; /* Reduzido para dar mais espaço aos textos inferiores */
+          min-height: 180px;
           display: flex;
           align-items: center;
           justify-content: center;
           border-radius: clamp(10px, 1vw, 16px);
-          overflow: visible; /* Mudado para visible para não cortar efeitos de sombra/glow */
+          overflow: visible;
           flex-shrink: 0;
           margin-bottom: clamp(10px, 1.5vh, 16px);
           position: relative;
         }
         .cf-anim-area > svg {
-          width: 95% !important;
-          height: 95% !important;
+          width: 85% !important;
+          height: 85% !important;
           object-fit: contain;
         }
 
