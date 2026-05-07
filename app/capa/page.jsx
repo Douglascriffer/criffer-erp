@@ -287,7 +287,7 @@ function AnimInadimplencia({ color }) {
 
 
 
-const MODULE_ANIMS = [AnimFaturamento, AnimOrcamento, AnimFluxo, AnimInadimplencia]
+const MODULE_ANIMS = [AnimFaturamento, AnimOrcamento, AnimFluxo]
 
 export default function CapaPage() {
   const router = useRouter()
@@ -324,7 +324,6 @@ export default function CapaPage() {
       status: 'active',
       badge: 'Ativo',
       accentColor: '#FF6A22',
-      img: '/faturamento_3d.png'
     },
     {
       id: 'orcamento',
@@ -336,7 +335,6 @@ export default function CapaPage() {
       status: 'active',
       badge: 'Ativo',
       accentColor: '#22c55e',
-      img: '/orcamento_3d.png'
     },
     {
       id: 'fluxo',
@@ -348,7 +346,6 @@ export default function CapaPage() {
       status: 'active',
       badge: 'Ativo',
       accentColor: '#3b82f6',
-      img: '/fluxocaixa_3d.png'
     },
   ]
 
@@ -442,22 +439,21 @@ export default function CapaPage() {
         /* ── Área da animação — ajustada para dar mais espaço aos textos inferiores ── */
         .cf-anim-area {
           width: 100%;
-          flex: 0.65; /* Reduzido para sobrar mais espaço para o texto em notebooks */
-          min-height: 0;
+          flex: 0.85; /* Aumentado para dar mais espaço à animação */
+          min-height: 220px;
           display: flex;
-          align-items: stretch;
-          justify-content: stretch;
+          align-items: center;
+          justify-content: center;
           border-radius: clamp(10px, 1vw, 16px);
-          overflow: hidden;
+          overflow: visible; /* Mudado para visible para não cortar efeitos de sombra/glow */
           flex-shrink: 0;
           margin-bottom: clamp(10px, 1.5vh, 16px);
           position: relative;
         }
         .cf-anim-area > svg {
-          width: 100% !important;
-          height: 100% !important;
-          position: absolute;
-          inset: 0;
+          width: 95% !important;
+          height: 95% !important;
+          object-fit: contain;
         }
 
         /* ── Título do card ── */
@@ -742,31 +738,15 @@ export default function CapaPage() {
                 <div
                   className="cf-anim-area cf-icon-wrap"
                   style={{
-                    background: 'transparent',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    transition: 'transform 0.5s ease',
-                    transform: isHov ? 'scale(1.15) translateY(-5px)' : 'scale(1)',
-                    minHeight: 'clamp(180px, 25vh, 320px)',
+                    background: theme === 'dark'
+                      ? `linear-gradient(160deg, rgba(${m.accentColor === '#FF6A22' ? '236,110,42' : m.accentColor === '#22c55e' ? '34,197,94' : '59,130,246'},0.10) 0%, rgba(0,0,0,0.30) 100%)`
+                      : `linear-gradient(160deg, rgba(${m.accentColor === '#FF6A22' ? '236,110,42' : m.accentColor === '#22c55e' ? '34,197,94' : '59,130,246'},0.05) 0%, rgba(255,255,255,0.60) 100%)`,
+                    border: `1.5px solid ${isHov ? m.accentColor : t.cardBorder}`,
+                    boxShadow: isHov ? `0 20px 50px ${m.accentColor}22` : 'none',
+                    transition: 'all 0.4s ease',
                   }}
                 >
-                  <div style={{ 
-                    position: 'relative', 
-                    width: '90%', 
-                    height: '90%', 
-                    filter: isHov ? 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))' : 'none', 
-                    transition: 'filter 0.4s',
-                    '--glow-color': `${m.accentColor}66`,
-                    animation: `iconFloat 4s ease-in-out infinite, iconGlow 5s ease-in-out infinite`
-                  }}>
-                    <Image 
-                      src={m.img} 
-                      alt={m.label} 
-                      fill 
-                      style={{ objectFit: 'contain' }} 
-                    />
-                  </div>
+                  <AnimComponent color={t.text}/>
                 </div>
 
                 {/* Conteúdo textual — flex: 1 garante que o rodapé alinhe no final */}
