@@ -347,17 +347,6 @@ export default function CapaPage() {
       badge: 'Ativo',
       accentColor: '#3b82f6',
     },
-    {
-      id: 'inadimplencia',
-      label: 'INADIMPLÊNCIA',
-      desc: 'Monitoramento de clientes inadimplentes, alertas e análise de risco.',
-      tags: ['Clientes', 'Alertas', 'Análise'],
-      href: '#',
-      disabled: true,
-      status: 'building',
-      badge: 'Em breve',
-      accentColor: '#ef4444',
-    },
   ]
 
   const THEME_OPTS = [
@@ -402,7 +391,7 @@ export default function CapaPage() {
         /* ── Grid responsivo fluido (Escalado para Monitores Grandes e Notebooks) ── */
         .cf-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           gap: clamp(24px, 2.5vw, 44px);
           width: 100%;
           max-width: min(2000px, 96vw); /* Ajustado para equilíbrio visual */

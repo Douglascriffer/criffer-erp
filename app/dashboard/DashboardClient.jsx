@@ -125,7 +125,6 @@ export default function DashboardClient() {
     { id:'desempenho', label:'FATURAMENTO', icon: BarChart3 },
     { id:'orcamento',  label:'ORÇAMENTO', icon: PieChart },
     { id:'fluxo',      label:'FLUXO DE CAIXA', icon: Activity },
-    { id:'inadimplencia', label:'INADIMPLÊNCIA', icon: TrendingDown },
   ]
 
   const SUB_TABS = {
@@ -142,9 +141,6 @@ export default function DashboardClient() {
     ],
     fluxo: [
       { id:'simples', label:'Fluxo' },
-    ],
-    inadimplencia: [
-      { id:'geral', label:'Visão Geral' },
     ],
   }
 
@@ -538,16 +534,6 @@ export default function DashboardClient() {
 
           {tab === 'fluxo' && (
             <FluxoCaixaView 
-              dados={data} 
-              mes={filters.mes} 
-              darkMode={theme === 'dark'} 
-              viewType={activeSub}
-            />
-          )}
-          
-          {/* ABA INADIMPLÊNCIA */}
-          {tab === 'inadimplencia' && (
-            <InadimplenciaView 
               dados={data} 
               mes={filters.mes} 
               darkMode={theme === 'dark'} 
