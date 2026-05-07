@@ -19,13 +19,13 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
   const t = {
     card: darkMode ? '#1e1e2d' : '#ffffff',
     text: darkMode ? '#ffffff' : '#000000',
-    textSub: darkMode ? '#cccccc' : '#333333',
-    textMuted: darkMode ? '#888888' : '#666666',
-    border: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.12)',
+    textSub: darkMode ? '#cccccc' : '#000000',
+    textMuted: darkMode ? '#888888' : '#000000',
+    border: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.2)',
     accent: '#FF6A22',
     green: '#22c55e',
     red: '#ef4444',
-    zebra: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)'
+    zebra: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.05)'
   };
 
   const mesesLabels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
@@ -110,7 +110,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     
                     return (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                        <div style={{ background: 'rgba(0,0,0,0.4)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ background: darkMode ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0.05)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span style={{ fontSize: 22, color: t.text, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Meta 2026</span>
                           <span style={{ fontSize: 30, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(metaValue).toLocaleString('pt-BR')}</span>
                         </div>
@@ -144,11 +144,11 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     
                     return (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                        <div style={{ background: 'rgba(0,0,0,0.4)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ background: darkMode ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0.05)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span style={{ fontSize: 22, color: t.text, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Inicial 2026</span>
                           <span style={{ fontSize: 30, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(saldoIni2026).toLocaleString('pt-BR')}</span>
                         </div>
-                        <div style={{ background: 'rgba(0,0,0,0.4)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ background: darkMode ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0.05)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span style={{ fontSize: 22, color: t.text, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Final {mesesLabels[currentMonth-1]}/26</span>
                           <span style={{ fontSize: 30, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(saldoFin).toLocaleString('pt-BR')}</span>
                         </div>
@@ -192,7 +192,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   ].sort((a,b) => Math.abs(b.val) - Math.abs(a.val));
                   return cats.map((c, i) => (
                     <div key={i} style={{ padding: '14.3px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: 18, fontWeight: 700, color: '#ffffff', textTransform: 'capitalize' }}>{c.label}</span>
+                      <span style={{ fontSize: 18, fontWeight: 700, color: t.text, textTransform: 'capitalize' }}>{c.label}</span>
                       <span style={{ fontSize: 18, fontWeight: 900, color: t.text, minWidth: 90, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>
                         {c.val < 0 ? '-' : ''}{Math.abs(Math.round(c.val)).toLocaleString('pt-BR')}
                       </span>
