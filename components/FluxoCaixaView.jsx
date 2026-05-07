@@ -230,7 +230,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 const saldoFinal = m.saldo_final?.real || 0;
                 const isPos = saldoFinal >= 0;
                 return (
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 30 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 50 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, opacity: 0.7 }}>
                       <Calendar size={16} color={t.text} />
                       <span style={{ fontSize: 13, fontWeight: 700, color: t.text }}>Resultado do Mês</span>
