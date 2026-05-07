@@ -214,88 +214,84 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
         </div>
       )}
 
-      {/* ── VISÃO ORÇAMENTO CAIXA (Referência Premium Ajustada V2) ── */}
+      {/* ── VISÃO ORÇAMENTO CAIXA (Referência Final Ajustada) ── */}
       {viewType === 'orcamento_caixa' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           
           <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 20 }}>
             
-            {/* Coluna Esquerda: Resumo Operacional + Banner de Resultado */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, justifyContent: 'space-between', height: 710 }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
-                  <Activity size={18} color={t.accent} />
-                  <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Resumo Operacional</h3>
-                </div>
-
-                {(() => {
-                  const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
-                  const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
-                  
-                  const cards = [
-                    { label: 'Entradas Operacionais', val: m.total_entradas?.real || 0, color: '#FF6A22', icon: ArrowUpRight },
-                    { label: 'Saídas Operacionais', val: m.total_saidas_op?.real || 0, color: '#ef4444', icon: ArrowDownRight },
-                    { label: 'Ativ Financeiras', val: m.ativ_financeiros?.real || 0, color: '#ef4444', icon: ArrowDownRight },
-                  ];
-
-                  return cards.map((c, i) => (
-                    <div key={i} style={{ 
-                      background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)', 
-                      borderRadius: 12, 
-                      padding: '16px 20px', 
-                      borderLeft: `4px solid ${c.color}`,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: 4
-                    }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontSize: 13, fontWeight: 600, color: t.textMuted }}>{c.label}</span>
-                        <c.icon size={14} color={c.color} />
-                      </div>
-                      <span style={{ fontSize: 20, fontWeight: 900, color: c.color }}>
-                        {c.val < 0 ? `(${fmt(Math.abs(c.val))})` : fmt(c.val)}
-                      </span>
-                    </div>
-                  ));
-                })()}
+            {/* Coluna Esquerda: Resumo Operacional */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
+                <Activity size={18} color={t.accent} />
+                <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Resumo Operacional</h3>
               </div>
 
-              {/* Banner de Resultado na BASE da coluna esquerda */}
+              {(() => {
+                const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
+                const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
+                
+                const cards = [
+                  { label: 'Entradas Operacionais', val: m.total_entradas?.real || 0, color: '#FF6A22', icon: ArrowUpRight },
+                  { label: 'Saídas Operacionais', val: m.total_saidas_op?.real || 0, color: '#ef4444', icon: ArrowDownRight },
+                  { label: 'Ativ Financeiras', val: m.ativ_financeiros?.real || 0, color: '#ef4444', icon: ArrowDownRight },
+                ];
+
+                return cards.map((c, i) => (
+                  <div key={i} style={{ 
+                    background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)', 
+                    borderRadius: 12, 
+                    padding: '16px 20px', 
+                    borderLeft: `4px solid ${c.color}`,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 4
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: 13, fontWeight: 600, color: t.textMuted }}>{c.label}</span>
+                      <c.icon size={14} color={c.color} />
+                    </div>
+                    <span style={{ fontSize: 20, fontWeight: 900, color: c.color }}>
+                      {c.val < 0 ? `(R$ ${fmt(Math.abs(c.val))})` : `R$ ${fmt(c.val)}`}
+                    </span>
+                  </div>
+                ));
+              })()}
+            </div>
+
+            {/* Coluna Direita: Detalhamento de Gastos + Banner de Resultado */}
+            <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: '24px 30px', boxShadow: '0 4px 24px rgba(0,0,0,0.05)', height: 710, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+              
+              {/* Banner de Resultado Acoplado ao Card */}
               {(() => {
                 const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
                 const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
                 const saldoFinal = m.saldo_final?.real || 0;
                 const isPos = saldoFinal >= 0;
                 return (
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '0 10px' }}>
+                  <div style={{ position: 'absolute', top: 0, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', zIndex: 10 }}>
                     <div style={{ 
                       background: '#FF6A22', 
                       color: '#ffffff', 
-                      padding: '10px 24px', 
-                      borderRadius: 6, 
-                      fontSize: 24, 
+                      padding: '8px 30px', 
+                      borderTopRightRadius: 15,
+                      borderBottomLeftRadius: 15,
+                      fontSize: 20, 
                       fontWeight: 900,
-                      width: '100%',
-                      textAlign: 'center',
-                      boxShadow: '0 4px 20px rgba(255,106,34,0.2)',
+                      boxShadow: '0 4px 15px rgba(255,106,34,0.3)',
                       display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: 15
+                      gap: 10
                     }}>
-                      <span style={{ fontSize: 18 }}>R$</span>
+                      <span style={{ opacity: 0.8 }}>R$</span>
                       <span>{fmt(Math.abs(saldoFinal))}</span>
                     </div>
-                    <div style={{ color: isPos ? t.green : t.red, fontSize: 16, fontWeight: 900, marginTop: 10, letterSpacing: 1, width: '100%', textAlign: 'center' }}>
+                    <div style={{ color: isPos ? t.green : t.red, fontSize: 13, fontWeight: 900, marginTop: 5, marginRight: 10, letterSpacing: 1 }}>
                       {isPos ? '↑ POSITIVO' : '↓ NEGATIVO'}
                     </div>
                   </div>
                 );
               })()}
-            </div>
 
-            {/* Coluna Direita: Detalhamento de Gastos */}
-            <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: '24px 30px', boxShadow: '0 4px 24px rgba(0,0,0,0.05)', height: 710, display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
                 <Target size={20} color={t.accent} />
                 <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Detalhamento de Gastos</h3>
@@ -335,17 +331,15 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                         const diff = Math.abs(row.orc || 0) - Math.abs(row.real || 0);
                         const isSaving = diff >= 0;
 
+                        const formatVal = (v) => v < 0 ? `(R$ ${fmt(Math.abs(v))})` : `R$ ${fmt(v)}`;
+
                         return (
                           <tr key={i} style={{ borderBottom: `1px solid ${t.border}` }}>
                             <td style={{ padding: '12px 5px', fontSize: 13, fontWeight: 700, color: t.text }}>{row.label}</td>
-                            <td style={{ padding: '12px 5px', textAlign: 'right', fontSize: 13, color: t.text }}>
-                              {row.orc < 0 ? `(${fmt(Math.abs(row.orc))})` : fmt(row.orc)}
-                            </td>
-                            <td style={{ padding: '12px 5px', textAlign: 'right', fontSize: 13, color: t.text }}>
-                              {row.real < 0 ? `(${fmt(Math.abs(row.real))})` : fmt(row.real)}
-                            </td>
+                            <td style={{ padding: '12px 5px', textAlign: 'right', fontSize: 13, color: t.text }}>{formatVal(row.orc)}</td>
+                            <td style={{ padding: '12px 5px', textAlign: 'right', fontSize: 13, color: t.text }}>{formatVal(row.real)}</td>
                             <td style={{ padding: '12px 5px', textAlign: 'right', fontSize: 13, fontWeight: 900, color: isSaving ? t.green : t.red }}>
-                              {diff < 0 ? `(${fmt(Math.abs(diff))})` : fmt(diff)}
+                              {diff < 0 ? `(R$ ${fmt(Math.abs(diff))})` : `R$ ${fmt(diff)}`}
                             </td>
                           </tr>
                         );
