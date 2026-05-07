@@ -218,45 +218,43 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
       {viewType === 'orcamento_caixa' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 25, animation: 'fadeIn 0.5s ease-out' }}>
           
-          {/* Header Superior (Título removido, mantendo apenas o Banner de Resultado à direita) */}
-          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start' }}>
-            {/* Banner Resultado do Mês (Topo Direito) */}
-            {(() => {
-              const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
-              const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
-              const saldoFinal = m.saldo_final?.real || 0;
-              const isPos = saldoFinal >= 0;
-              return (
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, opacity: 0.7 }}>
-                    <Calendar size={16} color={t.text} />
-                    <span style={{ fontSize: 13, fontWeight: 700, color: t.text }}>Resultado do Mês</span>
-                  </div>
-                  <div style={{ 
-                    background: '#FF6A22', 
-                    color: '#ffffff', 
-                    padding: '10px 25px', 
-                    borderRadius: 8, 
-                    fontSize: 28, 
-                    fontWeight: 900,
-                    boxShadow: '0 8px 25px rgba(255,106,34,0.3)',
-                    minWidth: 200,
-                    textAlign: 'center'
-                  }}>
-                    R$ {fmt(Math.abs(saldoFinal))}
-                  </div>
-                  <span style={{ color: t.accent, fontSize: 14, fontWeight: 900, marginTop: 8, letterSpacing: 2 }}>
-                    {isPos ? '↑ POSITIVO' : '↓ NEGATIVO'}
-                  </span>
-                </div>
-              );
-            })()}
-          </div>
-
           <div style={{ display: 'grid', gridTemplateColumns: '350px 1fr', gap: 30 }}>
             
-            {/* Coluna Esquerda: 3 Cards de Resumo */}
+            {/* Coluna Esquerda: Banner Resultado + 3 Cards de Resumo */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              
+              {/* Banner Resultado do Mês (Agora na Esquerda) */}
+              {(() => {
+                const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
+                const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
+                const saldoFinal = m.saldo_final?.real || 0;
+                const isPos = saldoFinal >= 0;
+                return (
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 10 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, opacity: 0.7 }}>
+                      <Calendar size={16} color={t.text} />
+                      <span style={{ fontSize: 13, fontWeight: 700, color: t.text }}>Resultado do Mês</span>
+                    </div>
+                    <div style={{ 
+                      background: '#FF6A22', 
+                      color: '#ffffff', 
+                      padding: '10px 25px', 
+                      borderRadius: 8, 
+                      fontSize: 28, 
+                      fontWeight: 900,
+                      boxShadow: '0 8px 25px rgba(255,106,34,0.3)',
+                      width: '100%',
+                      textAlign: 'center'
+                    }}>
+                      R$ {fmt(Math.abs(saldoFinal))}
+                    </div>
+                    <span style={{ color: t.accent, fontSize: 14, fontWeight: 900, marginTop: 8, letterSpacing: 2, alignSelf: 'center' }}>
+                      {isPos ? '↑ POSITIVO' : '↓ NEGATIVO'}
+                    </span>
+                  </div>
+                );
+              })()}
+
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 5 }}>
                 <Activity size={20} color={t.text} />
                 <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Resumo Operacional</h3>
