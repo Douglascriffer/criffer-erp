@@ -81,7 +81,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
         <KpiCard 
           label="REALIZADO ACUMULADO" 
           value={fmtBRL(stats.realizadoTotal)} 
-          sub={`Meta: ${fmtBRL(stats.metaTotal)}`}
+          sub={<span>Meta: <span style={{ color: t.accent, fontWeight: 900 }}>{fmtBRL(stats.metaTotal)}</span></span>}
           icon={TrendingUp} 
           color={t.accent} 
           darkMode={darkMode}
@@ -197,9 +197,9 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
                       borderBottom: `1px solid ${t.border}`,
                       opacity: isFuture ? 0.4 : 1,
                     }}>
-                      <TdSmall style={{ fontWeight: 400 }}>{m.labelPT}</TdSmall>
-                      <TdSmall style={{ fontWeight: 400 }}>{fmtBRLShort(m.meta)}</TdSmall>
-                      <TdSmall style={{ fontWeight: 400, color: m.realizado > 0 ? t.text : t.textSub }}>
+                      <TdSmall style={{ fontWeight: 400, color: darkMode ? '#fff' : '#000' }}>{m.labelPT}</TdSmall>
+                      <TdSmall style={{ fontWeight: 400, color: darkMode ? '#fff' : '#000' }}>{fmtBRLShort(m.meta)}</TdSmall>
+                      <TdSmall style={{ fontWeight: 400, color: m.realizado > 0 ? (darkMode ? '#fff' : '#000') : t.textSub }}>
                         {m.realizado > 0 ? fmtBRLShort(m.realizado) : '—'}
                       </TdSmall>
                       <TdSmall align="right">
@@ -345,8 +345,8 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, 
         {/* Conteúdo Centralizado */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', flex: 1 }}>
           <p style={{ fontSize: 18, fontWeight: 900, color: darkMode ? '#fff' : '#000', letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 8 }}>{label}</p>
-          <h2 style={{ fontSize: 42, fontWeight: 400, color: darkMode ? '#fff' : '#000', margin: '4px 0', lineHeight: 1 }}>{value}</h2>
-          <p style={{ fontSize: 15, color: darkMode ? '#fff' : '#000', fontWeight: 400 }}>{sub}</p>
+          <h2 style={{ fontSize: 42, fontWeight: 900, color: darkMode ? '#fff' : '#000', margin: '4px 0', lineHeight: 1 }}>{value}</h2>
+          <p style={{ fontSize: 15, color: darkMode ? '#fff' : '#000', fontWeight: 600 }}>{sub}</p>
         </div>
       </div>
     </div>
