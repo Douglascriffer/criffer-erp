@@ -114,9 +114,9 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                           <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Variação Acumulada</span>
                           <span style={{ fontSize: 30, fontWeight: 900, color: isGoodAcc ? t.green : t.red, fontVariantNumeric: 'tabular-nums' }}>{varAcc < 0 ? '-' : '+'}{Math.abs(Math.round(varAcc)).toLocaleString('pt-BR')}</span>
                         </div>
-                        <div style={{ border: `1.5px solid ${t.accent}`, background: 'rgba(255,106,34,0.1)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ border: `1.5px solid ${isGoodAcc ? t.green : t.red}`, background: isGoodAcc ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span style={{ fontSize: 22, color: t.textMuted, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Percentual de Desvio</span>
-                          <span style={{ fontSize: 30, fontWeight: 900, color: t.accent, fontVariantNumeric: 'tabular-nums' }}>{pctDesvio.toFixed(2)}%</span>
+                          <span style={{ fontSize: 30, fontWeight: 900, color: isGoodAcc ? t.green : t.red, fontVariantNumeric: 'tabular-nums' }}>{pctDesvio > 0 ? '+' : ''}{pctDesvio.toFixed(2)}%</span>
                         </div>
                       </div>
                     );
