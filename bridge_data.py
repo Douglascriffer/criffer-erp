@@ -307,7 +307,7 @@ def process_excel():
                 "outros_gastos": 17,
                 "ativ_financeiros": 25,
                 "geracao_caixa": 27,
-                "saldo_final": 28
+                "saldo_final": 27
             }
 
             def get_val(df, r, c):
@@ -357,12 +357,7 @@ def process_excel():
                     
                     month_data["total_saidas"] = {"real": ts_real, "orc": ts_orc}
                     
-                    # ── CÁLCULO DO RESULTADO DO MÊS (SALDO FINAL) ──
-                    # Entradas + Saídas (que já são negativas) = Resultado
-                    sf_real = (month_data.get("total_entradas", {}).get("real") or 0) + ts_real
-                    sf_orc = (month_data.get("total_entradas", {}).get("orc") or 0) + ts_orc
-                    
-                    month_data["saldo_final"] = {"real": sf_real, "orc": sf_orc}
+
                     
                     result["fluxo"]["mensal"][m] = month_data
 
