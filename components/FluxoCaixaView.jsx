@@ -347,7 +347,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                             <td style={{ padding: '20px 10px', fontSize: 18, fontWeight: 700, color: t.text }}>{row.label}</td>
                             <td style={{ padding: '20px 10px', textAlign: 'right', fontSize: 18, color: t.textMuted }}>{formatVal(row.orc)}</td>
                             <td style={{ padding: '20px 10px', textAlign: 'right', fontSize: 18, color: t.textMuted }}>{formatVal(row.real)}</td>
-                            <td style={{ padding: '20px 10px', textAlign: 'right', fontSize: 18, fontWeight: 900, color: isGoodAcc ? t.green : t.red }}>
+                            <td style={{ padding: '20px 10px', textAlign: 'right', fontSize: 18, fontWeight: 900, color: isSaving ? t.green : t.red }}>
                               {diff < 0 ? `(${fmt(Math.abs(diff))})` : fmt(diff)}
                             </td>
                           </tr>
