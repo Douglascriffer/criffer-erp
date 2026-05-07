@@ -29,9 +29,9 @@ const translateMonth = (label) => {
   return map[label] || label.toUpperCase()
 }
 
-function ThSmall({ children, align = 'left' }) {
+function ThSmall({ children, align = 'left', darkMode }) {
   return (
-    <th style={{ padding: '8px 20px', fontSize: 18, fontWeight: 900, color: '#888', letterSpacing: 1, textAlign: align }}>{children}</th>
+    <th style={{ padding: '8px 20px', fontSize: 18, fontWeight: 900, color: darkMode ? '#ffffff' : '#000000', letterSpacing: 1, textAlign: align }}>{children}</th>
   )
 }
 
@@ -161,8 +161,8 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
 
           {/* Legenda na parte inferior */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 16 }}>
-             <LegendItem label="Realizado" color={t.accent} />
-             <LegendItem label="Meta" color={darkMode ? '#fff' : '#000'} isLine />
+             <LegendItem label="Realizado" color={t.accent} darkMode={darkMode} />
+             <LegendItem label="Meta" color={darkMode ? '#fff' : '#000'} isLine darkMode={darkMode} />
           </div>
         </div>
 
@@ -184,10 +184,10 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
               <thead>
                 <tr style={{ borderBottom: `1px solid ${t.border}` }}>
-                  <ThSmall>MÊS</ThSmall>
-                  <ThSmall>META</ThSmall>
-                  <ThSmall>REAL.</ThSmall>
-                  <ThSmall align="right">%</ThSmall>
+                  <ThSmall darkMode={darkMode}>MÊS</ThSmall>
+                  <ThSmall darkMode={darkMode}>META</ThSmall>
+                  <ThSmall darkMode={darkMode}>REAL.</ThSmall>
+                  <ThSmall darkMode={darkMode} align="right">%</ThSmall>
                 </tr>
               </thead>
               <tbody>
@@ -356,7 +356,7 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, 
   )
 }
 
-function LegendItem({ label, color, isLine }) {
+function LegendItem({ label, color, isLine, darkMode }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
       <div style={{ 
@@ -365,7 +365,7 @@ function LegendItem({ label, color, isLine }) {
         borderRadius: isLine ? 2 : 3, 
         background: color 
       }} />
-      <span style={{ fontSize: 15, fontWeight: 700, color: 'inherit' }}>{label}</span>
+      <span style={{ fontSize: 15, fontWeight: 700, color: darkMode ? '#fff' : '#000' }}>{label}</span>
     </div>
   )
 }
