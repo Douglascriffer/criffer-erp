@@ -309,7 +309,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 <h3 style={{ fontSize: 26, fontWeight: 900, color: t.text, margin: 0 }}>Detalhamento de Gastos</h3>
               </div>
 
-              <div style={{ flex: 1, overflowY: 'auto' }}>
+              <div style={{ flex: 1, overflow: 'hidden' }}>
                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead>
                     <tr style={{ borderBottom: `2px solid ${t.accent}` }}>
