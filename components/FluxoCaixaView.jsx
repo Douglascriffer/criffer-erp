@@ -218,14 +218,8 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
       {viewType === 'orcamento_caixa' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 25, animation: 'fadeIn 0.5s ease-out' }}>
           
-          {/* Header Superior */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <h1 style={{ fontSize: 36, fontWeight: 900, color: t.text, margin: '5px 0 0 0', textTransform: 'uppercase' }}>
-                FLUXO DE CAIXA - {mes === 'all' ? 'ANO 2026' : chartData.find(d => String(d.monthNum) === String(mes))?.month || 'MÊS'}
-              </h1>
-            </div>
-
+          {/* Header Superior (Título removido, mantendo apenas o Banner de Resultado à direita) */}
+          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start' }}>
             {/* Banner Resultado do Mês (Topo Direito) */}
             {(() => {
               const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
