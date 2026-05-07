@@ -214,17 +214,62 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
         </div>
       )}
 
-      {/* ── VISÃO ORÇAMENTO CAIXA (Referência Final Ajustada) ── */}
+      {/* ── NOVA VISÃO ORÇAMENTO CAIXA (RECONSTRUÇÃO TOTAL ALTA FIDELIDADE) ── */}
       {viewType === 'orcamento_caixa' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 25, animation: 'fadeIn 0.5s ease-out' }}>
           
-          <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 20 }}>
+          {/* Header Superior */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <div style={{ width: 30, height: 3, background: t.accent, borderRadius: 2 }}></div>
+                <span style={{ fontSize: 14, fontWeight: 900, color: t.accent, textTransform: 'uppercase', letterSpacing: 1.5 }}>Movimentação Operacional</span>
+              </div>
+              <h1 style={{ fontSize: 36, fontWeight: 900, color: t.text, margin: '5px 0 0 0', textTransform: 'uppercase' }}>
+                FLUXO DE CAIXA - {mes === 'all' ? 'ANO 2026' : chartData.find(d => String(d.monthNum) === String(mes))?.month || 'MÊS'}
+              </h1>
+            </div>
+
+            {/* Banner Resultado do Mês (Topo Direito) */}
+            {(() => {
+              const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
+              const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
+              const saldoFinal = m.saldo_final?.real || 0;
+              const isPos = saldoFinal >= 0;
+              return (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, opacity: 0.7 }}>
+                    <Calendar size={16} color={t.text} />
+                    <span style={{ fontSize: 13, fontWeight: 700, color: t.text }}>Resultado do Mês</span>
+                  </div>
+                  <div style={{ 
+                    background: '#FF6A22', 
+                    color: '#ffffff', 
+                    padding: '10px 25px', 
+                    borderRadius: 8, 
+                    fontSize: 28, 
+                    fontWeight: 900,
+                    boxShadow: '0 8px 25px rgba(255,106,34,0.3)',
+                    minWidth: 200,
+                    textAlign: 'center'
+                  }}>
+                    R$ {fmt(Math.abs(saldoFinal))}
+                  </div>
+                  <span style={{ color: t.accent, fontSize: 14, fontWeight: 900, marginTop: 8, letterSpacing: 2 }}>
+                    {isPos ? '↑ POSITIVO' : '↓ NEGATIVO'}
+                  </span>
+                </div>
+              );
+            })()}
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '350px 1fr', gap: 30 }}>
             
-            {/* Coluna Esquerda: Resumo Operacional */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
-                <Activity size={18} color={t.accent} />
-                <h3 style={{ fontSize: 16, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Resumo Operacional</h3>
+            {/* Coluna Esquerda: 3 Cards de Resumo */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 5 }}>
+                <Activity size={20} color={t.text} />
+                <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Resumo Operacional</h3>
               </div>
 
               {(() => {
@@ -232,79 +277,58 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
                 
                 const cards = [
-                  { label: 'Entradas Operacionais', val: m.total_entradas?.real || 0, color: '#FF6A22', icon: ArrowUpRight },
-                  { label: 'Saídas Operacionais', val: m.total_saidas_op?.real || 0, color: '#ef4444', icon: ArrowDownRight },
-                  { label: 'Ativ Financeiras', val: m.ativ_financeiros?.real || 0, color: '#ef4444', icon: ArrowDownRight },
+                  { label: 'Entradas Operacionais', val: m.total_entradas?.real || 0, color: '#FF6A22', icon: ArrowUpRight, bg: 'rgba(255,106,34,0.1)' },
+                  { label: 'Saídas Operacionais', val: m.total_saidas_op?.real || 0, color: '#ef4444', icon: ArrowDownRight, bg: 'rgba(239,68,68,0.1)' },
+                  { label: 'Ativ Financeiras', val: m.ativ_financeiros?.real || 0, color: '#ef4444', icon: ArrowDownRight, bg: 'rgba(239,68,68,0.1)' },
                 ];
 
                 return cards.map((c, i) => (
                   <div key={i} style={{ 
-                    background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)', 
-                    borderRadius: 12, 
-                    padding: '16px 20px', 
-                    borderLeft: `4px solid ${c.color}`,
+                    background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', 
+                    borderRadius: 16, 
+                    padding: '25px', 
+                    border: `1px solid ${darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
+                    borderLeft: `6px solid ${c.color}`,
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: 4
+                    gap: 10,
+                    position: 'relative',
+                    overflow: 'hidden'
                   }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: 13, fontWeight: 600, color: t.textMuted }}>{c.label}</span>
-                      <c.icon size={14} color={c.color} />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 2 }}>
+                      <span style={{ fontSize: 14, fontWeight: 600, color: t.textMuted }}>{c.label}</span>
+                      <c.icon size={18} color={c.color} />
                     </div>
-                    <span style={{ fontSize: 20, fontWeight: 900, color: c.color }}>
+                    <span style={{ fontSize: 28, fontWeight: 900, color: c.color, zIndex: 2 }}>
                       {c.val < 0 ? `(R$ ${fmt(Math.abs(c.val))})` : `R$ ${fmt(c.val)}`}
                     </span>
+                    {/* Efeito Visual de Fundo */}
+                    <div style={{ position: 'absolute', right: -10, bottom: -10, opacity: 0.05 }}>
+                      <c.icon size={80} color={c.color} />
+                    </div>
                   </div>
                 ));
               })()}
             </div>
 
-            {/* Coluna Direita: Detalhamento de Gastos + Mini-Card de Resultado */}
-            <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: '24px 30px', boxShadow: '0 4px 24px rgba(0,0,0,0.05)', height: 710, display: 'flex', flexDirection: 'column' }}>
+            {/* Coluna Direita: Detalhamento de Gastos */}
+            <div style={{ background: t.card, borderRadius: 20, border: `1.5px solid ${t.border}`, padding: '30px', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', display: 'flex', flexDirection: 'column' }}>
               
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <Target size={20} color={t.accent} />
-                  <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Detalhamento de Gastos</h3>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 25 }}>
+                <div style={{ background: t.accent, borderRadius: 8, padding: 8 }}>
+                  <List size={22} color="#ffffff" />
                 </div>
-
-                {/* Mini-Card de Resultado - Padrão Anterior com 200px */}
-                {(() => {
-                  const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
-                  const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
-                  const saldoFinal = m.saldo_final?.real || 0;
-                  const isPos = saldoFinal >= 0;
-                  return (
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                      <div style={{ 
-                        background: '#FF6A22', 
-                        color: '#ffffff', 
-                        padding: '4px 0', 
-                        borderRadius: 6, 
-                        fontSize: 18, 
-                        fontWeight: 900,
-                        boxShadow: '0 4px 12px rgba(255,106,34,0.2)',
-                        width: '200px',
-                        textAlign: 'center'
-                      }}>
-                        R$ {fmt(Math.abs(saldoFinal))}
-                      </div>
-                      <div style={{ color: isPos ? t.green : t.red, fontSize: 13, fontWeight: 900, marginTop: 5, marginRight: 10, letterSpacing: 1 }}>
-                        {isPos ? '↑ POSITIVO' : '↓ NEGATIVO'}
-                      </div>
-                    </div>
-                  );
-                })()}
+                <h3 style={{ fontSize: 22, fontWeight: 900, color: t.text, margin: 0 }}>Detalhamento de Gastos</h3>
               </div>
 
               <div style={{ flex: 1, overflowY: 'auto' }}>
                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead>
                     <tr style={{ borderBottom: `2px solid ${t.accent}` }}>
-                      <th style={{ padding: '10px 5px', textAlign: 'left', fontSize: 14, fontWeight: 900, color: t.accent }}>Categoria</th>
-                      <th style={{ padding: '10px 5px', textAlign: 'right', fontSize: 14, fontWeight: 900, color: t.accent }}>Orçado</th>
-                      <th style={{ padding: '10px 5px', textAlign: 'right', fontSize: 14, fontWeight: 900, color: t.accent }}>Realizado</th>
-                      <th style={{ padding: '10px 5px', textAlign: 'right', fontSize: 14, fontWeight: 900, color: t.accent }}>Δ</th>
+                      <th style={{ padding: '15px 10px', textAlign: 'left', fontSize: 15, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Categoria</th>
+                      <th style={{ padding: '15px 10px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Orçado</th>
+                      <th style={{ padding: '15px 10px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Realizado</th>
+                      <th style={{ padding: '15px 10px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Δ</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -331,15 +355,15 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                         const diff = Math.abs(row.orc || 0) - Math.abs(row.real || 0);
                         const isSaving = diff >= 0;
 
-                        const formatVal = (v) => v < 0 ? `(R$ ${fmt(Math.abs(v))})` : `R$ ${fmt(v)}`;
+                        const formatVal = (v) => v < 0 ? `(${fmt(Math.abs(v))})` : `${fmt(v)}`;
 
                         return (
-                          <tr key={i} style={{ borderBottom: `1px solid ${t.border}` }}>
-                            <td style={{ padding: '12px 5px', fontSize: 13, fontWeight: 700, color: t.text }}>{row.label}</td>
-                            <td style={{ padding: '12px 5px', textAlign: 'right', fontSize: 13, color: t.text }}>{formatVal(row.orc)}</td>
-                            <td style={{ padding: '12px 5px', textAlign: 'right', fontSize: 13, color: t.text }}>{formatVal(row.real)}</td>
-                            <td style={{ padding: '12px 5px', textAlign: 'right', fontSize: 13, fontWeight: 900, color: isSaving ? t.green : t.red }}>
-                              {diff < 0 ? `(R$ ${fmt(Math.abs(diff))})` : `R$ ${fmt(diff)}`}
+                          <tr key={i} style={{ borderBottom: `1px solid ${darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`, transition: 'background 0.2s' }}>
+                            <td style={{ padding: '15px 10px', fontSize: 14, fontWeight: 700, color: t.text }}>{row.label}</td>
+                            <td style={{ padding: '15px 10px', textAlign: 'right', fontSize: 14, color: t.textMuted }}>{formatVal(row.orc)}</td>
+                            <td style={{ padding: '15px 10px', textAlign: 'right', fontSize: 14, color: t.textMuted }}>{formatVal(row.real)}</td>
+                            <td style={{ padding: '15px 10px', textAlign: 'right', fontSize: 14, fontWeight: 900, color: isSaving ? t.green : t.red }}>
+                              {diff < 0 ? `(${fmt(Math.abs(diff))})` : fmt(diff)}
                             </td>
                           </tr>
                         );
