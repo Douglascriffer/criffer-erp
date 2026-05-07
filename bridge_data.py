@@ -307,7 +307,7 @@ def process_excel():
                 "outros_gastos": 17,
                 "ativ_financeiros": 25,
                 "geracao_caixa": 27,
-                "saldo_final": 27
+                "saldo_final": 28
             }
 
             def get_val(df, r, c):
@@ -339,25 +339,42 @@ def process_excel():
                             val_real = safe_float(df_fluxo.iloc[row_idx, col_real])
                             month_data[key] = {"real": val_real, "orc": val_orc}
                     
-                    # ── ATUALIZAÇÃO: ATIVIDADES FINANCEIRAS AGORA É LINHA 26 FIXA ──
-                    af_real = month_data.get("ativ_financeiros", {}).get("real") or 0.0
-                    af_orc = month_data.get("ativ_financeiros", {}).get("orc") or 0.0
+                    # ── CONSOLIDAÇÃO ATIVIDADES FINANCEIRAS (SOMA RIGOROSA 19-25) ──
+                    # Usar índices diretos para garantir captura independente do rows_map
+                    af_sum_real = 0.0
+                    af_sum_orc = 0.0
+                    for r_idx in range(18, 25): # Linhas 19 a 25
+                        if r_idx < len(df_fluxo):
+                            af_sum_real += safe_float(df_fluxo.iloc[r_idx, col_real])
+                            af_sum_orc += safe_float(df_fluxo.iloc[r_idx, col_orc])
+                    
+                    month_data["ativ_financeiros"] = {"real": af_sum_real, "orc": af_sum_orc}
 
                     # ── TOTAL DE SAÍDAS CONSOLIDADO ──
-                    # Saídas OP (Linha 16) + Diretoria (Linha 17) + Outros (Linha 18) + Ativ Fin (Linha 26)
+                    # Saídas OP (Linha 16) + Diretoria (Linha 17) + Outros (Linha 18) + Ativ Fin (Soma 19-25)
                     ts_real = (month_data.get("total_saidas_op", {}).get("real") or 0) + \
                                (month_data.get("diretoria", {}).get("real") or 0) + \
                                (month_data.get("outros_gastos", {}).get("real") or 0) + \
-                               af_real
+                               af_sum_real
                     
                     ts_orc = (month_data.get("total_saidas_op", {}).get("orc") or 0) + \
                               (month_data.get("diretoria", {}).get("orc") or 0) + \
                               (month_data.get("outros_gastos", {}).get("orc") or 0) + \
-                              af_orc
+                              af_sum_orc
                     
                     month_data["total_saidas"] = {"real": ts_real, "orc": ts_orc}
                     
 
+                    
+                    # Dados Orçamento
+                    month_data["ativ_financeiros_fixo"] = {
+                        "real": safe_float(df_fluxo.iloc[25, col_real]),
+                        "orc": safe_float(df_fluxo.iloc[25, col_orc])
+                    }
+                    month_data["resultado_mes_fixo"] = {
+                        "real": safe_float(df_fluxo.iloc[27, col_real]),
+                        "orc": safe_float(df_fluxo.iloc[27, col_orc])
+                    }
                     
                     result["fluxo"]["mensal"][m] = month_data
 

@@ -227,7 +227,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
               {(() => {
                 const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
                 const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
-                const saldoFinal = m.saldo_final?.real || 0;
+                const saldoFinal = m.resultado_mes_fixo?.real || 0;
                 const isPos = saldoFinal >= 0;
                 return (
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 50 }}>
@@ -267,7 +267,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 const cards = [
                   { label: 'Entradas Operacionais', val: m.total_entradas?.real || 0, color: '#FF6A22', icon: ArrowUpRight, bg: 'rgba(255,106,34,0.1)' },
                   { label: 'Saídas Operacionais', val: m.total_saidas_op?.real || 0, color: '#ef4444', icon: ArrowDownRight, bg: 'rgba(239,68,68,0.1)' },
-                  { label: 'Ativ Financeiras', val: m.ativ_financeiros?.real || 0, color: '#ef4444', icon: ArrowDownRight, bg: 'rgba(239,68,68,0.1)' },
+                  { label: 'Ativ Financeiras', val: m.ativ_financeiros_fixo?.real || 0, color: '#ef4444', icon: ArrowDownRight, bg: 'rgba(239,68,68,0.1)' },
                 ];
 
                 return cards.map((c, i) => (
