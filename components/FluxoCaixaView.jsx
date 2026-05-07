@@ -316,7 +316,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                       <th style={{ padding: '15px 10px', textAlign: 'left', fontSize: 18, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Categoria</th>
                       <th style={{ padding: '15px 10px', textAlign: 'right', fontSize: 18, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Orçado</th>
                       <th style={{ padding: '15px 10px', textAlign: 'right', fontSize: 18, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Realizado</th>
-                      <th style={{ padding: '15px 10px', textAlign: 'right', fontSize: 18, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Δ</th>
+                      <th style={{ padding: '15px 10px', textAlign: 'right', fontSize: 18, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Desempenho</th>
                     </tr>
                   </thead>
                   <tbody>
