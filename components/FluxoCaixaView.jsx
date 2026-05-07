@@ -259,39 +259,41 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
               })()}
             </div>
 
-            {/* Coluna Direita: Detalhamento de Gastos + Banner de Resultado */}
-            <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: '24px 30px', boxShadow: '0 4px 24px rgba(0,0,0,0.05)', height: 710, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+            {/* Coluna Direita: Detalhamento de Gastos + Mini-Card de Resultado */}
+            <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: '24px 30px', boxShadow: '0 4px 24px rgba(0,0,0,0.05)', height: 710, display: 'flex', flexDirection: 'column' }}>
               
-              {/* Banner de Resultado Acoplado ao Card (Apenas o Número) */}
-              {(() => {
-                const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
-                const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
-                const saldoFinal = m.saldo_final?.real || 0;
-                const isPos = saldoFinal >= 0;
-                return (
-                  <div style={{ position: 'absolute', top: 0, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', zIndex: 10 }}>
-                    <div style={{ 
-                      background: '#FF6A22', 
-                      color: '#ffffff', 
-                      padding: '4px 15px', 
-                      borderTopRightRadius: 15,
-                      borderBottomLeftRadius: 15,
-                      fontSize: 18, 
-                      fontWeight: 900,
-                      boxShadow: '0 4px 15px rgba(255,106,34,0.3)'
-                    }}>
-                      {fmt(Math.abs(saldoFinal))}
-                    </div>
-                    <div style={{ color: isPos ? t.green : t.red, fontSize: 13, fontWeight: 900, marginTop: 5, marginRight: 10, letterSpacing: 1 }}>
-                      {isPos ? '↑ POSITIVO' : '↓ NEGATIVO'}
-                    </div>
-                  </div>
-                );
-              })()}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <Target size={20} color={t.accent} />
+                  <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Detalhamento de Gastos</h3>
+                </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
-                <Target size={20} color={t.accent} />
-                <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Detalhamento de Gastos</h3>
+                {/* Mini-Card de Resultado - Tamanho Dinâmico */}
+                {(() => {
+                  const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
+                  const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
+                  const saldoFinal = m.saldo_final?.real || 0;
+                  const isPos = saldoFinal >= 0;
+                  return (
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                      <div style={{ 
+                        background: '#FF6A22', 
+                        color: '#ffffff', 
+                        padding: '4px 12px', 
+                        borderRadius: 6, 
+                        fontSize: 16, 
+                        fontWeight: 900,
+                        boxShadow: '0 4px 12px rgba(255,106,34,0.2)',
+                        width: 'fit-content'
+                      }}>
+                        {fmt(Math.abs(saldoFinal))}
+                      </div>
+                      <div style={{ color: isPos ? t.green : t.red, fontSize: 11, fontWeight: 900, marginTop: 4, letterSpacing: 1 }}>
+                        {isPos ? '↑ POSITIVO' : '↓ NEGATIVO'}
+                      </div>
+                    </div>
+                  );
+                })()}
               </div>
 
               <div style={{ flex: 1, overflowY: 'auto' }}>
