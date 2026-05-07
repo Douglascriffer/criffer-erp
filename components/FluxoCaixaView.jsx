@@ -300,7 +300,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             </div>
 
             {/* Coluna Direita: Detalhamento de Gastos */}
-            <div style={{ background: t.card, borderRadius: 20, border: `1.5px solid ${t.border}`, padding: '30px', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ background: t.card, borderRadius: 20, border: `1.5px solid ${t.border}`, padding: '30px', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', height: 700, display: 'flex', flexDirection: 'column' }}>
               
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 25 }}>
                 <div style={{ background: t.accent, borderRadius: 8, padding: 8 }}>
