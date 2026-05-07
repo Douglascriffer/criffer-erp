@@ -218,7 +218,13 @@ export default function DashboardClient() {
 
         {/* Top Tabs Navigation */}
         <nav style={{ display: 'flex', gap: 6, background: 'rgba(0,0,0,0.15)', padding: 5, borderRadius: 12, backdropFilter: 'blur(10px)' }}>
-          {TOP_TABS.map(tabItem => {
+          {TOP_TABS.filter(t => {
+            if (t.id === 'fluxo') {
+              const u = user.toLowerCase();
+              return u.includes('juliano') || u.includes('financeiro') || u.includes('faiblan');
+            }
+            return true;
+          }).map(tabItem => {
             const active = tab === tabItem.id
             const Icon = tabItem.icon
             return (
@@ -533,14 +539,20 @@ export default function DashboardClient() {
             </div>
           )}
 
-          {tab === 'fluxo' && (
-            <FluxoCaixaView 
-              dados={data} 
-              mes={filters.mes} 
-              darkMode={theme === 'dark'} 
-              viewType={activeSub}
-            />
-          )}
+          {tab === 'fluxo' && (() => {
+            const u = user.toLowerCase();
+            const isAllowed = u.includes('juliano') || u.includes('financeiro') || u.includes('faiblan');
+            if (!isAllowed) return <div style={{ padding: 40, textAlign: 'center', fontSize: 20, color: t.text }}>Acesso Restrito</div>;
+            
+            return (
+              <FluxoCaixaView 
+                dados={data} 
+                mes={filters.mes} 
+                darkMode={theme === 'dark'} 
+                viewType={activeSub}
+              />
+            );
+          })()}
         </div>
       </main>
     </div>
