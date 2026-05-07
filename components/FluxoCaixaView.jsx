@@ -304,19 +304,19 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
               
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 25 }}>
                 <div style={{ background: t.accent, borderRadius: 8, padding: 8 }}>
-                  <List size={22} color="#ffffff" />
+                  <List size={26} color="#ffffff" />
                 </div>
-                <h3 style={{ fontSize: 22, fontWeight: 900, color: t.text, margin: 0 }}>Detalhamento de Gastos</h3>
+                <h3 style={{ fontSize: 26, fontWeight: 900, color: t.text, margin: 0 }}>Detalhamento de Gastos</h3>
               </div>
 
               <div style={{ flex: 1, overflowY: 'auto' }}>
                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead>
                     <tr style={{ borderBottom: `2px solid ${t.accent}` }}>
-                      <th style={{ padding: '15px 10px', textAlign: 'left', fontSize: 15, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Categoria</th>
-                      <th style={{ padding: '15px 10px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Orçado</th>
-                      <th style={{ padding: '15px 10px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Realizado</th>
-                      <th style={{ padding: '15px 10px', textAlign: 'right', fontSize: 15, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Δ</th>
+                      <th style={{ padding: '20px 10px', textAlign: 'left', fontSize: 18, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Categoria</th>
+                      <th style={{ padding: '20px 10px', textAlign: 'right', fontSize: 18, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Orçado</th>
+                      <th style={{ padding: '20px 10px', textAlign: 'right', fontSize: 18, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Realizado</th>
+                      <th style={{ padding: '20px 10px', textAlign: 'right', fontSize: 18, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>Δ</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -344,10 +344,10 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
 
                         return (
                           <tr key={i} style={{ borderBottom: `1px solid ${darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`, transition: 'background 0.2s' }}>
-                            <td style={{ padding: '15px 10px', fontSize: 14, fontWeight: 700, color: t.text }}>{row.label}</td>
-                            <td style={{ padding: '15px 10px', textAlign: 'right', fontSize: 14, color: t.textMuted }}>{formatVal(row.orc)}</td>
-                            <td style={{ padding: '15px 10px', textAlign: 'right', fontSize: 14, color: t.textMuted }}>{formatVal(row.real)}</td>
-                            <td style={{ padding: '15px 10px', textAlign: 'right', fontSize: 14, fontWeight: 900, color: isSaving ? t.green : t.red }}>
+                            <td style={{ padding: '20px 10px', fontSize: 18, fontWeight: 700, color: t.text }}>{row.label}</td>
+                            <td style={{ padding: '20px 10px', textAlign: 'right', fontSize: 18, color: t.textMuted }}>{formatVal(row.orc)}</td>
+                            <td style={{ padding: '20px 10px', textAlign: 'right', fontSize: 18, color: t.textMuted }}>{formatVal(row.real)}</td>
+                            <td style={{ padding: '20px 10px', textAlign: 'right', fontSize: 18, fontWeight: 900, color: isGoodAcc ? t.green : t.red }}>
                               {diff < 0 ? `(${fmt(Math.abs(diff))})` : fmt(diff)}
                             </td>
                           </tr>
