@@ -268,30 +268,28 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                   <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', margin: 0 }}>Detalhamento de Gastos</h3>
                 </div>
 
-                {/* Mini-Card de Resultado Unificado */}
+                {/* Mini-Card de Resultado - Padrão Anterior com 200px */}
                 {(() => {
                   const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
                   const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
                   const saldoFinal = m.saldo_final?.real || 0;
                   const isPos = saldoFinal >= 0;
                   return (
-                    <div style={{ 
-                      background: '#FF6A22', 
-                      color: '#ffffff', 
-                      padding: '8px 0', 
-                      borderRadius: 8, 
-                      width: '200px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      boxShadow: '0 4px 15px rgba(255,106,34,0.3)',
-                      gap: 2
-                    }}>
-                      <div style={{ fontSize: 18, fontWeight: 900 }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                      <div style={{ 
+                        background: '#FF6A22', 
+                        color: '#ffffff', 
+                        padding: '4px 0', 
+                        borderRadius: 6, 
+                        fontSize: 18, 
+                        fontWeight: 900,
+                        boxShadow: '0 4px 12px rgba(255,106,34,0.2)',
+                        width: '200px',
+                        textAlign: 'center'
+                      }}>
                         R$ {fmt(Math.abs(saldoFinal))}
                       </div>
-                      <div style={{ fontSize: 10, fontWeight: 900, letterSpacing: 1.5, opacity: 0.9 }}>
+                      <div style={{ color: isPos ? t.green : t.red, fontSize: 13, fontWeight: 900, marginTop: 5, marginRight: 10, letterSpacing: 1 }}>
                         {isPos ? '↑ POSITIVO' : '↓ NEGATIVO'}
                       </div>
                     </div>
