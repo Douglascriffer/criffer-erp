@@ -232,8 +232,8 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 return (
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 50 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, opacity: 0.7 }}>
-                      <Calendar size={16} color={t.text} />
-                      <span style={{ fontSize: 13, fontWeight: 700, color: t.text }}>Resultado do Mês</span>
+                      <Calendar size={18} color={t.text} />
+                      <span style={{ fontSize: 18, fontWeight: 900, color: t.text }}>Resultado do Mês</span>
                     </div>
                     <div style={{ 
                       background: isPos ? t.green : t.red, 
