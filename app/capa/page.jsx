@@ -378,8 +378,12 @@ export default function CapaPage() {
           to   { transform: translateX(260%) skewX(-15deg); }
         }
         @keyframes iconFloat {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50%       { transform: translateY(-6px) rotate(1deg); }
+          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+          50%       { transform: translateY(-12px) rotate(2deg) scale(1.02); }
+        }
+        @keyframes iconGlow {
+          0%, 100% { filter: drop-shadow(0 0 15px var(--glow-color, rgba(255,106,34,0.15))); }
+          50%       { filter: drop-shadow(0 0 35px var(--glow-color, rgba(255,106,34,0.4))); }
         }
         @keyframes statusPulse {
           0%, 100% { opacity: 1; transform: scale(1); }
@@ -747,12 +751,20 @@ export default function CapaPage() {
                     minHeight: 'clamp(180px, 25vh, 320px)',
                   }}
                 >
-                  <div style={{ position: 'relative', width: '90%', height: '90%', filter: isHov ? 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))' : 'none', transition: 'filter 0.4s' }}>
+                  <div style={{ 
+                    position: 'relative', 
+                    width: '90%', 
+                    height: '90%', 
+                    filter: isHov ? 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))' : 'none', 
+                    transition: 'filter 0.4s',
+                    '--glow-color': `${m.accentColor}66`,
+                    animation: `iconFloat 4s ease-in-out infinite, iconGlow 5s ease-in-out infinite`
+                  }}>
                     <Image 
                       src={m.img} 
                       alt={m.label} 
                       fill 
-                      style={{ objectFit: 'contain', animation: 'iconFloat 4s ease-in-out infinite' }} 
+                      style={{ objectFit: 'contain' }} 
                     />
                   </div>
                 </div>
