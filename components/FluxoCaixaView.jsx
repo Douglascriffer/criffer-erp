@@ -334,9 +334,6 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                         { label: 'Consultoria', real: m.consultorias?.real, orc: m.consultorias?.orc },
                         { label: 'P&D', real: m.pd?.real, orc: m.pd?.orc },
                         { label: 'Tarifas Bancárias', real: m.tarifas?.real, orc: m.tarifas?.orc },
-                        { label: 'Diretoria', real: m.diretoria?.real, orc: m.diretoria?.orc },
-                        { label: 'Outros Gastos', real: m.outros_gastos?.real, orc: m.outros_gastos?.orc },
-                        { label: 'Atividades Financeiras', real: m.ativ_financeiros?.real, orc: m.ativ_financeiros?.orc },
                       ];
 
                       return rows.map((row, i) => {
