@@ -262,7 +262,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             {/* Coluna Direita: Detalhamento de Gastos + Banner de Resultado */}
             <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: '24px 30px', boxShadow: '0 4px 24px rgba(0,0,0,0.05)', height: 710, display: 'flex', flexDirection: 'column', position: 'relative' }}>
               
-              {/* Banner de Resultado Acoplado ao Card */}
+              {/* Banner de Resultado Acoplado ao Card (Apenas o Número) */}
               {(() => {
                 const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
                 const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
@@ -270,19 +270,17 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 const isPos = saldoFinal >= 0;
                 return (
                   <div style={{ position: 'absolute', top: 0, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', zIndex: 10 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 900 }}>
-                      <span style={{ color: t.text, fontSize: 16, opacity: 0.8 }}>R$</span>
-                      <div style={{ 
-                        background: '#FF6A22', 
-                        color: '#ffffff', 
-                        padding: '2px 8px', 
-                        borderTopRightRadius: 10,
-                        borderBottomLeftRadius: 10,
-                        fontSize: 16, 
-                        boxShadow: '0 4px 15px rgba(255,106,34,0.2)'
-                      }}>
-                        {fmt(Math.abs(saldoFinal))}
-                      </div>
+                    <div style={{ 
+                      background: '#FF6A22', 
+                      color: '#ffffff', 
+                      padding: '4px 15px', 
+                      borderTopRightRadius: 15,
+                      borderBottomLeftRadius: 15,
+                      fontSize: 18, 
+                      fontWeight: 900,
+                      boxShadow: '0 4px 15px rgba(255,106,34,0.3)'
+                    }}>
+                      {fmt(Math.abs(saldoFinal))}
                     </div>
                     <div style={{ color: isPos ? t.green : t.red, fontSize: 13, fontWeight: 900, marginTop: 5, marginRight: 10, letterSpacing: 1 }}>
                       {isPos ? '↑ POSITIVO' : '↓ NEGATIVO'}
