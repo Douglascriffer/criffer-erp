@@ -291,7 +291,7 @@ def process_excel():
             
             # Linhas fixas baseadas na análise da planilha (index 0)
             rows_map = {
-                "saldo_inicial": 4,
+                "saldo_inicial": 2,
                 "total_entradas": 5,
                 "materia_prima": 6,
                 "fretes": 7,
@@ -302,20 +302,20 @@ def process_excel():
                 "consultorias": 12,
                 "pd": 13,
                 "tarifas": 14,
-                "total_saidas_op": 15, # Linha 16
+                "total_saidas_op": 15,
                 "diretoria": 16,
                 "outros_gastos": 17,
-                "emprestimos": 18,
-                "aplic_sicredi": 19,
-                "resgate_sicredi": 20,
-                "rend_aplic": 21,
-                "transf_sicredi": 22,
-                "transf_bb": 23,
-                "cash": 24,
-                "ativ_fin_total": 25,  # Linha 26 (Resultados Ativ Fin)
-                "geracao_caixa": 26,   # Linha 27
-                "saldo_final": 27      # Linha 28
+                "ativ_financeiros": 25,
+                "geracao_caixa": 27,
+                "saldo_final": 28
             }
+
+            def get_val(df, r, c):
+                try:
+                    val = df.iloc[r, c]
+                    return float(val) if pd.notna(val) else 0.0
+                except:
+                    return 0.0
 
             def safe_float(val):
                 try:
@@ -328,8 +328,8 @@ def process_excel():
                     return 0.0
 
             for m in range(1, 13):
-                col_orc = (m - 1) * 3 + 1
-                col_real = (m - 1) * 3 + 2
+                col_orc = (m - 1) * 3 + 4
+                col_real = (m - 1) * 3 + 5
                 
                 if col_real < len(df_fluxo.columns):
                     month_data = {}
