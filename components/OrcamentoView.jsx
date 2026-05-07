@@ -39,13 +39,14 @@ function TipLinha({ active, payload, label, darkMode }) {
   const orcamento = data?.orcamento || {}
   
   // ── LOGICA DE TRAVA POR SETOR ──
-  const [userContext, setUserContext] = useState({ level: 'master', sector: '' })
+  const [userContext, setUserContext] = useState({ level: 'master', sector: '', name: '' })
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const level = localStorage.getItem('criffer_role') || 'master'
       const sector = localStorage.getItem('criffer_sector') || ''
-      setUserContext({ level, sector })
+      const name = localStorage.getItem('criffer_user') || ''
+      setUserContext({ level, sector, name })
     }
   }, [])
 
@@ -365,10 +366,18 @@ function TipLinha({ active, payload, label, darkMode }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           {(() => {
             // Filtrar centros baseado no acesso do gestor
-            const targetCC = mapSectorToCC(userContext.sector);
-            const filteredCentros = (userContext.level === 'gestor' && targetCC)
-              ? (dados.centros?.filter(c => c.cc === targetCC) || [])
-              : (dados.centros || []);
+             const isGabriel = userContext.name.includes('Gabriel Dias');
+             const targetCC = mapSectorToCC(userContext.sector);
+             
+             let filteredCentros = [];
+             if (userContext.level === 'master') {
+               filteredCentros = dados.centros || [];
+             } else if (isGabriel) {
+               // Gabriel Dias vê Comercial e Locação
+               filteredCentros = (dados.centros?.filter(c => c.cc === 'Comercial' || c.cc === 'Locação') || []);
+             } else if (targetCC) {
+               filteredCentros = (dados.centros?.filter(c => c.cc === targetCC) || []);
+             }
 
             if (filteredCentros.length === 0) {
               return (
