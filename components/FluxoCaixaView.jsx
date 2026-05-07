@@ -214,12 +214,111 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
         </div>
       )}
 
-      {/* ── VISÃO ORÇAMENTO CAIXA (Placeholder Premium) ── */}
+      {/* ── VISÃO ORÇAMENTO CAIXA (Gestão de Desvios) ── */}
       {viewType === 'orcamento_caixa' && (
-        <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 40, textAlign: 'center' }}>
-          <Activity size={48} color={t.accent} style={{ marginBottom: 20 }} />
-          <h3 style={{ fontSize: 24, fontWeight: 900, color: t.text, textTransform: 'uppercase', marginBottom: 10 }}>Orçamento de Caixa</h3>
-          <p style={{ color: t.textMuted, fontSize: 16 }}>Módulo de controle orçamentário detalhado por regime de caixa.</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+          
+          {/* KPIs de Orçamento */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+            {(() => {
+              const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
+              const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
+              
+              const entReal = m.total_entradas?.real || 0;
+              const entOrc = m.total_entradas?.orc || 0;
+              const saiReal = Math.abs(m.total_saidas?.real || 0);
+              const saiOrc = Math.abs(m.total_saidas?.orc || 0);
+              
+              const pctEnt = entOrc !== 0 ? (entReal / entOrc * 100) : 0;
+              const pctSai = saiOrc !== 0 ? (saiReal / saiOrc * 100) : 0;
+              const diffCaixa = (entReal - saiReal) - (entOrc - saiOrc);
+
+              return (
+                <>
+                  <KpiCard label="ATING. ENTRADAS" value={`${pctEnt.toFixed(1)}%`} icon={ArrowUpRight} color={pctEnt >= 100 ? t.green : t.accent} hideDiff darkMode={darkMode} isLiteral />
+                  <KpiCard label="CONTROLE SAÍDAS" value={`${pctSai.toFixed(1)}%`} icon={ArrowDownRight} color={pctSai <= 100 ? t.green : t.red} hideDiff darkMode={darkMode} isLiteral />
+                  <KpiCard label="DIF. REAL x ORÇ" value={diffCaixa} icon={Activity} color={diffCaixa >= 0 ? t.green : t.red} hideDiff darkMode={darkMode} />
+                  <KpiCard label="STATUS ORÇAM." value={pctSai <= 100 ? 'DENTRO' : 'ACIMA'} icon={Target} color={pctSai <= 100 ? t.green : t.red} hideDiff darkMode={darkMode} isLiteral />
+                </>
+              );
+            })()}
+          </div>
+
+          {/* Gráfico e Tabela de Comparação */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 24 }}>
+            <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, overflow: 'hidden' }}>
+              <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>Comparativo Orçado vs Realizado</h3>
+                <span style={{ fontSize: 12, fontWeight: 800, color: t.textMuted }}>VALORES EM R$</span>
+              </div>
+              <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                  <thead>
+                    <tr style={{ background: darkMode ? 'rgba(255,255,255,0.02)' : '#f8f9fa' }}>
+                      <th style={{ padding: '16px 32px', textAlign: 'left', fontSize: 13, color: t.textMuted }}>CATEGORIA FINANCEIRA</th>
+                      <th style={{ padding: '16px 20px', textAlign: 'right', fontSize: 13, color: t.textMuted }}>ORÇADO</th>
+                      <th style={{ padding: '16px 20px', textAlign: 'right', fontSize: 13, color: t.textMuted }}>REALIZADO</th>
+                      <th style={{ padding: '16px 20px', textAlign: 'right', fontSize: 13, color: t.textMuted }}>DIFERENÇA</th>
+                      <th style={{ padding: '16px 32px', textAlign: 'center', fontSize: 13, color: t.textMuted }}>STATUS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(() => {
+                      const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
+                      const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
+                      
+                      const rows = [
+                        { label: 'Entradas de Caixa', real: m.total_entradas?.real, orc: m.total_entradas?.orc, isHeader: true },
+                        { label: 'Matéria Prima', real: m.materia_prima?.real, orc: m.materia_prima?.orc },
+                        { label: 'Fretes', real: m.fretes?.real, orc: m.fretes?.orc },
+                        { label: 'Pessoal', real: m.pessoal?.real, orc: m.pessoal?.orc },
+                        { label: 'Impostos', real: m.impostos?.real, orc: m.impostos?.orc },
+                        { label: 'Manutenção Predial', real: m.manut_predial?.real, orc: m.manut_predial?.orc },
+                        { label: 'Despesas Operacionais', real: m.despesas_op?.real, orc: m.despesas_op?.orc },
+                        { label: 'Consultorias', real: m.consultorias?.real, orc: m.consultorias?.orc },
+                        { label: 'Diretoria', real: m.diretoria?.real, orc: m.diretoria?.orc },
+                        { label: 'Atividades Financeiras', real: m.ativ_financeiros?.real, orc: m.ativ_financeiros?.orc },
+                        { label: 'GERAÇÃO DE CAIXA', real: m.geracao_caixa?.real, orc: m.geracao_caixa?.orc, isTotal: true },
+                      ];
+
+                      return rows.map((row, i) => {
+                        const diff = (row.real || 0) - (row.orc || 0);
+                        const isEntrada = row.label.includes('Entrada') || row.label.includes('CAIXA');
+                        const isGood = isEntrada ? diff >= 0 : diff <= 0;
+                        const pct = row.orc !== 0 ? (Math.abs(diff) / Math.abs(row.orc) * 100) : 0;
+
+                        return (
+                          <tr key={i} style={{ 
+                            borderBottom: `1px solid ${t.border}`,
+                            background: row.isHeader ? (darkMode ? 'rgba(255,106,34,0.05)' : 'rgba(255,106,34,0.02)') : 'transparent'
+                          }}>
+                            <td style={{ padding: '16px 32px', fontSize: 14, fontWeight: row.isHeader || row.isTotal ? 900 : 500, color: row.isHeader ? t.accent : t.text }}>{row.label}</td>
+                            <td style={{ padding: '16px 20px', textAlign: 'right', fontSize: 14, color: t.text }}>{fmt(row.orc)}</td>
+                            <td style={{ padding: '16px 20px', textAlign: 'right', fontSize: 14, fontWeight: 700, color: t.text }}>{fmt(row.real)}</td>
+                            <td style={{ padding: '16px 20px', textAlign: 'right', fontSize: 14, fontWeight: 700, color: isGood ? t.green : t.red }}>{fmt(diff)}</td>
+                            <td style={{ padding: '16px 32px', textAlign: 'center' }}>
+                              <div style={{ 
+                                display: 'inline-block', 
+                                padding: '4px 12px', 
+                                borderRadius: 20, 
+                                fontSize: 11, 
+                                fontWeight: 900, 
+                                background: isGood ? `${t.green}22` : `${t.red}22`,
+                                color: isGood ? t.green : t.red,
+                                textTransform: 'uppercase'
+                              }}>
+                                {pct.toFixed(1)}% {isGood ? 'OK' : 'ALERTA'}
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      });
+                    })()}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
