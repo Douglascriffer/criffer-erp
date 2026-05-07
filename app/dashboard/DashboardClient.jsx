@@ -141,6 +141,7 @@ export default function DashboardClient() {
     ],
     fluxo: [
       { id:'simples', label:'Fluxo' },
+      { id:'orcamento_caixa', label:'Orçamento Caixa' },
     ],
   }
 

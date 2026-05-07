@@ -30,6 +30,10 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
 
   const mesesLabels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 
+  // Trava de Segurança: Apenas adm, juliano e faiblan vêem a composição de saídas
+  const user = typeof window !== 'undefined' ? localStorage.getItem('criffer_user')?.toLowerCase() : '';
+  const hasFullAccess = ['adm', 'juliano', 'faiblan'].includes(user);
+
   const chartData = useMemo(() => {
     if (!dados?.fluxo?.mensal) return [];
     return Object.entries(dados.fluxo.mensal).map(([m, val]) => ({
@@ -46,7 +50,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
       
       {/* ── VISÃO SIMPLIFICADA ── */}
       {viewType === 'simples' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 420px', gap: 20 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: hasFullAccess ? '1fr 420px' : '1fr', gap: 20 }}>
           
           {/* COLUNA DA ESQUERDA: KPIs + SITUAÇÃO FINANCEIRA */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -160,42 +164,53 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             </div>
           </div>
 
-          {/* COLUNA DA DIREITA: COMPOSIÇÃO DAS SAÍDAS (FULL HEIGHT) */}
-          <div style={{ 
-            background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 0, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.2)', display: 'flex', flexDirection: 'column', height: 750
-          }}>
-            <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}` }}>
-              <h3 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>Composição das Saídas</h3>
+          {/* COLUNA DA DIREITA: COMPOSIÇÃO DAS SAÍDAS (FULL HEIGHT) - PROTEGIDA */}
+          {hasFullAccess && (
+            <div style={{ 
+              background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 0, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.2)', display: 'flex', flexDirection: 'column', height: 750
+            }}>
+              <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}` }}>
+                <h3 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>Composição das Saídas</h3>
+              </div>
+              <div style={{ flex: 1, overflow: 'hidden' }}>
+                {(() => {
+                  const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
+                  const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth];
+                  const cats = [
+                    { label: 'Matéria Prima', val: m?.materia_prima?.real || 0 },
+                    { label: 'Fretes', val: m?.fretes?.real || 0 },
+                    { label: 'Pessoal', val: m?.pessoal?.real || 0 },
+                    { label: 'Impostos', val: m?.impostos?.real || 0 },
+                    { label: 'Manut. Predial', val: m?.manut_predial?.real || 0 },
+                    { label: 'Desp. Operacionais', val: m?.despesas_op?.real || 0 },
+                    { label: 'Consultorias', val: m?.consultorias?.real || 0 },
+                    { label: 'P&D', val: m?.pd?.real || 0 },
+                    { label: 'Tarifas Bancárias', val: m?.tarifas?.real || 0 },
+                    { label: 'Diretoria', val: m?.diretoria?.real || 0 },
+                    { label: 'Outros Gastos', val: m?.outros_gastos?.real || 0 },
+                    { label: 'Atividades Financeiras', val: m?.ativ_financeiros?.real || 0 },
+                  ].sort((a,b) => Math.abs(b.val) - Math.abs(a.val));
+                  return cats.map((c, i) => (
+                    <div key={i} style={{ padding: '14.3px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: 18, fontWeight: 700, color: '#ffffff', textTransform: 'capitalize' }}>{c.label}</span>
+                      <span style={{ fontSize: 18, fontWeight: 900, color: t.text, minWidth: 90, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>
+                        {c.val < 0 ? '-' : ''}{Math.abs(Math.round(c.val)).toLocaleString('pt-BR')}
+                      </span>
+                    </div>
+                  ));
+                })()}
+              </div>
             </div>
-            <div style={{ flex: 1, overflow: 'hidden' }}>
-              {(() => {
-                const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
-                const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth];
-                const cats = [
-                  { label: 'Matéria Prima', val: m?.materia_prima?.real || 0 },
-                  { label: 'Fretes', val: m?.fretes?.real || 0 },
-                  { label: 'Pessoal', val: m?.pessoal?.real || 0 },
-                  { label: 'Impostos', val: m?.impostos?.real || 0 },
-                  { label: 'Manut. Predial', val: m?.manut_predial?.real || 0 },
-                  { label: 'Desp. Operacionais', val: m?.despesas_op?.real || 0 },
-                  { label: 'Consultorias', val: m?.consultorias?.real || 0 },
-                  { label: 'P&D', val: m?.pd?.real || 0 },
-                  { label: 'Tarifas Bancárias', val: m?.tarifas?.real || 0 },
-                  { label: 'Diretoria', val: m?.diretoria?.real || 0 },
-                  { label: 'Outros Gastos', val: m?.outros_gastos?.real || 0 },
-                  { label: 'Atividades Financeiras', val: m?.ativ_financeiros?.real || 0 },
-                ].sort((a,b) => Math.abs(b.val) - Math.abs(a.val));
-                return cats.map((c, i) => (
-                  <div key={i} style={{ padding: '14.3px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: 18, fontWeight: 700, color: '#ffffff', textTransform: 'capitalize' }}>{c.label}</span>
-                    <span style={{ fontSize: 18, fontWeight: 900, color: t.text, minWidth: 90, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>
-                      {c.val < 0 ? '-' : ''}{Math.abs(Math.round(c.val)).toLocaleString('pt-BR')}
-                    </span>
-                  </div>
-                ));
-              })()}
-            </div>
-          </div>
+          )}
+        </div>
+      )}
+
+      {/* ── VISÃO ORÇAMENTO CAIXA (Placeholder Premium) ── */}
+      {viewType === 'orcamento_caixa' && (
+        <div style={{ background: t.card, borderRadius: 16, border: `1.5px solid ${t.border}`, padding: 40, textAlign: 'center' }}>
+          <Activity size={48} color={t.accent} style={{ marginBottom: 20 }} />
+          <h3 style={{ fontSize: 24, fontWeight: 900, color: t.text, textTransform: 'uppercase', marginBottom: 10 }}>Orçamento de Caixa</h3>
+          <p style={{ color: t.textMuted, fontSize: 16 }}>Módulo de controle orçamentário detalhado por regime de caixa.</p>
         </div>
       )}
 
