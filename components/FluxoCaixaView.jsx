@@ -284,7 +284,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                         fontSize: 16, 
                         fontWeight: 900,
                         boxShadow: '0 4px 12px rgba(255,106,34,0.2)',
-                        width: '50px',
+                        width: '200px',
                         textAlign: 'center'
                       }}>
                         {fmt(Math.abs(saldoFinal))}
