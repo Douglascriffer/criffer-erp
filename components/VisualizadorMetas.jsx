@@ -81,11 +81,12 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
         <KpiCard 
           label="REALIZADO ACUMULADO" 
           value={fmtBRL(stats.realizadoTotal)} 
-          sub={<span>Meta: <span style={{ color: t.accent, fontWeight: 900 }}>{fmtBRL(stats.metaTotal)}</span></span>}
+          sub={<span>Meta: <span style={{ color: '#FF6A22', fontWeight: 900 }}>{fmtBRL(stats.metaTotal)}</span></span>}
           icon={TrendingUp} 
           color={t.accent} 
           darkMode={darkMode}
           snakeBorder={false}
+          cardBg={t.card}
         />
         <KpiCard 
           label="DESEMPENHO" 
@@ -95,6 +96,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
           color="#22c55e" 
           darkMode={darkMode}
           percent={stats.pctGeral}
+          cardBg={t.card}
         />
         <KpiCard 
           label="GAP PARA O OBJETIVO" 
@@ -103,6 +105,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
           icon={Compass} 
           color="#ef4444" 
           darkMode={darkMode}
+          cardBg={t.card}
         />
       </div>
 
@@ -272,8 +275,8 @@ const GrowthIcon = ({ color, darkMode }) => {
   )
 }
 
-function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, percent }) {
-  const bg = darkMode ? '#1e1e2d' : '#ffffff'
+function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, percent, cardBg }) {
+  const bg = cardBg || (darkMode ? 'rgba(255,255,255,0.08)' : '#ffffff')
   const border = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'
 
   // Identificação dos cards para ícones customizados
