@@ -145,8 +145,26 @@ export default function DashboardClient() {
     ],
   }
 
-  const activeSubs = SUB_TABS[tab] || []
-  const activeSub  = subTab || (tab === 'desempenho' ? 'vendas' : tab === 'fluxo' ? 'simples' : activeSubs[0]?.id || '')
+  const activeSubs = useMemo(() => {
+    let subs = SUB_TABS[tab] || [];
+    if (tab === 'fluxo') {
+      const u = user.toLowerCase();
+      const isAllowed = u.includes('juliano') || u.includes('financeiro') || u.includes('faiblan');
+      if (!isAllowed) return subs.filter(s => s.id !== 'simples');
+    }
+    return subs;
+  }, [tab, user]);
+
+  const activeSub = useMemo(() => {
+    if (subTab) return subTab;
+    if (tab === 'desempenho') return 'vendas';
+    if (tab === 'fluxo') {
+      const u = user.toLowerCase();
+      const isAllowed = u.includes('juliano') || u.includes('financeiro') || u.includes('faiblan');
+      return isAllowed ? 'simples' : 'orcamento_caixa';
+    }
+    return activeSubs[0]?.id || '';
+  }, [tab, subTab, user, activeSubs]);
 
   function goTab(id) { router.push(`/dashboard?tab=${id}`) }
   function goSub(id) { router.push(`/dashboard?tab=${tab}&sub=${id}`) }
@@ -218,13 +236,7 @@ export default function DashboardClient() {
 
         {/* Top Tabs Navigation */}
         <nav style={{ display: 'flex', gap: 6, background: 'rgba(0,0,0,0.15)', padding: 5, borderRadius: 12, backdropFilter: 'blur(10px)' }}>
-          {TOP_TABS.filter(t => {
-            if (t.id === 'fluxo') {
-              const u = user.toLowerCase();
-              return u.includes('juliano') || u.includes('financeiro') || u.includes('faiblan');
-            }
-            return true;
-          }).map(tabItem => {
+          {TOP_TABS.map(tabItem => {
             const active = tab === tabItem.id
             const Icon = tabItem.icon
             return (
@@ -540,9 +552,11 @@ export default function DashboardClient() {
           )}
 
           {tab === 'fluxo' && (() => {
+            const isSimples = activeSub === 'simples';
             const u = user.toLowerCase();
             const isAllowed = u.includes('juliano') || u.includes('financeiro') || u.includes('faiblan');
-            if (!isAllowed) return <div style={{ padding: 40, textAlign: 'center', fontSize: 20, color: t.text }}>Acesso Restrito</div>;
+            
+            if (isSimples && !isAllowed) return <div style={{ padding: 40, textAlign: 'center', fontSize: 20, color: t.text }}>Acesso Restrito</div>;
             
             return (
               <FluxoCaixaView 
