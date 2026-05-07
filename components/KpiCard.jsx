@@ -42,19 +42,24 @@ const KpiCard = ({ label, value, prevValue, icon: Icon, color, isPercent=false, 
         <p style={{ fontSize: 13, fontWeight: 900, color: theme.text, textTransform: 'uppercase', letterSpacing: 1, margin: 0 }}>{label}</p>
       </div>
 
-      {/* Valor na Base Centro */}
-      <div style={{ textAlign: 'center', width: '100%', marginTop: 'auto', marginBottom: 4 }}>
-        <p style={{ fontSize: 22, fontWeight: 900, color: theme.text, lineHeight: 1, margin: 0 }}>
+      {/* Valores: Atual e Anterior */}
+      <div style={{ textAlign: 'center', width: '100%', marginTop: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <p style={{ fontSize: 24, fontWeight: 900, color: theme.text, lineHeight: 1.1, margin: 0 }}>
           {isPercent ? `${value.toFixed(1)}%` : fmt(value)}
         </p>
+        
+        {!hideDiff && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
+            <span style={{ fontSize: 11, fontWeight: 600, color: theme.textMuted }}>
+              {isPercent ? `${prevValue.toFixed(1)}%` : fmt(prevValue)}
+            </span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 2, fontSize: 11, fontWeight: 900, color: isUp ? '#22c55e' : '#ef4444' }}>
+              {isUp ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
+              {Math.abs(pct).toFixed(1)}%
+            </div>
+          </div>
+        )}
       </div>
-
-      {!hideDiff && (
-        <div style={{ position: 'absolute', bottom: 8, right: 12, display: 'inline-flex', alignItems: 'center', gap: 2, fontSize: 10, fontWeight: 700, color: isUp ? '#22c55e' : '#ef4444' }}>
-          {isUp ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
-          {Math.abs(pct).toFixed(1)}%
-        </div>
-      )}
     </div>
   )
 }
