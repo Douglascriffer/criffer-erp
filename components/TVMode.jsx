@@ -8,7 +8,7 @@ import {
 import { 
   TrendingUp, Target, Map as MapIcon, Users, 
   DollarSign, ArrowUpRight, ArrowDownRight, Activity, 
-  Clock, Monitor, ShoppingCart, Wrench, Key, RotateCcw, Globe
+  Clock, Monitor, ShoppingCart, Wrench, Key, RotateCcw, Globe, Earth
 } from 'lucide-react'
 import MapaHeatBrasil from './MapaHeatBrasil'
 import MiniMapaRegiao from './MiniMapaRegiao'
@@ -277,8 +277,8 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
                  <div key={reg} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15, borderBottom: i < 5 ? `1px solid ${t.border}` : 'none' }}>
                    <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
                      {reg === 'EXTERIOR' ? (
-                       <div style={{ width: 45, height: 45, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.05)', borderRadius: 8 }}>
-                         <Globe size={24} color={t.accent} />
+                       <div style={{ width: 45, height: 45, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,106,34,0.1)', borderRadius: 8 }}>
+                         <Earth size={28} color={t.accent} />
                        </div>
                      ) : (
                        <MiniMapaRegiao regiao={reg} color={t.accent} />
