@@ -249,7 +249,9 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
         padding: 40, position: 'relative', 
         display: 'flex', alignItems: 'center', justifyContent: 'center' 
       }}>
-         <MapaHeatBrasil stateData={stateData} darkMode={true} isTVMode={true} />
+         <div style={{ marginTop: '80px', width: '100%' }}>
+            <MapaHeatBrasil stateData={stateData} darkMode={true} isTVMode={true} />
+         </div>
       </div>
       
       <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
