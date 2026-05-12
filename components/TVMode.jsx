@@ -225,6 +225,7 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
 
 function SlideMapa({ data, mes, t, ultimoMes }) {
   const targetMes = mes === 'all' ? ultimoMes : Number(mes)
+  const periodData2026 = data?.byPeriod?.filter(p => p.ano === 2026) || []
   const stateData = data?.byState?.filter(s => s.ano === 2026 && (mes === 'all' ? s.mes <= targetMes : s.mes === targetMes)) || []
   
   // Cálculo Real por Região
