@@ -85,6 +85,9 @@ export default function TVMode({ data, mes = 'all' }) {
             <h1 style={{ fontSize: 42, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 3, margin: 0, color: t.accent }}>
               {slides[currentSlide].title}
             </h1>
+            <div style={{ background: 'rgba(255,106,34,0.15)', padding: '6px 16px', borderRadius: 8, fontSize: 16, fontWeight: 900, color: t.accent, border: '1px solid rgba(255,106,34,0.3)' }}>
+              {labelPeriodo}
+            </div>
           </div>
           <p style={{ fontSize: 20, fontWeight: 600, color: t.textMuted, margin: '8px 0 0', textTransform: 'uppercase', letterSpacing: 2 }}>
             {slides[currentSlide].subtitle}
