@@ -11,6 +11,7 @@ import {
   Clock, Monitor, ShoppingCart, Wrench, Key, RotateCcw, Globe
 } from 'lucide-react'
 import MapaHeatBrasil from './MapaHeatBrasil'
+import MiniMapaRegiao from './MiniMapaRegiao'
 
 const fmt = (v) => {
   if (v >= 1_000_000) return `R$ ${(v / 1_000_000).toFixed(2)}M`
@@ -275,7 +276,13 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
                {Object.entries(regioesValores).sort((a, b) => b[1] - a[1]).map(([reg, val], i) => (
                  <div key={reg} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15, borderBottom: i < 5 ? `1px solid ${t.border}` : 'none' }}>
                    <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-                     {reg === 'EXTERIOR' ? <Globe size={20} color={t.accent} /> : <MapIcon size={20} color={t.accent} />}
+                     {reg === 'EXTERIOR' ? (
+                       <div style={{ width: 45, height: 45, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.05)', borderRadius: 8 }}>
+                         <Globe size={24} color={t.accent} />
+                       </div>
+                     ) : (
+                       <MiniMapaRegiao regiao={reg} color={t.accent} />
+                     )}
                      <span style={{ fontSize: 22, fontWeight: 800, color: t.text }}>{reg}</span>
                    </div>
                    <span style={{ fontSize: 26, fontWeight: 900, color: val > 0 ? '#fff' : t.textMuted }}>
