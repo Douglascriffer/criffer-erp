@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { Monitor } from 'lucide-react'
+import { Monitor, Calendar } from 'lucide-react'
 
 const USUARIOS = [
   { nome: 'Andressa Barth',     display: 'Andressa Barth',   nivel: 'gestor', setor: 'Produção' },
@@ -23,6 +23,22 @@ const USUARIOS = [
 ]
 const SENHA = 'Criffer2026'
 
+const MESES = [
+  { val: 'all', label: 'Acumulado Anual' },
+  { val: '1', label: 'Janeiro' },
+  { val: '2', label: 'Fevereiro' },
+  { val: '3', label: 'Março' },
+  { val: '4', label: 'Abril' },
+  { val: '5', label: 'Maio' },
+  { val: '6', label: 'Junho' },
+  { val: '7', label: 'Julho' },
+  { val: '8', label: 'Agosto' },
+  { val: '9', label: 'Setembro' },
+  { val: '10', label: 'Outubro' },
+  { val: '11', label: 'Novembro' },
+  { val: '12', label: 'Dezembro' },
+]
+
 export default function LoginPage() {
   const router = useRouter()
   const [selectedUser, setSelectedUser] = useState(null)
@@ -30,6 +46,9 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [mounted, setMounted] = useState(false)
+  
+  // Estado para o mês da transmissão
+  const [selectedMonthTV, setSelectedMonthTV] = useState('all')
 
   useEffect(() => { setMounted(true) }, [])
 
@@ -85,7 +104,7 @@ export default function LoginPage() {
         .cf-btn-secondary:hover { background: rgba(255,106,34,0.1) !important; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(255,106,34,0.2) !important; }
       `}</style>
 
-      {/* ── FUNDO — bem claro, sala nítida ── */}
+      {/* ── FUNDO ── */}
       <div style={{ position: 'absolute', inset: 0 }}>
         <Image
           src="/bg-login.png"
@@ -93,9 +112,7 @@ export default function LoginPage() {
           fill
           className="object-cover"
           priority
-          style={{
-            filter: 'brightness(0.92) contrast(1.04) saturate(0.95)',
-          }}
+          style={{ filter: 'brightness(0.92) contrast(1.04) saturate(0.95)' }}
         />
       </div>
 
@@ -190,11 +207,7 @@ export default function LoginPage() {
                       <option key={u.nome} value={u.nome}>{u.display}</option>
                     ))}
                   </select>
-                  <div style={{
-                    position: 'absolute', right: 14, top: '50%',
-                    transform: 'translateY(-50%)',
-                    pointerEvents: 'none', color: '#666', fontSize: 12,
-                  }}>▼</div>
+                  <div style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#666', fontSize: 12 }}>▼</div>
                 </div>
               </div>
 
@@ -217,25 +230,9 @@ export default function LoginPage() {
                     }}
                     required
                   />
-                  <div style={{
-                    position: 'absolute', right: 14, top: '50%',
-                    transform: 'translateY(-50%)',
-                    color: '#888', fontSize: 16,
-                  }}>🔒</div>
+                  <div style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', color: '#888', fontSize: 16 }}>🔒</div>
                 </div>
               </div>
-
-              {error && (
-                <div style={{
-                  background: 'rgba(255,255,255,0.85)', color: '#DC2626',
-                  fontSize: 12, padding: '10px 14px', borderRadius: 10,
-                  border: '1px solid rgba(220,38,38,0.35)',
-                  marginBottom: 14, textAlign: 'center', fontWeight: 700,
-                  boxShadow: '0 4px 14px rgba(0,0,0,0.10)',
-                }}>
-                  {error}
-                </div>
-              )}
 
               <button
                 type="submit"
@@ -256,12 +253,41 @@ export default function LoginPage() {
                 {loading ? 'Autenticando...' : 'Acessar Resultados'}
               </button>
 
+              <div style={{ margin: '24px 0', borderTop: '1px solid rgba(255,255,255,0.2)', position: 'relative' }}>
+                <span style={{ position: 'absolute', top: -10, left: '50%', transform: 'translateX(-50%)', background: '#333', padding: '0 10px', fontSize: 10, color: '#fff', fontWeight: 900 }}>TV BROADCAST</span>
+              </div>
+
+              {/* SELETOR DE MÊS PARA TRANSMISSÃO */}
+              <div style={{ marginBottom: 12 }}>
+                <div style={{ position: 'relative' }}>
+                  <select
+                    value={selectedMonthTV}
+                    onChange={e => setSelectedMonthTV(e.target.value)}
+                    className="cf-input"
+                    style={{
+                      width: '100%', padding: '12px 40px 12px 18px',
+                      background: '#ffffff',
+                      border: '2px solid #FF6A22',
+                      borderRadius: 14, fontSize: 13, color: '#222',
+                      fontFamily: 'inherit', cursor: 'pointer',
+                      boxSizing: 'border-box',
+                      boxShadow: '0 4px 18px rgba(0,0,0,0.12)',
+                    }}
+                  >
+                    {MESES.map(m => (
+                      <option key={m.val} value={m.val}>{m.label}</option>
+                    ))}
+                  </select>
+                  <div style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#FF6A22', fontSize: 12 }}>▼</div>
+                </div>
+              </div>
+
               <button
                 type="button"
-                onClick={() => router.push('/transmissao')}
+                onClick={() => router.push(`/transmissao?mes=${selectedMonthTV}`)}
                 className="cf-btn-secondary"
                 style={{
-                  width: '100%', padding: '12px', marginTop: 16,
+                  width: '100%', padding: '12px',
                   background: '#ffffff',
                   color: '#FF6A22',
                   border: '2px solid #FF6A22',
@@ -275,7 +301,7 @@ export default function LoginPage() {
                 }}
               >
                 <Monitor size={16} />
-                Modo Transmissão (Dashboard)
+                Modo Transmissão
               </button>
             </form>
           </div>

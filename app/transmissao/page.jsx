@@ -1,8 +1,12 @@
 'use client'
 import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import TVMode from '@/components/TVMode'
 
 export default function TransmissaoPage() {
+  const searchParams = useSearchParams()
+  const mes = searchParams.get('mes') || 'all'
+  
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -27,10 +31,10 @@ export default function TransmissaoPage() {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         color: '#FF6A22', fontSize: 24, fontWeight: 900, textTransform: 'uppercase'
       }}>
-        Iniciando Transmissão Criffer...
+        Iniciando Transmissão Criffer (Mês: {mes})...
       </div>
     )
   }
 
-  return <TVMode data={data} />
+  return <TVMode data={data} mes={mes} />
 }
