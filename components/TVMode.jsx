@@ -243,8 +243,12 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
 
   return (
     <div className="slide-enter" style={{ height: '100%', display: 'grid', gridTemplateColumns: '1fr 500px', gap: 40 }}>
-      {/* Mapa deslocado para baixo via padding-top */}
-      <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: '80px 40px 40px', position: 'relative' }}>
+      {/* Mapa centralizado verticalmente */}
+      <div style={{ 
+        background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, 
+        padding: 40, position: 'relative', 
+        display: 'flex', alignItems: 'center', justifyContent: 'center' 
+      }}>
          <MapaHeatBrasil stateData={stateData} darkMode={true} isTVMode={true} />
       </div>
       

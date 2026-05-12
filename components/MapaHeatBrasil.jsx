@@ -61,7 +61,7 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncI
     .range(['#fff5f0', '#FF6A22'])
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: 300, display: 'flex', alignItems: 'center' }}>
+    <div style={{ position: 'relative', width: '100%', height: isTVMode ? 600 : 300, display: 'flex', alignItems: 'center' }}>
       
       {/* Labels Dinâmicos (Esquerda) - OCULTOS NO MODO TV */}
       {!isTVMode && (
@@ -95,8 +95,8 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncI
       <div style={{ width: '100%', marginLeft: isTVMode ? '0' : '15%' }}>
         <ComposableMap
           projection="geoMercator"
-          projectionConfig={{ center: [-55, -18], scale: 300 }}
-          width={500} height={300}
+          projectionConfig={{ center: [-55, -18], scale: isTVMode ? 600 : 300 }}
+          width={500} height={isTVMode ? 600 : 300}
           style={{ width: '100%', height: 'auto' }}
         >
           <Geographies geography={GEO_URL}>
