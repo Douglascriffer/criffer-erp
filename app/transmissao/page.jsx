@@ -1,9 +1,9 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import TVMode from '@/components/TVMode'
 
-export default function TransmissaoPage() {
+function TransmissaoContent() {
   const searchParams = useSearchParams()
   const mes = searchParams.get('mes') || 'all'
   
@@ -11,7 +11,6 @@ export default function TransmissaoPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Carregar dados reais do ERP
     fetch('/data/dados.json')
       .then(res => res.json())
       .then(json => {
@@ -31,10 +30,18 @@ export default function TransmissaoPage() {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         color: '#FF6A22', fontSize: 24, fontWeight: 900, textTransform: 'uppercase'
       }}>
-        Iniciando Transmissão Criffer (Mês: {mes})...
+        Iniciando Transmissão Criffer...
       </div>
     )
   }
 
   return <TVMode data={data} mes={mes} />
+}
+
+export default function TransmissaoPage() {
+  return (
+    <Suspense fallback={<div style={{ background: '#000', height: '100vh' }} />}>
+      <TransmissaoContent />
+    </Suspense>
+  )
 }
