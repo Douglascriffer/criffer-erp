@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer
 } from 'recharts';
-import { 
-  Target, TrendingUp, Wallet, ArrowUpRight, ArrowDownRight, Activity, Calendar, List 
+import {
+  Target, TrendingUp, Wallet, ArrowUpRight, ArrowDownRight, Activity, Calendar, List
 } from 'lucide-react';
 import KpiCard from './KpiCard';
 
@@ -47,14 +47,14 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, fontFamily: "'Gotham', sans-serif" }}>
-      
+
       {/* ── VISÃO SIMPLIFICADA ── */}
       {viewType === 'simples' && (
         <div style={{ display: 'grid', gridTemplateColumns: hasFullAccess ? '1fr 420px' : '1fr', gap: 20 }}>
-          
+
           {/* COLUNA DA ESQUERDA: KPIs + SITUAÇÃO FINANCEIRA */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            
+
             {/* KPIs SUPERIORES */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 10 }}>
               {(() => {
@@ -73,10 +73,10 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
             </div>
 
             {/* Situação Financeira */}
-            <div style={{ 
-              background: t.card, 
-              borderRadius: 16, 
-              border: `1.5px solid ${t.border}`, 
+            <div style={{
+              background: t.card,
+              borderRadius: 16,
+              border: `1.5px solid ${t.border}`,
               padding: '40px',
               boxShadow: '0 4px 24px rgba(0,0,0,0.2)',
               display: 'flex',
@@ -89,16 +89,16 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 <h3 style={{ fontSize: 28, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 2, margin: 0 }}>Situação Financeira</h3>
                 <p style={{ fontSize: 14, color: t.textMuted, fontWeight: 500, marginTop: 6, letterSpacing: 0.5 }}>Posição atual versus objetivos anuais</p>
               </div>
-              
+
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, width: '100%', flex: 1 }}>
-                
+
                 {/* Card: Meta Anual */}
                 <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 20, padding: 32, border: `1px solid ${t.border}`, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 24 }}>
                     <Target size={22} color={t.accent} />
                     <span style={{ fontSize: 25, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Meta Anual 2026</span>
                   </div>
-                  
+
                   {(() => {
                     const metaValue = 11000000;
                     const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
@@ -107,7 +107,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     const varAcc = saldoFinal - metaValue;
                     const pctDesvio = metaValue !== 0 ? (varAcc / metaValue * 100) : 0;
                     const isGoodAcc = varAcc >= 0;
-                    
+
                     return (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                         <div style={{ background: darkMode ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0.05)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -133,7 +133,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     <TrendingUp size={22} color={t.accent} />
                     <span style={{ fontSize: 25, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>Posição Atual</span>
                   </div>
-                  
+
                   {(() => {
                     const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
                     const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
@@ -141,7 +141,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     const saldoFin = m.saldo_final?.real || 0;
                     const varPer = saldoFin - saldoIni2026;
                     const isGoodPer = varPer >= 0;
-                    
+
                     return (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                         <div style={{ background: darkMode ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0.05)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -149,7 +149,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                           <span style={{ fontSize: 30, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(saldoIni2026).toLocaleString('pt-BR')}</span>
                         </div>
                         <div style={{ background: darkMode ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0.05)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontSize: 22, color: t.text, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Final {mesesLabels[currentMonth-1]}/26</span>
+                          <span style={{ fontSize: 22, color: t.text, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Final {mesesLabels[currentMonth - 1]}/26</span>
                           <span style={{ fontSize: 30, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(saldoFin).toLocaleString('pt-BR')}</span>
                         </div>
                         <div style={{ border: `1.5px solid ${isGoodPer ? t.green : t.red}`, background: isGoodPer ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -166,15 +166,15 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
 
           {/* COLUNA DA DIREITA: COMPOSIÇÃO DAS SAÍDAS (FULL HEIGHT) - PROTEGIDA */}
           {hasFullAccess && (
-            <div style={{ 
-              background: t.card, 
-              borderRadius: 16, 
-              border: `1.5px solid ${t.border}`, 
-              padding: 0, 
-              overflow: 'hidden', 
-              boxShadow: darkMode ? '0 4px 24px rgba(0,0,0,0.4)' : '0 4px 24px rgba(0,0,0,0.1)', 
-              display: 'flex', 
-              flexDirection: 'column', 
+            <div style={{
+              background: t.card,
+              borderRadius: 16,
+              border: `1.5px solid ${t.border}`,
+              padding: 0,
+              overflow: 'hidden',
+              boxShadow: darkMode ? '0 4px 24px rgba(0,0,0,0.4)' : '0 4px 24px rgba(0,0,0,0.1)',
+              display: 'flex',
+              flexDirection: 'column',
               height: 750,
               color: t.text
             }}>
@@ -198,7 +198,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     { label: 'Diretoria', val: m?.diretoria?.real || 0 },
                     { label: 'Outros Gastos', val: m?.outros_gastos?.real || 0 },
                     { label: 'Atividades Financeiras', val: m?.ativ_financeiros?.real || 0 },
-                  ].sort((a,b) => Math.abs(b.val) - Math.abs(a.val));
+                  ].sort((a, b) => Math.abs(b.val) - Math.abs(a.val));
                   return cats.map((c, i) => (
                     <div key={i} style={{ padding: '14.3px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <span style={{ fontSize: 18, fontWeight: 700, color: t.text, textTransform: 'capitalize' }}>{c.label}</span>
@@ -217,12 +217,12 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
       {/* ── NOVA VISÃO ORÇAMENTO CAIXA (RECONSTRUÇÃO TOTAL ALTA FIDELIDADE) ── */}
       {viewType === 'orcamento_caixa' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 25, animation: 'fadeIn 0.5s ease-out' }}>
-          
+
           <div style={{ display: 'grid', gridTemplateColumns: '350px 1fr', gap: 30 }}>
-            
+
             {/* Coluna Esquerda: Banner Resultado + 3 Cards de Resumo */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-              
+
               {/* Banner Resultado do Mês (Agora na Esquerda) */}
               {(() => {
                 const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
@@ -235,12 +235,12 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                       <Calendar size={18} color={t.text} />
                       <span style={{ fontSize: 18, fontWeight: 900, color: t.text }}>Resultado do Mês</span>
                     </div>
-                    <div style={{ 
-                      background: isPos ? t.green : t.red, 
-                      color: '#ffffff', 
-                      padding: '10px 25px', 
-                      borderRadius: 8, 
-                      fontSize: 28, 
+                    <div style={{
+                      background: isPos ? t.green : t.red,
+                      color: '#ffffff',
+                      padding: '10px 25px',
+                      borderRadius: 8,
+                      fontSize: 28,
                       fontWeight: 900,
                       boxShadow: `0 8px 25px ${isPos ? 'rgba(34,197,94,0.3)' : 'rgba(239,68,68,0.3)'}`,
                       width: '100%',
@@ -263,7 +263,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
               {(() => {
                 const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
                 const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
-                
+
                 const cards = [
                   { label: 'Entradas Operacionais', val: m.total_entradas?.real || 0, color: '#FF6A22', icon: ArrowUpRight, bg: 'rgba(255,106,34,0.1)' },
                   { label: 'Saídas Operacionais', val: m.total_saidas_op?.real || 0, color: '#ef4444', icon: ArrowDownRight, bg: 'rgba(239,68,68,0.1)' },
@@ -271,10 +271,10 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 ];
 
                 return cards.map((c, i) => (
-                  <div key={i} style={{ 
-                    background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', 
-                    borderRadius: 16, 
-                    padding: '25px', 
+                  <div key={i} style={{
+                    background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+                    borderRadius: 16,
+                    padding: '25px',
                     border: `1px solid ${darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
                     borderLeft: `6px solid ${c.color}`,
                     display: 'flex',
@@ -301,7 +301,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
 
             {/* Coluna Direita: Detalhamento de Gastos */}
             <div style={{ background: t.card, borderRadius: 20, border: `1.5px solid ${t.border}`, padding: '30px', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', height: 700, display: 'flex', flexDirection: 'column' }}>
-              
+
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 25 }}>
                 <div style={{ background: t.accent, borderRadius: 8, padding: 8 }}>
                   <List size={26} color="#ffffff" />
@@ -323,7 +323,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     {(() => {
                       const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
                       const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
-                      
+
                       const rows = [
                         { label: 'Matéria Prima/Prod', real: m.materia_prima?.real, orc: m.materia_prima?.orc },
                         { label: 'Fretes', real: m.fretes?.real, orc: m.fretes?.orc },
@@ -368,7 +368,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
           <div style={{ padding: '24px 32px', borderBottom: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.01)' }}>
             <h3 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1.5, margin: 0 }}>Demonstrativo de Fluxo Detalhado</h3>
             <div style={{ fontSize: 13, fontWeight: 800, color: t.accent, background: 'rgba(255,106,34,0.12)', padding: '8px 20px', borderRadius: 14 }}>
-              COMPETÊNCIA: {mes === 'all' ? 'VISÃO ANUAL' : mesesLabels[parseInt(mes)-1].toUpperCase()}
+              COMPETÊNCIA: {mes === 'all' ? 'VISÃO ANUAL' : mesesLabels[parseInt(mes) - 1].toUpperCase()}
             </div>
           </div>
           <div style={{ overflowX: 'auto' }}>
@@ -385,11 +385,11 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                 {(() => {
                   const currentMonth = mes === 'all' ? (chartData.filter(d => d.hasData).pop()?.monthNum || 1) : parseInt(mes);
                   const m = dados?.fluxo?.mensal?.[String(currentMonth)] || dados?.fluxo?.mensal?.[currentMonth] || {};
-                  
+
                   const rows = [
                     { label: 'ENTRADAS OPERACIONAIS', isHeader: true },
                     { label: 'Total de Entradas', real: m.total_entradas?.real, orc: m.total_entradas?.orc, isTotal: true },
-                    
+
                     { label: 'SAÍDAS OPERACIONAIS', isHeader: true },
                     { label: 'Matéria Prima', real: m.materia_prima?.real, orc: m.materia_prima?.orc },
                     { label: 'Fretes', real: m.fretes?.real, orc: m.fretes?.orc },
@@ -407,7 +407,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     { label: 'Outros Gastos', real: m.outros_gastos?.real, orc: m.outros_gastos?.orc },
                     { label: 'Atividades Financeiras (L19-25)', real: m.ativ_financeiros?.real, orc: m.ativ_financeiros?.orc },
                     { label: 'Rendimentos Aplic.', real: m.rend_aplic?.real, orc: m.rend_aplic?.orc },
-                    
+
                     { label: 'TOTAL GERAL DE SAÍDAS', real: m.total_saidas?.real, orc: m.total_saidas?.orc, isTotal: true },
                     { label: 'GERAÇÃO DE CAIXA', real: m.geracao_caixa?.real, orc: m.geracao_caixa?.orc, isFinal: true },
                   ];
@@ -426,8 +426,8 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     const isGood = row.label.includes('ENTRADA') || row.label.includes('Rendimentos') || row.label.includes('GERAÇÃO') ? isPositive : !isPositive;
 
                     return (
-                      <tr key={i} style={{ 
-                        borderBottom: `1px solid ${t.border}`, 
+                      <tr key={i} style={{
+                        borderBottom: `1px solid ${t.border}`,
                         background: row.isTotal ? (darkMode ? 'rgba(255,255,255,0.05)' : '#fcfcfc') : (row.isFinal ? (darkMode ? 'rgba(255,106,34,0.15)' : 'rgba(255,106,34,0.08)') : 'transparent'),
                         fontWeight: row.isTotal || row.isFinal ? 700 : 400
                       }}>
@@ -452,7 +452,7 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
       {/* ── VISÃO METAS ── */}
       {viewType === 'metas_fluxo' && (
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
-          
+
           {/* Card Meta Entradas */}
           <div style={{ background: t.card, borderRadius: 24, border: `1.5px solid ${t.border}`, padding: 32 }}>
             <h3 style={{ fontSize: 18, fontWeight: 900, color: t.text, textTransform: 'uppercase', marginBottom: 24 }}>Atingimento de Entradas</h3>

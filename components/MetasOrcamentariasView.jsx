@@ -44,31 +44,31 @@ export default function MetasOrcamentariasView({ darkMode }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      
+
       {/* Título Superior */}
       <div style={{ borderBottom: `1px solid ${t.border}`, paddingBottom: 16, textAlign: 'center' }}>
-         <h2 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>
-            Meta Inicial vs Meta Atualizada — 2026
-         </h2>
+        <h2 style={{ fontSize: 20, fontWeight: 900, color: t.text, textTransform: 'uppercase', letterSpacing: 1 }}>
+          Meta Inicial vs Meta Atualizada — 2026
+        </h2>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
-        
+
         {/* CARD: META INICIAL */}
-        <GoalCard 
-          title="Meta Inicial" 
-          data={metaInicial} 
-          t={t} 
-          darkMode={darkMode} 
+        <GoalCard
+          title="Meta Inicial"
+          data={metaInicial}
+          t={t}
+          darkMode={darkMode}
           borderColor={t.text}
         />
 
         {/* CARD: META ATUALIZADA */}
-        <GoalCard 
-          title="Meta Atualizada" 
-          data={metaAtualizada} 
-          t={t} 
-          darkMode={darkMode} 
+        <GoalCard
+          title="Meta Atualizada"
+          data={metaAtualizada}
+          t={t}
+          darkMode={darkMode}
           borderColor={t.accent}
           highlight
         />
@@ -80,9 +80,9 @@ export default function MetasOrcamentariasView({ darkMode }) {
 
 function GoalCard({ title, data, t, darkMode, borderColor, highlight }) {
   return (
-    <div style={{ 
-      background: t.card, 
-      borderRadius: 24, 
+    <div style={{
+      background: t.card,
+      borderRadius: 24,
       border: `2px solid ${borderColor}`,
       padding: 32,
       display: 'flex',
@@ -107,7 +107,7 @@ function GoalCard({ title, data, t, darkMode, borderColor, highlight }) {
       </div>
 
       {/* Box de Economia: Design Premium */}
-      <div style={{ 
+      <div style={{
         marginTop: 'auto',
         background: highlight ? 'linear-gradient(135deg, rgba(255,106,34,0.1) 0%, rgba(255,106,34,0.02) 100%)' : 'linear-gradient(135deg, rgba(128,128,128,0.1) 0%, rgba(128,128,128,0.02) 100%)',
         borderRadius: 24,
@@ -118,14 +118,14 @@ function GoalCard({ title, data, t, darkMode, borderColor, highlight }) {
         overflow: 'hidden'
       }}>
         {/* Ícone de Fundo Decorativo */}
-        <Target 
-          size={80} 
-          color={highlight ? t.accent : t.text} 
-          style={{ position: 'absolute', right: -20, bottom: -20, opacity: 0.1, transform: 'rotate(-15deg)' }} 
+        <Target
+          size={80}
+          color={highlight ? t.accent : t.text}
+          style={{ position: 'absolute', right: -20, bottom: -20, opacity: 0.1, transform: 'rotate(-15deg)' }}
         />
 
         <p style={{ fontSize: 16, fontWeight: 900, color: t.textSub, textTransform: 'uppercase', letterSpacing: 2, marginBottom: 12 }}>Economia Necessária</p>
-        
+
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
           <p style={{ fontSize: 42, fontWeight: 900, color: highlight ? t.accent : t.text, margin: 0, lineHeight: 1 }}>
             {(data.economia * 100).toFixed(1)}%

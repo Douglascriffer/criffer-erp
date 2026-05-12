@@ -1,7 +1,7 @@
 'use client'
 import React, { useMemo } from 'react'
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Legend, LineChart, Line, ComposedChart, Area
 } from 'recharts'
 import { Target, TrendingUp, AlertCircle, CheckCircle2, ArrowRightCircle, Compass } from 'lucide-react'
@@ -22,8 +22,8 @@ const fmtPct = (v) => `${v.toFixed(1)}%`
 
 const translateMonth = (label) => {
   const map = {
-    'Jan': 'JAN', 'Feb': 'FEV', 'Mar': 'MAR', 'Apr': 'ABR', 
-    'May': 'MAI', 'Jun': 'JUN', 'Jul': 'JUL', 'Aug': 'AGO', 
+    'Jan': 'JAN', 'Feb': 'FEV', 'Mar': 'MAR', 'Apr': 'ABR',
+    'May': 'MAI', 'Jun': 'JUN', 'Jul': 'JUL', 'Aug': 'AGO',
     'Sep': 'SET', 'Oct': 'OUT', 'Nov': 'NOV', 'Dec': 'DEZ'
   }
   return map[label] || label.toUpperCase()
@@ -64,7 +64,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
     const metaTotal = metasAnuais.reduce((acc, m) => acc + (m.meta || 0), 0)
     const pctGeral = metaTotal > 0 ? (realizadoTotal / metaTotal) * 100 : 0
     const gap = Math.max(0, metaTotal - realizadoTotal)
-    
+
     // Projeção (Run Rate) baseada nos meses que já tiveram faturamento
     const mesesComFaturamento = metasAnuais.filter(m => m.realizado > 0).length
     const mediaMensal = mesesComFaturamento > 0 ? realizadoTotal / mesesComFaturamento : 0
@@ -75,35 +75,35 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24, paddingBottom: 40 }}>
-      
+
       {/* ── HEADER DE KPIS PREMIUM ── */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
-        <KpiCard 
-          label="REALIZADO ACUMULADO" 
-          value={fmtBRL(stats.realizadoTotal)} 
+        <KpiCard
+          label="REALIZADO ACUMULADO"
+          value={fmtBRL(stats.realizadoTotal)}
           sub={<span>Meta: <span style={{ color: '#FF6A22', fontWeight: 900 }}>{fmtBRL(stats.metaTotal)}</span></span>}
-          icon={TrendingUp} 
-          color={t.accent} 
+          icon={TrendingUp}
+          color={t.accent}
           darkMode={darkMode}
           snakeBorder={false}
           cardBg={t.card}
         />
-        <KpiCard 
-          label="DESEMPENHO" 
-          value={fmtPct(stats.pctGeral)} 
+        <KpiCard
+          label="DESEMPENHO"
+          value={fmtPct(stats.pctGeral)}
           sub={stats.pctGeral >= 100 ? "Meta Batida!" : `${fmtPct(100 - stats.pctGeral)} para o alvo`}
-          icon={Target} 
-          color="#22c55e" 
+          icon={Target}
+          color="#22c55e"
           darkMode={darkMode}
           percent={stats.pctGeral}
           cardBg={t.card}
         />
-        <KpiCard 
-          label="GAP PARA O OBJETIVO" 
-          value={fmtBRL(stats.gap)} 
+        <KpiCard
+          label="GAP PARA O OBJETIVO"
+          value={fmtBRL(stats.gap)}
           sub="Falta para Meta Anual"
-          icon={Compass} 
-          color="#ef4444" 
+          icon={Compass}
+          color="#ef4444"
           darkMode={darkMode}
           cardBg={t.card}
         />
@@ -111,12 +111,12 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
 
       {/* ── CONTEÚDO PRINCIPAL: GRÁFICO + TABELA LADO A LADO ── */}
       <div style={{ display: 'grid', gridTemplateColumns: '75% 25%', gap: 24, alignItems: 'start' }}>
-        
+
         {/* COLUNA ESQUERDA: GRÁFICO */}
-        <div style={{ 
-          background: t.card, 
-          borderRadius: 12, 
-          border: `1.5px solid ${t.border}`, 
+        <div style={{
+          background: t.card,
+          borderRadius: 12,
+          border: `1.5px solid ${t.border}`,
           padding: 24,
           height: 570,
           display: 'flex',
@@ -133,26 +133,26 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart data={metasAnuais}>
                 <CartesianGrid vertical={false} horizontal={false} />
-                <XAxis 
-                  dataKey="labelPT" 
-                  axisLine={false} 
-                  tickLine={false} 
+                <XAxis
+                  dataKey="labelPT"
+                  axisLine={false}
+                  tickLine={false}
                   tick={{ fill: t.textSub, fontSize: 15, fontWeight: 700 }}
                 />
                 <YAxis hide={true} />
                 <Tooltip content={<CustomTooltip darkMode={darkMode} />} cursor={{ fill: 'rgba(255,106,34,0.05)' }} />
-                
-                <Bar 
-                  dataKey="realizado" 
-                  fill={t.accent} 
-                  radius={[4, 4, 0, 0]} 
+
+                <Bar
+                  dataKey="realizado"
+                  fill={t.accent}
+                  radius={[4, 4, 0, 0]}
                   barSize={45}
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="meta" 
-                  stroke={darkMode ? '#fff' : '#000'} 
-                  strokeWidth={3} 
+                <Line
+                  type="monotone"
+                  dataKey="meta"
+                  stroke={darkMode ? '#fff' : '#000'}
+                  strokeWidth={3}
                   dot={{ r: 3, strokeWidth: 2, fill: t.card }}
                 />
               </ComposedChart>
@@ -161,16 +161,16 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
 
           {/* Legenda na parte inferior */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 16 }}>
-             <LegendItem label="Realizado" color={t.accent} darkMode={darkMode} />
-             <LegendItem label="Meta" color={darkMode ? '#fff' : '#000'} isLine darkMode={darkMode} />
+            <LegendItem label="Realizado" color={t.accent} darkMode={darkMode} />
+            <LegendItem label="Meta" color={darkMode ? '#fff' : '#000'} isLine darkMode={darkMode} />
           </div>
         </div>
 
         {/* COLUNA DIREITA: TABELA COMPACTA */}
-        <div style={{ 
-          background: t.card, 
-          borderRadius: 12, 
-          border: `1.5px solid ${t.border}`, 
+        <div style={{
+          background: t.card,
+          borderRadius: 12,
+          border: `1.5px solid ${t.border}`,
           padding: 0,
           height: 570,
           overflow: 'hidden',
@@ -196,7 +196,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
                   const isFuture = m.realizado === 0 && m.mes > stats.mesesComFaturamento
 
                   return (
-                    <tr key={idx} style={{ 
+                    <tr key={idx} style={{
                       borderBottom: `1px solid ${t.border}`,
                       opacity: isFuture ? 0.4 : 1,
                     }}>
@@ -207,7 +207,7 @@ export default function VisualizadorMetas({ data, filters, darkMode }) {
                       </TdSmall>
                       <TdSmall align="right">
                         {!isFuture ? (
-                          <span style={{ 
+                          <span style={{
                             color: pct >= 100 ? '#22c55e' : (pct >= 80 ? '#f59e0b' : '#ef4444'),
                             fontWeight: 400,
                             fontSize: 15
@@ -241,13 +241,13 @@ const TargetIcon = ({ percent, darkMode }) => {
       <circle cx="12" cy="12" r="10" />
       <circle cx="12" cy="12" r="6" />
       <circle cx="12" cy="12" r="2" />
-      <line 
-        x1={isHit ? "12" : "18"} 
-        y1={isHit ? "12" : "6"} 
-        x2={isHit ? "22" : "26"} 
-        y2={isHit ? "12" : "2"} 
-        stroke={color} 
-        strokeWidth="3" 
+      <line
+        x1={isHit ? "12" : "18"}
+        y1={isHit ? "12" : "6"}
+        x2={isHit ? "22" : "26"}
+        y2={isHit ? "12" : "2"}
+        stroke={color}
+        strokeWidth="3"
       />
       {isHit && <path d="M19 9l3 3-3 3" stroke={color} strokeWidth="3" />}
     </svg>
@@ -264,12 +264,12 @@ const GrowthIcon = ({ color, darkMode }) => {
       <rect x="13" y="8" width="3" height="12" rx="1" fill={darkMode ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)'} stroke="none" />
       <rect x="18" y="4" width="3" height="16" rx="1" fill={darkMode ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)'} stroke="none" />
       {/* Seta de tendência */}
-      <path 
-        d="M3 18L9 12L13 16L21 6M21 6H16M21 6V11" 
-        stroke={color} 
-        strokeWidth="2.5" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
+      <path
+        d="M3 18L9 12L13 16L21 6M21 6H16M21 6V11"
+        stroke={color}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   )
@@ -314,7 +314,8 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, 
             zIndex: 1,
             borderRadius: 10
           }} />
-          <style dangerouslySetInnerHTML={{ __html: `
+          <style dangerouslySetInnerHTML={{
+            __html: `
             @keyframes borderRotate {
               0% { background-position: 0% 50%; }
               100% { background-position: 200% 50%; }
@@ -323,11 +324,11 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, 
         </>
       )}
 
-      <div style={{ 
-        position: 'relative', 
-        zIndex: 2, 
-        display: 'flex', 
-        alignItems: 'center', 
+      <div style={{
+        position: 'relative',
+        zIndex: 2,
+        display: 'flex',
+        alignItems: 'center',
         justifyContent: 'center',
         width: '100%'
       }}>
@@ -338,9 +339,9 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, 
           ) : isGap ? (
             <GrowthIcon color="#FF6A22" darkMode={darkMode} />
           ) : (
-            <Icon 
-              size={isRealizado ? 48 : 40} 
-              color={isRealizado ? "#FF6A22" : (darkMode ? '#fff' : '#000')} 
+            <Icon
+              size={isRealizado ? 48 : 40}
+              color={isRealizado ? "#FF6A22" : (darkMode ? '#fff' : '#000')}
             />
           )}
         </div>
@@ -359,11 +360,11 @@ function KpiCard({ label, value, sub, icon: Icon, color, darkMode, snakeBorder, 
 function LegendItem({ label, color, isLine, darkMode }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-      <div style={{ 
-        width: isLine ? 24 : 12, 
-        height: isLine ? 3 : 12, 
-        borderRadius: isLine ? 2 : 3, 
-        background: color 
+      <div style={{
+        width: isLine ? 24 : 12,
+        height: isLine ? 3 : 12,
+        borderRadius: isLine ? 2 : 3,
+        background: color
       }} />
       <span style={{ fontSize: 15, fontWeight: 700, color: darkMode ? '#fff' : '#000' }}>{label}</span>
     </div>
@@ -372,25 +373,25 @@ function LegendItem({ label, color, isLine, darkMode }) {
 
 function Th({ children, align = 'left' }) {
   return (
-    <th style={{ 
-      padding: '16px 24px', 
-      fontSize: 11, 
-      fontWeight: 900, 
-      color: '#888', 
-      letterSpacing: 1, 
-      textAlign: align 
+    <th style={{
+      padding: '16px 24px',
+      fontSize: 11,
+      fontWeight: 900,
+      color: '#888',
+      letterSpacing: 1,
+      textAlign: align
     }}>{children}</th>
   )
 }
 
 function Td({ children, align = 'left', style }) {
   return (
-    <td style={{ 
-      padding: '20px 24px', 
-      fontSize: 14, 
-      color: 'inherit', 
+    <td style={{
+      padding: '20px 24px',
+      fontSize: 14,
+      color: 'inherit',
       textAlign: align,
-      ...style 
+      ...style
     }}>{children}</td>
   )
 }
@@ -410,7 +411,7 @@ function CustomTooltip({ active, payload, darkMode }) {
       minWidth: 200
     }}>
       <p style={{ fontWeight: 900, fontSize: 14, marginBottom: 12, color: '#FF6A22' }}>{data.labelPT}</p>
-      
+
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: 24 }}>
           <span style={{ fontSize: 12, color: darkMode ? '#aaa' : '#666', fontWeight: 600 }}>META:</span>

@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { Monitor } from 'lucide-react'
 
 const USUARIOS = [
   { nome: 'Andressa Barth',     display: 'Andressa Barth',   nivel: 'gestor', setor: 'Produção' },
@@ -81,6 +82,7 @@ export default function LoginPage() {
         }
         .cf-btn:hover  { background: #e05a18 !important; transform: translateY(-1px); box-shadow: 0 12px 32px rgba(255,106,34,0.5) !important; }
         .cf-btn:active { transform: scale(0.97) !important; }
+        .cf-btn-secondary:hover { background: rgba(255,106,34,0.1) !important; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(255,106,34,0.2) !important; }
       `}</style>
 
       {/* ── FUNDO — bem claro, sala nítida ── */}
@@ -92,25 +94,17 @@ export default function LoginPage() {
           className="object-cover"
           priority
           style={{
-            /* Sala clara e visível */
             filter: 'brightness(0.92) contrast(1.04) saturate(0.95)',
           }}
         />
-        {/* Sem vinheta — fundo totalmente visível */}
       </div>
 
-      {/* ── CONTAINER — transparente, só posiciona os elementos ── */}
       <div style={{
         position: 'absolute', inset: 0,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         padding: 24, zIndex: 10,
       }}>
 
-        {/*
-          CARD CONTAINER — TOTALMENTE TRANSPARENTE
-          Apenas agrupa os elementos. Sem background, sem borda, sem blur.
-          Só os campos e botão têm fundo próprio.
-        */}
         <div style={{
           width: '100%',
           maxWidth: 420,
@@ -118,7 +112,7 @@ export default function LoginPage() {
           animation: 'slideFromLeft 2s cubic-bezier(0.22,1,0.36,1) both',
         }}>
 
-          {/* ── LOGO — cai do topo em 3s ── */}
+          {/* ── LOGO ── */}
           <div style={{
             display: 'flex', justifyContent: 'center', marginBottom: 20,
             animation: 'dropFromTop 3s cubic-bezier(0.22,1,0.36,1) both',
@@ -140,7 +134,7 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* ── C-R-I-F-F-E-R — sobe de baixo em 3s ── */}
+          {/* ── C-R-I-F-F-E-R ── */}
           <div style={{
             display: 'flex', justifyContent: 'center', gap: 4, marginBottom: 10,
             animation: 'riseFromBottom 3s cubic-bezier(0.22,1,0.36,1) both',
@@ -159,10 +153,7 @@ export default function LoginPage() {
             ))}
           </div>
 
-          {/* ── RESTANTE — aparece após 3s ── */}
           <div style={{ animation: 'fadeInDelayed 0.8s ease-out 3s both' }}>
-
-            {/* Subtítulo — texto sobre o fundo claro */}
             <p style={{
               textAlign: 'center',
               fontSize: 22, fontWeight: 700,
@@ -176,8 +167,6 @@ export default function LoginPage() {
             </p>
 
             <form onSubmit={handleLogin}>
-
-              {/* Campo — Acesso Administrativo */}
               <div style={{ marginBottom: 14 }}>
                 <div style={{ position: 'relative' }}>
                   <select
@@ -186,7 +175,6 @@ export default function LoginPage() {
                     className="cf-input"
                     style={{
                       width: '100%', padding: '14px 40px 14px 18px',
-                      /* ▼ campo com fundo branco bem visível */
                       background: '#ffffff',
                       border: '1.5px solid rgba(255,255,255,0.95)',
                       borderRadius: 14, fontSize: 14, color: '#222',
@@ -210,7 +198,6 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              {/* Campo — Senha */}
               <div style={{ marginBottom: 20 }}>
                 <div style={{ position: 'relative' }}>
                   <input
@@ -238,7 +225,6 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              {/* Erro */}
               {error && (
                 <div style={{
                   background: 'rgba(255,255,255,0.85)', color: '#DC2626',
@@ -251,7 +237,6 @@ export default function LoginPage() {
                 </div>
               )}
 
-              {/* Botão — sólido laranja, único elemento opaco */}
               <button
                 type="submit"
                 disabled={loading}
@@ -271,9 +256,29 @@ export default function LoginPage() {
                 {loading ? 'Autenticando...' : 'Acessar Resultados'}
               </button>
 
+              <button
+                type="button"
+                onClick={() => router.push('/transmissao')}
+                className="cf-btn-secondary"
+                style={{
+                  width: '100%', padding: '12px', marginTop: 16,
+                  background: 'transparent',
+                  color: '#FF6A22',
+                  border: '2px solid #FF6A22',
+                  borderRadius: 14,
+                  fontWeight: 900, fontSize: 12, letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer',
+                  fontFamily: 'inherit',
+                  transition: 'all 0.3s',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10
+                }}
+              >
+                <Monitor size={16} />
+                Modo Transmissão (Dashboard)
+              </button>
             </form>
           </div>
-
         </div>
       </div>
     </div>
