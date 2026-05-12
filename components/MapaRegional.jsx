@@ -1,7 +1,6 @@
 'use client'
 import { useMemo } from 'react'
-import { Earth } from 'lucide-react'
-import MiniMapaRegiao from './MiniMapaRegiao'
+import IconeRegiao from './IconeRegiao'
 
 const REGIONS = {
   'AC':'Norte','AM':'Norte','AP':'Norte','PA':'Norte','RO':'Norte','RR':'Norte','TO':'Norte',
@@ -51,13 +50,9 @@ export default function MapaRegional({ stateData = [], officialTotal = 0, darkMo
           <div key={item.name}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6, fontSize: 12 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                 {item.name.toUpperCase() === 'EXTERIOR' ? (
-                   <Earth size={16} color={COLORS[i % COLORS.length]} />
-                 ) : (
-                   <div style={{ width: 24, height: 18, transform: 'scale(0.8)' }}>
-                      <MiniMapaRegiao regiao={item.name.toUpperCase()} color={COLORS[i % COLORS.length]} />
-                   </div>
-                 )}
+                 <div style={{ width: 20, height: 20, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <IconeRegiao regiao={item.name.toUpperCase()} color={COLORS[i % COLORS.length]} size={18} />
+                 </div>
                  <span style={{ color: darkMode ? '#ffffff' : '#000000', fontWeight: 700 }}>{item.name}</span>
               </div>
               <span style={{ color: darkMode ? '#ffffff' : '#000000', fontWeight: 400, opacity: 0.8 }}>R$ {item.value.toLocaleString('pt-BR')}</span>
