@@ -12,7 +12,6 @@ const UF_MAP_REVERSE = {
   'Santa Catarina':'SC','São Paulo':'SP','Sergipe':'SE','Tocantins':'TO'
 }
 
-// Escalas ajustadas para o tamanho 45x35
 const REGIOES_CONFIG = {
   'SUL': { center: [-52, -27], scale: 500, states: ['PR', 'SC', 'RS'] },
   'SUDESTE': { center: [-46, -21], scale: 500, states: ['SP', 'RJ', 'MG', 'ES'] },
@@ -26,7 +25,10 @@ export default function MiniMapaRegiao({ regiao, color = '#FF6A22' }) {
   if (!config) return null
 
   return (
-    <div style={{ width: 45, height: 35, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+    <div style={{ 
+      width: 45, height: 35, display: 'flex', alignItems: 'center', justifyContent: 'center', 
+      filter: `drop-shadow(0 0 5px ${color}44)` // Efeito de brilho (glow) sutil
+    }}>
       <ComposableMap
         projection="geoMercator"
         projectionConfig={{ center: config.center, scale: config.scale }}
@@ -47,7 +49,8 @@ export default function MiniMapaRegiao({ regiao, color = '#FF6A22' }) {
                     key={geo.rsmKey}
                     geography={geo}
                     fill={color}
-                    stroke="none"
+                    stroke={color}
+                    strokeWidth={0.5}
                     style={{ default: { outline: 'none' } }}
                   />
                 )
