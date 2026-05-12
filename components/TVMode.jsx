@@ -30,15 +30,16 @@ export default function TVMode({ data }) {
     { id: 'orcamento', title: 'Saúde Financeira', subtitle: 'Resultado Operacional e Gastos' }
   ]
 
-  // Intervalo de 5 segundos para troca de slide
+  // Intervalo de 30 segundos para troca de slide
   useEffect(() => {
     const slideTimer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
       setProgress(0)
-    }, 5000)
+    }, 30000)
 
     const progressTimer = setInterval(() => {
-      setProgress((prev) => Math.min(prev + 2, 100))
+      // Para 30s (30000ms), incrementamos 0.333% a cada 100ms para chegar em 100%
+      setProgress((prev) => Math.min(prev + (100 / 300), 100))
     }, 100)
 
     return () => {
