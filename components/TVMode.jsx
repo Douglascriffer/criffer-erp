@@ -249,7 +249,7 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
   }, [periodData2026, mes, ultimoMes])
 
   return (
-    <div className="slide-enter" style={{ height: '100%', display: 'grid', gridTemplateColumns: '1fr 650px', gap: 40 }}>
+    <div className="slide-enter" style={{ height: '100%', display: 'grid', gridTemplateColumns: '1fr 500px', gap: 40 }}>
       {/* Mapa centralizado verticalmente */}
       <div style={{ 
         background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, 
@@ -268,7 +268,7 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
       </div>
       
       <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
-         <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 60, flex: 1, display: 'flex', flexDirection: 'column' }}>
+         <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 50, flex: 1, display: 'flex', flexDirection: 'column' }}>
             <h3 style={{ fontSize: 26, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 40, letterSpacing: 2 }}>
                Resumo por Região
             </h3>
