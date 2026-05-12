@@ -8,7 +8,7 @@ import {
 import { 
   TrendingUp, Target, Map as MapIcon, Users, 
   DollarSign, ArrowUpRight, ArrowDownRight, Activity, 
-  Clock, Monitor
+  Clock, Monitor, ShoppingCart, Wrench, Key, RotateCcw
 } from 'lucide-react'
 import MapaHeatBrasil from './MapaHeatBrasil'
 
@@ -171,10 +171,10 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
   return (
     <div className="slide-enter" style={{ display: 'flex', flexDirection: 'column', gap: 40, height: '100%' }}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 30 }}>
-        <KpiCardTV label="VENDAS" value={v.vendas} icon={ArrowUpRight} color={t.accent} t={t} />
-        <KpiCardTV label="SERVIÇOS" value={v.servicos} icon={Activity} color={t.accent} t={t} />
-        <KpiCardTV label="LOCAÇÃO" value={v.locacao} icon={TrendingUp} color={t.accent} t={t} />
-        <KpiCardTV label="DEVOLUÇÃO" value={v.devolucao} icon={ArrowDownRight} color={t.red} t={t} />
+        <KpiCardTV label="VENDAS" value={v.vendas} icon={ShoppingCart} color={t.accent} t={t} />
+        <KpiCardTV label="SERVIÇOS" value={v.servicos} icon={Wrench} color={t.accent} t={t} />
+        <KpiCardTV label="LOCAÇÃO" value={v.locacao} icon={Key} color={t.accent} t={t} />
+        <KpiCardTV label="DEVOLUÇÃO" value={v.devolucao} icon={RotateCcw} color={t.red} t={t} />
       </div>
       <div style={{ flex: 1, background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, display: 'flex', alignItems: 'center', padding: '0 60px', gap: 80 }}>
         <div style={{ flex: 1 }}>
