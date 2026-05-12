@@ -168,7 +168,10 @@ function SlideReceitas({ data, mes, t }) {
               <div style={{ height: 12, background: 'rgba(255,255,255,0.1)', borderRadius: 6, flex: 1, overflow: 'hidden' }}>
                  <div style={{ width: `${Math.min(pct, 100)}%`, height: '100%', background: t.accent }} />
               </div>
-              <span style={{ fontSize: 32, fontWeight: 900 }}>{pct.toFixed(1)}%</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <span style={{ fontSize: 32, fontWeight: 900 }}>{pct.toFixed(1)}%</span>
+                <span style={{ fontSize: 12, fontWeight: 900, color: t.accent, marginTop: -4 }}>VS META</span>
+              </div>
            </div>
         </div>
         <div style={{ width: 400, height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
@@ -183,6 +186,7 @@ function SlideReceitas({ data, mes, t }) {
            <div style={{ position: 'absolute', textAlign: 'center' }}>
               <p style={{ fontSize: 18, fontWeight: 800, color: t.textMuted, margin: 0 }}>DESEMPENHO</p>
               <p style={{ fontSize: 60, fontWeight: 900, margin: 0 }}>{pct.toFixed(0)}%</p>
+              <p style={{ fontSize: 16, fontWeight: 900, color: t.accent, margin: 0, letterSpacing: 1 }}>VS META</p>
            </div>
         </div>
       </div>
