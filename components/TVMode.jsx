@@ -115,12 +115,7 @@ export default function TVMode({ data, mes = 'all' }) {
         {currentSlide === 4 && <SlideOrcamento data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
       </div>
 
-      <div style={{ padding: '20px 60px', background: 'rgba(255,106,34,0.05)', borderTop: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ display: 'flex', gap: 40 }}>
-           <TickerItem label="STATUS" value="ONLINE" color={t.green} />
-           <TickerItem label="SLIDE" value={`${currentSlide + 1} / ${slides.length}`} />
-           <TickerItem label="PERÍODO" value={labelPeriodo} color={t.accent} />
-        </div>
+      <div style={{ padding: '20px 60px', background: 'rgba(255,106,34,0.05)', borderTop: `1px solid ${t.border}`, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
         <div style={{ fontSize: 18, fontWeight: 900, opacity: 0.8 }}>
           {new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
         </div>
@@ -179,14 +174,14 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
   return (
     <div className="slide-enter" style={{ display: 'flex', flexDirection: 'column', gap: 40, height: '100%' }}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 30 }}>
-        <KpiCardTV label="VENDAS LÍQUIDAS" value={v.vendas} icon={ArrowUpRight} color={t.accent} t={t} />
+        <KpiCardTV label="VENDAS" value={v.vendas} icon={ArrowUpRight} color={t.accent} t={t} />
         <KpiCardTV label="SERVIÇOS" value={v.servicos} icon={Activity} color={t.accent} t={t} />
         <KpiCardTV label="LOCAÇÃO" value={v.locacao} icon={TrendingUp} color={t.accent} t={t} />
         <KpiCardTV label="DEVOLUÇÃO" value={v.devolucao} icon={ArrowDownRight} color={t.red} t={t} />
       </div>
       <div style={{ flex: 1, background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, display: 'flex', alignItems: 'center', padding: '0 60px', gap: 80 }}>
         <div style={{ flex: 1 }}>
-           <h2 style={{ fontSize: 24, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 20 }}>Receita Bruta Total</h2>
+           <h2 style={{ fontSize: 24, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 20 }}>Receita bruta</h2>
            <p style={{ fontSize: 120, fontWeight: 900, margin: 0, lineHeight: 1, letterSpacing: -4 }}>{fmt(total)}</p>
            <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 40 }}>
               <div style={{ height: 12, background: 'rgba(255,255,255,0.1)', borderRadius: 6, flex: 1, overflow: 'hidden' }}>
