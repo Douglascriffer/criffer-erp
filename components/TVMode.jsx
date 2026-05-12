@@ -132,23 +132,48 @@ function TickerItem({ label, value, color }) {
 }
 
 function SlideReceitas({ data, mes, t }) {
-  // Lógica de extração de dados por mês
+  // Lógica de extração de dados por mês com inteligência de acumulado (YTD)
   const curMes = mes === 'all' ? 'all' : mes
   let v = { vendas: 0, servicos: 0, locacao: 0, devolucao: 0 }
-  
+  let ultimoMesComDados = 0
+
+  const mensal = data?.receitas?.mensal || {}
+
   if (curMes === 'all') {
-    v = data?.receitas?.acumulado || { vendas: 4500000, servicos: 1200000, locacao: 850000, devolucao: 120000 }
+    // Identificar até qual mês temos dados
+    Object.keys(mensal).forEach(mIdx => {
+      const mData = mensal[mIdx]
+      if ((mData.vendas || 0) > 0) {
+        ultimoMesComDados = Math.max(ultimoMesComDados, parseInt(mIdx))
+      }
+    })
+
+    // Somar apenas até o último mês com dados
+    for (let i = 1; i <= (ultimoMesComDados || 12); i++) {
+      const m = mensal[String(i)] || {}
+      v.vendas += (m.vendas || 0)
+      v.servicos += (m.servicos || 0)
+      v.locacao += (m.locacao || 0)
+      v.devolucao += (m.devolucao || 0)
+    }
   } else {
-    v = data?.receitas?.mensal?.[curMes] || { vendas: 0, servicos: 0, locacao: 0, devolucao: 0 }
+    v = mensal[curMes] || { vendas: 0, servicos: 0, locacao: 0, devolucao: 0 }
   }
 
   const total = v.vendas + v.servicos + v.locacao
   
-  // Buscar meta real do arquivo de dados
+  // Buscar meta real proporcional ao período
   const metaData = data?.meta?.[new Date().getFullYear()] || []
-  const metaMes = curMes === 'all' 
-    ? metaData.reduce((acc, m) => acc + (m.meta || 0), 0)
-    : (metaData.find(m => String(m.mes) === String(curMes))?.meta || 2200000)
+  let metaMes = 0
+
+  if (curMes === 'all') {
+    // Somar metas apenas até o último mês que teve realizado
+    metaMes = metaData
+      .filter(m => m.mes <= (ultimoMesComDados || 12))
+      .reduce((acc, m) => acc + (m.meta || 0), 0)
+  } else {
+    metaMes = metaData.find(m => String(m.mes) === String(curMes))?.meta || 2200000
+  }
 
   const pct = metaMes > 0 ? (total / metaMes) * 100 : 0
 
