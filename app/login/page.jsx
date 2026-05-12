@@ -262,7 +262,7 @@ export default function LoginPage() {
                 className="cf-btn-secondary"
                 style={{
                   width: '100%', padding: '12px', marginTop: 16,
-                  background: 'transparent',
+                  background: '#ffffff',
                   color: '#FF6A22',
                   border: '2px solid #FF6A22',
                   borderRadius: 14,
