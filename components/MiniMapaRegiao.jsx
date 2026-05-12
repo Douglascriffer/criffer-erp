@@ -12,13 +12,13 @@ const UF_MAP_REVERSE = {
   'Santa Catarina':'SC','São Paulo':'SP','Sergipe':'SE','Tocantins':'TO'
 }
 
-// Escalas ajustadas para o tamanho super reduzido (35x25)
+// Escalas ajustadas para o tamanho 45x35
 const REGIOES_CONFIG = {
-  'SUL': { center: [-52, -27], scale: 400, states: ['PR', 'SC', 'RS'] },
-  'SUDESTE': { center: [-46, -21], scale: 400, states: ['SP', 'RJ', 'MG', 'ES'] },
-  'CENTRO-OESTE': { center: [-54, -16], scale: 250, states: ['MS', 'MT', 'GO', 'DF'] },
-  'NORDESTE': { center: [-41, -11], scale: 220, states: ['BA', 'SE', 'AL', 'PE', 'PB', 'RN', 'CE', 'PI', 'MA'] },
-  'NORTE': { center: [-60, -5], scale: 140, states: ['TO', 'PA', 'AP', 'RR', 'AM', 'AC', 'RO'] }
+  'SUL': { center: [-52, -27], scale: 500, states: ['PR', 'SC', 'RS'] },
+  'SUDESTE': { center: [-46, -21], scale: 500, states: ['SP', 'RJ', 'MG', 'ES'] },
+  'CENTRO-OESTE': { center: [-54, -16], scale: 320, states: ['MS', 'MT', 'GO', 'DF'] },
+  'NORDESTE': { center: [-41, -11], scale: 280, states: ['BA', 'SE', 'AL', 'PE', 'PB', 'RN', 'CE', 'PI', 'MA'] },
+  'NORTE': { center: [-60, -5], scale: 180, states: ['TO', 'PA', 'AP', 'RR', 'AM', 'AC', 'RO'] }
 }
 
 export default function MiniMapaRegiao({ regiao, color = '#FF6A22' }) {
@@ -26,7 +26,7 @@ export default function MiniMapaRegiao({ regiao, color = '#FF6A22' }) {
   if (!config) return null
 
   return (
-    <div style={{ width: 35, height: 25, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+    <div style={{ width: 45, height: 35, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
       <ComposableMap
         projection="geoMercator"
         projectionConfig={{ center: config.center, scale: config.scale }}
