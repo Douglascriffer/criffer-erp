@@ -62,7 +62,16 @@ export default function TVMode({ data, mes = 'all' }) {
     red: '#ef4444'
   }
 
-  const labelPeriodo = mes === 'all' ? 'ACUMULADO ANUAL 2026' : `${MESES_LABELS[parseInt(mes)-1].toUpperCase()} 2026`
+  // Lógica de cálculo unificada para bater com o Dashboard
+  const periodData2026 = useMemo(() => (data?.byPeriod?.filter(p => p.ano === 2026) || []), [data])
+  
+  const ultimoMesRealizado = useMemo(() => {
+    return periodData2026.reduce((max, p) => p.total > 0 ? Math.max(max, p.mes) : max, 0)
+  }, [periodData2026])
+
+  const labelPeriodo = mes === 'all' 
+    ? `ACUMULADO ATÉ ${MESES_LABELS[ultimoMesRealizado-1]?.toUpperCase() || 'JAN'}` 
+    : `${MESES_LABELS[parseInt(mes)-1]?.toUpperCase()} 2026`
 
   return (
     <div style={{ width: '100vw', height: '100vh', background: t.bg, color: t.text, fontFamily: "'Gotham', sans-serif", overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
@@ -99,11 +108,11 @@ export default function TVMode({ data, mes = 'all' }) {
       </div>
 
       <div style={{ flex: 1, padding: '20px 60px 60px', position: 'relative' }}>
-        {currentSlide === 0 && <SlideReceitas data={data} mes={mes} t={t} />}
-        {currentSlide === 1 && <SlideMapa data={data} mes={mes} t={t} />}
-        {currentSlide === 2 && <SlideVendedores data={data} mes={mes} t={t} />}
-        {currentSlide === 3 && <SlideMetas data={data} mes={mes} t={t} />}
-        {currentSlide === 4 && <SlideOrcamento data={data} mes={mes} t={t} />}
+        {currentSlide === 0 && <SlideReceitas data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
+        {currentSlide === 1 && <SlideMapa data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
+        {currentSlide === 2 && <SlideVendedores data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
+        {currentSlide === 3 && <SlideMetas data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
+        {currentSlide === 4 && <SlideOrcamento data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
       </div>
 
       <div style={{ padding: '20px 60px', background: 'rgba(255,106,34,0.05)', borderTop: `1px solid ${t.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -131,56 +140,46 @@ function TickerItem({ label, value, color }) {
   )
 }
 
-function SlideReceitas({ data, mes, t }) {
-  // Lógica de extração de dados por mês com inteligência de acumulado (YTD)
-  const curMes = mes === 'all' ? 'all' : mes
+function SlideReceitas({ data, mes, t, ultimoMes }) {
+  const periodData2026 = data?.byPeriod?.filter(p => p.ano === 2026) || []
+  
   let v = { vendas: 0, servicos: 0, locacao: 0, devolucao: 0 }
-  let ultimoMesComDados = 0
 
-  const mensal = data?.receitas?.mensal || {}
-
-  if (curMes === 'all') {
-    // Identificar até qual mês temos dados
-    Object.keys(mensal).forEach(mIdx => {
-      const mData = mensal[mIdx]
-      if ((mData.vendas || 0) > 0) {
-        ultimoMesComDados = Math.max(ultimoMesComDados, parseInt(mIdx))
-      }
-    })
-
-    // Somar apenas até o último mês com dados
-    for (let i = 1; i <= (ultimoMesComDados || 12); i++) {
-      const m = mensal[String(i)] || {}
-      v.vendas += (m.vendas || 0)
-      v.servicos += (m.servicos || 0)
-      v.locacao += (m.locacao || 0)
-      v.devolucao += (m.devolucao || 0)
-    }
+  if (mes === 'all') {
+    const subset = periodData2026.filter(p => p.mes <= ultimoMes)
+    v = subset.reduce((acc, p) => ({
+      vendas: acc.vendas + (p.vendas - (p.devolucoes || 0)),
+      servicos: acc.servicos + p.servicos,
+      locacao: acc.locacao + p.locacao,
+      devolucao: acc.devolucao + (p.devolucoes || 0)
+    }), { vendas: 0, servicos: 0, locacao: 0, devolucao: 0 })
   } else {
-    v = mensal[curMes] || { vendas: 0, servicos: 0, locacao: 0, devolucao: 0 }
+    const p = periodData2026.find(p => String(p.mes) === String(mes)) || {}
+    v = {
+      vendas: (p.vendas || 0) - (p.devolucoes || 0),
+      servicos: p.servicos || 0,
+      locacao: p.locacao || 0,
+      devolucao: p.devolucoes || 0
+    }
   }
 
   const total = v.vendas + v.servicos + v.locacao
   
-  // Buscar meta real proporcional ao período
-  const metaData = data?.meta?.[new Date().getFullYear()] || []
-  let metaMes = 0
-
-  if (curMes === 'all') {
-    // Somar metas apenas até o último mês que teve realizado
-    metaMes = metaData
-      .filter(m => m.mes <= (ultimoMesComDados || 12))
-      .reduce((acc, m) => acc + (m.meta || 0), 0)
+  // Metas do Dashboard
+  const metaData = data?.meta?.[2026] || []
+  let metaValor = 0
+  if (mes === 'all') {
+    metaValor = metaData.filter(m => m.mes <= ultimoMes).reduce((acc, m) => acc + (m.meta || 0), 0)
   } else {
-    metaMes = metaData.find(m => String(m.mes) === String(curMes))?.meta || 2200000
+    metaValor = metaData.find(m => String(m.mes) === String(mes))?.meta || 0
   }
 
-  const pct = metaMes > 0 ? (total / metaMes) * 100 : 0
+  const pct = metaValor > 0 ? (total / metaValor) * 100 : 0
 
   return (
     <div className="slide-enter" style={{ display: 'flex', flexDirection: 'column', gap: 40, height: '100%' }}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 30 }}>
-        <KpiCardTV label="VENDAS" value={v.vendas} icon={ArrowUpRight} color={t.accent} t={t} />
+        <KpiCardTV label="VENDAS LÍQUIDAS" value={v.vendas} icon={ArrowUpRight} color={t.accent} t={t} />
         <KpiCardTV label="SERVIÇOS" value={v.servicos} icon={Activity} color={t.accent} t={t} />
         <KpiCardTV label="LOCAÇÃO" value={v.locacao} icon={TrendingUp} color={t.accent} t={t} />
         <KpiCardTV label="DEVOLUÇÃO" value={v.devolucao} icon={ArrowDownRight} color={t.red} t={t} />
@@ -219,19 +218,26 @@ function SlideReceitas({ data, mes, t }) {
   )
 }
 
-function SlideMapa({ data, mes, t }) {
+function SlideMapa({ data, mes, t, ultimoMes }) {
+  const periodData2026 = data?.byPeriod?.filter(p => p.ano === 2026) || []
+  const targetMes = mes === 'all' ? ultimoMes : Number(mes)
+  const totalPeriodo = periodData2026
+    .filter(p => mes === 'all' ? p.mes <= targetMes : p.mes === targetMes)
+    .reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao - Math.abs(p.devolucoes || 0)), 0)
+
   return (
     <div className="slide-enter" style={{ height: '100%', display: 'grid', gridTemplateColumns: '1fr 450px', gap: 40 }}>
       <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 40, position: 'relative' }}>
-         <MapaHeatBrasil data={data} darkMode={true} isTVMode={true} />
+         <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2026 && (mes === 'all' ? s.mes <= targetMes : s.mes === targetMes)) || []} darkMode={true} isTVMode={true} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
          <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 40, flex: 1 }}>
-            <h3 style={{ fontSize: 22, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 30 }}>Distribuição Regional</h3>
+            <h3 style={{ fontSize: 22, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 30 }}>Distribuição de Valor</h3>
+            <div style={{ fontSize: 44, fontWeight: 900, marginBottom: 40, color: '#fff' }}>{fmt(totalPeriodo)}</div>
             {['SUL', 'SUDESTE', 'CENTRO-OESTE', 'NORDESTE', 'NORTE'].map((reg, i) => (
-              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 0', borderBottom: i < 4 ? `1px solid ${t.border}` : 'none' }}>
-                <span style={{ fontSize: 24, fontWeight: 800 }}>{reg}</span>
-                <span style={{ fontSize: 24, fontWeight: 900, color: t.accent }}>{35 - (i*5)}%</span>
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px 0', borderBottom: i < 4 ? `1px solid ${t.border}` : 'none' }}>
+                <span style={{ fontSize: 20, fontWeight: 800 }}>{reg}</span>
+                <span style={{ fontSize: 20, fontWeight: 900, color: t.accent }}>{35 - (i*5)}%</span>
               </div>
             ))}
          </div>
@@ -240,21 +246,30 @@ function SlideMapa({ data, mes, t }) {
   )
 }
 
-function SlideVendedores({ data, mes, t }) {
-  const ranking = [
-    { name: 'Gabriel Dias', val: 450000 },
-    { name: 'Ana Silva', val: 380000 },
-    { name: 'Carlos Santos', val: 320000 },
-    { name: 'Juliana Lima', val: 290000 },
-    { name: 'Roberto M.', val: 250000 }
-  ]
+function SlideVendedores({ data, mes, t, ultimoMes }) {
+  const targetMes = mes === 'all' ? ultimoMes : Number(mes)
+  const sellers = data?.bySeller || []
+  
+  const ranking = useMemo(() => {
+    const raw = sellers
+      .filter(s => s.ano === 2026 && (mes === 'all' ? s.mes <= targetMes : s.mes === targetMes))
+      .reduce((acc, curr) => {
+        acc[curr.vendedor] = (acc[curr.vendedor] || 0) + curr.vendas
+        return acc
+      }, {})
+    
+    return Object.entries(raw)
+      .map(([name, val]) => ({ name, val }))
+      .sort((a, b) => b.val - a.val)
+      .slice(0, 5)
+  }, [sellers, mes, targetMes])
 
   return (
     <div className="slide-enter" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 40 }}>
       <div style={{ flex: 1, background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 60 }}>
-        <h3 style={{ fontSize: 28, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 40 }}>Ranking de Vendedores</h3>
+        <h3 style={{ fontSize: 28, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 40 }}>Top 5 Vendedores</h3>
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={ranking} layout="vertical" margin={{ left: 100, right: 100 }}>
+          <BarChart data={ranking} layout="vertical" margin={{ left: 150, right: 100 }}>
             <XAxis type="number" hide />
             <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{ fill: '#fff', fontSize: 24, fontWeight: 900 }} />
             <Bar dataKey="val" fill={t.accent} radius={[0, 10, 10, 0]} barSize={50}>
@@ -269,14 +284,18 @@ function SlideVendedores({ data, mes, t }) {
   )
 }
 
-function SlideMetas({ data, mes, t }) {
-  const hist = [
-    { mes: 'JAN', real: 1200000, meta: 1100000 },
-    { mes: 'FEV', real: 1400000, meta: 1150000 },
-    { mes: 'MAR', real: 1300000, meta: 1200000 },
-    { mes: 'ABR', real: 1600000, meta: 1250000 },
-    { mes: 'MAI', real: 1850000, meta: 1300000 }
-  ]
+function SlideMetas({ data, mes, t, ultimoMes }) {
+  const periodData2026 = data?.byPeriod?.filter(p => p.ano === 2026) || []
+  const hist = periodData2026.filter(p => p.mes <= (mes === 'all' ? ultimoMes : Number(mes)))
+    .map(p => ({
+      mes: MESES_LABELS[p.mes-1].substring(0,3).toUpperCase(),
+      real: p.vendas + p.servicos + p.locacao - (p.devolucoes || 0),
+      meta: data?.meta?.[2026]?.find(m => m.mes === p.mes)?.meta || 0
+    }))
+
+  const totalReal = hist.reduce((acc, h) => acc + h.real, 0)
+  const totalMeta = hist.reduce((acc, h) => acc + h.meta, 0)
+  const gap = Math.max(0, totalMeta - totalReal)
 
   return (
     <div className="slide-enter" style={{ height: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40 }}>
@@ -300,33 +319,38 @@ function SlideMetas({ data, mes, t }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
          <div style={{ background: t.accent, borderRadius: 32, padding: 50, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <p style={{ fontSize: 20, fontWeight: 900, color: 'rgba(0,0,0,0.5)', textTransform: 'uppercase', margin: 0 }}>Gap para Objetivo</p>
-            <p style={{ fontSize: 80, fontWeight: 900, color: '#000', margin: 0 }}>{fmt(450000)}</p>
+            <p style={{ fontSize: 80, fontWeight: 900, color: '#000', margin: 0 }}>{fmt(gap)}</p>
          </div>
          <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 50, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <p style={{ fontSize: 20, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>Performance</p>
-            <p style={{ fontSize: 80, fontWeight: 900, color: t.green, margin: 0 }}>+18.4%</p>
+            <p style={{ fontSize: 20, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>Performance Acumulada</p>
+            <p style={{ fontSize: 80, fontWeight: 900, color: totalReal >= totalMeta ? t.green : t.red, margin: 0 }}>
+              {totalMeta > 0 ? ((totalReal / totalMeta) * 100).toFixed(1) : 0}%
+            </p>
          </div>
       </div>
     </div>
   )
 }
 
-function SlideOrcamento({ data, mes, t }) {
+function SlideOrcamento({ data, mes, t, ultimoMes }) {
+  const targetMes = mes === 'all' ? ultimoMes : Number(mes)
+  const f = data?.fluxo?.mensal?.[String(targetMes)] || {}
+  
   return (
     <div className="slide-enter" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 40 }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, flex: 1 }}>
          <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: 60, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
             <h4 style={{ fontSize: 28, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 20 }}>Resultado Operacional</h4>
-            <p style={{ fontSize: 110, fontWeight: 900, color: t.green, margin: 0 }}>{fmt(185000)}</p>
+            <p style={{ fontSize: 110, fontWeight: 900, color: (f.geracao_caixa?.real || 0) >= 0 ? t.green : t.red, margin: 0 }}>{fmt(f.geracao_caixa?.real || 0)}</p>
          </div>
          <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
             <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 50, flex: 1 }}>
-               <p style={{ fontSize: 20, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>Receitas Líquidas</p>
-               <p style={{ fontSize: 56, fontWeight: 900, color: '#fff', margin: 0 }}>{fmt(1240000)}</p>
+               <p style={{ fontSize: 20, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>Receitas Líquidas (Mês)</p>
+               <p style={{ fontSize: 56, fontWeight: 900, color: '#fff', margin: 0 }}>{fmt(f.entradas?.real || 0)}</p>
             </div>
             <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 50, flex: 1 }}>
-               <p style={{ fontSize: 20, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>Despesas Totais</p>
-               <p style={{ fontSize: 56, fontWeight: 900, color: t.red, margin: 0 }}>{fmt(1055000)}</p>
+               <p style={{ fontSize: 20, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>Saídas Totais (Mês)</p>
+               <p style={{ fontSize: 56, fontWeight: 900, color: t.red, margin: 0 }}>{fmt(Math.abs(f.total_saidas?.real || 0))}</p>
             </div>
          </div>
       </div>
