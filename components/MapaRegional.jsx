@@ -50,8 +50,8 @@ export default function MapaRegional({ stateData = [], officialTotal = 0, darkMo
           <div key={item.name}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6, fontSize: 12 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                 <div style={{ width: 36, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <IconeRegiao regiao={item.name.toUpperCase()} size={32} />
+                 <div style={{ width: 24, height: 20, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <IconeRegiao regiao={item.name.toUpperCase()} size={20} />
                  </div>
                  <span style={{ color: darkMode ? '#ffffff' : '#000000', fontWeight: 700 }}>{item.name}</span>
               </div>
