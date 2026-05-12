@@ -3,21 +3,22 @@ import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 
 const GEO_URL = 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson'
 
-const REGIOES_CONFIG = {
-  'SUL': { center: [-52, -27], scale: 650, states: ['PR', 'SC', 'RS'] },
-  'SUDESTE': { center: [-46, -20], scale: 650, states: ['SP', 'RJ', 'MG', 'ES'] },
-  'CENTRO-OESTE': { center: [-53, -16], scale: 450, states: ['MS', 'MT', 'GO', 'DF'] },
-  'NORDESTE': { center: [-40, -10], scale: 400, states: ['BA', 'SE', 'AL', 'PE', 'PB', 'RN', 'CE', 'PI', 'MA'] },
-  'NORTE': { center: [-60, -5], scale: 280, states: ['TO', 'PA', 'AP', 'RR', 'AM', 'AC', 'RO'] }
-}
-
-const UF_MAP = {
+// Mapeamento idêntico ao MapaHeatBrasil para garantir compatibilidade
+const UF_MAP_REVERSE = {
   'Acre':'AC','Alagoas':'AL','Amapá':'AP','Amazonas':'AM','Bahia':'BA','Ceará':'CE',
   'Distrito Federal':'DF','Espírito Santo':'ES','Goiás':'GO','Maranhão':'MA',
   'Mato Grosso':'MT','Mato Grosso do Sul':'MS','Minas Gerais':'MG','Pará':'PA',
   'Paraíba':'PB','Paraná':'PR','Pernambuco':'PE','Piauí':'PI','Rio de Janeiro':'RJ',
   'Rio Grande do Norte':'RN','Rio Grande do Sul':'RS','Rondônia':'RO','Roraima':'RR',
   'Santa Catarina':'SC','São Paulo':'SP','Sergipe':'SE','Tocantins':'TO'
+}
+
+const REGIOES_CONFIG = {
+  'SUL': { center: [-52, -27], scale: 650, states: ['PR', 'SC', 'RS'] },
+  'SUDESTE': { center: [-46, -20], scale: 650, states: ['SP', 'RJ', 'MG', 'ES'] },
+  'CENTRO-OESTE': { center: [-53, -16], scale: 450, states: ['MS', 'MT', 'GO', 'DF'] },
+  'NORDESTE': { center: [-40, -10], scale: 400, states: ['BA', 'SE', 'AL', 'PE', 'PB', 'RN', 'CE', 'PI', 'MA'] },
+  'NORTE': { center: [-60, -5], scale: 280, states: ['TO', 'PA', 'AP', 'RR', 'AM', 'AC', 'RO'] }
 }
 
 export default function MiniMapaRegiao({ regiao, color = '#FF6A22' }) {
@@ -36,17 +37,23 @@ export default function MiniMapaRegiao({ regiao, color = '#FF6A22' }) {
         <Geographies geography={GEO_URL}>
           {({ geographies }) =>
             geographies
-              .filter(geo => config.states.includes(UF_MAP[geo.properties.name]))
-              .map(geo => (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  fill={color}
-                  stroke="rgba(0,0,0,0.4)"
-                  strokeWidth={0.5}
-                  style={{ default: { outline: 'none' } }}
-                />
-              ))
+              .map(geo => {
+                const uf = UF_MAP_REVERSE[geo.properties.name] || geo.properties.sigla
+                const isInRegion = config.states.includes(uf)
+                
+                if (!isInRegion) return null
+
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    fill={color}
+                    stroke="rgba(0,0,0,0.3)"
+                    strokeWidth={0.5}
+                    style={{ default: { outline: 'none' } }}
+                  />
+                )
+              })
           }
         </Geographies>
       </ComposableMap>
