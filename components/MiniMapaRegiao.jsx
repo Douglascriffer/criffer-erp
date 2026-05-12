@@ -4,12 +4,11 @@ import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 const GEO_URL = 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson'
 
 const REGIOES_CONFIG = {
-  'SUL': { center: [-52, -27], scale: 900, states: ['PR', 'SC', 'RS'] },
-  'SUDESTE': { center: [-46, -20], scale: 900, states: ['SP', 'RJ', 'MG', 'ES'] },
-  'CENTRO-OESTE': { center: [-53, -16], scale: 700, states: ['MS', 'MT', 'GO', 'DF'] },
-  'NORDESTE': { center: [-40, -10], scale: 700, states: ['BA', 'SE', 'AL', 'PE', 'PB', 'RN', 'CE', 'PI', 'MA'] },
-  'NORTE': { center: [-60, -5], scale: 500, states: ['TO', 'PA', 'AP', 'RR', 'AM', 'AC', 'RO'] },
-  'EXTERIOR': { center: [0, 0], scale: 100, states: ['EX'] }
+  'SUL': { center: [-52, -27], scale: 650, states: ['PR', 'SC', 'RS'] },
+  'SUDESTE': { center: [-46, -20], scale: 650, states: ['SP', 'RJ', 'MG', 'ES'] },
+  'CENTRO-OESTE': { center: [-53, -16], scale: 450, states: ['MS', 'MT', 'GO', 'DF'] },
+  'NORDESTE': { center: [-40, -10], scale: 400, states: ['BA', 'SE', 'AL', 'PE', 'PB', 'RN', 'CE', 'PI', 'MA'] },
+  'NORTE': { center: [-60, -5], scale: 280, states: ['TO', 'PA', 'AP', 'RR', 'AM', 'AC', 'RO'] }
 }
 
 const UF_MAP = {
@@ -23,10 +22,10 @@ const UF_MAP = {
 
 export default function MiniMapaRegiao({ regiao, color = '#FF6A22' }) {
   const config = REGIOES_CONFIG[regiao]
-  if (!config || regiao === 'EXTERIOR') return null
+  if (!config) return null
 
   return (
-    <div style={{ width: 60, height: 45, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ width: 80, height: 60, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <ComposableMap
         projection="geoMercator"
         projectionConfig={{ center: config.center, scale: config.scale }}
@@ -43,7 +42,8 @@ export default function MiniMapaRegiao({ regiao, color = '#FF6A22' }) {
                   key={geo.rsmKey}
                   geography={geo}
                   fill={color}
-                  stroke="none"
+                  stroke="rgba(0,0,0,0.4)"
+                  strokeWidth={0.5}
                   style={{ default: { outline: 'none' } }}
                 />
               ))
