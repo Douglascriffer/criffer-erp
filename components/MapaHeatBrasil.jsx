@@ -61,7 +61,7 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncI
     .range(['#fff5f0', '#FF6A22'])
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: isTVMode ? 400 : 300, display: 'flex', alignItems: 'center' }}>
+    <div style={{ position: 'relative', width: '100%', height: isTVMode ? 350 : 300, display: 'flex', alignItems: 'center' }}>
       
       {/* Labels Dinâmicos (Esquerda) - OCULTOS NO MODO TV */}
       {!isTVMode && (
@@ -95,8 +95,8 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncI
       <div style={{ width: '100%', marginLeft: isTVMode ? '0' : '15%' }}>
         <ComposableMap
           projection="geoMercator"
-          projectionConfig={{ center: [-55, -18], scale: isTVMode ? 400 : 300 }}
-          width={500} height={isTVMode ? 400 : 300}
+          projectionConfig={{ center: [-55, -18], scale: isTVMode ? 350 : 300 }}
+          width={500} height={isTVMode ? 350 : 300}
           style={{ width: '100%', height: 'auto' }}
         >
           <Geographies geography={GEO_URL}>
@@ -126,8 +126,8 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncI
         </ComposableMap>
       </div>
 
-      {/* Legenda de calor compacta */}
-      <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 8 }}>
+      {/* Legenda de calor compacta (Canto Direito) */}
+      <div style={{ position: 'absolute', bottom: 0, right: isTVMode ? 0 : 'auto', left: isTVMode ? 'auto' : '50%', transform: isTVMode ? 'none' : 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 8 }}>
         <span style={{ fontSize: 9, color: '#888' }}>MÍN</span>
         <div style={{ width: 80, height: 4, borderRadius: 2, background: `linear-gradient(to right, #fff5f0, #FF6A22)` }} />
         <span style={{ fontSize: 9, color: '#888' }}>MÁX</span>
