@@ -31,7 +31,7 @@ const REGIONS = {
   'PR':'Sul','RS':'Sul','SC':'Sul'
 }
 
-export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncIndex = 0 }) {
+export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncIndex = 0, isTVMode = false }) {
   // Consolida o faturamento por estado e por região
   const { stats, regionTotals } = useMemo(() => {
     const s = {}
@@ -63,34 +63,36 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncI
   return (
     <div style={{ position: 'relative', width: '100%', height: 300, display: 'flex', alignItems: 'center' }}>
       
-      {/* Labels Dinâmicos (Esquerda) */}
-      <div style={{ 
-        position: 'absolute', left: 0, top: '45%', transform: 'translateY(-50%)', 
-        zIndex: 10, pointerEvents: 'none', textAlign: 'left', width: '45%' 
-      }}>
-        <div style={{ animation: 'fadeInLeft 0.5s ease' }} key={currentUF}>
-          <div style={{ fontSize: 16, fontWeight: 400, color: darkMode ? '#ffffff' : '#000000', marginBottom: 4 }}>
-            {currentUF} - {UF_NAMES[currentUF]}
-          </div>
-          <div style={{ fontSize: 14, fontWeight: 400, color: darkMode ? '#ffffff' : '#000000', opacity: 0.8, marginBottom: 32 }}>
-            Faturamento: R$ {Math.round(currentVal).toLocaleString('pt-BR')}
-          </div>
+      {/* Labels Dinâmicos (Esquerda) - OCULTOS NO MODO TV */}
+      {!isTVMode && (
+        <div style={{ 
+          position: 'absolute', left: 0, top: '45%', transform: 'translateY(-50%)', 
+          zIndex: 10, pointerEvents: 'none', textAlign: 'left', width: '45%' 
+        }}>
+          <div style={{ animation: 'fadeInLeft 0.5s ease' }} key={currentUF}>
+            <div style={{ fontSize: 16, fontWeight: 400, color: darkMode ? '#ffffff' : '#000000', marginBottom: 4 }}>
+              {currentUF} - {UF_NAMES[currentUF]}
+            </div>
+            <div style={{ fontSize: 14, fontWeight: 400, color: darkMode ? '#ffffff' : '#000000', opacity: 0.8, marginBottom: 32 }}>
+              Faturamento: R$ {Math.round(currentVal).toLocaleString('pt-BR')}
+            </div>
 
-          <div style={{ fontSize: 16, fontWeight: 400, color: darkMode ? '#ffffff' : '#000000', marginBottom: 16 }}>
-            Representação região
-          </div>
-          <div style={{ fontSize: 18, fontWeight: 400, color: darkMode ? '#ffffff' : '#000000' }}>
-            {regionPct}%
+            <div style={{ fontSize: 16, fontWeight: 400, color: darkMode ? '#ffffff' : '#000000', marginBottom: 16 }}>
+              Representação região
+            </div>
+            <div style={{ fontSize: 18, fontWeight: 400, color: darkMode ? '#ffffff' : '#000000' }}>
+              {regionPct}%
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <style>{`
         @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
       `}</style>
 
-      {/* Mapa (Direita/Centro) */}
-      <div style={{ width: '100%', marginLeft: '15%' }}>
+      {/* Mapa (Centralizado no Modo TV) */}
+      <div style={{ width: '100%', marginLeft: isTVMode ? '0' : '15%' }}>
         <ComposableMap
           projection="geoMercator"
           projectionConfig={{ center: [-55, -18], scale: 300 }}
@@ -108,9 +110,9 @@ export default function MapaHeatBrasil({ stateData = [], darkMode = false, syncI
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill={isActive ? '#FF6A22' : colorScale(val)}
-                    stroke={isActive ? '#fff' : (darkMode ? '#333' : '#ddd')}
-                    strokeWidth={isActive ? 1.5 : 0.5}
+                    fill={isActive && !isTVMode ? '#FF6A22' : colorScale(val)}
+                    stroke={isActive && !isTVMode ? '#fff' : (darkMode ? '#333' : '#ddd')}
+                    strokeWidth={isActive && !isTVMode ? 1.5 : 0.5}
                     style={{
                       default: { outline: 'none', transition: 'all 0.5s ease' },
                       hover: { outline: 'none', fill: '#FF6A22', cursor: 'pointer' },
