@@ -21,6 +21,7 @@ const fmt = (v) => {
 export default function TVMode({ data }) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [progress, setProgress] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
 
   const slides = [
     { id: 'receitas', title: 'Performance de Receitas', subtitle: 'Visão Geral Comercial' },
@@ -32,21 +33,26 @@ export default function TVMode({ data }) {
 
   // Intervalo de 30 segundos para troca de slide
   useEffect(() => {
-    const slideTimer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-      setProgress(0)
-    }, 30000)
+    let slideTimer;
+    let progressTimer;
 
-    const progressTimer = setInterval(() => {
-      // Para 30s (30000ms), incrementamos 0.333% a cada 100ms para chegar em 100%
-      setProgress((prev) => Math.min(prev + (100 / 300), 100))
-    }, 100)
+    if (!isPaused) {
+      slideTimer = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % slides.length)
+        setProgress(0)
+      }, 30000)
+
+      progressTimer = setInterval(() => {
+        // Para 30s (30000ms), incrementamos 0.333% a cada 100ms para chegar em 100%
+        setProgress((prev) => Math.min(prev + (100 / 300), 100))
+      }, 100)
+    }
 
     return () => {
-      clearInterval(slideTimer)
-      clearInterval(progressTimer)
+      if (slideTimer) clearInterval(slideTimer)
+      if (progressTimer) clearInterval(progressTimer)
     }
-  }, [slides.length])
+  }, [slides.length, isPaused])
 
   const t = {
     bg: '#000000',
@@ -94,6 +100,26 @@ export default function TVMode({ data }) {
           </p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+           <button 
+             onClick={() => setIsPaused(!isPaused)}
+             style={{
+               background: isPaused ? t.accent : 'rgba(255,255,255,0.1)',
+               border: `1px solid ${t.accent}`,
+               color: '#fff',
+               padding: '10px 24px',
+               borderRadius: 12,
+               cursor: 'pointer',
+               fontWeight: 900,
+               fontSize: 14,
+               display: 'flex',
+               alignItems: 'center',
+               gap: 10,
+               transition: 'all 0.3s',
+               textTransform: 'uppercase'
+             }}
+           >
+             {isPaused ? '▶ Retomar' : '⏸ Pausar'}
+           </button>
            <div style={{ textAlign: 'right' }}>
               <p style={{ fontSize: 18, fontWeight: 900, margin: 0 }}>CRIFFER ERP</p>
               <p style={{ fontSize: 14, color: t.accent, margin: 0, fontWeight: 800 }}>LIVE BROADCAST</p>
