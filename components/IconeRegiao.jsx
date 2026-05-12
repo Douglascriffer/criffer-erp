@@ -2,7 +2,7 @@
 import React from 'react'
 
 export default function IconeRegiao({ regiao, size = 60 }) {
-  // Mapeamento para as imagens reais recortadas da referência do usuário
+  // Mapeamento para os Badges Executivos Hexagonais (Enterprise Style)
   const map = {
     'SUDESTE': '/assets/regioes/sudeste.png',
     'SUL': '/assets/regioes/sul.png',
@@ -29,8 +29,7 @@ export default function IconeRegiao({ regiao, size = 60 }) {
         style={{ 
           maxWidth: '100%', 
           maxHeight: '100%', 
-          objectFit: 'contain',
-          filter: 'drop-shadow(0 0 5px rgba(255,106,34,0.3))' 
+          objectFit: 'contain'
         }} 
       />
     </div>
