@@ -241,6 +241,11 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
     return result
   }, [stateData])
 
+  const totalOficialPeriodo = useMemo(() => {
+    const subset = periodData2026.filter(p => mes === 'all' ? p.mes <= ultimoMes : String(p.mes) === String(mes))
+    return subset.reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao - Math.abs(p.devolucoes || 0)), 0)
+  }, [periodData2026, mes, ultimoMes])
+
   return (
     <div className="slide-enter" style={{ height: '100%', display: 'grid', gridTemplateColumns: '1fr 500px', gap: 40 }}>
       {/* Mapa centralizado verticalmente */}
@@ -249,10 +254,10 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
         padding: 40, position: 'relative', 
         display: 'flex', alignItems: 'center', justifyContent: 'center' 
       }}>
-         {/* Faturamento Total no Canto Superior Esquerdo */}
+         {/* Faturamento Total no Canto Superior Esquerdo (Sincronizado com Receita Bruta) */}
          <div style={{ position: 'absolute', top: 40, left: 40 }}>
-            <p style={{ fontSize: 16, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0, letterSpacing: 1 }}>Faturamento Total</p>
-            <p style={{ fontSize: 48, fontWeight: 900, color: t.accent, margin: 0 }}>{fmt(Object.values(regioesValores).reduce((a, b) => a + b, 0))}</p>
+            <p style={{ fontSize: 16, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0, letterSpacing: 1 }}>Receita bruta</p>
+            <p style={{ fontSize: 48, fontWeight: 900, color: t.accent, margin: 0 }}>{fmt(totalOficialPeriodo)}</p>
          </div>
 
          <div style={{ marginTop: '80px', width: '100%' }}>
