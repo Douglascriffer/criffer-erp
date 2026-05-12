@@ -8,7 +8,7 @@ import {
 import { 
   TrendingUp, Target, Map as MapIcon, Users, 
   DollarSign, ArrowUpRight, ArrowDownRight, Activity, 
-  Clock, Monitor, ShoppingCart, Wrench, Key, RotateCcw
+  Clock, Monitor, ShoppingCart, Wrench, Key, RotateCcw, Globe
 } from 'lucide-react'
 import MapaHeatBrasil from './MapaHeatBrasil'
 
@@ -19,6 +19,16 @@ const fmt = (v) => {
 }
 
 const MESES_LABELS = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+
+// Mapeamento de Regiões Criffer
+const REGIOES_MAP = {
+  'SUL': ['PR', 'SC', 'RS'],
+  'SUDESTE': ['SP', 'RJ', 'MG', 'ES'],
+  'CENTRO-OESTE': ['MS', 'MT', 'GO', 'DF'],
+  'NORDESTE': ['BA', 'SE', 'AL', 'PE', 'PB', 'RN', 'CE', 'PI', 'MA'],
+  'NORTE': ['TO', 'PA', 'AP', 'RR', 'AM', 'AC', 'RO'],
+  'EXTERIOR': ['EX']
+}
 
 export default function TVMode({ data, mes = 'all' }) {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -214,27 +224,48 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
 }
 
 function SlideMapa({ data, mes, t, ultimoMes }) {
-  const periodData2026 = data?.byPeriod?.filter(p => p.ano === 2026) || []
   const targetMes = mes === 'all' ? ultimoMes : Number(mes)
-  const totalPeriodo = periodData2026
-    .filter(p => mes === 'all' ? p.mes <= targetMes : p.mes === targetMes)
-    .reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao - Math.abs(p.devolucoes || 0)), 0)
+  const stateData = data?.byState?.filter(s => s.ano === 2026 && (mes === 'all' ? s.mes <= targetMes : s.mes === targetMes)) || []
+  
+  // Cálculo Real por Região
+  const regioesValores = useMemo(() => {
+    const result = { 'SUL': 0, 'SUDESTE': 0, 'CENTRO-OESTE': 0, 'NORDESTE': 0, 'NORTE': 0, 'EXTERIOR': 0 }
+    stateData.forEach(s => {
+      for (const [reg, estados] of Object.entries(REGIOES_MAP)) {
+        if (estados.includes(s.estado)) {
+          result[reg] += (s.faturamento || 0)
+          break
+        }
+      }
+    })
+    return result
+  }, [stateData])
 
   return (
-    <div className="slide-enter" style={{ height: '100%', display: 'grid', gridTemplateColumns: '1fr 450px', gap: 40 }}>
-      <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 40, position: 'relative' }}>
-         <MapaHeatBrasil stateData={data?.byState?.filter(s => s.ano === 2026 && (mes === 'all' ? s.mes <= targetMes : s.mes === targetMes)) || []} darkMode={true} isTVMode={true} />
+    <div className="slide-enter" style={{ height: '100%', display: 'grid', gridTemplateColumns: '1fr 500px', gap: 40 }}>
+      {/* Mapa deslocado para baixo via padding-top */}
+      <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: '80px 40px 40px', position: 'relative' }}>
+         <MapaHeatBrasil stateData={stateData} darkMode={true} isTVMode={true} />
       </div>
+      
       <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
-         <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 40, flex: 1 }}>
-            <h3 style={{ fontSize: 22, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 30 }}>Distribuição de Valor</h3>
-            <div style={{ fontSize: 44, fontWeight: 900, marginBottom: 40, color: '#fff' }}>{fmt(totalPeriodo)}</div>
-            {['SUL', 'SUDESTE', 'CENTRO-OESTE', 'NORDESTE', 'NORTE'].map((reg, i) => (
-              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px 0', borderBottom: i < 4 ? `1px solid ${t.border}` : 'none' }}>
-                <span style={{ fontSize: 20, fontWeight: 800 }}>{reg}</span>
-                <span style={{ fontSize: 20, fontWeight: 900, color: t.accent }}>{35 - (i*5)}%</span>
-              </div>
-            ))}
+         <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 50, flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <h3 style={{ fontSize: 26, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 40, letterSpacing: 2 }}>
+               Resumo por Região
+            </h3>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 25 }}>
+               {Object.entries(regioesValores).sort((a, b) => b[1] - a[1]).map(([reg, val], i) => (
+                 <div key={reg} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15, borderBottom: i < 5 ? `1px solid ${t.border}` : 'none' }}>
+                   <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
+                     {reg === 'EXTERIOR' ? <Globe size={20} color={t.accent} /> : <MapIcon size={20} color={t.accent} />}
+                     <span style={{ fontSize: 22, fontWeight: 800, color: t.text }}>{reg}</span>
+                   </div>
+                   <span style={{ fontSize: 26, fontWeight: 900, color: val > 0 ? '#fff' : t.textMuted }}>
+                     {val > 0 ? fmt(val) : 'R$ 0'}
+                   </span>
+                 </div>
+               ))}
+            </div>
          </div>
       </div>
     </div>
