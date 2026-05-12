@@ -143,8 +143,14 @@ function SlideReceitas({ data, mes, t }) {
   }
 
   const total = v.vendas + v.servicos + v.locacao
-  const meta = 2200000
-  const pct = (total / meta) * 100
+  
+  // Buscar meta real do arquivo de dados
+  const metaData = data?.meta?.[new Date().getFullYear()] || []
+  const metaMes = curMes === 'all' 
+    ? metaData.reduce((acc, m) => acc + (m.meta || 0), 0)
+    : (metaData.find(m => String(m.mes) === String(curMes))?.meta || 2200000)
+
+  const pct = metaMes > 0 ? (total / metaMes) * 100 : 0
 
   return (
     <div className="slide-enter" style={{ display: 'flex', flexDirection: 'column', gap: 40, height: '100%' }}>
