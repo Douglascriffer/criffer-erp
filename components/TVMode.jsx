@@ -249,6 +249,12 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
         padding: 40, position: 'relative', 
         display: 'flex', alignItems: 'center', justifyContent: 'center' 
       }}>
+         {/* Faturamento Total no Canto Superior Esquerdo */}
+         <div style={{ position: 'absolute', top: 40, left: 40 }}>
+            <p style={{ fontSize: 16, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0, letterSpacing: 1 }}>Faturamento Total</p>
+            <p style={{ fontSize: 48, fontWeight: 900, color: t.accent, margin: 0 }}>{fmt(Object.values(regioesValores).reduce((a, b) => a + b, 0))}</p>
+         </div>
+
          <div style={{ marginTop: '80px', width: '100%' }}>
             <MapaHeatBrasil stateData={stateData} darkMode={true} isTVMode={true} />
          </div>
