@@ -277,8 +277,8 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
                  <div key={reg} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15, borderBottom: i < 5 ? `1px solid ${t.border}` : 'none' }}>
                    <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
                      {reg === 'EXTERIOR' ? (
-                       <div style={{ width: 80, height: 60, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                         <Earth size={36} color={t.accent} />
+                       <div style={{ width: 50, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                         <Earth size={28} color={t.accent} />
                        </div>
                      ) : (
                        <MiniMapaRegiao regiao={reg} color={t.accent} />

@@ -13,12 +13,13 @@ const UF_MAP_REVERSE = {
   'Santa Catarina':'SC','São Paulo':'SP','Sergipe':'SE','Tocantins':'TO'
 }
 
+// Configuração de Escala e Centro para cada região caber no Mini Card (50x40)
 const REGIOES_CONFIG = {
-  'SUL': { center: [-52, -27], scale: 650, states: ['PR', 'SC', 'RS'] },
-  'SUDESTE': { center: [-46, -20], scale: 650, states: ['SP', 'RJ', 'MG', 'ES'] },
-  'CENTRO-OESTE': { center: [-53, -16], scale: 450, states: ['MS', 'MT', 'GO', 'DF'] },
-  'NORDESTE': { center: [-40, -10], scale: 400, states: ['BA', 'SE', 'AL', 'PE', 'PB', 'RN', 'CE', 'PI', 'MA'] },
-  'NORTE': { center: [-60, -5], scale: 280, states: ['TO', 'PA', 'AP', 'RR', 'AM', 'AC', 'RO'] }
+  'SUL': { center: [-52, -27], scale: 550, states: ['PR', 'SC', 'RS'] },
+  'SUDESTE': { center: [-46, -21], scale: 550, states: ['SP', 'RJ', 'MG', 'ES'] },
+  'CENTRO-OESTE': { center: [-54, -16], scale: 350, states: ['MS', 'MT', 'GO', 'DF'] },
+  'NORDESTE': { center: [-41, -11], scale: 300, states: ['BA', 'SE', 'AL', 'PE', 'PB', 'RN', 'CE', 'PI', 'MA'] },
+  'NORTE': { center: [-60, -5], scale: 200, states: ['TO', 'PA', 'AP', 'RR', 'AM', 'AC', 'RO'] }
 }
 
 export default function MiniMapaRegiao({ regiao, color = '#FF6A22' }) {
@@ -26,7 +27,7 @@ export default function MiniMapaRegiao({ regiao, color = '#FF6A22' }) {
   if (!config) return null
 
   return (
-    <div style={{ width: 80, height: 60, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ width: 50, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
       <ComposableMap
         projection="geoMercator"
         projectionConfig={{ center: config.center, scale: config.scale }}
@@ -40,7 +41,6 @@ export default function MiniMapaRegiao({ regiao, color = '#FF6A22' }) {
               .map(geo => {
                 const uf = UF_MAP_REVERSE[geo.properties.name] || geo.properties.sigla
                 const isInRegion = config.states.includes(uf)
-                
                 if (!isInRegion) return null
 
                 return (
@@ -48,8 +48,7 @@ export default function MiniMapaRegiao({ regiao, color = '#FF6A22' }) {
                     key={geo.rsmKey}
                     geography={geo}
                     fill={color}
-                    stroke="rgba(0,0,0,0.3)"
-                    strokeWidth={0.5}
+                    stroke="none"
                     style={{ default: { outline: 'none' } }}
                   />
                 )
