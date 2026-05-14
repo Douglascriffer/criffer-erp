@@ -12120,88 +12120,6 @@
     "mensal": {
       "1": {
         "saldo_inicial": {
-          "real": 0.0,
-          "orc": 0.0
-        },
-        "total_entradas": {
-          "real": 5354588.289999999,
-          "orc": 4686422.365226999
-        },
-        "materia_prima": {
-          "real": -905954.29,
-          "orc": -1135681.50374
-        },
-        "fretes": {
-          "real": -129683.7,
-          "orc": -170000.0
-        },
-        "pessoal": {
-          "real": -1223048.61,
-          "orc": -1480601.6468000002
-        },
-        "impostos": {
-          "real": -584488.6100000001,
-          "orc": -627145.9808458725
-        },
-        "manut_predial": {
-          "real": -16110.32,
-          "orc": -30550.0
-        },
-        "despesas_op": {
-          "real": -405796.43,
-          "orc": -508191.6
-        },
-        "consultorias": {
-          "real": -157221.66,
-          "orc": -153925.93
-        },
-        "pd": {
-          "real": -18805.0,
-          "orc": -42000.0
-        },
-        "tarifas": {
-          "real": -14173.76,
-          "orc": -15000.0
-        },
-        "total_saidas_op": {
-          "real": -3455282.38,
-          "orc": -4163096.6613858733
-        },
-        "diretoria": {
-          "real": -1071782.24,
-          "orc": -957717.0
-        },
-        "outros_gastos": {
-          "real": -1900000.0,
-          "orc": -1900000.0
-        },
-        "ativ_financeiros": {
-          "real": 867386.71,
-          "orc": 133997.49
-        },
-        "geracao_caixa": {
-          "real": -205089.62000000104,
-          "orc": -2200393.806158874
-        },
-        "saldo_final": {
-          "real": -205089.62000000104,
-          "orc": -2200393.806158874
-        },
-        "total_saidas": {
-          "real": -5559677.91,
-          "orc": -6886816.171385873
-        },
-        "ativ_financeiros_fixo": {
-          "real": -2104395.5300000003,
-          "orc": -2723719.51
-        },
-        "resultado_mes_fixo": {
-          "real": -205089.62000000104,
-          "orc": -2200393.806158874
-        }
-      },
-      "2": {
-        "saldo_inicial": {
           "real": 10509491.0,
           "orc": 10509491.0
         },
@@ -12282,7 +12200,7 @@
           "orc": -7249.475376420945
         }
       },
-      "3": {
+      "2": {
         "saldo_inicial": {
           "real": 10848981.55,
           "orc": 10502241.524623578
@@ -12364,7 +12282,7 @@
           "orc": -1537391.6613169252
         }
       },
-      "4": {
+      "3": {
         "saldo_inicial": {
           "real": 9789786.47,
           "orc": 8964849.863306653
@@ -12446,7 +12364,7 @@
           "orc": -655752.669465528
         }
       },
-      "5": {
+      "4": {
         "saldo_inicial": {
           "real": 10304401.379999999,
           "orc": 8309097.193841125
@@ -12528,206 +12446,288 @@
           "orc": -274489.04176975443
         }
       },
-      "6": {
+      "5": {
         "saldo_inicial": {
-          "real": 10770749.139999999,
-          "orc": 8034608.152071371
+          "real": 0.0,
+          "orc": 0.0
         },
         "total_entradas": {
-          "real": 624041.1,
-          "orc": 1797086.8501809998
+          "real": 0.0,
+          "orc": 0.0
         },
         "materia_prima": {
-          "real": -120529.96,
-          "orc": -310366.352595
+          "real": 0.0,
+          "orc": 0.0
         },
         "fretes": {
-          "real": -8166.83,
-          "orc": -56666.666666666664
+          "real": 0.0,
+          "orc": 0.0
         },
         "pessoal": {
-          "real": -542217.59,
-          "orc": -507548.7128777778
+          "real": 0.0,
+          "orc": 0.0
         },
         "impostos": {
-          "real": -28964.59,
-          "orc": -184479.59119060502
+          "real": 0.0,
+          "orc": 0.0
         },
         "manut_predial": {
-          "real": -666.48,
-          "orc": -1550.0
+          "real": 0.0,
+          "orc": 0.0
         },
         "despesas_op": {
-          "real": -129456.93,
-          "orc": -175923.11
+          "real": 0.0,
+          "orc": 0.0
         },
         "consultorias": {
-          "real": -47184.73,
-          "orc": -42975.31
+          "real": 0.0,
+          "orc": 0.0
         },
         "pd": {
-          "real": -3446.5,
+          "real": 0.0,
           "orc": 0.0
         },
         "tarifas": {
-          "real": -1436.5900000000001,
-          "orc": -5000.0
+          "real": 0.0,
+          "orc": 0.0
         },
         "total_saidas_op": {
-          "real": -882070.1999999998,
-          "orc": -1284509.7433300493
+          "real": 0.0,
+          "orc": 0.0
         },
         "diretoria": {
-          "real": -222112.83000000002,
-          "orc": -319239.0
+          "real": 0.0,
+          "orc": 0.0
         },
         "outros_gastos": {
-          "real": -150000.0,
-          "orc": -138000.0
+          "real": 0.0,
+          "orc": 0.0
         },
         "ativ_financeiros": {
           "real": 0.0,
-          "orc": 44665.83
+          "orc": 0.0
         },
         "geracao_caixa": {
-          "real": -630141.9299999999,
-          "orc": 100003.93685095053
+          "real": 0.0,
+          "orc": 0.0
         },
         "saldo_final": {
-          "real": 10140607.209999999,
-          "orc": 8134612.088922321
+          "real": 0.0,
+          "orc": 0.0
         },
         "total_saidas": {
-          "real": -1254183.0299999998,
-          "orc": -1697082.9133300493
+          "real": 0.0,
+          "orc": 0.0
         },
         "ativ_financeiros_fixo": {
-          "real": -372112.83,
-          "orc": -412573.17
+          "real": 0.0,
+          "orc": 0.0
         },
         "resultado_mes_fixo": {
-          "real": -630141.9299999999,
-          "orc": 100003.93685095053
+          "real": 0.0,
+          "orc": 0.0
+        }
+      },
+      "6": {
+        "saldo_inicial": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "total_entradas": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "materia_prima": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "fretes": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "pessoal": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "impostos": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "manut_predial": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "despesas_op": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "consultorias": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "pd": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "tarifas": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "total_saidas_op": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "diretoria": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "outros_gastos": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "ativ_financeiros": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "geracao_caixa": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "saldo_final": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "total_saidas": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "ativ_financeiros_fixo": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "resultado_mes_fixo": {
+          "real": 0.0,
+          "orc": 0.0
         }
       },
       "7": {
         "saldo_inicial": {
-          "real": 10140607.209999999,
-          "orc": 8134612.088922321
+          "real": 0.0,
+          "orc": 0.0
         },
         "total_entradas": {
-          "real": 189411.03999999998,
-          "orc": 1829764.56675625
+          "real": 0.0,
+          "orc": 0.0
         },
         "materia_prima": {
-          "real": -6785.51,
-          "orc": -291770.16841000004
+          "real": 0.0,
+          "orc": 0.0
         },
         "fretes": {
-          "real": -2408.02,
-          "orc": -56666.666666666664
+          "real": 0.0,
+          "orc": 0.0
         },
         "pessoal": {
-          "real": -453941.69,
-          "orc": -494565.92287777783
+          "real": 0.0,
+          "orc": 0.0
         },
         "impostos": {
-          "real": -11968.0,
-          "orc": -162121.23686150002
+          "real": 0.0,
+          "orc": 0.0
         },
         "manut_predial": {
           "real": 0.0,
-          "orc": -1550.0
+          "orc": 0.0
         },
         "despesas_op": {
-          "real": -149.9,
-          "orc": -150090.22999999998
+          "real": 0.0,
+          "orc": 0.0
         },
         "consultorias": {
-          "real": -5317.57,
-          "orc": -42975.31
+          "real": 0.0,
+          "orc": 0.0
         },
         "pd": {
           "real": 0.0,
-          "orc": -1000.0
+          "orc": 0.0
         },
         "tarifas": {
-          "real": -351.45,
-          "orc": -5000.0
+          "real": 0.0,
+          "orc": 0.0
         },
         "total_saidas_op": {
-          "real": -480922.1400000001,
-          "orc": -1205739.5348159445
+          "real": 0.0,
+          "orc": 0.0
         },
         "diretoria": {
-          "real": -114630.02,
-          "orc": -319239.0
+          "real": 0.0,
+          "orc": 0.0
         },
         "outros_gastos": {
           "real": 0.0,
-          "orc": -138000.0
+          "orc": 0.0
         },
         "ativ_financeiros": {
           "real": 0.0,
-          "orc": 44665.83
+          "orc": 0.0
         },
         "geracao_caixa": {
-          "real": -406141.1200000001,
-          "orc": 211451.86194030562
+          "real": 0.0,
+          "orc": 0.0
         },
         "saldo_final": {
-          "real": 9734466.09,
-          "orc": 8346063.950862627
+          "real": 0.0,
+          "orc": 0.0
         },
         "total_saidas": {
-          "real": -595552.16,
-          "orc": -1618312.7048159444
+          "real": 0.0,
+          "orc": 0.0
         },
         "ativ_financeiros_fixo": {
-          "real": -114630.02,
-          "orc": -412573.17
+          "real": 0.0,
+          "orc": 0.0
         },
         "resultado_mes_fixo": {
-          "real": -406141.1200000001,
-          "orc": 211451.86194030562
+          "real": 0.0,
+          "orc": 0.0
         }
       },
       "8": {
         "saldo_inicial": {
-          "real": 9734466.09,
-          "orc": 6153912.560862627
+          "real": 0.0,
+          "orc": 0.0
         },
         "total_entradas": {
           "real": 0.0,
-          "orc": 1981674.4198432502
+          "orc": 0.0
         },
         "materia_prima": {
           "real": 0.0,
-          "orc": -517794.7830150001
+          "orc": 0.0
         },
         "fretes": {
           "real": 0.0,
-          "orc": -56666.666666666664
+          "orc": 0.0
         },
         "pessoal": {
           "real": 0.0,
-          "orc": -500531.93454444443
+          "orc": 0.0
         },
         "impostos": {
           "real": 0.0,
-          "orc": -253839.898186595
+          "orc": 0.0
         },
         "manut_predial": {
           "real": 0.0,
-          "orc": -3550.0
+          "orc": 0.0
         },
         "despesas_op": {
           "real": 0.0,
-          "orc": -509860.23
+          "orc": 0.0
         },
         "consultorias": {
           "real": 0.0,
-          "orc": -42975.31
+          "orc": 0.0
         },
         "pd": {
           "real": 0.0,
@@ -12735,327 +12735,81 @@
         },
         "tarifas": {
           "real": 0.0,
-          "orc": -5000.0
+          "orc": 0.0
         },
         "total_saidas_op": {
           "real": 0.0,
-          "orc": -1890218.8224127062
+          "orc": 0.0
         },
         "diretoria": {
           "real": 0.0,
-          "orc": -319239.0
+          "orc": 0.0
         },
         "outros_gastos": {
           "real": 0.0,
-          "orc": -138000.0
+          "orc": 0.0
         },
         "ativ_financeiros": {
           "real": 0.0,
-          "orc": 44665.83
+          "orc": 0.0
         },
         "geracao_caixa": {
           "real": 0.0,
-          "orc": -321117.572569456
+          "orc": 0.0
         },
         "saldo_final": {
-          "real": 9734466.09,
-          "orc": 5832794.988293171
+          "real": 0.0,
+          "orc": 0.0
         },
         "total_saidas": {
           "real": 0.0,
-          "orc": -2302791.992412706
+          "orc": 0.0
         },
         "ativ_financeiros_fixo": {
           "real": 0.0,
-          "orc": -412573.17
+          "orc": 0.0
         },
         "resultado_mes_fixo": {
           "real": 0.0,
-          "orc": -321117.572569456
+          "orc": 0.0
         }
       },
       "9": {
         "saldo_inicial": {
-          "real": 9734466.09,
-          "orc": 5832794.988293171
+          "real": 0.0,
+          "orc": 0.0
         },
         "total_entradas": {
           "real": 0.0,
-          "orc": 2139789.7126925
+          "orc": 0.0
         },
         "materia_prima": {
           "real": 0.0,
-          "orc": -645641.3640000001
+          "orc": 0.0
         },
         "fretes": {
           "real": 0.0,
-          "orc": -56666.666666666664
+          "orc": 0.0
         },
         "pessoal": {
           "real": 0.0,
-          "orc": -499283.0555888887
+          "orc": 0.0
         },
         "impostos": {
           "real": 0.0,
-          "orc": -294312.7062
+          "orc": 0.0
         },
         "manut_predial": {
           "real": 0.0,
-          "orc": -1550.0
+          "orc": 0.0
         },
         "despesas_op": {
           "real": 0.0,
-          "orc": -206820.22999999998
+          "orc": 0.0
         },
         "consultorias": {
           "real": 0.0,
-          "orc": -42975.31
-        },
-        "pd": {
-          "real": 0.0,
-          "orc": -1000.0
-        },
-        "tarifas": {
-          "real": 0.0,
-          "orc": -5000.0
-        },
-        "total_saidas_op": {
-          "real": 0.0,
-          "orc": -1753249.3324555554
-        },
-        "diretoria": {
-          "real": 0.0,
-          "orc": -320585.73
-        },
-        "outros_gastos": {
-          "real": 0.0,
-          "orc": -138000.0
-        },
-        "ativ_financeiros": {
-          "real": 0.0,
-          "orc": 44665.83
-        },
-        "geracao_caixa": {
-          "real": 0.0,
-          "orc": -27379.519763055316
-        },
-        "saldo_final": {
-          "real": 9734466.09,
-          "orc": 5805415.468530116
-        },
-        "total_saidas": {
-          "real": 0.0,
-          "orc": -2167169.2324555553
-        },
-        "ativ_financeiros_fixo": {
-          "real": 0.0,
-          "orc": -413919.89999999997
-        },
-        "resultado_mes_fixo": {
-          "real": 0.0,
-          "orc": -27379.519763055316
-        }
-      },
-      "10": {
-        "saldo_inicial": {
-          "real": 9734466.09,
-          "orc": 5805415.468530116
-        },
-        "total_entradas": {
-          "real": 0.0,
-          "orc": 2100983.2724300004
-        },
-        "materia_prima": {
-          "real": 0.0,
-          "orc": -475256.495875
-        },
-        "fretes": {
-          "real": 0.0,
-          "orc": -56666.666666666664
-        },
-        "pessoal": {
-          "real": 0.0,
-          "orc": -499283.09558888874
-        },
-        "impostos": {
-          "real": 0.0,
-          "orc": -256592.38064072502
-        },
-        "manut_predial": {
-          "real": 0.0,
-          "orc": -1550.0
-        },
-        "despesas_op": {
-          "real": 0.0,
-          "orc": -136500.02999999997
-        },
-        "consultorias": {
-          "real": 0.0,
-          "orc": -42975.31
-        },
-        "pd": {
-          "real": 0.0,
-          "orc": -61000.0
-        },
-        "tarifas": {
-          "real": 0.0,
-          "orc": -5000.0
-        },
-        "total_saidas_op": {
-          "real": 0.0,
-          "orc": -1534823.9787712805
-        },
-        "diretoria": {
-          "real": 0.0,
-          "orc": -320585.73
-        },
-        "outros_gastos": {
-          "real": 0.0,
-          "orc": -138000.0
-        },
-        "ativ_financeiros": {
-          "real": 0.0,
-          "orc": 44665.83
-        },
-        "geracao_caixa": {
-          "real": 0.0,
-          "orc": 152239.3936587199
-        },
-        "saldo_final": {
-          "real": 9734466.09,
-          "orc": 5957654.862188836
-        },
-        "total_saidas": {
-          "real": 0.0,
-          "orc": -1948743.8787712804
-        },
-        "ativ_financeiros_fixo": {
-          "real": 0.0,
-          "orc": -413919.89999999997
-        },
-        "resultado_mes_fixo": {
-          "real": 0.0,
-          "orc": 152239.3936587199
-        }
-      },
-      "11": {
-        "saldo_inicial": {
-          "real": 9734466.09,
-          "orc": 5957654.862188836
-        },
-        "total_entradas": {
-          "real": 0.0,
-          "orc": 2308229.1058862503
-        },
-        "materia_prima": {
-          "real": 0.0,
-          "orc": -670855.6365
-        },
-        "fretes": {
-          "real": 0.0,
-          "orc": -56666.666666666664
-        },
-        "pessoal": {
-          "real": 0.0,
-          "orc": -502063.09558888874
-        },
-        "impostos": {
-          "real": 0.0,
-          "orc": -309696.60994725
-        },
-        "manut_predial": {
-          "real": 0.0,
-          "orc": -1550.0
-        },
-        "despesas_op": {
-          "real": 0.0,
-          "orc": -198470.22999999998
-        },
-        "consultorias": {
-          "real": 0.0,
-          "orc": -42975.31
-        },
-        "pd": {
-          "real": 0.0,
-          "orc": -1000.0
-        },
-        "tarifas": {
-          "real": 0.0,
-          "orc": -5000.0
-        },
-        "total_saidas_op": {
-          "real": 0.0,
-          "orc": -1788277.5487028055
-        },
-        "diretoria": {
-          "real": 0.0,
-          "orc": -320585.73
-        },
-        "outros_gastos": {
-          "real": 0.0,
-          "orc": -138000.0
-        },
-        "ativ_financeiros": {
-          "real": 0.0,
-          "orc": 44665.83
-        },
-        "geracao_caixa": {
-          "real": 0.0,
-          "orc": 106031.65718344477
-        },
-        "saldo_final": {
-          "real": 9734466.09,
-          "orc": 6063686.519372281
-        },
-        "total_saidas": {
-          "real": 0.0,
-          "orc": -2202197.4487028057
-        },
-        "ativ_financeiros_fixo": {
-          "real": 0.0,
-          "orc": -413919.89999999997
-        },
-        "resultado_mes_fixo": {
-          "real": 0.0,
-          "orc": 106031.65718344477
-        }
-      },
-      "12": {
-        "saldo_inicial": {
-          "real": 9734466.09,
-          "orc": 6063686.519372281
-        },
-        "total_entradas": {
-          "real": 0.0,
-          "orc": 2447961.7905287505
-        },
-        "materia_prima": {
-          "real": 0.0,
-          "orc": -580123.7129350001
-        },
-        "fretes": {
-          "real": 0.0,
-          "orc": -56666.666666666664
-        },
-        "pessoal": {
-          "real": 0.0,
-          "orc": -589089.2055888886
-        },
-        "impostos": {
-          "real": 0.0,
-          "orc": -277335.36899944005
-        },
-        "manut_predial": {
-          "real": 0.0,
-          "orc": -1550.0
-        },
-        "despesas_op": {
-          "real": 0.0,
-          "orc": -152370.22999999998
-        },
-        "consultorias": {
-          "real": 0.0,
-          "orc": -42975.31
+          "orc": 0.0
         },
         "pd": {
           "real": 0.0,
@@ -13063,46 +12817,292 @@
         },
         "tarifas": {
           "real": 0.0,
-          "orc": -5000.0
+          "orc": 0.0
         },
         "total_saidas_op": {
           "real": 0.0,
-          "orc": -1705110.4941899953
+          "orc": 0.0
         },
         "diretoria": {
           "real": 0.0,
-          "orc": -320585.73
+          "orc": 0.0
         },
         "outros_gastos": {
           "real": 0.0,
-          "orc": -138000.0
+          "orc": 0.0
         },
         "ativ_financeiros": {
           "real": 0.0,
-          "orc": 44665.83
+          "orc": 0.0
         },
         "geracao_caixa": {
           "real": 0.0,
-          "orc": 328931.3963387552
+          "orc": 0.0
         },
         "saldo_final": {
-          "real": 9734466.09,
-          "orc": 6392617.915711036
+          "real": 0.0,
+          "orc": 0.0
         },
         "total_saidas": {
           "real": 0.0,
-          "orc": -2119030.3941899952
+          "orc": 0.0
         },
         "ativ_financeiros_fixo": {
           "real": 0.0,
-          "orc": -413919.89999999997
+          "orc": 0.0
         },
         "resultado_mes_fixo": {
           "real": 0.0,
-          "orc": 328931.3963387552
+          "orc": 0.0
+        }
+      },
+      "10": {
+        "saldo_inicial": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "total_entradas": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "materia_prima": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "fretes": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "pessoal": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "impostos": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "manut_predial": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "despesas_op": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "consultorias": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "pd": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "tarifas": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "total_saidas_op": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "diretoria": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "outros_gastos": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "ativ_financeiros": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "geracao_caixa": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "saldo_final": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "total_saidas": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "ativ_financeiros_fixo": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "resultado_mes_fixo": {
+          "real": 0.0,
+          "orc": 0.0
+        }
+      },
+      "11": {
+        "saldo_inicial": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "total_entradas": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "materia_prima": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "fretes": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "pessoal": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "impostos": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "manut_predial": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "despesas_op": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "consultorias": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "pd": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "tarifas": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "total_saidas_op": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "diretoria": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "outros_gastos": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "ativ_financeiros": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "geracao_caixa": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "saldo_final": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "total_saidas": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "ativ_financeiros_fixo": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "resultado_mes_fixo": {
+          "real": 0.0,
+          "orc": 0.0
+        }
+      },
+      "12": {
+        "saldo_inicial": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "total_entradas": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "materia_prima": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "fretes": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "pessoal": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "impostos": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "manut_predial": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "despesas_op": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "consultorias": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "pd": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "tarifas": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "total_saidas_op": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "diretoria": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "outros_gastos": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "ativ_financeiros": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "geracao_caixa": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "saldo_final": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "total_saidas": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "ativ_financeiros_fixo": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "resultado_mes_fixo": {
+          "real": 0.0,
+          "orc": 0.0
         }
       }
     },
-    "latestMonth": 7
+    "latestMonth": 4
   }
 }
