@@ -31,6 +31,16 @@ const REGIOES_MAP = {
   'EXTERIOR': ['EX']
 }
 
+const PHOTO_MAP = {
+  'Gabriel Dias': '/vendedores/Gabriel Dias.jpg',
+  'Gabriel Ferreira dos Santos': '/vendedores/Gabriel Ferreira dos Santos.jpg',
+  'Gabriel Klein': '/vendedores/Gabriel Klein.jpg',
+  'Gabriel Medeiros': '/vendedores/Gabriel Medeiros.jpg',
+  'Josiane Govoni Lanzarini': '/vendedores/Josiane Govoni Lanzarini.jpg',
+  'Rogislei Vieira Padilha': '/vendedores/Rogislei Vieira Padilha.jpg',
+  'Vanessa Ferreira': '/vendedores/Vanessa Ferreira.jpg'
+}
+
 export default function TVMode({ data, mes = 'all' }) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [progress, setProgress] = useState(0)
@@ -41,7 +51,8 @@ export default function TVMode({ data, mes = 'all' }) {
     { id: 'mapa', title: 'Expansão Regional', subtitle: 'Distribuição Geográfica de Vendas' },
     { id: 'vendedores', title: 'Time Comercial', subtitle: 'Ranking de Performance' },
     { id: 'metas', title: 'Metas Estratégicas 2026', subtitle: 'Acompanhamento de Objetivos' },
-    { id: 'orcamento', title: 'Saúde Financeira', subtitle: 'Resultado Operacional e Gastos' }
+    { id: 'orcamento', title: 'Saúde Financeira', subtitle: 'Resultado Operacional e Gastos' },
+    { id: 'fluxo', title: 'Fluxo de Caixa', subtitle: 'Disponibilidade e Movimentação' }
   ]
 
   useEffect(() => {
@@ -124,6 +135,7 @@ export default function TVMode({ data, mes = 'all' }) {
         {currentSlide === 2 && <SlideVendedores data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
         {currentSlide === 3 && <SlideMetas data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
         {currentSlide === 4 && <SlideOrcamento data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
+        {currentSlide === 5 && <SlideFluxo data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
       </div>
 
       <div style={{ padding: '20px 60px', background: 'rgba(255,106,34,0.05)', borderTop: `1px solid ${t.border}`, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
@@ -301,7 +313,7 @@ function SlideVendedores({ data, mes, t, ultimoMes }) {
     const raw = sellers
       .filter(s => s.ano === 2026 && (mes === 'all' ? s.mes <= targetMes : s.mes === targetMes))
       .reduce((acc, curr) => {
-        acc[curr.vendedor] = (acc[curr.vendedor] || 0) + curr.vendas
+        acc[curr.vendedor] = (acc[curr.vendedor] || 0) + (curr.valor || curr.vendas || 0)
         return acc
       }, {})
     
@@ -312,20 +324,74 @@ function SlideVendedores({ data, mes, t, ultimoMes }) {
   }, [sellers, mes, targetMes])
 
   return (
-    <div className="slide-enter" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 40 }}>
-      <div style={{ flex: 1, background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 60 }}>
-        <h3 style={{ fontSize: 28, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 40 }}>Top 5 Vendedores</h3>
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={ranking} layout="vertical" margin={{ left: 150, right: 100 }}>
-            <XAxis type="number" hide />
-            <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{ fill: '#fff', fontSize: 24, fontWeight: 900 }} />
-            <Bar dataKey="val" fill={t.accent} radius={[0, 10, 10, 0]} barSize={50}>
-               {ranking.map((entry, index) => (
-                 <Cell key={`cell-${index}`} fill={index === 0 ? t.accent : 'rgba(255,106,34,0.4)'} />
-               ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+    <div className="slide-enter" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 30 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 25, flex: 1 }}>
+        {ranking.map((s, i) => {
+          const isTop = i < 3
+          const medalColor = i === 0 ? '#FFD700' : i === 1 ? '#C0C0C0' : '#CD7F32'
+          
+          return (
+            <div key={s.name} style={{ 
+              background: t.card, 
+              borderRadius: 32, 
+              border: `1.5px solid ${isTop ? medalColor : t.border}`, 
+              padding: 40,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              {/* Medalha / Rank */}
+              <div style={{ 
+                position: 'absolute', top: 30, right: 30, 
+                width: 50, height: 50, borderRadius: '50%', 
+                background: isTop ? medalColor : 'rgba(255,255,255,0.1)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 24, fontWeight: 900, color: isTop ? '#000' : '#fff',
+                boxShadow: isTop ? `0 0 20px ${medalColor}66` : 'none'
+              }}>
+                {i + 1}
+              </div>
+
+              {/* Foto do Vendedor */}
+              <div style={{ 
+                width: 180, height: 180, borderRadius: '50%', 
+                border: `4px solid ${isTop ? medalColor : 'rgba(255,255,255,0.1)'}`,
+                overflow: 'hidden', marginBottom: 30,
+                background: '#1a1a24'
+              }}>
+                {PHOTO_MAP[s.name] ? (
+                  <img src={PHOTO_MAP[s.name]} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : (
+                  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 60, fontWeight: 900, opacity: 0.2 }}>
+                    {s.name.charAt(0)}
+                  </div>
+                )}
+              </div>
+
+              <h4 style={{ 
+                fontSize: 22, fontWeight: 900, textAlign: 'center', 
+                margin: '0 0 15px', color: '#fff', 
+                height: 60, display: 'flex', alignItems: 'center',
+                textTransform: 'uppercase', letterSpacing: 1
+              }}>
+                {s.name.split(' ').slice(0, 2).join(' ')}
+              </h4>
+
+              <div style={{ 
+                background: isTop ? 'rgba(255,255,255,0.1)' : 'transparent',
+                padding: '10px 20px', borderRadius: 16,
+                border: `1px solid ${isTop ? 'rgba(255,255,255,0.2)' : 'transparent'}`
+              }}>
+                <p style={{ fontSize: 28, fontWeight: 900, color: t.accent, margin: 0 }}>
+                  {fmt(s.val)}
+                </p>
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )
@@ -412,6 +478,76 @@ function KpiCardTV({ label, value, icon: Icon, color, t }) {
       <div>
          <p style={{ fontSize: 16, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>{label}</p>
          <p style={{ fontSize: 36, fontWeight: 900, margin: 0 }}>{fmt(value)}</p>
+      </div>
+    </div>
+  )
+}
+
+function SlideFluxo({ data, mes, t, ultimoMes }) {
+  const curMes = mes === 'all' ? ultimoMes : parseInt(mes)
+  const m = data?.fluxo?.mensal?.[String(curMes)] || data?.fluxo?.mensal?.[curMes] || {}
+  
+  const chartData = useMemo(() => {
+    if (!data?.fluxo?.mensal) return []
+    return Object.entries(data.fluxo.mensal)
+      .map(([m, val]) => ({
+        name: MESES_LABELS[parseInt(m)-1].substring(0, 3).toUpperCase(),
+        monthNum: parseInt(m),
+        saldo: val.saldo_final?.real || 0,
+        entradas: val.total_entradas?.real || 0,
+        saidas: Math.abs(val.total_saidas?.real || 0)
+      }))
+      .filter(d => d.monthNum <= (mes === 'all' ? ultimoMes : parseInt(mes)))
+  }, [data, mes, ultimoMes])
+
+  const kpis = [
+    { label: 'Saldo Inicial', val: m.saldo_inicial?.real || 0, icon: Wallet, color: '#fff' },
+    { label: 'Entradas', val: m.total_entradas?.real || 0, icon: ArrowUpRight, color: t.green },
+    { label: 'Saídas', val: Math.abs(m.total_saidas?.real || 0), icon: ArrowDownRight, color: t.red },
+    { label: 'Geração de Caixa', val: m.geracao_caixa?.real || 0, icon: Activity, color: t.accent },
+    { label: 'Disponibilidade Final', val: m.saldo_final?.real || 0, icon: DollarSign, color: t.accent }
+  ]
+
+  return (
+    <div className="slide-enter" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 30 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 20 }}>
+        {kpis.map((k, i) => (
+          <div key={i} style={{ 
+            background: t.card, borderRadius: 24, border: `1px solid ${t.border}`, 
+            padding: 30, display: 'flex', flexDirection: 'column', gap: 10,
+            boxShadow: i === 4 ? `0 0 30px ${t.accent}33` : 'none',
+            borderColor: i === 4 ? t.accent : t.border
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+               <k.icon size={20} color={k.color} />
+               <span style={{ fontSize: 14, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>{k.label}</span>
+            </div>
+            <p style={{ fontSize: 32, fontWeight: 900, color: k.color, margin: 0 }}>{fmt(k.val)}</p>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ flex: 1, background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 40, display: 'flex', flexDirection: 'column' }}>
+        <h3 style={{ fontSize: 24, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 30, letterSpacing: 2 }}>Tendência de Disponibilidade</h3>
+        <div style={{ flex: 1 }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={chartData}>
+              <defs>
+                <linearGradient id="colorSaldo" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor={t.accent} stopOpacity={0.3}/>
+                  <stop offset="95%" stopColor={t.accent} stopOpacity={0}/>
+                </linearGradient>
+              </defs>
+              <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: t.textMuted, fontSize: 14, fontWeight: 900 }} />
+              <YAxis hide />
+              <Tooltip 
+                contentStyle={{ background: '#000', border: `1px solid ${t.accent}`, borderRadius: 12 }}
+                itemStyle={{ color: '#fff', fontSize: 16, fontWeight: 900 }}
+              />
+              <Area type="monotone" dataKey="saldo" stroke={t.accent} strokeWidth={4} fillOpacity={1} fill="url(#colorSaldo)" />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </div>
   )
