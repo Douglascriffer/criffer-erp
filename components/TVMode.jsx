@@ -272,16 +272,16 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
             <h3 style={{ fontSize: 26, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 40, letterSpacing: 2 }}>
                Resumo por Região
             </h3>
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 25 }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 35 }}>
                {Object.entries(regioesValores).sort((a, b) => b[1] - a[1]).map(([reg, val], i) => (
-                 <div key={reg} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15, borderBottom: i < 5 ? `1px solid ${t.border}` : 'none' }}>
-                   <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-                     <div style={{ width: 60, height: 50, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <IconeRegiao regiao={reg} size={50} />
+                 <div key={reg} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 20, borderBottom: i < 5 ? `1px solid ${t.border}` : 'none' }}>
+                   <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+                     <div style={{ width: 80, height: 60, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <IconeRegiao regiao={reg} size={65} />
                      </div>
-                     <span style={{ fontSize: 22, fontWeight: 800, color: t.text }}>{reg}</span>
+                     <span style={{ fontSize: 26, fontWeight: 800, color: t.text, letterSpacing: 1 }}>{reg}</span>
                    </div>
-                   <span style={{ fontSize: 26, fontWeight: 900, color: val > 0 ? '#fff' : t.textMuted }}>
+                   <span style={{ fontSize: 32, fontWeight: 900, color: val > 0 ? '#fff' : t.textMuted }}>
                      {val > 0 ? fmt(val) : 'R$ 0'}
                    </span>
                  </div>

@@ -29,7 +29,9 @@ export default function IconeRegiao({ regiao, size = 60 }) {
         style={{ 
           maxWidth: '100%', 
           maxHeight: '100%', 
-          objectFit: 'contain'
+          objectFit: 'contain',
+          filter: 'drop-shadow(0 0 8px rgba(255,106,34,0.6)) brightness(1.2)',
+          transition: 'all 0.3s ease'
         }} 
       />
     </div>

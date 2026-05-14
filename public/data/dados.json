@@ -25,10 +25,10 @@
       "ano": 2025,
       "label": "mar/25",
       "vendas": 1123601.2499999998,
-      "servicos": 323351.35,
+      "servicos": 323351.35000000003,
       "locacao": 73760.01,
-      "devolucoes": 16569.7,
-      "total": 1504142.9099999997
+      "devolucoes": 15600.0,
+      "total": 1505112.6099999999
     },
     {
       "mes": 4,
@@ -94,21 +94,21 @@
       "mes": 10,
       "ano": 2025,
       "label": "oct/25",
-      "vendas": 2748755.1999999997,
+      "vendas": 2748755.2,
       "servicos": 504518.83999999997,
       "locacao": 85835.0,
       "devolucoes": 23025.0,
-      "total": 3316084.0399999996
+      "total": 3316084.04
     },
     {
       "mes": 11,
       "ano": 2025,
       "label": "nov/25",
-      "vendas": 2197124.91,
+      "vendas": 2197124.9100000006,
       "servicos": 239267.41999999998,
       "locacao": 56091.0,
-      "devolucoes": 27657.0,
-      "total": 2464826.33
+      "devolucoes": 27450.0,
+      "total": 2465033.3300000005
     },
     {
       "mes": 12,
@@ -124,21 +124,21 @@
       "mes": 1,
       "ano": 2026,
       "label": "jan/26",
-      "vendas": 1172961.62,
-      "servicos": 348752.23,
+      "vendas": 1172961.6199999999,
+      "servicos": 348258.23,
       "locacao": 86110.1,
       "devolucoes": 12902.0,
-      "total": 1594921.9500000002
+      "total": 1594427.95
     },
     {
       "mes": 2,
       "ano": 2026,
       "label": "feb/26",
       "vendas": 1429756.91,
-      "servicos": 326730.59,
-      "locacao": 72860.0,
-      "devolucoes": 65878.0,
-      "total": 1763469.5
+      "servicos": 326510.59,
+      "locacao": 74360.0,
+      "devolucoes": 64638.0,
+      "total": 1765989.5
     },
     {
       "mes": 3,
@@ -154,11 +154,11 @@
       "mes": 4,
       "ano": 2026,
       "label": "apr/26",
-      "vendas": 0.0,
-      "servicos": 0.0,
-      "locacao": 0.0,
-      "devolucoes": 0.0,
-      "total": 0.0
+      "vendas": 1482867.92,
+      "servicos": 398933.20000000007,
+      "locacao": 59550.6,
+      "devolucoes": 16210.74,
+      "total": 1925140.9800000002
     },
     {
       "mes": 5,
@@ -264,7 +264,7 @@
       "ano": 2025,
       "mes": 1,
       "estado": "BA",
-      "faturamento": 64703.46000000001
+      "faturamento": 64629.420000000006
     },
     {
       "ano": 2025,
@@ -300,7 +300,7 @@
       "ano": 2025,
       "mes": 1,
       "estado": "MG",
-      "faturamento": 161298.82
+      "faturamento": 161444.02000000002
     },
     {
       "ano": 2025,
@@ -312,13 +312,13 @@
       "ano": 2025,
       "mes": 1,
       "estado": "MT",
-      "faturamento": 22683.170000000002
+      "faturamento": 22618.570000000003
     },
     {
       "ano": 2025,
       "mes": 1,
       "estado": "PA",
-      "faturamento": 149592.94000000003
+      "faturamento": 149592.94
     },
     {
       "ano": 2025,
@@ -336,19 +336,19 @@
       "ano": 2025,
       "mes": 1,
       "estado": "PI",
-      "faturamento": 753.6
+      "faturamento": 630.0
     },
     {
       "ano": 2025,
       "mes": 1,
       "estado": "PR",
-      "faturamento": 72735.8
+      "faturamento": 72710.8
     },
     {
       "ano": 2025,
       "mes": 1,
       "estado": "RJ",
-      "faturamento": 44687.55
+      "faturamento": 44564.65
     },
     {
       "ano": 2025,
@@ -366,13 +366,13 @@
       "ano": 2025,
       "mes": 1,
       "estado": "RS",
-      "faturamento": 173056.48000000004
+      "faturamento": 176870.16000000003
     },
     {
       "ano": 2025,
       "mes": 1,
       "estado": "SC",
-      "faturamento": 134323.80000000002
+      "faturamento": 134426.40000000002
     },
     {
       "ano": 2025,
@@ -384,13 +384,13 @@
       "ano": 2025,
       "mes": 1,
       "estado": "SP",
-      "faturamento": 285762.25
+      "faturamento": 285686.25
     },
     {
       "ano": 2025,
       "mes": 1,
       "estado": "EX",
-      "faturamento": 406165.9999999999
+      "faturamento": 402590.6599999999
     },
     {
       "ano": 2025,
@@ -408,13 +408,13 @@
       "ano": 2025,
       "mes": 2,
       "estado": "AM",
-      "faturamento": 107726.0
+      "faturamento": 107726.00000000003
     },
     {
       "ano": 2025,
       "mes": 2,
       "estado": "BA",
-      "faturamento": 65957.40000000001
+      "faturamento": 65957.4
     },
     {
       "ano": 2025,
@@ -438,7 +438,7 @@
       "ano": 2025,
       "mes": 2,
       "estado": "GO",
-      "faturamento": 62434.399999999994
+      "faturamento": 62434.4
     },
     {
       "ano": 2025,
@@ -468,7 +468,7 @@
       "ano": 2025,
       "mes": 2,
       "estado": "PA",
-      "faturamento": 42837.12000000001
+      "faturamento": 42837.119999999995
     },
     {
       "ano": 2025,
@@ -528,7 +528,7 @@
       "ano": 2025,
       "mes": 2,
       "estado": "SC",
-      "faturamento": 157781.63999999998
+      "faturamento": 157781.64
     },
     {
       "ano": 2025,
@@ -552,7 +552,7 @@
       "ano": 2025,
       "mes": 2,
       "estado": "EX",
-      "faturamento": 306526.3100000001
+      "faturamento": 306526.30999999994
     },
     {
       "ano": 2025,
@@ -654,7 +654,7 @@
       "ano": 2025,
       "mes": 3,
       "estado": "RJ",
-      "faturamento": 47420.840000000004
+      "faturamento": 47420.84000000001
     },
     {
       "ano": 2025,
@@ -702,7 +702,7 @@
       "ano": 2025,
       "mes": 3,
       "estado": "EX",
-      "faturamento": 20212.41
+      "faturamento": 20212.410000000003
     },
     {
       "ano": 2025,
@@ -720,7 +720,7 @@
       "ano": 2025,
       "mes": 4,
       "estado": "CE",
-      "faturamento": 77224.00000000001
+      "faturamento": 77223.99999999999
     },
     {
       "ano": 2025,
@@ -762,7 +762,7 @@
       "ano": 2025,
       "mes": 4,
       "estado": "MT",
-      "faturamento": 163418.35
+      "faturamento": 163418.34999999998
     },
     {
       "ano": 2025,
@@ -876,7 +876,7 @@
       "ano": 2025,
       "mes": 5,
       "estado": "BA",
-      "faturamento": 49790.950000000004
+      "faturamento": 49790.95
     },
     {
       "ano": 2025,
@@ -1008,7 +1008,7 @@
       "ano": 2025,
       "mes": 5,
       "estado": "EX",
-      "faturamento": 86143.65000000001
+      "faturamento": 86143.65
     },
     {
       "ano": 2025,
@@ -1326,7 +1326,7 @@
       "ano": 2025,
       "mes": 7,
       "estado": "EX",
-      "faturamento": 89351.63000000002
+      "faturamento": 89351.63
     },
     {
       "ano": 2025,
@@ -1344,7 +1344,7 @@
       "ano": 2025,
       "mes": 8,
       "estado": "AM",
-      "faturamento": 119343.00000000001
+      "faturamento": 119343.0
     },
     {
       "ano": 2025,
@@ -1374,7 +1374,7 @@
       "ano": 2025,
       "mes": 8,
       "estado": "GO",
-      "faturamento": 170375.0
+      "faturamento": 170375.00000000003
     },
     {
       "ano": 2025,
@@ -1404,7 +1404,7 @@
       "ano": 2025,
       "mes": 8,
       "estado": "PA",
-      "faturamento": 56344.0
+      "faturamento": 56343.99999999999
     },
     {
       "ano": 2025,
@@ -1470,7 +1470,7 @@
       "ano": 2025,
       "mes": 8,
       "estado": "SP",
-      "faturamento": 808321.7099999997
+      "faturamento": 808321.7099999998
     },
     {
       "ano": 2025,
@@ -1548,7 +1548,7 @@
       "ano": 2025,
       "mes": 9,
       "estado": "MG",
-      "faturamento": 226800.30000000005
+      "faturamento": 226800.3
     },
     {
       "ano": 2025,
@@ -1560,7 +1560,7 @@
       "ano": 2025,
       "mes": 9,
       "estado": "MT",
-      "faturamento": 78084.77
+      "faturamento": 78084.76999999999
     },
     {
       "ano": 2025,
@@ -1578,7 +1578,7 @@
       "ano": 2025,
       "mes": 9,
       "estado": "PE",
-      "faturamento": 88580.30000000002
+      "faturamento": 88580.3
     },
     {
       "ano": 2025,
@@ -1698,7 +1698,7 @@
       "ano": 2025,
       "mes": 10,
       "estado": "GO",
-      "faturamento": 74594.29999999999
+      "faturamento": 74594.3
     },
     {
       "ano": 2025,
@@ -1710,7 +1710,7 @@
       "ano": 2025,
       "mes": 10,
       "estado": "MG",
-      "faturamento": 214438.09000000003
+      "faturamento": 214409.19
     },
     {
       "ano": 2025,
@@ -1722,7 +1722,7 @@
       "ano": 2025,
       "mes": 10,
       "estado": "MT",
-      "faturamento": 118143.48999999999
+      "faturamento": 118212.38999999998
     },
     {
       "ano": 2025,
@@ -1746,19 +1746,19 @@
       "ano": 2025,
       "mes": 10,
       "estado": "PI",
-      "faturamento": 40560.99999999999
+      "faturamento": 40561.0
     },
     {
       "ano": 2025,
       "mes": 10,
       "estado": "PR",
-      "faturamento": 67789.05
+      "faturamento": 67720.15000000001
     },
     {
       "ano": 2025,
       "mes": 10,
       "estado": "RJ",
-      "faturamento": 240862.08
+      "faturamento": 240862.08000000002
     },
     {
       "ano": 2025,
@@ -1782,7 +1782,7 @@
       "ano": 2025,
       "mes": 10,
       "estado": "SC",
-      "faturamento": 211981.54000000004
+      "faturamento": 212010.44000000006
     },
     {
       "ano": 2025,
@@ -1806,7 +1806,7 @@
       "ano": 2025,
       "mes": 10,
       "estado": "EX",
-      "faturamento": 172658.88999999996
+      "faturamento": 172658.88999999993
     },
     {
       "ano": 2025,
@@ -1818,31 +1818,31 @@
       "ano": 2025,
       "mes": 11,
       "estado": "AL",
-      "faturamento": 31139.999999999996
+      "faturamento": 31425.0
     },
     {
       "ano": 2025,
       "mes": 11,
       "estado": "AP",
-      "faturamento": 1550.26
+      "faturamento": 1604.0
     },
     {
       "ano": 2025,
       "mes": 11,
       "estado": "AM",
-      "faturamento": 9009.6
+      "faturamento": 8757.0
     },
     {
       "ano": 2025,
       "mes": 11,
       "estado": "BA",
-      "faturamento": 38735.7
+      "faturamento": 38765.0
     },
     {
       "ano": 2025,
       "mes": 11,
       "estado": "CE",
-      "faturamento": 46526.0
+      "faturamento": 46618.979999999996
     },
     {
       "ano": 2025,
@@ -1860,25 +1860,25 @@
       "ano": 2025,
       "mes": 11,
       "estado": "MA",
-      "faturamento": 2009.0
+      "faturamento": 2044.0
     },
     {
       "ano": 2025,
       "mes": 11,
       "estado": "MG",
-      "faturamento": 222218.46
+      "faturamento": 222194.5
     },
     {
       "ano": 2025,
       "mes": 11,
       "estado": "MS",
-      "faturamento": 9117.0
+      "faturamento": 9165.5
     },
     {
       "ano": 2025,
       "mes": 11,
       "estado": "MT",
-      "faturamento": 74517.2
+      "faturamento": 74449.0
     },
     {
       "ano": 2025,
@@ -1908,13 +1908,13 @@
       "ano": 2025,
       "mes": 11,
       "estado": "PR",
-      "faturamento": 110537.48
+      "faturamento": 110252.48
     },
     {
       "ano": 2025,
       "mes": 11,
       "estado": "RJ",
-      "faturamento": 121866.9
+      "faturamento": 122079.7
     },
     {
       "ano": 2025,
@@ -1938,7 +1938,7 @@
       "ano": 2025,
       "mes": 11,
       "estado": "RS",
-      "faturamento": 234666.6
+      "faturamento": 234604.16
     },
     {
       "ano": 2025,
@@ -1956,7 +1956,7 @@
       "ano": 2025,
       "mes": 11,
       "estado": "SP",
-      "faturamento": 508831.1800000001
+      "faturamento": 508771.4000000002
     },
     {
       "ano": 2025,
@@ -1968,7 +1968,7 @@
       "ano": 2025,
       "mes": 11,
       "estado": "EX",
-      "faturamento": 319539.7100000002
+      "faturamento": 319534.3700000002
     },
     {
       "ano": 2025,
@@ -2010,13 +2010,13 @@
       "ano": 2025,
       "mes": 12,
       "estado": "MA",
-      "faturamento": 69490.0
+      "faturamento": 69513.8
     },
     {
       "ano": 2025,
       "mes": 12,
       "estado": "MG",
-      "faturamento": 185846.40000000002
+      "faturamento": 185807.8
     },
     {
       "ano": 2025,
@@ -2028,7 +2028,7 @@
       "ano": 2025,
       "mes": 12,
       "estado": "MT",
-      "faturamento": 24713.299999999996
+      "faturamento": 24388.3
     },
     {
       "ano": 2025,
@@ -2046,7 +2046,7 @@
       "ano": 2025,
       "mes": 12,
       "estado": "PE",
-      "faturamento": 133311.52
+      "faturamento": 133260.91999999998
     },
     {
       "ano": 2025,
@@ -2064,7 +2064,7 @@
       "ano": 2025,
       "mes": 12,
       "estado": "RJ",
-      "faturamento": 101475.72
+      "faturamento": 101526.32
     },
     {
       "ano": 2025,
@@ -2088,25 +2088,25 @@
       "ano": 2025,
       "mes": 12,
       "estado": "RS",
-      "faturamento": 121316.05000000003
+      "faturamento": 121685.65000000002
     },
     {
       "ano": 2025,
       "mes": 12,
       "estado": "SC",
-      "faturamento": 64325.5
+      "faturamento": 64289.7
     },
     {
       "ano": 2025,
       "mes": 12,
       "estado": "SE",
-      "faturamento": 42396.729999999996
+      "faturamento": 42396.73
     },
     {
       "ano": 2025,
       "mes": 12,
       "estado": "SP",
-      "faturamento": 209106.57
+      "faturamento": 209112.57
     },
     {
       "ano": 2025,
@@ -2118,7 +2118,7 @@
       "ano": 2025,
       "mes": 12,
       "estado": "EX",
-      "faturamento": 215243.66999999984
+      "faturamento": 215243.66999999987
     },
     {
       "ano": 2026,
@@ -2154,7 +2154,7 @@
       "ano": 2026,
       "mes": 1,
       "estado": "CE",
-      "faturamento": 16982.049999999996
+      "faturamento": 16952.049999999996
     },
     {
       "ano": 2026,
@@ -2172,37 +2172,37 @@
       "ano": 2026,
       "mes": 1,
       "estado": "GO",
-      "faturamento": 18247.2
+      "faturamento": 18134.6
     },
     {
       "ano": 2026,
       "mes": 1,
       "estado": "MA",
-      "faturamento": 2014.8
+      "faturamento": 2090.8
     },
     {
       "ano": 2026,
       "mes": 1,
       "estado": "MG",
-      "faturamento": 262682.85000000003
+      "faturamento": 262641.85000000003
     },
     {
       "ano": 2026,
       "mes": 1,
       "estado": "MS",
-      "faturamento": 23376.09
+      "faturamento": 23266.3
     },
     {
       "ano": 2026,
       "mes": 1,
       "estado": "MT",
-      "faturamento": 26548.0
+      "faturamento": 26616.0
     },
     {
       "ano": 2026,
       "mes": 1,
       "estado": "PA",
-      "faturamento": 141428.5
+      "faturamento": 141115.28999999998
     },
     {
       "ano": 2026,
@@ -2214,7 +2214,7 @@
       "ano": 2026,
       "mes": 1,
       "estado": "PE",
-      "faturamento": 29144.350000000006
+      "faturamento": 29068.350000000006
     },
     {
       "ano": 2026,
@@ -2226,13 +2226,13 @@
       "ano": 2026,
       "mes": 1,
       "estado": "PR",
-      "faturamento": 85062.7
+      "faturamento": 85087.7
     },
     {
       "ano": 2026,
       "mes": 1,
       "estado": "RJ",
-      "faturamento": 33735.4
+      "faturamento": 33754.9
     },
     {
       "ano": 2026,
@@ -2250,25 +2250,25 @@
       "ano": 2026,
       "mes": 1,
       "estado": "RS",
-      "faturamento": 141631.0
+      "faturamento": 141678.9
     },
     {
       "ano": 2026,
       "mes": 1,
       "estado": "SC",
-      "faturamento": 157299.55
+      "faturamento": 157694.55
     },
     {
       "ano": 2026,
       "mes": 1,
       "estado": "SE",
-      "faturamento": 34221.0
+      "faturamento": 34233.1
     },
     {
       "ano": 2026,
       "mes": 1,
       "estado": "SP",
-      "faturamento": 253155.88999999998
+      "faturamento": 252700.99
     },
     {
       "ano": 2026,
@@ -2298,25 +2298,25 @@
       "ano": 2026,
       "mes": 2,
       "estado": "AM",
-      "faturamento": 56502.85
+      "faturamento": 56540.85
     },
     {
       "ano": 2026,
       "mes": 2,
       "estado": "BA",
-      "faturamento": 36493.0
+      "faturamento": 36621.47
     },
     {
       "ano": 2026,
       "mes": 2,
       "estado": "CE",
-      "faturamento": 61022.12999999999
+      "faturamento": 61063.129999999976
     },
     {
       "ano": 2026,
       "mes": 2,
       "estado": "DF",
-      "faturamento": 18780.000000000004
+      "faturamento": 18780.0
     },
     {
       "ano": 2026,
@@ -2340,7 +2340,7 @@
       "ano": 2026,
       "mes": 2,
       "estado": "MG",
-      "faturamento": 148839.23
+      "faturamento": 148861.22999999998
     },
     {
       "ano": 2026,
@@ -2358,7 +2358,7 @@
       "ano": 2026,
       "mes": 2,
       "estado": "PA",
-      "faturamento": 35951.65
+      "faturamento": 35856.65
     },
     {
       "ano": 2026,
@@ -2370,7 +2370,7 @@
       "ano": 2026,
       "mes": 2,
       "estado": "PE",
-      "faturamento": 21571.15
+      "faturamento": 21726.15
     },
     {
       "ano": 2026,
@@ -2382,7 +2382,7 @@
       "ano": 2026,
       "mes": 2,
       "estado": "PR",
-      "faturamento": 54553.399999999994
+      "faturamento": 54439.4
     },
     {
       "ano": 2026,
@@ -2394,7 +2394,7 @@
       "ano": 2026,
       "mes": 2,
       "estado": "RN",
-      "faturamento": 10915.470000000001
+      "faturamento": 10787.0
     },
     {
       "ano": 2026,
@@ -2406,25 +2406,25 @@
       "ano": 2026,
       "mes": 2,
       "estado": "RS",
-      "faturamento": 267828.45
+      "faturamento": 269223.45
     },
     {
       "ano": 2026,
       "mes": 2,
       "estado": "SC",
-      "faturamento": 141443.85
+      "faturamento": 141389.85
     },
     {
       "ano": 2026,
       "mes": 2,
       "estado": "SE",
-      "faturamento": 130030.14999999998
+      "faturamento": 130030.15000000002
     },
     {
       "ano": 2026,
       "mes": 2,
       "estado": "SP",
-      "faturamento": 302143.62
+      "faturamento": 302035.62
     },
     {
       "ano": 2026,
@@ -2436,7 +2436,7 @@
       "ano": 2026,
       "mes": 2,
       "estado": "EX",
-      "faturamento": 117685.89999999998
+      "faturamento": 117685.9
     },
     {
       "ano": 2026,
@@ -2448,19 +2448,19 @@
       "ano": 2026,
       "mes": 3,
       "estado": "AL",
-      "faturamento": 20933.1
+      "faturamento": 21013.1
     },
     {
       "ano": 2026,
       "mes": 3,
       "estado": "AM",
-      "faturamento": 21752.0
+      "faturamento": 21822.0
     },
     {
       "ano": 2026,
       "mes": 3,
       "estado": "BA",
-      "faturamento": 102013.37000000001
+      "faturamento": 102023.37
     },
     {
       "ano": 2026,
@@ -2472,7 +2472,7 @@
       "ano": 2026,
       "mes": 3,
       "estado": "DF",
-      "faturamento": 54745.57
+      "faturamento": 54745.57000000001
     },
     {
       "ano": 2026,
@@ -2484,7 +2484,7 @@
       "ano": 2026,
       "mes": 3,
       "estado": "GO",
-      "faturamento": 51944.369999999995
+      "faturamento": 51944.37
     },
     {
       "ano": 2026,
@@ -2496,7 +2496,7 @@
       "ano": 2026,
       "mes": 3,
       "estado": "MG",
-      "faturamento": 279877.17
+      "faturamento": 279797.17
     },
     {
       "ano": 2026,
@@ -2514,7 +2514,7 @@
       "ano": 2026,
       "mes": 3,
       "estado": "PA",
-      "faturamento": 142416.33
+      "faturamento": 142307.33
     },
     {
       "ano": 2026,
@@ -2544,13 +2544,13 @@
       "ano": 2026,
       "mes": 3,
       "estado": "RJ",
-      "faturamento": 224919.76
+      "faturamento": 222989.83000000002
     },
     {
       "ano": 2026,
       "mes": 3,
       "estado": "RN",
-      "faturamento": 24124.66
+      "faturamento": 24124.660000000003
     },
     {
       "ano": 2026,
@@ -2562,13 +2562,13 @@
       "ano": 2026,
       "mes": 3,
       "estado": "RS",
-      "faturamento": 238293.43
+      "faturamento": 238293.43000000002
     },
     {
       "ano": 2026,
       "mes": 3,
       "estado": "SC",
-      "faturamento": 163204.86
+      "faturamento": 163233.86
     },
     {
       "ano": 2026,
@@ -2580,7 +2580,7 @@
       "ano": 2026,
       "mes": 3,
       "estado": "SP",
-      "faturamento": 368569.75999999995
+      "faturamento": 368494.8599999999
     },
     {
       "ano": 2026,
@@ -2592,7 +2592,163 @@
       "ano": 2026,
       "mes": 3,
       "estado": "EX",
-      "faturamento": 324977.8199999999
+      "faturamento": 326982.64999999997
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "AC",
+      "faturamento": 199.0
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "AL",
+      "faturamento": 10922.17
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "AP",
+      "faturamento": 876.0
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "AM",
+      "faturamento": 19356.629999999997
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "BA",
+      "faturamento": 87029.00000000001
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "CE",
+      "faturamento": 5111.54
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "DF",
+      "faturamento": 4635.14
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "ES",
+      "faturamento": 77144.75
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "GO",
+      "faturamento": 73519.1
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "MA",
+      "faturamento": 48559.2
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "MG",
+      "faturamento": 307255.38
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "MS",
+      "faturamento": 12695.849999999999
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "MT",
+      "faturamento": 27949.260000000002
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "PA",
+      "faturamento": 57044.75
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "PB",
+      "faturamento": 862.5
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "PE",
+      "faturamento": 24147.35
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "PI",
+      "faturamento": 30452.0
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "PR",
+      "faturamento": 99878.43999999999
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "RJ",
+      "faturamento": 89965.14
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "RN",
+      "faturamento": 16860.0
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "RO",
+      "faturamento": 12453.1
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "RS",
+      "faturamento": 192456.27000000005
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "SC",
+      "faturamento": 188398.86000000002
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "SE",
+      "faturamento": 30574.380000000005
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "SP",
+      "faturamento": 518569.9099999999
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "TO",
+      "faturamento": 4436.0
     }
   ],
   "bySeller": [
@@ -2738,7 +2894,7 @@
       "ano": 2025,
       "mes": 3,
       "vendedor": "Rogislei Vieira Padilha",
-      "valor": 325836.48
+      "valor": 325836.48000000004
     },
     {
       "ano": 2025,
@@ -2768,7 +2924,7 @@
       "ano": 2025,
       "mes": 4,
       "vendedor": "Gabriel Ferreira dos Santos",
-      "valor": 690514.5799999998
+      "valor": 690514.58
     },
     {
       "ano": 2025,
@@ -2942,7 +3098,7 @@
       "ano": 2025,
       "mes": 7,
       "vendedor": "Gabriel Ferreira dos Santos",
-      "valor": 374949.62999999995
+      "valor": 374949.63
     },
     {
       "ano": 2025,
@@ -3002,7 +3158,7 @@
       "ano": 2025,
       "mes": 8,
       "vendedor": "Gabriel Ferreira dos Santos",
-      "valor": 547242.2799999999
+      "valor": 547242.28
     },
     {
       "ano": 2025,
@@ -3074,7 +3230,7 @@
       "ano": 2025,
       "mes": 9,
       "vendedor": "Gabriel Klein",
-      "valor": 400419.35000000003
+      "valor": 400419.3500000001
     },
     {
       "ano": 2025,
@@ -3200,7 +3356,7 @@
       "ano": 2025,
       "mes": 11,
       "vendedor": "Gabriel Ferreira dos Santos",
-      "valor": 731692.7499999991
+      "valor": 731692.749999999
     },
     {
       "ano": 2025,
@@ -3236,7 +3392,7 @@
       "ano": 2025,
       "mes": 11,
       "vendedor": "Rogislei Vieira Padilha",
-      "valor": 563129.43
+      "valor": 563129.4299999999
     },
     {
       "ano": 2025,
@@ -3266,7 +3422,7 @@
       "ano": 2025,
       "mes": 12,
       "vendedor": "Gabriel Ferreira dos Santos",
-      "valor": 380555.36
+      "valor": 380555.3599999999
     },
     {
       "ano": 2025,
@@ -3278,7 +3434,7 @@
       "ano": 2025,
       "mes": 12,
       "vendedor": "Gabriel Medeiros",
-      "valor": 199795.60999999996
+      "valor": 199795.61
     },
     {
       "ano": 2025,
@@ -3296,7 +3452,7 @@
       "ano": 2025,
       "mes": 12,
       "vendedor": "Mercado Livre",
-      "valor": 32003.09999999999
+      "valor": 32003.099999999995
     },
     {
       "ano": 2025,
@@ -3332,7 +3488,7 @@
       "ano": 2026,
       "mes": 1,
       "vendedor": "Gabriel Ferreira dos Santos",
-      "valor": 375083.17999999993
+      "valor": 375083.18
     },
     {
       "ano": 2026,
@@ -3344,7 +3500,7 @@
       "ano": 2026,
       "mes": 1,
       "vendedor": "Gabriel Medeiros",
-      "valor": 348752.23000000004
+      "valor": 348258.23000000004
     },
     {
       "ano": 2026,
@@ -3356,7 +3512,7 @@
       "ano": 2026,
       "mes": 1,
       "vendedor": "Mercado Livre",
-      "valor": 44313.2
+      "valor": 44313.19999999999
     },
     {
       "ano": 2026,
@@ -3368,7 +3524,7 @@
       "ano": 2026,
       "mes": 1,
       "vendedor": "Site",
-      "valor": 20510.999999999996
+      "valor": 20511.0
     },
     {
       "ano": 2026,
@@ -3404,7 +3560,7 @@
       "ano": 2026,
       "mes": 2,
       "vendedor": "Gabriel Medeiros",
-      "valor": 326730.58999999944
+      "valor": 326510.5899999995
     },
     {
       "ano": 2026,
@@ -3422,13 +3578,13 @@
       "ano": 2026,
       "mes": 2,
       "vendedor": "Sem Vendedor",
-      "valor": 36038.05
+      "valor": 37538.05
     },
     {
       "ano": 2026,
       "mes": 2,
       "vendedor": "Rogislei Vieira Padilha",
-      "valor": 418871.98000000016
+      "valor": 418871.9800000002
     },
     {
       "ano": 2026,
@@ -3495,6 +3651,60 @@
       "mes": 3,
       "vendedor": "Sem Vendedor",
       "valor": 7595.7699999999995
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "vendedor": "Gabriel Dias",
+      "valor": 40806.0
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "vendedor": "Gabriel Ferreira dos Santos",
+      "valor": 259562.09999999998
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "vendedor": "Gabriel Klein",
+      "valor": 462757.4
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "vendedor": "Gabriel Medeiros",
+      "valor": 398933.1999999993
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "vendedor": "Josiane Govoni Lanzarini",
+      "valor": 117030.60000000002
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "vendedor": "Mercado Livre",
+      "valor": 70215.86000000009
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "vendedor": "Rogislei Vieira Padilha",
+      "valor": 572150.65
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "vendedor": "Vanessa Ferreira",
+      "valor": 2520.0
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "vendedor": "Sem Vendedor",
+      "valor": 1165.1699999999998
     }
   ],
   "meta": {
@@ -3515,7 +3725,7 @@
         "mes": 3,
         "label": "Mar",
         "meta": 2030697.1755,
-        "realizado": 1504142.9099999997
+        "realizado": 1505112.6099999999
       },
       {
         "mes": 4,
@@ -3557,13 +3767,13 @@
         "mes": 10,
         "label": "Oct",
         "meta": 2277364.467,
-        "realizado": 3316084.0399999996
+        "realizado": 3316084.04
       },
       {
         "mes": 11,
         "label": "Nov",
         "meta": 2778682.2840000005,
-        "realizado": 2464826.33
+        "realizado": 2465033.3300000005
       },
       {
         "mes": 12,
@@ -3577,13 +3787,13 @@
         "mes": 1,
         "label": "Jan",
         "meta": 1267222.13,
-        "realizado": 1594921.9500000002
+        "realizado": 1594427.95
       },
       {
         "mes": 2,
         "label": "Feb",
         "meta": 2140276.78,
-        "realizado": 1763469.5
+        "realizado": 1765989.5
       },
       {
         "mes": 3,
@@ -3595,7 +3805,7 @@
         "mes": 4,
         "label": "Apr",
         "meta": 2342806.52,
-        "realizado": 0.0
+        "realizado": 1925140.9800000002
       },
       {
         "mes": 5,
@@ -3662,7 +3872,7 @@
     {
       "ano": 2025,
       "mes": 3,
-      "total": 1504142.9099999997
+      "total": 1505112.6099999999
     },
     {
       "ano": 2025,
@@ -3697,12 +3907,12 @@
     {
       "ano": 2025,
       "mes": 10,
-      "total": 3316084.0399999996
+      "total": 3316084.04
     },
     {
       "ano": 2025,
       "mes": 11,
-      "total": 2464826.33
+      "total": 2465033.3300000005
     },
     {
       "ano": 2025,
@@ -3712,17 +3922,22 @@
     {
       "ano": 2026,
       "mes": 1,
-      "total": 1594921.9500000002
+      "total": 1594427.95
     },
     {
       "ano": 2026,
       "mes": 2,
-      "total": 1763469.5
+      "total": 1765989.5
     },
     {
       "ano": 2026,
       "mes": 3,
       "total": 2530727.9099999997
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "total": 1925140.9800000002
     }
   ],
   "orcamento": {
@@ -5775,12 +5990,12 @@
           {
             "cc": "Comercial",
             "orc": 81930.68166666667,
-            "real": 0.0,
+            "real": 166636.62000000002,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 9094.348333333333,
-                "real": 0.0
+                "real": 10190.23
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -5790,22 +6005,22 @@
               {
                 "name": "IMPOSTOS, TAXAS E CONTRIBUICOES",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 682.81
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 72836.33333333334,
-                "real": 0.0
+                "real": 103023.42
               },
               {
                 "name": "DESPESAS COM FRETES",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 28912.059999999998
               },
               {
                 "name": "(-) DESPESAS FINANCEIRAS",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 23828.100000000024
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -5817,12 +6032,12 @@
           {
             "cc": "Marketing",
             "orc": 46508.76497777778,
-            "real": 0.0,
+            "real": 121463.95,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 25710.764977777777,
-                "real": 0.0
+                "real": 24192.190000000002
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -5837,7 +6052,7 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 20798.0,
-                "real": 0.0
+                "real": 97271.76
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -5859,12 +6074,12 @@
           {
             "cc": "Compras",
             "orc": 22597.612733333335,
-            "real": 0.0,
+            "real": 21211.28,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 9597.612733333333,
-                "real": 0.0
+                "real": 7570.0599999999995
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -5879,12 +6094,12 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 13000.0,
-                "real": 0.0
+                "real": 13550.0
               },
               {
                 "name": "DESPESAS COM FRETES",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 91.22
               },
               {
                 "name": "(-) DESPESAS FINANCEIRAS",
@@ -5901,17 +6116,17 @@
           {
             "cc": "Lab. Calibração",
             "orc": 82430.8834111111,
-            "real": 0.0,
+            "real": 46741.56,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 37430.883411111114,
-                "real": 0.0
+                "real": 26045.439999999995
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 1753.11
               },
               {
                 "name": "IMPOSTOS, TAXAS E CONTRIBUICOES",
@@ -5921,12 +6136,12 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 45000.0,
-                "real": 0.0
+                "real": 18861.260000000002
               },
               {
                 "name": "DESPESAS COM FRETES",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 81.75
               },
               {
                 "name": "(-) DESPESAS FINANCEIRAS",
@@ -5943,12 +6158,12 @@
           {
             "cc": "Lab. Manutenção",
             "orc": 35658.70312222223,
-            "real": 0.0,
+            "real": 46648.45,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 27358.173122222226,
-                "real": 0.0
+                "real": 17431.68
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -5963,12 +6178,12 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 8300.53,
-                "real": 0.0
+                "real": 8300.53
               },
               {
                 "name": "DESPESAS COM FRETES",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 20916.239999999998
               },
               {
                 "name": "(-) DESPESAS FINANCEIRAS",
@@ -5985,17 +6200,17 @@
           {
             "cc": "Administrativo",
             "orc": 86147.33333333333,
-            "real": 0.0,
+            "real": 63068.14,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 672.35
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
                 "orc": 40000.0,
-                "real": 0.0
+                "real": 44926.75
               },
               {
                 "name": "IMPOSTOS, TAXAS E CONTRIBUICOES",
@@ -6005,7 +6220,7 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 15014.0,
-                "real": 0.0
+                "real": 17469.04
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -6027,12 +6242,12 @@
           {
             "cc": "Diretoria",
             "orc": 500453.42333333334,
-            "real": 0.0,
+            "real": 80612.82,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 35120.09,
-                "real": 0.0
+                "real": 54178.65
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -6047,7 +6262,7 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 465333.3333333333,
-                "real": 0.0
+                "real": 26434.170000000002
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -6069,17 +6284,17 @@
           {
             "cc": "Financeiro",
             "orc": 40025.51986666666,
-            "real": 0.0,
+            "real": -7202.150000000023,
             "categories": [
               {
                 "name": "0",
                 "orc": 586600.7566666667,
-                "real": 0.0
+                "real": 143680.96000000002
               },
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 32735.9932,
-                "real": 0.0
+                "real": 27196.53
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -6089,12 +6304,12 @@
               {
                 "name": "IMPOSTOS, TAXAS E CONTRIBUICOES",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 826.68
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 46955.36,
-                "real": 0.0
+                "real": 45879.02999999999
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -6104,24 +6319,24 @@
               {
                 "name": "(-) DESPESAS FINANCEIRAS",
                 "orc": 17967.5,
-                "real": 0.0
+                "real": 23259.37999999999
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
                 "orc": -57633.333333333336,
-                "real": 0.0
+                "real": -104363.77
               }
             ]
           },
           {
             "cc": "P&D",
             "orc": 166798.17,
-            "real": 0.0,
+            "real": 75087.37000000001,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 10707.48,
-                "real": 0.0
+                "real": 11090.82
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -6136,12 +6351,12 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 156090.69,
-                "real": 0.0
+                "real": 55090.69
               },
               {
                 "name": "DESPESAS COM FRETES",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 8905.86
               },
               {
                 "name": "(-) DESPESAS FINANCEIRAS",
@@ -6158,7 +6373,7 @@
           {
             "cc": "RH",
             "orc": 13627.2,
-            "real": 0.0,
+            "real": 5634.0,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -6178,7 +6393,7 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 13137.2,
-                "real": 0.0
+                "real": 5634.0
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -6200,12 +6415,12 @@
           {
             "cc": "Locação",
             "orc": 21661.52607777778,
-            "real": 0.0,
+            "real": 22434.829999999998,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 8612.859411111112,
-                "real": 0.0
+                "real": 9317.22
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -6220,12 +6435,12 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 13048.666666666666,
-                "real": 0.0
+                "real": 9215.08
               },
               {
                 "name": "DESPESAS COM FRETES",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 3902.5299999999997
               },
               {
                 "name": "(-) DESPESAS FINANCEIRAS",
@@ -6242,17 +6457,17 @@
           {
             "cc": "TI",
             "orc": 60707.53536666668,
-            "real": 0.0,
+            "real": 80539.62,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 6705.885366666666,
-                "real": 0.0
+                "real": 5604.68
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
                 "orc": 1410.0,
-                "real": 0.0
+                "real": 1410.0
               },
               {
                 "name": "IMPOSTOS, TAXAS E CONTRIBUICOES",
@@ -6262,7 +6477,7 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 52591.65000000001,
-                "real": 0.0
+                "real": 73524.93999999999
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -6284,12 +6499,12 @@
           {
             "cc": "Logística",
             "orc": 155683.57825555553,
-            "real": 0.0,
+            "real": 53267.73,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 56403.911588888885,
-                "real": 0.0
+                "real": 39708.95
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -6299,22 +6514,22 @@
               {
                 "name": "IMPOSTOS, TAXAS E CONTRIBUICOES",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 24.93
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 17613.0,
-                "real": 0.0
+                "real": 10379.76
               },
               {
                 "name": "DESPESAS COM FRETES",
                 "orc": 81666.66666666667,
-                "real": 0.0
+                "real": 3141.65
               },
               {
                 "name": "(-) DESPESAS FINANCEIRAS",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 12.440000000000001
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -6326,12 +6541,12 @@
           {
             "cc": "Manutenção",
             "orc": 37252.12842222222,
-            "real": 0.0,
+            "real": 29321.01,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 22202.12842222222,
-                "real": 0.0
+                "real": 13014.96
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -6346,7 +6561,7 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 15050.0,
-                "real": 0.0
+                "real": 16306.05
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -6368,12 +6583,12 @@
           {
             "cc": "Produção",
             "orc": 498586.9934888889,
-            "real": 0.0,
+            "real": 75370.10000000002,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 30025.693488888894,
-                "real": 0.0
+                "real": 29183.340000000004
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -6388,12 +6603,12 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 468561.3,
-                "real": 0.0
+                "real": 40436.8
               },
               {
                 "name": "DESPESAS COM FRETES",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 5749.960000000001
               },
               {
                 "name": "(-) DESPESAS FINANCEIRAS",
@@ -6410,12 +6625,12 @@
           {
             "cc": "Sup. Técnico",
             "orc": 32946.25636666667,
-            "real": 0.0,
+            "real": 39202.280000000006,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 15284.026366666669,
-                "real": 0.0
+                "real": 16976.93
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -6430,12 +6645,12 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 17662.23,
-                "real": 0.0
+                "real": 17784.800000000003
               },
               {
                 "name": "DESPESAS COM FRETES",
                 "orc": 0.0,
-                "real": 0.0
+                "real": 4440.55
               },
               {
                 "name": "(-) DESPESAS FINANCEIRAS",
@@ -11905,6 +12120,88 @@
     "mensal": {
       "1": {
         "saldo_inicial": {
+          "real": 0.0,
+          "orc": 0.0
+        },
+        "total_entradas": {
+          "real": 5354588.289999999,
+          "orc": 4686422.365226999
+        },
+        "materia_prima": {
+          "real": -905954.29,
+          "orc": -1135681.50374
+        },
+        "fretes": {
+          "real": -129683.7,
+          "orc": -170000.0
+        },
+        "pessoal": {
+          "real": -1223048.61,
+          "orc": -1480601.6468000002
+        },
+        "impostos": {
+          "real": -584488.6100000001,
+          "orc": -627145.9808458725
+        },
+        "manut_predial": {
+          "real": -16110.32,
+          "orc": -30550.0
+        },
+        "despesas_op": {
+          "real": -405796.43,
+          "orc": -508191.6
+        },
+        "consultorias": {
+          "real": -157221.66,
+          "orc": -153925.93
+        },
+        "pd": {
+          "real": -18805.0,
+          "orc": -42000.0
+        },
+        "tarifas": {
+          "real": -14173.76,
+          "orc": -15000.0
+        },
+        "total_saidas_op": {
+          "real": -3455282.38,
+          "orc": -4163096.6613858733
+        },
+        "diretoria": {
+          "real": -1071782.24,
+          "orc": -957717.0
+        },
+        "outros_gastos": {
+          "real": -1900000.0,
+          "orc": -1900000.0
+        },
+        "ativ_financeiros": {
+          "real": 867386.71,
+          "orc": 133997.49
+        },
+        "geracao_caixa": {
+          "real": -205089.62000000104,
+          "orc": -2200393.806158874
+        },
+        "saldo_final": {
+          "real": -205089.62000000104,
+          "orc": -2200393.806158874
+        },
+        "total_saidas": {
+          "real": -5559677.91,
+          "orc": -6886816.171385873
+        },
+        "ativ_financeiros_fixo": {
+          "real": -2104395.5300000003,
+          "orc": -2723719.51
+        },
+        "resultado_mes_fixo": {
+          "real": -205089.62000000104,
+          "orc": -2200393.806158874
+        }
+      },
+      "2": {
+        "saldo_inicial": {
           "real": 10509491.0,
           "orc": 10509491.0
         },
@@ -11985,7 +12282,7 @@
           "orc": -7249.475376420945
         }
       },
-      "2": {
+      "3": {
         "saldo_inicial": {
           "real": 10848981.55,
           "orc": 10502241.524623578
@@ -12067,7 +12364,7 @@
           "orc": -1537391.6613169252
         }
       },
-      "3": {
+      "4": {
         "saldo_inicial": {
           "real": 9789786.47,
           "orc": 8964849.863306653
@@ -12149,7 +12446,7 @@
           "orc": -655752.669465528
         }
       },
-      "4": {
+      "5": {
         "saldo_inicial": {
           "real": 10304401.379999999,
           "orc": 8309097.193841125
@@ -12231,61 +12528,61 @@
           "orc": -274489.04176975443
         }
       },
-      "5": {
+      "6": {
         "saldo_inicial": {
           "real": 10770749.139999999,
           "orc": 8034608.152071371
         },
         "total_entradas": {
-          "real": 0.0,
+          "real": 624041.1,
           "orc": 1797086.8501809998
         },
         "materia_prima": {
-          "real": 0.0,
+          "real": -120529.96,
           "orc": -310366.352595
         },
         "fretes": {
-          "real": 0.0,
+          "real": -8166.83,
           "orc": -56666.666666666664
         },
         "pessoal": {
-          "real": 0.0,
+          "real": -542217.59,
           "orc": -507548.7128777778
         },
         "impostos": {
-          "real": 0.0,
+          "real": -28964.59,
           "orc": -184479.59119060502
         },
         "manut_predial": {
-          "real": 0.0,
+          "real": -666.48,
           "orc": -1550.0
         },
         "despesas_op": {
-          "real": 0.0,
+          "real": -129456.93,
           "orc": -175923.11
         },
         "consultorias": {
-          "real": 0.0,
+          "real": -47184.73,
           "orc": -42975.31
         },
         "pd": {
-          "real": 0.0,
+          "real": -3446.5,
           "orc": 0.0
         },
         "tarifas": {
-          "real": 0.0,
+          "real": -1436.5900000000001,
           "orc": -5000.0
         },
         "total_saidas_op": {
-          "real": 0.0,
+          "real": -882070.1999999998,
           "orc": -1284509.7433300493
         },
         "diretoria": {
-          "real": 0.0,
+          "real": -222112.83000000002,
           "orc": -319239.0
         },
         "outros_gastos": {
-          "real": 0.0,
+          "real": -150000.0,
           "orc": -138000.0
         },
         "ativ_financeiros": {
@@ -12293,49 +12590,49 @@
           "orc": 44665.83
         },
         "geracao_caixa": {
-          "real": 0.0,
+          "real": -630141.9299999999,
           "orc": 100003.93685095053
         },
         "saldo_final": {
-          "real": 10770749.139999999,
+          "real": 10140607.209999999,
           "orc": 8134612.088922321
         },
         "total_saidas": {
-          "real": 0.0,
+          "real": -1254183.0299999998,
           "orc": -1697082.9133300493
         },
         "ativ_financeiros_fixo": {
-          "real": 0.0,
+          "real": -372112.83,
           "orc": -412573.17
         },
         "resultado_mes_fixo": {
-          "real": 0.0,
+          "real": -630141.9299999999,
           "orc": 100003.93685095053
         }
       },
-      "6": {
+      "7": {
         "saldo_inicial": {
-          "real": 10770749.139999999,
+          "real": 10140607.209999999,
           "orc": 8134612.088922321
         },
         "total_entradas": {
-          "real": 0.0,
+          "real": 189411.03999999998,
           "orc": 1829764.56675625
         },
         "materia_prima": {
-          "real": 0.0,
+          "real": -6785.51,
           "orc": -291770.16841000004
         },
         "fretes": {
-          "real": 0.0,
+          "real": -2408.02,
           "orc": -56666.666666666664
         },
         "pessoal": {
-          "real": 0.0,
+          "real": -453941.69,
           "orc": -494565.92287777783
         },
         "impostos": {
-          "real": 0.0,
+          "real": -11968.0,
           "orc": -162121.23686150002
         },
         "manut_predial": {
@@ -12343,11 +12640,11 @@
           "orc": -1550.0
         },
         "despesas_op": {
-          "real": 0.0,
+          "real": -149.9,
           "orc": -150090.22999999998
         },
         "consultorias": {
-          "real": 0.0,
+          "real": -5317.57,
           "orc": -42975.31
         },
         "pd": {
@@ -12355,15 +12652,15 @@
           "orc": -1000.0
         },
         "tarifas": {
-          "real": 0.0,
+          "real": -351.45,
           "orc": -5000.0
         },
         "total_saidas_op": {
-          "real": 0.0,
+          "real": -480922.1400000001,
           "orc": -1205739.5348159445
         },
         "diretoria": {
-          "real": 0.0,
+          "real": -114630.02,
           "orc": -319239.0
         },
         "outros_gastos": {
@@ -12375,29 +12672,29 @@
           "orc": 44665.83
         },
         "geracao_caixa": {
-          "real": 0.0,
+          "real": -406141.1200000001,
           "orc": 211451.86194030562
         },
         "saldo_final": {
-          "real": 10770749.139999999,
+          "real": 9734466.09,
           "orc": 8346063.950862627
         },
         "total_saidas": {
-          "real": 0.0,
+          "real": -595552.16,
           "orc": -1618312.7048159444
         },
         "ativ_financeiros_fixo": {
-          "real": 0.0,
+          "real": -114630.02,
           "orc": -412573.17
         },
         "resultado_mes_fixo": {
-          "real": 0.0,
+          "real": -406141.1200000001,
           "orc": 211451.86194030562
         }
       },
-      "7": {
+      "8": {
         "saldo_inicial": {
-          "real": 10770749.139999999,
+          "real": 9734466.09,
           "orc": 6153912.560862627
         },
         "total_entradas": {
@@ -12461,7 +12758,7 @@
           "orc": -321117.572569456
         },
         "saldo_final": {
-          "real": 10770749.139999999,
+          "real": 9734466.09,
           "orc": 5832794.988293171
         },
         "total_saidas": {
@@ -12477,9 +12774,9 @@
           "orc": -321117.572569456
         }
       },
-      "8": {
+      "9": {
         "saldo_inicial": {
-          "real": 10770749.139999999,
+          "real": 9734466.09,
           "orc": 5832794.988293171
         },
         "total_entradas": {
@@ -12543,7 +12840,7 @@
           "orc": -27379.519763055316
         },
         "saldo_final": {
-          "real": 10770749.139999999,
+          "real": 9734466.09,
           "orc": 5805415.468530116
         },
         "total_saidas": {
@@ -12559,9 +12856,9 @@
           "orc": -27379.519763055316
         }
       },
-      "9": {
+      "10": {
         "saldo_inicial": {
-          "real": 10770749.139999999,
+          "real": 9734466.09,
           "orc": 5805415.468530116
         },
         "total_entradas": {
@@ -12625,7 +12922,7 @@
           "orc": 152239.3936587199
         },
         "saldo_final": {
-          "real": 10770749.139999999,
+          "real": 9734466.09,
           "orc": 5957654.862188836
         },
         "total_saidas": {
@@ -12641,9 +12938,9 @@
           "orc": 152239.3936587199
         }
       },
-      "10": {
+      "11": {
         "saldo_inicial": {
-          "real": 10770749.139999999,
+          "real": 9734466.09,
           "orc": 5957654.862188836
         },
         "total_entradas": {
@@ -12707,7 +13004,7 @@
           "orc": 106031.65718344477
         },
         "saldo_final": {
-          "real": 10770749.139999999,
+          "real": 9734466.09,
           "orc": 6063686.519372281
         },
         "total_saidas": {
@@ -12723,9 +13020,9 @@
           "orc": 106031.65718344477
         }
       },
-      "11": {
+      "12": {
         "saldo_inicial": {
-          "real": 10770749.139999999,
+          "real": 9734466.09,
           "orc": 6063686.519372281
         },
         "total_entradas": {
@@ -12789,7 +13086,7 @@
           "orc": 328931.3963387552
         },
         "saldo_final": {
-          "real": 10770749.139999999,
+          "real": 9734466.09,
           "orc": 6392617.915711036
         },
         "total_saidas": {
@@ -12804,90 +13101,8 @@
           "real": 0.0,
           "orc": 328931.3963387552
         }
-      },
-      "12": {
-        "saldo_inicial": {
-          "real": 10770749.139999999,
-          "orc": 6392617.915711036
-        },
-        "total_entradas": {
-          "real": 0.0,
-          "orc": 2365305.4833282502
-        },
-        "materia_prima": {
-          "real": 0.0,
-          "orc": -327800.0
-        },
-        "fretes": {
-          "real": 0.0,
-          "orc": -56666.666666666664
-        },
-        "pessoal": {
-          "real": 0.0,
-          "orc": -577589.1455888887
-        },
-        "impostos": {
-          "real": 0.0,
-          "orc": -165084.5416
-        },
-        "manut_predial": {
-          "real": 0.0,
-          "orc": -1550.0
-        },
-        "despesas_op": {
-          "real": 0.0,
-          "orc": -251581.22999999998
-        },
-        "consultorias": {
-          "real": 0.0,
-          "orc": -42975.31
-        },
-        "pd": {
-          "real": 0.0,
-          "orc": -41000.0
-        },
-        "tarifas": {
-          "real": 0.0,
-          "orc": -5000.0
-        },
-        "total_saidas_op": {
-          "real": 0.0,
-          "orc": -1469246.8938555554
-        },
-        "diretoria": {
-          "real": 0.0,
-          "orc": -320585.73
-        },
-        "outros_gastos": {
-          "real": 0.0,
-          "orc": -138000.0
-        },
-        "ativ_financeiros": {
-          "real": 0.0,
-          "orc": 44665.83
-        },
-        "geracao_caixa": {
-          "real": 0.0,
-          "orc": 482138.6894726948
-        },
-        "saldo_final": {
-          "real": 10770749.139999999,
-          "orc": 6874756.605183731
-        },
-        "total_saidas": {
-          "real": 0.0,
-          "orc": -1883166.7938555554
-        },
-        "ativ_financeiros_fixo": {
-          "real": 0.0,
-          "orc": -413919.89999999997
-        },
-        "resultado_mes_fixo": {
-          "real": 0.0,
-          "orc": 482138.6894726948
-        }
       }
     },
-    "latestMonth": 4
+    "latestMonth": 7
   }
 }
