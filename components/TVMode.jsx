@@ -201,48 +201,104 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
     return subset.reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao - Math.abs(p.devolucoes || 0)), 0)
   }, [periodData2026, ultimoMes])
 
+  const performanceMensal = useMemo(() => {
+    const nomesMeses = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
+    return nomesMeses.map((nome, i) => {
+      const mesNum = i + 1
+      const realObj = periodData2026.find(p => p.mes === mesNum)
+      const metaObj = metaData.find(md => md.mes === mesNum)
+      const real = realObj ? (realObj.vendas + realObj.servicos + realObj.locacao - Math.abs(realObj.devolucoes || 0)) : 0
+      const meta = metaObj?.meta || 0
+      const p = meta > 0 ? (real / meta) * 100 : 0
+      return { label: nome, meta, real, pct: p, realizado: mesNum <= ultimoMes }
+    })
+  }, [periodData2026, metaData, ultimoMes])
+
+  const fmtM = (v) => `R$ ${(v / 1_000_000).toFixed(2)}M`
+
   return (
     <div className="slide-enter" style={{ display: 'flex', flexDirection: 'column', gap: 40, height: '100%' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 30 }}>
+      {/* Topo - KPIs 4 Colunas */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 30 }}>
         <KpiCardTV label="VENDAS" value={v.vendas} icon={ShoppingCart} color={t.accent} t={t} />
         <KpiCardTV label="SERVIÇOS" value={v.servicos} icon={Wrench} color={t.accent} t={t} />
         <KpiCardTV label="LOCAÇÃO" value={v.locacao} icon={Key} color={t.accent} t={t} />
         <KpiCardTV label="DEVOLUÇÃO" value={v.devolucao} icon={RotateCcw} color={t.red} t={t} />
-        <KpiCardTV label="ACUMULADO ANO" value={totalYTD} icon={TrendingUp} color={t.accent} t={t} />
       </div>
-      <div style={{ flex: 1, background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, display: 'flex', alignItems: 'center', padding: '0 60px', gap: 80 }}>
-        <div style={{ flex: 1 }}>
-           <h2 style={{ fontSize: 24, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 20 }}>Receita bruta</h2>
-           <p style={{ fontSize: 120, fontWeight: 900, margin: 0, lineHeight: 1, letterSpacing: -4 }}>{fmt(total)}</p>
-           <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 40 }}>
-              <div style={{ height: 12, background: 'rgba(255,255,255,0.1)', borderRadius: 6, flex: 1, overflow: 'hidden' }}>
-                 <div style={{ width: `${Math.min(pct, 100)}%`, height: '100%', background: t.accent }} />
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <span style={{ fontSize: 32, fontWeight: 900 }}>{pct.toFixed(1)}%</span>
-                <span style={{ fontSize: 12, fontWeight: 900, color: t.accent, marginTop: -4 }}>VS META</span>
-              </div>
+
+      {/* Main Content - Grid 2 Colunas */}
+      <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '1fr 480px', gap: 30 }}>
+        
+        {/* Lado Esquerdo - Resumo Receita */}
+        <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, display: 'flex', flexDirection: 'column', padding: 40, justifyContent: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 60 }}>
+            <div style={{ flex: 1 }}>
+               <h2 style={{ fontSize: 24, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 15 }}>Receita bruta</h2>
+               <p style={{ fontSize: 90, fontWeight: 900, margin: 0, lineHeight: 1, letterSpacing: -3 }}>{fmt(total)}</p>
+               
+               <div style={{ marginTop: 30 }}>
+                  <p style={{ fontSize: 14, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 10 }}>Acumulado Jan - {performanceMensal[ultimoMes-1].label}</p>
+                  <p style={{ fontSize: 32, fontWeight: 900, color: '#fff', margin: 0 }}>{fmt(totalYTD)}</p>
+               </div>
+
+               <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 40 }}>
+                  <div style={{ height: 12, background: 'rgba(255,255,255,0.1)', borderRadius: 6, flex: 1, overflow: 'hidden' }}>
+                     <div style={{ width: `${Math.min(pct, 100)}%`, height: '100%', background: t.accent }} />
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <span style={{ fontSize: 32, fontWeight: 900 }}>{pct.toFixed(1)}%</span>
+                    <span style={{ fontSize: 12, fontWeight: 900, color: t.accent, marginTop: -4 }}>VS META</span>
+                  </div>
+               </div>
+            </div>
+
+            <div style={{ width: 320, height: 320, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+               <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie data={[{ name: 'Vendas', value: v.vendas }, { name: 'Outros', value: (v.servicos + v.locacao) }]} innerRadius={110} outerRadius={140} paddingAngle={5} dataKey="value">
+                      <Cell fill={t.accent} />
+                      <Cell fill="rgba(255,255,255,0.1)" />
+                    </Pie>
+                  </PieChart>
+               </ResponsiveContainer>
+               <div style={{ position: 'absolute', textAlign: 'center' }}>
+                  <p style={{ fontSize: 16, fontWeight: 800, color: t.textMuted, margin: 0 }}>MENSAL</p>
+                  <p style={{ fontSize: 50, fontWeight: 900, margin: 0 }}>{pct.toFixed(0)}%</p>
+               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Lado Direito - PERFORMANCE MENSAL Tabela */}
+        <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: '30px 35px', display: 'flex', flexDirection: 'column' }}>
+           <h3 style={{ fontSize: 18, fontWeight: 900, textAlign: 'center', textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 25, color: '#fff' }}>Performance Mensal</h3>
+           
+           <div style={{ display: 'grid', gridTemplateColumns: '60px 1fr 1fr 60px', paddingBottom: 12, borderBottom: `1px solid ${t.border}`, marginBottom: 12, opacity: 0.6 }}>
+              <span style={{ fontSize: 11, fontWeight: 900 }}>MÊS</span>
+              <span style={{ fontSize: 11, fontWeight: 900, textAlign: 'right' }}>META</span>
+              <span style={{ fontSize: 11, fontWeight: 900, textAlign: 'right' }}>REAL.</span>
+              <span style={{ fontSize: 11, fontWeight: 900, textAlign: 'right' }}>%</span>
+           </div>
+
+           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              {performanceMensal.map((m, i) => (
+                <div key={m.label} style={{ display: 'grid', gridTemplateColumns: '60px 1fr 1fr 60px', alignItems: 'center', opacity: m.realizado ? 1 : 0.3 }}>
+                   <span style={{ fontSize: 13, fontWeight: 800, color: m.realizado ? t.text : t.textMuted }}>{m.label}</span>
+                   <span style={{ fontSize: 13, fontWeight: 700, textAlign: 'right', color: t.textMuted }}>{fmtM(m.meta)}</span>
+                   <span style={{ fontSize: 13, fontWeight: 900, textAlign: 'right', color: m.realizado ? '#fff' : t.textMuted }}>{m.realizado ? fmtM(m.real) : '—'}</span>
+                   <span style={{ fontSize: 13, fontWeight: 900, textAlign: 'right', color: m.realizado ? (m.pct >= 100 ? t.green : '#ff9800') : t.textMuted }}>
+                      {m.realizado ? `${m.pct.toFixed(0)}%` : '—'}
+                   </span>
+                </div>
+              ))}
            </div>
         </div>
-        <div style={{ width: 400, height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-           <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie data={[{ name: 'Vendas', value: v.vendas }, { name: 'Outros', value: (v.servicos + v.locacao) }]} innerRadius={140} outerRadius={180} paddingAngle={5} dataKey="value">
-                  <Cell fill={t.accent} />
-                  <Cell fill="rgba(255,255,255,0.1)" />
-                </Pie>
-              </PieChart>
-           </ResponsiveContainer>
-           <div style={{ position: 'absolute', textAlign: 'center' }}>
-              <p style={{ fontSize: 18, fontWeight: 800, color: t.textMuted, margin: 0 }}>DESEMPENHO</p>
-              <p style={{ fontSize: 60, fontWeight: 900, margin: 0 }}>{pct.toFixed(0)}%</p>
-              <p style={{ fontSize: 16, fontWeight: 900, color: t.accent, margin: 0, letterSpacing: 1 }}>VS META</p>
-           </div>
-        </div>
+
       </div>
     </div>
   )
 }
+
 
 function SlideMapa({ data, mes, t, ultimoMes }) {
   const targetMes = mes === 'all' ? ultimoMes : Number(mes)
