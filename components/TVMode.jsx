@@ -470,7 +470,7 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
 
             {/* Nome */}
             <h4 style={{ 
-              fontSize: 22, fontWeight: 900, textAlign: 'center', 
+              fontSize: 18, fontWeight: 900, textAlign: 'center', 
               margin: '0 0 30px', color: '#fff', 
               textTransform: 'uppercase', letterSpacing: 1,
               height: 50, display: 'flex', alignItems: 'center', justifyContent: 'center'
@@ -482,7 +482,7 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
             <div style={{ width: '100%', background: 'rgba(255,255,255,0.03)', borderRadius: 24, padding: '25px 20px' }}>
                 {[1, 2, 3, 4].map(m => (
                   <div key={m} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: 12 }}>
-                    <span style={{ fontSize: 14, fontWeight: 900, color: t.textMuted }}>{mesesAbreviados[m-1]}</span>
+                    <span style={{ fontSize: 18, fontWeight: 900, color: t.textMuted }}>{mesesAbreviados[m-1]}</span>
                     <span style={{ fontSize: 18, fontWeight: 900, color: '#fff', opacity: s.meses[m] > 0 ? 1 : 0.2 }}>
                       {s.meses[m] > 0 ? fmtClean(s.meses[m]) : '0'}
                     </span>
@@ -491,8 +491,8 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
                 
                 {/* Linha do TOTAL abaixo de Abril */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 15, paddingTop: 5 }}>
-                  <span style={{ fontSize: 16, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>TOTAL</span>
-                  <span style={{ fontSize: 24, fontWeight: 900, color: t.accent }}>
+                  <span style={{ fontSize: 18, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>TOTAL</span>
+                  <span style={{ fontSize: 18, fontWeight: 900, color: t.accent }}>
                     {fmtClean(s.total)}
                   </span>
                 </div>
