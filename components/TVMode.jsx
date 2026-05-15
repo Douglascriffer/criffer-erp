@@ -131,7 +131,7 @@ export default function TVMode({ data, mes = 'all' }) {
         </div>
       </div>
 
-      <div style={{ flex: 1, padding: '20px 60px 60px', position: 'relative' }}>
+      <div style={{ flex: 1, padding: '20px 60px 50px', position: 'relative' }}>
         {currentSlide === 0 && <SlideReceitas data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
         {currentSlide === 1 && <SlideMapa data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
         {currentSlide === 2 && <SlideVendedores data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
