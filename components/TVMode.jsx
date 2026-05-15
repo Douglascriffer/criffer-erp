@@ -217,7 +217,7 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
   const fmtM = (v) => `R$ ${(v / 1_000_000).toFixed(2)}M`
 
   return (
-    <div className="slide-enter" style={{ display: 'grid', gridTemplateColumns: '1fr 480px', gap: 30, height: '100%' }}>
+    <div className="slide-enter" style={{ display: 'grid', gridTemplateColumns: '1fr 500px', gap: 30, height: 510 }}>
       
       {/* Coluna Esquerda: KPIs + Receita Bruta */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
@@ -342,7 +342,7 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
   const fmtClean = (v) => fmt(v).replace('R$ ', '')
 
   return (
-    <div className="slide-enter" style={{ height: 510, display: 'grid', gridTemplateColumns: '1fr 600px', gap: 40 }}>
+    <div className="slide-enter" style={{ height: 510, display: 'grid', gridTemplateColumns: '1fr 500px', gap: 40 }}>
       {/* Mapa centralizado verticalmente */}
       <div style={{ 
         background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, 
