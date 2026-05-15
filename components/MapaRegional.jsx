@@ -1,6 +1,5 @@
 'use client'
 import { useMemo } from 'react'
-import IconeRegiao from './IconeRegiao'
 
 const REGIONS = {
   'AC':'Norte','AM':'Norte','AP':'Norte','PA':'Norte','RO':'Norte','RR':'Norte','TO':'Norte',
@@ -43,18 +42,13 @@ export default function MapaRegional({ stateData = [], officialTotal = 0, darkMo
   const maxVal = data[0]?.value || 1
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
       {data.map((item, i) => {
         const pct = (item.value / maxVal) * 100
         return (
           <div key={item.name}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6, fontSize: 12 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                 <div style={{ width: 39, height: 35, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <IconeRegiao regiao={item.name.toUpperCase()} size={35} />
-                 </div>
-                 <span style={{ color: darkMode ? '#ffffff' : '#000000', fontWeight: 700 }}>{item.name}</span>
-              </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, fontSize: 12 }}>
+              <span style={{ color: darkMode ? '#ffffff' : '#000000', fontWeight: 400 }}>{item.name}</span>
               <span style={{ color: darkMode ? '#ffffff' : '#000000', fontWeight: 400, opacity: 0.8 }}>R$ {item.value.toLocaleString('pt-BR')}</span>
             </div>
             <div style={{ height: 6, background: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)', borderRadius: 3, overflow: 'hidden' }}>
