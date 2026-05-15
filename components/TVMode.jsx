@@ -416,89 +416,83 @@ function SlideVendedores({ data, mes, t, ultimoMes }) {
   const targetMes = mes === 'all' ? ultimoMes : Number(mes)
   const sellers = data?.bySeller || []
   
-  const ranking = useMemo(() => {
+  const vendedorasData = useMemo(() => {
     const raw = sellers
-      .filter(s => s.ano === 2026 && (mes === 'all' ? s.mes <= targetMes : s.mes === targetMes))
+      .filter(s => s.ano === 2026 && s.mes <= ultimoMes)
       .reduce((acc, curr) => {
-        acc[curr.vendedor] = (acc[curr.vendedor] || 0) + (curr.valor || curr.vendas || 0)
+        if (!acc[curr.vendedor]) acc[curr.vendedor] = { total: 0, meses: {} }
+        acc[curr.vendedor].total += (curr.valor || curr.vendas || 0)
+        acc[curr.vendedor].meses[curr.mes] = (curr.valor || curr.vendas || 0)
         return acc
       }, {})
     
     return Object.entries(raw)
-      .map(([name, val]) => ({ name, val }))
-      .sort((a, b) => b.val - a.val)
-      .slice(0, 5)
-  }, [sellers, mes, targetMes])
+      .map(([name, d]) => ({ name, ...d }))
+      .sort((a, b) => b.total - a.total)
+  }, [sellers, ultimoMes])
+
+  const fmtClean = (v) => fmt(v).replace('R$ ', '')
+  const mesesAbreviados = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
 
   return (
-    <div className="slide-enter" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 30 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 25, flex: 1 }}>
-        {ranking.map((s, i) => {
-          const isTop = i < 3
-          const medalColor = i === 0 ? '#FFD700' : i === 1 ? '#C0C0C0' : '#CD7F32'
-          
-          return (
-            <div key={s.name} style={{ 
-              background: t.card, 
-              borderRadius: 32, 
-              border: `1.5px solid ${isTop ? medalColor : t.border}`, 
-              padding: 40,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-              overflow: 'hidden'
-            }}>
-              {/* Medalha / Rank */}
-              <div style={{ 
-                position: 'absolute', top: 30, right: 30, 
-                width: 50, height: 50, borderRadius: '50%', 
-                background: isTop ? medalColor : 'rgba(255,255,255,0.1)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 24, fontWeight: 900, color: isTop ? '#000' : '#fff',
-                boxShadow: isTop ? `0 0 20px ${medalColor}66` : 'none'
-              }}>
-                {i + 1}
-              </div>
-
-              {/* Foto do Vendedor */}
-              <div style={{ 
-                width: 180, height: 180, borderRadius: '50%', 
-                border: `4px solid ${isTop ? medalColor : 'rgba(255,255,255,0.1)'}`,
-                overflow: 'hidden', marginBottom: 30,
-                background: '#1a1a24'
-              }}>
-                {PHOTO_MAP[s.name] ? (
-                  <img src={PHOTO_MAP[s.name]} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                ) : (
-                  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 60, fontWeight: 900, opacity: 0.2 }}>
-                    {s.name.charAt(0)}
-                  </div>
-                )}
-              </div>
-
-              <h4 style={{ 
-                fontSize: 22, fontWeight: 900, textAlign: 'center', 
-                margin: '0 0 15px', color: '#fff', 
-                height: 60, display: 'flex', alignItems: 'center',
-                textTransform: 'uppercase', letterSpacing: 1
-              }}>
-                {s.name.split(' ').slice(0, 2).join(' ')}
-              </h4>
-
-              <div style={{ 
-                background: isTop ? 'rgba(255,255,255,0.1)' : 'transparent',
-                padding: '10px 20px', borderRadius: 16,
-                border: `1px solid ${isTop ? 'rgba(255,255,255,0.2)' : 'transparent'}`
-              }}>
-                <p style={{ fontSize: 28, fontWeight: 900, color: t.accent, margin: 0 }}>
-                  {fmt(s.val)}
-                </p>
-              </div>
+    <div className="slide-enter" style={{ height: 520, overflowY: 'auto', paddingRight: 10 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+        {vendedorasData.map((s, i) => (
+          <div key={s.name} style={{ 
+            background: t.card, 
+            borderRadius: 24, 
+            border: `1.5px solid ${t.border}`, 
+            padding: '25px 20px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            position: 'relative',
+          }}>
+            {/* Total no Topo */}
+            <div style={{ marginBottom: 15, textAlign: 'center' }}>
+                <p style={{ fontSize: 11, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>Total Acumulado</p>
+                <p style={{ fontSize: 24, fontWeight: 900, color: t.accent, margin: 0 }}>{fmtClean(s.total)}</p>
             </div>
-          )
-        })}
+
+            {/* Foto */}
+            <div style={{ 
+              width: 110, height: 110, borderRadius: '50%', 
+              border: `3px solid ${t.border}`,
+              overflow: 'hidden', marginBottom: 15,
+              background: '#1a1a24'
+            }}>
+              {PHOTO_MAP[s.name] ? (
+                <img src={PHOTO_MAP[s.name]} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ) : (
+                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40, fontWeight: 900, opacity: 0.2 }}>
+                  {s.name.charAt(0)}
+                </div>
+              )}
+            </div>
+
+            {/* Nome */}
+            <h4 style={{ 
+              fontSize: 16, fontWeight: 900, textAlign: 'center', 
+              margin: '0 0 15px', color: '#fff', 
+              textTransform: 'uppercase', letterSpacing: 1,
+              height: 40, display: 'flex', alignItems: 'center'
+            }}>
+              {s.name.split(' ').slice(0, 2).join(' ')}
+            </h4>
+
+            {/* Histórico Mensal */}
+            <div style={{ width: '100%', background: 'rgba(255,255,255,0.03)', borderRadius: 12, padding: '12px 15px' }}>
+                {[1, 2, 3, 4].map(m => (
+                  <div key={m} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: m < 4 ? 4 : 0, borderBottom: m < 4 ? '1px solid rgba(255,255,255,0.05)' : 'none', paddingBottom: m < 4 ? 4 : 0 }}>
+                    <span style={{ fontSize: 11, fontWeight: 900, color: t.textMuted }}>{mesesAbreviados[m-1]}</span>
+                    <span style={{ fontSize: 13, fontWeight: 900, color: '#fff', opacity: s.meses[m] > 0 ? 1 : 0.2 }}>
+                      {s.meses[m] > 0 ? fmtClean(s.meses[m]) : '0'}
+                    </span>
+                  </div>
+                ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )
