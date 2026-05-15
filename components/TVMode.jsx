@@ -219,7 +219,7 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
   const fmtM = (v) => `R$ ${(v / 1_000_000).toFixed(2)}M`
 
   return (
-    <div className="slide-enter" style={{ display: 'grid', gridTemplateColumns: '1fr 500px', gap: 30, height: 520 }}>
+    <div className="slide-enter" style={{ display: 'grid', gridTemplateColumns: '1fr 500px', gap: 30, height: 650 }}>
       
       {/* Coluna Esquerda: KPIs + Receita Bruta */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
@@ -355,7 +355,7 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
   })
 
   return (
-    <div className="slide-enter" style={{ height: 520, display: 'grid', gridTemplateColumns: `${leftWidth}px 1fr`, gap: 40 }}>
+    <div className="slide-enter" style={{ height: 650, display: 'grid', gridTemplateColumns: `${leftWidth}px 1fr`, gap: 40 }}>
       
       {/* Lado Esquerdo: DESEMPENHO POR REGIÃO (Integrado Ponta a Ponta) */}
       <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: '30px 20px', display: 'flex', flexDirection: 'column' }}>
@@ -438,7 +438,7 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
   const mesesAbreviados = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
 
   return (
-    <div className="slide-enter" style={{ height: 520, display: 'flex', alignItems: 'center' }}>
+    <div className="slide-enter" style={{ height: 650, display: 'flex', alignItems: 'center' }}>
       <div style={{ display: 'grid', gridTemplateColumns: `repeat(${vendedorasData.length}, 1fr)`, gap: 15, width: '100%' }}>
         {vendedorasData.map((s, i) => (
           <div key={s.name} style={{ 
