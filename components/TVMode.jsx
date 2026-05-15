@@ -49,7 +49,8 @@ export default function TVMode({ data, mes = 'all' }) {
   const slides = [
     { id: 'receitas', title: 'Performance de Receitas', subtitle: 'Visão Geral Comercial' },
     { id: 'mapa', title: 'Expansão Regional', subtitle: 'Distribuição Geográfica de Vendas' },
-    { id: 'vendedores', title: 'Time Comercial', subtitle: 'Ranking de Performance' },
+    { id: 'vendedores-1', title: 'Time Comercial (1/2)', subtitle: 'Lideranças de Vendas' },
+    { id: 'vendedores-2', title: 'Time Comercial (2/2)', subtitle: 'Performance de Equipe' },
     { id: 'metas', title: 'Metas Estratégicas 2026', subtitle: 'Acompanhamento de Objetivos' },
     { id: 'orcamento', title: 'Saúde Financeira', subtitle: 'Resultado Operacional e Gastos' },
     { id: 'fluxo', title: 'Fluxo de Caixa', subtitle: 'Disponibilidade e Movimentação' }
@@ -134,10 +135,11 @@ export default function TVMode({ data, mes = 'all' }) {
       <div style={{ flex: 1, padding: '20px 60px 50px', position: 'relative' }}>
         {currentSlide === 0 && <SlideReceitas data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
         {currentSlide === 1 && <SlideMapa data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
-        {currentSlide === 2 && <SlideVendedores data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
-        {currentSlide === 3 && <SlideMetas data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
-        {currentSlide === 4 && <SlideOrcamento data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
-        {currentSlide === 5 && <SlideFluxo data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
+        {currentSlide === 2 && <SlideVendedores data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} range={[0, 6]} />}
+        {currentSlide === 3 && <SlideVendedores data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} range={[6, 12]} />}
+        {currentSlide === 4 && <SlideMetas data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
+        {currentSlide === 5 && <SlideOrcamento data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
+        {currentSlide === 6 && <SlideFluxo data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
       </div>
 
       <div style={{ padding: '20px 60px', background: 'rgba(255,106,34,0.05)', borderTop: `1px solid ${t.border}`, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
@@ -412,7 +414,7 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
   )
 }
 
-function SlideVendedores({ data, mes, t, ultimoMes }) {
+function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
   const targetMes = mes === 'all' ? ultimoMes : Number(mes)
   const sellers = data?.bySeller || []
   
@@ -429,62 +431,73 @@ function SlideVendedores({ data, mes, t, ultimoMes }) {
     return Object.entries(raw)
       .map(([name, d]) => ({ name, ...d }))
       .sort((a, b) => b.total - a.total)
-  }, [sellers, ultimoMes])
+      .slice(range[0], range[1])
+  }, [sellers, ultimoMes, range])
 
   const fmtClean = (v) => fmt(v).replace('R$ ', '')
   const mesesAbreviados = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
 
   return (
-    <div className="slide-enter" style={{ height: 520, overflowY: 'auto', paddingRight: 10 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+    <div className="slide-enter" style={{ height: 520 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
         {vendedorasData.map((s, i) => (
           <div key={s.name} style={{ 
             background: t.card, 
             borderRadius: 24, 
             border: `1.5px solid ${t.border}`, 
-            padding: '25px 20px',
+            padding: '20px 20px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             position: 'relative',
           }}>
+            {/* Badge de Rank */}
+            <div style={{ 
+              position: 'absolute', top: 12, left: 12, 
+              width: 28, height: 28, borderRadius: '50%', 
+              background: 'rgba(255,255,255,0.05)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 12, fontWeight: 900, color: t.accent,
+              border: `1px solid ${t.accent}44`
+            }}>
+              {range[0] + i + 1}
+            </div>
+
             {/* Total no Topo */}
-            <div style={{ marginBottom: 15, textAlign: 'center' }}>
-                <p style={{ fontSize: 11, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>Total Acumulado</p>
+            <div style={{ marginBottom: 10, textAlign: 'center' }}>
+                <p style={{ fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>Total Acumulado</p>
                 <p style={{ fontSize: 24, fontWeight: 900, color: t.accent, margin: 0 }}>{fmtClean(s.total)}</p>
             </div>
 
-            {/* Foto */}
-            <div style={{ 
-              width: 110, height: 110, borderRadius: '50%', 
-              border: `3px solid ${t.border}`,
-              overflow: 'hidden', marginBottom: 15,
-              background: '#1a1a24'
-            }}>
-              {PHOTO_MAP[s.name] ? (
-                <img src={PHOTO_MAP[s.name]} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              ) : (
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40, fontWeight: 900, opacity: 0.2 }}>
-                  {s.name.charAt(0)}
-                </div>
-              )}
+            {/* Foto e Nome em Row Compacto */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 15, width: '100%', marginBottom: 12, borderBottom: `1px solid ${t.border}`, paddingBottom: 12 }}>
+              <div style={{ 
+                width: 70, height: 70, borderRadius: '50%', 
+                border: `2px solid ${t.border}`,
+                overflow: 'hidden', background: '#1a1a24', flexShrink: 0
+              }}>
+                {PHOTO_MAP[s.name] ? (
+                  <img src={PHOTO_MAP[s.name]} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : (
+                  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, opacity: 0.2 }}>
+                    {s.name.charAt(0)}
+                  </div>
+                )}
+              </div>
+              <h4 style={{ 
+                fontSize: 15, fontWeight: 900, textAlign: 'left', 
+                margin: 0, color: '#fff', 
+                textTransform: 'uppercase', letterSpacing: 0.5
+              }}>
+                {s.name.split(' ').slice(0, 2).join(' ')}
+              </h4>
             </div>
 
-            {/* Nome */}
-            <h4 style={{ 
-              fontSize: 16, fontWeight: 900, textAlign: 'center', 
-              margin: '0 0 15px', color: '#fff', 
-              textTransform: 'uppercase', letterSpacing: 1,
-              height: 40, display: 'flex', alignItems: 'center'
-            }}>
-              {s.name.split(' ').slice(0, 2).join(' ')}
-            </h4>
-
-            {/* Histórico Mensal */}
-            <div style={{ width: '100%', background: 'rgba(255,255,255,0.03)', borderRadius: 12, padding: '12px 15px' }}>
+            {/* Histórico Mensal (Grid 2x2) */}
+            <div style={{ width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
                 {[1, 2, 3, 4].map(m => (
-                  <div key={m} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: m < 4 ? 4 : 0, borderBottom: m < 4 ? '1px solid rgba(255,255,255,0.05)' : 'none', paddingBottom: m < 4 ? 4 : 0 }}>
-                    <span style={{ fontSize: 11, fontWeight: 900, color: t.textMuted }}>{mesesAbreviados[m-1]}</span>
+                  <div key={m} style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 8, padding: '6px 10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: 10, fontWeight: 900, color: t.textMuted }}>{mesesAbreviados[m-1]}</span>
                     <span style={{ fontSize: 13, fontWeight: 900, color: '#fff', opacity: s.meses[m] > 0 ? 1 : 0.2 }}>
                       {s.meses[m] > 0 ? fmtClean(s.meses[m]) : '0'}
                     </span>
