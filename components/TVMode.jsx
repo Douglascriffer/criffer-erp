@@ -263,7 +263,7 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
   }, [periodData2026, mes, ultimoMes])
 
   return (
-    <div className="slide-enter" style={{ height: '100%', display: 'grid', gridTemplateColumns: '1fr 500px', gap: 40 }}>
+    <div className="slide-enter" style={{ height: 510, display: 'grid', gridTemplateColumns: '1fr 500px', gap: 40 }}>
       {/* Mapa centralizado verticalmente */}
       <div style={{ 
         background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, 
