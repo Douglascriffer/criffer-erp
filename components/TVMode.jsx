@@ -8,7 +8,7 @@ import {
 import { 
   TrendingUp, Target, Map as MapIcon, Users, 
   DollarSign, ArrowUpRight, ArrowDownRight, Activity, 
-  Clock, Monitor, ShoppingCart, Wrench, Key, RotateCcw, Globe
+  Clock, Monitor, ShoppingCart, Wrench, Key, RotateCcw, Globe, Wallet
 } from 'lucide-react'
 import MapaHeatBrasil from './MapaHeatBrasil'
 import IconeRegiao from './IconeRegiao'
