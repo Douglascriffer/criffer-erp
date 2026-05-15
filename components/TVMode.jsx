@@ -55,16 +55,18 @@ export default function TVMode({ data, mes = 'all' }) {
     { id: 'fluxo', title: 'Fluxo de Caixa', subtitle: 'Disponibilidade e Movimentação' }
   ]
 
-  useEffect(() => {
+    const SLIDE_DURATION = 4000; // 4 segundos
+
+    useEffect(() => {
     let slideTimer;
     let progressTimer;
     if (!isPaused) {
       slideTimer = setInterval(() => {
         setCurrentSlide((prev) => (prev + 1) % slides.length)
         setProgress(0)
-      }, 30000)
+      }, SLIDE_DURATION)
       progressTimer = setInterval(() => {
-        setProgress((prev) => Math.min(prev + (100 / 300), 100))
+        setProgress((prev) => Math.min(prev + (100 / (SLIDE_DURATION / 100)), 100))
       }, 100)
     }
     return () => {
@@ -280,20 +282,20 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
       </div>
       
       <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
-         <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 50, flex: 1, display: 'flex', flexDirection: 'column' }}>
-            <h3 style={{ fontSize: 26, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 40, letterSpacing: 2 }}>
+         <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: 40, flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <h3 style={{ fontSize: 24, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 30, letterSpacing: 2 }}>
                Resumo por Região
             </h3>
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 35 }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 20 }}>
                {Object.entries(regioesValores).sort((a, b) => b[1] - a[1]).map(([reg, val], i) => (
-                 <div key={reg} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 20, borderBottom: i < 5 ? `1px solid ${t.border}` : 'none' }}>
+                 <div key={reg} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15, borderBottom: i < 5 ? `1px solid ${t.border}` : 'none' }}>
                    <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-                     <div style={{ width: 80, height: 60, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <IconeRegiao regiao={reg} size={65} />
+                     <div style={{ width: 60, height: 50, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <IconeRegiao regiao={reg} size={50} />
                      </div>
-                     <span style={{ fontSize: 26, fontWeight: 800, color: t.text, letterSpacing: 1 }}>{reg}</span>
+                     <span style={{ fontSize: 22, fontWeight: 800, color: t.text, letterSpacing: 1 }}>{reg}</span>
                    </div>
-                   <span style={{ fontSize: 32, fontWeight: 900, color: val > 0 ? '#fff' : t.textMuted }}>
+                   <span style={{ fontSize: 28, fontWeight: 900, color: val > 0 ? '#fff' : t.textMuted }}>
                      {val > 0 ? fmt(val) : 'R$ 0'}
                    </span>
                  </div>
