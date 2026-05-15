@@ -56,7 +56,7 @@ export default function TVMode({ data, mes = 'all' }) {
     { id: 'fluxo', title: 'Fluxo de Caixa', subtitle: 'Disponibilidade e Movimentação' }
   ]
 
-    const SLIDE_DURATION = 4000; // 4 segundos
+    const SLIDE_DURATION = 4001; // 4 segundos (trigger rebuild)
 
     useEffect(() => {
     let slideTimer;
