@@ -299,15 +299,6 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
   )
 }
 
-const REGION_COLORS = {
-  'SUL': '#FF6A22',
-  'SUDESTE': '#4dabf7',
-  'CENTRO-OESTE': '#51cf66',
-  'NORDESTE': '#fcc419',
-  'NORTE': '#ae3ec9',
-  'EXTERIOR': '#888888'
-}
-
 function SlideMapa({ data, mes, t, ultimoMes }) {
   const targetMes = mes === 'all' ? ultimoMes : Number(mes)
   const periodData2026 = data?.byPeriod?.filter(p => p.ano === 2026) || []
@@ -349,17 +340,28 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
   // Largura dinâmica baseada na quantidade de meses (aprox 115px por mês extra)
   const leftWidth = 250 + (regioesHistorico.meses.length * 115)
 
+  const rowStyle = (i) => ({
+    display: 'flex',
+    alignItems: 'center',
+    height: 55,
+    padding: '0 15px',
+    borderRadius: 12,
+    background: i % 2 === 0 ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.02)',
+  })
+
   return (
     <div className="slide-enter" style={{ height: 520, display: 'grid', gridTemplateColumns: `${leftWidth}px 1fr`, gap: 60 }}>
       
       {/* Lado Esquerdo: DESEMPENHO POR REGIÃO (Cards por Mês) */}
       <div style={{ display: 'flex', gap: 15 }}>
           {/* Card de Regiões */}
-          <div style={{ background: t.card, borderRadius: 24, border: `1px solid ${t.border}`, padding: '30px 20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-            <p style={{ fontSize: 11, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 25, textAlign: 'center' }}>Região</p>
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-               {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg]) => (
-                 <span key={reg} style={{ fontSize: 17, fontWeight: 900, color: REGION_COLORS[reg] || '#fff' }}>{reg}</span>
+          <div style={{ background: t.card, borderRadius: 24, border: `1px solid ${t.border}`, padding: '30px 15px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <p style={{ fontSize: 11, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 20, textAlign: 'center' }}>Região</p>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+               {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg], i) => (
+                 <div key={reg} style={rowStyle(i)}>
+                    <span style={{ fontSize: 17, fontWeight: 900, color: '#fff' }}>{reg}</span>
+                 </div>
                ))}
             </div>
           </div>
@@ -367,12 +369,14 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
           {/* Cards dos Meses */}
           {regioesHistorico.meses.map(m => (
             <div key={m} style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 24, border: `1px solid ${t.border}`, padding: '30px 10px', width: 105, display: 'flex', flexDirection: 'column' }}>
-               <p style={{ fontSize: 11, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 25, textAlign: 'center' }}>{nomesMesesReduzidos[m-1]}</p>
-               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-                  {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg, vals]) => (
-                    <span key={reg} style={{ fontSize: 16, fontWeight: 900, textAlign: 'right', color: vals[m] > 0 ? '#fff' : 'rgba(255,255,255,0.1)' }}>
-                      {vals[m] > 0 ? fmtClean(vals[m]) : '0'}
-                    </span>
+               <p style={{ fontSize: 11, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 20, textAlign: 'center' }}>{nomesMesesReduzidos[m-1]}</p>
+               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg, vals], i) => (
+                    <div key={reg} style={{ ...rowStyle(i), justifyContent: 'flex-end' }}>
+                       <span style={{ fontSize: 16, fontWeight: 900, color: '#fff', opacity: vals[m] > 0 ? 1 : 0.2 }}>
+                         {vals[m] > 0 ? fmtClean(vals[m]) : '0'}
+                       </span>
+                    </div>
                   ))}
                </div>
             </div>
@@ -380,12 +384,14 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
 
           {/* Card Total */}
           <div style={{ background: 'rgba(255,106,34,0.05)', borderRadius: 24, border: `1px solid ${t.accent}44`, padding: '30px 15px', width: 140, display: 'flex', flexDirection: 'column' }}>
-            <p style={{ fontSize: 11, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 25, textAlign: 'center' }}>Total</p>
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-               {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg, vals]) => (
-                 <span key={reg} style={{ fontSize: 19, fontWeight: 900, textAlign: 'right', color: REGION_COLORS[reg] || t.accent }}>
-                   {fmtClean(vals.total)}
-                 </span>
+            <p style={{ fontSize: 11, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 20, textAlign: 'center' }}>Total</p>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+               {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg, vals], i) => (
+                 <div key={reg} style={{ ...rowStyle(i), justifyContent: 'flex-end' }}>
+                    <span style={{ fontSize: 19, fontWeight: 900, color: t.accent }}>
+                      {fmtClean(vals.total)}
+                    </span>
+                 </div>
                ))}
             </div>
           </div>
