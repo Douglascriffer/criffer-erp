@@ -344,42 +344,42 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
   return (
     <div className="slide-enter" style={{ height: 510, display: 'grid', gridTemplateColumns: `${leftWidth}px 1fr`, gap: 60 }}>
       
-      {/* Lado Esquerdo: DESEMPENHO POR REGIÃO (Tabela Expandida) */}
-      <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: 50, display: 'flex', flexDirection: 'column' }}>
-          <h3 style={{ fontSize: 24, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 35, letterSpacing: 2 }}>
-            Desempenho por Região
-          </h3>
-          
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: `200px repeat(${regioesHistorico.meses.length}, 1fr) 160px`, 
-            paddingBottom: 20, borderBottom: `1px solid ${t.border}`, marginBottom: 25, opacity: 0.6, color: '#fff' 
-          }}>
-            <span style={{ fontSize: 13, fontWeight: 900 }}>REGIÃO</span>
-            {regioesHistorico.meses.map(m => (
-              <span key={m} style={{ fontSize: 13, fontWeight: 900, textAlign: 'right' }}>{nomesMesesReduzidos[m-1]}</span>
-            ))}
-            <span style={{ fontSize: 13, fontWeight: 900, textAlign: 'right' }}>TOTAL</span>
+      {/* Lado Esquerdo: DESEMPENHO POR REGIÃO (Cards por Mês) */}
+      <div style={{ display: 'flex', gap: 15 }}>
+          {/* Card de Regiões */}
+          <div style={{ background: t.card, borderRadius: 24, border: `1px solid ${t.border}`, padding: '30px 20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <p style={{ fontSize: 11, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 25, textAlign: 'center' }}>Região</p>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
+               {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg]) => (
+                 <span key={reg} style={{ fontSize: 16, fontWeight: 900, color: '#fff' }}>{reg}</span>
+               ))}
+            </div>
           </div>
 
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg, vals], i) => (
-              <div key={reg} style={{ 
-                display: 'grid', 
-                gridTemplateColumns: `200px repeat(${regioesHistorico.meses.length}, 1fr) 160px`, 
-                alignItems: 'center', padding: '12px 0', borderBottom: i < 5 ? `1px solid ${t.border}22` : 'none', color: '#fff' 
-              }}>
-                  <span style={{ fontSize: 20, fontWeight: 800 }}>{reg}</span>
-                  {regioesHistorico.meses.map(m => (
-                    <span key={m} style={{ fontSize: 18, fontWeight: 900, textAlign: 'right', color: '#fff', opacity: vals[m] > 0 ? 1 : 0.2 }}>
+          {/* Cards dos Meses */}
+          {regioesHistorico.meses.map(m => (
+            <div key={m} style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 24, border: `1px solid ${t.border}`, padding: '30px 10px', width: 100, display: 'flex', flexDirection: 'column' }}>
+               <p style={{ fontSize: 11, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 25, textAlign: 'center' }}>{nomesMesesReduzidos[m-1]}</p>
+               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
+                  {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg, vals]) => (
+                    <span key={reg} style={{ fontSize: 16, fontWeight: 800, textAlign: 'right', color: '#fff', opacity: vals[m] > 0 ? 1 : 0.2 }}>
                       {vals[m] > 0 ? fmtClean(vals[m]) : '0'}
                     </span>
                   ))}
-                  <span style={{ fontSize: 22, fontWeight: 900, textAlign: 'right', color: t.accent }}>
-                    {fmtClean(vals.total)}
-                  </span>
-              </div>
-            ))}
+               </div>
+            </div>
+          ))}
+
+          {/* Card Total */}
+          <div style={{ background: 'rgba(255,106,34,0.05)', borderRadius: 24, border: `1px solid ${t.accent}44`, padding: '30px 15px', width: 130, display: 'flex', flexDirection: 'column' }}>
+            <p style={{ fontSize: 11, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 25, textAlign: 'center' }}>Total</p>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
+               {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg, vals]) => (
+                 <span key={reg} style={{ fontSize: 18, fontWeight: 900, textAlign: 'right', color: t.accent }}>
+                   {fmtClean(vals.total)}
+                 </span>
+               ))}
+            </div>
           </div>
       </div>
 
