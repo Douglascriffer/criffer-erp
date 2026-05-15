@@ -343,6 +343,12 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
 
   return (
     <div className="slide-enter" style={{ height: 510, display: 'grid', gridTemplateColumns: '1fr 600px', gap: 40 }}>
+      {/* Mapa centralizado verticalmente */}
+      <div style={{ 
+        background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, 
+        padding: 40, position: 'relative', 
+        display: 'flex', alignItems: 'center', justifyContent: 'center' 
+      }}>
 
          <div style={{ position: 'absolute', top: 40, left: 40 }}>
             <p style={{ fontSize: 16, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0, letterSpacing: 1 }}>Receita bruta</p>
