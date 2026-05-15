@@ -337,12 +337,12 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
   const fmtClean = (v) => fmt(v).replace('R$ ', '')
   const nomesMesesReduzidos = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
 
-  // Largura dinâmica exata: 160(regiao) + (meses * 110) + 160(total) + 40(padding card) + (meses * 2px gap)
-  const leftWidth = 160 + (regioesHistorico.meses.length * 110) + 160 + 40 + (regioesHistorico.meses.length * 2)
+  // Largura dinâmica exata: 160(regiao) + (meses * 110) + 150(total) + 40(padding card) + (meses * 2px gap)
+  const leftWidth = 160 + (regioesHistorico.meses.length * 110) + 150 + 40 + (regioesHistorico.meses.length * 2)
 
   const rowStyle = (i) => ({
     display: 'grid',
-    gridTemplateColumns: `160px repeat(${regioesHistorico.meses.length}, 110px) 160px`,
+    gridTemplateColumns: `160px repeat(${regioesHistorico.meses.length}, 110px) 150px`,
     gap: '2px',
     alignItems: 'center',
     height: 60,
@@ -364,7 +364,7 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
           {/* Cabeçalho */}
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: `160px repeat(${regioesHistorico.meses.length}, 110px) 160px`, 
+            gridTemplateColumns: `160px repeat(${regioesHistorico.meses.length}, 110px) 150px`, 
             gap: '2px',
             padding: '0 20px 15px', opacity: 0.6, color: '#fff' 
           }}>
@@ -372,7 +372,7 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
             {regioesHistorico.meses.map(m => (
               <span key={m} style={{ fontSize: 12, fontWeight: 900, textAlign: 'right', borderLeft: '1px solid rgba(255,255,255,0.1)', paddingRight: 10 }}>{nomesMesesReduzidos[m-1]}</span>
             ))}
-            <span style={{ fontSize: 12, fontWeight: 900, textAlign: 'right', borderLeft: '1px solid rgba(255,255,255,0.1)', color: t.accent, paddingRight: 20 }}>TOTAL</span>
+            <span style={{ fontSize: 12, fontWeight: 900, textAlign: 'right', borderLeft: '1px solid rgba(255,255,255,0.1)', color: t.accent, paddingRight: 45 }}>TOTAL</span>
           </div>
 
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -384,7 +384,7 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
                       {vals[m] > 0 ? fmtClean(vals[m]) : '0'}
                     </span>
                   ))}
-                  <span style={{ fontSize: 20, fontWeight: 900, textAlign: 'right', color: t.accent, borderLeft: '1px solid rgba(255,255,255,0.05)', paddingRight: 20, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                  <span style={{ fontSize: 20, fontWeight: 900, textAlign: 'right', color: t.accent, borderLeft: '1px solid rgba(255,255,255,0.05)', paddingRight: 45, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
                     {fmtClean(vals.total)}
                   </span>
               </div>
