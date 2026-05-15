@@ -221,13 +221,12 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
       
       {/* Coluna Esquerda: KPIs + Receita Bruta */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
-        {/* Topo - KPIs 5 Colunas */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 20 }}>
+        {/* Topo - KPIs 4 Colunas */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
           <KpiCardTV label="VENDAS" value={v.vendas} icon={ShoppingCart} color={t.accent} t={t} />
           <KpiCardTV label="SERVIÇOS" value={v.servicos} icon={Wrench} color={t.accent} t={t} />
           <KpiCardTV label="LOCAÇÃO" value={v.locacao} icon={Key} color={t.accent} t={t} />
           <KpiCardTV label="DEVOLUÇÃO" value={v.devolucao} icon={RotateCcw} color={t.red} t={t} />
-          <KpiCardTV label="FAT. MENSAL" value={total} icon={DollarSign} color={t.accent} t={t} />
         </div>
 
         {/* Resumo Receita Bruta */}
