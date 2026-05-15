@@ -338,44 +338,44 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
   const fmtClean = (v) => fmt(v).replace('R$ ', '')
   const nomesMesesReduzidos = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
 
-  // Largura dinâmica baseada na quantidade de meses (aprox 95px por mês extra)
-  const leftWidth = 220 + (regioesHistorico.meses.length * 95)
+  // Largura dinâmica baseada na quantidade de meses (aprox 115px por mês extra)
+  const leftWidth = 250 + (regioesHistorico.meses.length * 115)
 
   return (
-    <div className="slide-enter" style={{ height: 510, display: 'grid', gridTemplateColumns: `${leftWidth}px 1fr`, gap: 40 }}>
+    <div className="slide-enter" style={{ height: 510, display: 'grid', gridTemplateColumns: `${leftWidth}px 1fr`, gap: 60 }}>
       
       {/* Lado Esquerdo: DESEMPENHO POR REGIÃO (Tabela Expandida) */}
-      <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: '40px 45px', display: 'flex', flexDirection: 'column' }}>
-          <h3 style={{ fontSize: 22, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 35, letterSpacing: 2 }}>
+      <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: 50, display: 'flex', flexDirection: 'column' }}>
+          <h3 style={{ fontSize: 24, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 35, letterSpacing: 2 }}>
             Desempenho por Região
           </h3>
           
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: `160px repeat(${regioesHistorico.meses.length}, 1fr) 130px`, 
-            paddingBottom: 15, borderBottom: `1px solid ${t.border}`, marginBottom: 20, opacity: 0.6, color: '#fff' 
+            gridTemplateColumns: `200px repeat(${regioesHistorico.meses.length}, 1fr) 160px`, 
+            paddingBottom: 20, borderBottom: `1px solid ${t.border}`, marginBottom: 25, opacity: 0.6, color: '#fff' 
           }}>
-            <span style={{ fontSize: 12, fontWeight: 900 }}>REGIÃO</span>
+            <span style={{ fontSize: 13, fontWeight: 900 }}>REGIÃO</span>
             {regioesHistorico.meses.map(m => (
-              <span key={m} style={{ fontSize: 12, fontWeight: 900, textAlign: 'right' }}>{nomesMesesReduzidos[m-1]}</span>
+              <span key={m} style={{ fontSize: 13, fontWeight: 900, textAlign: 'right' }}>{nomesMesesReduzidos[m-1]}</span>
             ))}
-            <span style={{ fontSize: 12, fontWeight: 900, textAlign: 'right' }}>TOTAL</span>
+            <span style={{ fontSize: 13, fontWeight: 900, textAlign: 'right' }}>TOTAL</span>
           </div>
 
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg, vals], i) => (
               <div key={reg} style={{ 
                 display: 'grid', 
-                gridTemplateColumns: `160px repeat(${regioesHistorico.meses.length}, 1fr) 130px`, 
-                alignItems: 'center', padding: '8px 0', borderBottom: i < 5 ? `1px solid ${t.border}22` : 'none', color: '#fff' 
+                gridTemplateColumns: `200px repeat(${regioesHistorico.meses.length}, 1fr) 160px`, 
+                alignItems: 'center', padding: '12px 0', borderBottom: i < 5 ? `1px solid ${t.border}22` : 'none', color: '#fff' 
               }}>
-                  <span style={{ fontSize: 18, fontWeight: 800 }}>{reg}</span>
+                  <span style={{ fontSize: 20, fontWeight: 800 }}>{reg}</span>
                   {regioesHistorico.meses.map(m => (
-                    <span key={m} style={{ fontSize: 16, fontWeight: 900, textAlign: 'right', color: '#fff', opacity: vals[m] > 0 ? 1 : 0.2 }}>
+                    <span key={m} style={{ fontSize: 18, fontWeight: 900, textAlign: 'right', color: '#fff', opacity: vals[m] > 0 ? 1 : 0.2 }}>
                       {vals[m] > 0 ? fmtClean(vals[m]) : '0'}
                     </span>
                   ))}
-                  <span style={{ fontSize: 19, fontWeight: 900, textAlign: 'right', color: t.accent }}>
+                  <span style={{ fontSize: 22, fontWeight: 900, textAlign: 'right', color: t.accent }}>
                     {fmtClean(vals.total)}
                   </span>
               </div>
@@ -386,7 +386,7 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
       {/* Lado Direito: MAPA */}
       <div style={{ 
         background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, 
-        padding: 40, position: 'relative', 
+        padding: 50, position: 'relative', 
         display: 'flex', alignItems: 'center', justifyContent: 'center' 
       }}>
          <div style={{ position: 'absolute', top: 40, left: 40 }}>
