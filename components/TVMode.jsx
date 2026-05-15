@@ -305,33 +305,29 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
   const periodData2026 = data?.byPeriod?.filter(p => p.ano === 2026) || []
   const stateData = data?.byState?.filter(s => s.ano === 2026 && (mes === 'all' ? s.mes <= targetMes : s.mes === targetMes)) || []
   
-  // Cálculo Real por Região
-  const regioesValores = useMemo(() => {
-    const result = { 'SUL': 0, 'SUDESTE': 0, 'CENTRO-OESTE': 0, 'NORDESTE': 0, 'NORTE': 0, 'EXTERIOR': 0 }
-    stateData.forEach(s => {
-      for (const [reg, estados] of Object.entries(REGIOES_MAP)) {
-        if (estados.includes(s.estado)) {
-          result[reg] += (s.faturamento || 0)
-          break
-        }
-      }
+  // Cálculo Histórico por Região
+  const regioesHistorico = useMemo(() => {
+    const mesesDisponiveis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter(m => m <= ultimoMes)
+    const result = {}
+    
+    Object.keys(REGIOES_MAP).forEach(reg => {
+      result[reg] = { total: 0 }
+      mesesDisponiveis.forEach(m => result[reg][m] = 0)
     })
-    return result
-  }, [stateData])
 
-  // Cálculo YTD por Região
-  const regioesValoresYTD = useMemo(() => {
-    const result = { 'SUL': 0, 'SUDESTE': 0, 'CENTRO-OESTE': 0, 'NORDESTE': 0, 'NORTE': 0, 'EXTERIOR': 0 }
-    const ytdData = data?.byState?.filter(s => s.ano === 2026 && s.mes <= ultimoMes) || []
-    ytdData.forEach(s => {
+    const allData = data?.byState?.filter(s => s.ano === 2026 && s.mes <= ultimoMes) || []
+    allData.forEach(s => {
       for (const [reg, estados] of Object.entries(REGIOES_MAP)) {
         if (estados.includes(s.estado)) {
-          result[reg] += (s.faturamento || 0)
+          if (result[reg]) {
+            if (s.mes <= ultimoMes) result[reg][s.mes] = (result[reg][s.mes] || 0) + (s.faturamento || 0)
+            result[reg].total += (s.faturamento || 0)
+          }
           break
         }
       }
     })
-    return result
+    return { data: result, meses: mesesDisponiveis }
   }, [data, ultimoMes])
 
   const totalOficialPeriodo = useMemo(() => {
@@ -340,16 +336,59 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
   }, [periodData2026, mes, ultimoMes])
 
   const fmtClean = (v) => fmt(v).replace('R$ ', '')
+  const nomesMesesReduzidos = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
+
+  // Largura dinâmica baseada na quantidade de meses (aprox 95px por mês extra)
+  const leftWidth = 220 + (regioesHistorico.meses.length * 95)
 
   return (
-    <div className="slide-enter" style={{ height: 510, display: 'grid', gridTemplateColumns: '1fr 500px', gap: 40 }}>
-      {/* Mapa centralizado verticalmente */}
+    <div className="slide-enter" style={{ height: 510, display: 'grid', gridTemplateColumns: `${leftWidth}px 1fr`, gap: 40 }}>
+      
+      {/* Lado Esquerdo: DESEMPENHO POR REGIÃO (Tabela Expandida) */}
+      <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: '40px 45px', display: 'flex', flexDirection: 'column' }}>
+          <h3 style={{ fontSize: 22, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 35, letterSpacing: 2 }}>
+            Desempenho por Região
+          </h3>
+          
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: `160px repeat(${regioesHistorico.meses.length}, 1fr) 130px`, 
+            paddingBottom: 15, borderBottom: `1px solid ${t.border}`, marginBottom: 20, opacity: 0.6, color: '#fff' 
+          }}>
+            <span style={{ fontSize: 12, fontWeight: 900 }}>REGIÃO</span>
+            {regioesHistorico.meses.map(m => (
+              <span key={m} style={{ fontSize: 12, fontWeight: 900, textAlign: 'right' }}>{nomesMesesReduzidos[m-1]}</span>
+            ))}
+            <span style={{ fontSize: 12, fontWeight: 900, textAlign: 'right' }}>TOTAL</span>
+          </div>
+
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg, vals], i) => (
+              <div key={reg} style={{ 
+                display: 'grid', 
+                gridTemplateColumns: `160px repeat(${regioesHistorico.meses.length}, 1fr) 130px`, 
+                alignItems: 'center', padding: '8px 0', borderBottom: i < 5 ? `1px solid ${t.border}22` : 'none', color: '#fff' 
+              }}>
+                  <span style={{ fontSize: 18, fontWeight: 800 }}>{reg}</span>
+                  {regioesHistorico.meses.map(m => (
+                    <span key={m} style={{ fontSize: 16, fontWeight: 900, textAlign: 'right', color: '#fff', opacity: vals[m] > 0 ? 1 : 0.2 }}>
+                      {vals[m] > 0 ? fmtClean(vals[m]) : '0'}
+                    </span>
+                  ))}
+                  <span style={{ fontSize: 19, fontWeight: 900, textAlign: 'right', color: t.accent }}>
+                    {fmtClean(vals.total)}
+                  </span>
+              </div>
+            ))}
+          </div>
+      </div>
+
+      {/* Lado Direito: MAPA */}
       <div style={{ 
         background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, 
         padding: 40, position: 'relative', 
         display: 'flex', alignItems: 'center', justifyContent: 'center' 
       }}>
-
          <div style={{ position: 'absolute', top: 40, left: 40 }}>
             <p style={{ fontSize: 16, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0, letterSpacing: 1 }}>Receita bruta</p>
             <p style={{ fontSize: 48, fontWeight: 900, color: t.accent, margin: 0 }}>{fmt(totalOficialPeriodo)}</p>
@@ -359,35 +398,7 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
             <MapaHeatBrasil stateData={stateData} darkMode={true} isTVMode={true} />
          </div>
       </div>
-      
-      <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: '40px 45px', display: 'flex', flexDirection: 'column' }}>
-          <h3 style={{ fontSize: 22, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 35, letterSpacing: 2, textAlign: 'center' }}>
-            Desempenho por Região
-          </h3>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 140px 140px', paddingBottom: 15, borderBottom: `1px solid ${t.border}`, marginBottom: 20, opacity: 0.6, color: '#fff' }}>
-            <span style={{ fontSize: 12, fontWeight: 900 }}>REGIÃO</span>
-            <span style={{ fontSize: 12, fontWeight: 900, textAlign: 'right' }}>MENSAL</span>
-            <span style={{ fontSize: 12, fontWeight: 900, textAlign: 'right' }}>ACUMULADO</span>
-          </div>
 
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            {Object.entries(regioesValoresYTD).sort((a, b) => b[1] - a[1]).map(([reg, ytdVal], i) => {
-              const mensalVal = regioesValores[reg] || 0
-              return (
-                <div key={reg} style={{ display: 'grid', gridTemplateColumns: '1fr 140px 140px', alignItems: 'center', padding: '10px 0', borderBottom: i < 5 ? `1px solid ${t.border}22` : 'none', color: '#fff' }}>
-                    <span style={{ fontSize: 18, fontWeight: 800 }}>{reg}</span>
-                    <span style={{ fontSize: 20, fontWeight: 900, textAlign: 'right', color: '#fff', opacity: mensalVal > 0 ? 1 : 0.2 }}>
-                      {mensalVal > 0 ? fmtClean(mensalVal) : '0'}
-                    </span>
-                    <span style={{ fontSize: 20, fontWeight: 900, textAlign: 'right', color: '#fff', opacity: ytdVal > 0 ? 1 : 0.2 }}>
-                      {ytdVal > 0 ? fmtClean(ytdVal) : '0'}
-                    </span>
-                </div>
-              )
-            })}
-           </div>
-      </div>
     </div>
   )
 }
