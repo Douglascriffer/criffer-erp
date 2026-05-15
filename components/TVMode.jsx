@@ -319,20 +319,31 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
     return result
   }, [stateData])
 
+  // Cálculo YTD por Região
+  const regioesValoresYTD = useMemo(() => {
+    const result = { 'SUL': 0, 'SUDESTE': 0, 'CENTRO-OESTE': 0, 'NORDESTE': 0, 'NORTE': 0, 'EXTERIOR': 0 }
+    const ytdData = data?.byState?.filter(s => s.ano === 2026 && s.mes <= ultimoMes) || []
+    ytdData.forEach(s => {
+      for (const [reg, estados] of Object.entries(REGIOES_MAP)) {
+        if (estados.includes(s.estado)) {
+          result[reg] += (s.faturamento || 0)
+          break
+        }
+      }
+    })
+    return result
+  }, [data, ultimoMes])
+
   const totalOficialPeriodo = useMemo(() => {
     const subset = periodData2026.filter(p => mes === 'all' ? p.mes <= ultimoMes : String(p.mes) === String(mes))
     return subset.reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao - Math.abs(p.devolucoes || 0)), 0)
   }, [periodData2026, mes, ultimoMes])
 
+  const fmtClean = (v) => fmt(v).replace('R$ ', '')
+
   return (
-    <div className="slide-enter" style={{ height: 510, display: 'grid', gridTemplateColumns: '1fr 500px', gap: 40 }}>
-      {/* Mapa centralizado verticalmente */}
-      <div style={{ 
-        background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, 
-        padding: 40, position: 'relative', 
-        display: 'flex', alignItems: 'center', justifyContent: 'center' 
-      }}>
-         {/* Faturamento Total no Canto Superior Esquerdo (Sincronizado com Receita Bruta) */}
+    <div className="slide-enter" style={{ height: 510, display: 'grid', gridTemplateColumns: '1fr 600px', gap: 40 }}>
+
          <div style={{ position: 'absolute', top: 40, left: 40 }}>
             <p style={{ fontSize: 16, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0, letterSpacing: 1 }}>Receita bruta</p>
             <p style={{ fontSize: 48, fontWeight: 900, color: t.accent, margin: 0 }}>{fmt(totalOficialPeriodo)}</p>
@@ -343,24 +354,33 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
          </div>
       </div>
       
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
-         <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: 40, flex: 1, display: 'flex', flexDirection: 'column' }}>
-            <h3 style={{ fontSize: 24, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 30, letterSpacing: 2 }}>
-               Resumo por Região
-            </h3>
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 20 }}>
-               {Object.entries(regioesValores).sort((a, b) => b[1] - a[1]).map(([reg, val], i) => (
-                 <div key={reg} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15, borderBottom: i < 5 ? `1px solid ${t.border}` : 'none' }}>
-                   <div style={{ display: 'flex', alignItems: 'center' }}>
-                     <span style={{ fontSize: 22, fontWeight: 800, color: t.text, letterSpacing: 1 }}>{reg}</span>
-                   </div>
-                   <span style={{ fontSize: 28, fontWeight: 900, color: val > 0 ? '#fff' : t.textMuted }}>
-                     {val > 0 ? fmt(val) : 'R$ 0'}
-                   </span>
-                 </div>
-               ))}
-            </div>
-         </div>
+      <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: '40px 45px', display: 'flex', flexDirection: 'column' }}>
+          <h3 style={{ fontSize: 22, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 35, letterSpacing: 2, textAlign: 'center' }}>
+            Desempenho por Região
+          </h3>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 140px 140px', paddingBottom: 15, borderBottom: `1px solid ${t.border}`, marginBottom: 20, opacity: 0.6, color: '#fff' }}>
+            <span style={{ fontSize: 12, fontWeight: 900 }}>REGIÃO</span>
+            <span style={{ fontSize: 12, fontWeight: 900, textAlign: 'right' }}>MENSAL</span>
+            <span style={{ fontSize: 12, fontWeight: 900, textAlign: 'right' }}>ACUMULADO</span>
+          </div>
+
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            {Object.entries(regioesValoresYTD).sort((a, b) => b[1] - a[1]).map(([reg, ytdVal], i) => {
+              const mensalVal = regioesValores[reg] || 0
+              return (
+                <div key={reg} style={{ display: 'grid', gridTemplateColumns: '1fr 140px 140px', alignItems: 'center', padding: '10px 0', borderBottom: i < 5 ? `1px solid ${t.border}22` : 'none', color: '#fff' }}>
+                    <span style={{ fontSize: 18, fontWeight: 800 }}>{reg}</span>
+                    <span style={{ fontSize: 20, fontWeight: 900, textAlign: 'right', color: mensalVal > 0 ? t.accent : 'rgba(255,255,255,0.2)' }}>
+                      {mensalVal > 0 ? fmtClean(mensalVal) : '0'}
+                    </span>
+                    <span style={{ fontSize: 20, fontWeight: 900, textAlign: 'right', color: ytdVal > 0 ? '#fff' : 'rgba(255,255,255,0.2)' }}>
+                      {ytdVal > 0 ? fmtClean(ytdVal) : '0'}
+                    </span>
+                </div>
+              )
+            })}
+           </div>
       </div>
     </div>
   )
