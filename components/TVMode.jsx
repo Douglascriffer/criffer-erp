@@ -377,10 +377,10 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
               return (
                 <div key={reg} style={{ display: 'grid', gridTemplateColumns: '1fr 140px 140px', alignItems: 'center', padding: '10px 0', borderBottom: i < 5 ? `1px solid ${t.border}22` : 'none', color: '#fff' }}>
                     <span style={{ fontSize: 18, fontWeight: 800 }}>{reg}</span>
-                    <span style={{ fontSize: 20, fontWeight: 900, textAlign: 'right', color: mensalVal > 0 ? t.accent : 'rgba(255,255,255,0.2)' }}>
+                    <span style={{ fontSize: 20, fontWeight: 900, textAlign: 'right', color: '#fff', opacity: mensalVal > 0 ? 1 : 0.2 }}>
                       {mensalVal > 0 ? fmtClean(mensalVal) : '0'}
                     </span>
-                    <span style={{ fontSize: 20, fontWeight: 900, textAlign: 'right', color: ytdVal > 0 ? '#fff' : 'rgba(255,255,255,0.2)' }}>
+                    <span style={{ fontSize: 20, fontWeight: 900, textAlign: 'right', color: '#fff', opacity: ytdVal > 0 ? 1 : 0.2 }}>
                       {ytdVal > 0 ? fmtClean(ytdVal) : '0'}
                     </span>
                 </div>
