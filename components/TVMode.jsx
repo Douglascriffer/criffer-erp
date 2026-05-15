@@ -533,12 +533,13 @@ function SlideOrcamento({ data, mes, t, ultimoMes }) {
 }
 
 function KpiCardTV({ label, value, icon: Icon, color, t }) {
+  const cleanVal = fmt(value).replace('R$ ', '')
   return (
     <div style={{ background: t.card, borderRadius: 24, border: `1px solid ${t.border}`, padding: '30px 40px', display: 'flex', alignItems: 'center', gap: 30 }}>
       <div style={{ background: color, padding: 15, borderRadius: 16 }}> <Icon size={36} color="#fff" /> </div>
       <div>
          <p style={{ fontSize: 16, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>{label}</p>
-         <p style={{ fontSize: 36, fontWeight: 900, margin: 0 }}>{fmt(value)}</p>
+         <p style={{ fontSize: 36, fontWeight: 900, margin: 0 }}>{cleanVal}</p>
       </div>
     </div>
   )
