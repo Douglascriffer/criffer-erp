@@ -196,13 +196,19 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
 
   const pct = metaValor > 0 ? (total / metaValor) * 100 : 0
 
+  const totalYTD = useMemo(() => {
+    const subset = periodData2026.filter(p => p.mes <= ultimoMes)
+    return subset.reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao - Math.abs(p.devolucoes || 0)), 0)
+  }, [periodData2026, ultimoMes])
+
   return (
     <div className="slide-enter" style={{ display: 'flex', flexDirection: 'column', gap: 40, height: '100%' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 30 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 30 }}>
         <KpiCardTV label="VENDAS" value={v.vendas} icon={ShoppingCart} color={t.accent} t={t} />
         <KpiCardTV label="SERVIÇOS" value={v.servicos} icon={Wrench} color={t.accent} t={t} />
         <KpiCardTV label="LOCAÇÃO" value={v.locacao} icon={Key} color={t.accent} t={t} />
         <KpiCardTV label="DEVOLUÇÃO" value={v.devolucao} icon={RotateCcw} color={t.red} t={t} />
+        <KpiCardTV label="ACUMULADO ANO" value={totalYTD} icon={TrendingUp} color={t.accent} t={t} />
       </div>
       <div style={{ flex: 1, background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, display: 'flex', alignItems: 'center', padding: '0 60px', gap: 80 }}>
         <div style={{ flex: 1 }}>
