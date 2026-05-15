@@ -289,10 +289,7 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 20 }}>
                {Object.entries(regioesValores).sort((a, b) => b[1] - a[1]).map(([reg, val], i) => (
                  <div key={reg} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 15, borderBottom: i < 5 ? `1px solid ${t.border}` : 'none' }}>
-                   <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-                     <div style={{ width: 60, height: 50, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <IconeRegiao regiao={reg} size={50} />
-                     </div>
+                   <div style={{ display: 'flex', alignItems: 'center' }}>
                      <span style={{ fontSize: 22, fontWeight: 800, color: t.text, letterSpacing: 1 }}>{reg}</span>
                    </div>
                    <span style={{ fontSize: 28, fontWeight: 900, color: val > 0 ? '#fff' : t.textMuted }}>
