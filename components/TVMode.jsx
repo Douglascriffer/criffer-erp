@@ -341,59 +341,52 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
   const leftWidth = 250 + (regioesHistorico.meses.length * 115)
 
   const rowStyle = (i) => ({
-    display: 'flex',
+    display: 'grid',
+    gridTemplateColumns: `200px repeat(${regioesHistorico.meses.length}, 1fr) 140px`,
     alignItems: 'center',
-    height: 55,
-    padding: '0 15px',
+    height: 60,
+    padding: '0 20px',
     borderRadius: 12,
-    background: i % 2 === 0 ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.02)',
+    background: i % 2 === 0 ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.03)',
+    marginBottom: 5
   })
 
   return (
-    <div className="slide-enter" style={{ height: 520, display: 'grid', gridTemplateColumns: `${leftWidth}px 1fr`, gap: 60 }}>
+    <div className="slide-enter" style={{ height: 520, display: 'grid', gridTemplateColumns: `${leftWidth}px 1fr`, gap: 40 }}>
       
-      {/* Lado Esquerdo: DESEMPENHO POR REGIÃO (Cards por Mês) */}
-      <div style={{ display: 'flex', gap: 15 }}>
-          {/* Card de Regiões */}
-          <div style={{ background: t.card, borderRadius: 24, border: `1px solid ${t.border}`, padding: '30px 15px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-            <p style={{ fontSize: 11, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 20, textAlign: 'center' }}>Região</p>
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-               {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg], i) => (
-                 <div key={reg} style={rowStyle(i)}>
-                    <span style={{ fontSize: 17, fontWeight: 900, color: '#fff' }}>{reg}</span>
-                 </div>
-               ))}
-            </div>
+      {/* Lado Esquerdo: DESEMPENHO POR REGIÃO (Integrado Ponta a Ponta) */}
+      <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: '30px 20px', display: 'flex', flexDirection: 'column' }}>
+          <h3 style={{ fontSize: 24, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 25, letterSpacing: 2, textAlign: 'center' }}>
+            Desempenho por Região
+          </h3>
+          
+          {/* Cabeçalho */}
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: `200px repeat(${regioesHistorico.meses.length}, 1fr) 140px`, 
+            padding: '0 20px 15px', opacity: 0.6, color: '#fff' 
+          }}>
+            <span style={{ fontSize: 12, fontWeight: 900 }}>REGIÃO</span>
+            {regioesHistorico.meses.map(m => (
+              <span key={m} style={{ fontSize: 12, fontWeight: 900, textAlign: 'right', borderLeft: '1px solid rgba(255,255,255,0.1)', paddingRight: 10 }}>{nomesMesesReduzidos[m-1]}</span>
+            ))}
+            <span style={{ fontSize: 12, fontWeight: 900, textAlign: 'right', borderLeft: '1px solid rgba(255,255,255,0.1)', color: t.accent }}>TOTAL</span>
           </div>
 
-          {/* Cards dos Meses */}
-          {regioesHistorico.meses.map(m => (
-            <div key={m} style={{ background: 'rgba(255,255,255,0.03)', borderRadius: 24, border: `1px solid ${t.border}`, padding: '30px 10px', width: 105, display: 'flex', flexDirection: 'column' }}>
-               <p style={{ fontSize: 11, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 20, textAlign: 'center' }}>{nomesMesesReduzidos[m-1]}</p>
-               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg, vals], i) => (
-                    <div key={reg} style={{ ...rowStyle(i), justifyContent: 'flex-end' }}>
-                       <span style={{ fontSize: 16, fontWeight: 900, color: '#fff', opacity: vals[m] > 0 ? 1 : 0.2 }}>
-                         {vals[m] > 0 ? fmtClean(vals[m]) : '0'}
-                       </span>
-                    </div>
-                  ))}
-               </div>
-            </div>
-          ))}
-
-          {/* Card Total */}
-          <div style={{ background: 'rgba(255,106,34,0.05)', borderRadius: 24, border: `1px solid ${t.accent}44`, padding: '30px 15px', width: 140, display: 'flex', flexDirection: 'column' }}>
-            <p style={{ fontSize: 11, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 20, textAlign: 'center' }}>Total</p>
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-               {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg, vals], i) => (
-                 <div key={reg} style={{ ...rowStyle(i), justifyContent: 'flex-end' }}>
-                    <span style={{ fontSize: 19, fontWeight: 900, color: t.accent }}>
-                      {fmtClean(vals.total)}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            {Object.entries(regioesHistorico.data).sort((a, b) => b[1].total - a[1].total).map(([reg, vals], i) => (
+              <div key={reg} style={rowStyle(i)}>
+                  <span style={{ fontSize: 18, fontWeight: 900, color: '#fff' }}>{reg}</span>
+                  {regioesHistorico.meses.map(m => (
+                    <span key={m} style={{ fontSize: 17, fontWeight: 900, textAlign: 'right', color: '#fff', opacity: vals[m] > 0 ? 1 : 0.2, borderLeft: '1px solid rgba(255,255,255,0.05)', paddingRight: 10, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                      {vals[m] > 0 ? fmtClean(vals[m]) : '0'}
                     </span>
-                 </div>
-               ))}
-            </div>
+                  ))}
+                  <span style={{ fontSize: 20, fontWeight: 900, textAlign: 'right', color: t.accent, borderLeft: '1px solid rgba(255,255,255,0.05)', paddingRight: 10, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                    {fmtClean(vals.total)}
+                  </span>
+              </div>
+            ))}
           </div>
       </div>
 
