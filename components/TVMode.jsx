@@ -445,21 +445,15 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
             background: t.card, 
             borderRadius: 32, 
             border: `2px solid ${t.border}`, 
-            padding: '40px 20px',
+            padding: '50px 20px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             position: 'relative',
           }}>
-            {/* Total no Topo */}
-            <div style={{ marginBottom: 25, textAlign: 'center' }}>
-                <p style={{ fontSize: 12, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0, letterSpacing: 1.5 }}>Total Acumulado</p>
-                <p style={{ fontSize: 32, fontWeight: 900, color: t.accent, margin: 0 }}>{fmtClean(s.total)}</p>
-            </div>
-
-            {/* Foto */}
+            {/* Foto no Topo */}
             <div style={{ 
-              width: 150, height: 150, borderRadius: '50%', 
+              width: 160, height: 160, borderRadius: '50%', 
               border: `4px solid ${t.border}`,
               overflow: 'hidden', marginBottom: 25,
               background: '#1a1a24',
@@ -476,24 +470,32 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
 
             {/* Nome */}
             <h4 style={{ 
-              fontSize: 20, fontWeight: 900, textAlign: 'center', 
-              margin: '0 0 25px', color: '#fff', 
+              fontSize: 22, fontWeight: 900, textAlign: 'center', 
+              margin: '0 0 30px', color: '#fff', 
               textTransform: 'uppercase', letterSpacing: 1,
               height: 50, display: 'flex', alignItems: 'center', justifyContent: 'center'
             }}>
               {s.name.split(' ').slice(0, 2).join(' ')}
             </h4>
 
-            {/* Histórico Mensal */}
-            <div style={{ width: '100%', background: 'rgba(255,255,255,0.03)', borderRadius: 20, padding: '20px 15px' }}>
+            {/* Histórico Mensal + TOTAL */}
+            <div style={{ width: '100%', background: 'rgba(255,255,255,0.03)', borderRadius: 24, padding: '25px 20px' }}>
                 {[1, 2, 3, 4].map(m => (
-                  <div key={m} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: m < 4 ? 10 : 0, borderBottom: m < 4 ? '1px solid rgba(255,255,255,0.05)' : 'none', paddingBottom: m < 4 ? 10 : 0 }}>
-                    <span style={{ fontSize: 13, fontWeight: 900, color: t.textMuted }}>{mesesAbreviados[m-1]}</span>
-                    <span style={{ fontSize: 16, fontWeight: 900, color: '#fff', opacity: s.meses[m] > 0 ? 1 : 0.2 }}>
+                  <div key={m} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: 12 }}>
+                    <span style={{ fontSize: 14, fontWeight: 900, color: t.textMuted }}>{mesesAbreviados[m-1]}</span>
+                    <span style={{ fontSize: 18, fontWeight: 900, color: '#fff', opacity: s.meses[m] > 0 ? 1 : 0.2 }}>
                       {s.meses[m] > 0 ? fmtClean(s.meses[m]) : '0'}
                     </span>
                   </div>
                 ))}
+                
+                {/* Linha do TOTAL abaixo de Abril */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 15, paddingTop: 5 }}>
+                  <span style={{ fontSize: 16, fontWeight: 900, color: t.accent, textTransform: 'uppercase' }}>TOTAL</span>
+                  <span style={{ fontSize: 24, fontWeight: 900, color: t.accent }}>
+                    {fmtClean(s.total)}
+                  </span>
+                </div>
             </div>
           </div>
         ))}
