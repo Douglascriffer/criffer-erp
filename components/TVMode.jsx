@@ -380,11 +380,11 @@ function SlideMapa({ data, mes, t, ultimoMes }) {
               <div key={reg} style={rowStyle(i)}>
                   <span style={{ fontSize: 18, fontWeight: 900, color: '#fff' }}>{reg}</span>
                   {regioesHistorico.meses.map(m => (
-                    <span key={m} style={{ fontSize: 17, fontWeight: 900, textAlign: 'right', color: '#fff', opacity: vals[m] > 0 ? 1 : 0.2, borderLeft: '1px solid rgba(255,255,255,0.05)', paddingRight: 10, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                    <span key={m} style={{ fontSize: 18, fontWeight: 900, textAlign: 'right', color: '#fff', opacity: vals[m] > 0 ? 1 : 0.2, borderLeft: '1px solid rgba(255,255,255,0.05)', paddingRight: 10, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
                       {vals[m] > 0 ? fmtClean(vals[m]) : '0'}
                     </span>
                   ))}
-                  <span style={{ fontSize: 20, fontWeight: 900, textAlign: 'right', color: t.accent, borderLeft: '1px solid rgba(255,255,255,0.05)', paddingRight: 45, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                  <span style={{ fontSize: 18, fontWeight: 900, textAlign: 'right', color: t.accent, borderLeft: '1px solid rgba(255,255,255,0.05)', paddingRight: 45, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
                     {fmtClean(vals.total)}
                   </span>
               </div>
