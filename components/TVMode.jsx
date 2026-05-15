@@ -451,11 +451,6 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
             alignItems: 'center',
             position: 'relative',
           }}>
-            {/* Rank Badge */}
-            <div style={{ position: 'absolute', top: 15, right: 15, fontSize: 14, fontWeight: 900, color: t.accent, opacity: 0.5 }}>
-              #{range[0] + i + 1}
-            </div>
-
             {/* Total no Topo */}
             <div style={{ marginBottom: 20, textAlign: 'center' }}>
                 <p style={{ fontSize: 10, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0, letterSpacing: 1 }}>Total</p>
