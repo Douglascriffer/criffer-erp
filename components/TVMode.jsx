@@ -38,7 +38,8 @@ const PHOTO_MAP = {
   'Gabriel Medeiros': '/vendedores/Gabriel Medeiros.jpg',
   'Josiane Govoni Lanzarini': '/vendedores/Josiane Govoni Lanzarini.jpg',
   'Rogislei Vieira Padilha': '/vendedores/Rogislei Vieira Padilha.jpg',
-  'Vanessa Ferreira': '/vendedores/Vanessa Ferreira.jpg'
+  'Vanessa Ferreira': '/vendedores/Vanessa Ferreira.jpg',
+  'Mercado Livre': '/mercado-livre.png'
 }
 
 const PHOTO_POSITION_MAP = {
@@ -463,8 +464,11 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
               width: '100%', 
               height: 250, 
               overflow: 'hidden',
-              background: '#1a1a24',
-              position: 'relative'
+              background: s.name === 'Mercado Livre' ? '#FFE600' : '#1a1a24',
+              position: 'relative',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}>
               {PHOTO_MAP[s.name] ? (
                 <img 
@@ -473,8 +477,9 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
                   style={{ 
                     width: '100%', 
                     height: '100%', 
-                    objectFit: 'cover',
-                    objectPosition: PHOTO_POSITION_MAP[s.name] || 'center center'
+                    objectFit: s.name === 'Mercado Livre' ? 'contain' : 'cover',
+                    objectPosition: PHOTO_POSITION_MAP[s.name] || 'center center',
+                    padding: s.name === 'Mercado Livre' ? 20 : 0
                   }} 
                 />
               ) : (
