@@ -42,9 +42,9 @@ const PHOTO_MAP = {
 }
 
 const PHOTO_POSITION_MAP = {
-  'Rogislei Vieira Padilha': 'center 10%',
-  'Gabriel Medeiros': 'center 10%',
-  'Gabriel Dias': 'center 15%'
+  'Rogislei Vieira Padilha': 'center 22%',
+  'Gabriel Medeiros': 'center 22%',
+  'Gabriel Dias': 'center 20%'
 }
 
 export default function TVMode({ data, mes = 'all' }) {
