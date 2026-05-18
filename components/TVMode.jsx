@@ -439,7 +439,7 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
 
   return (
     <div className="slide-enter" style={{ height: 650, display: 'flex', alignItems: 'center' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${vendedorasData.length}, 1fr)`, gap: 20, width: '100%' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${vendedorasData.length}, 1fr)`, gap: 20, width: '100%', height: 580 }}>
         {vendedorasData.map((s, i) => (
           <div key={s.name} style={{ 
             background: t.card, 
@@ -449,7 +449,8 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
             flexDirection: 'column',
             alignItems: 'stretch',
             position: 'relative',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            height: '100%'
           }}>
             {/* Foto no Topo */}
             <div style={{ 
