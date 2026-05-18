@@ -438,8 +438,8 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
   const mesesAbreviados = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
 
   return (
-    <div className="slide-enter" style={{ height: 680, display: 'flex', alignItems: 'center' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${vendedorasData.length}, 1fr)`, gap: 20, width: '100%', height: 655 }}>
+    <div className="slide-enter" style={{ height: 680, display: 'flex', alignItems: 'flex-start', paddingTop: 0 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${vendedorasData.length}, 1fr)`, gap: 20, width: '100%', height: 665 }}>
         {vendedorasData.map((s, i) => (
           <div key={s.name} style={{ 
             background: t.card, 
