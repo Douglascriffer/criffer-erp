@@ -445,19 +445,19 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
             background: t.card, 
             borderRadius: 32, 
             border: `2px solid ${t.border}`, 
-            padding: '50px 20px',
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            alignItems: 'stretch',
             position: 'relative',
+            overflow: 'hidden'
           }}>
             {/* Foto no Topo */}
             <div style={{ 
-              width: 160, height: 160, borderRadius: '50%', 
-              border: `4px solid ${t.border}`,
-              overflow: 'hidden', marginBottom: 25,
+              width: '100%', 
+              height: 250, 
+              overflow: 'hidden',
               background: '#1a1a24',
-              boxShadow: `0 10px 30px rgba(0,0,0,0.5)`
+              position: 'relative'
             }}>
               {PHOTO_MAP[s.name] ? (
                 <img src={PHOTO_MAP[s.name]} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -468,18 +468,31 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
               )}
             </div>
 
-            {/* Nome */}
-            <h4 style={{ 
-              fontSize: 18, fontWeight: 900, textAlign: 'center', 
-              margin: '0 0 30px', color: '#fff', 
-              textTransform: 'uppercase', letterSpacing: 1,
-              height: 50, display: 'flex', alignItems: 'center', justifyContent: 'center'
+            {/* Faixa de Nome */}
+            <div style={{ 
+              background: '#000000', 
+              padding: '15px 10px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              borderBottom: `1px solid ${t.border}`
             }}>
-              {s.name.split(' ').slice(0, 2).join(' ')}
-            </h4>
+              <h4 style={{ 
+                fontSize: 18, 
+                fontWeight: 900, 
+                textAlign: 'center', 
+                margin: 0, 
+                color: '#fff', 
+                textTransform: 'uppercase', 
+                letterSpacing: 1 
+              }}>
+                {s.name.split(' ').slice(0, 2).join(' ')}
+              </h4>
+            </div>
 
             {/* Histórico Mensal + TOTAL */}
-            <div style={{ width: '100%', background: 'rgba(255,255,255,0.03)', borderRadius: 24, padding: '25px 20px' }}>
+            <div style={{ padding: '20px 20px 25px 20px', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center' }}>
+              <div style={{ width: '100%', background: 'rgba(255,255,255,0.03)', borderRadius: 24, padding: '25px 20px' }}>
                 {[1, 2, 3, 4].map(m => (
                   <div key={m} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: 12 }}>
                     <span style={{ fontSize: 18, fontWeight: 900, color: t.textMuted }}>{mesesAbreviados[m-1]}</span>
@@ -496,6 +509,7 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
                     {fmtClean(s.total)}
                   </span>
                 </div>
+              </div>
             </div>
           </div>
         ))}
