@@ -41,6 +41,12 @@ const PHOTO_MAP = {
   'Vanessa Ferreira': '/vendedores/Vanessa Ferreira.jpg'
 }
 
+const PHOTO_POSITION_MAP = {
+  'Rogislei Vieira Padilha': 'center 10%',
+  'Gabriel Medeiros': 'center 10%',
+  'Gabriel Dias': 'center 15%'
+}
+
 export default function TVMode({ data, mes = 'all' }) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [progress, setProgress] = useState(0)
@@ -461,7 +467,16 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
               position: 'relative'
             }}>
               {PHOTO_MAP[s.name] ? (
-                <img src={PHOTO_MAP[s.name]} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img 
+                  src={PHOTO_MAP[s.name]} 
+                  alt={s.name} 
+                  style={{ 
+                    width: '100%', 
+                    height: '100%', 
+                    objectFit: 'cover',
+                    objectPosition: PHOTO_POSITION_MAP[s.name] || 'center center'
+                  }} 
+                />
               ) : (
                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 60, fontWeight: 900, opacity: 0.2 }}>
                   {s.name.charAt(0)}
