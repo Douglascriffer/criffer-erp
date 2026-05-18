@@ -466,7 +466,7 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
               width: '100%', 
               height: 250, 
               overflow: 'hidden',
-              background: s.name === 'Mercado Livre' ? '#FFE600' : s.name === 'Site' ? '#FF6A22' : '#1a1a24',
+              background: s.name === 'Mercado Livre' ? '#FFE600' : s.name === 'Site' ? '#ED6E2A' : '#1a1a24',
               position: 'relative',
               display: 'flex',
               alignItems: 'center',
