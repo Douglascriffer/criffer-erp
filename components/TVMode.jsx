@@ -39,7 +39,8 @@ const PHOTO_MAP = {
   'Josiane Govoni Lanzarini': '/vendedores/Josiane Govoni Lanzarini.jpg',
   'Rogislei Vieira Padilha': '/vendedores/Rogislei Vieira Padilha.jpg',
   'Vanessa Ferreira': '/vendedores/Vanessa Ferreira.jpg',
-  'Mercado Livre': '/mercado-livre.png'
+  'Mercado Livre': '/mercado-livre.png',
+  'Site': '/logo-site.png'
 }
 
 const PHOTO_POSITION_MAP = {
@@ -465,7 +466,7 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
               width: '100%', 
               height: 250, 
               overflow: 'hidden',
-              background: s.name === 'Mercado Livre' ? '#FFE600' : '#1a1a24',
+              background: s.name === 'Mercado Livre' ? '#FFE600' : s.name === 'Site' ? '#FF6A22' : '#1a1a24',
               position: 'relative',
               display: 'flex',
               alignItems: 'center',
@@ -478,9 +479,9 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
                   style={{ 
                     width: '100%', 
                     height: '100%', 
-                    objectFit: s.name === 'Mercado Livre' ? 'contain' : 'cover',
+                    objectFit: (s.name === 'Mercado Livre' || s.name === 'Site') ? 'contain' : 'cover',
                     objectPosition: PHOTO_POSITION_MAP[s.name] || 'center center',
-                    padding: s.name === 'Mercado Livre' ? 20 : 0
+                    padding: s.name === 'Mercado Livre' ? 20 : s.name === 'Site' ? 25 : 0
                   }} 
                 />
               ) : (
