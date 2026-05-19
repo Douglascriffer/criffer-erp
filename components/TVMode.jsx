@@ -46,11 +46,12 @@ const PHOTO_MAP = {
 }
 
 const PHOTO_POSITION_MAP = {
-  'Rogislei Vieira Padilha': 'center 34%',
+  'Rogislei Vieira Padilha': 'center 30%',
   'Gabriel Dias': 'center 30%',
   'Vanessa Ferreira': 'center 30%',
   'Gabriel Medeiros': 'center 15%',
-  'Josiane Govoni Lanzarini': 'center 15%'
+  'Josiane Govoni Lanzarini': 'center 15%',
+  'Gabriel Ferreira dos Santos': 'center 46%'
 }
 
 export default function TVMode({ data, mes = 'all' }) {
