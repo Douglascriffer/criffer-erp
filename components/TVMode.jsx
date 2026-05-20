@@ -609,7 +609,7 @@ function SlideMetas({ data, mes, t, ultimoMes }) {
                   <LabelList 
                     dataKey="real" 
                     position="insideRight" 
-                    formatter={(val) => fmt(val)} 
+                    formatter={(val) => fmt(val).replace('R$ ', '')} 
                     style={{ fill: '#000', fontWeight: 900, fontSize: 11 }} 
                     offset={8}
                   />
@@ -618,7 +618,7 @@ function SlideMetas({ data, mes, t, ultimoMes }) {
                   <LabelList 
                     dataKey="meta" 
                     position="insideRight" 
-                    formatter={(val) => fmt(val)} 
+                    formatter={(val) => fmt(val).replace('R$ ', '')} 
                     style={{ fill: '#fff', fontWeight: 900, fontSize: 11 }} 
                     offset={8}
                   />
