@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
   ResponsiveContainer, LineChart, Line, AreaChart, Area, 
-  ComposedChart, Cell, PieChart, Pie
+  ComposedChart, Cell, PieChart, Pie, LabelList
 } from 'recharts'
 import { 
   TrendingUp, Target, Map as MapIcon, Users, 
@@ -593,14 +593,10 @@ function SlideMetas({ data, mes, t, ultimoMes }) {
 
          <div style={{ flex: 1, minHeight: 300, width: '100%' }}>
            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={hist} layout="vertical" margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={t.border} />
+              <BarChart data={hist} layout="vertical" margin={{ top: 10, right: 15, left: 10, bottom: 0 }}>
                 <XAxis 
                   type="number"
-                  axisLine={false} 
-                  tickLine={false} 
-                  tickFormatter={(val) => val >= 1000000 ? `R$ ${(val/1000000).toFixed(1)}M` : val >= 1000 ? `R$ ${(val/1000).toFixed(0)}k` : val} 
-                  tick={{ fill: t.textMuted || '#888', fontSize: 12, fontWeight: 900 }} 
+                  hide
                 />
                 <YAxis 
                   type="category"
@@ -609,8 +605,24 @@ function SlideMetas({ data, mes, t, ultimoMes }) {
                   tickLine={false} 
                   tick={{ fill: '#fff', fontSize: 14, fontWeight: 900 }} 
                 />
-                <Bar dataKey="real" fill={t.accent} radius={[0, 6, 6, 0]} barSize={16} />
-                <Bar dataKey="meta" fill="rgba(255,255,255,0.3)" radius={[0, 6, 6, 0]} barSize={16} />
+                <Bar dataKey="real" fill={t.accent} radius={[0, 6, 6, 0]} barSize={20}>
+                  <LabelList 
+                    dataKey="real" 
+                    position="insideRight" 
+                    formatter={(val) => fmt(val)} 
+                    style={{ fill: '#000', fontWeight: 900, fontSize: 11 }} 
+                    offset={8}
+                  />
+                </Bar>
+                <Bar dataKey="meta" fill="rgba(255,255,255,0.3)" radius={[0, 6, 6, 0]} barSize={20}>
+                  <LabelList 
+                    dataKey="meta" 
+                    position="insideRight" 
+                    formatter={(val) => fmt(val)} 
+                    style={{ fill: '#fff', fontWeight: 900, fontSize: 11 }} 
+                    offset={8}
+                  />
+                </Bar>
               </BarChart>
            </ResponsiveContainer>
          </div>
