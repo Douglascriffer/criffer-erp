@@ -64,8 +64,7 @@ export default function TVMode({ data, mes = 'all' }) {
     { id: 'mapa', title: 'Expansão Regional', subtitle: 'Distribuição Geográfica de Vendas' },
     { id: 'vendedores-1', title: 'Time Comercial (1/2)', subtitle: 'Lideranças de Vendas' },
     { id: 'vendedores-2', title: 'Time Comercial (2/2)', subtitle: 'Performance de Equipe' },
-    { id: 'metas', title: 'Metas Estratégicas 2026', subtitle: 'Acompanhamento de Objetivos' },
-    { id: 'fluxo', title: 'Fluxo de Caixa', subtitle: 'Disponibilidade e Movimentação' }
+    { id: 'metas', title: 'Metas Estratégicas 2026', subtitle: 'Acompanhamento de Objetivos' }
   ]
 
     const SLIDE_DURATION = 4000; // 4 segundos
@@ -150,7 +149,6 @@ export default function TVMode({ data, mes = 'all' }) {
         {currentSlide === 2 && <SlideVendedores data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} range={[0, 6]} />}
         {currentSlide === 3 && <SlideVendedores data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} range={[6, 12]} />}
         {currentSlide === 4 && <SlideMetas data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
-        {currentSlide === 5 && <SlideFluxo data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
       </div>
 
       <div style={{ padding: '20px 60px', background: 'rgba(255,106,34,0.05)', borderTop: `1px solid ${t.border}`, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
@@ -753,72 +751,4 @@ function KpiCardTV({ label, value, icon: Icon, color, t }) {
   )
 }
 
-function SlideFluxo({ data, mes, t, ultimoMes }) {
-  const curMes = mes === 'all' ? ultimoMes : parseInt(mes)
-  const m = data?.fluxo?.mensal?.[String(curMes)] || data?.fluxo?.mensal?.[curMes] || {}
-  
-  const chartData = useMemo(() => {
-    if (!data?.fluxo?.mensal) return []
-    return Object.entries(data.fluxo.mensal)
-      .map(([m, val]) => ({
-        name: MESES_LABELS[parseInt(m)-1].substring(0, 3).toUpperCase(),
-        monthNum: parseInt(m),
-        saldo: val.saldo_final?.real || 0,
-        entradas: val.total_entradas?.real || 0,
-        saidas: Math.abs(val.total_saidas?.real || 0)
-      }))
-      .filter(d => d.monthNum <= (mes === 'all' ? ultimoMes : parseInt(mes)))
-  }, [data, mes, ultimoMes])
-
-  const kpis = [
-    { label: 'Saldo Inicial', val: m.saldo_inicial?.real || 0, icon: Wallet, color: '#fff' },
-    { label: 'Entradas', val: m.total_entradas?.real || 0, icon: ArrowUpRight, color: t.green },
-    { label: 'Saídas', val: Math.abs(m.total_saidas?.real || 0), icon: ArrowDownRight, color: t.red },
-    { label: 'Geração de Caixa', val: m.geracao_caixa?.real || 0, icon: Activity, color: t.accent },
-    { label: 'Disponibilidade Final', val: m.saldo_final?.real || 0, icon: DollarSign, color: t.accent }
-  ]
-
-  return (
-    <div className="slide-enter" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 30 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 20 }}>
-        {kpis.map((k, i) => (
-          <div key={i} style={{ 
-            background: t.card, borderRadius: 24, border: `1px solid ${t.border}`, 
-            padding: 30, display: 'flex', flexDirection: 'column', gap: 10,
-            boxShadow: i === 4 ? `0 0 30px ${t.accent}33` : 'none',
-            borderColor: i === 4 ? t.accent : t.border
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-               <k.icon size={20} color={k.color} />
-               <span style={{ fontSize: 14, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>{k.label}</span>
-            </div>
-            <p style={{ fontSize: 32, fontWeight: 900, color: k.color, margin: 0 }}>{fmt(k.val)}</p>
-          </div>
-        ))}
-      </div>
-
-      <div style={{ flex: 1, background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 40, display: 'flex', flexDirection: 'column' }}>
-        <h3 style={{ fontSize: 24, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 30, letterSpacing: 2 }}>Tendência de Disponibilidade</h3>
-        <div style={{ flex: 1 }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={chartData}>
-              <defs>
-                <linearGradient id="colorSaldo" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor={t.accent} stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor={t.accent} stopOpacity={0}/>
-                </linearGradient>
-              </defs>
-              <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: t.textMuted, fontSize: 14, fontWeight: 900 }} />
-              <YAxis hide />
-              <Tooltip 
-                contentStyle={{ background: '#000', border: `1px solid ${t.accent}`, borderRadius: 12 }}
-                itemStyle={{ color: '#fff', fontSize: 16, fontWeight: 900 }}
-              />
-              <Area type="monotone" dataKey="saldo" stroke={t.accent} strokeWidth={4} fillOpacity={1} fill="url(#colorSaldo)" />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-    </div>
-  )
-}
+// Slide de Fluxo de Caixa Removido
