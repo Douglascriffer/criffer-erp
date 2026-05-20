@@ -65,7 +65,6 @@ export default function TVMode({ data, mes = 'all' }) {
     { id: 'vendedores-1', title: 'Time Comercial (1/2)', subtitle: 'Lideranças de Vendas' },
     { id: 'vendedores-2', title: 'Time Comercial (2/2)', subtitle: 'Performance de Equipe' },
     { id: 'metas', title: 'Metas Estratégicas 2026', subtitle: 'Acompanhamento de Objetivos' },
-    { id: 'orcamento', title: 'Saúde Financeira', subtitle: 'Resultado Operacional e Gastos' },
     { id: 'fluxo', title: 'Fluxo de Caixa', subtitle: 'Disponibilidade e Movimentação' }
   ]
 
@@ -151,8 +150,7 @@ export default function TVMode({ data, mes = 'all' }) {
         {currentSlide === 2 && <SlideVendedores data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} range={[0, 6]} />}
         {currentSlide === 3 && <SlideVendedores data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} range={[6, 12]} />}
         {currentSlide === 4 && <SlideMetas data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
-        {currentSlide === 5 && <SlideOrcamento data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
-        {currentSlide === 6 && <SlideFluxo data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
+        {currentSlide === 5 && <SlideFluxo data={data} mes={mes} t={t} ultimoMes={ultimoMesRealizado} />}
       </div>
 
       <div style={{ padding: '20px 60px', background: 'rgba(255,106,34,0.05)', borderTop: `1px solid ${t.border}`, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
@@ -740,31 +738,7 @@ function SlideMetas({ data, mes, t, ultimoMes }) {
   )
 }
 
-function SlideOrcamento({ data, mes, t, ultimoMes }) {
-  const targetMes = mes === 'all' ? ultimoMes : Number(mes)
-  const f = data?.fluxo?.mensal?.[String(targetMes)] || {}
-  
-  return (
-    <div className="slide-enter" style={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 40 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, flex: 1 }}>
-         <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: 60, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
-            <h4 style={{ fontSize: 28, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 20 }}>Resultado Operacional</h4>
-            <p style={{ fontSize: 110, fontWeight: 900, color: (f.geracao_caixa?.real || 0) >= 0 ? t.green : t.red, margin: 0 }}>{fmt(f.geracao_caixa?.real || 0)}</p>
-         </div>
-         <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
-            <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 50, flex: 1 }}>
-               <p style={{ fontSize: 20, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>Receitas Líquidas (Mês)</p>
-               <p style={{ fontSize: 56, fontWeight: 900, color: '#fff', margin: 0 }}>{fmt(f.entradas?.real || 0)}</p>
-            </div>
-            <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 50, flex: 1 }}>
-               <p style={{ fontSize: 20, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>Saídas Totais (Mês)</p>
-               <p style={{ fontSize: 56, fontWeight: 900, color: t.red, margin: 0 }}>{fmt(Math.abs(f.total_saidas?.real || 0))}</p>
-            </div>
-         </div>
-      </div>
-    </div>
-  )
-}
+// Slide de Orçamento Removido
 
 function KpiCardTV({ label, value, icon: Icon, color, t }) {
   const cleanVal = fmt(value).replace('R$ ', '')
