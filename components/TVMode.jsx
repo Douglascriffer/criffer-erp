@@ -557,36 +557,175 @@ function SlideMetas({ data, mes, t, ultimoMes }) {
   const totalReal = hist.reduce((acc, h) => acc + h.real, 0)
   const totalMeta = hist.reduce((acc, h) => acc + h.meta, 0)
   const gap = Math.max(0, totalMeta - totalReal)
+  const surplus = Math.max(0, totalReal - totalMeta)
+  const perfPct = totalMeta > 0 ? (totalReal / totalMeta) * 100 : 0
+  const perfColor = totalReal >= totalMeta ? t.green : perfPct >= 90 ? '#ffb703' : t.red
 
   return (
-    <div className="slide-enter" style={{ height: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40 }}>
-      <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 50 }}>
-         <h3 style={{ fontSize: 24, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 40 }}>Evolução Mensal</h3>
-         <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={hist}>
-              <defs>
-                <linearGradient id="colorReal" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor={t.accent} stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor={t.accent} stopOpacity={0}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={t.border} />
-              <XAxis dataKey="mes" axisLine={false} tickLine={false} tick={{ fill: '#fff', fontSize: 18, fontWeight: 900 }} />
-              <Area type="monotone" dataKey="real" stroke={t.accent} strokeWidth={4} fillOpacity={1} fill="url(#colorReal)" />
-              <Line type="monotone" dataKey="meta" stroke="rgba(255,255,255,0.4)" strokeWidth={2} strokeDasharray="5 5" />
-            </AreaChart>
-         </ResponsiveContainer>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
-         <div style={{ background: t.accent, borderRadius: 32, padding: 50, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <p style={{ fontSize: 20, fontWeight: 900, color: 'rgba(0,0,0,0.5)', textTransform: 'uppercase', margin: 0 }}>Gap para Objetivo</p>
-            <p style={{ fontSize: 80, fontWeight: 900, color: '#000', margin: 0 }}>{fmt(gap)}</p>
+    <div className="slide-enter" style={{ height: '100%', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 40 }}>
+      {/* Coluna do Gráfico */}
+      <div style={{ 
+        background: t.card, 
+        borderRadius: 32, 
+        border: `1.5px solid ${t.border}`, 
+        padding: '40px 50px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+      }}>
+         <div>
+           <h3 style={{ fontSize: 24, fontWeight: 900, color: '#fff', textTransform: 'uppercase', marginBottom: 12, letterSpacing: 1.5 }}>
+             Evolução Mensal (Real vs Meta)
+           </h3>
+           
+           {/* Legenda Customizada */}
+           <div style={{ display: 'flex', gap: 24, marginBottom: 30 }}>
+             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+               <div style={{ width: 14, height: 14, borderRadius: 4, background: t.accent }} />
+               <span style={{ fontSize: 13, fontWeight: 900, color: '#fff', textTransform: 'uppercase', letterSpacing: 0.5 }}>Faturamento Realizado</span>
+             </div>
+             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+               <div style={{ width: 14, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.4)' }} />
+               <span style={{ fontSize: 13, fontWeight: 900, color: t.textMuted || '#888', textTransform: 'uppercase', letterSpacing: 0.5 }}>Meta Planejada</span>
+             </div>
+           </div>
          </div>
-         <div style={{ background: t.card, borderRadius: 32, border: `1px solid ${t.border}`, padding: 50, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <p style={{ fontSize: 20, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>Performance Acumulada</p>
-            <p style={{ fontSize: 80, fontWeight: 900, color: totalReal >= totalMeta ? t.green : t.red, margin: 0 }}>
-              {totalMeta > 0 ? ((totalReal / totalMeta) * 100).toFixed(1) : 0}%
-            </p>
+
+         <div style={{ flex: 1, minHeight: 300, width: '100%' }}>
+           <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={hist} margin={{ top: 10, right: 10, left: 15, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="colorReal" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor={t.accent} stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor={t.accent} stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={t.border} />
+                <XAxis 
+                  dataKey="mes" 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tick={{ fill: '#fff', fontSize: 14, fontWeight: 900 }} 
+                />
+                <YAxis 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tickFormatter={(val) => val >= 1000000 ? `R$ ${(val/1000000).toFixed(1)}M` : val >= 1000 ? `R$ ${(val/1000).toFixed(0)}k` : val} 
+                  tick={{ fill: t.textMuted || '#888', fontSize: 12, fontWeight: 900 }} 
+                />
+                <Area type="monotone" dataKey="real" stroke={t.accent} strokeWidth={4} fillOpacity={1} fill="url(#colorReal)" />
+                <Line type="monotone" dataKey="meta" stroke="rgba(255,255,255,0.4)" strokeWidth={2} strokeDasharray="5 5" dot={false} />
+              </AreaChart>
+           </ResponsiveContainer>
+         </div>
+      </div>
+
+      {/* Grid de KPIs à direita */}
+      <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: 24 }}>
+         {/* Linha 1 */}
+         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+            {/* Card 1: Faturamento Realizado */}
+            <div style={{ 
+              background: t.card, 
+              borderRadius: 24, 
+              border: `1px solid ${t.border}`, 
+              padding: 30,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                <TrendingUp size={20} color={t.accent} />
+                <span style={{ fontSize: 14, fontWeight: 900, color: t.textMuted || '#888', textTransform: 'uppercase', letterSpacing: 1 }}>Faturado</span>
+              </div>
+              <p style={{ fontSize: 36, fontWeight: 900, color: '#fff', margin: 0 }}>{fmt(totalReal)}</p>
+            </div>
+
+            {/* Card 2: Meta Planejada */}
+            <div style={{ 
+              background: t.card, 
+              borderRadius: 24, 
+              border: `1px solid ${t.border}`, 
+              padding: 30,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                <Target size={20} color="#fff" />
+                <span style={{ fontSize: 14, fontWeight: 900, color: t.textMuted || '#888', textTransform: 'uppercase', letterSpacing: 1 }}>Meta Planejada</span>
+              </div>
+              <p style={{ fontSize: 36, fontWeight: 900, color: '#fff', margin: 0 }}>{fmt(totalMeta)}</p>
+            </div>
+         </div>
+
+         {/* Linha 2 */}
+         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+            {/* Card 3: Performance Acumulada */}
+            <div style={{ 
+              background: t.card, 
+              borderRadius: 24, 
+              border: `1px solid ${t.border}`, 
+              padding: 24,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}>
+              <span style={{ fontSize: 13, fontWeight: 900, color: t.textMuted || '#888', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Performance</span>
+              <p style={{ fontSize: 36, fontWeight: 900, color: perfColor, margin: 0 }}>
+                {perfPct.toFixed(1)}%
+              </p>
+              
+              {/* Barra de Progresso */}
+              <div style={{ 
+                width: '100%', 
+                height: 8, 
+                background: 'rgba(255,255,255,0.08)', 
+                borderRadius: 4, 
+                overflow: 'hidden',
+                marginTop: 12
+              }}>
+                <div style={{ 
+                  width: `${Math.min(100, perfPct)}%`, 
+                  height: '100%', 
+                  background: perfColor,
+                  borderRadius: 4,
+                  transition: 'width 1s ease-in-out'
+                }} />
+              </div>
+            </div>
+
+            {/* Card 4: Gap ou Superávit */}
+            <div style={{ 
+              background: totalReal >= totalMeta ? 'rgba(46, 204, 113, 0.08)' : 'rgba(255, 106, 34, 0.08)', 
+              borderRadius: 24, 
+              border: `1.5px solid ${totalReal >= totalMeta ? t.green : t.accent}`, 
+              padding: 24,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}>
+              <span style={{ 
+                fontSize: 13, 
+                fontWeight: 900, 
+                color: totalReal >= totalMeta ? t.green : t.accent, 
+                textTransform: 'uppercase', 
+                letterSpacing: 1,
+                marginBottom: 8 
+              }}>
+                {totalReal >= totalMeta ? 'Superávit Comercial' : 'Falta para a Meta'}
+              </span>
+              <p style={{ 
+                fontSize: 32, 
+                fontWeight: 900, 
+                color: totalReal >= totalMeta ? t.green : '#fff', 
+                margin: 0 
+              }}>
+                {totalReal >= totalMeta ? `+${fmt(surplus)}` : fmt(gap)}
+              </p>
+            </div>
          </div>
       </div>
     </div>
