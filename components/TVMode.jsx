@@ -47,8 +47,8 @@ const PHOTO_MAP = {
 
 const PHOTO_POSITION_MAP = {
   'Rogislei Vieira Padilha': 'center 15%',
-  'Gabriel Dias': 'center 15%',
-  'Vanessa Ferreira': 'center 15%',
+  'Gabriel Dias': 'center 25%',
+  'Vanessa Ferreira': 'center 25%',
   'Gabriel Medeiros': 'center 15%',
   'Josiane Govoni Lanzarini': 'center 15%',
   'Gabriel Ferreira dos Santos': 'center 20%'
