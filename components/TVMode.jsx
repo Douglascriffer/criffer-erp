@@ -585,7 +585,7 @@ function SlideMetas({ data, mes, t, ultimoMes }) {
                <span style={{ fontSize: 13, fontWeight: 900, color: '#fff', textTransform: 'uppercase', letterSpacing: 0.5 }}>Faturamento Realizado</span>
              </div>
              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-               <div style={{ width: 14, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.4)' }} />
+               <div style={{ width: 14, height: 14, borderRadius: 4, background: 'rgba(255,255,255,0.3)' }} />
                <span style={{ fontSize: 13, fontWeight: 900, color: t.textMuted || '#888', textTransform: 'uppercase', letterSpacing: 0.5 }}>Meta Planejada</span>
              </div>
            </div>
@@ -593,29 +593,25 @@ function SlideMetas({ data, mes, t, ultimoMes }) {
 
          <div style={{ flex: 1, minHeight: 300, width: '100%' }}>
            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={hist} margin={{ top: 10, right: 10, left: 15, bottom: 0 }}>
-                <defs>
-                  <linearGradient id="colorReal" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={t.accent} stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor={t.accent} stopOpacity={0}/>
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={t.border} />
+              <BarChart data={hist} layout="vertical" margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={t.border} />
                 <XAxis 
-                  dataKey="mes" 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fill: '#fff', fontSize: 14, fontWeight: 900 }} 
-                />
-                <YAxis 
+                  type="number"
                   axisLine={false} 
                   tickLine={false} 
                   tickFormatter={(val) => val >= 1000000 ? `R$ ${(val/1000000).toFixed(1)}M` : val >= 1000 ? `R$ ${(val/1000).toFixed(0)}k` : val} 
                   tick={{ fill: t.textMuted || '#888', fontSize: 12, fontWeight: 900 }} 
                 />
-                <Area type="monotone" dataKey="real" stroke={t.accent} strokeWidth={4} fillOpacity={1} fill="url(#colorReal)" />
-                <Line type="monotone" dataKey="meta" stroke="rgba(255,255,255,0.4)" strokeWidth={2} strokeDasharray="5 5" dot={false} />
-              </AreaChart>
+                <YAxis 
+                  type="category"
+                  dataKey="mes" 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tick={{ fill: '#fff', fontSize: 14, fontWeight: 900 }} 
+                />
+                <Bar dataKey="real" fill={t.accent} radius={[0, 6, 6, 0]} barSize={16} />
+                <Bar dataKey="meta" fill="rgba(255,255,255,0.3)" radius={[0, 6, 6, 0]} barSize={16} />
+              </BarChart>
            </ResponsiveContainer>
          </div>
       </div>
