@@ -4244,11 +4244,6 @@
             "real": 26305.040000000023,
             "categories": [
               {
-                "name": "0",
-                "orc": 448200.75666666665,
-                "real": 503085.16
-              },
-              {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 29935.9932,
                 "real": 20311.66
@@ -4924,11 +4919,6 @@
             "orc": 37784.11986666667,
             "real": 51423.42999999998,
             "categories": [
-              {
-                "name": "0",
-                "orc": 1748600.7566666666,
-                "real": 1801897.89
-              },
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 29935.9932,
@@ -5606,11 +5596,6 @@
             "real": -561188.23,
             "categories": [
               {
-                "name": "0",
-                "orc": 1048600.7566666666,
-                "real": 1163995.0
-              },
-              {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 44188.7932,
                 "real": 21826.789999999997
@@ -6286,11 +6271,6 @@
             "orc": 40025.51986666666,
             "real": -7202.150000000023,
             "categories": [
-              {
-                "name": "0",
-                "orc": 586600.7566666667,
-                "real": 143680.96000000002
-              },
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 32735.9932,
@@ -6968,11 +6948,6 @@
             "real": 0.0,
             "categories": [
               {
-                "name": "0",
-                "orc": 586600.7566666667,
-                "real": 0.0
-              },
-              {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 32735.9932,
                 "real": 0.0
@@ -7648,11 +7623,6 @@
             "orc": 40025.51986666666,
             "real": 0.0,
             "categories": [
-              {
-                "name": "0",
-                "orc": 586600.7566666667,
-                "real": 0.0
-              },
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 32735.9932,
@@ -8330,11 +8300,6 @@
             "real": 0.0,
             "categories": [
               {
-                "name": "0",
-                "orc": 591301.7566666667,
-                "real": 0.0
-              },
-              {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 32735.9932,
                 "real": 0.0
@@ -9010,11 +8975,6 @@
             "orc": 41283.469577777774,
             "real": 0.0,
             "categories": [
-              {
-                "name": "0",
-                "orc": 588436.7985666667,
-                "real": 0.0
-              },
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 33993.94291111111,
@@ -9692,11 +9652,6 @@
             "real": 0.0,
             "categories": [
               {
-                "name": "0",
-                "orc": 588436.7985666667,
-                "real": 0.0
-              },
-              {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 32993.77291111111,
                 "real": 0.0
@@ -10372,11 +10327,6 @@
             "orc": 40283.299577777776,
             "real": 0.0,
             "categories": [
-              {
-                "name": "0",
-                "orc": 588436.7985666667,
-                "real": 0.0
-              },
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 32993.77291111111,
@@ -11054,11 +11004,6 @@
             "real": 0.0,
             "categories": [
               {
-                "name": "0",
-                "orc": 588436.7985666667,
-                "real": 0.0
-              },
-              {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 32993.77291111111,
                 "real": 0.0
@@ -11734,11 +11679,6 @@
             "orc": 72049.63957777777,
             "real": 0.0,
             "categories": [
-              {
-                "name": "0",
-                "orc": 588036.7985666667,
-                "real": 0.0
-              },
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 32993.77291111111,

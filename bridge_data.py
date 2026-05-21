@@ -235,7 +235,12 @@ def process_excel():
                 
                 # Se encontrou um novo CC na coluna 0
                 if pd.notna(cc_candidate) and str(cc_candidate).strip() != "":
-                    current_cc = normalize_cc(cc_candidate)
+                    norm = normalize_cc(cc_candidate)
+                    if norm == "ADM":
+                        continue
+                    if norm != current_cc:
+                        current_cc = norm
+                        cc_rows = []
                     if current_cc == "Total Geral": break
                     
                 if not current_cc: continue
@@ -243,6 +248,8 @@ def process_excel():
                 # Coletar dados mensais para esta linha (categoria ou total)
                 if pd.notna(category) and str(category).strip() != "":
                     cat_name = str(category).strip()
+                    if cat_name in ["0", "0.0", ""]:
+                        continue
                     
                     monthly_values = []
                     for m in range(1, 13):
