@@ -35,7 +35,61 @@ function TipLinha({ active, payload, label, darkMode }) {
       ))}
     </div>
   )
-}export default function OrcamentoView({ mes='all', data, darkMode=false, viewType='dre' }) {
+}
+
+function getMacroCenter(centrosList) {
+  if (!centrosList || centrosList.length === 0) return null;
+
+  const totalOrc = centrosList.reduce((sum, c) => sum + (c.orc || 0), 0);
+  const totalReal = centrosList.reduce((sum, c) => sum + (c.real || 0), 0);
+
+  const categoryTotals = {};
+  centrosList.forEach(c => {
+    (c.categories || []).forEach(cat => {
+      const name = cat.name || 'Outras';
+      if (!categoryTotals[name]) {
+        categoryTotals[name] = { orc: 0, real: 0 };
+      }
+      categoryTotals[name].orc += (cat.orc || 0);
+      categoryTotals[name].real += (cat.real || 0);
+    });
+  });
+
+  const order = [
+    'DESPESAS COM PESSOAL',
+    'ALUGUEIS E ARRENDAMENTOS',
+    'IMPOSTOS, TAXAS E CONTRIBUICOES',
+    'DESPESAS GERAIS E ADMINISTRATIVAS',
+    'DESPESAS COM FRETES',
+    '(-) DESPESAS FINANCEIRAS',
+    '(+) RECEITAS FINANCEIRAS',
+    '0'
+  ];
+
+  const categories = Object.keys(categoryTotals)
+    .sort((a, b) => {
+      const idxA = order.indexOf(a);
+      const idxB = order.indexOf(b);
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+      if (idxA !== -1) return -1;
+      if (idxB !== -1) return 1;
+      return a.localeCompare(b);
+    })
+    .map(name => ({
+      name,
+      orc: categoryTotals[name].orc,
+      real: categoryTotals[name].real
+    }));
+
+  return {
+    cc: 'MACRO (Todos os Centros)',
+    orc: totalOrc,
+    real: totalReal,
+    categories
+  };
+}
+
+export default function OrcamentoView({ mes='all', data, darkMode=false, viewType='dre' }) {
   const orcamento = data?.orcamento || {}
   
   // ── LOGICA DE TRAVA POR SETOR ──
@@ -365,18 +419,33 @@ function TipLinha({ active, payload, label, darkMode }) {
       {viewType === 'cc' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           {(() => {
-            // Filtrar centros baseado no acesso do gestor
              const isGabriel = userContext.name.includes('Gabriel Dias');
              const targetCC = mapSectorToCC(userContext.sector);
              
              let filteredCentros = [];
+             let currentAccCentros = currentAcc.centros || [];
+
              if (userContext.level === 'master') {
                filteredCentros = dados.centros || [];
              } else if (isGabriel) {
-               // Gabriel Dias vê Comercial e Locação
                filteredCentros = (dados.centros?.filter(c => c.cc === 'Comercial' || c.cc === 'Locação') || []);
              } else if (targetCC) {
                filteredCentros = (dados.centros?.filter(c => c.cc === targetCC) || []);
+             }
+
+             const isMasterMacroUser = userContext.name && ['Juliano Chagas', 'Financeiro', 'Faiblan', 'Juliano', 'Faiblan', 'Financeiro'].some(
+               name => userContext.name.toLowerCase().includes(name.toLowerCase())
+             );
+
+             if (isMasterMacroUser) {
+               const macroCenter = getMacroCenter(filteredCentros);
+               const macroAccCenter = getMacroCenter(currentAccCentros);
+               if (macroCenter) {
+                 filteredCentros = [macroCenter, ...filteredCentros];
+               }
+               if (macroAccCenter) {
+                 currentAccCentros = [macroAccCenter, ...currentAccCentros];
+               }
              }
 
             if (filteredCentros.length === 0) {
@@ -389,8 +458,7 @@ function TipLinha({ active, payload, label, darkMode }) {
             }
 
             return filteredCentros.map(center => {
-              // Pegar o centro correspondente no objeto acumulado (respeitando o mês selecionado)
-              const centerAcc = (currentAcc.centros?.find(c => c.cc === center.cc)) || center;
+              const centerAcc = (currentAccCentros.find(c => c.cc === center.cc)) || center;
 
               return (
                 <div key={center.cc} style={{ 
