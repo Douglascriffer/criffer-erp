@@ -8,7 +8,9 @@ import { Activity, TrendingUp, DollarSign, PieChart, BarChart3, AlertCircle } fr
 
 function fmt(v) {
   if (!v && v !== 0) return '—'
-  return `R$ ${Math.round(Math.abs(v)).toLocaleString('pt-BR')}`
+  const isNegative = v < 0;
+  const absVal = Math.round(Math.abs(v)).toLocaleString('pt-BR')
+  return isNegative ? `-R$ ${absVal}` : `R$ ${absVal}`
 }
 
 function TipLinha({ active, payload, label, darkMode }) {
@@ -507,10 +509,10 @@ export default function OrcamentoView({ mes='all', data, darkMode=false, viewTyp
                           // Buscar categoria correspondente no acumulado
                           const catAcc = centerAcc.categories?.find(ca => ca.name === cat.name) || { orc: 0, real: 0 };
                           
-                          const accVar = catAcc.orc > 0 ? ((catAcc.real - catAcc.orc) / catAcc.orc * 100) : 0;
-                          const menVar = cat.orc > 0 ? ((cat.real - cat.orc) / cat.orc * 100) : 0;
-                          const accOk = accVar <= 0;
-                          const menOk = menVar <= 0;
+                          const accVar = catAcc.orc !== 0 ? ((catAcc.real - catAcc.orc) / catAcc.orc * 100) : 0;
+                          const menVar = cat.orc !== 0 ? ((cat.real - cat.orc) / cat.orc * 100) : 0;
+                          const accOk = catAcc.real <= catAcc.orc;
+                          const menOk = cat.real <= cat.orc;
 
                           return (
                             <tr key={cat.name} style={{ borderBottom: `1px solid ${t.border}`, background: idx % 2 === 0 ? 'transparent' : (darkMode ? 'rgba(255,255,255,0.01)' : 'rgba(0,0,0,0.03)') }}>
@@ -543,13 +545,14 @@ export default function OrcamentoView({ mes='all', data, darkMode=false, viewTyp
                           
                           {/* TOTAL ACUMULADO DINÂMICO */}
                           {(() => {
-                            const varAcc = centerAcc.orc > 0 ? ((centerAcc.real - centerAcc.orc) / centerAcc.orc * 100) : 0;
+                            const varAcc = centerAcc.orc !== 0 ? ((centerAcc.real - centerAcc.orc) / centerAcc.orc * 100) : 0;
+                            const isOk = centerAcc.real <= centerAcc.orc;
                             return (
                               <>
                                 <td style={{ padding: '28px 20px', textAlign: 'right', fontSize: 17, fontWeight: 700, color: t.text, borderLeft: `1px solid ${t.border}` }}>{fmt(centerAcc.orc)}</td>
                                 <td style={{ padding: '28px 20px', textAlign: 'right', fontSize: 17, fontWeight: 900, color: t.text }}>{fmt(centerAcc.real)}</td>
                                 <td style={{ padding: '28px 20px', textAlign: 'center' }}>
-                                  <div style={{ background: varAcc <= 0 ? t.green : t.red, color: '#fff', padding: '6px 14px', borderRadius: 10, fontSize: 12, fontWeight: 900 }}>
+                                  <div style={{ background: isOk ? t.green : t.red, color: '#fff', padding: '6px 14px', borderRadius: 10, fontSize: 12, fontWeight: 900 }}>
                                     {Math.abs(varAcc).toFixed(1)}% {varAcc >= 0 ? 'acima' : 'abaixo'}
                                   </div>
                                 </td>
@@ -559,13 +562,14 @@ export default function OrcamentoView({ mes='all', data, darkMode=false, viewTyp
 
                           {/* TOTAL MENSAL */}
                           {(() => {
-                            const varMen = center.orc > 0 ? ((center.real - center.orc) / center.orc * 100) : 0;
+                            const varMen = center.orc !== 0 ? ((center.real - center.orc) / center.orc * 100) : 0;
+                            const isOk = center.real <= center.orc;
                             return (
                               <>
                                 <td style={{ padding: '28px 20px', textAlign: 'right', fontSize: 17, fontWeight: 700, color: t.text, borderLeft: `1px solid ${t.border}` }}>{fmt(center.orc)}</td>
                                 <td style={{ padding: '28px 20px', textAlign: 'right', fontSize: 17, fontWeight: 900, color: t.text }}>{fmt(center.real)}</td>
                                 <td style={{ padding: '28px 20px', textAlign: 'center' }}>
-                                  <div style={{ background: varMen <= 0 ? t.green : t.red, color: '#fff', padding: '6px 14px', borderRadius: 10, fontSize: 12, fontWeight: 900 }}>
+                                  <div style={{ background: isOk ? t.green : t.red, color: '#fff', padding: '6px 14px', borderRadius: 10, fontSize: 12, fontWeight: 900 }}>
                                     {Math.abs(varMen).toFixed(1)}% {varMen >= 0 ? 'acima' : 'abaixo'}
                                   </div>
                                 </td>
