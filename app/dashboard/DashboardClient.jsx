@@ -385,7 +385,7 @@ export default function DashboardClient() {
         {/* ══ CARDS DE KPI (Top 7) ══ */}
         {(activeSub === 'vendas') && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8, marginBottom: 12, width: '100%', overflowX: 'auto', paddingBottom: 6 }}>
-            <KpiCard label="VENDAS" value={(kpis.vendas || 0) - (kpis.devolucoes || 0)} prevValue={(pkpis.vendas || 0) - (pkpis.devolucoes || 0)} icon={ShoppingCart} color="#FF6A22" />
+            <KpiCard label="VENDAS" value={kpis.vendas || 0} prevValue={pkpis.vendas || 0} icon={ShoppingCart} color="#FF6A22" />
             <KpiCard label="SERVIÇOS" value={kpis.servicos || 0} prevValue={pkpis.servicos || 0} icon={Wrench} color="#3b82f6" />
             <KpiCard label="LOCAÇÃO" value={kpis.locacao || 0} prevValue={pkpis.locacao || 0} icon={Key} color="#8b5cf6" />
             <KpiCard label="DEVOLUÇÕES" value={kpis.devolucoes || 0} prevValue={pkpis.devolucoes || 0} icon={RotateCcw} color="#ef4444" />
