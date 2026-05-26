@@ -3,6 +3,11 @@ import './globals.css'
 export const metadata = {
   title: 'Criffer ERP — Dashboard Financeiro',
   description: 'Sistema de gestão financeira Criffer',
+  icons: {
+    icon: '/logo-base.png',
+    shortcut: '/logo-base.png',
+    apple: '/logo-base.png',
+  },
 }
 
 export default function RootLayout({ children }) {
