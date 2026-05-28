@@ -240,7 +240,7 @@ export default function DashboardPage() {
             darkMode={isDark} 
           />
           <KpiCard 
-            label="Faturamento Total" 
+            label="Receita" 
             value={kpis.totalRealizado} 
             subLabel={getPeriodLabel()} 
             icon={DollarSign} 
@@ -248,7 +248,7 @@ export default function DashboardPage() {
             darkMode={isDark} 
           />
           <KpiCard 
-            label="Meta Geral" 
+            label="Meta" 
             value={kpis.totalMeta} 
             subLabel="Meta Anual Consolidada" 
             icon={Target} 
@@ -256,7 +256,7 @@ export default function DashboardPage() {
             darkMode={isDark} 
           />
           <KpiCard 
-            label="Atingimento" 
+            label="Desempenho" 
             value={kpis.pctAtingido} 
             subLabel={`${kpis.pctAtingido.toFixed(1)}% do Objetivo`} 
             icon={TrendingUp} 
@@ -266,7 +266,7 @@ export default function DashboardPage() {
             darkMode={isDark} 
           />
           <KpiCard 
-            label={`Venda do Dia (${kpis.vendasDiaLabel})`} 
+            label={`Fat. Diario (${kpis.vendasDiaLabel})`} 
             value={kpis.vendasDiaValor} 
             subLabel="Último dia registrado" 
             icon={Calendar} 
