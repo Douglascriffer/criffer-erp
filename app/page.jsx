@@ -266,7 +266,7 @@ export default function DashboardPage() {
             darkMode={isDark} 
           />
           <KpiCard 
-            label={`Fat. Diario (${kpis.vendasDiaLabel})`} 
+            label="Fat. Diario" 
             value={kpis.vendasDiaValor} 
             subLabel="Último dia registrado" 
             icon={Calendar} 
