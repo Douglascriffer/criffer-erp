@@ -113,7 +113,7 @@ export default function TabelaTransacoes({ transactions = [], darkMode = false }
     }}>
       {/* Topo da Tabela: Busca e Ações */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
-        <h3 style={{ fontSize: 16, fontWeight: 800, color: t.text, margin: 0 }}>Registro de Vendas Detalhado</h3>
+        <h3 style={{ fontSize: 16, color: t.text, margin: 0 }}>Registro de Vendas Detalhado</h3>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
           {/* Caixa de Busca */}
@@ -170,7 +170,6 @@ export default function TabelaTransacoes({ transactions = [], darkMode = false }
               border: 'none',
               borderRadius: 8,
               fontSize: 13,
-              fontWeight: 600,
               display: 'flex',
               alignItems: 'center',
               gap: 6,
@@ -189,12 +188,12 @@ export default function TabelaTransacoes({ transactions = [], darkMode = false }
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13, textAlign: 'left', minWidth: 700 }}>
           <thead>
             <tr style={{ background: t.thBg, borderBottom: `1px solid ${t.border}` }}>
-              <th style={{ padding: '12px 16px', fontWeight: 700, color: t.text }}>Pedido</th>
-              <th style={{ padding: '12px 16px', fontWeight: 700, color: t.text }}>Cliente</th>
-              <th style={{ padding: '12px 16px', fontWeight: 700, color: t.text }}>Vendedor</th>
-              <th style={{ padding: '12px 16px', fontWeight: 700, color: t.text }}>Valor</th>
-              <th style={{ padding: '12px 16px', fontWeight: 700, color: t.text }}>Data</th>
-              <th style={{ padding: '12px 16px', fontWeight: 700, color: t.text }}>Observações</th>
+              <th style={{ padding: '12px 16px', color: t.text }}>Pedido</th>
+              <th style={{ padding: '12px 16px', color: t.text }}>Cliente</th>
+              <th style={{ padding: '12px 16px', color: t.text }}>Vendedor</th>
+              <th style={{ padding: '12px 16px', color: t.text }}>Valor</th>
+              <th style={{ padding: '12px 16px', color: t.text }}>Data</th>
+              <th style={{ padding: '12px 16px', color: t.text }}>Observações</th>
             </tr>
           </thead>
           <tbody>
@@ -215,7 +214,7 @@ export default function TabelaTransacoes({ transactions = [], darkMode = false }
                   onMouseEnter={e => e.currentTarget.style.backgroundColor = t.rowHover}
                   onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
-                  <td style={{ padding: '12px 16px', fontWeight: 700, color: '#ec6e2a' }} className="numeric">#{row.pedido}</td>
+                  <td style={{ padding: '12px 16px', color: '#ec6e2a' }} className="numeric">#{row.pedido}</td>
                   <td style={{ padding: '12px 16px', color: t.text, fontWeight: 500 }}>{row.cliente}</td>
                   <td style={{ padding: '12px 16px', color: t.text }}>
                     <span style={{ 
@@ -223,13 +222,12 @@ export default function TabelaTransacoes({ transactions = [], darkMode = false }
                       background: t.pillBg, 
                       borderRadius: 6, 
                       fontSize: 11,
-                      fontWeight: 600,
                       color: row.vendedor === 'Sem Vendedor' ? t.textMuted : '#ec6e2a'
                     }}>
                       {row.vendedor}
                     </span>
                   </td>
-                  <td style={{ padding: '12px 16px', color: t.text, fontWeight: 700 }} className="numeric">{fmtCurrency(row.valor)}</td>
+                  <td style={{ padding: '12px 16px', color: t.text, }} className="numeric">{fmtCurrency(row.valor)}</td>
                   <td style={{ padding: '12px 16px', color: t.text }} className="numeric">{formatDate(row.data)}</td>
                   <td style={{ 
                     padding: '12px 16px', 
@@ -299,7 +297,6 @@ export default function TabelaTransacoes({ transactions = [], darkMode = false }
                     background: page === targetPage ? '#ec6e2a' : t.inputBg,
                     color: page === targetPage ? '#ffffff' : t.text,
                     fontSize: 12,
-                    fontWeight: 600,
                     cursor: 'pointer'
                   }}
                 >

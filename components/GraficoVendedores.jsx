@@ -36,7 +36,6 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 12 }}>
         <h4 style={{ 
           fontSize: 14, 
-          fontWeight: 800, 
           color: '#ec6e2a', 
           letterSpacing: '1px', 
           textTransform: 'uppercase',
@@ -83,7 +82,6 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: rank <= 3 && isTeam ? 16 : 13,
-                fontWeight: 700,
                 color: rank <= 3 && isTeam ? '#ec6e2a' : (darkMode ? '#888' : '#666')
               }}>
                 {rank <= 3 && isTeam ? (
@@ -105,8 +103,7 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
                 justifyContent: 'center',
                 color: isTeam ? '#fff' : (darkMode ? '#ccc' : '#333'),
                 fontSize: 14,
-                fontWeight: 700
-              }}>
+                }}>
                 {isTeam ? (
                   AVATAR_MAP[s.name] || s.name.charAt(0)
                 ) : (
@@ -127,7 +124,6 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
                   <p style={{ 
                     margin: 0, 
                     fontSize: 14, 
-                    fontWeight: 700, 
                     color: darkMode ? '#fff' : '#1e1e2d',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
@@ -135,7 +131,7 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
                   }}>
                     {s.name}
                   </p>
-                  <span style={{ fontSize: 14, fontWeight: 800, color: '#ec6e2a' }} className="numeric">
+                  <span style={{ fontSize: 14, color: '#ec6e2a' }} className="numeric">
                     {fmt(s.valor)}
                   </span>
                 </div>
@@ -151,7 +147,7 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
                       transition: 'width 0.5s ease-out'
                     }} />
                   </div>
-                  <span style={{ fontSize: 10, color: darkMode ? '#666' : '#888', fontWeight: 600, width: 32, textAlign: 'right' }} className="numeric">
+                  <span style={{ fontSize: 10, color: darkMode ? '#666' : '#888', width: 32, textAlign: 'right' }} className="numeric">
                     {pctShare.toFixed(1)}%
                   </span>
                 </div>
@@ -191,8 +187,8 @@ export default function GraficoVendedores({ salesTeam = [], otherChannels = [], 
         {/* Equipe de Vendas */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: `2px solid ${t.accent}`, paddingBottom: 8 }}>
-            <h3 style={{ fontSize: 15, fontWeight: 800, color: t.text, margin: 0, letterSpacing: '0.5px' }}>EQUIPE DE VENDAS</h3>
-            <span style={{ fontSize: 15, fontWeight: 800, color: t.accent }} className="numeric">{fmt(totalTeam)}</span>
+            <h3 style={{ fontSize: 15, color: t.text, margin: 0, letterSpacing: '0.5px' }}>EQUIPE DE VENDAS</h3>
+            <span style={{ fontSize: 15, color: t.accent }} className="numeric">{fmt(totalTeam)}</span>
           </div>
           <div style={{ flex: 1, overflowY: 'auto' }} className="custom-scroll">
             <SellerList 
@@ -210,8 +206,8 @@ export default function GraficoVendedores({ salesTeam = [], otherChannels = [], 
         {/* Outros Canais */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: `2px solid ${t.border}`, paddingBottom: 8 }}>
-            <h3 style={{ fontSize: 15, fontWeight: 800, color: t.text, margin: 0, letterSpacing: '0.5px' }}>OUTROS CANAIS</h3>
-            <span style={{ fontSize: 15, fontWeight: 800, color: t.text }} className="numeric">{fmt(totalOthers)}</span>
+            <h3 style={{ fontSize: 15, color: t.text, margin: 0, letterSpacing: '0.5px' }}>OUTROS CANAIS</h3>
+            <span style={{ fontSize: 15, color: t.text }} className="numeric">{fmt(totalOthers)}</span>
           </div>
           <div style={{ flex: 1, overflowY: 'auto' }} className="custom-scroll">
             <SellerList 

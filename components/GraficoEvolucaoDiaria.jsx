@@ -61,7 +61,7 @@ export default function GraficoEvolucaoDiaria({ dailySales = [], metaEmpresa = 0
   return (
     <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', gap: 10 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h4 style={{ fontSize: 13, fontWeight: 800, color: darkMode ? '#ccc' : '#444', textTransform: 'uppercase', letterSpacing: '0.5px', margin: 0 }}>
+        <h4 style={{ fontSize: 13, color: darkMode ? '#ccc' : '#444', textTransform: 'uppercase', letterSpacing: '0.5px', margin: 0 }}>
           Evolução Diária Acumulada vs Metas
         </h4>
       </div>

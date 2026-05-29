@@ -14,7 +14,7 @@
 @font-face {
   font-family: 'Gotham';
   src: url('/fonts/Gotham-Bold.otf') format('opentype');
-  font-weight: 700;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -83,5 +83,5 @@ body, h1, h2, h3, h4, h5, h6, p, label, select, input, button, th, td, span, div
 .recharts-text,
 .recharts-legend-item-text {
   font-family: 'Gotham', system-ui, sans-serif !important;
-  font-weight: 800 !important;
+  font-weight: 400;
 }

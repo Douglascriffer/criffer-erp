@@ -122,7 +122,7 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
           alignItems: 'center'
         }}>
           <div>
-            <h2 style={{ fontSize: 18, fontWeight: 800, color: t.text, margin: 0 }}>Desempenho Comercial: {sellerName}</h2>
+            <h2 style={{ fontSize: 18, color: t.text, margin: 0 }}>Desempenho Comercial: {sellerName}</h2>
             <p style={{ fontSize: 12, color: t.textMuted, margin: '2px 0 0 0' }}>Período: {targetMonth === 'all' ? `Ano ${targetYear}` : `Mês ${targetMonth}/${targetYear}`}</p>
           </div>
           <button 
@@ -151,20 +151,20 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
           {/* Top Cards Grid */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
             <div style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 10, padding: 12, textAlign: 'center' }}>
-              <span style={{ fontSize: 10, fontWeight: 700, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Vendas Realizadas</span>
-              <p style={{ fontSize: 20, fontWeight: 800, color: '#ec6e2a', margin: '4px 0 0 0' }} className="numeric">{fmtCurrency(stats.totalSales)}</p>
+              <span style={{ fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Vendas Realizadas</span>
+              <p style={{ fontSize: 20, color: '#ec6e2a', margin: '4px 0 0 0' }} className="numeric">{fmtCurrency(stats.totalSales)}</p>
             </div>
             <div style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 10, padding: 12, textAlign: 'center' }}>
-              <span style={{ fontSize: 10, fontWeight: 700, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Qtd. Pedidos</span>
-              <p style={{ fontSize: 20, fontWeight: 800, color: t.text, margin: '4px 0 0 0' }} className="numeric">{stats.countSales} pedidos</p>
+              <span style={{ fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Qtd. Pedidos</span>
+              <p style={{ fontSize: 20, color: t.text, margin: '4px 0 0 0' }} className="numeric">{stats.countSales} pedidos</p>
             </div>
             <div style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 10, padding: 12, textAlign: 'center' }}>
-              <span style={{ fontSize: 10, fontWeight: 700, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Ticket Médio</span>
-              <p style={{ fontSize: 20, fontWeight: 800, color: t.text, margin: '4px 0 0 0' }} className="numeric">{fmtCurrency(stats.ticketMedio)}</p>
+              <span style={{ fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Ticket Médio</span>
+              <p style={{ fontSize: 20, color: t.text, margin: '4px 0 0 0' }} className="numeric">{fmtCurrency(stats.ticketMedio)}</p>
             </div>
             <div style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 10, padding: 12, textAlign: 'center' }}>
-              <span style={{ fontSize: 10, fontWeight: 700, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Participação</span>
-              <p style={{ fontSize: 20, fontWeight: 800, color: '#f57e42', margin: '4px 0 0 0' }} className="numeric">{stats.representatividade.toFixed(1)}%</p>
+              <span style={{ fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Participação</span>
+              <p style={{ fontSize: 20, color: '#f57e42', margin: '4px 0 0 0' }} className="numeric">{stats.representatividade.toFixed(1)}%</p>
             </div>
           </div>
 
@@ -172,7 +172,7 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 24 }}>
             {/* Chart */}
             <div style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 10, padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <span style={{ fontSize: 12, fontWeight: 800, color: t.text, textTransform: 'uppercase' }}>Faturamento Mensal</span>
+              <span style={{ fontSize: 12, color: t.text, textTransform: 'uppercase' }}>Faturamento Mensal</span>
               <div style={{ height: 180 }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={monthlyChartData}>
@@ -191,7 +191,7 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
 
             {/* Top Clients */}
             <div style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 10, padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <span style={{ fontSize: 12, fontWeight: 800, color: t.text, textTransform: 'uppercase' }}>Maiores Clientes</span>
+              <span style={{ fontSize: 12, color: t.text, textTransform: 'uppercase' }}>Maiores Clientes</span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {topClients.length === 0 ? (
                   <span style={{ fontSize: 12, color: t.textMuted }}>Nenhum cliente registrado</span>
@@ -199,12 +199,12 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
                   topClients.map((c, idx) => (
                     <div key={c.name} style={{ display: 'flex', justifyItems: 'center', justifyContent: 'space-between', borderBottom: idx === topClients.length - 1 ? 'none' : `1px solid ${t.border}`, paddingBottom: 6 }}>
                       <div style={{ minWidth: 0, flex: 1 }}>
-                        <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: t.text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        <p style={{ margin: 0, fontSize: 12, color: t.text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                           {c.name}
                         </p>
                         <span style={{ fontSize: 10, color: t.textMuted }}>{c.count} pedidos</span>
                       </div>
-                      <span style={{ fontSize: 12, fontWeight: 800, color: '#ec6e2a', alignSelf: 'center' }} className="numeric">
+                      <span style={{ fontSize: 12, color: '#ec6e2a', alignSelf: 'center' }} className="numeric">
                         {fmtCurrency(c.valor)}
                       </span>
                     </div>
@@ -216,16 +216,16 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
 
           {/* Bottom Table: Sales List */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <span style={{ fontSize: 12, fontWeight: 800, color: t.text, textTransform: 'uppercase' }}>Pedidos do Vendedor</span>
+            <span style={{ fontSize: 12, color: t.text, textTransform: 'uppercase' }}>Pedidos do Vendedor</span>
             <div style={{ overflowX: 'auto', border: `1px solid ${t.border}`, borderRadius: 8 }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'left' }}>
                 <thead>
                   <tr style={{ background: t.thBg, borderBottom: `1px solid ${t.border}` }}>
-                    <th style={{ padding: '8px 12px', fontWeight: 700, color: t.text }}>Pedido</th>
-                    <th style={{ padding: '8px 12px', fontWeight: 700, color: t.text }}>Cliente</th>
-                    <th style={{ padding: '8px 12px', fontWeight: 700, color: t.text }}>Valor</th>
-                    <th style={{ padding: '8px 12px', fontWeight: 700, color: t.text }}>Data</th>
-                    <th style={{ padding: '8px 12px', fontWeight: 700, color: t.text }}>Observações</th>
+                    <th style={{ padding: '8px 12px', color: t.text }}>Pedido</th>
+                    <th style={{ padding: '8px 12px', color: t.text }}>Cliente</th>
+                    <th style={{ padding: '8px 12px', color: t.text }}>Valor</th>
+                    <th style={{ padding: '8px 12px', color: t.text }}>Data</th>
+                    <th style={{ padding: '8px 12px', color: t.text }}>Observações</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -236,9 +236,9 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
                   ) : (
                     sellerTxs.map((row, idx) => (
                       <tr key={`${row.pedido}-${idx}`} style={{ borderBottom: idx === sellerTxs.length - 1 ? 'none' : `1px solid ${t.border}` }}>
-                        <td style={{ padding: '8px 12px', fontWeight: 700, color: '#ec6e2a' }} className="numeric">#{row.pedido}</td>
+                        <td style={{ padding: '8px 12px', color: '#ec6e2a' }} className="numeric">#{row.pedido}</td>
                         <td style={{ padding: '8px 12px', color: t.text, fontWeight: 500 }}>{row.cliente}</td>
-                        <td style={{ padding: '8px 12px', color: t.text, fontWeight: 700 }} className="numeric">{fmtCurrency(row.valor)}</td>
+                        <td style={{ padding: '8px 12px', color: t.text, }} className="numeric">{fmtCurrency(row.valor)}</td>
                         <td style={{ padding: '8px 12px', color: t.text }}>
                           {row.data.split('-')[2]}/{row.data.split('-')[1]}/{row.data.split('-')[0]}
                         </td>

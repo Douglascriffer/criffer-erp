@@ -63,7 +63,7 @@ export default function DashboardPage() {
     return (
       <div style={{ height: '100vh', background: isDark ? '#0c0c14' : '#f8f9fa', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: "'Syne', 'Gotham', sans-serif", color: isDark ? '#fff' : '#000' }}>
         <div style={{ width: 48, height: 48, borderRadius: '50%', border: '4px solid #ec6e2a', borderTopColor: 'transparent', animation: 'spin 1s linear infinite' }} />
-        <span style={{ marginTop: 16, fontSize: 14, fontWeight: 700, letterSpacing: 1 }}>CARREGANDO DASHBOARD...</span>
+        <span style={{ marginTop: 16, fontSize: 14, letterSpacing: 1 }}>CARREGANDO DASHBOARD...</span>
         <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
       </div>
     )
@@ -72,7 +72,7 @@ export default function DashboardPage() {
   if (error) {
     return (
       <div style={{ height: '100vh', background: isDark ? '#0c0c14' : '#f8f9fa', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: "'Syne', 'Gotham', sans-serif", color: '#ef4444', padding: 24, textAlign: 'center' }}>
-        <p style={{ fontSize: 18, fontWeight: 700 }}>Erro ao carregar dados do comercial:</p>
+        <p style={{ fontSize: 18, }}>Erro ao carregar dados do comercial:</p>
         <p style={{ fontSize: 14, color: isDark ? '#aaa' : '#666', marginTop: 8 }}>{error}</p>
         <p style={{ fontSize: 13, color: '#ec6e2a', marginTop: 16 }}>Verifique se o arquivo Excel foi processado e gerou dados.json corretos.</p>
       </div>
@@ -121,8 +121,8 @@ export default function DashboardPage() {
             <img src="/logo-base.png" alt="Criffer" style={{ width: 28, height: 28, objectFit: 'contain' }}/>
           </div>
           <div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '1.5px', lineHeight: 1 }}>CRIFFER</div>
-            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.9)', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: 2 }}>Dashboard Comercial</div>
+            <div style={{ fontSize: 20, color: '#fff', letterSpacing: '1.5px', lineHeight: 1 }}>CRIFFER</div>
+            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.9)', letterSpacing: '1px', textTransform: 'uppercase', marginTop: 2 }}>Dashboard Comercial</div>
           </div>
         </div>
 
@@ -139,7 +139,6 @@ export default function DashboardPage() {
                   border: 'none',
                   background: filters.ano === y ? '#ffffff' : 'transparent',
                   color: filters.ano === y ? '#ec6e2a' : 'rgba(255,255,255,0.85)',
-                  fontWeight: 700,
                   fontSize: 12,
                   cursor: 'pointer',
                   transition: 'all 0.2s'
@@ -159,7 +158,6 @@ export default function DashboardPage() {
                 border: 'none',
                 background: filters.mes === 'all' ? '#ffffff' : 'transparent',
                 color: filters.mes === 'all' ? '#ec6e2a' : 'rgba(255,255,255,0.85)',
-                fontWeight: 700,
                 fontSize: 12,
                 cursor: 'pointer',
                 transition: 'all 0.2s'
@@ -177,7 +175,6 @@ export default function DashboardPage() {
                   border: 'none',
                   background: filters.mes === m.id ? '#ffffff' : 'transparent',
                   color: filters.mes === m.id ? '#ec6e2a' : 'rgba(255,255,255,0.85)',
-                  fontWeight: 700,
                   fontSize: 12,
                   cursor: 'pointer',
                   transition: 'all 0.2s'
