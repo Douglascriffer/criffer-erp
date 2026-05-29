@@ -35,10 +35,7 @@ export default function TabelaTransacoes({ transactions = [], darkMode = false }
 
   // Obter lista única de vendedores para o filtro select
   const uniqueSellers = useMemo(() => {
-    const list = new Set([
-      'Gabriel Klein', 'Rogislei', 'Gabriel Ferreira', 'Gabriel Dias', 'Josiane', 'Vanessa',
-      'Mercado Livre', 'Site', 'Retorno de golpe', 'Sem Vendedor'
-    ])
+    const list = new Set()
     transactions.forEach(t => {
       if (t.vendedor) list.add(t.vendedor)
     })
