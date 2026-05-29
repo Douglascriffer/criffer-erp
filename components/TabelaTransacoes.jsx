@@ -153,9 +153,9 @@ export default function TabelaTransacoes({ transactions = [], darkMode = false }
               cursor: 'pointer'
             }}
           >
-            <option value="all">Todos os Vendedores</option>
+            <option value="all" style={{ background: t.card, color: t.text }}>Todos os Vendedores</option>
             {uniqueSellers.map(seller => (
-              <option key={seller} value={seller}>{seller}</option>
+              <option key={seller} value={seller} style={{ background: t.card, color: t.text }}>{seller}</option>
             ))}
           </select>
 
