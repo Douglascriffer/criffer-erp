@@ -100,7 +100,7 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
                 borderRadius: '50%', 
                 overflow: 'hidden', 
                 border: `2px solid ${darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.06)'}`,
-                background: isTeam ? '#ec6e2a' : (darkMode ? '#1e1e2d' : '#f0f0f5'),
+                background: isTeam ? '#ec6e2a' : '#000000',
                 flexShrink: 0,
                 display: 'flex',
                 alignItems: 'center',

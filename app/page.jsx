@@ -53,7 +53,7 @@ export default function DashboardPage() {
   const colors = {
     bg: isDark ? '#0c0c14' : '#ffffff',
     header: 'linear-gradient(135deg, #52525b 0%, #71717a 35%, #ec6e2a 75%, #f28246 100%)',
-    card: isDark ? '#1e1e2d' : '#f0f0f5',
+    card: isDark ? '#1e1e2d' : '#e2e8f0',
     border: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
     text: isDark ? '#ffffff' : '#000000',
     textMuted: isDark ? '#ffffff' : '#000000',

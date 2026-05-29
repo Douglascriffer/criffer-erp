@@ -12,8 +12,8 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
 
   const t = {
     overlay: 'rgba(0,0,0,0.7)',
-    bg: darkMode ? '#1e1e2d' : '#f0f0f5',
-    card: darkMode ? '#151521' : '#e2e8f0',
+    bg: darkMode ? '#1e1e2d' : '#e2e8f0',
+    card: darkMode ? '#151521' : '#cbd5e1',
     text: darkMode ? '#ffffff' : '#000000',
     textMuted: darkMode ? '#ffffff' : '#000000',
     border: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
