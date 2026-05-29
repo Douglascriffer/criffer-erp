@@ -13,7 +13,8 @@ const EQUIPE_VENDAS = [
   'Rogislei',
   'Gabriel Ferreira',
   'Gabriel Dias',
-  'Josiane'
+  'Josiane',
+  'Vanessa'
 ]
 
 // Avatar initials or mapping
@@ -22,7 +23,8 @@ const AVATAR_MAP = {
   'Rogislei': 'R',
   'Gabriel Ferreira': 'GF',
   'Gabriel Dias': 'GD',
-  'Josiane': 'J'
+  'Josiane': 'J',
+  'Vanessa': 'V'
 }
 
 const CHANNEL_ICONS = {
