@@ -29,9 +29,9 @@ const AVATAR_MAP = {
 
 const CHANNEL_ICONS = {
   'Mercado Livre': { icon: ShoppingCart, color: '#FFE600', label: 'ML' },
-  'Site': { icon: Globe, color: '#71717a', label: 'Site' },
+  'Site': { isImage: true, src: '/logo-base.png', color: '#71717a', label: 'Site' },
   'Retorno de golpe': { icon: AlertTriangle, color: '#ef4444', label: 'Golpe' },
-  'Sem Vendedor': { icon: HelpCircle, color: '#ffffff', label: 'N/A' }
+  'Sem Vendedor': { isImage: true, src: '/logo-base.png', color: '#ffffff', label: 'N/A' }
 }
 
 function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick, totalValue }) {
@@ -114,6 +114,9 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
                   (() => {
                     const cfg = CHANNEL_ICONS[s.name]
                     if (cfg) {
+                      if (cfg.isImage) {
+                        return <img src={cfg.src} alt={cfg.label} style={{ width: 24, height: 24, objectFit: 'contain' }} />
+                      }
                       const Icon = cfg.icon
                       return <Icon size={20} color={cfg.color} />
                     }
