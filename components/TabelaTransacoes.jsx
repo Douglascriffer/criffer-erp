@@ -25,7 +25,7 @@ export default function TabelaTransacoes({ transactions = [], darkMode = false }
     card: darkMode ? '#1e1e2d' : '#ffffff',
     border: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
     text: darkMode ? '#ffffff' : '#1e1e2d',
-    textMuted: darkMode ? '#888888' : '#666666',
+    textMuted: darkMode ? '#ffffff' : '#666666',
     thBg: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
     rowHover: darkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.01)',
     pillBg: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',

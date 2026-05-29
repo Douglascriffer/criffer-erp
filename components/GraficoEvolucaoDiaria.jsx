@@ -53,7 +53,7 @@ export default function GraficoEvolucaoDiaria({ dailySales = [], metaEmpresa = 0
 
   const colors = {
     grid: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
-    text: darkMode ? '#888888' : '#666666',
+    text: darkMode ? '#ffffff' : '#666666',
     tooltipBg: darkMode ? '#1a1a24' : '#ffffff',
     tooltipBorder: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'
   }

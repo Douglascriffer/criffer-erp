@@ -56,7 +56,7 @@ export default function DashboardPage() {
     card: isDark ? '#1e1e2d' : '#ffffff',
     border: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
     text: isDark ? '#ffffff' : '#1e1e2d',
-    textMuted: isDark ? '#888888' : '#666666',
+    textMuted: isDark ? '#ffffff' : '#666666',
   }
 
   if (loading) {
@@ -280,7 +280,7 @@ export default function DashboardPage() {
             border: `1px solid ${colors.border}`,
             borderRadius: 12,
             padding: '20px',
-            height: 520,
+            height: 380,
             overflow: 'hidden',
             display: 'flex',
             flexDirection: 'column',
@@ -301,7 +301,7 @@ export default function DashboardPage() {
             border: `1px solid ${colors.border}`,
             borderRadius: 12,
             padding: '20px',
-            height: 520,
+            height: 380,
             display: 'flex',
             flexDirection: 'column',
             boxShadow: isDark ? '0 4px 20px rgba(0,0,0,0.15)' : '0 4px 20px rgba(0,0,0,0.02)'

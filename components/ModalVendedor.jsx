@@ -1,7 +1,7 @@
 'use client'
 import { useMemo } from 'react'
 import { X, ShoppingBag, Target, Layers } from 'lucide-react'
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LabelList } from 'recharts'
 
 function fmtCurrency(v) {
   return `R$ ${Math.round(v).toLocaleString('pt-BR')}`
@@ -15,7 +15,7 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
     bg: darkMode ? '#1e1e2d' : '#ffffff',
     card: darkMode ? '#151521' : '#f8f8fa',
     text: darkMode ? '#ffffff' : '#1e1e2d',
-    textMuted: darkMode ? '#888888' : '#666666',
+    textMuted: darkMode ? '#ffffff' : '#666666',
     border: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
     thBg: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)'
   }
@@ -40,9 +40,9 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
     const ticketMedio = countSales > 0 ? totalSales / countSales : 0
 
     // Faturamento Total no período para cálculo de representatividade
-    const totalPeriodo = (data?.byPeriod || [])
-      .filter(p => p.ano === targetYear && (targetMonth === 'all' ? true : p.mes === targetMonth))
-      .reduce((sum, p) => sum + p.total, 0)
+    const totalPeriodo = (data?.transactions || [])
+      .filter(tx => tx.ano === targetYear && (targetMonth === 'all' ? true : tx.mes === targetMonth))
+      .reduce((sum, tx) => sum + tx.valor, 0)
       
     const representatividade = totalPeriodo > 0 ? (totalSales / totalPeriodo) * 100 : 0
 
@@ -85,6 +85,44 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
       }
     })
   }, [data, sellerName, targetYear])
+
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      const fullMonthNames = {
+        'Jan': 'Janeiro', 'Fev': 'Fevereiro', 'Mar': 'Março',
+        'Abr': 'Abril', 'Mai': 'Maio', 'Jun': 'Junho',
+        'Jul': 'Julho', 'Ago': 'Agosto', 'Set': 'Setembro',
+        'Out': 'Outubro', 'Nov': 'Novembro', 'Dez': 'Dezembro'
+      }
+      return (
+        <div style={{
+          background: darkMode ? '#1a1a2d' : '#fff',
+          border: `1px solid ${t.border}`,
+          borderRadius: 12,
+          padding: '16px',
+          boxShadow: darkMode ? '0 4px 20px rgba(0,0,0,0.15)' : '0 4px 20px rgba(0,0,0,0.05)',
+          minWidth: 160
+        }}>
+          <p style={{ fontSize: 13, fontWeight: 500, color: t.text, marginBottom: 12, borderBottom: `1px solid ${t.border}`, paddingBottom: 8 }}>
+            {fullMonthNames[label] || label}
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {payload.map((entry, index) => (
+              <div key={index} style={{ display: 'flex', flexDirection: 'column' }}>
+                 <span style={{ fontSize: 11, fontWeight: 400, color: t.textMuted, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 4 }}>
+                   Vendas
+                 </span>
+                 <span style={{ fontSize: 22, fontWeight: 400, color: entry.color || '#ec6e2a', lineHeight: 1.1, letterSpacing: '-0.5px' }} className="numeric">
+                   {Math.round(entry.value).toLocaleString('pt-BR')}
+                 </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+    return null
+  }
 
   return (
     <div style={{
@@ -151,19 +189,19 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
           {/* Top Cards Grid */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
             <div style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 10, padding: 12, textAlign: 'center' }}>
-              <span style={{ fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Vendas Realizadas</span>
+              <span style={{ fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Vendas Realizadas no mês</span>
               <p style={{ fontSize: 20, color: '#ec6e2a', margin: '4px 0 0 0' }} className="numeric">{fmtCurrency(stats.totalSales)}</p>
             </div>
             <div style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 10, padding: 12, textAlign: 'center' }}>
-              <span style={{ fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Qtd. Pedidos</span>
+              <span style={{ fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Qtd. Pedidos no mês</span>
               <p style={{ fontSize: 20, color: t.text, margin: '4px 0 0 0' }} className="numeric">{stats.countSales} pedidos</p>
             </div>
             <div style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 10, padding: 12, textAlign: 'center' }}>
-              <span style={{ fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Ticket Médio</span>
+              <span style={{ fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Ticket Médio no mês</span>
               <p style={{ fontSize: 20, color: t.text, margin: '4px 0 0 0' }} className="numeric">{fmtCurrency(stats.ticketMedio)}</p>
             </div>
             <div style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 10, padding: 12, textAlign: 'center' }}>
-              <span style={{ fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Participação</span>
+              <span style={{ fontSize: 10, color: t.textMuted, textTransform: 'uppercase', letterSpacing: 0.5 }}>Participação no mês</span>
               <p style={{ fontSize: 20, color: '#f57e42', margin: '4px 0 0 0' }} className="numeric">{stats.representatividade.toFixed(1)}%</p>
             </div>
           </div>
@@ -172,18 +210,20 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 24 }}>
             {/* Chart */}
             <div style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 10, padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <span style={{ fontSize: 12, color: t.text, textTransform: 'uppercase' }}>Faturamento Mensal</span>
+              <span style={{ fontSize: 12, color: t.text, textTransform: 'uppercase', textAlign: 'center', display: 'block' }}>Faturamento Mensal</span>
               <div style={{ height: 180 }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={monthlyChartData}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} />
                     <XAxis dataKey="name" tickLine={false} axisLine={false} style={{ fontSize: 11, fill: t.textMuted }} />
-                    <YAxis tickLine={false} axisLine={false} style={{ fontSize: 11, fill: t.textMuted }} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
+                    <YAxis hide={true} />
                     <Tooltip 
-                      formatter={v => [fmtCurrency(v), 'Vendas']}
-                      contentStyle={{ background: darkMode ? '#1a1a2d' : '#fff', border: `1px solid ${t.border}`, fontSize: 12 }}
+                      content={<CustomTooltip />}
+                      cursor={{ fill: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}
                     />
-                    <Bar dataKey="Faturamento" fill="#ec6e2a" radius={[4, 4, 0, 0]} maxBarSize={30} />
+                    <Bar dataKey="Faturamento" fill="#ec6e2a" radius={[4, 4, 0, 0]} maxBarSize={30}>
+                      <LabelList dataKey="Faturamento" position="top" style={{ fill: t.textMuted, fontSize: 10 }} formatter={v => Math.round(v).toLocaleString('pt-BR')} />
+                    </Bar>
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -191,7 +231,7 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
 
             {/* Top Clients */}
             <div style={{ background: t.card, border: `1px solid ${t.border}`, borderRadius: 10, padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <span style={{ fontSize: 12, color: t.text, textTransform: 'uppercase' }}>Maiores Clientes</span>
+              <span style={{ fontSize: 12, color: t.text, textTransform: 'uppercase', textAlign: 'center', display: 'block' }}>Maiores Clientes</span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {topClients.length === 0 ? (
                   <span style={{ fontSize: 12, color: t.textMuted }}>Nenhum cliente registrado</span>
@@ -202,7 +242,6 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
                         <p style={{ margin: 0, fontSize: 12, color: t.text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                           {c.name}
                         </p>
-                        <span style={{ fontSize: 10, color: t.textMuted }}>{c.count} pedidos</span>
                       </div>
                       <span style={{ fontSize: 12, color: '#ec6e2a', alignSelf: 'center' }} className="numeric">
                         {fmtCurrency(c.valor)}
@@ -216,7 +255,7 @@ export default function ModalVendedor({ isOpen, onClose, sellerName, data, filte
 
           {/* Bottom Table: Sales List */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <span style={{ fontSize: 12, color: t.text, textTransform: 'uppercase' }}>Pedidos do Vendedor</span>
+            <span style={{ fontSize: 12, color: t.text, textTransform: 'uppercase', textAlign: 'center', display: 'block' }}>Pedidos do Vendedor</span>
             <div style={{ overflowX: 'auto', border: `1px solid ${t.border}`, borderRadius: 8 }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'left' }}>
                 <thead>

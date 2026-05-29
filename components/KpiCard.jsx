@@ -5,7 +5,7 @@ const KpiCard = ({ label, value, subLabel, icon: Icon, color, isPercent = false,
     card: darkMode ? '#1e1e2d' : '#ffffff',
     border: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
     text: darkMode ? '#ffffff' : '#000000',
-    textMuted: darkMode ? '#888888' : '#666666',
+    textMuted: darkMode ? '#ffffff' : '#666666',
   }
 
   const fmt = (v) => {

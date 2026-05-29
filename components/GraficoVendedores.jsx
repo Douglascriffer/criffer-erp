@@ -27,7 +27,7 @@ const CHANNEL_ICONS = {
   'Mercado Livre': { icon: ShoppingCart, color: '#FFE600', label: 'ML' },
   'Site': { icon: Globe, color: '#71717a', label: 'Site' },
   'Retorno de golpe': { icon: AlertTriangle, color: '#ef4444', label: 'Golpe' },
-  'Sem Vendedor': { icon: HelpCircle, color: '#888888', label: 'N/A' }
+  'Sem Vendedor': { icon: HelpCircle, color: '#ffffff', label: 'N/A' }
 }
 
 function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick, totalValue }) {
@@ -142,12 +142,12 @@ function SellerList({ items, title, hovered, setHovered, darkMode, onSellerClick
                     <div style={{ 
                       width: `${pctShare}%`, 
                       height: '100%', 
-                      background: isTeam ? 'linear-gradient(90deg, #ec6e2a 0%, #f57e42 100%)' : '#888888',
+                      background: isTeam ? 'linear-gradient(90deg, #ec6e2a 0%, #f57e42 100%)' : '#ffffff',
                       borderRadius: 2,
                       transition: 'width 0.5s ease-out'
                     }} />
                   </div>
-                  <span style={{ fontSize: 10, color: darkMode ? '#666' : '#888', width: 32, textAlign: 'right' }} className="numeric">
+                  <span style={{ fontSize: 10, color: darkMode ? '#ffffff' : '#888', width: 32, textAlign: 'right' }} className="numeric">
                     {pctShare.toFixed(1)}%
                   </span>
                 </div>

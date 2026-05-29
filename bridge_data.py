@@ -3,9 +3,11 @@ import json
 import pandas as pd
 import openpyxl
 from datetime import datetime
+import math
 
 # Configurações de Caminhos
-EXCEL_PATH = r"Y:\.SAP VENDA\DASHBOARD VENDAS\Não usar, fazendo teste para DASHBOARD COMERCIAL.xlsx"
+EXCEL_VENDAS_PATH = r"Y:\.SAP VENDA\DASHBOARD VENDAS\1- ACOMPANHAMENTO VENDAS 2026 - Copia.xlsx"
+EXCEL_LOCACOES_PATH = r"Y:\.SAP VENDA\DASHBOARD VENDAS\1- ACOMPANHAMENTO LOCAÇÕES 2026 - Copia.xlsx"
 JSON_OUTPUT = r"Y:\.SAP VENDA\DASHBOARD VENDAS\public\data\dados.json"
 
 def log(msg):
@@ -20,7 +22,6 @@ def ensure_dirs():
 def is_numeric_ped(x):
     try:
         val = float(x)
-        import math
         return not math.isnan(val)
     except:
         return False
@@ -51,14 +52,103 @@ def clean_vendor(v):
     
     return s
 
+def process_sheet(df, m_num, result, tx_list, is_locacao=False):
+    col_map = {str(c).strip().lower(): c for c in df.columns}
+    
+    pedido_col = col_map.get('número do pedido', col_map.get('contrato'))
+    if not pedido_col:
+        return 0.0
+        
+    df_tx = df[df[pedido_col].apply(is_numeric_ped)].copy()
+    
+    valor_col = col_map.get('valor')
+    if not valor_col:
+        return 0.0
+        
+    df_tx[valor_col] = pd.to_numeric(df_tx[valor_col], errors='coerce').fillna(0.0)
+    tx_sum = df_tx[valor_col].sum()
+    
+    for _, row in df_tx.iterrows():
+        ped_val = row.get(pedido_col)
+        try:
+            ped_val = int(float(ped_val))
+        except:
+            ped_val = str(ped_val)
+            
+        if is_locacao:
+            ped_val = f"LOC-{ped_val}"
+            
+        cliente_col = col_map.get('cliente')
+        cli_val = str(row.get(cliente_col, '')).strip() if cliente_col else ''
+        
+        val_val = float(row.get(valor_col, 0.0))
+        
+        vendedor_col = col_map.get('vendedor')
+        v_val = clean_vendor(row.get(vendedor_col)) if vendedor_col else 'Sem Vendedor'
+        
+        data_col = col_map.get('data')
+        dt_val = row.get(data_col) if data_col else None
+        
+        if isinstance(dt_val, datetime):
+            dt_str = dt_val.strftime("%Y-%m-%d")
+        elif pd.notna(dt_val):
+            try:
+                dt_str = pd.to_datetime(str(dt_val).strip()).strftime("%Y-%m-%d")
+            except:
+                dt_str = str(dt_val)
+        else:
+            dt_str = f"2026-{m_num:02d}-01"
+            
+        obs_col = col_map.get('observações', col_map.get('observacoes'))
+        obs_val = str(row.get(obs_col, '')).strip() if obs_col else ''
+        
+        if obs_val == 'nan' or pd.isna(obs_val):
+            obs_val = ''
+        
+        tx_record = {
+            "ano": 2026,
+            "mes": m_num,
+            "pedido": ped_val,
+            "cliente": cli_val,
+            "valor": val_val,
+            "vendedor": v_val,
+            "data": dt_str,
+            "obs": obs_val,
+            "tipo": "Locação" if is_locacao else "Venda"
+        }
+        result["transactions"].append(tx_record)
+        tx_list.append(tx_record)
+        
+        existing = next((item for item in result["bySeller"] if item["ano"] == 2026 and item["mes"] == m_num and item["vendedor"] == v_val), None)
+        if existing:
+            existing["valor"] += val_val
+            existing["count"] += 1
+        else:
+            result["bySeller"].append({
+                "ano": 2026,
+                "mes": m_num,
+                "vendedor": v_val,
+                "valor": val_val,
+                "count": 1
+            })
+            
+    return tx_sum
+
 def process_excel():
-    if not os.path.exists(EXCEL_PATH):
-        log(f"ERRO: Arquivo Excel não encontrado em {EXCEL_PATH}.")
+    if not os.path.exists(EXCEL_VENDAS_PATH):
+        log(f"ERRO: Arquivo Excel não encontrado em {EXCEL_VENDAS_PATH}.")
         return None
 
     try:
-        log(f"Lendo Excel: {EXCEL_PATH}...")
-        xl = pd.ExcelFile(EXCEL_PATH)
+        log(f"Lendo Excel Vendas: {EXCEL_VENDAS_PATH}...")
+        xl_vendas = pd.ExcelFile(EXCEL_VENDAS_PATH)
+        
+        xl_locacoes = None
+        if os.path.exists(EXCEL_LOCACOES_PATH):
+            log(f"Lendo Excel Locações: {EXCEL_LOCACOES_PATH}...")
+            xl_locacoes = pd.ExcelFile(EXCEL_LOCACOES_PATH)
+        else:
+            log(f"Aviso: Arquivo de Locações não encontrado em {EXCEL_LOCACOES_PATH}.")
         
         result = {
             "byPeriod": [],
@@ -67,20 +157,12 @@ def process_excel():
             "meta": {"2026": []}
         }
         
-        # Mapeamento de nome de sheet para número do mês
-        months_map = {
-            'JANEIRO': 1, 'FEVEREIRO': 2, 'MARÇO': 3, 'ABRIL': 4, 'MAIO': 5,
-            'JUNHO': 6, 'JULHO': 7, 'AGOSTO': 8, 'SETEMBRO': 9, 'OUTUBRO': 10,
-            'NOVEMBRO': 11, 'DEZEMBRO': 12
-        }
-        
         months_names = {
             1: 'Janeiro', 2: 'Fevereiro', 3: 'Março', 4: 'Abril', 5: 'Maio',
             6: 'Junho', 7: 'Julho', 8: 'Agosto', 9: 'Setembro', 10: 'Outubro',
             11: 'Novembro', 12: 'Dezembro'
         }
 
-        # 1. Carregar as metas e realizados anuais da sheet META ANUAL
         annual_metrics = {}
         for m in range(1, 13):
             annual_metrics[m] = {
@@ -90,25 +172,15 @@ def process_excel():
                 "total_meta": 0.0
             }
 
-        if "META ANUAL" in xl.sheet_names:
-            log("Processando metas e realizados da sheet META ANUAL...")
-            # Lemos sem cabeçalho para garantir correspondência exata de índices
-            df_meta = pd.read_excel(EXCEL_PATH, sheet_name="META ANUAL", header=None)
-            
-            # Mapeamento de colunas para meses (índices 1 a 12 na planilha)
+        if "META ANUAL" in xl_vendas.sheet_names:
+            log("Processando metas e realizados da sheet META ANUAL (VENDAS)...")
+            df_meta = pd.read_excel(EXCEL_VENDAS_PATH, sheet_name="META ANUAL", header=None)
             for m in range(1, 13):
-                # Total Meta (row index 4, which is row 5)
                 mt = df_meta.iloc[4, m]
-                
-                # Vendas (row index 10 para meta, 11 para vendido)
                 mv = df_meta.iloc[10, m]
                 rv = df_meta.iloc[11, m]
-                
-                # Locação (row index 19 para meta, 20 para vendido)
                 ml = df_meta.iloc[19, m]
                 rl = df_meta.iloc[20, m]
-                
-                # Serviços (row index 29 para meta, 30 para vendido)
                 ms = df_meta.iloc[29, m]
                 rs = df_meta.iloc[30, m]
 
@@ -130,107 +202,51 @@ def process_excel():
                     "total_meta": clean_val(mt)
                 }
                 
-                # Adicionar na estrutura "meta" para retrocompatibilidade se necessário
                 result["meta"]["2026"].append({
                     "mes": m,
                     "label": months_names[m][:3],
                     "meta_empresa": clean_val(mv),
-                    "meta_nossa": clean_val(mv) # Copiando meta de vendas
+                    "meta_nossa": clean_val(mv)
                 })
         
-        # 2. Processar cada um dos 12 meses do ano
         for m_num in range(1, 13):
             month_name_upper = months_names[m_num].upper()
-            
-            # Procurar se a sheet do mês existe
-            sheet_found_name = None
-            for s_name in xl.sheet_names:
-                if s_name.upper() == month_name_upper or (s_name.upper() == 'MARÇO' and month_name_upper == 'MARÇO') or (s_name.upper() == 'MARCO' and month_name_upper == 'MARÇO'):
-                    sheet_found_name = s_name
-                    break
-            
             tx_list = []
-            tx_sum = 0.0
             
-            if sheet_found_name:
-                log(f"Processando vendas detalhadas da sheet: {sheet_found_name} (Mês {m_num})...")
-                df = xl.parse(sheet_found_name)
-                
-                # Filtrar transações válidas (Número do Pedido numérico)
-                df_tx = df[df['Número do Pedido'].apply(is_numeric_ped)].copy()
-                df_tx['Valor'] = pd.to_numeric(df_tx['Valor'], errors='coerce').fillna(0.0)
-                
-                tx_sum = df_tx['Valor'].sum()
-                
-                # Adicionar transações individuais para a lista global de transações
-                for _, row in df_tx.iterrows():
-                    ped_val = row.get('Número do Pedido')
-                    try:
-                        ped_val = int(float(ped_val))
-                    except:
-                        ped_val = str(ped_val)
-                        
-                    cli_val = str(row.get('Cliente', '')).strip()
-                    val_val = float(row.get('Valor', 0.0))
-                    v_val = clean_vendor(row.get('Vendedor'))
-                    
-                    # Tratar a data
-                    dt_val = row.get('Data')
-                    if isinstance(dt_val, datetime):
-                        dt_str = dt_val.strftime("%Y-%m-%d")
-                    elif pd.notna(dt_val):
-                        try:
-                            dt_str = pd.to_datetime(str(dt_val).strip()).strftime("%Y-%m-%d")
-                        except:
-                            dt_str = str(dt_val)
-                    else:
-                        dt_str = f"2026-{m_num:02d}-01"
-                        
-                    obs_val = str(row.get('Observações', '')).strip()
-                    if obs_val == 'nan' or pd.isna(row.get('Observações')):
-                        obs_val = ''
-                    
-                    tx_record = {
-                        "ano": 2026,
-                        "mes": m_num,
-                        "pedido": ped_val,
-                        "cliente": cli_val,
-                        "valor": val_val,
-                        "vendedor": v_val,
-                        "data": dt_str,
-                        "obs": obs_val
-                    }
-                    result["transactions"].append(tx_record)
-                    tx_list.append(tx_record)
-                    
-                    # Agrupar por vendedor no mês
-                    # Procurar se já existe registro desse vendedor no bySeller
-                    existing = next((item for item in result["bySeller"] if item["ano"] == 2026 and item["mes"] == m_num and item["vendedor"] == v_val), None)
-                    if existing:
-                        existing["valor"] += val_val
-                        existing["count"] += 1
-                    else:
-                        result["bySeller"].append({
-                            "ano": 2026,
-                            "mes": m_num,
-                            "vendedor": v_val,
-                            "valor": val_val,
-                            "count": 1
-                        })
+            # Processar Vendas
+            sheet_found_vendas = next((s for s in xl_vendas.sheet_names if s.upper() == month_name_upper or (s.upper() == 'MARÇO' and month_name_upper == 'MARÇO') or (s.upper() == 'MARCO' and month_name_upper == 'MARÇO')), None)
             
-            # 3. Consolidar os dados financeiros deste mês
+            vendas_sum = 0.0
+            if sheet_found_vendas:
+                log(f"Processando vendas detalhadas da sheet: {sheet_found_vendas} (Mês {m_num})...")
+                df = xl_vendas.parse(sheet_found_vendas)
+                vendas_sum = process_sheet(df, m_num, result, tx_list, is_locacao=False)
+            
+            # Processar Locações
+            locacoes_sum = 0.0
+            if xl_locacoes:
+                sheet_found_locacoes = next((s for s in xl_locacoes.sheet_names if s.upper() == month_name_upper or (s.upper() == 'MARÇO' and month_name_upper == 'MARÇO') or (s.upper() == 'MARCO' and month_name_upper == 'MARÇO')), None)
+                if sheet_found_locacoes:
+                    log(f"Processando locações detalhadas da sheet: {sheet_found_locacoes} (Mês {m_num})...")
+                    df = xl_locacoes.parse(sheet_found_locacoes)
+                    locacoes_sum = process_sheet(df, m_num, result, tx_list, is_locacao=True)
+            
+            # Consolidar os dados financeiros deste mês
             metrics = annual_metrics[m_num]
             vendas_meta = metrics["vendas_meta"]
             vendas_realizado = metrics["vendas_realizado"]
             
-            # Se o faturamento na META ANUAL for zero ou nan, mas temos transações detalhadas,
-            # usamos a soma das transações como o faturamento de vendas realizado!
-            if (vendas_realizado == 0.0 or pd.isna(vendas_realizado)) and tx_sum > 0:
-                vendas_realizado = tx_sum
-                log(f"  Mês {m_num}: Faturamento da META ANUAL vazio. Usando soma das transações: R$ {vendas_realizado:,.2f}")
-            
+            if (vendas_realizado == 0.0 or pd.isna(vendas_realizado)) and vendas_sum > 0:
+                vendas_realizado = vendas_sum
+                log(f"  Mês {m_num}: Faturamento de VENDAS atualizado pela soma: R$ {vendas_realizado:,.2f}")
+                
             locacao_meta = metrics["locacao_meta"]
             locacao_realizado = metrics["locacao_realizado"]
+            
+            if locacoes_sum > 0:
+                locacao_realizado = locacoes_sum
+                log(f"  Mês {m_num}: Faturamento de LOCAÇÕES atualizado pela soma: R$ {locacao_realizado:,.2f}")
+                
             servicos_meta = metrics["servicos_meta"]
             servicos_realizado = metrics["servicos_realizado"]
             
@@ -276,7 +292,6 @@ def main():
     final_data = process_excel()
     
     if final_data:
-        # Limpar NaNs
         final_data = clean_nans(final_data)
         
         json_str = json.dumps(final_data, ensure_ascii=False, indent=2)
