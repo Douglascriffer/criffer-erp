@@ -238,7 +238,7 @@ export default function PlrView({ darkMode }) {
           position: 'absolute',
           width: '280px', height: '280px',
           borderRadius: '50%',
-          border: '4px solid transparent',
+          border: '12px solid transparent',
           borderLeftColor: '#EF4444', // Red half
           borderRightColor: '#22C55E', // Green half
           borderTopColor: '#EF4444',
@@ -260,22 +260,8 @@ export default function PlrView({ darkMode }) {
           justifyContent: 'center',
           position: 'relative'
         }}>
-          {/* Decorative small dollars around */}
-          {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
-            <div key={deg} style={{
-              position: 'absolute',
-              transform: `rotate(${deg}deg) translateY(-90px)`,
-              color: '#FF6A22',
-              opacity: 0.8
-            }}>
-              <div style={{ transform: `rotate(-${deg}deg)` }}>
-                <DollarSign size={14} />
-              </div>
-            </div>
-          ))}
-
-          <div style={{ fontSize: '32px', fontWeight: 800, color: '#ffffff', textShadow: '0 0 10px rgba(255,255,255,0.5)', zIndex: 2 }}>
-            1.986.520,00
+          <div style={{ fontSize: '42px', fontWeight: 800, color: '#ffffff', textShadow: '0 0 10px rgba(255,255,255,0.5)', zIndex: 2, letterSpacing: '1px' }}>
+            1.986.520
           </div>
         </div>
 
