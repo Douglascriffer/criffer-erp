@@ -132,8 +132,8 @@ export default function PlrView({ darkMode }) {
                 {/* Glowing power line */}
                 <path d={pathD} fill="none" stroke="#3B82F6" strokeWidth="0.2" filter="url(#glow-blue)" strokeDasharray="1 1" />
                 {/* Continuous Orange energy flow */}
-                <path d={pathD} fill="none" stroke="#FF6A22" strokeWidth="0.8" strokeLinecap="round" filter="url(#glow-orange)" strokeDasharray="8 24">
-                  <animate attributeName="stroke-dashoffset" from="32" to="0" dur="1s" repeatCount="indefinite" />
+                <path d={pathD} fill="none" stroke="#FF6A22" strokeWidth="0.8" strokeLinecap="round" filter="url(#glow-orange)" strokeDasharray="1.5 4.5">
+                  <animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" repeatCount="indefinite" />
                 </path>
               </g>
             );
@@ -155,8 +155,8 @@ export default function PlrView({ darkMode }) {
               {/* Glowing power line */}
               <path d={pathD} fill="none" stroke="#3B82F6" strokeWidth="0.3" filter="url(#glow-blue)" strokeDasharray="1 1" />
               {/* Continuous Orange energy flow */}
-              <path d={pathD} fill="none" stroke="#FF6A22" strokeWidth="1" strokeLinecap="round" filter="url(#glow-orange)" strokeDasharray="10 30">
-                <animate attributeName="stroke-dashoffset" from="40" to="0" dur="1s" repeatCount="indefinite" />
+              <path d={pathD} fill="none" stroke="#FF6A22" strokeWidth="1" strokeLinecap="round" filter="url(#glow-orange)" strokeDasharray="1.5 4.5">
+                <animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" repeatCount="indefinite" />
               </path>
             </g>
           );
