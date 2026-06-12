@@ -171,13 +171,13 @@ export default function PlrView({ darkMode }) {
             alignItems: 'center',
             zIndex: 20
           }}>
-            <div style={{ fontSize: '10px', fontWeight: 600, marginBottom: '6px', whiteSpace: 'nowrap', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
+            <div style={{ fontSize: '14px', fontWeight: 700, marginBottom: '8px', whiteSpace: 'nowrap', textShadow: '0 2px 4px rgba(0,0,0,0.8)', letterSpacing: '0.5px' }}>
               {node.label}
             </div>
             <div style={{
               position: 'relative',
-              width: '65px',
-              height: '65px',
+              width: '85px',
+              height: '85px',
               borderRadius: '50%',
               background: 'radial-gradient(circle at center, #111827 0%, #000000 100%)',
               boxShadow: '0 0 20px rgba(59,130,246,0.5)',
@@ -186,13 +186,13 @@ export default function PlrView({ darkMode }) {
               justifyContent: 'center'
             }}>
               {/* Circulating Energy SVG Ring */}
-              <svg width="65" height="65" viewBox="0 0 65 65" style={{ position: 'absolute', top: 0, left: 0, animation: 'spin 2s linear infinite' }}>
-                <circle cx="32.5" cy="32.5" r="30" fill="none" stroke="#FF6A22" strokeWidth="3" strokeDasharray="40 100" strokeLinecap="round" filter="drop-shadow(0 0 4px #FF6A22)" />
+              <svg width="85" height="85" viewBox="0 0 85 85" style={{ position: 'absolute', top: 0, left: 0, animation: 'spin 2s linear infinite' }}>
+                <circle cx="42.5" cy="42.5" r="40" fill="none" stroke="#FF6A22" strokeWidth="3" strokeDasharray="60 120" strokeLinecap="round" filter="drop-shadow(0 0 4px #FF6A22)" />
               </svg>
               {/* Inner blue ring */}
-              <div style={{ position: 'absolute', width: '56px', height: '56px', borderRadius: '50%', border: '2px solid #3B82F6' }}></div>
+              <div style={{ position: 'absolute', width: '74px', height: '74px', borderRadius: '50%', border: '2px solid #3B82F6' }}></div>
               
-              <node.icon size={32} color="#FF6A22" style={{ filter: 'drop-shadow(0 0 5px rgba(255,106,34,0.8))', zIndex: 2 }} />
+              <node.icon size={44} color="#FF6A22" style={{ filter: 'drop-shadow(0 0 5px rgba(255,106,34,0.8))', zIndex: 2 }} />
             </div>
           </div>
         ))
