@@ -79,7 +79,16 @@ export default function PlrView({ darkMode }) {
       fontFamily: "'Inter', 'Gotham', sans-serif",
       color: '#ffffff'
     }}>
-      {/* Background Grid Pattern */}
+      {/* CSS Animations */}
+      <style>{`
+        @keyframes energyFlow {
+          from { stroke-dashoffset: 100; }
+          to { stroke-dashoffset: 0; }
+        }
+        @keyframes spin {
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
         backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
@@ -107,41 +116,26 @@ export default function PlrView({ darkMode }) {
           </filter>
         </defs>
 
-        {/* Lines connecting branches */}
+        {/* Continuous lines for each branch */}
         {branches.map((branch, bIdx) => {
-          return branch.nodes.map((node, nIdx) => {
-            // Draw line to next node in branch, or to center if last
-            const isLast = nIdx === branch.nodes.length - 1;
-            const nextNode = isLast ? center : branch.nodes[nIdx + 1];
-            
-            // Draw dual line effect (blue and orange interlaced)
-            return (
-              <g key={`line-${bIdx}-${nIdx}`}>
-                {/* Base wire */}
-                <line 
-                  x1={node.x} y1={branch.y} 
-                  x2={nextNode.x} y2={isLast ? center.y : branch.y} 
-                  stroke="#1E3A8A" strokeWidth="0.8" 
-                />
-                {/* Glowing power line */}
-                <line 
-                  x1={node.x} y1={branch.y} 
-                  x2={nextNode.x} y2={isLast ? center.y : branch.y} 
-                  stroke="#3B82F6" strokeWidth="0.3" filter="url(#glow-blue)"
-                  strokeDasharray="1 1"
-                />
-                {/* Orange energy flow */}
-                <line 
-                  x1={node.x} y1={branch.y} 
-                  x2={nextNode.x} y2={isLast ? center.y : branch.y} 
-                  stroke="#FF6A22" strokeWidth="0.2" filter="url(#glow-orange)"
-                  strokeDasharray="2 4"
-                >
-                  <animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" repeatCount="indefinite" />
-                </line>
-              </g>
-            )
-          })
+          const firstNode = branch.nodes[0];
+          const lastNode = branch.nodes[branch.nodes.length - 1];
+          
+          // Construct a continuous path from first node to last node, then to center
+          const pathD = `M ${firstNode.x} ${branch.y} L ${lastNode.x} ${branch.y} Q ${(lastNode.x + center.x)/2} ${branch.y} ${center.x} ${center.y}`;
+          
+          return (
+            <g key={`branch-line-${bIdx}`}>
+              {/* Base wire */}
+              <path d={pathD} fill="none" stroke="#1E3A8A" strokeWidth="0.8" />
+              {/* Glowing power line */}
+              <path d={pathD} fill="none" stroke="#3B82F6" strokeWidth="0.3" filter="url(#glow-blue)" strokeDasharray="1 1" />
+              {/* Continuous Orange energy flow */}
+              <path d={pathD} fill="none" stroke="#FF6A22" strokeWidth="0.4" filter="url(#glow-orange)" strokeDasharray="3 6">
+                <animate attributeName="stroke-dashoffset" from="9" to="0" dur="0.5s" repeatCount="indefinite" />
+              </path>
+            </g>
+          );
         })}
 
         {/* Lines connecting center to batteries */}
@@ -181,17 +175,24 @@ export default function PlrView({ darkMode }) {
               {node.label}
             </div>
             <div style={{
-              width: '46px',
-              height: '46px',
+              position: 'relative',
+              width: '65px',
+              height: '65px',
               borderRadius: '50%',
               background: 'radial-gradient(circle at center, #111827 0%, #000000 100%)',
-              border: '2px solid #3B82F6',
-              boxShadow: '0 0 15px rgba(59,130,246,0.6), inset 0 0 10px rgba(59,130,246,0.3)',
+              boxShadow: '0 0 20px rgba(59,130,246,0.5)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <node.icon size={22} color="#FF6A22" style={{ filter: 'drop-shadow(0 0 5px rgba(255,106,34,0.8))' }} />
+              {/* Circulating Energy SVG Ring */}
+              <svg width="65" height="65" viewBox="0 0 65 65" style={{ position: 'absolute', top: 0, left: 0, animation: 'spin 2s linear infinite' }}>
+                <circle cx="32.5" cy="32.5" r="30" fill="none" stroke="#FF6A22" strokeWidth="3" strokeDasharray="40 100" strokeLinecap="round" filter="drop-shadow(0 0 4px #FF6A22)" />
+              </svg>
+              {/* Inner blue ring */}
+              <div style={{ position: 'absolute', width: '56px', height: '56px', borderRadius: '50%', border: '2px solid #3B82F6' }}></div>
+              
+              <node.icon size={32} color="#FF6A22" style={{ filter: 'drop-shadow(0 0 5px rgba(255,106,34,0.8))', zIndex: 2 }} />
             </div>
           </div>
         ))
