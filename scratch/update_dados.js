@@ -32,11 +32,33 @@ function processExcel() {
 
     const offsets = { vendas: 2, servicos: 31, locacao: 61, devolucoes: 91 };
 
+    function parseDateCustom(val) {
+      if (val instanceof Date) return val;
+      if (typeof val === 'number') {
+        // Excel date
+        return new Date(Math.round((val - 25569) * 86400 * 1000));
+      }
+      if (typeof val === 'string') {
+        const ptToEn = { 'jan': 'Jan', 'fev': 'Feb', 'mar': 'Mar', 'abr': 'Apr', 'mai': 'May', 'jun': 'Jun', 'jul': 'Jul', 'ago': 'Aug', 'set': 'Sep', 'out': 'Oct', 'nov': 'Nov', 'dez': 'Dec' };
+        let s = val.toLowerCase().trim();
+        for (const [pt, en] of Object.entries(ptToEn)) {
+          if (s.startsWith(pt)) {
+             const m = s.match(/\d{2}/);
+             if (m) {
+               const year = 2000 + parseInt(m[0]);
+               return new Date(`${en} 01, ${year}`);
+             }
+          }
+        }
+      }
+      return new Date(val);
+    }
+
     for (let r = 2; r < 30; r++) {
       const dateVal = rows[r][0];
       if (!dateVal || String(dateVal).trim() === '') break;
 
-      let dt = new Date(dateVal);
+      let dt = parseDateCustom(dateVal);
       if (isNaN(dt.getTime())) continue;
 
       const periodData = {
@@ -85,7 +107,7 @@ function processExcel() {
       const dateVal = rows[r][0];
       if (!dateVal) continue;
       
-      const dt = new Date(dateVal);
+      let dt = parseDateCustom(dateVal);
       if (isNaN(dt.getTime())) continue;
 
       const ano = dt.getFullYear();
@@ -118,7 +140,7 @@ function processExcel() {
       for (let i = 1; i < headers.length; i++) {
         const dtStr = headers[i];
         if (!dtStr || dtStr === 'Total' || String(dtStr).includes('Diferença')) continue;
-        const dt = new Date(dtStr);
+        let dt = parseDateCustom(dtStr);
         if (isNaN(dt.getTime())) continue;
         
         result.meta[year].push({
