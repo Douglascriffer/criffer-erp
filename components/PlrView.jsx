@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Users, TrendingDown } from 'lucide-react';
+import { 
+  TrendingUp, Handshake, Users, FlaskConical, Stethoscope, Factory, Package, 
+  Cpu, Wrench, ShoppingCart, ClipboardList, Megaphone, Monitor, Key, HardHat,
+  DollarSign
+} from 'lucide-react';
 
 export default function PlrView({ darkMode }) {
   const [mounted, setMounted] = useState(false);
@@ -7,11 +11,60 @@ export default function PlrView({ darkMode }) {
 
   if (!mounted) return null;
 
+  const branches = [
+    {
+      y: 20,
+      nodes: [
+        { id: 'financeiro', label: 'Financeiro', icon: TrendingUp, x: 8 },
+        { id: 'comercial', label: 'Comercial', icon: Handshake, x: 19 },
+        { id: 'rh', label: 'RH', icon: Users, x: 30 },
+        { id: 'lab_manutencao', label: 'Lab. Manutenção', icon: FlaskConical, x: 41 },
+      ]
+    },
+    {
+      y: 38,
+      nodes: [
+        { id: 'lab_calibracao', label: 'Lab. Calibração', icon: Stethoscope, x: 8 },
+        { id: 'producao', label: 'Produção', icon: Factory, x: 22 },
+        { id: 'logistica', label: 'Logística', icon: Package, x: 36 },
+      ]
+    },
+    {
+      y: 56,
+      nodes: [
+        { id: 'pd', label: 'P&D', icon: Cpu, x: 8 },
+        { id: 'manutencao', label: 'Manutenção', icon: Wrench, x: 22 },
+        { id: 'compras', label: 'Compras', icon: ShoppingCart, x: 36 },
+      ]
+    },
+    {
+      y: 74,
+      nodes: [
+        { id: 'adm', label: 'ADM', icon: ClipboardList, x: 8 },
+        { id: 'marketing', label: 'Marketing', icon: Megaphone, x: 22 },
+        { id: 'ti', label: 'TI', icon: Monitor, x: 36 },
+      ]
+    },
+    {
+      y: 92,
+      nodes: [
+        { id: 'locacao', label: 'Locação', icon: Key, x: 15 },
+        { id: 'sup_tecnico', label: 'Sup. Tecnico', icon: HardHat, x: 29 },
+      ]
+    }
+  ];
+
+  const center = { x: 55, y: 56 };
+  
   const batteries = [
     { id: 'P', label: 'P', percent: 100, y: 25, color: '#FF7A00' },
-    { id: 'L', label: 'L', percent: 35, y: 50, color: '#FF7A00' },
-    { id: 'R', label: 'R', percent: 0, y: 75, color: '#555555' },
+    { id: 'L', label: 'L', percent: 35, y: 56, color: '#FF7A00' },
+    { id: 'R', label: 'R', percent: 0, y: 87, color: '#555555' },
   ];
+
+  // SVG dimensions
+  const vw = 100;
+  const vh = 100;
 
   return (
     <div style={{
@@ -24,220 +77,249 @@ export default function PlrView({ darkMode }) {
       border: '2px solid rgba(255,106,34,0.2)',
       boxShadow: 'inset 0 0 50px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5)',
       fontFamily: "'Inter', 'Gotham', sans-serif",
-      color: '#ffffff',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '0 5%'
+      color: '#ffffff'
     }}>
       {/* Background Grid Pattern */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
         backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
         backgroundSize: '30px 30px',
-        pointerEvents: 'none',
-        zIndex: 0
+        pointerEvents: 'none'
       }} />
 
-      {/* CSS Animations */}
-      <style>{`
-        @keyframes pushSlice {
-          0% { transform: translate(-35px, 35px); }
-          15% { transform: translate(-35px, 35px); }
-          50% { transform: translate(0px, 0px); }
-          85% { transform: translate(0px, 0px); }
-          100% { transform: translate(-35px, 35px); }
-        }
-        @keyframes pushPeople {
-          0% { transform: translate(-35px, 35px); }
-          15% { transform: translate(-35px, 35px); }
-          50% { transform: translate(0px, 0px); }
-          85% { transform: translate(0px, 0px); }
-          100% { transform: translate(-35px, 35px); }
-        }
-        @keyframes textGlow {
-          0%, 100% { text-shadow: 0 0 10px rgba(255,255,255,0.3); }
-          50% { text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 30px #FF6A22; }
-        }
-        .slice-anim {
-          animation: pushSlice 4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
-        }
-        .people-anim {
-          animation: pushPeople 4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
-        }
-      `}</style>
-
       {/* Title */}
-      <div style={{ position: 'absolute', top: '4%', width: '100%', textAlign: 'center', zIndex: 10, left: 0 }}>
-        <h1 style={{ fontSize: '42px', fontWeight: 900, color: '#FF6A22', margin: 0, letterSpacing: '2px', textShadow: '0 0 20px rgba(255,106,34,0.5)' }}>CRIFFER</h1>
-        <h2 style={{ fontSize: '20px', fontWeight: 600, color: '#ffffff', margin: 0, textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>A Rede de Energia</h2>
+      <div style={{ position: 'absolute', top: '2%', width: '100%', textAlign: 'center', zIndex: 10 }}>
+        <h1 style={{ fontSize: '48px', fontWeight: 900, color: '#FF6A22', margin: 0, letterSpacing: '2px', textShadow: '0 0 20px rgba(255,106,34,0.5)' }}>CRIFFER</h1>
+        <h2 style={{ fontSize: '24px', fontWeight: 600, color: '#ffffff', margin: 0, textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>A Rede de Energia</h2>
       </div>
 
-      {/* LEFT AREA: The Animated Pie Chart */}
-      <div style={{ position: 'relative', width: '40%', height: '500px', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        
-        {/* Main Pie Chart (White/Gray) representing the whole company */}
-        <div style={{ position: 'relative', width: '400px', height: '400px', transform: 'scaleY(0.8) rotateX(20deg)' }}>
-          {/* Main SVG */}
-          <svg width="400" height="400" viewBox="0 0 200 200" style={{ position: 'absolute', top: 0, left: 0 }}>
-            {/* The 3D Base using drop-shadow */}
-            <g style={{ filter: 'drop-shadow(0px 20px 0px #cbd5e1)' }}>
-              {/* 75% Arc from top to left via right and bottom */}
-              <path d="M 100 100 L 100 180 A 80 80 0 1 0 20 100 Z" fill="#f8fafc" />
-            </g>
-          </svg>
+      {/* SVG Canvas for Lines */}
+      <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} viewBox={`0 0 ${vw} ${vh}`} preserveAspectRatio="none">
+        {/* Glow Filters */}
+        <defs>
+          <filter id="glow-orange" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+          <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="1" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
 
-          {/* Animated PLR Slice (Red) */}
-          <div className="slice-anim" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 10 }}>
-            <svg width="400" height="400" viewBox="0 0 200 200">
-              <g style={{ filter: 'drop-shadow(0px 20px 0px #b91c1c)' }}>
-                {/* 25% Arc from left to bottom */}
-                <path d="M 100 100 L 20 100 A 80 80 0 0 0 100 180 Z" fill="#ef4444" />
+        {/* Lines connecting branches */}
+        {branches.map((branch, bIdx) => {
+          return branch.nodes.map((node, nIdx) => {
+            // Draw line to next node in branch, or to center if last
+            const isLast = nIdx === branch.nodes.length - 1;
+            const nextNode = isLast ? center : branch.nodes[nIdx + 1];
+            
+            // Draw dual line effect (blue and orange interlaced)
+            return (
+              <g key={`line-${bIdx}-${nIdx}`}>
+                {/* Base wire */}
+                <line 
+                  x1={node.x} y1={branch.y} 
+                  x2={nextNode.x} y2={isLast ? center.y : branch.y} 
+                  stroke="#1E3A8A" strokeWidth="0.8" 
+                />
+                {/* Glowing power line */}
+                <line 
+                  x1={node.x} y1={branch.y} 
+                  x2={nextNode.x} y2={isLast ? center.y : branch.y} 
+                  stroke="#3B82F6" strokeWidth="0.3" filter="url(#glow-blue)"
+                  strokeDasharray="1 1"
+                />
+                {/* Orange energy flow */}
+                <line 
+                  x1={node.x} y1={branch.y} 
+                  x2={nextNode.x} y2={isLast ? center.y : branch.y} 
+                  stroke="#FF6A22" strokeWidth="0.2" filter="url(#glow-orange)"
+                  strokeDasharray="2 4"
+                >
+                  <animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" repeatCount="indefinite" />
+                </line>
               </g>
-              <text x="45" y="145" fill="#ffffff" fontSize="16" fontWeight="bold" transform="rotate(-45 45 145)" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))' }}>P.L.R.</text>
-            </svg>
-          </div>
+            )
+          })
+        })}
 
-          {/* Animated People Pushing */}
-          <div className="people-anim" style={{ 
-            position: 'absolute', 
-            top: '250px', 
-            left: '-20px', 
-            zIndex: 20,
+        {/* Lines connecting center to batteries */}
+        {batteries.map((batt, idx) => (
+          <g key={`batt-line-${idx}`}>
+            {/* Curved path to batteries */}
+            <path 
+              d={`M ${center.x + 10} ${center.y} Q ${center.x + 15} ${batt.y} 75 ${batt.y}`}
+              fill="none" stroke="#FF6A22" strokeWidth="0.8" filter="url(#glow-orange)"
+            />
+            {/* Animated energy to batteries */}
+            <path 
+              d={`M ${center.x + 10} ${center.y} Q ${center.x + 15} ${batt.y} 75 ${batt.y}`}
+              fill="none" stroke="#FFFFFF" strokeWidth="0.3" filter="url(#glow-orange)"
+              strokeDasharray="3 6"
+            >
+              <animate attributeName="stroke-dashoffset" from="9" to="0" dur="0.8s" repeatCount="indefinite" />
+            </path>
+          </g>
+        ))}
+      </svg>
+
+      {/* Render Left Nodes */}
+      {branches.map((branch, bIdx) => (
+        branch.nodes.map((node, nIdx) => (
+          <div key={node.id} style={{
+            position: 'absolute',
+            left: `${node.x}%`,
+            top: `${branch.y}%`,
+            transform: 'translate(-50%, -50%)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            transform: 'rotate(15deg)' // Leaning forward to push
+            zIndex: 20
           }}>
-            <div style={{ display: 'flex', gap: '5px' }}>
-              <Users color="#e2e8f0" size={56} style={{ filter: 'drop-shadow(0px 10px 10px rgba(0,0,0,0.8))' }} />
-              <Users color="#cbd5e1" size={48} style={{ filter: 'drop-shadow(0px 10px 10px rgba(0,0,0,0.8))', marginTop: '10px' }} />
+            <div style={{ fontSize: '10px', fontWeight: 600, marginBottom: '6px', whiteSpace: 'nowrap', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
+              {node.label}
             </div>
-            <div style={{ 
-              color: '#ffffff', fontSize: '14px', fontWeight: 'bold', 
-              background: 'rgba(0,0,0,0.6)', padding: '2px 8px', borderRadius: '4px',
-              marginTop: '5px', textShadow: '0 2px 4px #000' 
-            }}>
-              Convertendo Despesa
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      {/* CENTER AREA: Values */}
-      <div style={{ zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
-        
-        <div style={{
-          background: 'radial-gradient(circle at center, #111827 0%, #000000 100%)',
-          border: '4px solid #333',
-          boxShadow: '0 0 40px rgba(255,106,34,0.3), inset 0 0 30px #000',
-          padding: '40px 50px',
-          borderRadius: '50%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'relative',
-          width: '320px',
-          height: '320px'
-        }}>
-          {/* Glowing Rings */}
-          <div style={{
-            position: 'absolute',
-            width: '100%', height: '100%',
-            borderRadius: '50%',
-            border: '6px solid transparent',
-            borderLeftColor: '#EF4444', 
-            borderRightColor: '#22C55E', 
-            borderTopColor: '#EF4444',
-            borderBottomColor: '#22C55E',
-            transform: 'rotate(-45deg)',
-            boxShadow: '0 0 30px rgba(239,68,68,0.2), inset 0 0 30px rgba(34,197,94,0.2)',
-            pointerEvents: 'none'
-          }}></div>
-
-          <div style={{ color: '#FF6A22', fontSize: '14px', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '10px', fontWeight: 600 }}>
-            Valor Acumulado
-          </div>
-          <div style={{ 
-            color: '#ffffff', 
-            fontSize: '38px', 
-            fontWeight: 800, 
-            textShadow: '0 0 15px rgba(255,255,255,0.4)',
-            animation: 'textGlow 3s infinite'
-          }}>
-            1.986.520,00
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', gap: '40px', marginTop: '10px' }}>
-          <div style={{ fontSize: '24px', fontWeight: 700, color: '#EF4444', textShadow: '0 0 10px rgba(239,68,68,0.8)' }}>
-            55% <span style={{ fontSize: '14px', color: '#fff', opacity: 0.7 }}>Despesas</span>
-          </div>
-          <div style={{ fontSize: '24px', fontWeight: 700, color: '#22C55E', textShadow: '0 0 10px rgba(34,197,94,0.8)' }}>
-            45% <span style={{ fontSize: '14px', color: '#fff', opacity: 0.7 }}>Lucro</span>
-          </div>
-        </div>
-      </div>
-
-      {/* RIGHT AREA: Batteries */}
-      <div style={{ zIndex: 10, display: 'flex', flexDirection: 'column', gap: '40px', width: '30%' }}>
-        {batteries.map((batt, idx) => (
-          <div key={batt.id} style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '20px'
-          }}>
-            {/* Battery Capsule */}
             <div style={{
-              flex: 1,
-              height: '70px',
-              background: 'rgba(0,0,0,0.6)',
-              borderRadius: '8px',
-              border: '3px solid #333',
-              position: 'relative',
-              overflow: 'hidden',
-              boxShadow: `0 0 20px ${batt.color}40`,
+              width: '46px',
+              height: '46px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle at center, #111827 0%, #000000 100%)',
+              border: '2px solid #3B82F6',
+              boxShadow: '0 0 15px rgba(59,130,246,0.6), inset 0 0 10px rgba(59,130,246,0.3)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              {/* Battery Fill */}
-              <div style={{
-                position: 'absolute',
-                left: 0, top: 0, bottom: 0,
-                width: `${batt.percent}%`,
-                background: `linear-gradient(90deg, ${batt.color}40 0%, ${batt.color} 100%)`,
-                boxShadow: `0 0 30px ${batt.color}`,
-                transition: 'width 1s ease-in-out'
-              }}></div>
-              
-              {/* Battery End Caps */}
-              <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '10px', background: 'linear-gradient(180deg, #555, #222, #555)', borderRight: '1px solid #111' }}></div>
-              <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '10px', background: 'linear-gradient(180deg, #555, #222, #555)', borderLeft: '1px solid #111' }}></div>
-              
-              {/* Text Value */}
-              <span style={{ position: 'relative', zIndex: 5, fontSize: '28px', fontWeight: 800, color: '#fff', textShadow: '0 2px 5px rgba(0,0,0,0.8)' }}>
-                {batt.percent}%
-              </span>
-            </div>
-
-            {/* Letter (P, L, R) */}
-            <div style={{
-              fontSize: '48px',
-              fontWeight: 900,
-              color: '#fff',
-              textShadow: '0 4px 15px rgba(255,255,255,0.4)',
-              width: '40px',
-              textAlign: 'center'
-            }}>
-              {batt.label}
+              <node.icon size={22} color="#FF6A22" style={{ filter: 'drop-shadow(0 0 5px rgba(255,106,34,0.8))' }} />
             </div>
           </div>
-        ))}
+        ))
+      ))}
+
+      {/* Render Center Dial */}
+      <div style={{
+        position: 'absolute',
+        left: `${center.x}%`,
+        top: `${center.y}%`,
+        transform: 'translate(-50%, -50%)',
+        zIndex: 30,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        {/* Outer glowing rings */}
+        <div style={{
+          position: 'absolute',
+          width: '280px', height: '280px',
+          borderRadius: '50%',
+          border: '4px solid transparent',
+          borderLeftColor: '#EF4444', // Red half
+          borderRightColor: '#22C55E', // Green half
+          borderTopColor: '#EF4444',
+          borderBottomColor: '#22C55E',
+          transform: 'rotate(-45deg)',
+          boxShadow: '0 0 40px rgba(239,68,68,0.3), inset 0 0 40px rgba(34,197,94,0.3)'
+        }}></div>
+        
+        {/* Inner black dial */}
+        <div style={{
+          width: '240px', height: '240px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle at center, #111827 0%, #000000 100%)',
+          border: '2px solid #333',
+          boxShadow: 'inset 0 0 30px #000',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative'
+        }}>
+          {/* Decorative small dollars around */}
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
+            <div key={deg} style={{
+              position: 'absolute',
+              transform: `rotate(${deg}deg) translateY(-90px)`,
+              color: '#FF6A22',
+              opacity: 0.8
+            }}>
+              <div style={{ transform: `rotate(-${deg}deg)` }}>
+                <DollarSign size={14} />
+              </div>
+            </div>
+          ))}
+
+          <div style={{ fontSize: '32px', fontWeight: 800, color: '#ffffff', textShadow: '0 0 10px rgba(255,255,255,0.5)', zIndex: 2 }}>
+            1.986.520,00
+          </div>
+        </div>
+
+        {/* 55% and 45% texts */}
+        <div style={{ position: 'absolute', bottom: '-40px', left: '20%', fontSize: '20px', fontWeight: 700, color: '#EF4444', textShadow: '0 0 10px rgba(239,68,68,0.8)' }}>
+          55%
+        </div>
+        <div style={{ position: 'absolute', bottom: '-40px', right: '20%', fontSize: '20px', fontWeight: 700, color: '#22C55E', textShadow: '0 0 10px rgba(34,197,94,0.8)' }}>
+          45%
+        </div>
       </div>
 
+      {/* Render Right Batteries */}
+      {batteries.map((batt, idx) => (
+        <div key={batt.id} style={{
+          position: 'absolute',
+          left: '80%',
+          top: `${batt.y}%`,
+          transform: 'translateY(-50%)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '20px',
+          zIndex: 20
+        }}>
+          {/* Battery Capsule */}
+          <div style={{
+            width: '180px',
+            height: '80px',
+            background: 'rgba(0,0,0,0.6)',
+            borderRadius: '8px',
+            border: '3px solid #333',
+            position: 'relative',
+            overflow: 'hidden',
+            boxShadow: `0 0 20px ${batt.color}40`,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            {/* Battery Fill */}
+            <div style={{
+              position: 'absolute',
+              left: 0, top: 0, bottom: 0,
+              width: `${batt.percent}%`,
+              background: `linear-gradient(90deg, ${batt.color}40 0%, ${batt.color} 100%)`,
+              boxShadow: `0 0 30px ${batt.color}`,
+              transition: 'width 1s ease-in-out'
+            }}></div>
+            
+            {/* Battery End Caps (visual styling) */}
+            <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '10px', background: 'linear-gradient(180deg, #555, #222, #555)', borderRight: '1px solid #111' }}></div>
+            <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '10px', background: 'linear-gradient(180deg, #555, #222, #555)', borderLeft: '1px solid #111' }}></div>
+            
+            {/* Text Value */}
+            <span style={{ position: 'relative', zIndex: 5, fontSize: '28px', fontWeight: 800, color: '#fff', textShadow: '0 2px 5px rgba(0,0,0,0.8)' }}>
+              {batt.percent}%
+            </span>
+          </div>
+
+          {/* Letter (P, L, R) */}
+          <div style={{
+            fontSize: '48px',
+            fontWeight: 900,
+            color: '#fff',
+            textShadow: '0 4px 15px rgba(255,255,255,0.4)'
+          }}>
+            {batt.label}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
