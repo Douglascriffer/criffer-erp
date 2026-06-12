@@ -233,34 +233,20 @@ export default function PlrView({ darkMode }) {
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        {/* Outer glowing rings */}
+        {/* Unified Center Dial: Red/Green Background meeting the outer edge */}
         <div style={{
-          position: 'absolute',
           width: '280px', height: '280px',
           borderRadius: '50%',
-          border: '12px solid transparent',
-          borderLeftColor: '#EF4444', // Red half
-          borderRightColor: '#22C55E', // Green half
-          borderTopColor: '#EF4444',
-          borderBottomColor: '#22C55E',
-          transform: 'rotate(-45deg)',
-          boxShadow: '0 0 40px rgba(239,68,68,0.3), inset 0 0 40px rgba(34,197,94,0.3)'
-        }}></div>
-        
-        {/* Inner black dial */}
-        <div style={{
-          width: '240px', height: '240px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle at center, #111827 0%, #000000 100%)',
-          border: '2px solid #333',
-          boxShadow: 'inset 0 0 30px #000',
+          background: 'conic-gradient(from 171deg, #EF4444 0% 55%, #22C55E 55% 100%)',
+          boxShadow: '0 0 40px rgba(0,0,0,0.6), inset 0 0 80px rgba(0,0,0,0.6)',
+          border: '4px solid rgba(255,255,255,0.1)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           position: 'relative'
         }}>
-          <div style={{ fontSize: '42px', fontWeight: 800, color: '#ffffff', textShadow: '0 0 10px rgba(255,255,255,0.5)', zIndex: 2, letterSpacing: '1px' }}>
+          <div style={{ fontSize: '42px', fontWeight: 900, color: '#ffffff', textShadow: '0 4px 15px rgba(0,0,0,0.8)', zIndex: 2, letterSpacing: '1px' }}>
             1.986.520
           </div>
         </div>
