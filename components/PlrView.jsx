@@ -116,66 +116,51 @@ export default function PlrView({ darkMode }) {
           </filter>
         </defs>
 
-        {/* Vertical/Inter-sector lines connecting branches (BASE GRID) */}
+        {/* Vertical/Inter-sector lines connecting branches */}
         {branches.map((branch, bIdx) => {
           if (bIdx === branches.length - 1) return null;
           const nextBranch = branches[bIdx + 1];
           return branch.nodes.map((node, nIdx) => {
+            // Conecta ao nó com mesmo índice na branch de baixo, ou ao último se não houver
             const targetNode = nextBranch.nodes[Math.min(nIdx, nextBranch.nodes.length - 1)];
             const pathD = `M ${node.x} ${branch.y} L ${targetNode.x} ${nextBranch.y}`;
+            
             return (
               <g key={`v-line-${bIdx}-${nIdx}`}>
+                {/* Base wire */}
                 <path d={pathD} fill="none" stroke="#1E3A8A" strokeWidth="0.4" />
+                {/* Glowing power line */}
                 <path d={pathD} fill="none" stroke="#3B82F6" strokeWidth="0.2" filter="url(#glow-blue)" strokeDasharray="1 1" />
+                {/* Continuous Orange energy flow */}
+                <path d={pathD} fill="none" stroke="#FF6A22" strokeWidth="0.8" strokeLinecap="round" filter="url(#glow-orange)" strokeDasharray="8 24">
+                  <animate attributeName="stroke-dashoffset" from="32" to="0" dur="1s" repeatCount="indefinite" />
+                </path>
               </g>
             );
           });
         })}
 
-        {/* Continuous horizontal lines for each branch (BASE GRID) */}
+        {/* Continuous lines for each branch */}
         {branches.map((branch, bIdx) => {
           const firstNode = branch.nodes[0];
           const lastNode = branch.nodes[branch.nodes.length - 1];
+          
+          // Construct a continuous path from first node to last node, then to center
           const pathD = `M ${firstNode.x} ${branch.y} L ${lastNode.x} ${branch.y} Q ${(lastNode.x + center.x)/2} ${branch.y} ${center.x} ${center.y}`;
+          
           return (
             <g key={`branch-line-${bIdx}`}>
+              {/* Base wire */}
               <path d={pathD} fill="none" stroke="#1E3A8A" strokeWidth="0.8" />
+              {/* Glowing power line */}
               <path d={pathD} fill="none" stroke="#3B82F6" strokeWidth="0.3" filter="url(#glow-blue)" strokeDasharray="1 1" />
+              {/* Continuous Orange energy flow */}
+              <path d={pathD} fill="none" stroke="#FF6A22" strokeWidth="1" strokeLinecap="round" filter="url(#glow-orange)" strokeDasharray="10 30">
+                <animate attributeName="stroke-dashoffset" from="40" to="0" dur="1s" repeatCount="indefinite" />
+              </path>
             </g>
           );
         })}
-
-        {/* The single sequential Orange Energy Flow that traces through the entire grid */}
-        {(() => {
-          let snakePath = '';
-          branches.forEach((branch, bIdx) => {
-            const isLtoR = bIdx % 2 === 0;
-            const currentNodes = isLtoR ? branch.nodes : [...branch.nodes].reverse();
-            
-            if (bIdx === 0) {
-              snakePath += `M ${currentNodes[0].x} ${branch.y} `;
-            } else {
-              const prevNodes = (bIdx - 1) % 2 === 0 ? branches[bIdx - 1].nodes : [...branches[bIdx - 1].nodes].reverse();
-              const prevX = prevNodes[prevNodes.length - 1].x;
-              snakePath += `L ${prevX} ${branch.y} `;
-              if (prevX !== currentNodes[0].x) {
-                snakePath += `L ${currentNodes[0].x} ${branch.y} `;
-              }
-            }
-            currentNodes.forEach((node, nIdx) => {
-              if (nIdx > 0 || bIdx === 0) snakePath += `L ${node.x} ${branch.y} `;
-            });
-            if (bIdx === branches.length - 1) {
-              const lastX = currentNodes[currentNodes.length - 1].x;
-              snakePath += `Q ${(lastX + center.x)/2} ${branch.y} ${center.x} ${center.y}`;
-            }
-          });
-          return (
-            <path d={snakePath} fill="none" stroke="#FF6A22" strokeWidth="1.2" filter="url(#glow-orange)" strokeDasharray="350 350" strokeLinecap="round">
-              <animate attributeName="stroke-dashoffset" from="350" to="-350" dur="6s" repeatCount="indefinite" />
-            </path>
-          );
-        })()}
 
         {/* Lines connecting center to batteries */}
         {batteries.map((batt, idx) => (
