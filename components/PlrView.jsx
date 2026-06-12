@@ -116,6 +116,30 @@ export default function PlrView({ darkMode }) {
           </filter>
         </defs>
 
+        {/* Vertical/Inter-sector lines connecting branches */}
+        {branches.map((branch, bIdx) => {
+          if (bIdx === branches.length - 1) return null;
+          const nextBranch = branches[bIdx + 1];
+          return branch.nodes.map((node, nIdx) => {
+            // Conecta ao nó com mesmo índice na branch de baixo, ou ao último se não houver
+            const targetNode = nextBranch.nodes[Math.min(nIdx, nextBranch.nodes.length - 1)];
+            const pathD = `M ${node.x} ${branch.y} L ${targetNode.x} ${nextBranch.y}`;
+            
+            return (
+              <g key={`v-line-${bIdx}-${nIdx}`}>
+                {/* Base wire */}
+                <path d={pathD} fill="none" stroke="#1E3A8A" strokeWidth="0.4" />
+                {/* Glowing power line */}
+                <path d={pathD} fill="none" stroke="#3B82F6" strokeWidth="0.2" filter="url(#glow-blue)" strokeDasharray="1 1" />
+                {/* Continuous Orange energy flow */}
+                <path d={pathD} fill="none" stroke="#FF6A22" strokeWidth="0.3" filter="url(#glow-orange)" strokeDasharray="2 4">
+                  <animate attributeName="stroke-dashoffset" from="6" to="0" dur="0.8s" repeatCount="indefinite" />
+                </path>
+              </g>
+            );
+          });
+        })}
+
         {/* Continuous lines for each branch */}
         {branches.map((branch, bIdx) => {
           const firstNode = branch.nodes[0];
