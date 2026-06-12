@@ -24,6 +24,7 @@ const VisualizadorMetas = dynamic(() => import('@/components/VisualizadorMetas')
 const MetasOrcamentariasView = dynamic(() => import('@/components/MetasOrcamentariasView'), { ssr:false, loading:()=><Skeleton h={600}/> })
 const FluxoCaixaView = dynamic(() => import('@/components/FluxoCaixaView'), { ssr:false, loading:()=><Skeleton h={600}/> })
 const InadimplenciaView = dynamic(() => import('@/components/InadimplenciaView'), { ssr:false, loading:()=><Skeleton h={600}/> })
+const PlrView = dynamic(() => import('@/components/PlrView'), { ssr:false, loading:()=><Skeleton h={600}/> })
 const KpiCard = dynamic(() => import('@/components/KpiCard'), { ssr:false })
 
 function Skeleton({ h=200 }) { return <div style={{ height:h, background:'rgba(0,0,0,0.05)', borderRadius:16, animation:'pulse 1.5s infinite' }} /> }
@@ -125,6 +126,7 @@ export default function DashboardClient() {
     { id:'desempenho', label:'FATURAMENTO', icon: BarChart3 },
     { id:'orcamento',  label:'ORÇAMENTO', icon: PieChart },
     { id:'fluxo',      label:'FLUXO DE CAIXA', icon: Activity },
+    { id:'plr',        label:'P.L.R.', icon: Target },
   ]
 
   const SUB_TABS = {
@@ -143,6 +145,7 @@ export default function DashboardClient() {
       { id:'simples', label:'Fluxo' },
       { id:'orcamento_caixa', label:'Orçamento Caixa' },
     ],
+    plr: [],
   }
 
   const activeSubs = useMemo(() => {
@@ -567,6 +570,10 @@ export default function DashboardClient() {
               />
             );
           })()}
+
+          {tab === 'plr' && (
+            <PlrView darkMode={theme === 'dark'} />
+          )}
         </div>
       </main>
     </div>
