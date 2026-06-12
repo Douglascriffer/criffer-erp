@@ -106,11 +106,11 @@ export default function PlrView({ darkMode }) {
       <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} viewBox={`0 0 ${vw} ${vh}`} preserveAspectRatio="none">
         {/* Glow Filters */}
         <defs>
-          <filter id="glow-orange" x="-20%" y="-20%" width="140%" height="140%">
+          <filter id="glow-orange" filterUnits="userSpaceOnUse" x="-20" y="-20" width="140" height="140">
             <feGaussianBlur stdDeviation="1.5" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
-          <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+          <filter id="glow-blue" filterUnits="userSpaceOnUse" x="-20" y="-20" width="140" height="140">
             <feGaussianBlur stdDeviation="1" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
