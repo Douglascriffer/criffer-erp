@@ -116,51 +116,55 @@ export default function PlrView({ darkMode }) {
           </filter>
         </defs>
 
-        {/* Vertical/Inter-sector lines connecting branches */}
-        {branches.map((branch, bIdx) => {
-          if (bIdx === branches.length - 1) return null;
-          const nextBranch = branches[bIdx + 1];
-          return branch.nodes.map((node, nIdx) => {
-            // Conecta ao nó com mesmo índice na branch de baixo, ou ao último se não houver
-            const targetNode = nextBranch.nodes[Math.min(nIdx, nextBranch.nodes.length - 1)];
-            const pathD = `M ${node.x} ${branch.y} L ${targetNode.x} ${nextBranch.y}`;
+        {/* Single Continuous Snake Line through all sectors */}
+        {(() => {
+          let pathD = '';
+          branches.forEach((branch, bIdx) => {
+            const isLtoR = bIdx % 2 === 0;
+            const currentNodes = isLtoR ? branch.nodes : [...branch.nodes].reverse();
             
-            return (
-              <g key={`v-line-${bIdx}-${nIdx}`}>
-                {/* Base wire */}
-                <path d={pathD} fill="none" stroke="#1E3A8A" strokeWidth="0.4" />
-                {/* Glowing power line */}
-                <path d={pathD} fill="none" stroke="#3B82F6" strokeWidth="0.2" filter="url(#glow-blue)" strokeDasharray="1 1" />
-                {/* Continuous Orange energy flow */}
-                <path d={pathD} fill="none" stroke="#FF6A22" strokeWidth="0.3" filter="url(#glow-orange)" strokeDasharray="2 4">
-                  <animate attributeName="stroke-dashoffset" from="6" to="0" dur="0.8s" repeatCount="indefinite" />
-                </path>
-              </g>
-            );
-          });
-        })}
+            if (bIdx === 0) {
+              pathD += `M ${currentNodes[0].x} ${branch.y} `;
+            } else {
+              // Line down from previous row to current row
+              const prevNodes = (bIdx - 1) % 2 === 0 ? branches[bIdx - 1].nodes : [...branches[bIdx - 1].nodes].reverse();
+              const prevX = prevNodes[prevNodes.length - 1].x;
+              
+              // Draw straight down to the new Y level
+              pathD += `L ${prevX} ${branch.y} `;
+              // Connect horizontally to the first node of this row if there's an X offset
+              if (prevX !== currentNodes[0].x) {
+                pathD += `L ${currentNodes[0].x} ${branch.y} `;
+              }
+            }
 
-        {/* Continuous lines for each branch */}
-        {branches.map((branch, bIdx) => {
-          const firstNode = branch.nodes[0];
-          const lastNode = branch.nodes[branch.nodes.length - 1];
-          
-          // Construct a continuous path from first node to last node, then to center
-          const pathD = `M ${firstNode.x} ${branch.y} L ${lastNode.x} ${branch.y} Q ${(lastNode.x + center.x)/2} ${branch.y} ${center.x} ${center.y}`;
-          
+            // Draw through all nodes in this branch
+            currentNodes.forEach((node, nIdx) => {
+              if (nIdx > 0 || bIdx === 0) {
+                pathD += `L ${node.x} ${branch.y} `;
+              }
+            });
+
+            // If it's the last branch, curve it to the center!
+            if (bIdx === branches.length - 1) {
+              const lastX = currentNodes[currentNodes.length - 1].x;
+              pathD += `Q ${(lastX + center.x)/2} ${branch.y} ${center.x} ${center.y}`;
+            }
+          });
+
           return (
-            <g key={`branch-line-${bIdx}`}>
+            <g>
               {/* Base wire */}
               <path d={pathD} fill="none" stroke="#1E3A8A" strokeWidth="0.8" />
               {/* Glowing power line */}
-              <path d={pathD} fill="none" stroke="#3B82F6" strokeWidth="0.3" filter="url(#glow-blue)" strokeDasharray="1 1" />
-              {/* Continuous Orange energy flow */}
-              <path d={pathD} fill="none" stroke="#FF6A22" strokeWidth="0.4" filter="url(#glow-orange)" strokeDasharray="3 6">
-                <animate attributeName="stroke-dashoffset" from="9" to="0" dur="0.5s" repeatCount="indefinite" />
+              <path d={pathD} fill="none" stroke="#3B82F6" strokeWidth="0.4" filter="url(#glow-blue)" strokeDasharray="1 2" />
+              {/* Continuous Orange energy flow snake */}
+              <path d={pathD} fill="none" stroke="#FF6A22" strokeWidth="0.6" filter="url(#glow-orange)" strokeDasharray="5 15">
+                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="0.8s" repeatCount="indefinite" />
               </path>
             </g>
           );
-        })}
+        })()}
 
         {/* Lines connecting center to batteries */}
         {batteries.map((batt, idx) => (
