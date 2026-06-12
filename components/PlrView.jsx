@@ -24,7 +24,7 @@ export default function PlrView() {
         width: '100%',
         maxWidth: '1200px',
         aspectRatio: '16/9',
-        backgroundImage: "url('/plr-bg.jpg')",
+        backgroundImage: "url('/plr-bg.png')",
         backgroundSize: 'contain',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
