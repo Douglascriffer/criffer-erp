@@ -67,7 +67,7 @@ export default function TVMode({ data, mes = 'all' }) {
     { id: 'metas', title: 'Metas Estratégicas 2026', subtitle: 'Acompanhamento de Objetivos' }
   ]
 
-    const SLIDE_DURATION = 4000; // 4 segundos
+    const SLIDE_DURATION = 10000; // 10 segundos
 
     useEffect(() => {
     let slideTimer;
