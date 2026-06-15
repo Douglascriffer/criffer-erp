@@ -37,7 +37,7 @@ export default function PlrView({ darkMode }) {
         loop 
         muted 
         playsInline 
-        src="/plr_video_2.mp4" 
+        src="/plr_video_3.mp4" 
         style={{ 
           position: 'absolute', 
           top: 0, 
