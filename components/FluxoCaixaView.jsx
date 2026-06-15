@@ -145,11 +145,17 @@ const FluxoCaixaView = ({ dados, mes, darkMode, viewType = 'simples' }) => {
                     return (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                         <div style={{ background: darkMode ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0.05)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontSize: 22, color: t.text, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Inicial 2026</span>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                            <span style={{ fontSize: 22, color: t.text, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5, lineHeight: 1 }}>Saldo inicial</span>
+                            <span style={{ fontSize: 16, color: t.textMuted, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }}>2026</span>
+                          </div>
                           <span style={{ fontSize: 30, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(saldoIni2026).toLocaleString('pt-BR')}</span>
                         </div>
                         <div style={{ background: darkMode ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0.05)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontSize: 22, color: t.text, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5 }}>Saldo Final {mesesLabels[currentMonth - 1]}/26</span>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                            <span style={{ fontSize: 22, color: t.text, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 0.5, lineHeight: 1 }}>Saldo final</span>
+                            <span style={{ fontSize: 16, color: t.textMuted, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }}>{mesesLabels[currentMonth - 1]}/26</span>
+                          </div>
                           <span style={{ fontSize: 30, fontWeight: 900, color: t.text, fontVariantNumeric: 'tabular-nums' }}>{Math.round(saldoFin).toLocaleString('pt-BR')}</span>
                         </div>
                         <div style={{ border: `1.5px solid ${isGoodPer ? t.green : t.red}`, background: isGoodPer ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)', padding: '20px 28px', borderRadius: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
