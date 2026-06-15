@@ -79,108 +79,23 @@ export default function PlrView({ darkMode }) {
       fontFamily: "'Inter', 'Gotham', sans-serif",
       color: '#ffffff'
     }}>
-      {/* CSS Animations */}
-      <style>{`
-        @keyframes energyFlow {
-          from { stroke-dashoffset: 100; }
-          to { stroke-dashoffset: 0; }
-        }
-        @keyframes spin {
-          100% { transform: rotate(360deg); }
-        }
-      `}</style>
-      <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
-        backgroundSize: '30px 30px',
-        pointerEvents: 'none'
-      }} />
-
-      {/* Title */}
-      <div style={{ position: 'absolute', top: '2%', width: '100%', textAlign: 'center', zIndex: 10 }}>
-        <h1 style={{ fontSize: '48px', fontWeight: 900, color: '#FF6A22', margin: 0, letterSpacing: '2px', textShadow: '0 0 20px rgba(255,106,34,0.5)' }}>CRIFFER</h1>
-        <h2 style={{ fontSize: '24px', fontWeight: 600, color: '#ffffff', margin: 0, textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>A Rede de Energia</h2>
-      </div>
-
-      {/* SVG Canvas for Lines */}
-      <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }} viewBox={`0 0 ${vw} ${vh}`} preserveAspectRatio="none">
-        {/* Glow Filters */}
-        <defs>
-          <filter id="glow-orange" filterUnits="userSpaceOnUse" x="-20" y="-20" width="140" height="140">
-            <feGaussianBlur stdDeviation="1.5" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-          <filter id="glow-blue" filterUnits="userSpaceOnUse" x="-20" y="-20" width="140" height="140">
-            <feGaussianBlur stdDeviation="1" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-        </defs>
-
-        {/* Vertical/Inter-sector lines connecting branches */}
-        {branches.map((branch, bIdx) => {
-          if (bIdx === branches.length - 1) return null;
-          const nextBranch = branches[bIdx + 1];
-          return branch.nodes.map((node, nIdx) => {
-            // Conecta ao nó com mesmo índice na branch de baixo, ou ao último se não houver
-            const targetNode = nextBranch.nodes[Math.min(nIdx, nextBranch.nodes.length - 1)];
-            const pathD = `M ${node.x} ${branch.y} L ${targetNode.x} ${nextBranch.y}`;
-            
-            return (
-              <g key={`v-line-${bIdx}-${nIdx}`}>
-                {/* Base wire */}
-                <path d={pathD} fill="none" stroke="#1E3A8A" strokeWidth="0.4" />
-                {/* Glowing power line */}
-                <path d={pathD} fill="none" stroke="#3B82F6" strokeWidth="0.2" filter="url(#glow-blue)" strokeDasharray="1 1" />
-                {/* Continuous Orange energy flow */}
-                <path d={pathD} fill="none" stroke="#FF6A22" strokeWidth="0.8" strokeLinecap="round" filter="url(#glow-orange)" strokeDasharray="1.5 4.5">
-                  <animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" repeatCount="indefinite" />
-                </path>
-              </g>
-            );
-          });
-        })}
-
-        {/* Continuous lines for each branch */}
-        {branches.map((branch, bIdx) => {
-          const firstNode = branch.nodes[0];
-          const lastNode = branch.nodes[branch.nodes.length - 1];
-          
-          // Construct a continuous path from first node to last node, then to center
-          const pathD = `M ${firstNode.x} ${branch.y} L ${lastNode.x} ${branch.y} Q ${(lastNode.x + center.x)/2} ${branch.y} ${center.x} ${center.y}`;
-          
-          return (
-            <g key={`branch-line-${bIdx}`}>
-              {/* Base wire */}
-              <path d={pathD} fill="none" stroke="#1E3A8A" strokeWidth="0.8" />
-              {/* Glowing power line */}
-              <path d={pathD} fill="none" stroke="#3B82F6" strokeWidth="0.3" filter="url(#glow-blue)" strokeDasharray="1 1" />
-              {/* Continuous Orange energy flow */}
-              <path d={pathD} fill="none" stroke="#FF6A22" strokeWidth="1" strokeLinecap="round" filter="url(#glow-orange)" strokeDasharray="1.5 4.5">
-                <animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" repeatCount="indefinite" />
-              </path>
-            </g>
-          );
-        })}
-
-        {/* Lines connecting center to batteries */}
-        {batteries.map((batt, idx) => (
-          <g key={`batt-line-${idx}`}>
-            {/* Curved path to batteries */}
-            <path 
-              d={`M ${center.x + 10} ${center.y} Q ${center.x + 15} ${batt.y} 75 ${batt.y}`}
-              fill="none" stroke="#FF6A22" strokeWidth="0.8" filter="url(#glow-orange)"
-            />
-            {/* Animated energy to batteries */}
-            <path 
-              d={`M ${center.x + 10} ${center.y} Q ${center.x + 15} ${batt.y} 75 ${batt.y}`}
-              fill="none" stroke="#FFFFFF" strokeWidth="0.3" filter="url(#glow-orange)"
-              strokeDasharray="3 6"
-            >
-              <animate attributeName="stroke-dashoffset" from="9" to="0" dur="0.8s" repeatCount="indefinite" />
-            </path>
-          </g>
-        ))}
-      </svg>
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+        src="/plr_video.mp4" 
+        style={{ 
+          position: 'absolute', 
+          top: 0, 
+          left: 0, 
+          width: '100%', 
+          height: '100%', 
+          objectFit: 'cover',
+          zIndex: 1,
+          opacity: 0.8
+        }} 
+      />
 
       {/* Render Left Nodes */}
       {branches.map((branch, bIdx) => (
