@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function PlrView({ darkMode }) {
   const [mounted, setMounted] = useState(false);
+  const videoRef = useRef(null);
+
   useEffect(() => setMounted(true), []);
 
+  const handleLoadedMetadata = () => {
+    if (videoRef.current) {
+      const duration = videoRef.current.duration;
+      if (duration > 0) {
+        videoRef.current.playbackRate = duration / 10;
+      }
+    }
+  };
+
   if (!mounted) return null;
-
-
 
   return (
     <div style={{
@@ -23,11 +31,13 @@ export default function PlrView({ darkMode }) {
       color: '#ffffff'
     }}>
       <video 
+        ref={videoRef}
+        onLoadedMetadata={handleLoadedMetadata}
         autoPlay 
         loop 
         muted 
         playsInline 
-        src="/plr_video.mp4" 
+        src="/plr_video_2.mp4" 
         style={{ 
           position: 'absolute', 
           top: 0, 
@@ -39,7 +49,6 @@ export default function PlrView({ darkMode }) {
           opacity: 0.8
         }} 
       />
-
     </div>
   );
 }
