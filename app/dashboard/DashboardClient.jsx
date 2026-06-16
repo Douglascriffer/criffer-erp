@@ -205,7 +205,7 @@ export default function DashboardClient() {
       fontFamily: "'Gotham', sans-serif",
       color: t.text,
       transition: 'background 0.5s ease',
-      overflowX: 'hidden'
+      overflow: 'hidden'
     }}>
       {/* Global CSS Reset & Gotham Integration */}
       <style>{`

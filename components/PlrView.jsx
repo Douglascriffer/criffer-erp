@@ -22,9 +22,7 @@ export default function PlrView({ darkMode }) {
 
   return (
     <div style={{
-      width: 'calc(100% + 200px)',
-      marginLeft: '-100px',
-      marginTop: '20px',
+      width: '100%',
       aspectRatio: '16/9',
       position: 'relative',
       borderRadius: '16px',
@@ -36,7 +34,9 @@ export default function PlrView({ darkMode }) {
         ref={videoRef}
         src="/P.L.R.mp4"
         style={{
-          width: '100%',
+          width: 'calc(100% + 200px)',
+          marginLeft: '-100px',
+          marginTop: '20px',
           height: '100%',
           maxHeight: 'calc(100vh - 120px)',
           objectFit: 'contain'
