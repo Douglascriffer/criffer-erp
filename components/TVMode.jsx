@@ -235,7 +235,7 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
   const fmtM = (v) => `R$ ${(v / 1_000_000).toFixed(2)}M`
 
   return (
-    <div className="slide-enter" style={{ display: 'grid', gridTemplateColumns: '1fr 450px 450px', gap: 30, height: 650 }}>
+    <div className="slide-enter" style={{ display: 'grid', gridTemplateColumns: '1fr 450px 450px', gap: 30, height: '100%' }}>
       
       {/* Coluna Esquerda: Receita Bruta Acumulada + KPIs */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
@@ -276,18 +276,18 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
       <div style={{ background: t.card, borderRadius: 32, border: `1.5px solid ${t.border}`, padding: '40px 35px', display: 'flex', flexDirection: 'column' }}>
          <h3 style={{ fontSize: 18, fontWeight: 900, textTransform: 'uppercase', marginBottom: 25, color: '#fff', textAlign: 'center', letterSpacing: 1.5 }}>Performance Acumulada</h3>
          <div style={{ display: 'grid', gridTemplateColumns: '60px 1fr 1fr 60px', paddingBottom: 15, borderBottom: `1px solid ${t.border}`, marginBottom: 15, opacity: 0.6, color: '#fff' }}>
-           <span style={{ fontSize: 10, fontWeight: 900 }}>MÊS</span>
-           <span style={{ fontSize: 10, fontWeight: 900, textAlign: 'right' }}>META ACUM.</span>
-           <span style={{ fontSize: 10, fontWeight: 900, textAlign: 'right' }}>REAL. ACUM.</span>
-           <span style={{ fontSize: 10, fontWeight: 900, textAlign: 'right' }}>%</span>
+           <span style={{ fontSize: 11, fontWeight: 900 }}>MÊS</span>
+           <span style={{ fontSize: 11, fontWeight: 900, textAlign: 'right' }}>META ACUM.</span>
+           <span style={{ fontSize: 11, fontWeight: 900, textAlign: 'right' }}>REAL. ACUM.</span>
+           <span style={{ fontSize: 11, fontWeight: 900, textAlign: 'right' }}>%</span>
          </div>
          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
            {performanceMensal.map(m => (
-             <div key={m.label} style={{ display: 'grid', gridTemplateColumns: '60px 1fr 1fr 60px', gap: 8, alignItems: 'center', opacity: m.realizado ? 1 : 0.3, color: '#fff', padding: '5px 0' }}>
-               <span style={{ fontSize: 11, fontWeight: 800 }}>{m.label}</span>
-               <span style={{ fontSize: 11, fontWeight: 700, textAlign: 'right', opacity: 0.8 }}>{fmtM(m.acumMeta)}</span>
-               <span style={{ fontSize: 11, fontWeight: 900, textAlign: 'right', color: m.realizado ? '#fff' : 'rgba(255,255,255,0.5)' }}>{m.realizado ? fmtM(m.acumReal) : '—'}</span>
-               <span style={{ fontSize: 11, fontWeight: 900, textAlign: 'right', color: m.realizado ? (m.pctAcum >= 100 ? t.green : '#ff9800') : '#fff' }}>{m.realizado ? `${m.pctAcum.toFixed(0)}%` : '—'}</span>
+             <div key={m.label} style={{ display: 'grid', gridTemplateColumns: '60px 1fr 1fr 60px', alignItems: 'center', opacity: m.realizado ? 1 : 0.3, color: '#fff', padding: '5px 0' }}>
+               <span style={{ fontSize: 13, fontWeight: 800 }}>{m.label}</span>
+               <span style={{ fontSize: 13, fontWeight: 700, textAlign: 'right', opacity: 0.8 }}>{fmtM(m.acumMeta)}</span>
+               <span style={{ fontSize: 13, fontWeight: 900, textAlign: 'right', color: m.realizado ? '#fff' : 'rgba(255,255,255,0.5)' }}>{m.realizado ? fmtM(m.acumReal) : '—'}</span>
+               <span style={{ fontSize: 13, fontWeight: 900, textAlign: 'right', color: m.realizado ? (m.pctAcum >= 100 ? t.green : '#ff9800') : '#fff' }}>{m.realizado ? `${m.pctAcum.toFixed(0)}%` : '—'}</span>
              </div>
            ))}
          </div>
