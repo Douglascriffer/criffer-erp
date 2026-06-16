@@ -288,7 +288,6 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
                  ))}
                </div>
             </div>
-            </div>
           </div>
         </div>
       </div>
