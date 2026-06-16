@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const frames = [
   "/plr-frames/FRAME A.png",
@@ -10,6 +11,32 @@ const frames = [
   "/plr-frames/FRAME F - Final.png",
 ];
 
+const slideVariants = {
+  enter: {
+    opacity: 0,
+    scale: 1.05,
+    clipPath: "inset(0 100% 0 0)"
+  },
+  center: {
+    zIndex: 1,
+    opacity: 1,
+    scale: 1,
+    clipPath: "inset(0 0% 0 0)",
+    transition: {
+      opacity: { duration: 0.8 },
+      scale: { duration: 1.5, ease: "easeOut" },
+      clipPath: { duration: 1.2, ease: [0.45, 0, 0.55, 1] }
+    }
+  },
+  exit: {
+    zIndex: 0,
+    opacity: 0,
+    transition: {
+      opacity: { duration: 0.8 }
+    }
+  }
+};
+
 export default function PlrView({ darkMode }) {
   const [currentFrame, setCurrentFrame] = useState(0);
 
@@ -18,7 +45,7 @@ export default function PlrView({ darkMode }) {
     if (currentFrame < frames.length - 1) {
       const timer = setTimeout(() => {
         setCurrentFrame(prev => prev + 1);
-      }, 1500); // 1.5 seconds per frame for a smooth transition
+      }, 2000); // 2 seconds per frame to appreciate the cinematic transition
       return () => clearTimeout(timer);
     }
   }, [currentFrame]);
@@ -30,23 +57,25 @@ export default function PlrView({ darkMode }) {
       position: 'relative',
       borderRadius: '16px',
       overflow: 'hidden',
-      background: '#000'
+      background: '#040814',
+      boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)'
     }}>
-      {frames.map((src, index) => (
-        <img 
-          key={src}
-          src={src} 
+      <AnimatePresence mode="popLayout">
+        <motion.img 
+          key={currentFrame}
+          src={frames[currentFrame]} 
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
           style={{
             position: 'absolute',
             top: 0, left: 0, width: '100%', height: '100%',
-            objectFit: 'cover',
-            opacity: index <= currentFrame ? 1 : 0,
-            transition: 'opacity 0.8s ease-in-out',
-            zIndex: index
+            objectFit: 'cover'
           }}
-          alt={`Frame ${index}`}
+          alt={`Frame ${currentFrame}`}
         />
-      ))}
+      </AnimatePresence>
     </div>
   );
 }
