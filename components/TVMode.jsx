@@ -214,6 +214,8 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
 
   const performanceMensal = useMemo(() => {
     const nomesMeses = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
+    let acumReal = 0;
+    let acumMeta = 0;
     return nomesMeses.map((nome, i) => {
       const mesNum = i + 1
       const realObj = periodData2026.find(p => p.mes === mesNum)
@@ -221,7 +223,12 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
       const real = realObj ? (realObj.vendas + realObj.servicos + realObj.locacao - Math.abs(realObj.devolucoes || 0)) : 0
       const meta = metaObj?.meta || 0
       const p = meta > 0 ? (real / meta) * 100 : 0
-      return { label: nome, meta, real, pct: p, realizado: mesNum <= ultimoMes }
+      
+      if (mesNum <= ultimoMes) acumReal += real;
+      acumMeta += meta;
+      const pctAcum = acumMeta > 0 ? (acumReal / acumMeta) * 100 : 0;
+
+      return { label: nome, meta, real, pct: p, realizado: mesNum <= ultimoMes, acumReal, acumMeta, pctAcum }
     })
   }, [periodData2026, metaData, ultimoMes])
 
@@ -248,34 +255,39 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
                <p style={{ fontSize: 90, fontWeight: 900, margin: 0, lineHeight: 1, letterSpacing: -3 }}>{fmt(total)}</p>
                
                <div style={{ marginTop: 30 }}>
-                  <p style={{ fontSize: 14, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 10 }}>Acumulado Jan - {performanceMensal[ultimoMes-1].label}</p>
-                  <p style={{ fontSize: 32, fontWeight: 900, color: '#fff', margin: 0 }}>{fmt(totalYTD)}</p>
+                  <p style={{ fontSize: 14, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', margin: 0 }}>Acumulado Jan - {performanceMensal[ultimoMes-1].label}</p>
                </div>
 
-               <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 40 }}>
+               <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 30, maxWidth: 350 }}>
                   <div style={{ height: 12, background: 'rgba(255,255,255,0.1)', borderRadius: 6, flex: 1, overflow: 'hidden' }}>
                      <div style={{ width: `${Math.min(pct, 100)}%`, height: '100%', background: t.accent }} />
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <span style={{ fontSize: 32, fontWeight: 900 }}>{pct.toFixed(1)}%</span>
-                    <span style={{ fontSize: 12, fontWeight: 900, color: t.accent, marginTop: -4 }}>VS META</span>
+                    <span style={{ fontSize: 28, fontWeight: 900 }}>{pct.toFixed(1)}%</span>
+                    <span style={{ fontSize: 10, fontWeight: 900, color: t.accent, marginTop: -4 }}>VS META</span>
                   </div>
                </div>
             </div>
 
-            <div style={{ width: 280, height: 280, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-               <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie data={[{ name: 'Vendas', value: v.vendas }, { name: 'Outros', value: (v.servicos + v.locacao) }]} innerRadius={100} outerRadius={130} paddingAngle={5} dataKey="value">
-                      <Cell fill={t.accent} />
-                      <Cell fill="rgba(255,255,255,0.1)" />
-                    </Pie>
-                  </PieChart>
-               </ResponsiveContainer>
-               <div style={{ position: 'absolute', textAlign: 'center' }}>
-                  <p style={{ fontSize: 14, fontWeight: 800, color: t.textMuted, margin: 0 }}>MENSAL</p>
-                  <p style={{ fontSize: 42, fontWeight: 900, margin: 0 }}>{pct.toFixed(0)}%</p>
+            <div style={{ width: 400, height: 350, display: 'flex', flexDirection: 'column', background: 'rgba(255,255,255,0.03)', borderRadius: 24, border: `1.5px solid ${t.border}`, padding: '25px 30px' }}>
+               <h3 style={{ fontSize: 15, fontWeight: 900, textTransform: 'uppercase', marginBottom: 20, color: '#fff', textAlign: 'center', letterSpacing: 1 }}>Performance Acumulada</h3>
+               <div style={{ display: 'grid', gridTemplateColumns: '40px 1fr 1fr 50px', paddingBottom: 10, borderBottom: `1px solid ${t.border}`, marginBottom: 10, opacity: 0.6, color: '#fff' }}>
+                 <span style={{ fontSize: 9, fontWeight: 900 }}>MÊS</span>
+                 <span style={{ fontSize: 9, fontWeight: 900, textAlign: 'right' }}>META ACUM.</span>
+                 <span style={{ fontSize: 9, fontWeight: 900, textAlign: 'right' }}>REAL. ACUM.</span>
+                 <span style={{ fontSize: 9, fontWeight: 900, textAlign: 'right' }}>%</span>
                </div>
+               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                 {performanceMensal.map(m => (
+                   <div key={m.label} style={{ display: 'grid', gridTemplateColumns: '40px 1fr 1fr 50px', alignItems: 'center', opacity: m.realizado ? 1 : 0.3, color: '#fff', padding: '2px 0' }}>
+                     <span style={{ fontSize: 11, fontWeight: 800 }}>{m.label}</span>
+                     <span style={{ fontSize: 11, fontWeight: 700, textAlign: 'right', opacity: 0.8 }}>{fmtM(m.acumMeta)}</span>
+                     <span style={{ fontSize: 11, fontWeight: 900, textAlign: 'right', color: m.realizado ? '#fff' : 'rgba(255,255,255,0.5)' }}>{m.realizado ? fmtM(m.acumReal) : '—'}</span>
+                     <span style={{ fontSize: 11, fontWeight: 900, textAlign: 'right', color: m.realizado ? (m.pctAcum >= 100 ? t.green : '#ff9800') : '#fff' }}>{m.realizado ? `${m.pctAcum.toFixed(0)}%` : '—'}</span>
+                   </div>
+                 ))}
+               </div>
+            </div>
             </div>
           </div>
         </div>
