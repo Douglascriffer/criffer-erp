@@ -22,9 +22,9 @@ export default function PlrView({ darkMode }) {
 
   return (
     <div style={{
-      width: 'calc(100% + 50px)',
-      marginLeft: '-25px',
-      marginTop: '10px',
+      width: 'calc(100% + 100px)',
+      marginLeft: '-50px',
+      marginTop: '15px',
       aspectRatio: '16/9',
       position: 'relative',
       borderRadius: '16px',
