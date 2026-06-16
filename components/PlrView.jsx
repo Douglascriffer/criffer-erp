@@ -22,8 +22,8 @@ export default function PlrView({ darkMode }) {
 
   return (
     <div style={{
-      width: 'calc(100% + 4vw)',
-      marginLeft: '-2vw',
+      width: '100%',
+      marginTop: '25px',
       aspectRatio: '16/9',
       position: 'relative',
       borderRadius: '16px',
@@ -39,6 +39,7 @@ export default function PlrView({ darkMode }) {
           height: '100%',
           maxHeight: 'calc(100vh - 120px)',
           objectFit: 'cover',
+          transform: 'scaleX(1.08) scaleY(1)',
           transformOrigin: 'center center'
         }}
         muted
