@@ -38,7 +38,7 @@ export default function PlrView({ darkMode }) {
           height: '100%',
           maxHeight: 'calc(100vh - 120px)',
           objectFit: 'cover',
-          transform: 'scale(1.08) translateY(5px)',
+          transform: 'scaleX(1.08) scaleY(1) translateY(5px)',
           transformOrigin: 'center center'
         }}
         muted
