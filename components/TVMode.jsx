@@ -212,6 +212,10 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
     return subset.reduce((acc, p) => acc + (p.vendas + p.servicos + p.locacao - Math.abs(p.devolucoes || 0)), 0)
   }, [periodData2026, ultimoMes])
 
+  const metaTotalYTD = useMemo(() => {
+    return metaData.filter(m => m.mes <= ultimoMes).reduce((acc, m) => acc + (m.meta || 0), 0)
+  }, [metaData, ultimoMes])
+
   const performanceMensal = useMemo(() => {
     const nomesMeses = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
     let acumReal = 0;
@@ -234,7 +238,7 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
   const fmtM = (v) => `R$ ${(v / 1_000_000).toFixed(2)}M`
 
   return (
-    <div className="slide-enter" style={{ display: 'grid', gridTemplateColumns: '1fr 650px', gap: 30, height: 650 }}>
+    <div className="slide-enter" style={{ display: 'grid', gridTemplateColumns: '1fr 500px', gap: 30, height: 650 }}>
       
       {/* Coluna Esquerda: KPIs + Receita Bruta */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
@@ -251,24 +255,36 @@ function SlideReceitas({ data, mes, t, ultimoMes }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 60 }}>
             <div style={{ flex: 1 }}>
                <h2 style={{ fontSize: 24, fontWeight: 900, color: t.accent, textTransform: 'uppercase', marginBottom: 15 }}>Receita bruta</h2>
-               <p style={{ fontSize: 90, fontWeight: 900, margin: 0, lineHeight: 1, letterSpacing: -3 }}>{fmt(total)}</p>
                
-               <div style={{ marginTop: 30 }}>
-                  <p style={{ fontSize: 14, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 10 }}>Acumulado Jan - {performanceMensal[ultimoMes-1].label}</p>
-                  <p style={{ fontSize: 32, fontWeight: 900, color: '#fff', margin: 0 }}>{fmt(totalYTD)}</p>
+               <div style={{ display: 'flex', alignItems: 'flex-end', gap: 20 }}>
+                 <p style={{ fontSize: 90, fontWeight: 900, margin: 0, lineHeight: 1, letterSpacing: -3 }}>{fmt(total)}</p>
+                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 15 }}>
+                    <span style={{ fontSize: 32, fontWeight: 900, color: t.accent }}>{pct.toFixed(1)}%</span>
+                    <span style={{ fontSize: 12, fontWeight: 900, color: t.textMuted, marginTop: -4 }}>VS META MÊS</span>
+                 </div>
                </div>
-
-               <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 40 }}>
-                  <div style={{ height: 12, background: 'rgba(255,255,255,0.1)', borderRadius: 6, flex: 1, overflow: 'hidden' }}>
-                     <div style={{ width: `${Math.min(pct, 100)}%`, height: '100%', background: t.accent }} />
+               
+               {/* Inner Card Acumulado */}
+               <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: 20, border: `1px solid ${t.border}`, padding: '25px', marginTop: 30 }}>
+                  <p style={{ fontSize: 14, fontWeight: 900, color: t.textMuted, textTransform: 'uppercase', marginBottom: 10 }}>Acumulado Jan - {performanceMensal[ultimoMes-1]?.label || 'MAI'}</p>
+                  
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                     <p style={{ fontSize: 42, fontWeight: 900, color: '#fff', margin: 0 }}>{fmt(totalYTD)}</p>
+                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                        <span style={{ fontSize: 32, fontWeight: 900, color: (metaTotalYTD > 0 && (totalYTD / metaTotalYTD) * 100 >= 100) ? t.green : '#ff9800' }}>
+                          {metaTotalYTD > 0 ? ((totalYTD / metaTotalYTD) * 100).toFixed(1) : 0}%
+                        </span>
+                        <span style={{ fontSize: 12, fontWeight: 900, color: t.textMuted, marginTop: -4 }}>ATINGIMENTO ACUM.</span>
+                     </div>
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <span style={{ fontSize: 32, fontWeight: 900 }}>{pct.toFixed(1)}%</span>
-                    <span style={{ fontSize: 12, fontWeight: 900, color: t.accent, marginTop: -4 }}>VS META</span>
+
+                  <div style={{ height: 8, background: 'rgba(255,255,255,0.1)', borderRadius: 4, width: '100%', marginTop: 20, overflow: 'hidden' }}>
+                     <div style={{ width: `${Math.min(metaTotalYTD > 0 ? (totalYTD / metaTotalYTD) * 100 : 0, 100)}%`, height: '100%', background: (metaTotalYTD > 0 && (totalYTD / metaTotalYTD) * 100 >= 100) ? t.green : '#ff9800' }} />
                   </div>
                </div>
             </div>
 
+            {/* Donut Chart */}
             <div style={{ width: 280, height: 280, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
                <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
