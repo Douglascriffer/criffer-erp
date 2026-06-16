@@ -306,6 +306,7 @@ export default function DashboardClient() {
       <main style={{ maxWidth: '100%', margin: '0 auto', padding: '0px 2% 0px 2%' }}>
         
         {/* Barra de Filtros e Sub-abas (Design SaaS Moderno) */}
+        {tab !== 'plr' && (
         <div style={{ 
           display: 'flex', 
           justifyContent: 'space-between', 
@@ -384,6 +385,7 @@ export default function DashboardClient() {
             </div>
           )}
         </div>
+        )}
 
         {/* ══ CARDS DE KPI (Top 7) ══ */}
         {(activeSub === 'vendas') && (
