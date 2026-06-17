@@ -83,13 +83,12 @@ export default function LoginPage() {
     }
 
     setRecoveryLoading(true)
-    // Simulação do tempo de envio de e-mail
     setTimeout(() => {
-      setSuccessMsg(`Instruções e lembrete de senha enviados para ${recoveryEmail}!`)
+      setSuccessMsg(`Sua senha de acesso é: ${SENHA}`)
       setRecoveryLoading(false)
       setShowRecovery(false)
       setRecoveryEmail('')
-    }, 1500)
+    }, 1000)
   }
 
   if (!mounted) return null
