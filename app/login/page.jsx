@@ -2,26 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { Monitor } from 'lucide-react'
-
-const USUARIOS = [
-  { nome: 'Andressa Barth',     display: 'Andressa Barth',   nivel: 'gestor', setor: 'Produção' },
-  { nome: 'Carlos Rocha',       display: 'Carlos Rocha',     nivel: 'gestor', setor: 'Laboratório de Manutenção' },
-  { nome: 'Cleiton Staehler',   display: 'Cleiton Staehler', nivel: 'gestor', setor: 'Manutenção' },
-  { nome: 'Douglas Schmitz',    display: 'Douglas Schmitz',  nivel: 'gestor', setor: 'Logística' },
-  { nome: 'Faiblan',            display: 'Faiblan',          nivel: 'master', setor: 'TI' },
-  { nome: 'Felipe Charão',      display: 'Felipe Charão',    nivel: 'gestor', setor: 'TI' },
-  { nome: 'Felipe Immich',      display: 'Felipe Immich',    nivel: 'gestor', setor: 'Laboratório Calibração' },
-  { nome: 'Felipe Oliveira',    display: 'Felipe Oliveira',  nivel: 'gestor', setor: 'Marketing' },
-  { nome: 'Fernando Malta',     display: 'Fernando Malta',   nivel: 'gestor', setor: 'P&D' },
-  { nome: 'Douglas Bitencourt', display: 'Financeiro - ADM', nivel: 'master', setor: 'Diretoria' },
-  { nome: 'Gabriel Dias',       display: 'Gabriel Dias',     nivel: 'gestor', setor: 'Vendas' },
-  { nome: 'Juliano Chagas',     display: 'Juliano Chagas',   nivel: 'master', setor: 'Financeiro' },
-  { nome: 'Natasha Osório da Silva', display: 'Natasha Osório', nivel: 'gestor', setor: 'RH' },
-  { nome: 'Rodrigo Santos',     display: 'Rodrigo Santos',   nivel: 'gestor', setor: 'Compras' },
-  { nome: 'Ruslan Santos',      display: 'Ruslan Santos',    nivel: 'gestor', setor: 'Suporte Técnico' },
-]
-const SENHA = 'Criffer2026'
+import { supabase } from '@/lib/supabaseClient'
 
 const MESES = [
   { val: 'all', label: 'MODO TRANSMISSÃO — ACUMULADO' },
@@ -41,25 +22,94 @@ const MESES = [
 
 export default function LoginPage() {
   const router = useRouter()
-  const [selectedUser, setSelectedUser] = useState(null)
+  const [usuarios, setUsuarios] = useState([])
+  const [selectedUserId, setSelectedUserId] = useState('')
   const [senha, setSenha] = useState('')
   const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [successMsg, setSuccessMsg] = useState('')
+  const [loading, setLoading] = useState(true)
   const [mounted, setMounted] = useState(false)
 
-  useEffect(() => { setMounted(true) }, [])
+  // Recovery
+  const [showRecovery, setShowRecovery] = useState(false)
+  const [recoveryEmail, setRecoveryEmail] = useState('')
+  const [recoveryLoading, setRecoveryLoading] = useState(false)
+
+  useEffect(() => { 
+    setMounted(true)
+    carregarUsuarios()
+  }, [])
+
+  const carregarUsuarios = async () => {
+    try {
+      const { data, error } = await supabase.from('app_usuarios').select('*').order('display')
+      if (error) throw error
+      if (data) setUsuarios(data)
+    } catch (err) {
+      console.error('Erro ao carregar usuários:', err)
+      setError('Falha ao conectar no banco de usuários.')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const handleLogin = async (e) => {
     e.preventDefault()
     setError('')
-    if (!selectedUser) { setError('Selecione um usuário.'); return }
-    if (senha !== SENHA) { setError('Senha incorreta.'); return }
+    setSuccessMsg('')
+    if (!selectedUserId) { setError('Selecione um usuário.'); return }
+    
+    const user = usuarios.find(u => u.id === selectedUserId)
+    if (!user) { setError('Usuário não encontrado.'); return }
+    if (senha !== user.senha) { setError('Senha incorreta.'); return }
+    
     setLoading(true)
-    localStorage.setItem('criffer_user', selectedUser.nome === 'Douglas Bitencourt' ? 'Financeiro' : selectedUser.display || selectedUser.nome)
-    localStorage.setItem('criffer_role', selectedUser.nivel)
-    localStorage.setItem('criffer_sector', selectedUser.setor)
+    localStorage.setItem('criffer_user', user.nome === 'Douglas Bitencourt' ? 'Financeiro' : user.display || user.nome)
+    localStorage.setItem('criffer_role', user.nivel)
+    localStorage.setItem('criffer_sector', user.setor)
     localStorage.setItem('criffer_auth', 'true')
     setTimeout(() => router.push('/capa'), 800)
+  }
+
+  const handleRecovery = async (e) => {
+    e.preventDefault()
+    setError('')
+    setSuccessMsg('')
+    
+    if (!selectedUserId) { setError('Selecione seu usuário acima primeiro.'); return }
+    if (!recoveryEmail) { setError('Digite seu e-mail.'); return }
+
+    const user = usuarios.find(u => u.id === selectedUserId)
+    if (user.email?.toLowerCase() !== recoveryEmail.trim().toLowerCase()) {
+      setError('E-mail incorreto para este usuário.')
+      return
+    }
+
+    setRecoveryLoading(true)
+    try {
+      const nomes = user.nome.split(' ')
+      const sobrenome = nomes.length > 1 ? nomes[nomes.length - 1] : nomes[0]
+      const newCount = (user.recovery_count || 0) + 1
+      const novaSenha = `${sobrenome}${newCount}`
+
+      const { error: updError } = await supabase
+        .from('app_usuarios')
+        .update({ senha: novaSenha, recovery_count: newCount })
+        .eq('id', user.id)
+
+      if (updError) throw updError
+
+      setUsuarios(prev => prev.map(u => u.id === user.id ? { ...u, senha: novaSenha, recovery_count: newCount } : u))
+      
+      setSuccessMsg(`Senha recuperada! Sua nova senha é: ${novaSenha}`)
+      setShowRecovery(false)
+      setRecoveryEmail('')
+    } catch (err) {
+      console.error(err)
+      setError('Erro ao gerar nova senha.')
+    } finally {
+      setRecoveryLoading(false)
+    }
   }
 
   if (!mounted) return null
@@ -79,6 +129,8 @@ export default function LoginPage() {
         .cf-input:focus { border-color: #FF6A22 !important; outline: none; box-shadow: 0 0 0 3px rgba(255,106,34,0.20) !important; }
         .cf-btn:hover { background: #e05a18 !important; transform: translateY(-1px); box-shadow: 0 12px 32px rgba(255,106,34,0.5) !important; }
         .cf-btn:active { transform: scale(0.97) !important; }
+        .cf-link { color: rgba(255,255,255,0.7); font-size: 13px; text-decoration: none; cursor: pointer; transition: all 0.2s; }
+        .cf-link:hover { color: #fff; text-decoration: underline; }
       `}</style>
 
       <div style={{ position: 'absolute', inset: 0 }}>
@@ -105,46 +157,87 @@ export default function LoginPage() {
               Gestão de Resultados
             </p>
 
-            <form onSubmit={handleLogin}>
+            {error && <div style={{ background: '#ff3b30', color: '#fff', padding: '10px', borderRadius: 8, marginBottom: 15, fontSize: 13, textAlign: 'center' }}>{error}</div>}
+            {successMsg && <div style={{ background: '#34c759', color: '#fff', padding: '10px', borderRadius: 8, marginBottom: 15, fontSize: 14, textAlign: 'center', fontWeight: 'bold' }}>{successMsg}</div>}
+
+            <form onSubmit={showRecovery ? handleRecovery : handleLogin}>
               <div style={{ marginBottom: 14 }}>
                 <div style={{ position: 'relative' }}>
                   <select
-                    value={selectedUser?.nome || ''}
-                    onChange={e => setSelectedUser(USUARIOS.find(u => u.nome === e.target.value) || null)}
+                    value={selectedUserId}
+                    onChange={e => { setSelectedUserId(e.target.value); setError(''); setSuccessMsg(''); }}
                     className="cf-input"
                     style={{ width: '100%', padding: '14px 40px 14px 18px', background: '#ffffff', border: '1.5px solid rgba(255,255,255,0.95)', borderRadius: 14, fontSize: 14, color: '#222', fontFamily: 'inherit', cursor: 'pointer', appearance: 'none', boxShadow: '0 4px 18px rgba(0,0,0,0.12)' }}
                     required
                   >
                     <option value="">Acesso Administrativo</option>
-                    {USUARIOS.map(u => <option key={u.nome} value={u.nome}>{u.display}</option>)}
+                    {usuarios.map(u => <option key={u.id} value={u.id}>{u.display}</option>)}
                   </select>
                   <div style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#666', fontSize: 12 }}>▼</div>
                 </div>
               </div>
 
-              <div style={{ marginBottom: 20 }}>
-                <div style={{ position: 'relative' }}>
-                  <input
-                    type="password"
-                    value={senha}
-                    onChange={e => setSenha(e.target.value)}
-                    placeholder="Senha"
-                    className="cf-input"
-                    style={{ width: '100%', padding: '14px 44px 14px 18px', background: '#ffffff', border: '1.5px solid rgba(255,255,255,0.95)', borderRadius: 14, fontSize: 14, color: '#222', fontFamily: 'inherit', boxShadow: '0 4px 18px rgba(0,0,0,0.12)' }}
-                    required
-                  />
-                  <div style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', color: '#888', fontSize: 16 }}>🔒</div>
-                </div>
-              </div>
+              {!showRecovery ? (
+                <>
+                  <div style={{ marginBottom: 10 }}>
+                    <div style={{ position: 'relative' }}>
+                      <input
+                        type="password"
+                        value={senha}
+                        onChange={e => setSenha(e.target.value)}
+                        placeholder="Senha"
+                        className="cf-input"
+                        style={{ width: '100%', padding: '14px 44px 14px 18px', background: '#ffffff', border: '1.5px solid rgba(255,255,255,0.95)', borderRadius: 14, fontSize: 14, color: '#222', fontFamily: 'inherit', boxShadow: '0 4px 18px rgba(0,0,0,0.12)' }}
+                        required
+                      />
+                      <div style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', color: '#888', fontSize: 16 }}>🔒</div>
+                    </div>
+                  </div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="cf-btn"
-                style={{ width: '100%', padding: '15px', background: loading ? '#ffb899' : '#FF6A22', color: '#fff', border: 'none', borderRadius: 14, fontWeight: 900, fontSize: 14, letterSpacing: '0.10em', textTransform: 'uppercase', cursor: loading ? 'default' : 'pointer', fontFamily: 'inherit', boxShadow: '0 8px 28px rgba(255,106,34,0.50)', transition: 'all 0.25s' }}
-              >
-                {loading ? 'Autenticando...' : 'Acessar Resultados'}
-              </button>
+                  <div style={{ textAlign: 'right', marginBottom: 20 }}>
+                    <a className="cf-link" onClick={() => setShowRecovery(true)}>Esqueci minha senha</a>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={loading || usuarios.length === 0}
+                    className="cf-btn"
+                    style={{ width: '100%', padding: '15px', background: loading ? '#ffb899' : '#FF6A22', color: '#fff', border: 'none', borderRadius: 14, fontWeight: 900, fontSize: 14, letterSpacing: '0.10em', textTransform: 'uppercase', cursor: (loading || usuarios.length === 0) ? 'default' : 'pointer', fontFamily: 'inherit', boxShadow: '0 8px 28px rgba(255,106,34,0.50)', transition: 'all 0.25s' }}
+                  >
+                    {loading ? 'Carregando...' : 'Acessar Resultados'}
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div style={{ marginBottom: 10 }}>
+                    <div style={{ position: 'relative' }}>
+                      <input
+                        type="email"
+                        value={recoveryEmail}
+                        onChange={e => setRecoveryEmail(e.target.value)}
+                        placeholder="Seu E-mail"
+                        className="cf-input"
+                        style={{ width: '100%', padding: '14px 44px 14px 18px', background: '#ffffff', border: '1.5px solid rgba(255,255,255,0.95)', borderRadius: 14, fontSize: 14, color: '#222', fontFamily: 'inherit', boxShadow: '0 4px 18px rgba(0,0,0,0.12)' }}
+                        required
+                      />
+                      <div style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', color: '#888', fontSize: 16 }}>📧</div>
+                    </div>
+                  </div>
+
+                  <div style={{ textAlign: 'right', marginBottom: 20 }}>
+                    <a className="cf-link" onClick={() => { setShowRecovery(false); setError(''); setSuccessMsg(''); }}>Voltar ao Login</a>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={recoveryLoading}
+                    className="cf-btn"
+                    style={{ width: '100%', padding: '15px', background: recoveryLoading ? '#999' : '#333', color: '#fff', border: 'none', borderRadius: 14, fontWeight: 900, fontSize: 14, letterSpacing: '0.10em', textTransform: 'uppercase', cursor: recoveryLoading ? 'default' : 'pointer', fontFamily: 'inherit', boxShadow: '0 8px 28px rgba(0,0,0,0.30)', transition: 'all 0.25s' }}
+                  >
+                    {recoveryLoading ? 'Processando...' : 'Gerar Nova Senha'}
+                  </button>
+                </>
+              )}
 
               <div style={{ margin: '20px 0', display: 'flex', alignItems: 'center', gap: 10 }}>
                 <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.2)' }} />
