@@ -18,9 +18,17 @@ const USUARIOS = [
   { nome: 'Juliano Chagas', display: 'Juliano Chagas', nivel: 'master', setor: 'Financeiro', email: 'juliano.chagas@criffer.com.br' },
   { nome: 'Natasha Osório da Silva', display: 'Natasha Osório', nivel: 'gestor', setor: 'RH', email: 'natasha.osorio@criffer.com.br' },
   { nome: 'Rodrigo Santos', display: 'Rodrigo Santos', nivel: 'gestor', setor: 'Compras', email: 'rodrigo.santos@criffer.com.br' },
-  { nome: 'Ruslan Santos', display: 'Ruslan Santos', nivel: 'gestor', setor: 'Suporte Técnico', email: 'ruslan.santos@criffer.com.br' }
 ]
-const SENHA = 'Criffer2026'
+
+function gerarSenha(nome) {
+  if (!nome) return 'Criffer2026'
+  const partes = nome.split(' ')
+  let sobrenome = partes.length > 1 ? partes[1] : partes[0]
+  sobrenome = sobrenome.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  sobrenome = sobrenome.charAt(0).toUpperCase() + sobrenome.slice(1).toLowerCase()
+  return `${sobrenome}2026`
+}
+
 
 const MESES = [
   { val: 'all', label: 'MODO TRANSMISSÃO — ACUMULADO' },
@@ -59,7 +67,9 @@ export default function LoginPage() {
     setError('')
     setSuccessMsg('')
     if (!selectedUser) { setError('Selecione um usuário.'); return }
-    if (senhaInput !== SENHA) { setError('Senha incorreta.'); return }
+    
+    const senhaCorreta = gerarSenha(selectedUser.nome)
+    if (senhaInput !== senhaCorreta) { setError('Senha incorreta.'); return }
     
     setLoading(true)
     localStorage.setItem('criffer_user', selectedUser.nome === 'Douglas Bitencourt' ? 'Financeiro' : selectedUser.display || selectedUser.nome)
@@ -84,7 +94,8 @@ export default function LoginPage() {
 
     setRecoveryLoading(true)
     setTimeout(() => {
-      setSuccessMsg(`Sua senha de acesso é: ${SENHA}`)
+      const senhaCorreta = gerarSenha(selectedUser.nome)
+      setSuccessMsg(`Sua senha de acesso é: ${senhaCorreta}`)
       setRecoveryLoading(false)
       setShowRecovery(false)
       setRecoveryEmail('')
