@@ -22,6 +22,8 @@ const USUARIOS = [
 
 function gerarSenha(nome) {
   if (!nome) return 'Criffer2026'
+  if (nome === 'Douglas Bitencourt') return 'Financeiro2026'
+  
   const partes = nome.split(' ')
   let sobrenome = partes.length > 1 ? partes[1] : partes[0]
   sobrenome = sobrenome.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
