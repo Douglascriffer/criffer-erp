@@ -2,7 +2,25 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { supabase } from '@/lib/supabaseClient'
+
+const USUARIOS = [
+  { nome: 'Andressa Barth', display: 'Andressa Barth', nivel: 'gestor', setor: 'Produção', email: 'andressa.pereira@criffer.com.br' },
+  { nome: 'Carlos Rocha', display: 'Carlos Rocha', nivel: 'gestor', setor: 'Laboratório de Manutenção', email: 'carlos.rocha@criffer.com.br' },
+  { nome: 'Cleiton Staehler', display: 'Cleiton Staehler', nivel: 'gestor', setor: 'Manutenção', email: 'djketu@hotmail.com' },
+  { nome: 'Douglas Schmitz', display: 'Douglas Schmitz', nivel: 'gestor', setor: 'Logística', email: 'douglas.schmitz@criffer.com.br' },
+  { nome: 'Faiblan', display: 'Faiblan', nivel: 'master', setor: 'TI', email: 'juliano.chagas@criffer.com.br' },
+  { nome: 'Felipe Charão', display: 'Felipe Charão', nivel: 'gestor', setor: 'TI', email: 'felipe.charao@criffer.com.br' },
+  { nome: 'Felipe Immich', display: 'Felipe Immich', nivel: 'gestor', setor: 'Laboratório Calibração', email: 'felipe.immich@crifferlab.com.br' },
+  { nome: 'Felipe Oliveira', display: 'Felipe Oliveira', nivel: 'gestor', setor: 'Marketing', email: 'felipe.andrade@criffer.com.br' },
+  { nome: 'Fernando Malta', display: 'Fernando Malta', nivel: 'gestor', setor: 'P&D', email: 'fernando.malta@criffer.com.br' },
+  { nome: 'Douglas Bitencourt', display: 'Financeiro - ADM', nivel: 'master', setor: 'Diretoria', email: 'douglas.bitencourt@criffer.com.br' },
+  { nome: 'Gabriel Dias', display: 'Gabriel Dias', nivel: 'gestor', setor: 'Vendas', email: 'gabriel.dias@criffer.com.br' },
+  { nome: 'Juliano Chagas', display: 'Juliano Chagas', nivel: 'master', setor: 'Financeiro', email: 'juliano.chagas@criffer.com.br' },
+  { nome: 'Natasha Osório da Silva', display: 'Natasha Osório', nivel: 'gestor', setor: 'RH', email: 'natasha.osorio@criffer.com.br' },
+  { nome: 'Rodrigo Santos', display: 'Rodrigo Santos', nivel: 'gestor', setor: 'Compras', email: 'rodrigo.santos@criffer.com.br' },
+  { nome: 'Ruslan Santos', display: 'Ruslan Santos', nivel: 'gestor', setor: 'Suporte Técnico', email: 'ruslan.santos@criffer.com.br' }
+]
+const SENHA = 'Criffer2026'
 
 const MESES = [
   { val: 'all', label: 'MODO TRANSMISSÃO — ACUMULADO' },
@@ -22,12 +40,11 @@ const MESES = [
 
 export default function LoginPage() {
   const router = useRouter()
-  const [usuarios, setUsuarios] = useState([])
-  const [selectedUserId, setSelectedUserId] = useState('')
-  const [senha, setSenha] = useState('')
+  const [selectedUser, setSelectedUser] = useState(null)
+  const [senhaInput, setSenhaInput] = useState('')
   const [error, setError] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [mounted, setMounted] = useState(false)
 
   // Recovery
@@ -35,38 +52,19 @@ export default function LoginPage() {
   const [recoveryEmail, setRecoveryEmail] = useState('')
   const [recoveryLoading, setRecoveryLoading] = useState(false)
 
-  useEffect(() => { 
-    setMounted(true)
-    carregarUsuarios()
-  }, [])
-
-  const carregarUsuarios = async () => {
-    try {
-      const { data, error } = await supabase.from('app_usuarios').select('*').order('display')
-      if (error) throw error
-      if (data) setUsuarios(data)
-    } catch (err) {
-      console.error('Erro ao carregar usuários:', err)
-      setError('Falha ao conectar no banco de usuários.')
-    } finally {
-      setLoading(false)
-    }
-  }
+  useEffect(() => { setMounted(true) }, [])
 
   const handleLogin = async (e) => {
     e.preventDefault()
     setError('')
     setSuccessMsg('')
-    if (!selectedUserId) { setError('Selecione um usuário.'); return }
-    
-    const user = usuarios.find(u => u.id === selectedUserId)
-    if (!user) { setError('Usuário não encontrado.'); return }
-    if (senha !== user.senha) { setError('Senha incorreta.'); return }
+    if (!selectedUser) { setError('Selecione um usuário.'); return }
+    if (senhaInput !== SENHA) { setError('Senha incorreta.'); return }
     
     setLoading(true)
-    localStorage.setItem('criffer_user', user.nome === 'Douglas Bitencourt' ? 'Financeiro' : user.display || user.nome)
-    localStorage.setItem('criffer_role', user.nivel)
-    localStorage.setItem('criffer_sector', user.setor)
+    localStorage.setItem('criffer_user', selectedUser.nome === 'Douglas Bitencourt' ? 'Financeiro' : selectedUser.display || selectedUser.nome)
+    localStorage.setItem('criffer_role', selectedUser.nivel)
+    localStorage.setItem('criffer_sector', selectedUser.setor)
     localStorage.setItem('criffer_auth', 'true')
     setTimeout(() => router.push('/capa'), 800)
   }
@@ -76,40 +74,22 @@ export default function LoginPage() {
     setError('')
     setSuccessMsg('')
     
-    if (!selectedUserId) { setError('Selecione seu usuário acima primeiro.'); return }
+    if (!selectedUser) { setError('Selecione seu usuário acima primeiro.'); return }
     if (!recoveryEmail) { setError('Digite seu e-mail.'); return }
 
-    const user = usuarios.find(u => u.id === selectedUserId)
-    if (user.email?.toLowerCase() !== recoveryEmail.trim().toLowerCase()) {
+    if (selectedUser.email?.toLowerCase() !== recoveryEmail.trim().toLowerCase()) {
       setError('E-mail incorreto para este usuário.')
       return
     }
 
     setRecoveryLoading(true)
-    try {
-      const nomes = user.nome.split(' ')
-      const sobrenome = nomes.length > 1 ? nomes[nomes.length - 1] : nomes[0]
-      const newCount = (user.recovery_count || 0) + 1
-      const novaSenha = `${sobrenome}${newCount}`
-
-      const { error: updError } = await supabase
-        .from('app_usuarios')
-        .update({ senha: novaSenha, recovery_count: newCount })
-        .eq('id', user.id)
-
-      if (updError) throw updError
-
-      setUsuarios(prev => prev.map(u => u.id === user.id ? { ...u, senha: novaSenha, recovery_count: newCount } : u))
-      
-      setSuccessMsg(`Senha recuperada! Sua nova senha é: ${novaSenha}`)
+    // Simulação do tempo de envio de e-mail
+    setTimeout(() => {
+      setSuccessMsg(`Instruções e lembrete de senha enviados para ${recoveryEmail}!`)
+      setRecoveryLoading(false)
       setShowRecovery(false)
       setRecoveryEmail('')
-    } catch (err) {
-      console.error(err)
-      setError('Erro ao gerar nova senha.')
-    } finally {
-      setRecoveryLoading(false)
-    }
+    }, 1500)
   }
 
   if (!mounted) return null
@@ -164,14 +144,14 @@ export default function LoginPage() {
               <div style={{ marginBottom: 14 }}>
                 <div style={{ position: 'relative' }}>
                   <select
-                    value={selectedUserId}
-                    onChange={e => { setSelectedUserId(e.target.value); setError(''); setSuccessMsg(''); }}
+                    value={selectedUser?.nome || ''}
+                    onChange={e => { setSelectedUser(USUARIOS.find(u => u.nome === e.target.value) || null); setError(''); setSuccessMsg(''); }}
                     className="cf-input"
                     style={{ width: '100%', padding: '14px 40px 14px 18px', background: '#ffffff', border: '1.5px solid rgba(255,255,255,0.95)', borderRadius: 14, fontSize: 14, color: '#222', fontFamily: 'inherit', cursor: 'pointer', appearance: 'none', boxShadow: '0 4px 18px rgba(0,0,0,0.12)' }}
                     required
                   >
                     <option value="">Acesso Administrativo</option>
-                    {usuarios.map(u => <option key={u.id} value={u.id}>{u.display}</option>)}
+                    {USUARIOS.map(u => <option key={u.nome} value={u.nome}>{u.display}</option>)}
                   </select>
                   <div style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#666', fontSize: 12 }}>▼</div>
                 </div>
@@ -183,8 +163,8 @@ export default function LoginPage() {
                     <div style={{ position: 'relative' }}>
                       <input
                         type="password"
-                        value={senha}
-                        onChange={e => setSenha(e.target.value)}
+                        value={senhaInput}
+                        onChange={e => setSenhaInput(e.target.value)}
                         placeholder="Senha"
                         className="cf-input"
                         style={{ width: '100%', padding: '14px 44px 14px 18px', background: '#ffffff', border: '1.5px solid rgba(255,255,255,0.95)', borderRadius: 14, fontSize: 14, color: '#222', fontFamily: 'inherit', boxShadow: '0 4px 18px rgba(0,0,0,0.12)' }}
@@ -200,11 +180,11 @@ export default function LoginPage() {
 
                   <button
                     type="submit"
-                    disabled={loading || usuarios.length === 0}
+                    disabled={loading}
                     className="cf-btn"
-                    style={{ width: '100%', padding: '15px', background: loading ? '#ffb899' : '#FF6A22', color: '#fff', border: 'none', borderRadius: 14, fontWeight: 900, fontSize: 14, letterSpacing: '0.10em', textTransform: 'uppercase', cursor: (loading || usuarios.length === 0) ? 'default' : 'pointer', fontFamily: 'inherit', boxShadow: '0 8px 28px rgba(255,106,34,0.50)', transition: 'all 0.25s' }}
+                    style={{ width: '100%', padding: '15px', background: loading ? '#ffb899' : '#FF6A22', color: '#fff', border: 'none', borderRadius: 14, fontWeight: 900, fontSize: 14, letterSpacing: '0.10em', textTransform: 'uppercase', cursor: loading ? 'default' : 'pointer', fontFamily: 'inherit', boxShadow: '0 8px 28px rgba(255,106,34,0.50)', transition: 'all 0.25s' }}
                   >
-                    {loading ? 'Carregando...' : 'Acessar Resultados'}
+                    {loading ? 'Autenticando...' : 'Acessar Resultados'}
                   </button>
                 </>
               ) : (
@@ -215,7 +195,7 @@ export default function LoginPage() {
                         type="email"
                         value={recoveryEmail}
                         onChange={e => setRecoveryEmail(e.target.value)}
-                        placeholder="Seu E-mail"
+                        placeholder="Seu E-mail de Cadastro"
                         className="cf-input"
                         style={{ width: '100%', padding: '14px 44px 14px 18px', background: '#ffffff', border: '1.5px solid rgba(255,255,255,0.95)', borderRadius: 14, fontSize: 14, color: '#222', fontFamily: 'inherit', boxShadow: '0 4px 18px rgba(0,0,0,0.12)' }}
                         required
@@ -234,7 +214,7 @@ export default function LoginPage() {
                     className="cf-btn"
                     style={{ width: '100%', padding: '15px', background: recoveryLoading ? '#999' : '#333', color: '#fff', border: 'none', borderRadius: 14, fontWeight: 900, fontSize: 14, letterSpacing: '0.10em', textTransform: 'uppercase', cursor: recoveryLoading ? 'default' : 'pointer', fontFamily: 'inherit', boxShadow: '0 8px 28px rgba(0,0,0,0.30)', transition: 'all 0.25s' }}
                   >
-                    {recoveryLoading ? 'Processando...' : 'Gerar Nova Senha'}
+                    {recoveryLoading ? 'Processando...' : 'Recuperar Senha'}
                   </button>
                 </>
               )}
