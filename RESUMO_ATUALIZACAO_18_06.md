@@ -16,4 +16,5 @@ Este documento registra as últimas validações, ajustes de layout e correçõe
 ## 📺 Modo de Exibição (TV Mode)
 - **Slides Ocultados:** Foram removidos do rodízio do Modo TV os slides de *Fluxo de Caixa* e *Saúde Financeira*.
 - **Otimização de Espaço:** Divisão do Time Comercial em dois slides com layout compacto e histórico mensal para caberem de maneira nítida, além de associar os cards "Sem Vendedor" e "Assistência Técnica" ao logotipo Criffer "SITE".
+- **Histórico Dinâmico:** Atualizado o código da tabela do *Time Comercial* para não ficar chumbado até abril, tornando-o dinâmico. Agora, exibe automaticamente todos os meses que possuem valores disponíveis (a partir do `ultimoMes` preenchido).
 - **Ajustes Globais:** Aumentada a altura global dos slides no Modo TV para preencher melhor as telas grandes, além do reposicionamento de legendas e escalas no slide de Metas Estratégicas.
