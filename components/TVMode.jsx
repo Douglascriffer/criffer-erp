@@ -528,7 +528,7 @@ function SlideVendedores({ data, mes, t, ultimoMes, range = [0, 6] }) {
             {/* Histórico Mensal + TOTAL */}
             <div style={{ padding: '20px 20px 25px 20px', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center' }}>
               <div style={{ width: '100%', background: 'rgba(255,255,255,0.03)', borderRadius: 24, padding: '25px 20px' }}>
-                {[1, 2, 3, 4].map(m => (
+                {Array.from({ length: ultimoMes }, (_, i) => i + 1).map(m => (
                   <div key={m} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: 12 }}>
                     <span style={{ fontSize: 18, fontWeight: 900, color: t.textMuted }}>{mesesAbreviados[m-1]}</span>
                     <span style={{ fontSize: 18, fontWeight: 900, color: '#fff', opacity: s.meses[m] > 0 ? 1 : 0.2 }}>
