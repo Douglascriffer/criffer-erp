@@ -6,8 +6,9 @@ from datetime import datetime
 import math
 
 # Configurações de Caminhos
-EXCEL_VENDAS_PATH = r"Y:\.SAP VENDA\DASHBOARD VENDAS\1- ACOMPANHAMENTO VENDAS 2026 - Copia.xlsx"
-EXCEL_LOCACOES_PATH = r"Y:\.SAP VENDA\DASHBOARD VENDAS\1- ACOMPANHAMENTO LOCAÇÕES 2026 - Copia.xlsx"
+EXCEL_VENDAS_PATH = r"Y:\.SAP VENDA\DASHBOARD VENDAS\1- ACOMPANHAMENTO VENDAS 2026.xlsx"
+EXCEL_LOCACOES_PATH = r"Y:\.SAP VENDA\DASHBOARD VENDAS\1- ACOMPANHAMENTO LOCAÇÕES 2026.xlsx"
+EXCEL_SERVICOS_PATH = r"Y:\.SAP VENDA\DASHBOARD VENDAS\1- ACOMPANHAMENTO SERVIÇOS 2026.xlsx"
 JSON_OUTPUT = r"Y:\.SAP VENDA\DASHBOARD VENDAS\public\data\dados.json"
 
 def log(msg):
@@ -149,6 +150,13 @@ def process_excel():
             xl_locacoes = pd.ExcelFile(EXCEL_LOCACOES_PATH)
         else:
             log(f"Aviso: Arquivo de Locações não encontrado em {EXCEL_LOCACOES_PATH}.")
+
+        xl_servicos = None
+        if os.path.exists(EXCEL_SERVICOS_PATH):
+            log(f"Lendo Excel Serviços: {EXCEL_SERVICOS_PATH}...")
+            xl_servicos = pd.ExcelFile(EXCEL_SERVICOS_PATH)
+        else:
+            log(f"Aviso: Arquivo de Serviços não encontrado em {EXCEL_SERVICOS_PATH}.")
         
         result = {
             "byPeriod": [],
@@ -231,6 +239,27 @@ def process_excel():
                     df = xl_locacoes.parse(sheet_found_locacoes)
                     locacoes_sum = process_sheet(df, m_num, result, tx_list, is_locacao=True)
             
+            # Processar Serviços
+            if xl_servicos:
+                sheet_found_servicos = next((s for s in xl_servicos.sheet_names if s.upper() == month_name_upper or (s.upper() == 'MARÇO' and month_name_upper == 'MARÇO') or (s.upper() == 'MARCO' and month_name_upper == 'MARÇO')), None)
+                if sheet_found_servicos:
+                    log(f"Processando serviços da sheet: {sheet_found_servicos} (Mês {m_num})...")
+                    df_servicos = xl_servicos.parse(sheet_found_servicos, header=None)
+                    
+                    def clean_val_local(val):
+                        if pd.isna(val) or val is None:
+                            return 0.0
+                        try:
+                            return float(val)
+                        except:
+                            return 0.0
+                            
+                    s_meta = clean_val_local(df_servicos.iloc[1, 8]) if df_servicos.shape[0] > 1 and df_servicos.shape[1] > 8 else 0.0
+                    s_realizado = clean_val_local(df_servicos.iloc[10, 3]) if df_servicos.shape[0] > 10 and df_servicos.shape[1] > 3 else 0.0
+                    
+                    annual_metrics[m_num]["servicos_meta"] = s_meta
+                    annual_metrics[m_num]["servicos_realizado"] = s_realizado
+            
             # Consolidar os dados financeiros deste mês
             metrics = annual_metrics[m_num]
             vendas_meta = metrics["vendas_meta"]
@@ -249,6 +278,7 @@ def process_excel():
                 
             servicos_meta = metrics["servicos_meta"]
             servicos_realizado = metrics["servicos_realizado"]
+            servicos_falta = servicos_meta - servicos_realizado
             
             total_meta = metrics["total_meta"]
             total_realizado = vendas_realizado + locacao_realizado + servicos_realizado
@@ -263,6 +293,7 @@ def process_excel():
                 "locacao_realizado": locacao_realizado,
                 "servicos_meta": servicos_meta,
                 "servicos_realizado": servicos_realizado,
+                "servicos_falta": servicos_falta,
                 "total_meta": total_meta,
                 "total_realizado": total_realizado,
                 "count": len(tx_list)
