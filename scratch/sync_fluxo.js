@@ -29,9 +29,9 @@ const rows_map = {
   "total_saidas_op": 15,
   "diretoria": 16,
   "outros_gastos": 17,
-  "ativ_financeiros": 25,
-  "geracao_caixa": 27,
-  "saldo_final": 28
+  "ativ_financeiros": 26,
+  "geracao_caixa": 28,
+  "saldo_final": 29
 };
 
 function safeFloat(val) {
@@ -61,7 +61,7 @@ for (let m = 1; m <= 12; m++) {
 
   let af_sum_real = 0.0;
   let af_sum_orc = 0.0;
-  for (let r_idx = 18; r_idx <= 24; r_idx++) {
+  for (let r_idx = 18; r_idx <= 25; r_idx++) {
     if (r_idx < rows.length) {
       af_sum_real += safeFloat(rows[r_idx][col_real]);
       af_sum_orc += safeFloat(rows[r_idx][col_orc]);
@@ -82,13 +82,13 @@ for (let m = 1; m <= 12; m++) {
   month_data["total_saidas"] = { real: ts_real, orc: ts_orc };
 
   month_data["ativ_financeiros_fixo"] = {
-    real: rows[25] ? safeFloat(rows[25][col_real]) : 0,
-    orc: rows[25] ? safeFloat(rows[25][col_orc]) : 0
+    real: rows[26] ? safeFloat(rows[26][col_real]) : 0,
+    orc: rows[26] ? safeFloat(rows[26][col_orc]) : 0
   };
   
   month_data["resultado_mes_fixo"] = {
-    real: rows[27] ? safeFloat(rows[27][col_real]) : 0,
-    orc: rows[27] ? safeFloat(rows[27][col_orc]) : 0
+    real: rows[28] ? safeFloat(rows[28][col_real]) : 0,
+    orc: rows[28] ? safeFloat(rows[28][col_orc]) : 0
   };
 
   fluxoData.mensal[m] = month_data;
