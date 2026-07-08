@@ -1,486 +1,3062 @@
 {
-  "byPeriod": [],
-  "byState": [
+  "byPeriod": [
     {
-      "ano": 2001,
       "mes": 1,
-      "estado": "AC",
-      "faturamento": -2845
+      "ano": 2025,
+      "label": "jan. de 25",
+      "vendas": 1430427.4499999997,
+      "servicos": 232334.06999999998,
+      "locacao": 42905.95,
+      "devolucoes": 8070,
+      "total": 1697597.4699999997
     },
     {
-      "ano": 2001,
+      "mes": 2,
+      "ano": 2025,
+      "label": "fev. de 25",
+      "vendas": 1841114.5900000003,
+      "servicos": 318429.48,
+      "locacao": 77374.07,
+      "devolucoes": 24267.87,
+      "total": 2212650.27
+    },
+    {
+      "mes": 3,
+      "ano": 2025,
+      "label": "mar. de 25",
+      "vendas": 1123601.2499999998,
+      "servicos": 323351.35000000003,
+      "locacao": 73760.01,
+      "devolucoes": 15600,
+      "total": 1505112.6099999999
+    },
+    {
+      "mes": 4,
+      "ano": 2025,
+      "label": "abr. de 25",
+      "vendas": 2109786.37,
+      "servicos": 322754.7,
+      "locacao": 70650.91,
+      "devolucoes": 20990,
+      "total": 2482201.9800000004
+    },
+    {
+      "mes": 5,
+      "ano": 2025,
+      "label": "mai. de 25",
+      "vendas": 1475791.2900000003,
+      "servicos": 312184.02999999997,
+      "locacao": 62401.94,
+      "devolucoes": 46980,
+      "total": 1803397.2600000002
+    },
+    {
+      "mes": 6,
+      "ano": 2025,
+      "label": "jun. de 25",
+      "vendas": 1236636.42,
+      "servicos": 389631.41000000003,
+      "locacao": 80640.6,
+      "devolucoes": 75313,
+      "total": 1631595.4300000002
+    },
+    {
+      "mes": 7,
+      "ano": 2025,
+      "label": "jul. de 25",
+      "vendas": 2317618.05,
+      "servicos": 369683.63,
+      "locacao": 46266.5,
+      "devolucoes": 42688,
+      "total": 2690880.1799999997
+    },
+    {
+      "mes": 8,
+      "ano": 2025,
+      "label": "ago. de 25",
+      "vendas": 2547722.42,
+      "servicos": 285729.53,
+      "locacao": 78853,
+      "devolucoes": 58097.3,
+      "total": 2854207.6500000004
+    },
+    {
+      "mes": 9,
+      "ano": 2025,
+      "label": "set. de 25",
+      "vendas": 2086619.2800000003,
+      "servicos": 400419.35000000003,
+      "locacao": 70785.05,
+      "devolucoes": 91596,
+      "total": 2466227.68
+    },
+    {
+      "mes": 10,
+      "ano": 2025,
+      "label": "out. de 25",
+      "vendas": 2748755.2,
+      "servicos": 504518.83999999997,
+      "locacao": 85835,
+      "devolucoes": 23025,
+      "total": 3316084.04
+    },
+    {
+      "mes": 11,
+      "ano": 2025,
+      "label": "nov. de 25",
+      "vendas": 2197124.9100000006,
+      "servicos": 239267.41999999998,
+      "locacao": 56091,
+      "devolucoes": 27450,
+      "total": 2465033.3300000005
+    },
+    {
+      "mes": 12,
+      "ano": 2025,
+      "label": "dez. de 25",
+      "vendas": 1226391.81,
+      "servicos": 241263.66,
+      "locacao": 52478.15,
+      "devolucoes": 56969.67,
+      "total": 1463163.95
+    },
+    {
+      "mes": 1,
+      "ano": 2026,
+      "label": "jan. de 26",
+      "vendas": 1172961.6199999999,
+      "servicos": 348258.23,
+      "locacao": 86110.1,
+      "devolucoes": 12902,
+      "total": 1594427.95
+    },
+    {
+      "mes": 2,
+      "ano": 2026,
+      "label": "fev. de 26",
+      "vendas": 1429756.91,
+      "servicos": 326510.59,
+      "locacao": 74360,
+      "devolucoes": 64638,
+      "total": 1765989.5
+    },
+    {
+      "mes": 3,
+      "ano": 2026,
+      "label": "mar. de 26",
+      "vendas": 2104207.6999999997,
+      "servicos": 399804.56000000006,
+      "locacao": 86873.25,
+      "devolucoes": 60157.6,
+      "total": 2530727.9099999997
+    },
+    {
+      "mes": 4,
+      "ano": 2026,
+      "label": "abr. de 26",
+      "vendas": 1482867.92,
+      "servicos": 398933.20000000007,
+      "locacao": 59550.6,
+      "devolucoes": 16210.74,
+      "total": 1925140.9800000002
+    },
+    {
+      "mes": 5,
+      "ano": 2026,
+      "label": "mai. de 26",
+      "vendas": 1647633.3800000001,
+      "servicos": 361046.36000000004,
+      "locacao": 85620,
+      "devolucoes": 264906.57999999996,
+      "total": 1829393.1600000001
+    },
+    {
+      "mes": 6,
+      "ano": 2026,
+      "label": "jun. de 26",
+      "vendas": 1397340.4900000002,
+      "servicos": 515470.60000000003,
+      "locacao": 119083.99,
+      "devolucoes": 37112.94,
+      "total": 1994782.1400000004
+    },
+    {
+      "mes": 7,
+      "ano": 2026,
+      "label": "jul. de 26",
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
+    },
+    {
+      "mes": 8,
+      "ano": 2026,
+      "label": "ago. de 26",
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
+    },
+    {
+      "mes": 9,
+      "ano": 2026,
+      "label": "set. de 26",
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
+    },
+    {
+      "mes": 10,
+      "ano": 2026,
+      "label": "out. de 26",
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
+    },
+    {
+      "mes": 11,
+      "ano": 2026,
+      "label": "nov. de 26",
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
+    },
+    {
+      "mes": 12,
+      "ano": 2026,
+      "label": "dez. de 26",
+      "vendas": 0,
+      "servicos": 0,
+      "locacao": 0,
+      "devolucoes": 0,
+      "total": 0
+    }
+  ],
+  "byState": [
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "AL",
+      "faturamento": 11323
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "AP",
+      "faturamento": 2089.8
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "AM",
+      "faturamento": 13276
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "BA",
+      "faturamento": 64747.420000000006
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "CE",
+      "faturamento": 21700.8
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "DF",
+      "faturamento": 2648
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "ES",
+      "faturamento": 16342.8
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "GO",
+      "faturamento": 27337.5
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "MA",
+      "faturamento": 13697
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "MG",
+      "faturamento": 161308.40000000002
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "MS",
+      "faturamento": 7881
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "MT",
+      "faturamento": 22618.570000000003
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "PA",
+      "faturamento": 149448
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "PB",
+      "faturamento": 1730
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "PE",
+      "faturamento": 5318
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "PI",
+      "faturamento": 630
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "PR",
+      "faturamento": 74118.57
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "RJ",
+      "faturamento": 44564.65
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "RN",
+      "faturamento": 16249
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "RO",
+      "faturamento": 22900
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "RS",
+      "faturamento": 177254.22000000003
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "SC",
+      "faturamento": 134394.40000000002
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "SE",
+      "faturamento": 27339.199999999993
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "SP",
+      "faturamento": 285568.25
+    },
+    {
+      "ano": 2025,
+      "mes": 1,
+      "estado": "EX",
+      "faturamento": 401182.8899999999
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "AC",
+      "faturamento": 9778.55
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "AL",
+      "faturamento": 8098
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "AM",
+      "faturamento": 107726.00000000003
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "BA",
+      "faturamento": 65957.4
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "CE",
+      "faturamento": 79292.45000000001
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "DF",
+      "faturamento": 21462
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "ES",
+      "faturamento": 132255.2
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "GO",
+      "faturamento": 62434.4
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "MA",
+      "faturamento": 19828
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "MG",
+      "faturamento": 243475.84999999998
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "MS",
+      "faturamento": 28847.4
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "MT",
+      "faturamento": 109153.00000000003
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "PA",
+      "faturamento": 42837.119999999995
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "PB",
+      "faturamento": 9585
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "PE",
+      "faturamento": 19229
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "PI",
+      "faturamento": 7932.4
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "PR",
+      "faturamento": 95339.04000000001
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "RJ",
+      "faturamento": 130788.98000000001
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "RN",
+      "faturamento": 382
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "RO",
+      "faturamento": 825
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "RR",
+      "faturamento": 155
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "RS",
+      "faturamento": 112001.75000000001
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "SC",
+      "faturamento": 157833.64
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "SE",
+      "faturamento": 16169.6
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "SP",
+      "faturamento": 427479.05000000005
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "TO",
+      "faturamento": 21526
+    },
+    {
+      "ano": 2025,
+      "mes": 2,
+      "estado": "EX",
+      "faturamento": 306526.30999999994
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "AL",
+      "faturamento": 12936
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "AM",
+      "faturamento": 57947.20000000001
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "BA",
+      "faturamento": 54691
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "CE",
+      "faturamento": 3856.9
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "DF",
+      "faturamento": 16800
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "ES",
+      "faturamento": 107435.55000000002
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "GO",
+      "faturamento": 24293.010000000002
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "MA",
+      "faturamento": 12586.8
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "MG",
+      "faturamento": 148593.83999999997
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "MS",
+      "faturamento": 60317.95
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "MT",
+      "faturamento": 46597.35
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "PA",
+      "faturamento": 47625.25
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "PB",
+      "faturamento": 31983.8
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "PE",
+      "faturamento": 34487.9
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "PI",
+      "faturamento": 2606
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "PR",
+      "faturamento": 57049.59
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "RJ",
+      "faturamento": 47420.84000000001
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "RN",
+      "faturamento": 368.6
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "RO",
+      "faturamento": 2285
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "RS",
+      "faturamento": 183376.46999999997
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "SC",
+      "faturamento": 101232.82
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "SE",
+      "faturamento": 19853.8
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "SP",
+      "faturamento": 400899.87999999995
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "TO",
+      "faturamento": 25254.65
+    },
+    {
+      "ano": 2025,
+      "mes": 3,
+      "estado": "EX",
+      "faturamento": 20212.410000000003
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "AM",
+      "faturamento": 16619.4
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "BA",
+      "faturamento": 87778.65
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "CE",
+      "faturamento": 77223.99999999999
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "DF",
+      "faturamento": 4313.2
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "ES",
+      "faturamento": 52202
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "GO",
+      "faturamento": 23198.4
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "MA",
+      "faturamento": 13371.9
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "MG",
+      "faturamento": 213200.28
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "MS",
+      "faturamento": 103961
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "MT",
+      "faturamento": 163418.34999999998
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "PA",
+      "faturamento": 157284
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "PB",
+      "faturamento": 5385.5
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "PE",
+      "faturamento": 18469
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "PI",
+      "faturamento": 18976
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "PR",
+      "faturamento": 71089.48
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "RJ",
+      "faturamento": 16526.15
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "RN",
+      "faturamento": 24160.8
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "RO",
+      "faturamento": 6820
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "RS",
+      "faturamento": 212664.26
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "SC",
+      "faturamento": 75640.3
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "SE",
+      "faturamento": 22220.35
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "SP",
+      "faturamento": 441028.9000000002
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "TO",
+      "faturamento": 7873
+    },
+    {
+      "ano": 2025,
+      "mes": 4,
+      "estado": "EX",
+      "faturamento": 669767.0599999998
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "AC",
+      "faturamento": 9980
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "AL",
+      "faturamento": 12850
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "AP",
+      "faturamento": 15990
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "AM",
+      "faturamento": 50188.75
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "BA",
+      "faturamento": 49790.95
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "CE",
+      "faturamento": 39532
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "DF",
+      "faturamento": 22499.000000000004
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "ES",
+      "faturamento": 43193.15
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "GO",
+      "faturamento": 36001.6
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "MA",
+      "faturamento": 25320.6
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "MG",
+      "faturamento": 212488.27
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "MS",
+      "faturamento": 42984.25
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "MT",
+      "faturamento": 50496
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "PA",
+      "faturamento": 33310
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "PB",
+      "faturamento": 24607
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "PE",
+      "faturamento": 34510.4
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "PI",
+      "faturamento": 15899.999999999998
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "PR",
+      "faturamento": 75273.53
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "RJ",
+      "faturamento": 121405.96
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "RN",
+      "faturamento": 2648
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "RO",
+      "faturamento": 3171
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "RS",
+      "faturamento": 141299.69
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "SC",
+      "faturamento": 102209.20000000001
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "SE",
+      "faturamento": 10650
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "SP",
+      "faturamento": 572620.9600000002
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "TO",
+      "faturamento": 15313.3
+    },
+    {
+      "ano": 2025,
+      "mes": 5,
+      "estado": "EX",
+      "faturamento": 86143.65
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "AL",
+      "faturamento": 16685.6
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "AP",
+      "faturamento": 416
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "AM",
+      "faturamento": 107991.45
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "BA",
+      "faturamento": 89178.75
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "CE",
+      "faturamento": 73754.05
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "DF",
+      "faturamento": 14370.8
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "ES",
+      "faturamento": 75185
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "GO",
+      "faturamento": 57392.05
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "MA",
+      "faturamento": 19882.260000000002
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "MG",
+      "faturamento": 222393.47999999998
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "MS",
+      "faturamento": 26271
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "MT",
+      "faturamento": 33735.85
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "PA",
+      "faturamento": 43320
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "PB",
+      "faturamento": 20761
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "PE",
+      "faturamento": 23766.65
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "PI",
+      "faturamento": 37943
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "PR",
+      "faturamento": 90026.23999999999
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "RJ",
+      "faturamento": 115632.98000000001
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "RN",
+      "faturamento": 8569.05
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "RO",
+      "faturamento": 2595.4
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "RS",
+      "faturamento": 161637.95
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "SC",
+      "faturamento": 67927.9
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "SE",
+      "faturamento": 11522
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "SP",
+      "faturamento": 299170.46
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "TO",
+      "faturamento": 29886
+    },
+    {
+      "ano": 2025,
+      "mes": 6,
+      "estado": "EX",
+      "faturamento": 56893.51000000001
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "AC",
+      "faturamento": 1088
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "AL",
+      "faturamento": 27711
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "AP",
+      "faturamento": 490
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "AM",
+      "faturamento": 45406.3
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "BA",
+      "faturamento": 83481.57999999999
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "CE",
+      "faturamento": 52767.35
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "DF",
+      "faturamento": 42137
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "ES",
+      "faturamento": 135272.1
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "GO",
+      "faturamento": 104587
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "MA",
+      "faturamento": 38602
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "MG",
+      "faturamento": 292214.83
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "MS",
+      "faturamento": 33837.58
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "MT",
+      "faturamento": 93821.3
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "PA",
+      "faturamento": 143784.75
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "PB",
+      "faturamento": 16549
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "PE",
+      "faturamento": 118986.75
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "PI",
+      "faturamento": 14187.25
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "PR",
+      "faturamento": 95721.05
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "RJ",
+      "faturamento": 141495.4
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "RN",
+      "faturamento": 16140
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "RO",
+      "faturamento": 17834
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "RS",
+      "faturamento": 161073.4
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "SC",
+      "faturamento": 134200.71000000002
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "SE",
+      "faturamento": 52243
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "SP",
+      "faturamento": 769487.2
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "TO",
+      "faturamento": 4598
+    },
+    {
+      "ano": 2025,
+      "mes": 7,
+      "estado": "EX",
+      "faturamento": 89351.63
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "AC",
+      "faturamento": 30000
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "AL",
+      "faturamento": 32836.799999999996
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "AM",
+      "faturamento": 119343
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "BA",
+      "faturamento": 157023.3
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "CE",
+      "faturamento": 13498
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "DF",
+      "faturamento": 10858
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "ES",
+      "faturamento": 90763.3
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "GO",
+      "faturamento": 170375.00000000003
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "MA",
+      "faturamento": 22392
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "MG",
+      "faturamento": 372044.60000000003
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "MS",
+      "faturamento": 38703
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "MT",
+      "faturamento": 60217.55
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "PA",
+      "faturamento": 56343.99999999999
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "PB",
+      "faturamento": 21184
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "PE",
+      "faturamento": 87203
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "PI",
+      "faturamento": 16990
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "PR",
+      "faturamento": 94528.1
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "RJ",
+      "faturamento": 117805.1
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "RN",
+      "faturamento": 3658
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "RO",
+      "faturamento": 28629.5
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "RS",
+      "faturamento": 187557.13
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "SC",
+      "faturamento": 110805.45
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "SE",
+      "faturamento": 25478.2
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "SP",
+      "faturamento": 808321.7099999998
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "TO",
+      "faturamento": 16780
+    },
+    {
+      "ano": 2025,
+      "mes": 8,
+      "estado": "EX",
+      "faturamento": 218966.2099999999
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "AC",
+      "faturamento": 31471.41
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "AL",
+      "faturamento": 4990
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "AP",
+      "faturamento": 2155
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "AM",
+      "faturamento": 1804
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "BA",
+      "faturamento": 248318.68
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "CE",
+      "faturamento": 31831
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "DF",
+      "faturamento": 1114
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "ES",
+      "faturamento": 94205
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "GO",
+      "faturamento": 143077.05000000002
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "MA",
+      "faturamento": 39457
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "MG",
+      "faturamento": 226800.3
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "MS",
+      "faturamento": 27666.7
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "MT",
+      "faturamento": 78084.76999999999
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "PA",
+      "faturamento": 62143.85
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "PB",
+      "faturamento": 9372
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "PE",
+      "faturamento": 88580.3
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "PI",
+      "faturamento": 7724
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "PR",
+      "faturamento": 127010.68
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "RJ",
+      "faturamento": 116692.85
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "RN",
+      "faturamento": 18042
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "RO",
+      "faturamento": 63188.16
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "RS",
+      "faturamento": 182128.15
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "SC",
+      "faturamento": 117671.5
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "SE",
+      "faturamento": 6447
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "SP",
+      "faturamento": 575717.89
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "TO",
+      "faturamento": 1712
+    },
+    {
+      "ano": 2025,
+      "mes": 9,
+      "estado": "EX",
+      "faturamento": 250418.39
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "AC",
+      "faturamento": 32438.8
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "AL",
+      "faturamento": 39343
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "AP",
+      "faturamento": 17590.2
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "AM",
+      "faturamento": 8259.65
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "BA",
+      "faturamento": 140444.85
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "CE",
+      "faturamento": 24844
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "DF",
+      "faturamento": 7320
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "ES",
+      "faturamento": 25547.05
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "GO",
+      "faturamento": 74594.3
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "MA",
+      "faturamento": 20922
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "MG",
+      "faturamento": 214409.19
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "MS",
+      "faturamento": 55438.32
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "MT",
+      "faturamento": 118212.38999999998
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "PA",
+      "faturamento": 37801.51
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "PB",
+      "faturamento": 29639
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "PE",
+      "faturamento": 56797
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "PI",
+      "faturamento": 40561
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "PR",
+      "faturamento": 67720.15000000001
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "RJ",
+      "faturamento": 240862.08000000002
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "RN",
+      "faturamento": 46888
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "RO",
+      "faturamento": 4990
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "RS",
+      "faturamento": 240910.83000000002
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "SC",
+      "faturamento": 212010.44000000006
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "SE",
+      "faturamento": 2733
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "SP",
+      "faturamento": 1396740.44
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "TO",
+      "faturamento": 9432.95
+    },
+    {
+      "ano": 2025,
+      "mes": 10,
+      "estado": "EX",
+      "faturamento": 172658.88999999993
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "AC",
+      "faturamento": 27032.5
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "AL",
+      "faturamento": 31425
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "AP",
+      "faturamento": 1604
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "AM",
+      "faturamento": 8757
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "BA",
+      "faturamento": 38765
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "CE",
+      "faturamento": 46618.979999999996
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "ES",
+      "faturamento": 73719.5
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "GO",
+      "faturamento": 103424.9
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "MA",
+      "faturamento": 2044
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "MG",
+      "faturamento": 222508
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "MS",
+      "faturamento": 9165.5
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "MT",
+      "faturamento": 74449
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "PA",
+      "faturamento": 53052.28
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "PB",
+      "faturamento": 19849
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "PE",
+      "faturamento": 101207.95
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "PI",
+      "faturamento": 21679
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "PR",
+      "faturamento": 110565.98
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "RJ",
+      "faturamento": 122079.7
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "RN",
+      "faturamento": 118002.10000000002
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "RO",
+      "faturamento": 14680
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "RR",
+      "faturamento": 26800
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "RS",
+      "faturamento": 234604.16
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "SC",
+      "faturamento": 123996.76999999999
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "SE",
+      "faturamento": 68531.25
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "SP",
+      "faturamento": 508771.4000000002
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "TO",
+      "faturamento": 9615.99
+    },
+    {
+      "ano": 2025,
+      "mes": 11,
+      "estado": "EX",
+      "faturamento": 319534.3700000002
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "AL",
+      "faturamento": 93.1
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "AM",
+      "faturamento": 71957.44
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "BA",
+      "faturamento": 26891
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "CE",
+      "faturamento": 237
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "ES",
+      "faturamento": 22545.55
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "GO",
+      "faturamento": 55887.06
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "MA",
+      "faturamento": 69513.8
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "MG",
+      "faturamento": 185807.8
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "MS",
+      "faturamento": 11810.3
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "MT",
+      "faturamento": 24388.3
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "PA",
+      "faturamento": 58550.5
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "PB",
+      "faturamento": 12856
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "PE",
+      "faturamento": 133260.91999999998
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "PI",
+      "faturamento": 12087.92
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "PR",
+      "faturamento": 57330.64
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "RJ",
+      "faturamento": 101526.32
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "RN",
+      "faturamento": 2984
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "RO",
+      "faturamento": 16773
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "RR",
+      "faturamento": 196.65
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "RS",
+      "faturamento": 121685.65000000002
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "SC",
+      "faturamento": 64289.7
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "SE",
+      "faturamento": 42396.73
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "SP",
+      "faturamento": 209112.57
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "TO",
+      "faturamento": 2708
+    },
+    {
+      "ano": 2025,
+      "mes": 12,
+      "estado": "EX",
+      "faturamento": 215243.66999999987
+    },
+    {
+      "ano": 2026,
+      "mes": 1,
+      "estado": "AC",
+      "faturamento": 2845
+    },
+    {
+      "ano": 2026,
       "mes": 1,
       "estado": "AL",
       "faturamento": 1409
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "AP",
-      "faturamento": 3776
+      "faturamento": 10022
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "AM",
-      "faturamento": 43697.6
+      "faturamento": 47225.6
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "BA",
-      "faturamento": 6021.860000000001
+      "faturamento": 22613.14
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "CE",
-      "faturamento": 14514.049999999997
+      "faturamento": 16952.049999999996
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "DF",
-      "faturamento": -3414.3
+      "faturamento": 3414.3
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "ES",
-      "faturamento": -5699
+      "faturamento": 6127
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "GO",
-      "faturamento": 5791.4
+      "faturamento": 18134.6
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "MA",
-      "faturamento": -1938.8
+      "faturamento": 2090.8
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "MG",
-      "faturamento": 201239.15000000002
+      "faturamento": 262641.85000000003
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "MS",
-      "faturamento": 1680.2999999999993
+      "faturamento": 23266.3
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "MT",
-      "faturamento": 4689
+      "faturamento": 26616
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "PA",
-      "faturamento": 133749.28999999998
+      "faturamento": 141115.28999999998
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "PB",
       "faturamento": 6079
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "PE",
       "faturamento": 29068.350000000006
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "PI",
-      "faturamento": 21158.57
+      "faturamento": 28388.57
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "PR",
-      "faturamento": 9562.300000000003
+      "faturamento": 85087.7
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "RJ",
-      "faturamento": 5206.1
+      "faturamento": 33754.9
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "RN",
-      "faturamento": -4460
+      "faturamento": 5538
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "RO",
-      "faturamento": 28767
+      "faturamento": 30487
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "RS",
-      "faturamento": 6249.700000000012
+      "faturamento": 141678.9
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "SC",
-      "faturamento": 89607.95
+      "faturamento": 157694.55
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "SE",
-      "faturamento": 33188.1
+      "faturamento": 34233.1
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "SP",
-      "faturamento": -20540.190000000002
+      "faturamento": 252700.99
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "TO",
       "faturamento": 15955
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 1,
       "estado": "EX",
       "faturamento": 202190.96000000002
     },
     {
-      "ano": 2001,
+      "ano": 2026,
+      "mes": 2,
+      "estado": "AC",
+      "faturamento": 5900
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "AL",
+      "faturamento": 8140
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "AM",
+      "faturamento": 56540.85
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "BA",
+      "faturamento": 36621.47
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "CE",
+      "faturamento": 61063.129999999976
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "DF",
+      "faturamento": 18780
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "ES",
+      "faturamento": 45930.9
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "GO",
+      "faturamento": 18401
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "MA",
+      "faturamento": 9181.7
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "MG",
+      "faturamento": 148861.22999999998
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "MS",
+      "faturamento": 21467
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "MT",
+      "faturamento": 51544.5
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "PA",
+      "faturamento": 35856.65
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "PB",
+      "faturamento": 19230.55
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "PE",
+      "faturamento": 21726.15
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "PI",
+      "faturamento": 15713
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "PR",
+      "faturamento": 54439.4
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "RJ",
+      "faturamento": 179023.3
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "RN",
+      "faturamento": 10787
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "RO",
+      "faturamento": 30784.2
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "RS",
+      "faturamento": 269223.45
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "SC",
+      "faturamento": 141389.85
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "SE",
+      "faturamento": 130030.15000000002
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "SP",
+      "faturamento": 302035.62
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "TO",
+      "faturamento": 20270.5
+    },
+    {
+      "ano": 2026,
+      "mes": 2,
+      "estado": "EX",
+      "faturamento": 117685.9
+    },
+    {
+      "ano": 2026,
       "mes": 3,
       "estado": "AC",
       "faturamento": 23800
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "AL",
       "faturamento": 21013.1
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "AM",
       "faturamento": 21822
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "BA",
-      "faturamento": 77375.67000000001
+      "faturamento": 102023.37
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "CE",
-      "faturamento": 24513.899999999994
+      "faturamento": 43654.3
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "DF",
-      "faturamento": 50921.57000000001
+      "faturamento": 54745.57000000001
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "ES",
-      "faturamento": 71681.5
+      "faturamento": 111316.5
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "GO",
-      "faturamento": 33631.63
+      "faturamento": 51944.37
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "MA",
-      "faturamento": 19984.32
+      "faturamento": 39960.08
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "MG",
-      "faturamento": 187042.76999999996
+      "faturamento": 279797.17
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "MS",
-      "faturamento": -3337.889999999985
+      "faturamento": 54990.70999999999
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "MT",
-      "faturamento": -783.9200000000001
+      "faturamento": 33378.88
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "PA",
-      "faturamento": 99104.53
+      "faturamento": 142307.33
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "PB",
-      "faturamento": 27260
+      "faturamento": 34144
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "PE",
-      "faturamento": 33894.05
+      "faturamento": 35729.45
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "PI",
-      "faturamento": -6067.950000000001
+      "faturamento": 8303.95
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "PR",
-      "faturamento": 51246.86000000002
+      "faturamento": 121313.27000000002
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "RJ",
-      "faturamento": 189294.83000000002
+      "faturamento": 222989.83000000002
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "RN",
       "faturamento": 24124.660000000003
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "RO",
-      "faturamento": 15173.79
+      "faturamento": 47783.79
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "RS",
-      "faturamento": 78990.66999999995
+      "faturamento": 238293.43000000002
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "SC",
-      "faturamento": 105310.95999999999
+      "faturamento": 163233.86
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "SE",
-      "faturamento": 5553.38
+      "faturamento": 9939.380000000001
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "SP",
-      "faturamento": 217071.05999999988
+      "faturamento": 368494.8599999999
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "TO",
       "faturamento": 8799
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 3,
       "estado": "EX",
       "faturamento": 326982.64999999997
     },
     {
-      "ano": 2001,
+      "ano": 2026,
+      "mes": 4,
+      "estado": "AC",
+      "faturamento": 199
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "AL",
+      "faturamento": 10922.17
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "AP",
+      "faturamento": 876
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "AM",
+      "faturamento": 19356.629999999997
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "BA",
+      "faturamento": 87029.00000000001
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "CE",
+      "faturamento": 5111.54
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "DF",
+      "faturamento": 4635.14
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "ES",
+      "faturamento": 77144.75
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "GO",
+      "faturamento": 73519.1
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "MA",
+      "faturamento": 48559.2
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "MG",
+      "faturamento": 307255.38
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "MS",
+      "faturamento": 12695.849999999999
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "MT",
+      "faturamento": 27949.260000000002
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "PA",
+      "faturamento": 57044.75
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "PB",
+      "faturamento": 862.5
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "PE",
+      "faturamento": 24147.35
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "PI",
+      "faturamento": 30452
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "PR",
+      "faturamento": 99878.43999999999
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "RJ",
+      "faturamento": 89965.14
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "RN",
+      "faturamento": 16860
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "RO",
+      "faturamento": 12453.1
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "RS",
+      "faturamento": 192456.27000000005
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "SC",
+      "faturamento": 188398.86000000002
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "SE",
+      "faturamento": 30574.380000000005
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "SP",
+      "faturamento": 518569.9099999999
+    },
+    {
+      "ano": 2026,
+      "mes": 4,
+      "estado": "TO",
+      "faturamento": 4436
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "AC",
+      "faturamento": 597
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "AL",
+      "faturamento": 4582
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "AM",
+      "faturamento": 10087.8
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "BA",
+      "faturamento": 124455.98999999999
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "CE",
+      "faturamento": 60726.630000000005
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "DF",
+      "faturamento": 15190
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "ES",
+      "faturamento": 87068.66
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "GO",
+      "faturamento": 63987.69
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "MA",
+      "faturamento": 40362.51
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "MG",
+      "faturamento": 182839.24
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "MS",
+      "faturamento": 38458.39
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "MT",
+      "faturamento": 30932.380000000005
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "PA",
+      "faturamento": 41105.2
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "PB",
+      "faturamento": 12693.18
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "PE",
+      "faturamento": 68101.91
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "PI",
+      "faturamento": 9012.55
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "PR",
+      "faturamento": 70559.3
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "RJ",
+      "faturamento": 174962.99000000002
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "RN",
+      "faturamento": 5743.68
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "RS",
+      "faturamento": 167142.75000000003
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "SC",
+      "faturamento": 113833.69000000003
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "SE",
+      "faturamento": 17125.92
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "SP",
+      "faturamento": 378205.2099999999
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "TO",
+      "faturamento": 18162.329999999998
+    },
+    {
+      "ano": 2026,
+      "mes": 5,
+      "estado": "EX",
+      "faturamento": 358362.74000000005
+    },
+    {
+      "ano": 2026,
       "mes": 6,
       "estado": "AC",
-      "faturamento": -2101.22
+      "faturamento": 2132.78
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "AL",
-      "faturamento": -6128
+      "faturamento": 6128
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "AM",
-      "faturamento": 96618.83000000002
+      "faturamento": 111003.33000000002
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "BA",
-      "faturamento": 30214.069999999996
+      "faturamento": 77541.17
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "CE",
-      "faturamento": -4023.6000000000004
+      "faturamento": 15338.9
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "DF",
-      "faturamento": -5914.18
+      "faturamento": 9710.82
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "ES",
-      "faturamento": 56758.11
+      "faturamento": 98889.71
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "GO",
-      "faturamento": 12423.759999999998
+      "faturamento": 60218.86
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "MA",
-      "faturamento": -10071.05
+      "faturamento": 10071.05
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "MG",
-      "faturamento": 2388.62999999999
+      "faturamento": 214936.33000000002
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "MS",
-      "faturamento": 7024.349999999999
+      "faturamento": 21582.75
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "MT",
-      "faturamento": 10862.580000000002
+      "faturamento": 46395.28
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "PA",
-      "faturamento": -22735.630000000005
+      "faturamento": 70583.67
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "PB",
-      "faturamento": 5134.1500000000015
+      "faturamento": 28549.15
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "PE",
-      "faturamento": 117100.84999999999
+      "faturamento": 130926.34999999999
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "PI",
-      "faturamento": 9150.5
+      "faturamento": 10970.5
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "PR",
-      "faturamento": 31573.009999999995
+      "faturamento": 100492.01
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "RJ",
-      "faturamento": 121363.36000000002
+      "faturamento": 180153.36000000002
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "RN",
-      "faturamento": 5063
+      "faturamento": 9963
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "RO",
-      "faturamento": 11254.3
+      "faturamento": 20746.3
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "RS",
-      "faturamento": 39013.52000000003
+      "faturamento": 211536.62
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "SC",
-      "faturamento": 48465.84
+      "faturamento": 117067.34
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "SE",
       "faturamento": 38.2
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "SP",
-      "faturamento": 275135.88999999996
+      "faturamento": 413300.9799999999
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "TO",
-      "faturamento": -5179
+      "faturamento": 5179
     },
     {
-      "ano": 2001,
+      "ano": 2026,
       "mes": 6,
       "estado": "EX",
       "faturamento": 58439.619999999995
     }
   ],
-  "meta": {
-    "2025": [],
-    "2026": []
-  },
-  "raw": [],
   "bySeller": [
     {
       "ano": 2025,
@@ -1642,5 +4218,156 @@
       "mes": 6,
       "total": 1994782.14
     }
-  ]
+  ],
+  "meta": {
+    "2025": [
+      {
+        "mes": 1,
+        "label": "jan.",
+        "meta": 1211290.6890000002,
+        "realizado": 1697597.4699999997
+      },
+      {
+        "mes": 2,
+        "label": "fev.",
+        "meta": 2037149.4885000002,
+        "realizado": 2212650.27
+      },
+      {
+        "mes": 3,
+        "label": "mar.",
+        "meta": 2030697.1755,
+        "realizado": 1505112.6099999999
+      },
+      {
+        "mes": 4,
+        "label": "abr.",
+        "meta": 2151184.9694999997,
+        "realizado": 2482201.9800000004
+      },
+      {
+        "mes": 5,
+        "label": "mai.",
+        "meta": 1461022.8885,
+        "realizado": 1803397.2600000002
+      },
+      {
+        "mes": 6,
+        "label": "jun.",
+        "meta": 2672155.8255,
+        "realizado": 1631595.4300000002
+      },
+      {
+        "mes": 7,
+        "label": "jul.",
+        "meta": 2373956.2034999994,
+        "realizado": 2690880.1799999997
+      },
+      {
+        "mes": 8,
+        "label": "ago.",
+        "meta": 3177451.7,
+        "realizado": 2854207.6500000004
+      },
+      {
+        "mes": 9,
+        "label": "set.",
+        "meta": 2204459.8170000003,
+        "realizado": 2466227.68
+      },
+      {
+        "mes": 10,
+        "label": "out.",
+        "meta": 2277364.467,
+        "realizado": 3316084.04
+      },
+      {
+        "mes": 11,
+        "label": "nov.",
+        "meta": 2778682.2840000005,
+        "realizado": 2465033.3300000005
+      },
+      {
+        "mes": 12,
+        "label": "dez.",
+        "meta": 1374128.658,
+        "realizado": 1463163.95
+      }
+    ],
+    "2026": [
+      {
+        "mes": 1,
+        "label": "jan.",
+        "meta": 1267222.13,
+        "realizado": 1594427.95
+      },
+      {
+        "mes": 2,
+        "label": "fev.",
+        "meta": 2140276.78,
+        "realizado": 1765989.5
+      },
+      {
+        "mes": 3,
+        "label": "mar.",
+        "meta": 2175908.61,
+        "realizado": 2530727.9099999997
+      },
+      {
+        "mes": 4,
+        "label": "abr.",
+        "meta": 2342806.52,
+        "realizado": 1925140.9800000002
+      },
+      {
+        "mes": 5,
+        "label": "mai.",
+        "meta": 1551831.76,
+        "realizado": 1829393.1600000001
+      },
+      {
+        "mes": 6,
+        "label": "jun.",
+        "meta": 1433850.84,
+        "realizado": 1994782.1400000004
+      },
+      {
+        "mes": 7,
+        "label": "jul.",
+        "meta": 2588973.92,
+        "realizado": 0
+      },
+      {
+        "mes": 8,
+        "label": "ago.",
+        "meta": 3128206.82,
+        "realizado": 0
+      },
+      {
+        "mes": 9,
+        "label": "set.",
+        "meta": 2351282.48,
+        "realizado": 0
+      },
+      {
+        "mes": 10,
+        "label": "out.",
+        "meta": 3354278.18,
+        "realizado": 0
+      },
+      {
+        "mes": 11,
+        "label": "nov.",
+        "meta": 2900618.56,
+        "realizado": 0
+      },
+      {
+        "mes": 12,
+        "label": "dez.",
+        "meta": 1439000,
+        "realizado": 0
+      }
+    ]
+  },
+  "raw": []
 }
