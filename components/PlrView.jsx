@@ -33,7 +33,7 @@ export default function PlrView({ darkMode }) {
     }}>
       <video
         ref={videoRef}
-        src="/P.L.R.mp4"
+        src="/video.mp4"
         style={{
           width: '100%',
           height: '100%',
