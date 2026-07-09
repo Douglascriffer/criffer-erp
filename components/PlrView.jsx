@@ -38,7 +38,7 @@ export default function PlrView({ darkMode }) {
           width: '100%',
           height: '100%',
           maxHeight: 'calc(100vh - 120px)',
-          objectFit: 'contain'
+          objectFit: 'fill'
         }}
         muted
         playsInline
