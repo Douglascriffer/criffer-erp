@@ -34,12 +34,12 @@ export default function MetasOrcamentariasView({ darkMode }) {
   }
 
   const metaAtualizada = {
-    receita: 27119218.15,
-    despesas: -27072000.38,
-    resultado: 47217.77,
+    receita: 27858422.35,
+    despesas: -29310523.22,
+    resultado: -1452100.87,
     lucro: 3000000.00,
-    ganho: 2952782.23,
-    economia: 0.1669 // 16.7%
+    ganho: 4452100.87,
+    economia: 0.2091 // 20.9%
   }
 
   return (
