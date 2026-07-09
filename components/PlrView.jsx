@@ -24,11 +24,9 @@ export default function PlrView({ darkMode }) {
     <div style={{
       width: '100%',
       marginTop: '25px',
-      aspectRatio: '16/9',
       position: 'relative',
       borderRadius: '16px',
       overflow: 'hidden',
-      background: '#000',
       boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)'
     }}>
       <video
@@ -36,9 +34,7 @@ export default function PlrView({ darkMode }) {
         src="/video.mp4"
         style={{
           width: '100%',
-          height: '100%',
-          maxHeight: 'calc(100vh - 120px)',
-          objectFit: 'fill'
+          display: 'block'
         }}
         muted
         playsInline
