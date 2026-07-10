@@ -30,3 +30,11 @@ O usuário se refere ao ecossistema do projeto como "os 3 sites". Sempre garanta
 - **GitHub:** Repositório oficial. Guarda e rastreia o histórico de todo o código. Obrigatório subir tudo para ele via `git push`.
 - **Vercel:** Roda o site ao vivo (`criffer-erp.vercel.app`). É atualizado instantaneamente via `npx vercel --prod`.
 - **Supabase:** É utilizado apenas como **Backup/Histórico** de dados para as versões antigas da arquitetura. O site novo da Vercel **NÃO** depende dele para funcionar (usa apenas o `dados.json`). O script de envio para o Supabase (`scratch/upload_supabase.js`) não funciona com a chave anônima por conta de bloqueios de segurança (Row-Level Security). Se o usuário cobrar do Supabase, foque em avisar que a Vercel + GitHub já estão operantes, mas peça a *Service Role Key* se ele realmente precisar da integração antiga funcionando.
+
+## 4. Atualização de Vídeos (Regra Específica para aba P.L.R.)
+O vídeo da aba **P.L.R.** (`components/PlrView.jsx`) possui um "defeito" na exportação original, trazendo uma pequena borda branca ao seu redor (principalmente do lado esquerdo).
+Para que essa borda não apareça em tela, as medidas exatas devem ser **estritamente mantidas** ao trocar o arquivo do vídeo. A tag `<video>` deve obrigatoriamente conter:
+- `objectFit: 'fill'` (para não cortar o topo nem a base).
+- `width: 'calc(100% + 16px)'` (largura estendida para preencher o vazamento).
+- `marginLeft: '-12px'` (margem negativa para esconder cirurgicamente a borda branca esquerda fora do container).
+*Nunca altere essas medidas sem autorização explícita. Ao atualizar o arquivo `video.mp4`, apenas substitua o arquivo físico e mantenha o código do `PlrView.jsx` intocado.*
