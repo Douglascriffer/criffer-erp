@@ -22,8 +22,8 @@ export default function PlrView({ darkMode }) {
 
   return (
     <div style={{
-      width: '98%',
-      margin: '25px auto 0',
+      width: '100%',
+      margin: '15px auto 0',
       aspectRatio: '16/9',
       position: 'relative',
       borderRadius: '16px',
@@ -38,7 +38,9 @@ export default function PlrView({ darkMode }) {
           width: '100%',
           height: '100%',
           maxHeight: 'calc(100vh - 120px)',
-          objectFit: 'fill'
+          objectFit: 'cover',
+          transform: 'scale(1.05)',
+          transformOrigin: 'center center'
         }}
         muted
         playsInline
