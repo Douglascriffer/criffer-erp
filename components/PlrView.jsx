@@ -35,8 +35,8 @@ export default function PlrView({ darkMode }) {
         ref={videoRef}
         src="/video.mp4"
         style={{
-          width: 'calc(100% + 8px)',
-          marginLeft: '-8px',
+          width: 'calc(100% + 16px)',
+          marginLeft: '-12px',
           height: '100%',
           maxHeight: 'calc(100vh - 120px)',
           objectFit: 'fill'
