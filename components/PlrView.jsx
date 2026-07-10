@@ -35,12 +35,11 @@ export default function PlrView({ darkMode }) {
         ref={videoRef}
         src="/video.mp4"
         style={{
-          width: '100%',
+          width: 'calc(100% + 8px)',
+          marginLeft: '-8px',
           height: '100%',
           maxHeight: 'calc(100vh - 120px)',
-          objectFit: 'cover',
-          transform: 'scale(1.05)',
-          transformOrigin: 'center center'
+          objectFit: 'fill'
         }}
         muted
         playsInline
