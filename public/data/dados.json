@@ -4379,7 +4379,7 @@
             "orc": 72930.68166666667,
             "real": 51352.409999999996,
             "accOrc": 452634.08999999997,
-            "accReal": 843312.48,
+            "accReal": 854472.7799999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -4407,7 +4407,7 @@
                 "orc": 63836.333333333336,
                 "real": 40602.12,
                 "accOrc": 398068,
-                "accReal": 560405.3200000001
+                "accReal": 560455.3200000001
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -4421,7 +4421,7 @@
                 "orc": 0,
                 "real": 7996.339999999997,
                 "accOrc": 0,
-                "accReal": 105207.08
+                "accReal": 116317.37999999998
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -4437,7 +4437,7 @@
             "orc": 26208.764977777777,
             "real": 19037.510000000002,
             "accOrc": 335452.5898666667,
-            "accReal": 396425.31,
+            "accReal": 397385.31,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -4465,7 +4465,7 @@
                 "orc": 498,
                 "real": 19.9,
                 "accOrc": 169688,
-                "accReal": 252180.28000000003
+                "accReal": 253140.28000000003
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -4669,7 +4669,7 @@
             "orc": 85747.33333333333,
             "real": 130469.59999999998,
             "accOrc": 516483.99999999994,
-            "accReal": 800940.7899999999,
+            "accReal": 893257.8999999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -4690,7 +4690,7 @@
                 "orc": 31133.333333333332,
                 "real": 98457.23999999998,
                 "accOrc": 186800,
-                "accReal": 393308.08999999997
+                "accReal": 485625.19999999995
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -4785,7 +4785,7 @@
             "orc": 37031.14986666667,
             "real": 26305.040000000023,
             "accOrc": 246370.1492,
-            "accReal": -421022.83,
+            "accReal": -513339.94,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -4806,7 +4806,7 @@
                 "orc": 0,
                 "real": 1181,
                 "accOrc": 0,
-                "accReal": 94367.70999999999
+                "accReal": 2050.6
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -4850,7 +4850,7 @@
                 "orc": 10707.48,
                 "real": 3985.350000000001,
                 "accOrc": 64244.87999999999,
-                "accReal": 92660.06
+                "accReal": 76702.61
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -4871,7 +4871,7 @@
                 "orc": 56090.69,
                 "real": 77046.22,
                 "accOrc": 474544.14,
-                "accReal": 388140.62
+                "accReal": 404098.07
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -5313,7 +5313,7 @@
             "orc": 72930.68166666667,
             "real": 101700.95000000001,
             "accOrc": 452634.08999999997,
-            "accReal": 843312.48,
+            "accReal": 854472.7799999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -5341,7 +5341,7 @@
                 "orc": 63836.333333333336,
                 "real": 87732.35,
                 "accOrc": 398068,
-                "accReal": 560405.3200000001
+                "accReal": 560455.3200000001
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -5355,7 +5355,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 105207.08
+                "accReal": 116317.37999999998
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -5371,7 +5371,7 @@
             "orc": 59208.76497777778,
             "real": 47365.97,
             "accOrc": 335452.5898666667,
-            "accReal": 396425.31,
+            "accReal": 397385.31,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -5399,7 +5399,7 @@
                 "orc": 33498,
                 "real": 21134.350000000002,
                 "accOrc": 169688,
-                "accReal": 252180.28000000003
+                "accReal": 253140.28000000003
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -5603,7 +5603,7 @@
             "orc": 86147.33333333333,
             "real": 127075.9,
             "accOrc": 516483.99999999994,
-            "accReal": 800940.7899999999,
+            "accReal": 893257.8999999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -5624,7 +5624,7 @@
                 "orc": 31133.333333333332,
                 "real": 56136.79,
                 "accOrc": 186800,
-                "accReal": 393308.08999999997
+                "accReal": 485625.19999999995
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -5719,7 +5719,7 @@
             "orc": 37784.11986666667,
             "real": 51423.42999999998,
             "accOrc": 246370.1492,
-            "accReal": -421022.83,
+            "accReal": -513339.94,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -5740,7 +5740,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 94367.70999999999
+                "accReal": 2050.6
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -5784,7 +5784,7 @@
                 "orc": 10707.48,
                 "real": 16130.51,
                 "accOrc": 64244.87999999999,
-                "accReal": 92660.06
+                "accReal": 76702.61
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -5805,7 +5805,7 @@
                 "orc": 95090.69,
                 "real": 55090.75,
                 "accOrc": 474544.14,
-                "accReal": 388140.62
+                "accReal": 404098.07
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -6247,7 +6247,7 @@
             "orc": 77430.68166666667,
             "real": 150244.01,
             "accOrc": 452634.08999999997,
-            "accReal": 843312.48,
+            "accReal": 854472.7799999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -6275,7 +6275,7 @@
                 "orc": 68336.33333333334,
                 "real": 102035.1,
                 "accOrc": 398068,
-                "accReal": 560405.3200000001
+                "accReal": 560455.3200000001
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -6289,7 +6289,7 @@
                 "orc": 0,
                 "real": 24006.450000000004,
                 "accOrc": 0,
-                "accReal": 105207.08
+                "accReal": 116317.37999999998
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -6305,7 +6305,7 @@
             "orc": 92708.76497777778,
             "real": 76329.63,
             "accOrc": 335452.5898666667,
-            "accReal": 396425.31,
+            "accReal": 397385.31,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -6333,7 +6333,7 @@
                 "orc": 66998,
                 "real": 56952.52,
                 "accOrc": 169688,
-                "accReal": 252180.28000000003
+                "accReal": 253140.28000000003
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -6537,7 +6537,7 @@
             "orc": 86147.33333333333,
             "real": 211750.34,
             "accOrc": 516483.99999999994,
-            "accReal": 800940.7899999999,
+            "accReal": 893257.8999999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -6558,7 +6558,7 @@
                 "orc": 31133.333333333332,
                 "real": 104882.66,
                 "accOrc": 186800,
-                "accReal": 393308.08999999997
+                "accReal": 485625.19999999995
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -6653,7 +6653,7 @@
             "orc": 51478.319866666665,
             "real": -561188.23,
             "accOrc": 246370.1492,
-            "accReal": -421022.83,
+            "accReal": -513339.94,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -6674,7 +6674,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 94367.70999999999
+                "accReal": 2050.6
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -6718,7 +6718,7 @@
                 "orc": 10707.48,
                 "real": 4555.83,
                 "accOrc": 64244.87999999999,
-                "accReal": 92660.06
+                "accReal": 76702.61
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -6739,7 +6739,7 @@
                 "orc": 56090.69,
                 "real": 55510.69,
                 "accOrc": 474544.14,
-                "accReal": 388140.62
+                "accReal": 404098.07
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -7181,7 +7181,7 @@
             "orc": 81930.68166666667,
             "real": 166636.62000000002,
             "accOrc": 452634.08999999997,
-            "accReal": 843312.48,
+            "accReal": 854472.7799999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -7209,7 +7209,7 @@
                 "orc": 72836.33333333334,
                 "real": 103023.42,
                 "accOrc": 398068,
-                "accReal": 560405.3200000001
+                "accReal": 560455.3200000001
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -7223,7 +7223,7 @@
                 "orc": 0,
                 "real": 23828.100000000024,
                 "accOrc": 0,
-                "accReal": 105207.08
+                "accReal": 116317.37999999998
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -7239,7 +7239,7 @@
             "orc": 46508.76497777778,
             "real": 121463.95,
             "accOrc": 335452.5898666667,
-            "accReal": 396425.31,
+            "accReal": 397385.31,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -7267,7 +7267,7 @@
                 "orc": 20798,
                 "real": 97271.76,
                 "accOrc": 169688,
-                "accReal": 252180.28000000003
+                "accReal": 253140.28000000003
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -7471,7 +7471,7 @@
             "orc": 86147.33333333333,
             "real": 63068.14,
             "accOrc": 516483.99999999994,
-            "accReal": 800940.7899999999,
+            "accReal": 893257.8999999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -7492,7 +7492,7 @@
                 "orc": 31133.333333333332,
                 "real": 0,
                 "accOrc": 186800,
-                "accReal": 393308.08999999997
+                "accReal": 485625.19999999995
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -7587,7 +7587,7 @@
             "orc": 40025.51986666666,
             "real": -7202.150000000023,
             "accOrc": 246370.1492,
-            "accReal": -421022.83,
+            "accReal": -513339.94,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -7608,7 +7608,7 @@
                 "orc": 0,
                 "real": 826.68,
                 "accOrc": 0,
-                "accReal": 94367.70999999999
+                "accReal": 2050.6
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -7652,7 +7652,7 @@
                 "orc": 10707.48,
                 "real": 11090.82,
                 "accOrc": 64244.87999999999,
-                "accReal": 92660.06
+                "accReal": 76702.61
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -7673,7 +7673,7 @@
                 "orc": 156090.69,
                 "real": 55090.69,
                 "accOrc": 474544.14,
-                "accReal": 388140.62
+                "accReal": 404098.07
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -8115,7 +8115,7 @@
             "orc": 74480.68166666667,
             "real": 141462.71,
             "accOrc": 452634.08999999997,
-            "accReal": 843312.48,
+            "accReal": 854472.7799999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -8143,7 +8143,7 @@
                 "orc": 65386.333333333336,
                 "real": 65788.21,
                 "accOrc": 398068,
-                "accReal": 560405.3200000001
+                "accReal": 560455.3200000001
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -8157,7 +8157,7 @@
                 "orc": 0,
                 "real": 16506.629999999997,
                 "accOrc": 0,
-                "accReal": 105207.08
+                "accReal": 116317.37999999998
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -8173,7 +8173,7 @@
             "orc": 58588.76497777778,
             "real": 43404.95,
             "accOrc": 335452.5898666667,
-            "accReal": 396425.31,
+            "accReal": 397385.31,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -8201,7 +8201,7 @@
                 "orc": 21378,
                 "real": 13765.890000000001,
                 "accOrc": 169688,
-                "accReal": 252180.28000000003
+                "accReal": 253140.28000000003
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -8405,7 +8405,7 @@
             "orc": 86147.33333333333,
             "real": 164333.30999999997,
             "accOrc": 516483.99999999994,
-            "accReal": 800940.7899999999,
+            "accReal": 893257.8999999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -8426,7 +8426,7 @@
                 "orc": 31133.333333333332,
                 "real": 133831.4,
                 "accOrc": 186800,
-                "accReal": 393308.08999999997
+                "accReal": 485625.19999999995
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -8521,7 +8521,7 @@
             "orc": 40025.51986666666,
             "real": 42801.20000000004,
             "accOrc": 246370.1492,
-            "accReal": -421022.83,
+            "accReal": -513339.94,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -8542,7 +8542,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 94367.70999999999
+                "accReal": 2050.6
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -8586,7 +8586,7 @@
                 "orc": 10707.48,
                 "real": 23080.28,
                 "accOrc": 64244.87999999999,
-                "accReal": 92660.06
+                "accReal": 76702.61
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -8607,7 +8607,7 @@
                 "orc": 55090.69,
                 "real": 57963.259999999995,
                 "accOrc": 474544.14,
-                "accReal": 388140.62
+                "accReal": 404098.07
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -9047,9 +9047,9 @@
           {
             "cc": "Comercial",
             "orc": 72930.68166666667,
-            "real": 231915.77999999997,
+            "real": 243076.07999999993,
             "accOrc": 452634.08999999997,
-            "accReal": 843312.48,
+            "accReal": 854472.7799999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -9075,9 +9075,9 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 63836.333333333336,
-                "real": 161224.12,
+                "real": 161274.12,
                 "accOrc": 398068,
-                "accReal": 560405.3200000001
+                "accReal": 560455.3200000001
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -9089,9 +9089,9 @@
               {
                 "name": "(-) DESPESAS FINANCEIRAS",
                 "orc": 0,
-                "real": 32869.55999999998,
+                "real": 43979.859999999964,
                 "accOrc": 0,
-                "accReal": 105207.08
+                "accReal": 116317.37999999998
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -9105,9 +9105,9 @@
           {
             "cc": "Marketing",
             "orc": 52228.76497777778,
-            "real": 88823.3,
+            "real": 89783.3,
             "accOrc": 335452.5898666667,
-            "accReal": 396425.31,
+            "accReal": 397385.31,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -9133,9 +9133,9 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 26518,
-                "real": 63035.86,
+                "real": 63995.86,
                 "accOrc": 169688,
-                "accReal": 252180.28000000003
+                "accReal": 253140.28000000003
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -9337,9 +9337,9 @@
           {
             "cc": "Administrativo",
             "orc": 86147.33333333333,
-            "real": 104243.50000000001,
+            "real": 196560.61000000004,
             "accOrc": 516483.99999999994,
-            "accReal": 800940.7899999999,
+            "accReal": 893257.8999999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -9358,9 +9358,9 @@
               {
                 "name": "IMPOSTOS, TAXAS E CONTRIBUICOES",
                 "orc": 31133.333333333332,
-                "real": 0,
+                "real": 92317.11,
                 "accOrc": 186800,
-                "accReal": 393308.08999999997
+                "accReal": 485625.19999999995
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -9453,9 +9453,9 @@
           {
             "cc": "Financeiro",
             "orc": 40025.51986666666,
-            "real": 26837.879999999946,
+            "real": -65479.230000000025,
             "accOrc": 246370.1492,
-            "accReal": -421022.83,
+            "accReal": -513339.94,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -9474,9 +9474,9 @@
               {
                 "name": "IMPOSTOS, TAXAS E CONTRIBUICOES",
                 "orc": 0,
-                "real": 92360.03,
+                "real": 42.920000000000016,
                 "accOrc": 0,
-                "accReal": 94367.70999999999
+                "accReal": 2050.6
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -9518,9 +9518,9 @@
               {
                 "name": "DESPESAS COM PESSOAL",
                 "orc": 10707.48,
-                "real": 33817.27,
+                "real": 17859.82,
                 "accOrc": 64244.87999999999,
-                "accReal": 92660.06
+                "accReal": 76702.61
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -9539,9 +9539,9 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 56090.69,
-                "real": 87439.01,
+                "real": 103396.46,
                 "accOrc": 474544.14,
-                "accReal": 388140.62
+                "accReal": 404098.07
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -9887,7 +9887,7 @@
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
                 "orc": 287970.17,
-                "real": 41350.4,
+                "real": 41350.40000000001,
                 "accOrc": 2187279.33,
                 "accReal": 1024014.2200000001
               },
@@ -9974,7 +9974,7 @@
           }
         ],
         "totalOrc": 1529130.510422222,
-        "totalReal": 1617990.6699999997
+        "totalReal": 1630110.97
       },
       "2026_7": {
         "centros": [
@@ -9983,7 +9983,7 @@
             "orc": 82872.90333333334,
             "real": 0,
             "accOrc": 452634.08999999997,
-            "accReal": 843312.48,
+            "accReal": 854472.7799999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -10011,7 +10011,7 @@
                 "orc": 63836.333333333336,
                 "real": 0,
                 "accOrc": 398068,
-                "accReal": 560405.3200000001
+                "accReal": 560455.3200000001
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -10025,7 +10025,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 105207.08
+                "accReal": 116317.37999999998
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -10041,7 +10041,7 @@
             "orc": 397048.7649777778,
             "real": 0,
             "accOrc": 335452.5898666667,
-            "accReal": 396425.31,
+            "accReal": 397385.31,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -10069,7 +10069,7 @@
                 "orc": 371338,
                 "real": 0,
                 "accOrc": 169688,
-                "accReal": 252180.28000000003
+                "accReal": 253140.28000000003
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -10273,7 +10273,7 @@
             "orc": 90848.33333333333,
             "real": 0,
             "accOrc": 516483.99999999994,
-            "accReal": 800940.7899999999,
+            "accReal": 893257.8999999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -10294,7 +10294,7 @@
                 "orc": 31133.333333333332,
                 "real": 0,
                 "accOrc": 186800,
-                "accReal": 393308.08999999997
+                "accReal": 485625.19999999995
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -10389,7 +10389,7 @@
             "orc": 40025.51986666666,
             "real": 0,
             "accOrc": 246370.1492,
-            "accReal": -421022.83,
+            "accReal": -513339.94,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -10410,7 +10410,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 94367.70999999999
+                "accReal": 2050.6
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -10454,7 +10454,7 @@
                 "orc": 10707.48,
                 "real": 0,
                 "accOrc": 64244.87999999999,
-                "accReal": 92660.06
+                "accReal": 76702.61
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -10475,7 +10475,7 @@
                 "orc": 55090.69,
                 "real": 0,
                 "accOrc": 474544.14,
-                "accReal": 388140.62
+                "accReal": 404098.07
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -10917,7 +10917,7 @@
             "orc": 80072.90333333335,
             "real": 0,
             "accOrc": 452634.08999999997,
-            "accReal": 843312.48,
+            "accReal": 854472.7799999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -10945,7 +10945,7 @@
                 "orc": 68036.33333333334,
                 "real": 0,
                 "accOrc": 398068,
-                "accReal": 560405.3200000001
+                "accReal": 560455.3200000001
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -10959,7 +10959,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 105207.08
+                "accReal": 116317.37999999998
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -10975,7 +10975,7 @@
             "orc": 47684.67111111111,
             "real": 0,
             "accOrc": 335452.5898666667,
-            "accReal": 396425.31,
+            "accReal": 397385.31,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -11003,7 +11003,7 @@
                 "orc": 20798,
                 "real": 0,
                 "accOrc": 169688,
-                "accReal": 252180.28000000003
+                "accReal": 253140.28000000003
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -11207,7 +11207,7 @@
             "orc": 86147.33333333333,
             "real": 0,
             "accOrc": 516483.99999999994,
-            "accReal": 800940.7899999999,
+            "accReal": 893257.8999999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -11228,7 +11228,7 @@
                 "orc": 31133.333333333332,
                 "real": 0,
                 "accOrc": 186800,
-                "accReal": 393308.08999999997
+                "accReal": 485625.19999999995
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -11323,7 +11323,7 @@
             "orc": 41283.469577777774,
             "real": 0,
             "accOrc": 246370.1492,
-            "accReal": -421022.83,
+            "accReal": -513339.94,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -11344,7 +11344,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 94367.70999999999
+                "accReal": 2050.6
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -11388,7 +11388,7 @@
                 "orc": 10707.48,
                 "real": 0,
                 "accOrc": 64244.87999999999,
-                "accReal": 92660.06
+                "accReal": 76702.61
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -11409,7 +11409,7 @@
                 "orc": 89090.69,
                 "real": 0,
                 "accOrc": 474544.14,
-                "accReal": 388140.62
+                "accReal": 404098.07
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -11851,7 +11851,7 @@
             "orc": 75872.90333333334,
             "real": 0,
             "accOrc": 452634.08999999997,
-            "accReal": 843312.48,
+            "accReal": 854472.7799999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -11879,7 +11879,7 @@
                 "orc": 63836.333333333336,
                 "real": 0,
                 "accOrc": 398068,
-                "accReal": 560405.3200000001
+                "accReal": 560455.3200000001
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -11893,7 +11893,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 105207.08
+                "accReal": 116317.37999999998
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -11909,7 +11909,7 @@
             "orc": 52315.07734444444,
             "real": 0,
             "accOrc": 335452.5898666667,
-            "accReal": 396425.31,
+            "accReal": 397385.31,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -11937,7 +11937,7 @@
                 "orc": 25427.8,
                 "real": 0,
                 "accOrc": 169688,
-                "accReal": 252180.28000000003
+                "accReal": 253140.28000000003
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -12141,7 +12141,7 @@
             "orc": 86147.33333333333,
             "real": 0,
             "accOrc": 516483.99999999994,
-            "accReal": 800940.7899999999,
+            "accReal": 893257.8999999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -12162,7 +12162,7 @@
                 "orc": 31133.333333333332,
                 "real": 0,
                 "accOrc": 186800,
-                "accReal": 393308.08999999997
+                "accReal": 485625.19999999995
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -12257,7 +12257,7 @@
             "orc": 40283.299577777776,
             "real": 0,
             "accOrc": 246370.1492,
-            "accReal": -421022.83,
+            "accReal": -513339.94,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -12278,7 +12278,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 94367.70999999999
+                "accReal": 2050.6
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -12322,7 +12322,7 @@
                 "orc": 10707.48,
                 "real": 0,
                 "accOrc": 64244.87999999999,
-                "accReal": 92660.06
+                "accReal": 76702.61
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -12343,7 +12343,7 @@
                 "orc": 116090.69,
                 "real": 0,
                 "accOrc": 474544.14,
-                "accReal": 388140.62
+                "accReal": 404098.07
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -12785,7 +12785,7 @@
             "orc": 130672.90333333335,
             "real": 0,
             "accOrc": 452634.08999999997,
-            "accReal": 843312.48,
+            "accReal": 854472.7799999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -12813,7 +12813,7 @@
                 "orc": 118636.33333333334,
                 "real": 0,
                 "accOrc": 398068,
-                "accReal": 560405.3200000001
+                "accReal": 560455.3200000001
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -12827,7 +12827,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 105207.08
+                "accReal": 116317.37999999998
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -12843,7 +12843,7 @@
             "orc": 47685.27734444445,
             "real": 0,
             "accOrc": 335452.5898666667,
-            "accReal": 396425.31,
+            "accReal": 397385.31,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -12871,7 +12871,7 @@
                 "orc": 20798,
                 "real": 0,
                 "accOrc": 169688,
-                "accReal": 252180.28000000003
+                "accReal": 253140.28000000003
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -13075,7 +13075,7 @@
             "orc": 86147.33333333333,
             "real": 0,
             "accOrc": 516483.99999999994,
-            "accReal": 800940.7899999999,
+            "accReal": 893257.8999999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -13096,7 +13096,7 @@
                 "orc": 31133.333333333332,
                 "real": 0,
                 "accOrc": 186800,
-                "accReal": 393308.08999999997
+                "accReal": 485625.19999999995
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -13191,7 +13191,7 @@
             "orc": 40283.299577777776,
             "real": 0,
             "accOrc": 246370.1492,
-            "accReal": -421022.83,
+            "accReal": -513339.94,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -13212,7 +13212,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 94367.70999999999
+                "accReal": 2050.6
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -13256,7 +13256,7 @@
                 "orc": 10707.48,
                 "real": 0,
                 "accOrc": 64244.87999999999,
-                "accReal": 92660.06
+                "accReal": 76702.61
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -13277,7 +13277,7 @@
                 "orc": 56090.69,
                 "real": 0,
                 "accOrc": 474544.14,
-                "accReal": 388140.62
+                "accReal": 404098.07
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -13719,7 +13719,7 @@
             "orc": 75872.90333333334,
             "real": 0,
             "accOrc": 452634.08999999997,
-            "accReal": 843312.48,
+            "accReal": 854472.7799999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -13747,7 +13747,7 @@
                 "orc": 63836.333333333336,
                 "real": 0,
                 "accOrc": 398068,
-                "accReal": 560405.3200000001
+                "accReal": 560455.3200000001
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -13761,7 +13761,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 105207.08
+                "accReal": 116317.37999999998
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -13777,7 +13777,7 @@
             "orc": 62885.27734444445,
             "real": 0,
             "accOrc": 335452.5898666667,
-            "accReal": 396425.31,
+            "accReal": 397385.31,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -13805,7 +13805,7 @@
                 "orc": 24498,
                 "real": 0,
                 "accOrc": 169688,
-                "accReal": 252180.28000000003
+                "accReal": 253140.28000000003
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -14009,7 +14009,7 @@
             "orc": 86147.33333333333,
             "real": 0,
             "accOrc": 516483.99999999994,
-            "accReal": 800940.7899999999,
+            "accReal": 893257.8999999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -14030,7 +14030,7 @@
                 "orc": 31133.333333333332,
                 "real": 0,
                 "accOrc": 186800,
-                "accReal": 393308.08999999997
+                "accReal": 485625.19999999995
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -14125,7 +14125,7 @@
             "orc": 40283.299577777776,
             "real": 0,
             "accOrc": 246370.1492,
-            "accReal": -421022.83,
+            "accReal": -513339.94,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -14146,7 +14146,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 94367.70999999999
+                "accReal": 2050.6
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -14190,7 +14190,7 @@
                 "orc": 10707.48,
                 "real": 0,
                 "accOrc": 64244.87999999999,
-                "accReal": 92660.06
+                "accReal": 76702.61
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -14211,7 +14211,7 @@
                 "orc": 55090.69,
                 "real": 0,
                 "accOrc": 474544.14,
-                "accReal": 388140.62
+                "accReal": 404098.07
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -14653,7 +14653,7 @@
             "orc": 78222.90333333335,
             "real": 0,
             "accOrc": 452634.08999999997,
-            "accReal": 843312.48,
+            "accReal": 854472.7799999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -14681,7 +14681,7 @@
                 "orc": 66186.33333333334,
                 "real": 0,
                 "accOrc": 398068,
-                "accReal": 560405.3200000001
+                "accReal": 560455.3200000001
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -14695,7 +14695,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 105207.08
+                "accReal": 116317.37999999998
               },
               {
                 "name": "(+) RECEITAS FINANCEIRAS",
@@ -14711,7 +14711,7 @@
             "orc": 47685.27734444445,
             "real": 0,
             "accOrc": 335452.5898666667,
-            "accReal": 396425.31,
+            "accReal": 397385.31,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -14739,7 +14739,7 @@
                 "orc": 20798,
                 "real": 0,
                 "accOrc": 169688,
-                "accReal": 252180.28000000003
+                "accReal": 253140.28000000003
               },
               {
                 "name": "DESPESAS COM FRETES",
@@ -14943,7 +14943,7 @@
             "orc": 85747.33333333333,
             "real": 0,
             "accOrc": 516483.99999999994,
-            "accReal": 800940.7899999999,
+            "accReal": 893257.8999999999,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -14964,7 +14964,7 @@
                 "orc": 31133.333333333332,
                 "real": 0,
                 "accOrc": 186800,
-                "accReal": 393308.08999999997
+                "accReal": 485625.19999999995
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -15059,7 +15059,7 @@
             "orc": 72049.63957777777,
             "real": 0,
             "accOrc": 246370.1492,
-            "accReal": -421022.83,
+            "accReal": -513339.94,
             "categories": [
               {
                 "name": "DESPESAS COM PESSOAL",
@@ -15080,7 +15080,7 @@
                 "orc": 0,
                 "real": 0,
                 "accOrc": 0,
-                "accReal": 94367.70999999999
+                "accReal": 2050.6
               },
               {
                 "name": "DESPESAS GERAIS E ADMINISTRATIVAS",
@@ -15124,7 +15124,7 @@
                 "orc": 10707.48,
                 "real": 0,
                 "accOrc": 64244.87999999999,
-                "accReal": 92660.06
+                "accReal": 76702.61
               },
               {
                 "name": "ALUGUEIS E ARRENDAMENTOS",
@@ -15145,7 +15145,7 @@
                 "orc": 151181,
                 "real": 0,
                 "accOrc": 474544.14,
-                "accReal": 388140.62
+                "accReal": 404098.07
               },
               {
                 "name": "DESPESAS COM FRETES",
